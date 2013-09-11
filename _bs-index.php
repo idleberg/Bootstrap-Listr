@@ -266,7 +266,7 @@ function time_ago($timestamp, $recursive = 0)
 				<? foreach($file_list as $item) : ?>
 						<tr>
 							<td><i class="glyphicon glyphicon-file">&nbsp;</i><a href="<?=$item['name']?>.<?=$item['ext']?>"><?=$item['name']?>.<?=$item['ext']?></a></td>
-							<td><?=$item['size']['num']?><span><?=$item['size']['str']?></span></td>
+							<td><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td>
 							<td><?=time_ago($item['mtime'])?>old</td>
 						</tr>
 				<? endforeach; ?>
