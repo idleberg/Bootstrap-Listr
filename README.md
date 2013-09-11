@@ -16,7 +16,7 @@ Within the actual script, you can also define a list of ignored files. By defaul
 
 ## Credits
 
-This project is based on Na Wong's [Listr](http://nadesign.net/listr/), which is based on Greg Johnson's' [PHP Directory Lister](http://greg-j.com/phpdl/).
+This project is based on Na Wong's [Listr](http://nadesign.net/listr/), which itself is based on Greg Johnson's [PHP Directory Lister](http://greg-j.com/phpdl/).
 
 ## License
 
