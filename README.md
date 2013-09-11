@@ -6,7 +6,7 @@ A simple PHP script to display folders and files on a server in a well form list
 
 ## Installation
 
-Clone this repository using `git clone https://github.com/idlerberg/Bootstrap-Directory-Lister` or use the ZIP download option.
+Clone this repository using `git clone https://github.com/idlerberg/Bootstrap-Directory-Lister` or use the [`Download ZIP`](https://github.com/idleberg/Bootstrap-Directory-Lister/archive/master.zip) option.
 
 ## Usage
 
