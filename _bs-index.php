@@ -246,7 +246,7 @@ function time_ago($timestamp, $recursive = 0)
 					<tfoot>
 						<tr>
 							<td colspan="2"><small class="pull-left"><? if($folder_list): ?>This folder has <?=count($file_list)?> files totaling <?=$total_size['num']?> <?=$total_size['str']?> in size<? endif; ?></small></td>
-							<td><small class="pull-right">Fork me on <a href="#">GitHub</a></small></td>
+							<td><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Directory-Lister">GitHub</a></small></td>
 						</tr>
 					</tfoot>
 					<tbody>
