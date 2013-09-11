@@ -10,7 +10,9 @@ Clone this repository using `git clone https://github.com/idlerberg/Bootstrap-Di
 
 ## Usage
 
-Once all files are placed on your server, make sure to set the directory index to `DirectoryIndex _bs-index.php` - assuming you are using Apache. If you prefer a differnt naming scheme, rename the file and the entry accordingly. Within the actual script, you can also define a list of ignored files. By default, this list includes `_bs-index.php` and `_bs-dist`.
+Once all files are placed on your server, make sure to set the directory index to `DirectoryIndex _bs-index.php` - assuming you are using Apache. If you prefer a different naming scheme, rename the file and the entry accordingly.
+
+Within the actual script, you can also define a list of ignored files. By default, this list includes `_bs-index.php` and `_bs-dist`.
 
 ## Credits
 
