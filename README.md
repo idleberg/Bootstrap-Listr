@@ -16,13 +16,17 @@ You can configure some of the settings in the header of the script file. Current
 
 * Optional columns for size, modified date, permissions (the latter is disabled by default)
 * Document icons (enabled by default)
-* [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons (disabled by default)
+* Font Awesome icons (disabled by default)
 * Column sorting (enabled by default)
 * List of ignored files
 
-### File name
+### Naming
 
-If you prefer a different file name for the script, don't forget to add it as new `DirectoryIndex`. Please refer to the [Apache documation](http://httpd.apache.org/docs/2.2/mod/mod_dir.html) for details.
+If you prefer a different file name for the script, you can rename it without worrying about the ignore list. Just don't forget to add it as new `DirectoryIndex`. Please refer to the [Apache documation](http://httpd.apache.org/docs/2.2/mod/mod_dir.html) for details.
+
+### Font Awesome
+
+To display icons based on file-types, you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) support. Note that this will require extra resources, hence increase the load time.
 
 ### Theming
 
