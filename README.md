@@ -6,11 +6,13 @@ A simple PHP script to display folders and files on a server in a well form list
 
 ## Installation
 
-Clone this repository using `git clone https://github.com/idlerberg/Bootstrap-Directory-Lister` or use the [`Download ZIP`](https://github.com/idleberg/Bootstrap-Directory-Lister/archive/master.zip) option. Make sure to make `_bs-index.php` the directory index in your `.htaccess` file (see included example)
+Clone this repository using `git clone https://github.com/idlerberg/Bootstrap-Directory-Lister` or use the [`Download ZIP`](https://github.com/idleberg/Bootstrap-Directory-Lister/archive/master.zip) option
 
 ## Usage
 
-You can configure the optional columns (size, age, permissions), column sorting, and the list of ignored file names in in the header of the script file. If you prefer a different file name for the script, make sure to change it along the `DirectoryIndex` and add it to the ignore list.
+You can configure the optional columns (size, age, permissions), column sorting, and the list of ignored file names in in the header of the script file.
+
+If you prefer a different file name for the script, make sure to change it along the `DirectoryIndex`.
 
 ## Credits
 

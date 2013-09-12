@@ -40,7 +40,7 @@ $sort = array(
 	array('key'=>'size',	'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
 );
 // Files you want to hide form the listing
-$ignore_list = array('.DAV','.DS_Store','.git','.gitignore','.htaccess','_bs-index.php','robots.txt','**/.*');
+$ignore_list = array('.DAV','.DS_Store','.git','.gitignore','.htaccess','robots.txt','**/.*');
 
 
 
@@ -79,7 +79,7 @@ if ($handle = opendir('.'))
     while (false !== ($file = readdir($handle)))
 	{
 		// Make sure we don't list this folder, file or their links.
-        if ($file != "." && $file != ".." && $file != $this_script && !in_array($file, $ignore_list))
+        if ($file != "." && $file != ".." && $file != $this_script && !in_array($file, $ignore_list) && (substr($file, 0, 1) != '.'))
 		{
 			// Get file info.
 			$info				=	pathinfo($file);
@@ -278,7 +278,7 @@ function time_ago($timestamp, $recursive = 0)
 				<? if($folder_list): ?>
 				<? foreach($folder_list as $item) : ?>
 						<tr>
-							<td><i class="glyphicon glyphicon-folder-close">&nbsp;</i><a href="<?=$item['name']?>/"><strong><?=$item['name']?></strong></a></td>
+							<td<? if ($enable_sort) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><i class="glyphicon glyphicon-folder-close">&nbsp;</i><a href="<?=$item['name']?>/"><strong><?=$item['name']?></strong></a></td>
 							<? if ($table_options['size']) { ?><td<? if ($enable_sort) { ?> data-sort-value="0"<? } ?>>n/a</td><? } ?>
 							<? if ($table_options['age']) { ?><td<? if ($enable_sort) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>old</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
@@ -290,7 +290,7 @@ function time_ago($timestamp, $recursive = 0)
 				<? if($file_list): ?>
 				<? foreach($file_list as $item) : ?>
 						<tr>
-							<td><i class="glyphicon glyphicon-file">&nbsp;</i><a href="<?=$item['name']?>.<?=$item['ext']?>"><?=$item['name']?>.<?=$item['ext']?></a></td>
+							<td<? if ($enable_sort) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><i class="glyphicon glyphicon-file">&nbsp;</i><a href="<?=$item['name']?>.<?=$item['ext']?>"><?=$item['name']?>.<?=$item['ext']?></a></td>
 							<? if ($table_options['size']) { ?><td<? if ($enable_sort) { ?> data-sort-value="<?=$item['bytes']?>"<? } ?>><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
 							<? if ($table_options['age']) { ?><td<? if ($enable_sort) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>old</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
