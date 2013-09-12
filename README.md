@@ -12,7 +12,11 @@ Clone this repository using `git clone https://github.com/idlerberg/Bootstrap-Di
 
 ### Options
 
-You can configure the optional columns (size, age, permissions), column sorting, and the list of ignored file names in in the header of the script file.
+You can configure some of the settings in the header of the script file. Currently, these includ the following:
+
+* Optional columns for size, modified date, permissions (the latter is disabled by default)
+* Column sorting (enabled by default)
+* List of ignored files
 
 ### File name
 
