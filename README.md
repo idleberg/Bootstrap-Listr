@@ -10,11 +10,13 @@ Clone this repository using `git clone https://github.com/idlerberg/Bootstrap-Di
 
 ## Usage
 
-You can configure the optional columns (size, age, permissions) and a list of ignored file names in in the header of the script file. If you prefer a different file name for the script, make sure to change it along the `DirectoryIndex` and add it to the ignore list.
+You can configure the optional columns (size, age, permissions), column sorting, and the list of ignored file names in in the header of the script file. If you prefer a different file name for the script, make sure to change it along the `DirectoryIndex` and add it to the ignore list.
 
 ## Credits
 
-This project is based on Na Wong's [Listr](http://nadesign.net/listr/), which itself is based on Greg Johnson's [PHP Directory Lister](http://greg-j.com/phpdl/).
+Greg Johnson - [PHP Directory Lister](http://greg-j.com/phpdl/)
+Na Wong - [Listr](http://nadesign.net/listr/)
+Joe McCullough - [Stupid Table Plugin](http://joequery.github.io/Stupid-Table-Plugin/)
 
 ## License
 

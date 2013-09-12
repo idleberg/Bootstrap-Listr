@@ -11,6 +11,7 @@ error_reporting(1);
  *
  *		Credits:	Greg Johnson - PHPDL lite (http://greg-j.com/phpdl/)
  *					Na Wong - Listr (http://nadesign.net/listr/)
+ 					Joe McCullough - Stupid Table Plugin (http://joequery.github.io/Stupid-Table-Plugin/)
  */
 
 /***[ BOOTSTRAP ]***/
@@ -29,8 +30,11 @@ $table_options = array (
 	'perms'=>false
 );
 
-// Default link color in Bootstrap 3.0 is #428bca
-$icon_color = '#428bca';
+
+/***[ COLUMN SORTING ]***/
+
+// Toggle sorting
+$enable_sort = true;
 
 
 /***[ SETTINGS ]***/ 
@@ -41,8 +45,7 @@ $sort = array(
 	array('key'=>'size',	'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
 );
 // Files you want to hide form the listing
-$ignore_list = array('.DAV','.DS_Store','.git','.gitignore','.htaccess','_bs-index.php','robots.txt');
-
+$ignore_list = array('.DAV','.DS_Store','.git','.gitignore','.htaccess','_bs-index.php','robots.txt','**/.*');
 
 
 /***[ DIRECTORY LOGIC ]***/
@@ -260,10 +263,10 @@ function time_ago($timestamp, $recursive = 0)
 
 					<thead>
 						<tr>
-							<th>Name</th>
-							<? if ($table_options['size']) { ?><th>Size</th><? } ?>
-							<? if ($table_options['age']) { ?><th>Age</th><? } ?>
-							<? if ($table_options['perms']) { ?><th>Permissions</th><? } ?>
+							<th data-sort="string"><? if ($enable_sort) { ?><i class="glyphicon glyphicon-sort">&nbsp;</i><? } ?>Name</th>
+							<? if ($table_options['size']) { ?><th data-sort="int">Size</th><? } ?>
+							<? if ($table_options['age']) { ?><th data-sort="int">Age</th><? } ?>
+							<? if ($table_options['perms']) { ?><th data-sort="int">Permissions</th><? } ?>
 						</tr>
 					</thead>
 					<tfoot>
@@ -278,8 +281,8 @@ function time_ago($timestamp, $recursive = 0)
 				<? foreach($folder_list as $item) : ?>
 						<tr>
 							<td><i class="glyphicon glyphicon-folder-close">&nbsp;</i><a href="<?=$item['name']?>/"><strong><?=$item['name']?></strong></a></td>
-							<? if ($table_options['size']) { ?><td>n/a</td><? } ?>
-							<? if ($table_options['age']) { ?><td><?=time_ago($item['mtime'])?>old</td><? } ?>
+							<? if ($table_options['size']) { ?><td data-sort-value="0">n/a</td><? } ?>
+							<? if ($table_options['age']) { ?><td data-sort-value="<?=$item['mtime']?>"><?=time_ago($item['mtime'])?>old</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
 						</tr>
 				<? endforeach; ?>
@@ -290,8 +293,8 @@ function time_ago($timestamp, $recursive = 0)
 				<? foreach($file_list as $item) : ?>
 						<tr>
 							<td><i class="glyphicon glyphicon-file">&nbsp;</i><a href="<?=$item['name']?>.<?=$item['ext']?>"><?=$item['name']?>.<?=$item['ext']?></a></td>
-							<? if ($table_options['size']) { ?><td><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
-							<? if ($table_options['age']) { ?><td><?=time_ago($item['mtime'])?>old</td><? } ?>
+							<? if ($table_options['size']) { ?><td data-sort-value="<?=$item['bytes']?>"><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
+							<? if ($table_options['age']) { ?><td data-sort-value="<?=$item['mtime']?>"><?=time_ago($item['mtime'])?>old</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
 						</tr>
 				<? endforeach; ?>
@@ -300,5 +303,12 @@ function time_ago($timestamp, $recursive = 0)
 					</tbody>                          
 				</table>
 			</div>
+			<? if ($enable_sort) { ?>
+				<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	    		<script src="//rawgithub.com/joequery/Stupid-Table-Plugin/master/stupidtable.min.js"></script>
+	    		<script type="text/javascript">
+	    			$("#bs-table").stupidtable();
+	    		</script>
+    		<? } ?>
 		</body>
 	</html>
