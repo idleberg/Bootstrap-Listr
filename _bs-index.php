@@ -20,7 +20,14 @@ error_reporting(1);
 // Add 'table-hover' to enable a hover state on table rows
 // Add 'table-condensed' to make tables more compact by cutting cell padding in half
 // Create responsive tables by wrapping any table in 'table-responsive'
-$table_style = 'table-hover table-responsive';
+$table_style = 'table-hover';
+
+// Configure optional columns
+$table_options = array (
+	'size'=>true,
+	'age'=>true,
+	'perms'=>false
+);
 
 // Default link color in Bootstrap 3.0 is #428bca
 $icon_color = '#428bca';
@@ -57,7 +64,13 @@ $file_list = array();
 $folder_list = array();
 $total_size = 0;
 
-
+// Count optional columns
+$table_count = 0;
+foreach($table_options as $value)
+{
+  if($value === true)
+    $table_count++;
+}
 
 // Open the current directory...
 if ($handle = opendir('.'))
@@ -69,18 +82,30 @@ if ($handle = opendir('.'))
         if ($file != "." && $file != ".." && $file != $this_script && !in_array($file, $ignore_list))
 		{
 			// Get file info.
-			$stat				=	stat($file); // ... slow, but faster than using filemtime() & filesize() instead.
 			$info				=	pathinfo($file);
 			// Organize file info.
 			$item['name']		=	$info['filename'];
 			$item['lname']		=	strtolower($info['filename']);
 			$item['ext']		=	$info['extension'];
 			$item['lext']		=	strtolower($info['extension']);
-			if($info['extension'] == '') $item['ext'] = '.';
+				if($info['extension'] == '') $item['ext'] = '.';
+
+			if ($table_options['size'] || $table_options['age'])
+			$stat				=	stat($file); // ... slow, but faster than using filemtime() & filesize() instead.
+
+			if ($table_options['size']) {
+				$item['bytes']		=	$stat['size'];
+				$item['size']		=	bytes_to_string($stat['size'], 2);
+			}
+
+			if ($table_options['age']) {
+				$item['mtime']		=	$stat['mtime'];
+			}
 			
-			$item['bytes']		=	$stat['size'];
-			$item['size']		=	bytes_to_string($stat['size'], 2);
-			$item['mtime']		=	$stat['mtime'];
+			if ($table_options['perms']) {
+				$item['perms']		=	substr(sprintf('%o', fileperms($file)), -4);
+			}
+			
 			// Add files to the file list...
 			if($info['extension'] != ''){
 				array_push($file_list, $item);
@@ -235,14 +260,15 @@ function time_ago($timestamp, $recursive = 0)
 
 					<thead>
 						<tr>
-							<th>Name</td>
-							<th>Size</td>
-							<th>Age</td>
+							<th>Name</th>
+							<? if ($table_options['size']) { ?><th>Size</th><? } ?>
+							<? if ($table_options['age']) { ?><th>Age</th><? } ?>
+							<? if ($table_options['perms']) { ?><th>Permissions</th><? } ?>
 						</tr>
 					</thead>
 					<tfoot>
 						<tr>
-							<td colspan="2"><small class="pull-left"><? if($folder_list): ?>This folder has <?=count($file_list)?> files totaling <?=$total_size['num']?> <?=$total_size['str']?> in size<? endif; ?></small></td>
+							<td colspan="<?=$table_count?>"><small class="pull-left"><? if($folder_list): ?>This folder has <?=count($file_list)?> files totaling <?=$total_size['num']?> <?=$total_size['str']?> in size<? endif; ?></small></td>
 							<td><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Directory-Lister">GitHub</a></small></td>
 						</tr>
 					</tfoot>
@@ -252,8 +278,9 @@ function time_ago($timestamp, $recursive = 0)
 				<? foreach($folder_list as $item) : ?>
 						<tr>
 							<td><i class="glyphicon glyphicon-folder-close">&nbsp;</i><a href="<?=$item['name']?>/"><strong><?=$item['name']?></strong></a></td>
-							<td>n/a</td>
-							<td><?=time_ago($item['mtime'])?>old</td>
+							<? if ($table_options['size']) { ?><td>n/a</td><? } ?>
+							<? if ($table_options['age']) { ?><td><?=time_ago($item['mtime'])?>old</td><? } ?>
+							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
 						</tr>
 				<? endforeach; ?>
 				<? endif; ?>
@@ -263,8 +290,9 @@ function time_ago($timestamp, $recursive = 0)
 				<? foreach($file_list as $item) : ?>
 						<tr>
 							<td><i class="glyphicon glyphicon-file">&nbsp;</i><a href="<?=$item['name']?>.<?=$item['ext']?>"><?=$item['name']?>.<?=$item['ext']?></a></td>
-							<td><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td>
-							<td><?=time_ago($item['mtime'])?>old</td>
+							<? if ($table_options['size']) { ?><td><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
+							<? if ($table_options['age']) { ?><td><?=time_ago($item['mtime'])?>old</td><? } ?>
+							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
 						</tr>
 				<? endforeach; ?>
 				<? endif; ?>
