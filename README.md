@@ -4,8 +4,8 @@ A simple PHP script to display folders and files on a server in a well form list
 
 Demos:
 
-* [Default](http://demo.idleberg.com/Directory-Default)
-* [Font Awesome](http://demo.idleberg.com/Directory-Awesome)
+* [Default](http://demo.idleberg.com/Bootstrap-Directory/Default)
+* [Font Awesome](http://demo.idleberg.com/Bootstrap-Directory/Font-Awesome)
 
 ## Installation
 
