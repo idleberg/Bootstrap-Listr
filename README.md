@@ -29,9 +29,9 @@ Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) the
 
 ## Credits
 
-Greg Johnson - [PHP Directory Lister](http://greg-j.com/phpdl/)  
-Na Wong - [Listr](http://nadesign.net/listr/)  
-Joe McCullough - [Stupid Table Plugin](http://joequery.github.io/Stupid-Table-Plugin/)  
+* Greg Johnson - [PHP Directory Lister](http://greg-j.com/phpdl/)
+* Na Wong - [Listr](http://nadesign.net/listr/)
+* Joe McCullough - [Stupid Table Plugin](http://joequery.github.io/Stupid-Table-Plugin/)
 
 ## License
 
