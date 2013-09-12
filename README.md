@@ -20,7 +20,7 @@ Joe McCullough - [Stupid Table Plugin](http://joequery.github.io/Stupid-Table-Pl
 
 ## License
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/deed.en_US).
+This work by Jan T. Sott is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/deed.en_US)
 
 ## Donate
 
