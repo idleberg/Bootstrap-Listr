@@ -263,10 +263,10 @@ function time_ago($timestamp, $recursive = 0)
 
 					<thead>
 						<tr>
-							<th data-sort="string"><? if ($enable_sort) { ?><i class="glyphicon glyphicon-sort">&nbsp;</i><? } ?>Name</th>
-							<? if ($table_options['size']) { ?><th data-sort="int">Size</th><? } ?>
-							<? if ($table_options['age']) { ?><th data-sort="int">Age</th><? } ?>
-							<? if ($table_options['perms']) { ?><th data-sort="int">Permissions</th><? } ?>
+							<th<? if ($enable_sort) { ?> data-sort="string"<? } ?>><? if ($enable_sort) { ?><i class="glyphicon glyphicon-sort">&nbsp;</i><? } ?>Name</th>
+							<? if ($table_options['size']) { ?><th<? if ($enable_sort) { ?> data-sort="int"<? } ?>>Size</th><? } ?>
+							<? if ($table_options['age']) { ?><th<? if ($enable_sort) { ?> data-sort="int"<? } ?>>Age</th><? } ?>
+							<? if ($table_options['perms']) { ?><th<? if ($enable_sort) { ?> data-sort="int"<? } ?>>Permissions</th><? } ?>
 						</tr>
 					</thead>
 					<tfoot>
@@ -281,8 +281,8 @@ function time_ago($timestamp, $recursive = 0)
 				<? foreach($folder_list as $item) : ?>
 						<tr>
 							<td><i class="glyphicon glyphicon-folder-close">&nbsp;</i><a href="<?=$item['name']?>/"><strong><?=$item['name']?></strong></a></td>
-							<? if ($table_options['size']) { ?><td data-sort-value="0">n/a</td><? } ?>
-							<? if ($table_options['age']) { ?><td data-sort-value="<?=$item['mtime']?>"><?=time_ago($item['mtime'])?>old</td><? } ?>
+							<? if ($table_options['size']) { ?><td<? if ($enable_sort) { ?> data-sort-value="0"<? } ?>>n/a</td><? } ?>
+							<? if ($table_options['age']) { ?><td<? if ($enable_sort) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>old</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
 						</tr>
 				<? endforeach; ?>
@@ -293,8 +293,8 @@ function time_ago($timestamp, $recursive = 0)
 				<? foreach($file_list as $item) : ?>
 						<tr>
 							<td><i class="glyphicon glyphicon-file">&nbsp;</i><a href="<?=$item['name']?>.<?=$item['ext']?>"><?=$item['name']?>.<?=$item['ext']?></a></td>
-							<? if ($table_options['size']) { ?><td data-sort-value="<?=$item['bytes']?>"><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
-							<? if ($table_options['age']) { ?><td data-sort-value="<?=$item['mtime']?>"><?=time_ago($item['mtime'])?>old</td><? } ?>
+							<? if ($table_options['size']) { ?><td<? if ($enable_sort) { ?> data-sort-value="<?=$item['bytes']?>"<? } ?>><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
+							<? if ($table_options['age']) { ?><td<? if ($enable_sort) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>old</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
 						</tr>
 				<? endforeach; ?>
