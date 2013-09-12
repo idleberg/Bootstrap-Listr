@@ -269,7 +269,7 @@ function time_ago($timestamp, $recursive = 0)
 					</thead>
 					<tfoot>
 						<tr>
-							<td colspan="<?=$table_count?>"><small class="pull-left">This folder has <?=$contained?>, <?=$total_size['num']?> <?=$total_size['str']?> in size</small></td>
+							<td colspan="<?=$table_count?>"><small class="pull-left"><?=$contained?>, <?=$total_size['num']?> <?=$total_size['str']?> in total</small></td>
 							<td><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Directory-Lister">GitHub</a></small></td>
 						</tr>
 					</tfoot>
