@@ -239,9 +239,9 @@ function time_ago($timestamp, $recursive = 0)
 <!DOCTYPE html>
 	<html>
 		<head>
-			<meta charset="UTF-8"> 
+			<meta charset="utf-8"> 
 			<title>Index of <?=$this_domain?><?=$this_folder?></title>
-			<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+			<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 			<style type="text/css">th {cursor: pointer}</style>
 		</head>
 
@@ -304,8 +304,8 @@ function time_ago($timestamp, $recursive = 0)
 				</table>
 			</div>
 			<? if (ENABLE_SORT) { ?>
-				<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	    		<script src="//rawgithub.com/joequery/Stupid-Table-Plugin/master/stupidtable.min.js"></script>
+				<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	    		<script type="text/javascript" src="//rawgithub.com/joequery/Stupid-Table-Plugin/master/stupidtable.min.js"></script>
 	    		<script type="text/javascript">
 	    			$("#bs-table").stupidtable();
 	    		</script>
