@@ -15,16 +15,17 @@ Clone this repository using `git clone https://github.com/idlerberg/Bootstrap-Di
 You can configure some of the settings in the header of the script file. Currently, these includ the following:
 
 * Optional columns for size, modified date, permissions (the latter is disabled by default)
+* Document icons (enabled by default)
 * Column sorting (enabled by default)
 * List of ignored files
 
 ### File name
 
-If you prefer a different file name for the script, don't forget to add it as new `DirectoryIndex`.
+If you prefer a different file name for the script, don't forget to add it as new `DirectoryIndex`. Please refer to the [Apache documation](http://httpd.apache.org/docs/2.2/mod/mod_dir.html) for details.
 
 ### Theming
 
-Should you decide to use [Bootswatch](http://bootswatch.com/) themes, please note that these do not include the [glyphicons](http://getbootstrap.com/components/#glyphicons) used in the script.
+Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) themes, please note that some of these do not include the [glyphicons](http://getbootstrap.com/components/#glyphicons) used in the script. You can disable glyphicons in the script header.
 
 ## Credits
 
