@@ -26,7 +26,7 @@ If you prefer a different file name for the script, you can rename it without wo
 
 ### Font Awesome
 
-To display icons based on file-types, you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) support. Note that this will require extra resources, hence increase the load time.
+Rather than using generic icons, you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) for file-specific icons. Note that this will require extra resources, hence increase the load time.
 
 ### Theming
 
