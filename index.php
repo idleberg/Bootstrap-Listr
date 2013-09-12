@@ -306,8 +306,11 @@ function time_ago($timestamp, $recursive = 0)
 		<head>
 			<meta charset="utf-8"> 
 			<title>Index of <?=$this_domain?><?=$this_folder?></title>
-			<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-			<? if (ENABLE_ICONS && ENABLE_AWESOME) { ?><link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" /><? } ?>
+			<? if (ENABLE_ICONS && ENABLE_AWESOME) { ?>
+				<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" />
+			<? } else } ?>
+				<link rel="stylesheet" href="///netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+			<? } ?>
 
 			<style type="text/css">th {cursor: pointer}</style>
 		</head>
