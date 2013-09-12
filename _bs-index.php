@@ -212,10 +212,7 @@ function time_ago($timestamp, $recursive = 0)
 	<html>
 		<head>
 			<meta charset="UTF-8"> 
-			<meta name="author" content="Na Wong"> 
-			<meta name="copyright" content="Na&rsquo;Design"> 
 			<title>Index of <?=$this_domain?><?=$this_folder?></title>
-			<link rel="icon" href="listr-favicon.png">
 			<link rel="stylesheet" href="_bs-dist/css/bootstrap.min.css">
 			<style type="text/css">i {color:<?=$icon_color?>;}</style>
 		</head>
@@ -234,7 +231,7 @@ function time_ago($timestamp, $recursive = 0)
 					<? endforeach; ?>
 				</h1>
 
-				<table class="table <?=$table_style?>">
+				<table id="bs-table" class="table <?=$table_style?>">
 
 					<thead>
 						<tr>
