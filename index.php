@@ -9,9 +9,9 @@ error_reporting(1);
  *         Info:    http://github.com/idleberg/Bootstrap-Directory-Lister
  *      License:    Creative Commons 3.0 Attribution-ShareAlike 3.0
  *
- *		Credits:	Greg Johnson - PHPDL lite (http://greg-j.com/phpdl/)
- *					Na Wong - Listr (http://nadesign.net/listr/)
- *					Joe McCullough - Stupid Table Plugin (http://joequery.github.io/Stupid-Table-Plugin/)
+ *      Credits:    Greg Johnson - PHPDL lite (http://greg-j.com/phpdl/)
+ *                  Na Wong - Listr (http://nadesign.net/listr/)
+ *                  Joe McCullough - Stupid Table Plugin (http://joequery.github.io/Stupid-Table-Plugin/)
  */
 
 
