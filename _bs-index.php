@@ -41,7 +41,7 @@ $sort = array(
 	array('key'=>'size',	'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
 );
 // Files you want to hide form the listing
-$ignore_list = array('.DAV','.DS_Store','.git','.gitignore','.htaccess','_bs-dist','_bs-index.php','robots.txt');
+$ignore_list = array('.DAV','.DS_Store','.git','.gitignore','.htaccess','_bs-index.php','robots.txt');
 
 
 
@@ -238,7 +238,7 @@ function time_ago($timestamp, $recursive = 0)
 		<head>
 			<meta charset="UTF-8"> 
 			<title>Index of <?=$this_domain?><?=$this_folder?></title>
-			<link rel="stylesheet" href="_bs-dist/css/bootstrap.min.css">
+			<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 			<style type="text/css">i {color:<?=$icon_color?>;}</style>
 		</head>
 
