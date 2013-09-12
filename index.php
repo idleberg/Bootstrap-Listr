@@ -263,7 +263,7 @@ function time_ago($timestamp, $recursive = 0)
 						<tr>
 							<th<? if ($enable_sort) { ?> data-sort="string"<? } ?>><? if ($enable_sort) { ?><i class="glyphicon glyphicon-sort">&nbsp;</i><? } ?>Name</th>
 							<? if ($table_options['size']) { ?><th<? if ($enable_sort) { ?> data-sort="int"<? } ?>>Size</th><? } ?>
-							<? if ($table_options['age']) { ?><th<? if ($enable_sort) { ?> data-sort="int"<? } ?>>Age</th><? } ?>
+							<? if ($table_options['age']) { ?><th<? if ($enable_sort) { ?> data-sort="int"<? } ?>>Modified</th><? } ?>
 							<? if ($table_options['perms']) { ?><th<? if ($enable_sort) { ?> data-sort="int"<? } ?>>Permissions</th><? } ?>
 						</tr>
 					</thead>
