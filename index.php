@@ -281,7 +281,7 @@ function time_ago($timestamp, $recursive = 0)
 				<? foreach($folder_list as $item) : ?>
 						<tr>
 							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="glyphicon glyphicon-folder-close">&nbsp;</i><? } ?><a href="<?=$item['name']?>/"><strong><?=$item['name']?></strong></a></td>
-							<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="0"<? } ?>>n/a</td><? } ?>
+							<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="0"<? } ?>>&mdash;</td><? } ?>
 							<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>old</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
 						</tr>
