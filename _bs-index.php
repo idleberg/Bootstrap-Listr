@@ -2,7 +2,7 @@
 
 error_reporting(1);
 
-/*
+/**
  *		Bootstrap Director Lister
  *
  *       Author:    Jan T. Sott
@@ -11,10 +11,11 @@ error_reporting(1);
  *
  *		Credits:	Greg Johnson - PHPDL lite (http://greg-j.com/phpdl/)
  *					Na Wong - Listr (http://nadesign.net/listr/)
- 					Joe McCullough - Stupid Table Plugin (http://joequery.github.io/Stupid-Table-Plugin/)
+ *					Joe McCullough - Stupid Table Plugin (http://joequery.github.io/Stupid-Table-Plugin/)
  */
 
-/***[ BOOTSTRAP ]***/
+
+/*** SETTINGS ***/
 
 // Use 'table-striped' to add zebra-striping 
 // Add 'table-bordered' for borders on all sides of the table and cells
@@ -30,14 +31,8 @@ $table_options = array (
 	'perms'=>false
 );
 
-
-/***[ COLUMN SORTING ]***/
-
-// Toggle sorting
+// Toggle column sorting
 $enable_sort = true;
-
-
-/***[ SETTINGS ]***/ 
 
 // Set sorting properties.
 $sort = array(
@@ -48,7 +43,9 @@ $sort = array(
 $ignore_list = array('.DAV','.DS_Store','.git','.gitignore','.htaccess','_bs-index.php','robots.txt','**/.*');
 
 
-/***[ DIRECTORY LOGIC ]***/
+
+/*** DIRECTORY LOGIC ***/
+
 // Get this folder and files name.
 
 $this_script = basename(__FILE__);
@@ -160,7 +157,7 @@ if ($total_files > 0){
 	}
 }
 
-/***[ FUNCTIONS ]***/
+/*** FUNCTIONS ***/
 
 /**
  *	http://us.php.net/manual/en/function.array-multisort.php#83117
@@ -234,7 +231,8 @@ function time_ago($timestamp, $recursive = 0)
 }
 
 
-/***[ HTML TEMPLATE ]***/
+/*** HTML TEMPLATE ***/
+
 ?>
 <!DOCTYPE html>
 	<html>
