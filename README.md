@@ -2,8 +2,6 @@
 
 A simple PHP script to display folders and files on a server in a well form list, based on the style-sheets provided by [Bootstrap 3.0](http://getbootstrap.com)
 
-![Screenshot](https://raw.github.com/idleberg/Bootstrap-Directory-Lister/master/screenshot.png)
-
 [View a demo](http://demo.idleberg.com/Little-Printer-APOD/)
 
 ## Installation
