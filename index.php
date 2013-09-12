@@ -71,9 +71,9 @@ $total_size = 0;
 
 if (ENABLE_ICONS && ENABLE_AWESOME) {
 	$filetype = array(
-		'archive'	=> array('7z','ace','air','arj','bz2','bzip','dmg','gz','jar','lha','lzma','pak','pkg','pimp','rar','safariextz','sit','sublime-package','tar','wsz','zip'),
+		'archive'	=> array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','iso','gz','jar','lha','lzh','lz','lzma','pak','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','tar','tgz','wsz','xar','zip'),
 		'apple'		=> array('app','ipa','ipsw'),
-		'audio'		=> array('aac','aif','aiff','m4a','m4p','mid','mp3','sid', 'wav'),
+		'audio'		=> array('aac','aif','aiff','au','flac','m4a','m4p','mid','mp3','mpc','ogg','oma','sid','wav','wv'),
 		'config'	=> array('conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
 		'doc' 		=> array('doc','docs','docx','dot','key','numbers','odb','odf','odg','odp','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wpd','xls','xlsx','xps'),
 		'ebook'		=> array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
@@ -83,9 +83,9 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'link' 		=> array('lnk','url','webloc'),
 		'linux' 	=> array('bin','deb','rpm'),
 		'raw' 		=> array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
-		'script'	=> array('ahk','as','asp','aspx','c','cfm','clj','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','sass','scala','scm','scss','sh','xhtml','xml','yml'),
-		'text'		=> array('diz','markdown','md','nfo','rst','rtf','text','txt'),
-		'video'		=> array('3g2','3gp','3gp2','3gpp','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','qt','smk','swf','vob','webm','wmv','xvid'),
+		'script'	=> array('ahk','as','asp','aspx','c','cfm','clj','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rss','sass','scala','scm','scss','sh','xhtml','xml','yml'),
+		'text'		=> array('asc','diz','markdown','md','nfo','rst','rtf','text','txt'),
+		'video'		=> array('3g2','3gp','3gp2','3gpp','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
 		'windows'	=> array('bat','cmd','exe','msi')
 	);
 }
@@ -104,7 +104,7 @@ if ($handle = opendir('.'))
 	// ...start scanning through it.
     while (false !== ($file = readdir($handle)))
 	{
-		// Make sure we don't list this folder, file or their links.
+		// Make sure we don't list this folder,file or their links.
         if ($file != "." && $file != ".." && $file != $this_script && !in_array($file, $ignore_list) && (substr($file, 0, 1) != '.'))
 		{
 			// Get file info.
