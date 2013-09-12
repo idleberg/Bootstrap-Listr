@@ -3,7 +3,7 @@
 error_reporting(1);
 
 /**
- *		Bootstrap Director Lister
+ *      Bootstrap Director Lister
  *
  *       Author:    Jan T. Sott
  *         Info:    http://github.com/idleberg/Bootstrap-Directory-Lister
