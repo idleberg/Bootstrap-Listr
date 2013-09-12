@@ -22,7 +22,10 @@ error_reporting(1);
 // Add 'table-hover' to enable a hover state on table rows
 // Add 'table-condensed' to make tables more compact by cutting cell padding in half
 // Create responsive tables by wrapping any table in 'table-responsive'
-$table_style = 'table-hover';
+define(TABLE_STYLE, 'table-hover');
+
+// Toggle column sorting
+define(ENABLE_SORT, true);
 
 // Configure optional columns
 $table_options = array (
@@ -31,17 +34,13 @@ $table_options = array (
 	'perms'=>false
 );
 
-// Toggle column sorting
-$enable_sort = true;
-
 // Set sorting properties.
 $sort = array(
 	array('key'=>'lname',	'sort'=>'asc'), // ... this sets the initial sort "column" and order ...
 	array('key'=>'size',	'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
 );
 // Files you want to hide form the listing
-$ignore_list = array('.DAV','.DS_Store','.git','.gitignore','.htaccess','robots.txt','**/.*');
-
+$ignore_list = array('.DAV','.DS_Store','ehthumbs.db','.git','.gitignore','.htaccess','robots.txt','Thumbs.db');
 
 
 /*** DIRECTORY LOGIC ***/
@@ -257,20 +256,20 @@ function time_ago($timestamp, $recursive = 0)
 					<? endforeach; ?>
 				</h1>
 
-				<table id="bs-table" class="table <?=$table_style?>">
+				<table id="bs-table" class="table <?=TABLE_STYLE?>">
 
 					<thead>
 						<tr>
-							<th<? if ($enable_sort) { ?> data-sort="string"<? } ?>><? if ($enable_sort) { ?><i class="glyphicon glyphicon-sort">&nbsp;</i><? } ?>Name</th>
-							<? if ($table_options['size']) { ?><th<? if ($enable_sort) { ?> data-sort="int"<? } ?>>Size</th><? } ?>
-							<? if ($table_options['age']) { ?><th<? if ($enable_sort) { ?> data-sort="int"<? } ?>>Modified</th><? } ?>
-							<? if ($table_options['perms']) { ?><th<? if ($enable_sort) { ?> data-sort="int"<? } ?>>Permissions</th><? } ?>
+							<th<? if (ENABLE_SORT) { ?> data-sort="string"<? } ?>><? if (ENABLE_SORT) { ?><i class="glyphicon glyphicon-sort">&nbsp;</i><? } ?>Name</th>
+							<? if ($table_options['size']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Size</th><? } ?>
+							<? if ($table_options['age']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Modified</th><? } ?>
+							<? if ($table_options['perms']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Permissions</th><? } ?>
 						</tr>
 					</thead>
 					<tfoot>
 						<tr>
 							<td colspan="<?=$table_count?>"><small class="pull-left"><?=$contained?>, <?=$total_size['num']?> <?=$total_size['str']?> in total</small></td>
-							<td><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Directory-Lister">GitHub</a></small></td>
+							<td><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Directory-Lister" target="_blank">GitHub</a></small></td>
 						</tr>
 					</tfoot>
 					<tbody>
@@ -278,9 +277,9 @@ function time_ago($timestamp, $recursive = 0)
 				<? if($folder_list): ?>
 				<? foreach($folder_list as $item) : ?>
 						<tr>
-							<td<? if ($enable_sort) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><i class="glyphicon glyphicon-folder-close">&nbsp;</i><a href="<?=$item['name']?>/"><strong><?=$item['name']?></strong></a></td>
-							<? if ($table_options['size']) { ?><td<? if ($enable_sort) { ?> data-sort-value="0"<? } ?>>n/a</td><? } ?>
-							<? if ($table_options['age']) { ?><td<? if ($enable_sort) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>old</td><? } ?>
+							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><i class="glyphicon glyphicon-folder-close">&nbsp;</i><a href="<?=$item['name']?>/"><strong><?=$item['name']?></strong></a></td>
+							<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="0"<? } ?>>n/a</td><? } ?>
+							<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>old</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
 						</tr>
 				<? endforeach; ?>
@@ -290,9 +289,9 @@ function time_ago($timestamp, $recursive = 0)
 				<? if($file_list): ?>
 				<? foreach($file_list as $item) : ?>
 						<tr>
-							<td<? if ($enable_sort) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><i class="glyphicon glyphicon-file">&nbsp;</i><a href="<?=$item['name']?>.<?=$item['ext']?>"><?=$item['name']?>.<?=$item['ext']?></a></td>
-							<? if ($table_options['size']) { ?><td<? if ($enable_sort) { ?> data-sort-value="<?=$item['bytes']?>"<? } ?>><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
-							<? if ($table_options['age']) { ?><td<? if ($enable_sort) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>old</td><? } ?>
+							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><i class="glyphicon glyphicon-file">&nbsp;</i><a href="<?=$item['name']?>.<?=$item['ext']?>"><?=$item['name']?>.<?=$item['ext']?></a></td>
+							<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['bytes']?>"<? } ?>><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
+							<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>old</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
 						</tr>
 				<? endforeach; ?>
@@ -301,7 +300,7 @@ function time_ago($timestamp, $recursive = 0)
 					</tbody>                          
 				</table>
 			</div>
-			<? if ($enable_sort) { ?>
+			<? if (ENABLE_SORT) { ?>
 				<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	    		<script src="//rawgithub.com/joequery/Stupid-Table-Plugin/master/stupidtable.min.js"></script>
 	    		<script type="text/javascript">
