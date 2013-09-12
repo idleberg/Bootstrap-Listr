@@ -240,7 +240,6 @@ function time_ago($timestamp, $recursive = 0)
 			<meta charset="UTF-8"> 
 			<title>Index of <?=$this_domain?><?=$this_folder?></title>
 			<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-			<style type="text/css">i {color:<?=$icon_color?>;}</style>
 		</head>
 
 		<body>
