@@ -71,7 +71,7 @@ $total_size = 0;
 
 if (ENABLE_ICONS && ENABLE_AWESOME) {
 	$filetype = array(
-		'archive'	=> array('7z','ace','arj','bz2','bzip','dmg','gz','lha','lzma','pak','pkg','pimp','rar','safariextz','sit','sublime-package','tar','wsz','zip'),
+		'archive'	=> array('7z','ace','air','arj','bz2','bzip','dmg','gz','jar','lha','lzma','pak','pkg','pimp','rar','safariextz','sit','sublime-package','tar','wsz','zip'),
 		'apple'		=> array('app','ipa','ipsw'),
 		'audio'		=> array('aac','aif','aiff','m4a','m4p','mid','mp3','sid', 'wav'),
 		'config'	=> array('conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
@@ -83,8 +83,8 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'link' 		=> array('lnk','url','webloc'),
 		'linux' 	=> array('bin','deb','rpm'),
 		'raw' 		=> array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
-		'script'	=> array('asp','aspx','css','erb','htm','html','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','sass','scss','xhtml','xml','yml'),
-		'text'		=> array('diz','markdown','md','nfo','rtf','text','txt'),
+		'script'	=> array('ahk','as','asp','aspx','c','cfm','clj','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','sass','scala','scm','scss','sh','xhtml','xml','yml'),
+		'text'		=> array('diz','markdown','md','nfo','rst','rtf','text','txt'),
 		'video'		=> array('3g2','3gp','3gp2','3gpp','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','qt','smk','swf','vob','webm','wmv','xvid'),
 		'windows'	=> array('bat','cmd','exe','msi')
 	);
