@@ -16,6 +16,7 @@ You can configure some of the settings in the header of the script file. Current
 
 * Optional columns for size, modified date, permissions (the latter is disabled by default)
 * Document icons (enabled by default)
+* [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons (disabled by default)
 * Column sorting (enabled by default)
 * List of ignored files
 

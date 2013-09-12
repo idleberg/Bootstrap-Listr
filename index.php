@@ -27,6 +27,9 @@ define(TABLE_STYLE, 'table-hover');
 // Enable glyphicons
 define(ENABLE_ICONS, true);
 
+// Enable Font Awesome icon types, requires ENABLE_ICONS to be enabled
+define(ENABLE_AWESOME, false);
+
 // Toggle column sorting
 define(ENABLE_SORT, true);
 
@@ -66,6 +69,26 @@ $file_list = array();
 $folder_list = array();
 $total_size = 0;
 
+if (ENABLE_ICONS && ENABLE_AWESOME) {
+	$filetype = array(
+		'archive'	=> array('7z','ace','arj','bz2','bzip','dmg','gz','lha','lzma','pak','pkg','rar','safariextz','sit','sublime-package','tar','wsz','zip'),
+		'apple'		=> array('app','ipa','ipsw'),
+		'audio'		=> array('aac','aif','aiff','m4a','m4p','mid','mp3','sid', 'wav'),
+		'doc' 		=> array('doc','docs','docx','dot','key','numbers','odb','odf','odg','odp','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wpd','xls','xlsx','xps'),
+		'ebook'		=> array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
+		'email'		=> array('mbox','msg','pst'),
+		'font'		=> array('fon','otf','pfm','ttf','woff'),
+		'image'		=> array('ai','bmp','cdr','emf','eps','gif','icns','ico','jp2','jpe','jpeg','jpg','jpx','pcx','pict','png','psd','psp','svg','tga','tif','tiff','webp','wmf'),
+		'link' 		=> array('lnk','url','webloc'),
+		'linux' 	=> array('bin','deb','rpm'),
+		'raw' 		=> array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
+		'script'	=> array('asp','aspx','css','erb','htm','html','js','json','jsp','less','nsh','nsi','php','php3','pl','plist','py','rb','sass','scss','xhtml','xml','yml'),
+		'text'		=> array('diz','markdown','md','nfo','rtf','text','txt'),
+		'video'		=> array('3g2','3gp','3gp2','3gpp','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','qt','smk','swf','vob','webm','wmv','xvid'),
+		'windows'	=> array('bat','cmd','exe','msi')
+	);
+}
+
 // Count optional columns
 $table_count = 0;
 foreach($table_options as $value)
@@ -90,7 +113,49 @@ if ($handle = opendir('.'))
 			$item['lname']		=	strtolower($info['filename']);
 			$item['ext']		=	$info['extension'];
 			$item['lext']		=	strtolower($info['extension']);
-				if($info['extension'] == '') $item['ext'] = '.';
+			if($info['extension'] == '') $item['ext'] = '.';
+
+			if (ENABLE_ICONS && ENABLE_AWESOME) {
+				$sort_icon = 'icon-sort';
+				$folder_icon = 'icon-folder-close';
+				if(in_array($item[lext], $filetype['archive'])){
+					$item['class'] = 'icon-archive';
+				}elseif(in_array($item[lext], $filetype['apple'])){
+					$item['class'] = 'icon-apple';
+				}elseif(in_array($item[lext], $filetype['audio'])){
+					$item['class'] = 'icon-music';
+				}elseif(in_array($item[lext], $filetype['doc'])){
+					$item['class'] = 'type-file-text';
+				}elseif(in_array($item[lext], $filetype['ebook'])){
+					$item['class'] = 'icon-book';
+				}elseif(in_array($item[lext], $filetype['email'])){
+					$item['class'] = 'icon-envelope';
+				}elseif(in_array($item[lext], $filetype['font'])){
+					$item['class'] = 'icon-font';
+				}elseif(in_array($item[lext], $filetype['image'])){
+					$item['class'] = 'icon-picture';
+				}elseif(in_array($item[lext], $filetype['link'])){
+					$item['class'] = 'icon-link';
+				}elseif(in_array($item[lext], $filetype['raw'])){
+					$item['class'] = 'icon-camera';
+				}elseif(in_array($item[lext], $filetype['linux'])){
+					$item['class'] = 'icon-linux';
+				}elseif(in_array($item[lext], $filetype['script'])){
+					$item['class'] = 'icon-code';
+				}elseif(in_array($item[lext], $filetype['text'])){
+					$item['class'] = 'icon-file-text-alt';
+				}elseif(in_array($item[lext], $filetype['video'])){
+					$item['class'] = 'icon-film';
+				}elseif(in_array($item[lext], $filetype['windows'])){
+					$item['class'] = 'icon-windows';
+				}else{
+					$item['class'] = 'icon-file-alt';			
+				}
+			} else {
+				$sort_icon = 'glyphicon glyphicon-sort';
+				$folder_icon = 'glyphicon glyphicon-folder-close';
+				$item['class'] = 'glyphicon glyphicon-file';
+			}
 
 			if ($table_options['size'] || $table_options['age'])
 			$stat				=	stat($file); // ... slow, but faster than using filemtime() & filesize() instead.
@@ -242,6 +307,8 @@ function time_ago($timestamp, $recursive = 0)
 			<meta charset="utf-8"> 
 			<title>Index of <?=$this_domain?><?=$this_folder?></title>
 			<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+			<? if (ENABLE_ICONS && ENABLE_AWESOME) { ?><link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" /><? } ?>
+
 			<style type="text/css">th {cursor: pointer}</style>
 		</head>
 
@@ -263,7 +330,7 @@ function time_ago($timestamp, $recursive = 0)
 
 					<thead>
 						<tr>
-							<th<? if (ENABLE_SORT) { ?> data-sort="string"<? } ?>><? if (ENABLE_SORT) { ?><? if (ENABLE_ICONS) { ?><i class="glyphicon glyphicon-sort">&nbsp;</i><? } ?><? } ?>Name</th>
+							<th<? if (ENABLE_SORT) { ?> data-sort="string"<? } ?>><? if (ENABLE_SORT) { ?><? if (ENABLE_ICONS) { ?><i class="<?=$sort_icon?>">&nbsp;</i><? } ?><? } ?>Name</th>
 							<? if ($table_options['size']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Size</th><? } ?>
 							<? if ($table_options['age']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Modified</th><? } ?>
 							<? if ($table_options['perms']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Permissions</th><? } ?>
@@ -280,7 +347,7 @@ function time_ago($timestamp, $recursive = 0)
 				<? if($folder_list): ?>
 				<? foreach($folder_list as $item) : ?>
 						<tr>
-							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="glyphicon glyphicon-folder-close">&nbsp;</i><? } ?><a href="<?=$item['name']?>/"><strong><?=$item['name']?></strong></a></td>
+							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$folder_icon?>">&nbsp;</i><? } ?><a href="<?=$item['name']?>/"><strong><?=$item['name']?></strong></a></td>
 							<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="0"<? } ?>>&mdash;</td><? } ?>
 							<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>old</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
@@ -292,7 +359,7 @@ function time_ago($timestamp, $recursive = 0)
 				<? if($file_list): ?>
 				<? foreach($file_list as $item) : ?>
 						<tr>
-							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="glyphicon glyphicon-file">&nbsp;</i><? } ?><a href="<?=$item['name']?>.<?=$item['ext']?>"><?=$item['name']?>.<?=$item['ext']?></a></td>
+							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$item['class']?>">&nbsp;</i><? } ?><a href="<?=$item['name']?>.<?=$item['ext']?>"><?=$item['name']?>.<?=$item['ext']?></a></td>
 							<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['bytes']?>"<? } ?>><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
 							<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>old</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
