@@ -4,6 +4,8 @@ A simple PHP script to display folders and files on a server in a well form list
 
 ![Screenshot](https://raw.github.com/idleberg/Bootstrap-Directory-Lister/master/screenshot.png)
 
+[View a demo](http://demo.idleberg.com/Little-Printer-APOD/)
+
 ## Installation
 
 Clone this repository using `git clone https://github.com/idlerberg/Bootstrap-Directory-Lister` or [`download`](https://raw.github.com/idleberg/Bootstrap-Directory-Lister/master/index.php) the raw file
