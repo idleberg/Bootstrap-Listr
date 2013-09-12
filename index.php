@@ -146,12 +146,12 @@ if ($total_folders > 0){
 }
 if ($total_files > 0){
 	if($total_files > 1){
-		$iunit = 'items';
+		$iunit = 'files';
 	}else{
-		$iunit = 'item';
+		$iunit = 'file';
 	}
 	if (isset($contained)){
-		$contained .= ' &amp; '.$total_files.' '.$iunit;
+		$contained .= ' and '.$total_files.' '.$iunit;
 	}else{
 		$contained = $total_files.' '.$iunit;	
 	}
@@ -269,7 +269,7 @@ function time_ago($timestamp, $recursive = 0)
 					</thead>
 					<tfoot>
 						<tr>
-							<td colspan="<?=$table_count?>"><small class="pull-left"><? if($folder_list): ?>This folder has <?=count($file_list)?> files<?if (count($file_list) > 0) { ?> totaling <?=$total_size['num']?> <?=$total_size['str']?> in size<? } endif; ?></small></td>
+							<td colspan="<?=$table_count?>"><small class="pull-left">This folder has <?=$contained?>, <?=$total_size['num']?> <?=$total_size['str']?> in size</small></td>
 							<td><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Directory-Lister">GitHub</a></small></td>
 						</tr>
 					</tfoot>
