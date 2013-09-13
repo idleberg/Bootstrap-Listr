@@ -322,7 +322,7 @@ function time_ago($timestamp, $recursive = 0)
 				<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 			<? } ?>
 
-			<style type="text/css">th {cursor: pointer}</style>
+			<style type="text/css">th {cursor: pointer}<?if (ENABLE_ICONS && ENABLE_AWESOME) { ?>i:before{width:28px}<? } ?></style>
 		</head>
 
 		<body>
