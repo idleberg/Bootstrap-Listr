@@ -367,8 +367,7 @@ function time_ago($timestamp, $recursive = 0)
 					</thead>
 					<tfoot>
 						<tr>
-							<td colspan="<?=$table_count?>"><small class="pull-left"><?=$contained?></small></td>
-							<td><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Directory-Lister" target="_blank">GitHub</a></small></td>
+							<td colspan="<?=$table_count+1?>"><small class="pull-left"><?=$contained?></small><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Directory-Lister" target="_blank">GitHub</a></small></td>
 						</tr>
 					</tfoot>
 					<tbody>
