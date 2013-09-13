@@ -33,6 +33,15 @@ define(ENABLE_AWESOME, false);
 // Toggle column sorting
 define(ENABLE_SORT, true);
 
+// Stylesheet locations
+define(BOOTSTRAP, '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css');
+define(BOOTSTRAP_NOICONS, '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css');
+define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css');
+
+// JavaScript locations
+define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
+define(STUPID_TABLE, '//rawgithub.com/joequery/Stupid-Table-Plugin/master/stupidtable.min.js');
+
 // Configure optional columns
 $table_options = array (
 	'size'=>true,
@@ -231,6 +240,7 @@ if ($total_files > 0){
 	}else{
 		$contained = $total_files.' '.$iunit;	
 	}
+	$contained = $contained.', '.$total_size['num'].' '.$total_size['str'].' in total';
 }
 
 /*** FUNCTIONS ***/
@@ -316,10 +326,10 @@ function time_ago($timestamp, $recursive = 0)
 			<meta charset="utf-8"> 
 			<title>Index of <?=$this_domain?><?=$this_folder?></title>
 			<? if (ENABLE_ICONS && ENABLE_AWESOME) { ?>
-				<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" />
-				<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" />
+				<link rel="stylesheet" href="<?=BOOTSTRAP_NOICONS?>" />
+				<link rel="stylesheet" href="<?=FONT_AWESOME?>" />
 			<? } else { ?>
-				<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+				<link rel="stylesheet" href="<?=BOOTSTRAP?>" />
 			<? } ?>
 
 			<style type="text/css">th {cursor: pointer}<?if (ENABLE_ICONS && ENABLE_AWESOME) { ?>i:before{width:28px}<? } ?></style>
@@ -351,7 +361,7 @@ function time_ago($timestamp, $recursive = 0)
 					</thead>
 					<tfoot>
 						<tr>
-							<td colspan="<?=$table_count?>"><small class="pull-left"><?=$contained?>, <?=$total_size['num']?> <?=$total_size['str']?> in total</small></td>
+							<td colspan="<?=$table_count?>"><small class="pull-left"><?=$contained?></small></td>
 							<td><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Directory-Lister" target="_blank">GitHub</a></small></td>
 						</tr>
 					</tfoot>
@@ -384,8 +394,8 @@ function time_ago($timestamp, $recursive = 0)
 				</table>
 			</div>
 			<? if (ENABLE_SORT) { ?>
-				<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	    		<script type="text/javascript" src="//rawgithub.com/joequery/Stupid-Table-Plugin/master/stupidtable.min.js"></script>
+				<script type="text/javascript" src="<?=JQUERY?>"></script>
+	    		<script type="text/javascript" src="<?=STUPID_TABLE?>"></script>
 	    		<script type="text/javascript">
 	    			$("#bs-table").stupidtable();
 	    		</script>
