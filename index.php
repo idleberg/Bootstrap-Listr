@@ -74,7 +74,9 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'archive'	=> array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','iso','gz','jar','lha','lzh','lz','lzma','pak','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','tar','tgz','wsz','xar','zip'),
 		'apple'		=> array('app','ipa','ipsw','scpt','scptd'),
 		'audio'		=> array('aac','aif','aiff','au','flac','m4a','m4p','mid','mp3','mpc','ogg','oma','sid','wav','wv'),
+		'calendar'	=> array('icbu','ics'),
 		'config'	=> array('conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
+		'contact'	=> array('abbu','vcard','vcf'),
 		'doc' 		=> array('doc','docs','docx','dot','key','numbers','odb','odf','odg','odp','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wpd','xls','xlsx','xps'),
 		'ebook'		=> array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
 		'email'		=> array('mbox','msg','pst'),
@@ -83,9 +85,9 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'link' 		=> array('lnk','url','webloc'),
 		'linux' 	=> array('bin','deb','rpm'),
 		'raw' 		=> array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
-		'script'	=> array('ahk','as','asp','aspx','c','cfm','clj','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rss','sass','scala','scm','scss','sh','xhtml','xml','yml'),
-		'text'		=> array('asc','diz','markdown','md','nfo','rst','rtf','text','txt'),
-		'video'		=> array('3g2','3gp','3gp2','3gpp','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
+		'script'	=> array('ahk','as','asp','aspx','c','cfm','clj','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scss','sh','shtml','xhtml','xml','yml'),
+		'text'		=> array('asc','csv','diz','markdown','md','nfo','rst','rtf','text','txt'),
+		'video'		=> array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
 		'windows'	=> array('bat','cmd','exe','msi','ps1','scr','wsh')
 	);
 }
@@ -125,8 +127,12 @@ if ($handle = opendir('.'))
 					$item['class'] = 'icon-apple';
 				}elseif(in_array($item[lext], $filetype['audio'])){
 					$item['class'] = 'icon-music';
+				}elseif(in_array($item[lext], $filetype['calendar'])){
+					$item['class'] = 'icon-calendar';
 				}elseif(in_array($item[lext], $filetype['config'])){
 					$item['class'] = 'icon-cogs';
+				}elseif(in_array($item[lext], $filetype['contact'])){
+					$item['class'] = 'icon-group';
 				}elseif(in_array($item[lext], $filetype['doc'])){
 					$item['class'] = 'icon-file-text';
 				}elseif(in_array($item[lext], $filetype['ebook'])){
