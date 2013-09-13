@@ -24,14 +24,17 @@ error_reporting(1);
 // Create responsive tables by wrapping any table in 'table-responsive'
 define(TABLE_STYLE, 'table-hover');
 
+// Toggle column sorting
+define(ENABLE_SORT, true);
+
 // Enable glyphicons
 define(ENABLE_ICONS, true);
 
 // Enable Font Awesome icon types, requires ENABLE_ICONS to be enabled
 define(ENABLE_AWESOME, false);
 
-// Toggle column sorting
-define(ENABLE_SORT, true);
+// Set default viewport scaling
+define(ENABLE_VIEWPORT, false);
 
 // Stylesheet locations
 define(BOOTSTRAP, '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css');
@@ -323,6 +326,9 @@ function time_ago($timestamp, $recursive = 0)
 <!DOCTYPE html>
 	<html>
 		<head>
+			<? if (ENABLE_VIEWPORT) { ?>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+			<? } ?>
 			<meta charset="utf-8"> 
 			<title>Index of <?=$this_domain?><?=$this_folder?></title>
 			<? if (ENABLE_ICONS && ENABLE_AWESOME) { ?>

@@ -18,7 +18,9 @@ You can configure some of the settings in the header of the script file. Current
 * Document icons (enabled by default)
 * Font Awesome icons (disabled by default)
 * Column sorting (enabled by default)
+* Viewport
 * List of ignored files
+* Default location for JavaScript libraries and style sheets
 
 ### Naming
 
