@@ -43,7 +43,7 @@ define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awes
 
 // JavaScript locations
 define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
-define(STUPID_TABLE, '//idleberg.github.io/Bootstrap-Listr/cdn/js/stupidtable.min.js');
+define(STUPID_TABLE, '//idleberg.github.io/Bootstrap-Listr/cdn/stupidtable.min.js');
 
 // Configure optional columns
 $table_options = array (
