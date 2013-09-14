@@ -1,4 +1,4 @@
-# Bootstrap Directory Lister
+# Bootstrap Listr
 
 A simple PHP script to display folders and files on a server in a well form list, based on the style-sheets provided by [Bootstrap 3.0](http://getbootstrap.com)
 
@@ -6,7 +6,7 @@ A simple PHP script to display folders and files on a server in a well form list
 
 ## Installation
 
-Clone this repository using `git clone https://github.com/idleberg/Bootstrap-Directory-Lister` or [`download`](https://raw.github.com/idleberg/Bootstrap-Directory-Lister/master/index.php) the raw file.
+Clone this repository using `git clone https://github.com/idleberg/Bootstrap-Listr` or [`download`](https://raw.github.com/idleberg/Bootstrap-Listr/master/index.php) the raw file.
 
 ## Usage
 
@@ -48,4 +48,4 @@ This work by Jan T. Sott is licensed under a [Creative Commons Attribution-Share
 
 ## Donate
 
-[![Flattr this](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=idleberg&url=https://github.com/idleberg/Bootstrap-Directory-Lister)
+[![Flattr this](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=idleberg&url=https://github.com/idleberg/Bootstrap-Listr)

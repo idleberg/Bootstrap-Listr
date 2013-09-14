@@ -3,10 +3,10 @@
 error_reporting(1);
 
 /**
- *      Bootstrap Director Lister
+ *      Bootstrap Listr
  *
  *       Author:    Jan T. Sott
- *         Info:    http://github.com/idleberg/Bootstrap-Directory-Lister
+ *         Info:    http://github.com/idleberg/Bootstrap-Listr
  *      License:    Creative Commons 3.0 Attribution-ShareAlike 3.0
  *
  *      Credits:    Greg Johnson - PHPDL lite (http://greg-j.com/phpdl/)
@@ -369,7 +369,7 @@ function time_ago($timestamp, $recursive = 0)
 					</thead>
 					<tfoot>
 						<tr>
-							<td colspan="<?=$table_count+1?>"><small class="pull-left"><?=$contained?></small><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Directory-Lister" target="_blank">GitHub</a></small></td>
+							<td colspan="<?=$table_count+1?>"><small class="pull-left"><?=$contained?></small><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Listr" target="_blank">GitHub</a></small></td>
 						</tr>
 					</tfoot>
 					<tbody>
