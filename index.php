@@ -96,6 +96,7 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'image'		=> array('ai','bmp','cdr','emf','eps','gif','icns','ico','jp2','jpe','jpeg','jpg','jpx','pcx','pict','png','psd','psp','svg','tga','tif','tiff','webp','wmf'),
 		'link' 		=> array('lnk','url','webloc'),
 		'linux' 	=> array('bin','deb','rpm'),
+		'palette' 	=> array('ase','clm','clr','gpl'),
 		'raw' 		=> array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
 		'script'	=> array('ahk','as','asp','aspx','c','cfm','clj','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scss','sh','shtml','xhtml','xml','yml'),
 		'text'		=> array('asc','csv','diz','markdown','md','nfo','rst','rtf','text','txt'),
@@ -159,10 +160,12 @@ if ($handle = opendir('.'))
 					$item['class'] = 'icon-picture';
 				}elseif(in_array($item[lext], $filetype['link'])){
 					$item['class'] = 'icon-link';
-				}elseif(in_array($item[lext], $filetype['raw'])){
-					$item['class'] = 'icon-camera';
 				}elseif(in_array($item[lext], $filetype['linux'])){
 					$item['class'] = 'icon-linux';
+				}elseif(in_array($item[lext], $filetype['palette'])){
+					$item['class'] = 'icon-tasks';
+				}elseif(in_array($item[lext], $filetype['raw'])){
+					$item['class'] = 'icon-camera';
 				}elseif(in_array($item[lext], $filetype['script'])){
 					$item['class'] = 'icon-code';
 				}elseif(in_array($item[lext], $filetype['text'])){
