@@ -2,7 +2,7 @@
 
 A simple PHP script to display folders and files on a server in a well form list, based on the style-sheets provided by [Bootstrap 3.0](http://getbootstrap.com)
 
-[View the demo](http://demo.idleberg.com/BDL)
+[View the demo](http://demo.idleberg.com/Bootstrap-Listr)
 
 ## Installation
 
