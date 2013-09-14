@@ -126,6 +126,8 @@ if ($handle = opendir('.'))
 			// Organize file info.
 			$item['name']		=	$info['filename'];
 			$item['lname']		=	strtolower($info['filename']);
+			$item['bname']		=	$info['basename'];
+			$item['lbname']		=	strtolower($info['basename']);
 			$item['ext']		=	$info['extension'];
 			$item['lext']		=	strtolower($info['extension']);
 			if($info['extension'] == '') $item['ext'] = '.';
@@ -195,12 +197,12 @@ if ($handle = opendir('.'))
 			}
 			
 			// Add files to the file list...
-			if($info['extension'] != ''){
-				array_push($file_list, $item);
+			if(is_dir($info['basename'])){
+				array_push($folder_list, $item);
 			}
 			// ...and folders to the folder list.
 			else{
-				array_push($folder_list, $item);
+				array_push($file_list, $item);
 			}
 			// Clear stat() cache to free up memory (not really needed).
 			clearstatcache();
@@ -375,7 +377,7 @@ function time_ago($timestamp, $recursive = 0)
 				<? if($folder_list): ?>
 				<? foreach($folder_list as $item) : ?>
 						<tr>
-							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$folder_icon?>">&nbsp;</i><? } ?><a href="<?=$item['name']?>/"><strong><?=$item['name']?></strong></a></td>
+							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lbname']?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$folder_icon?>">&nbsp;</i><? } ?><a href="<?=$item['bname']?>/"><strong><?=$item['bname']?></strong></a></td>
 							<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="0"<? } ?>>&mdash;</td><? } ?>
 							<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>old</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
