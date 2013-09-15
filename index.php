@@ -127,7 +127,7 @@ if ($handle = opendir('.'))
 			// Organize file info.
 			$item['name']		=	$info['filename'];
 			$item['lname']		=	strtolower($info['filename']);
-			$item['bname']		=	$info['basename'];
+			$item['bname']		=	utf8_encode($info['basename']);
 			$item['lbname']		=	strtolower($info['basename']);
 			$item['ext']		=	$info['extension'];
 			$item['lext']		=	strtolower($info['extension']);
@@ -353,9 +353,9 @@ function time_ago($timestamp, $recursive = 0)
 						<? if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')): ?>
 							<? $parent = ''; ?>
 								<?for ($i = 1; $i <= $dir; $i++): ?>
-									<? $parent .= $dir_name[$i] . '/'; ?>
+									<? $parent .= urlencode($dir_name[$i]) . '/'; ?>
 								<?endfor;?>
-							/ <a href="/<?=$parent?>"><?=$name?></a>
+							/ <a href="/<?=$parent?>"><?=utf8_encode($name)?></a>
 						<?endif; ?>
 					<? endforeach; ?>
 				</h1>
@@ -380,7 +380,7 @@ function time_ago($timestamp, $recursive = 0)
 				<? if($folder_list): ?>
 				<? foreach($folder_list as $item) : ?>
 						<tr>
-							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lbname']?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$folder_icon?>">&nbsp;</i><? } ?><a href="<?=$item['bname']?>/"><strong><?=$item['bname']?></strong></a></td>
+							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lbname']?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$folder_icon?>">&nbsp;</i><? } ?><a href="<?=urlencode($item['bname'])?>/"><strong><?=utf8_encode($item['bname'])?></strong></a></td>
 							<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="0"<? } ?>>&mdash;</td><? } ?>
 							<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>ago</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
@@ -392,7 +392,7 @@ function time_ago($timestamp, $recursive = 0)
 				<? if($file_list): ?>
 				<? foreach($file_list as $item) : ?>
 						<tr>
-							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$item['class']?>">&nbsp;</i><? } ?><a href="<?=$item['bname']?>"><?=$item['bname']?></a></td>
+							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['lname']?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$item['class']?>">&nbsp;</i><? } ?><a href="<?=urlencode($item['bname'])?>"><?=utf8_encode($item['bname'])?></a></td>
 							<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['bytes']?>"<? } ?>><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
 							<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>ago</td><? } ?>
 							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
