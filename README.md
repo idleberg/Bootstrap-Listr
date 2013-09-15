@@ -26,7 +26,11 @@ You can configure a number of settings in the header of the script file:
 
 ### Naming
 
-If you prefer a different file name for the script, you can rename it without worrying about the ignore list. Just don't forget to add it as new `DirectoryIndex`. Please refer to the [Apache documation](http://httpd.apache.org/docs/2.2/mod/mod_dir.html) for details.
+If you prefer a different file name for the script, you can rename it without worrying about the ignore list. However, depending on your server, you might have declare the renamed file as your directory index.
+
+* Apache: `DirectoryIndex myIndex.php` (see [documentation](http://httpd.apache.org/docs/2.2/mod/mod_dir.html))
+* lighttpd: `index-file.names = ( "/myIndex.php" )` (see [documentation](http://redmine.lighttpd.net/projects/1/wiki/Docs_ModDirlisting))
+* nginx: `index myIndex.php` (see [documentation](http://nginx.org/en/docs/http/ngx_http_index_module.html))
 
 ### Font Awesome
 
