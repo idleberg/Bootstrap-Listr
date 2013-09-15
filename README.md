@@ -2,7 +2,9 @@
 
 A simple PHP script to display folders and files on a server in a well form list, based on the style-sheets provided by [Bootstrap 3.0](http://getbootstrap.com)
 
-[View the demo](http://demo.idleberg.com/Bootstrap-Listr)
+![Screenshot](https://raw.github.com/idleberg/Bootstrap-Listr/gh-pages/images/screenshot-font_awesome.png)
+
+For working examples in different configurations, please have a look at the [demo](http://demo.idleberg.com/Bootstrap-Listr)
 
 ## Installation
 
@@ -14,10 +16,10 @@ Clone this repository using `git clone https://github.com/idleberg/Bootstrap-Lis
 
 You can configure some of the settings in the header of the script file. Currently, these includ the following:
 
-* Optional columns for size, modified date, permissions (the latter is disabled by default)
-* Document icons (enabled by default)
-* Font Awesome icons (disabled by default)
-* Column sorting (enabled by default)
+* Optional columns for size, modified date, permissions
+* Document icons
+* [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons
+* Column sorting
 * Viewport
 * List of ignored files
 * Default location for JavaScript libraries and style sheets
