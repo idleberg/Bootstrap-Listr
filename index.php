@@ -87,7 +87,7 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'apple'		=> array('app','ipa','ipsw','scpt','scptd'),
 		'audio'		=> array('aac','ac3','aif','aiff','au','flac','m4a','m4p','mid','mp2','mp3','mpc','ogg','oma','sid','wav','wv'),
 		'calendar'	=> array('icbu','ics'),
-		'config'	=> array('cff','conf','ini','gvm','htaccess','htpasswd','plist','sublime-settings','xpy'),
+		'config'	=> array('conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
 		'contact'	=> array('abbu','oab','pab','vcard','vcf'),
 		'doc' 		=> array('doc','docs','docx','dot','key','numbers','odb','odf','odg','odp','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wpd','xls','xlsx','xps'),
 		'ebook'		=> array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
