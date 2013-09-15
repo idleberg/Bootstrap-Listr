@@ -84,7 +84,7 @@ $total_size = 0;
 if (ENABLE_ICONS && ENABLE_AWESOME) {
 	$filetype = array(
 		'archive'	=> array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','iso','gz','jar','lha','lzh','lz','lzma','pak','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','tar','tgz','wsz','xar','zip'),
-		'apple'		=> array('app','ipa','ipsw','scpt','scptd'),
+		'apple'		=> array('app','ipa','ipsw','saver','scpt','scptd'),
 		'audio'		=> array('aac','ac3','aif','aiff','au','flac','m4a','m4p','mid','mp2','mp3','mpc','ogg','oma','sid','wav','wv'),
 		'calendar'	=> array('icbu','ics'),
 		'config'	=> array('conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
@@ -101,7 +101,7 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'script'	=> array('ahk','as','asp','aspx','c','cfm','clj','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scss','sh','shtml','xhtml','xml','yml'),
 		'text'		=> array('asc','csv','diz','markdown','md','nfo','rst','rtf','text','txt'),
 		'video'		=> array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
-		'windows'	=> array('bat','cmd','exe','msi','ps1','scr','wsh')
+		'windows'	=> array('bat','cmd','dll','exe','msi','ps1','scr','sys','wsh')
 	);
 }
 
