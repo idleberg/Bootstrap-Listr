@@ -16,7 +16,7 @@ Clone this repository using `git clone https://github.com/idleberg/Bootstrap-Lis
 
 ### Options
 
-You can configure some of the settings in the header of the script file. Currently, these includ the following:
+You can configure a number of settings in the header of the script file:
 
 * Optional columns for size, modified date, permissions
 * Document icons
