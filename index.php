@@ -127,7 +127,7 @@ if ($handle = opendir('.'))
 			// Organize file info.
 			$item['name']		=	$info['filename'];
 			$item['lname']		=	strtolower($info['filename']);
-			$item['bname']		=	utf8_encode($info['basename']);
+			$item['bname']		=	$info['basename'];
 			$item['lbname']		=	strtolower($info['basename']);
 			$item['ext']		=	$info['extension'];
 			$item['lext']		=	strtolower($info['extension']);
