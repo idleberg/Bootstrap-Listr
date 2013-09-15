@@ -20,7 +20,6 @@ You can configure a number of settings in the header of the script file:
 
 * Optional columns for size, modified date, permissions
 * Document icons
-* [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons
 * Column sorting
 * Viewport
 * List of ignored files
