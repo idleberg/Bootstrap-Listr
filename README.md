@@ -1,12 +1,12 @@
 # Bootstrap Listr
 
-A simple PHP script to display folders and files on a server in a well form list, based on the style-sheets provided by [Bootstrap 3.0](http://getbootstrap.com)
+A simple PHP script to display folders and files on a server in a well form list, based on the style-sheets provided by [Bootstrap 3](http://getbootstrap.com).
 
 ![Screenshot](https://raw.github.com/idleberg/Bootstrap-Listr/gh-pages/images/screenshot-font_awesome.png)
 
 *Screenshot: Example with [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons enabled*
 
-For working examples in different configurations, please have a look at the [demo](http://demo.idleberg.com/Bootstrap-Listr)
+For working examples in different configurations, please have a look at the [live demos](http://demo.idleberg.com/Bootstrap-Listr)!
 
 ## Installation
 
