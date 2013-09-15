@@ -290,7 +290,7 @@ function php_multisort($data,$keys)
  *	@ http://us3.php.net/manual/en/function.filesize.php#84652
  */
 function bytes_to_string($size, $precision = 0) {
-	$sizes = array('YB', 'ZB', 'EB', 'PB', 'TB', 'GB', 'MB', 'KB', 'Bytes');
+	$sizes = array('YB', 'ZB', 'EB', 'PB', 'TB', 'GB', 'MB', 'KB', 'byytes');
 	$total = count($sizes);
 	while($total-- && $size > 1024) $size /= 1024;
 	$return['num'] = round($size, $precision);
