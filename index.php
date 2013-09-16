@@ -43,7 +43,7 @@ define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awes
 
 // JavaScript locations
 define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
-define(STUPID_TABLE, '//idleberg.github.io/Bootstrap-Listr/cdn/stupidtable.min.js');
+define(STUPID_TABLE, '//idleberg.github.io/Bootstrap-Listr/javascripts/stupidtable.min.js');
 
 // Favourites Icon
 define(FAVICON, '');
@@ -415,14 +415,10 @@ function time_ago($timestamp, $recursive = 0)
 			<? if (ENABLE_SORT) { ?>
 				<script type="text/javascript" src="<?=JQUERY?>"></script>
 	    		<script type="text/javascript" src="<?=STUPID_TABLE?>"></script>
-	    		<script type="text/javascript">
-	    			$("#bs-table").stupidtable();
-	    		</script>
+	    		<script type="text/javascript">$("#bs-table").stupidtable();</script>
     		<? } ?>
     		<? if (ANALYTICS_ID) { ?>
-    			<script type="text/javascript">
-				  var _gaq=_gaq||[];_gaq.push(["_setAccount","<?=ANALYTICS_ID?>"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.type="text/javascript";ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s)})();
-				</script>
+    			<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","<?=ANALYTICS_ID?>"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.type="text/javascript";ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s)})();</script>
 			<? } ?>
 		</body>
 	</html>
