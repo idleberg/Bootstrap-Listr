@@ -45,6 +45,12 @@ define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awes
 define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
 define(STUPID_TABLE, '//idleberg.github.io/Bootstrap-Listr/cdn/stupidtable.min.js');
 
+// Favourites Icon
+define(FAVICON, '');
+
+// Google Analytics ID
+define(ANALYTICS_ID, '');
+
 // Configure optional columns
 $table_options = array (
 	'size'=>true,
@@ -331,11 +337,14 @@ function time_ago($timestamp, $recursive = 0)
 <!DOCTYPE html>
 	<html>
 		<head>
+			<meta charset="utf-8"> 
 			<? if (ENABLE_VIEWPORT) { ?>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 			<? } ?>
-			<meta charset="utf-8"> 
 			<title>Index of <?=$this_domain?><?=$this_folder?></title>
+			<? if (FAVICON) { ?>
+				<link rel="shortcut icon" href="//s.visbot.net/ico/favicon.png">
+			<? } ?>
 			<? if (ENABLE_ICONS && ENABLE_AWESOME) { ?>
 				<link rel="stylesheet" href="<?=BOOTSTRAP_NOICONS?>" />
 				<link rel="stylesheet" href="<?=FONT_AWESOME?>" />
@@ -410,5 +419,10 @@ function time_ago($timestamp, $recursive = 0)
 	    			$("#bs-table").stupidtable();
 	    		</script>
     		<? } ?>
+    		<? if (ANALYTICS_ID) { ?>
+    			<script type="text/javascript">
+				  var _gaq=_gaq||[];_gaq.push(["_setAccount","<?=ANALYTICS_ID?>"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.type="text/javascript";ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s)})();
+				</script>
+			<? } ?>
 		</body>
 	</html>

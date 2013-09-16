@@ -23,6 +23,7 @@ You can configure a number of settings in the header of the script file:
 * Viewport
 * List of ignored files
 * Default location for JavaScript libraries and style sheets
+* Google Analytics
 
 ### Naming
 
