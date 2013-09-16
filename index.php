@@ -45,8 +45,12 @@ define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awes
 define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
 define(STUPID_TABLE, '//idleberg.github.io/Bootstrap-Listr/javascripts/stupidtable.min.js');
 
-// Favourites Icon
-define(FAVICON, '');
+// Icons
+define(FAV_ICON, '');
+define(IPHONE_ICON, '');
+define(IPHONE_ICON_RETINA, '');
+define(IPAD_ICON, '');
+define(IPAD_ICON_RETINA, '');
 
 // Google Analytics ID
 define(ANALYTICS_ID, '');
@@ -335,90 +339,88 @@ function time_ago($timestamp, $recursive = 0)
 
 ?>
 <!DOCTYPE html>
-	<html>
-		<head>
-			<meta charset="utf-8"> 
-			<? if (ENABLE_VIEWPORT) { ?>
-				<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-			<? } ?>
-			<title>Index of <?=$this_domain?><?=$this_folder?></title>
-			<? if (FAVICON) { ?>
-				<link rel="shortcut icon" href="//s.visbot.net/ico/favicon.png">
-			<? } ?>
-			<? if (ENABLE_ICONS && ENABLE_AWESOME) { ?>
-				<link rel="stylesheet" href="<?=BOOTSTRAP_NOICONS?>" />
-				<link rel="stylesheet" href="<?=FONT_AWESOME?>" />
-			<? } else { ?>
-				<link rel="stylesheet" href="<?=BOOTSTRAP?>" />
-			<? } ?>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<? if (ENABLE_VIEWPORT) { ?><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"><? } ?>
+	<title>Index of <?=$this_domain?><?=$this_folder?></title>
+	<? if (FAV_ICON) { ?><link rel="shortcut icon" href="<?=FAV_ICON?>"><? } ?>
+	<? if (IPHONE_ICON) { ?><link rel="apple-touch-icon" href="<?=IPHONE_ICON?>" /><? } ?>
+    <? if (IPHONE_ICON_RETINA) { ?><link rel="apple-touch-icon" sizes="72x72" href="<?=IPHONE_ICON_RETINA?>" /><? } ?>
+    <? if (IPAD_ICON) { ?><link rel="apple-touch-icon" sizes="114x114" href="<?=IPAD_ICON?>" /><? } ?>
+    <? if (IPAD_ICON_RETINA) { ?><link rel="apple-touch-icon" sizes="144x144" href="<?=IPAD_ICON_RETINA?>" /><? } ?>
+	<? if (ENABLE_ICONS && ENABLE_AWESOME) { ?>
+		<link rel="stylesheet" href="<?=BOOTSTRAP_NOICONS?>" />
+		<link rel="stylesheet" href="<?=FONT_AWESOME?>" />
+	<? } else { ?><link rel="stylesheet" href="<?=BOOTSTRAP?>" /><? } ?>
 
-			<style type="text/css">th {cursor: pointer}<?if (ENABLE_ICONS && ENABLE_AWESOME) { ?>i:before{width:28px}<? } ?></style>
-		</head>
+	<style type="text/css">th {cursor: pointer}<?if (ENABLE_ICONS && ENABLE_AWESOME) { ?>i:before{width:28px}<? } ?></style>
+</head>
 
-		<body>
-			<div class="container">
-				<h1>
-					<a href="http://<?=$this_domain?>"><?=$this_domain?></a><? foreach($dir_name as $dir => $name) : ?>
-						<? if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')): ?>
-							<? $parent = ''; ?>
-								<?for ($i = 1; $i <= $dir; $i++): ?>
-									<? $parent .= rawurlencode($dir_name[$i]) . '/'; ?>
-								<?endfor;?>
-							/ <a href="/<?=$parent?>"><?=utf8_encode($name)?></a>
-						<?endif; ?>
-					<? endforeach; ?>
-				</h1>
+<body>
+	<div class="container">
+		<h1>
+			<a href="http://<?=$this_domain?>"><?=$this_domain?></a><? foreach($dir_name as $dir => $name) : ?>
+				<? if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')): ?>
+					<? $parent = ''; ?>
+						<?for ($i = 1; $i <= $dir; $i++): ?>
+							<? $parent .= rawurlencode($dir_name[$i]) . '/'; ?>
+						<?endfor;?>
+					/ <a href="/<?=$parent?>"><?=utf8_encode($name)?></a>
+				<?endif; ?>
+			<? endforeach; ?>
+		</h1>
 
-				<table id="bs-table" class="table <?=TABLE_STYLE?>">
+		<table id="bs-table" class="table <?=TABLE_STYLE?>">
 
-					<thead>
-						<tr>
-							<th<? if (ENABLE_SORT) { ?> data-sort="string"<? } ?>><? if (ENABLE_SORT) { ?><? if (ENABLE_ICONS) { ?><i class="<?=$sort_icon?>">&nbsp;</i><? } ?><? } ?>Name</th>
-							<? if ($table_options['size']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Size</th><? } ?>
-							<? if ($table_options['age']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Date Modified</th><? } ?>
-							<? if ($table_options['perms']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Permissions</th><? } ?>
-						</tr>
-					</thead>
-					<tfoot>
-						<tr>
-							<td colspan="<?=$table_count+1?>"><small class="pull-left"><?=$contained?></small><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Listr" target="_blank">GitHub</a></small></td>
-						</tr>
-					</tfoot>
-					<tbody>
-				<!-- folders -->
-				<? if($folder_list): ?>
-				<? foreach($folder_list as $item) : ?>
-						<tr>
-							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=utf8_encode($item['lbname'])?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$folder_icon?>">&nbsp;</i><? } ?><a href="<?=rawurlencode($item['bname'])?>/"><strong><?=utf8_encode($item['bname'])?></strong></a></td>
-							<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="0"<? } ?>>&mdash;</td><? } ?>
-							<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>ago</td><? } ?>
-							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
-						</tr>
-				<? endforeach; ?>
-				<? endif; ?>
-				<!-- /folders -->
-				<!-- files -->
-				<? if($file_list): ?>
-				<? foreach($file_list as $item) : ?>
-						<tr>
-							<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=utf8_encode($item['lname'])?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$item['class']?>">&nbsp;</i><? } ?><a href="<?=rawurlencode($item['bname'])?>"><?=utf8_encode($item['bname'])?></a></td>
-							<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['bytes']?>"<? } ?>><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
-							<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>ago</td><? } ?>
-							<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
-						</tr>
-				<? endforeach; ?>
-				<? endif; ?>
-				<!-- /files -->
-					</tbody>                          
-				</table>
-			</div>
-			<? if (ENABLE_SORT) { ?>
-				<script type="text/javascript" src="<?=JQUERY?>"></script>
-	    		<script type="text/javascript" src="<?=STUPID_TABLE?>"></script>
-	    		<script type="text/javascript">$("#bs-table").stupidtable();</script>
-    		<? } ?>
-    		<? if (ANALYTICS_ID) { ?>
-    			<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","<?=ANALYTICS_ID?>"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.type="text/javascript";ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s)})();</script>
-			<? } ?>
-		</body>
-	</html>
+			<thead>
+				<tr>
+					<th<? if (ENABLE_SORT) { ?> data-sort="string"<? } ?>><? if (ENABLE_SORT) { ?><? if (ENABLE_ICONS) { ?><i class="<?=$sort_icon?>">&nbsp;</i><? } ?><? } ?>Name</th>
+					<? if ($table_options['size']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Size</th><? } ?>
+					<? if ($table_options['age']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Date Modified</th><? } ?>
+					<? if ($table_options['perms']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Permissions</th><? } ?>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td colspan="<?=$table_count+1?>"><small class="pull-left"><?=$contained?></small><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Listr" target="_blank">GitHub</a></small></td>
+				</tr>
+			</tfoot>
+			<tbody>
+		<!-- folders -->
+		<? if($folder_list): ?>
+		<? foreach($folder_list as $item) : ?>
+				<tr>
+					<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=utf8_encode($item['lbname'])?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$folder_icon?>">&nbsp;</i><? } ?><a href="<?=rawurlencode($item['bname'])?>/"><strong><?=utf8_encode($item['bname'])?></strong></a></td>
+					<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="0"<? } ?>>&mdash;</td><? } ?>
+					<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>ago</td><? } ?>
+					<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
+				</tr>
+		<? endforeach; ?>
+		<? endif; ?>
+		<!-- /folders -->
+		<!-- files -->
+		<? if($file_list): ?>
+		<? foreach($file_list as $item) : ?>
+				<tr>
+					<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=utf8_encode($item['lname'])?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$item['class']?>">&nbsp;</i><? } ?><a href="<?=rawurlencode($item['bname'])?>"><?=utf8_encode($item['bname'])?></a></td>
+					<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['bytes']?>"<? } ?>><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
+					<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>ago</td><? } ?>
+					<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
+				</tr>
+		<? endforeach; ?>
+		<? endif; ?>
+		<!-- /files -->
+			</tbody>                          
+		</table>
+	</div>
+	<? if (ENABLE_SORT) { ?>
+		<script type="text/javascript" src="<?=JQUERY?>"></script>
+		<script type="text/javascript" src="<?=STUPID_TABLE?>"></script>
+		<script type="text/javascript">$("#bs-table").stupidtable();</script>
+	<? } ?>
+	<? if (ANALYTICS_ID) { ?>
+		<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","<?=ANALYTICS_ID?>"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.type="text/javascript";ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s)})();</script>
+	<? } ?>
+</body>
+</html>
