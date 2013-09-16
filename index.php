@@ -64,7 +64,7 @@ $sort = array(
 	array('key'=>'size',	'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
 );
 // Files you want to hide form the listing
-$ignore_list = array('.DAV','.DS_Store','ehthumbs.db','.git','.gitignore','.htaccess','robots.txt','.Spotlight-V100','Thumbs.db');
+$ignore_list = array('.DAV','.DS_Store','ehthumbs.db','.git','.gitignore','.htaccess','.npmignore','.npmignore','robots.txt','.Spotlight-V100','Thumbs.db');
 
 
 /*** DIRECTORY LOGIC ***/
@@ -296,7 +296,7 @@ function php_multisort($data,$keys)
  *	@ http://us3.php.net/manual/en/function.filesize.php#84652
  */
 function bytes_to_string($size, $precision = 0) {
-	$sizes = array('YB', 'ZB', 'EB', 'PB', 'TB', 'GB', 'MB', 'KB', 'byytes');
+	$sizes = array('YB', 'ZB', 'EB', 'PB', 'TB', 'GB', 'MB', 'KB', 'bytes');
 	$total = count($sizes);
 	while($total-- && $size > 1024) $size /= 1024;
 	$return['num'] = round($size, $precision);
