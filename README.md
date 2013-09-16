@@ -40,6 +40,10 @@ Rather than using generic icons, you can enable [Font Awesome](http://fortawesom
 
 Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) themes, please note that some of these do not include the [glyphicons](http://getbootstrap.com/components/#glyphicons) used in the script. You can disable glyphicons in the script header.
 
+### Libraries & Style-sheets
+
+For your convenience, we use CDNs for Bootstrap and JQuery. While this is an often recommended practice, it might not work too well for the [Stupid Table Plugin](http://joequery.github.io/Stupid-Table-Plugin/) which is hosted on [Github Pages](http://pages.github.com/). Whatever reasons you might have to change the default locations, you can do so easily in the script header.
+
 ## Credits
 
 This project is built upon—or includes—code from the following people:
