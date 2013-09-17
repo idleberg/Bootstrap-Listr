@@ -47,13 +47,13 @@ define(STUPID_TABLE, '//idleberg.github.io/Bootstrap-Listr/javascripts/stupidtab
 
 // Icons
 define(FAV_ICON, '');
-define(IPHONE_ICON, '');
-define(IPHONE_ICON_RETINA, '');
-define(IPAD_ICON, '');
-define(IPAD_ICON_RETINA, '');
+define(IPHONE_ICON, ''); // 57x57
+define(IPHONE_ICON_RETINA, ''); // 114x114
+define(IPAD_ICON, ''); // 72x72
+define(IPAD_ICON_RETINA, ''); // 144x144
 
 // Google Analytics ID
-define(ANALYTICS_ID, '');
+define(ANALYTICS_ID, ''); // UA-XXXXX-Y or UA-XXXXX-YY
 
 // Configure optional columns
 $table_options = array (
@@ -353,10 +353,8 @@ function time_ago($timestamp, $recursive = 0)
 		<link rel="stylesheet" href="<?=BOOTSTRAP_NOICONS?>" />
 		<link rel="stylesheet" href="<?=FONT_AWESOME?>" />
 	<? } else { ?><link rel="stylesheet" href="<?=BOOTSTRAP?>" /><? } ?>
-
 	<style type="text/css">th {cursor: pointer}<?if (ENABLE_ICONS && ENABLE_AWESOME) { ?>i:before{width:28px}<? } ?></style>
 </head>
-
 <body>
 	<div class="container">
 		<h1>
@@ -370,9 +368,7 @@ function time_ago($timestamp, $recursive = 0)
 				<?endif; ?>
 			<? endforeach; ?>
 		</h1>
-
 		<table id="bs-table" class="table <?=TABLE_STYLE?>">
-
 			<thead>
 				<tr>
 					<th<? if (ENABLE_SORT) { ?> data-sort="string"<? } ?>><? if (ENABLE_SORT) { ?><? if (ENABLE_ICONS) { ?><i class="<?=$sort_icon?>">&nbsp;</i><? } ?><? } ?>Name</th>
@@ -398,7 +394,6 @@ function time_ago($timestamp, $recursive = 0)
 				</tr>
 		<? endforeach; ?>
 		<? endif; ?>
-		<!-- /folders -->
 		<!-- files -->
 		<? if($file_list): ?>
 		<? foreach($file_list as $item) : ?>
@@ -410,7 +405,6 @@ function time_ago($timestamp, $recursive = 0)
 				</tr>
 		<? endforeach; ?>
 		<? endif; ?>
-		<!-- /files -->
 			</tbody>                          
 		</table>
 	</div>
