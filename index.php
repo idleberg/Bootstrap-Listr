@@ -68,7 +68,7 @@ $sort = array(
 	array('key'=>'size',	'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
 );
 // Files you want to hide form the listing
-$ignore_list = array('.DAV','.DS_Store','ehthumbs.db','.crdownload','.git','.gitignore','.htaccess','.npmignore','.npmignore','.part','robots.txt','.Spotlight-V100','Thumbs.db');
+$ignore_list = array('.DAV','.DS_Store','ehthumbs.db','.git','.gitignore','.htaccess','.npmignore','.npmignore','robots.txt','.Spotlight-V100','Thumbs.db');
 
 
 /*** DIRECTORY LOGIC ***/
@@ -100,6 +100,7 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'config'	=> array('conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
 		'contact'	=> array('abbu','oab','pab','vcard','vcf'),
 		'doc' 		=> array('doc','docs','docx','dot','key','numbers','odb','odf','odg','odp','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wpd','xls','xlsx','xps'),
+		'downloads'	=> array('crdownload','part'),
 		'ebook'		=> array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
 		'email'		=> array('eml','emlx','mbox','msg','pst'),
 		'font'		=> array('fon','otf','pfm','ttf','woff'),
@@ -160,6 +161,8 @@ if ($handle = opendir('.'))
 					$item['class'] = 'icon-group';
 				}elseif(in_array($item[lext], $filetype['doc'])){
 					$item['class'] = 'icon-file-text';
+				}elseif(in_array($item[lext], $filetype['downloads'])){
+					$item['class'] = 'icon-cloud-download';
 				}elseif(in_array($item[lext], $filetype['ebook'])){
 					$item['class'] = 'icon-book';
 				}elseif(in_array($item[lext], $filetype['email'])){
