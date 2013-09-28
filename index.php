@@ -68,7 +68,7 @@ $sort = array(
 	array('key'=>'size',	'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
 );
 // Files you want to hide form the listing
-$ignore_list = array('.DAV','.DS_Store','ehthumbs.db','.git','.gitignore','.htaccess','.npmignore','.npmignore','robots.txt','.Spotlight-V100','Thumbs.db');
+$ignore_list = array('.DAV','.DS_Store','ehthumbs.db','.crdownload','.git','.gitignore','.htaccess','.npmignore','.npmignore','.part','robots.txt','.Spotlight-V100','Thumbs.db');
 
 
 /*** DIRECTORY LOGIC ***/
