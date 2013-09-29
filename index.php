@@ -37,7 +37,7 @@ define(ENABLE_AWESOME, false);
 define(ENABLE_VIEWPORT, false);
 
 // Stylesheet locations
-define(BOOTSTRAP, '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css');
+define(BOOTSTRAP_THEME, 'default'); // Use Bootswatch theme names -> http://bootswatch.com/
 define(BOOTSTRAP_NOICONS, '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css');
 define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css');
 
@@ -114,6 +114,48 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'video'		=> array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
 		'windows'	=> array('bat','cmd','dll','exe','msi','ps1','scr','sys','wsh')
 	);
+}
+
+$cdn_pre = '//netdna.bootstrapcdn.com/bootswatch/3.0.0/';
+$cdn_post = '/bootstrap.min.css';
+
+switch(BOOTSTRAP_THEME) {
+	case 'amelia':
+		$bootstrap_cdn = $cdn_pre .'amelia'. $cdn_post;
+		break;
+	case 'cerulean':
+		$bootstrap_cdn = $cdn_pre .'cerulean'. $cdn_post;
+		break;
+	case 'cosmo':
+		$bootstrap_cdn = $cdn_pre .'cosmo'. $cdn_post;
+		break;
+	case 'cyborg':
+		$bootstrap_cdn = $cdn_pre .'cyborg'. $cdn_post;
+		break;
+	case 'flatly':
+		$bootstrap_cdn = $cdn_pre .'flatly'. $cdn_post;
+		break;
+	case 'journal':
+		$bootstrap_cdn = $cdn_pre .'journal'. $cdn_post;
+		break;
+	case 'readable':
+		$bootstrap_cdn = $cdn_pre .'readable'. $cdn_post;
+		break;
+	case 'simplex':
+		$bootstrap_cdn = $cdn_pre .'simplex'. $cdn_post;
+		break;
+	case 'slate':
+		$bootstrap_cdn = $cdn_pre .'slate'. $cdn_post;
+		break;
+	case 'spacelab':
+		$bootstrap_cdn = $cdn_pre .'spacelab'. $cdn_post;
+		break;
+	case 'united':
+		$bootstrap_cdn = $cdn_pre .'united'. $cdn_post;
+		break;
+	default:
+		$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css';
+		break;
 }
 
 // Count optional columns
@@ -355,7 +397,7 @@ function time_ago($timestamp, $recursive = 0)
 	<? if (ENABLE_ICONS && ENABLE_AWESOME) { ?>
 		<link rel="stylesheet" href="<?=BOOTSTRAP_NOICONS?>" />
 		<link rel="stylesheet" href="<?=FONT_AWESOME?>" />
-	<? } else { ?><link rel="stylesheet" href="<?=BOOTSTRAP?>" /><? } ?>
+	<? } else { ?><link rel="stylesheet" href="<?=$bootstrap_cdn?>" /><? } ?>
 	<style type="text/css">th {cursor: pointer}<?if (ENABLE_ICONS && ENABLE_AWESOME) { ?>i:before{width:28px}<? } ?></style>
 </head>
 <body>
