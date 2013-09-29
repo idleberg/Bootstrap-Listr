@@ -153,9 +153,11 @@ switch(BOOTSTRAP_THEME) {
 	case 'united':
 		$bootstrap_cdn = $cdn_pre .'united'. $cdn_post;
 		break;
+	case 'paraiso':
+		$bootstrap_cdn = '//idleberg.github.io/Paraiso-Bootstrap-Listr/stylesheets/bootstrap.paraiso.min.css';
+		break;
 	default:
 		$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css';
-		break;
 }
 
 // Count optional columns
