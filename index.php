@@ -387,27 +387,33 @@ function time_ago($timestamp, $recursive = 0)
 			</tfoot>
 			<tbody>
 		<!-- folders -->
-		<? if($folder_list): ?>
-		<? foreach($folder_list as $item) : ?>
-				<tr>
-					<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=utf8_encode($item['lbname'])?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$folder_icon?>">&nbsp;</i><? } ?><a href="<?=rawurlencode($item['bname'])?>/"><strong><?=utf8_encode($item['bname'])?></strong></a></td>
-					<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="0"<? } ?>>&mdash;</td><? } ?>
-					<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>ago</td><? } ?>
-					<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
-				</tr>
-		<? endforeach; ?>
-		<? endif; ?>
-		<!-- files -->
-		<? if($file_list): ?>
-		<? foreach($file_list as $item) : ?>
-				<tr>
-					<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=utf8_encode($item['lname'])?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$item['class']?>">&nbsp;</i><? } ?><a href="<?=rawurlencode($item['bname'])?>"><?=utf8_encode($item['bname'])?></a></td>
-					<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['bytes']?>"<? } ?>><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
-					<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>ago</td><? } ?>
-					<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
-				</tr>
-		<? endforeach; ?>
-		<? endif; ?>
+		<? if(($folder_list) || ($file_list) ) { ?>
+			<? if($folder_list): ?>
+			<? foreach($folder_list as $item) : ?>
+					<tr>
+						<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=utf8_encode($item['lbname'])?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$folder_icon?>">&nbsp;</i><? } ?><a href="<?=rawurlencode($item['bname'])?>/"><strong><?=utf8_encode($item['bname'])?></strong></a></td>
+						<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="0"<? } ?>>&mdash;</td><? } ?>
+						<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>ago</td><? } ?>
+						<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
+					</tr>
+			<? endforeach; ?>
+			<? endif; ?>
+			<!-- files -->
+			<? if($file_list): ?>
+			<? foreach($file_list as $item) : ?>
+					<tr>
+						<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=utf8_encode($item['lname'])?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$item['class']?>">&nbsp;</i><? } ?><a href="<?=rawurlencode($item['bname'])?>"><?=utf8_encode($item['bname'])?></a></td>
+						<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['bytes']?>"<? } ?>><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
+						<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>ago</td><? } ?>
+						<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
+					</tr>
+			<? endforeach; ?>
+			<? endif; ?>
+		<? } else { ?>
+			<tr>
+				<td colspan="<?=$table_count+1?>" style="font-style:italic"><? if (ENABLE_ICONS) { ?><i class="<?=$item['class']?>">&nbsp;</i><? } ?>empty folder</td>
+			</tr>
+		<? } ?>
 			</tbody>                          
 		</table>
 	</div>
