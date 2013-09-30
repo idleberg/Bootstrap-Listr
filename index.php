@@ -38,7 +38,6 @@ define(ENABLE_VIEWPORT, false);
 
 // Stylesheet locations
 define(BOOTSTRAP_THEME, 'default'); // Use Bootswatch theme names -> http://bootswatch.com/
-define(BOOTSTRAP_NOICONS, '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css');
 define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css');
 
 // JavaScript locations
@@ -157,7 +156,11 @@ switch(BOOTSTRAP_THEME) {
 		$bootstrap_cdn = '//idleberg.github.io/Paraiso-Bootstrap-Listr/stylesheets/bootstrap.paraiso.min.css';
 		break;
 	default:
-		$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css';
+		if(ENABLE_ICONS) {
+			$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css';
+		} else {
+			$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css';
+		}
 }
 
 // Count optional columns
@@ -396,10 +399,8 @@ function time_ago($timestamp, $recursive = 0)
     <? if (IPHONE_ICON_RETINA) { ?><link rel="apple-touch-icon" sizes="72x72" href="<?=IPHONE_ICON_RETINA?>" /><? } ?>
     <? if (IPAD_ICON) { ?><link rel="apple-touch-icon" sizes="114x114" href="<?=IPAD_ICON?>" /><? } ?>
     <? if (IPAD_ICON_RETINA) { ?><link rel="apple-touch-icon" sizes="144x144" href="<?=IPAD_ICON_RETINA?>" /><? } ?>
-	<? if (ENABLE_ICONS && ENABLE_AWESOME) { ?>
-		<link rel="stylesheet" href="<?=BOOTSTRAP_NOICONS?>" />
-		<link rel="stylesheet" href="<?=FONT_AWESOME?>" />
-	<? } else { ?><link rel="stylesheet" href="<?=$bootstrap_cdn?>" /><? } ?>
+	<link rel="stylesheet" href="<?=$bootstrap_cdn?>" />
+	<? if (ENABLE_AWESOME) { ?><link rel="stylesheet" href="<?=FONT_AWESOME?>" /><? } ?>
 	<style type="text/css">th {cursor: pointer}<?if (ENABLE_ICONS && ENABLE_AWESOME) { ?>i:before{width:28px}<? } ?></style>
 </head>
 <body>
