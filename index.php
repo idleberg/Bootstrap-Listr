@@ -108,7 +108,7 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'linux' 	=> array('bin','deb','rpm'),
 		'palette' 	=> array('ase','clm','clr','gpl'),
 		'raw' 		=> array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
-		'script'	=> array('ahk','as','asp','aspx','c','cfm','clj','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scss','sh','shtml','xhtml','xml','yml'),
+		'script'	=> array('ahk','as','asp','aspx','c','cfm','clj','cpp','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scss','sh','shtml','xhtml','xml','yml'),
 		'text'		=> array('asc','csv','diz','markdown','md','nfo','rst','rtf','text','txt'),
 		'video'		=> array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
 		'windows'	=> array('bat','cmd','dll','exe','msi','ps1','scr','sys','wsh')
