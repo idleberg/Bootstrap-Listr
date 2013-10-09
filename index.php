@@ -93,7 +93,7 @@ $total_size = 0;
 if (ENABLE_ICONS && ENABLE_AWESOME) {
 	$filetype = array(
 		'archive'	=> array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','iso','gz','jar','lha','lzh','lz','lzma','pak','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','tar','tgz','wsz','xar','zip'),
-		'apple'		=> array('app','ipa','ipsw','saver','scpt','scptd'),
+		'apple'		=> array('app','ipa','ipsw','saver'),
 		'audio'		=> array('aac','ac3','aif','aiff','au','flac','m4a','m4p','mid','mp2','mp3','mpc','ogg','oma','sid','wav','wv'),
 		'calendar'	=> array('icbu','ics'),
 		'config'	=> array('conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
@@ -108,10 +108,10 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'linux' 	=> array('bin','deb','rpm'),
 		'palette' 	=> array('ase','clm','clr','gpl'),
 		'raw' 		=> array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
-		'script'	=> array('ahk','as','asp','aspx','c','cfm','clj','cpp','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scss','sh','shtml','xhtml','xml','yml'),
+		'script'	=> array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xhtml','xml','yml'),
 		'text'		=> array('asc','csv','diz','markdown','md','nfo','rst','rtf','text','txt'),
 		'video'		=> array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
-		'windows'	=> array('bat','cmd','dll','exe','msi','ps1','scr','sys','wsh')
+		'windows'	=> array('dll','exe','msi','ps1','scr','sys')
 	);
 }
 
