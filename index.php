@@ -38,7 +38,7 @@ define(ENABLE_VIEWPORT, false);
 
 // Stylesheet locations
 define(BOOTSTRAP_THEME, 'default'); // Use Bootswatch theme names -> http://bootswatch.com/
-define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css');
+define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css');
 
 // JavaScript locations
 define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
@@ -192,50 +192,50 @@ if ($handle = opendir('.'))
 			if($info['extension'] == '') $item['ext'] = '.';
 
 			if (ENABLE_ICONS && ENABLE_AWESOME) {
-				$sort_icon = 'icon-sort';
-				$folder_icon = 'icon-folder-close';
+				$sort_icon = 'fa fa-sort';
+				$folder_icon = 'fa fa-folder';
 				if(in_array($item[lext], $filetype['archive'])){
-					$item['class'] = 'icon-archive';
+					$item['class'] = 'fa fa-archive';
 				}elseif(in_array($item[lext], $filetype['apple'])){
-					$item['class'] = 'icon-apple';
+					$item['class'] = 'fa fa-apple';
 				}elseif(in_array($item[lext], $filetype['audio'])){
-					$item['class'] = 'icon-music';
+					$item['class'] = 'fa fa-music';
 				}elseif(in_array($item[lext], $filetype['calendar'])){
-					$item['class'] = 'icon-calendar';
+					$item['class'] = 'fa fa-calendar';
 				}elseif(in_array($item[lext], $filetype['config'])){
-					$item['class'] = 'icon-cogs';
+					$item['class'] = 'fa fa-cogs';
 				}elseif(in_array($item[lext], $filetype['contact'])){
-					$item['class'] = 'icon-group';
+					$item['class'] = 'fa fa-group';
 				}elseif(in_array($item[lext], $filetype['doc'])){
-					$item['class'] = 'icon-file-text';
+					$item['class'] = 'fa fa-file-text';
 				}elseif(in_array($item[lext], $filetype['downloads'])){
-					$item['class'] = 'icon-cloud-download';
+					$item['class'] = 'fa fa-cloud-download';
 				}elseif(in_array($item[lext], $filetype['ebook'])){
-					$item['class'] = 'icon-book';
+					$item['class'] = 'fa fa-book';
 				}elseif(in_array($item[lext], $filetype['email'])){
-					$item['class'] = 'icon-envelope';
+					$item['class'] = 'fa fa-envelope';
 				}elseif(in_array($item[lext], $filetype['font'])){
-					$item['class'] = 'icon-font';
+					$item['class'] = 'fa fa-font';
 				}elseif(in_array($item[lext], $filetype['image'])){
-					$item['class'] = 'icon-picture';
+					$item['class'] = 'fa fa-picture-o';
 				}elseif(in_array($item[lext], $filetype['link'])){
-					$item['class'] = 'icon-link';
+					$item['class'] = 'fa fa-link';
 				}elseif(in_array($item[lext], $filetype['linux'])){
-					$item['class'] = 'icon-linux';
+					$item['class'] = 'fa fa-linux';
 				}elseif(in_array($item[lext], $filetype['palette'])){
-					$item['class'] = 'icon-tasks';
+					$item['class'] = 'fa fa-tasks';
 				}elseif(in_array($item[lext], $filetype['raw'])){
-					$item['class'] = 'icon-camera';
+					$item['class'] = 'fa fa-camera';
 				}elseif(in_array($item[lext], $filetype['script'])){
-					$item['class'] = 'icon-code';
+					$item['class'] = 'fa fa-code';
 				}elseif(in_array($item[lext], $filetype['text'])){
-					$item['class'] = 'icon-file-text-alt';
+					$item['class'] = 'fa fa-file-text-o';
 				}elseif(in_array($item[lext], $filetype['video'])){
-					$item['class'] = 'icon-film';
+					$item['class'] = 'fa fa-film';
 				}elseif(in_array($item[lext], $filetype['windows'])){
-					$item['class'] = 'icon-windows';
+					$item['class'] = 'fa fa-windows';
 				}else{
-					$item['class'] = 'icon-file-alt';			
+					$item['class'] = 'fa fa-file-o';		
 				}
 			} else {
 				$sort_icon = 'glyphicon glyphicon-sort';
