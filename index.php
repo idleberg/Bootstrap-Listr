@@ -38,7 +38,7 @@ define(ENABLE_VIEWPORT, false);
 
 // Stylesheet locations
 define(BOOTSTRAP_THEME, 'default'); // Use Bootswatch theme names -> http://bootswatch.com/
-define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css');
+define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.min.css');
 
 // JavaScript locations
 define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
