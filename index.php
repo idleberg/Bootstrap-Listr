@@ -122,7 +122,7 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'downloads'	=> array('crdownload','part'),
 		'ebook'		=> array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
 		'email'		=> array('eml','emlx','mbox','msg','pst'),
-		'font'		=> array('fon','otf','pfm','ttf','woff'),
+		'font'		=> array('eot','fon','otf','pfm','ttf','woff'),
 		'image'		=> array('ai','bmp','cdr','emf','eps','gif','icns','ico','jp2','jpe','jpeg','jpg','jpx','pcx','pict','png','psd','psp','svg','tga','tif','tiff','webp','wmf'),
 		'link' 		=> array('lnk','url','webloc'),
 		'linux' 	=> array('bin','deb','rpm'),
