@@ -38,7 +38,7 @@ define(ENABLE_VIEWPORT, false);
 
 // Stylesheet locations
 define(BOOTSTRAP_THEME, 'default'); // Use Bootswatch theme names -> http://bootswatch.com/
-define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.min.css');
+define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
 define(CUSTOM_CSS, null);
 
 // JavaScript locations
@@ -138,7 +138,7 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 if (CUSTOM_CSS) {
 	$bootstrap_cdn = CUSTOM_CSS;
 } else {
-	$cdn_pre = '//netdna.bootstrapcdn.com/bootswatch/3.0.1/';
+	$cdn_pre = '//netdna.bootstrapcdn.com/bootswatch/3.0.2/';
 	$cdn_post = '/bootstrap.min.css';
 
 	switch(BOOTSTRAP_THEME) {
