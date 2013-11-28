@@ -458,7 +458,7 @@ function time_ago($timestamp, $recursive = 0)
 				<? if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')): ?>
 					<? $parent = ''; ?>
 					<?for ($i = 1; $i <= $dir; $i++): ?>
-						<? $parent .= rawurlencode($dir_name[$i]); ?>
+						<? $parent .= rawurlencode($dir_name[$i]) . '/'; ?>
 					<?endfor;?>
 					<li><a href="/<?=$parent?>"><?=utf8_encode($name)?></a></li>
 				<?endif; ?>
