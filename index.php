@@ -51,6 +51,8 @@ define(IPHONE_ICON, ''); // 57x57
 define(IPHONE_ICON_RETINA, ''); // 114x114
 define(IPAD_ICON, ''); // 72x72
 define(IPAD_ICON_RETINA, ''); // 144x144
+define(METRO_TILE_COLOR, ''); //
+define(METRO_TILE_IMAGE, ''); // 144x144
 
 // Google Analytics ID
 define(ANALYTICS_ID, ''); // UA-XXXXX-Y or UA-XXXXX-YY
@@ -94,6 +96,12 @@ $ignore_list = array(
 
 // Get this folder and files name.
 
+if ($_SERVER['HTTPS']) {
+	$this_protocol = "https://";
+} else {
+	$this_protocol = "http://";
+}
+
 $this_script = basename(__FILE__);
 $this_folder = str_replace('/'.$this_script, '', $_SERVER['SCRIPT_NAME']);
 
@@ -133,6 +141,14 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'video'		=> array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
 		'windows'	=> array('dll','exe','msi','ps1','scr','sys')
 	);
+	$home = "<i class=\"fa fa-home fa-lg\"></i> ";
+} else{
+	if (ENABLE_ICONS) {
+		$home = "<span class=\"glyphicon glyphicon-home\"></span>";
+	} else {
+		$home = $this_domain;
+	}
+		
 }
 
 if (CUSTOM_CSS) {
@@ -174,6 +190,9 @@ if (CUSTOM_CSS) {
 			break;
 		case 'united':
 			$bootstrap_cdn = $cdn_pre .'united'. $cdn_post;
+			break;
+		case 'yeti':
+			$bootstrap_cdn = $cdn_pre .'yeti'. $cdn_post;
 			break;
 		case 'paraiso':
 			$bootstrap_cdn = '//idleberg.github.io/Paraiso-Bootstrap-Listr/stylesheets/bootstrap.paraiso.min.css';
@@ -424,23 +443,27 @@ function time_ago($timestamp, $recursive = 0)
     <? if (IPHONE_ICON_RETINA) { ?><link rel="apple-touch-icon" sizes="72x72" href="<?=IPHONE_ICON_RETINA?>" /><? } ?>
     <? if (IPAD_ICON) { ?><link rel="apple-touch-icon" sizes="114x114" href="<?=IPAD_ICON?>" /><? } ?>
     <? if (IPAD_ICON_RETINA) { ?><link rel="apple-touch-icon" sizes="144x144" href="<?=IPAD_ICON_RETINA?>" /><? } ?>
+    <? if (METRO_TILE_COLOR && METRO_TILE_IMAGE) { ?>
+    	<meta name="msapplication-TileColor" content="#<?=METRO_TILE_COLOR?>">" />;
+    	<meta name="msapplication-TileImage" content="#<?=METRO_TILE_IMAGE?>">" />;
+    <? } ?>
 	<link rel="stylesheet" href="<?=$bootstrap_cdn?>" />
 	<? if (ENABLE_AWESOME) { ?><link rel="stylesheet" href="<?=FONT_AWESOME?>" /><? } ?>
 	<style type="text/css">th {cursor: pointer}<?if (ENABLE_ICONS && ENABLE_AWESOME) { ?>i:before{width:28px}<? } ?></style>
 </head>
 <body>
 	<div class="container">
-		<h1>
-			<a href="http://<?=$this_domain?>"><?=$this_domain?></a><? foreach($dir_name as $dir => $name) : ?>
+		<div class="breadcrumb">
+			<li><a href="<?=$this_protocol . $this_domain?>"><?=$home?></a></li><? foreach($dir_name as $dir => $name) : ?>
 				<? if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')): ?>
 					<? $parent = ''; ?>
-						<?for ($i = 1; $i <= $dir; $i++): ?>
-							<? $parent .= rawurlencode($dir_name[$i]) . '/'; ?>
-						<?endfor;?>
-					/ <a href="/<?=$parent?>"><?=utf8_encode($name)?></a>
+					<?for ($i = 1; $i <= $dir; $i++): ?>
+						<? $parent .= rawurlencode($dir_name[$i]); ?>
+					<?endfor;?>
+					<li><a href="/<?=$parent?>"><?=utf8_encode($name)?></a></li>
 				<?endif; ?>
 			<? endforeach; ?>
-		</h1>
+		</div>
 		<table id="bs-table" class="table <?=TABLE_STYLE?>">
 			<thead>
 				<tr>
