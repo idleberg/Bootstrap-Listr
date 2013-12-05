@@ -199,7 +199,7 @@ if (CUSTOM_CSS) {
 			break;
 		default:
 			if(ENABLE_ICONS) {
-				$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css';
+				$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css';
 			} else {
 				$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css';
 			}
