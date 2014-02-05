@@ -154,7 +154,7 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 if (CUSTOM_CSS) {
 	$bootstrap_cdn = CUSTOM_CSS;
 } else {
-	$cdn_pre = '//netdna.bootstrapcdn.com/bootswatch/3.0.3/';
+	$cdn_pre = '//netdna.bootstrapcdn.com/bootswatch/3.1.0/';
 	$cdn_post = '/bootstrap.min.css';
 
 	switch(BOOTSTRAP_THEME) {
