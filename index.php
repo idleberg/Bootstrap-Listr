@@ -176,6 +176,9 @@ if (CUSTOM_CSS) {
 		case 'journal':
 			$bootstrap_cdn = $cdn_pre .'journal'. $cdn_post;
 			break;
+		case 'lumen':
+			$bootstrap_cdn = $cdn_pre .'lumen'. $cdn_post;
+			break;
 		case 'readable':
 			$bootstrap_cdn = $cdn_pre .'readable'. $cdn_post;
 			break;
@@ -187,6 +190,9 @@ if (CUSTOM_CSS) {
 			break;
 		case 'spacelab':
 			$bootstrap_cdn = $cdn_pre .'spacelab'. $cdn_post;
+			break;
+		case 'superhero':
+			$bootstrap_cdn = $cdn_pre .'superhero'. $cdn_post;
 			break;
 		case 'united':
 			$bootstrap_cdn = $cdn_pre .'united'. $cdn_post;
