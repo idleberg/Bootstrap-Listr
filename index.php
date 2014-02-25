@@ -154,7 +154,7 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 if (CUSTOM_CSS) {
 	$bootstrap_cdn = CUSTOM_CSS;
 } else {
-	$cdn_pre = '//netdna.bootstrapcdn.com/bootswatch/3.1.0/';
+	$cdn_pre = '//netdna.bootstrapcdn.com/bootswatch/3.1.1/';
 	$cdn_post = '/bootstrap.min.css';
 
 	switch(BOOTSTRAP_THEME) {
@@ -199,7 +199,7 @@ if (CUSTOM_CSS) {
 			break;
 		default:
 			if(ENABLE_ICONS) {
-				$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css';
+				$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css';
 			} else {
 				$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css';
 			}
