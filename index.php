@@ -204,11 +204,7 @@ if (CUSTOM_CSS) {
 			$bootstrap_cdn = '//idleberg.github.io/Paraiso-Bootstrap-Listr/stylesheets/bootstrap.paraiso.min.css';
 			break;
 		default:
-			if(ENABLE_ICONS) {
-				$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css';
-			} else {
-				$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css';
-			}
+			$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css';
 	}
 }
 
