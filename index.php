@@ -7,7 +7,7 @@ error_reporting(1);
  *
  *       Author:    Jan T. Sott
  *         Info:    http://github.com/idleberg/Bootstrap-Listr
- *      License:    Creative Commons 3.0 Attribution-ShareAlike 3.0
+ *      License:    Creative Commons Attribution-ShareAlike 3.0
  *
  *      Credits:    Greg Johnson - PHPDL lite (http://greg-j.com/phpdl/)
  *                  Na Wong - Listr (http://nadesign.net/listr/)
@@ -120,14 +120,14 @@ $total_size = 0;
 
 if (ENABLE_ICONS && ENABLE_AWESOME) {
 	$filetype = array(
-		'archive'	=> array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','iso','gz','jar','lha','lzh','lz','lzma','pak','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','tar','tgz','wsz','xar','zip'),
+		'archive'	=> array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','tar','tgz','wsz','xar','zip'),
 		'apple'		=> array('app','ipa','ipsw','saver'),
-		'audio'		=> array('aac','ac3','aif','aiff','au','flac','m4a','m4p','mid','mp2','mp3','mpc','ogg','oma','sid','wav','wv'),
+		'audio'		=> array('aac','ac3','aif','aiff','au','flac','it','m4a','m4p','med','mid','mod','mp2','mp3','mpc','ned','ogg','oma','s3m','sid','umx','wav','wv','xm'),
 		'calendar'	=> array('icbu','ics'),
 		'config'	=> array('conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
 		'contact'	=> array('abbu','oab','pab','vcard','vcf'),
 		'doc' 		=> array('doc','docs','docx','dot','key','numbers','odb','odf','odg','odp','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wpd','xls','xlsx','xps'),
-		'downloads'	=> array('crdownload','part'),
+		'downloads'	=> array('crdownload','download','opdownload','part'),
 		'ebook'		=> array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
 		'email'		=> array('eml','emlx','mbox','msg','pst'),
 		'font'		=> array('eot','fon','otf','pfm','ttf','woff'),
