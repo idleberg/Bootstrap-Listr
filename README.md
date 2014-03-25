@@ -13,6 +13,8 @@ Clone this repository using `git clone https://github.com/idleberg/Bootstrap-Lis
 
 ## Usage
 
+I am unaware of a method to use one index file for several directories at once (feel free to correct me!), hence you will have to copy the index in every directory where you would like to use it. Since Bootstrap Listr is a one-file solution, doing so is relatively easy.
+
 ### Options
 
 You can configure a number of settings in the header of the script file:
