@@ -83,7 +83,6 @@ $ignore_list = array(
 	'.hgtags',
 	'.htaccess',
 	'.npmignore',
-	'.npmignore',
 	'.Spotlight-V100',
 	'__MACOSX',
 	'ehthumbs.db',
@@ -451,7 +450,7 @@ function time_ago($timestamp, $recursive = 0)
     <? } ?>
 	<link rel="stylesheet" href="<?=$bootstrap_cdn?>" />
 	<? if (ENABLE_AWESOME) { ?><link rel="stylesheet" href="<?=FONT_AWESOME?>" /><? } ?>
-	<style type="text/css">th {cursor: pointer}<?if (ENABLE_ICONS && ENABLE_AWESOME) { ?>i:before{width:28px}<? } ?></style>
+	<style type="text/css">th{cursor:pointer}<?if (ENABLE_ICONS && ENABLE_AWESOME) { ?>i:before{width:28px}<? } ?></style>
 </head>
 <body>
 	<div class="container">
