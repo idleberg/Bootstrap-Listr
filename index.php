@@ -82,8 +82,10 @@ $ignore_list = array(
 	'.hgignore',
 	'.hgtags',
 	'.htaccess',
+	'.htpasswd',
 	'.npmignore',
 	'.Spotlight-V100',
+	'.svn',
 	'__MACOSX',
 	'ehthumbs.db',
 	'robots.txt',
@@ -125,7 +127,7 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'calendar'	=> array('icbu','ics'),
 		'config'	=> array('conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
 		'contact'	=> array('abbu','oab','pab','vcard','vcf'),
-		'doc' 		=> array('doc','docs','docx','dot','key','numbers','odb','odf','odg','odp','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wpd','xls','xlsx','xps'),
+		'doc' 		=> array('abw','doc','docm','docs','docx','dot','key','numbers','odb','odf','odg','odp','odt','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wp','wp4','wp5','wp6','wp7','wpd','xls','xlsx','xps'),
 		'downloads'	=> array('crdownload','download','opdownload','part'),
 		'ebook'		=> array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
 		'email'		=> array('eml','emlx','mbox','msg','pst'),
@@ -136,7 +138,7 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 		'palette' 	=> array('ase','clm','clr','gpl'),
 		'raw' 		=> array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
 		'script'	=> array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xhtml','xml','yml'),
-		'text'		=> array('asc','csv','diz','markdown','md','nfo','rst','rtf','text','txt'),
+		'text'		=> array('ans','asc','ascii','csv','diz','log','markdown','md','nfo','rst','rtf','text','txt'),
 		'video'		=> array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
 		'windows'	=> array('dll','exe','msi','ps1','scr','sys')
 	);
