@@ -171,6 +171,9 @@ if (CUSTOM_CSS) {
 		case 'cyborg':
 			$bootstrap_cdn = $cdn_pre .'cyborg'. $cdn_post;
 			break;
+		case 'darkly':
+			$bootstrap_cdn = $cdn_pre .'darkly'. $cdn_post;
+			break;
 		case 'flatly':
 			$bootstrap_cdn = $cdn_pre .'flatly'. $cdn_post;
 			break;
@@ -478,7 +481,10 @@ function time_ago($timestamp, $recursive = 0)
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="<?=$table_count+1?>"><small class="pull-left"><?=$contained?></small><small class="pull-right">Fork me on <a href="https://github.com/idleberg/Bootstrap-Listr" target="_blank">GitHub</a></small></td>
+					<td colspan="<?=$table_count+1?>">
+						<small class="pull-left text-muted"><?=$contained?></small>
+						<small class="pull-right text-muted">Fork me on <a href="https://github.com/idleberg/Bootstrap-Listr" target="_blank" class="text-muted">GitHub</a></small>
+					</td>
 				</tr>
 			</tfoot>
 			<tbody>
