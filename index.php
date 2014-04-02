@@ -652,7 +652,7 @@ if(($folder_list) || ($file_list) ) {
           <tr>
             <td colspan="<?=$table_count+1?>">
               <small class="pull-left text-muted"><?=$contained?></small>
-              <a class="pull-right small text-muted" href="https://github.com/idleberg/Bootstrap-Listr" title="Bootstrap Listr on GitHub" target="_blank">Bootstrap Listr</a>
+              <a class="pull-right small text-muted" href="https://github.com/idleberg/Bootstrap-Listr" title="Bootstrap Listr on GitHub" target="_blank">Fork me on GitHub</a>
             </td>
           </tr>
         </tfoot>
