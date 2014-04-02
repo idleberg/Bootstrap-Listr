@@ -60,7 +60,7 @@ define(BOOTSTRAP_THEME, 'default');
      define(CUSTOM_CSS, null);
 
 // External JavaScript
-      define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js');
+      define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
 define(STUPID_TABLE, '//idleberg.github.io/Bootstrap-Listr/javascripts/stupidtable.min.js');
 
 // Browser and Device Icons
@@ -597,7 +597,7 @@ if(($folder_list) || ($file_list) ) {
 				if (ENABLE_SORT) {
 					$table_body = $table_body." data-sort-value=\"" . $item['bytes'] . "\"";
 				}
-					$table_body = $table_body.">" . $item['size']['num'] . "<span>" . $item['size']['str'] . "</span></td>" . PHP_EOL;
+					$table_body = $table_body.">" . $item['size']['num'] . " " . $item['size']['str'] . "</td>" . PHP_EOL;
 			}
 
 			if ($table_options['age']) {
