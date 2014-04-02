@@ -17,51 +17,69 @@ error_reporting(1);
 
 /*** SETTINGS ***/
 
-// Use 'table-striped' to add zebra-striping 
-// Add 'table-bordered' for borders on all sides of the table and cells
-// Add 'table-hover' to enable a hover state on table rows
-// Add 'table-condensed' to make tables more compact by cutting cell padding in half
-// Create responsive tables by wrapping any table in 'table-responsive'
+/* Table Styles (can be combined)
+ *   'table-striped' - add zebra-striping 
+ *  'table-bordered' - borders on all sides of the table and cells
+ *     'table-hover' - enable a hover state on table rows
+ * 'table-condensed' - to make tables more compact by cutting cell padding in half
+ */
 define(TABLE_STYLE, 'table-hover');
 
 // Toggle column sorting
 define(ENABLE_SORT, true);
 
-// Enable glyphicons
-define(ENABLE_ICONS, true);
+/* Document Icons:
+ *         'none' - No icons
+ *   'glyphicons' - Bootstrap glyphicons (default)
+ *  'fontawesome' - Font Awesome icons
+ */
+define(DOC_ICONS, 'fontawesome');
 
-// Enable Font Awesome icon types, requires ENABLE_ICONS to be enabled
-define(ENABLE_AWESOME, false);
+/* Bootstrap Themes:
+ *    'default' - http://getbootstrap.com
+ * 
+ *     'amelia' - http://bootswatch.com/amelia/
+ *   'cerulean' - http://bootswatch.com/cerulean/
+ *     'cyborg' - http://bootswatch.com/cyborg/
+ *     'darkly' - http://bootswatch.com/darkly/
+ *     'flatly' - http://bootswatch.com/flatly/
+ *    'journal' - http://bootswatch.com/journal/
+ *      'lumen' - http://bootswatch.com/lumen/
+ *   'readable' - http://bootswatch.com/readable
+ *    'simplex' - http://bootswatch.com/simplex
+ *      'slate' - http://bootswatch.com/slate/
+ *   'spacelab' - http://bootswatch.com/spacelab/
+ *  'superhero' - http://bootswatch.com/superhero/
+ *     'united' - http://bootswatch.com/united
+ *       'yeti' - http://bootswatch.com/yeti/
+ */
+define(BOOTSTRAP_THEME, 'default');
 
-// Set default viewport scaling
-define(ENABLE_VIEWPORT, false);
+// External style sheets
+   define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
+     define(CUSTOM_CSS, null);
 
-// Stylesheet locations
-define(BOOTSTRAP_THEME, 'default'); // Use Bootswatch theme names -> http://bootswatch.com/
-define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
-define(CUSTOM_CSS, null);
-
-// JavaScript locations
-define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
+// External JavaScript
+      define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js');
 define(STUPID_TABLE, '//idleberg.github.io/Bootstrap-Listr/javascripts/stupidtable.min.js');
 
-// Icons
-define(FAV_ICON, '');
-define(IPHONE_ICON, ''); // 57x57
+// Browser and Device Icons
+          define(FAV_ICON, ''); // 16x16 or 32x32 
+       define(IPHONE_ICON, ''); // 57x57
 define(IPHONE_ICON_RETINA, ''); // 114x114
-define(IPAD_ICON, ''); // 72x72
-define(IPAD_ICON_RETINA, ''); // 144x144
-define(METRO_TILE_COLOR, ''); //
-define(METRO_TILE_IMAGE, ''); // 144x144
+         define(IPAD_ICON, ''); // 72x72
+  define(IPAD_ICON_RETINA, ''); // 144x144
+  define(METRO_TILE_COLOR, ''); //
+  define(METRO_TILE_IMAGE, ''); // 144x144
 
 // Google Analytics ID
 define(ANALYTICS_ID, ''); // UA-XXXXX-Y or UA-XXXXX-YY
 
-// Configure optional columns
+// Configure optional table columns
 $table_options = array (
-	'size'=>true,
-	'age'=>true,
-	'perms'=>false
+	'size'	=> true,
+	'age'	=> true,
+	'perms'	=> false
 );
 
 // Set sorting properties.
@@ -69,6 +87,7 @@ $sort = array(
 	array('key'=>'lname',	'sort'=>'asc'), // ... this sets the initial sort "column" and order ...
 	array('key'=>'size',	'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
 );
+
 // Files you want to hide form the listing
 $ignore_list = array(
 	'.DAV',
@@ -108,18 +127,19 @@ $this_folder = str_replace('/'.$this_script, '', $_SERVER['SCRIPT_NAME']);
 
 $this_domain = $_SERVER['SERVER_NAME'];
 $dir_name = explode("/", $this_folder);
-//$dir_name = explode("/",dirname($_SERVER['REQUEST_URI']))
-//$dir_path = explode("/", $this_folder);
-
-
 	
 // Declare vars used beyond this point.
-
 $file_list = array();
 $folder_list = array();
 $total_size = 0;
 
-if (ENABLE_ICONS && ENABLE_AWESOME) {
+if (DOC_ICONS == "glyphicons") { 
+	$icon_tag = 'span';
+} else if (DOC_ICONS == "fontawesome") { 
+	$icon_tag = 'i';
+}
+
+if (DOC_ICONS == 'fontawesome') {
 	$filetype = array(
 		'archive'	=> array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','tar','tgz','wsz','xar','zip'),
 		'apple'		=> array('app','ipa','ipsw','saver'),
@@ -144,7 +164,7 @@ if (ENABLE_ICONS && ENABLE_AWESOME) {
 	);
 	$home = "<i class=\"fa fa-home fa-lg\"></i> ";
 } else{
-	if (ENABLE_ICONS) {
+	if (DOC_ICONS == 'glyphicons') {
 		$home = "<span class=\"glyphicon glyphicon-home\"></span>";
 	} else {
 		$home = $this_domain;
@@ -204,9 +224,6 @@ if (CUSTOM_CSS) {
 		case 'yeti':
 			$bootstrap_cdn = $cdn_pre .'yeti'. $cdn_post;
 			break;
-		case 'paraiso':
-			$bootstrap_cdn = '//idleberg.github.io/Paraiso-Bootstrap-Listr/stylesheets/bootstrap.paraiso.min.css';
-			break;
 		default:
 			$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css';
 	}
@@ -241,7 +258,7 @@ if ($handle = opendir('.'))
 			$item['lext']		=	strtolower($info['extension']);
 			if($info['extension'] == '') $item['ext'] = '.';
 
-			if (ENABLE_ICONS && ENABLE_AWESOME) {
+			if (DOC_ICONS == 'fontawesome') {
 				$sort_icon = 'fa fa-sort';
 				$folder_icon = 'fa fa-folder';
 				if(in_array($item[lext], $filetype['archive'])){
@@ -294,7 +311,7 @@ if ($handle = opendir('.'))
 			}
 
 			if ($table_options['size'] || $table_options['age'])
-			$stat				=	stat($file); // ... slow, but faster than using filemtime() & filesize() instead.
+				$stat				=	stat($file); // ... slow, but faster than using filemtime() & filesize() instead.
 
 			if ($table_options['size']) {
 				$item['bytes']		=	$stat['size'];
@@ -435,97 +452,216 @@ function time_ago($timestamp, $recursive = 0)
 }
 
 
+/*** HTML LOGIC ***/
+
+// Set HTML header
+$header = "  <meta charset=\"utf-8\">" . PHP_EOL;
+$header = $header."  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=yes\">" . PHP_EOL;
+$header = $header."  <title>Index of $this_domain$this_folder</title>" . PHP_EOL;
+if (FAV_ICON) $header = $header."  <link rel=\"shortcut icon\" href=\"".FAV_ICON."\" />" . PHP_EOL;
+if (IPHONE_ICON) $header = $header."  <link rel=\"apple-touch-icon\" href=\"".IPHONE_ICON."\" />" . PHP_EOL;
+if (IPHONE_ICON_RETINA) $header = $header."  <link rel=\"apple-touch-icon\" sizes=\"72x72\" href=\"".IPHONE_ICON_RETINA."\" />" . PHP_EOL;
+if (IPAD_ICON) $header = $header."  <link rel=\"apple-touch-icon\" sizes=\"114x114\" href=\"".IPAD_ICON."\" />" . PHP_EOL;
+if (IPAD_ICON_RETINA) $header = $header."  <link rel=\"apple-touch-icon\" sizes=\"144x144\" href=\"".IPAD_ICON_RETINA."\" />" . PHP_EOL;
+if (METRO_TILE_COLOR) $header = $header."  <meta name=\"msapplication-TileColor\" content=\"#".METRO_TILE_COLOR."\" />" . PHP_EOL;
+if (METRO_TILE_IMAGE) $header = $header."  <meta name=\"msapplication-TileImage\" content=\"#".METRO_TILE_IMAGE."\" />" . PHP_EOL;
+$header = $header."  <link rel=\"stylesheet\" href=\"$bootstrap_cdn\" />" . PHP_EOL;
+if (DOC_ICONS == "fontawesome") {
+	$header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
+	$fa_css = "table .fa,table .glyphicon{width:20px}";
+}
+$header = $header."  <style type=\"text/css\">th{cursor:pointer}".$fa_css."</style>" . PHP_EOL;
+
+// Set HTML footer
+if (ENABLE_SORT) {
+	$footer = $footer."  <script type=\"text/javascript\" src=\"".JQUERY."\"></script>" . PHP_EOL;
+	$footer = $footer."  <script type=\"text/javascript\" src=\"".STUPID_TABLE."\"></script>" . PHP_EOL;
+	$footer = $footer."  <script type=\"text/javascript\">$(\"#bs-table\").stupidtable();</script>" . PHP_EOL;
+}
+if (ANALYTICS_ID) {
+	$footer = $footer."  <script type=\"text/javascript\">var _gaq=_gaq||[];_gaq.push([\"_setAccount\",\"".ANALYTICS_ID."\"]);_gaq.push([\"_trackPageview\"]);(function(){var ga=document.createElement(\"script\");ga.type=\"text/javascript\";ga.async=true;ga.src=(\"https:\"==document.location.protocol?\"https://ssl\":\"http://www\")+\".google-analytics.com/ga.js\";var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(ga,s)})();</script>" . PHP_EOL;
+}
+
+// Set breadcrumbs
+$breadcrumbs = $breadcrumbs."      <li><a href=\"".$this_protocol . $this_domain."\">$home</a></li>" . PHP_EOL;
+foreach($dir_name as $dir => $name) :
+	if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
+		$parent = '';
+		for ($i = 1; $i <= $dir; $i++):
+			$parent .= rawurlencode($dir_name[$i]) . '/';
+		endfor;
+    	$breadcrumbs = $breadcrumbs."      <li><a href=\"/$parent\">".utf8_encode($name)."</a></li>" . PHP_EOL;
+	endif;
+endforeach;
+
+// Set table header
+$table_header = $table_header."            <th";
+if (ENABLE_SORT) {
+	$table_header = $table_header." data-sort=\"string\">";
+	if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") { 
+		$table_header = $table_header."<$icon_tag class=\"$sort_icon\"></$icon_tag>&nbsp;";
+	}
+} else {
+	$table_header = $table_header.">";
+}
+$table_header = $table_header."Name</th>" . PHP_EOL;
+
+if ($table_options['size']) {
+	$table_header = $table_header."            <th";
+	if (ENABLE_SORT) {
+		$table_header = $table_header." data-sort=\"int\">";
+	} else {
+		$table_header = $table_header.">";
+	}
+	$table_header = $table_header."Size</th>" . PHP_EOL;
+}
+
+if ($table_options['age']) {
+	$table_header = $table_header."            <th";
+	if (ENABLE_SORT) {
+		$table_header = $table_header." data-sort=\"int\">";
+	} else {
+		$table_header = $table_header.">";
+	}
+	$table_header = $table_header."Date Modified</th>" . PHP_EOL;
+}
+
+if ($table_options['perms']) {
+	$table_header = $table_header."            <th";
+	if (ENABLE_SORT) {
+		$table_header = $table_header." data-sort=\"int\">";
+	} else {
+		$table_header = $table_header.">";
+	}
+	$table_header = $table_header."Permissions</th>" . PHP_EOL;
+}
+
+// Set table body
+if(($folder_list) || ($file_list) ) {
+
+	if($folder_list):	
+		foreach($folder_list as $item) :
+
+			$table_body = $table_body."          <tr>" . PHP_EOL;
+			$table_body = $table_body."            <td";
+			if (ENABLE_SORT) {
+				$table_body = $table_body." data-sort-value=\"". utf8_encode($item['lbname']) . "\"" ;
+			}
+			$table_body = $table_body.">";
+			if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") {
+				$table_body = $table_body."<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
+			}
+			$table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "/\"><strong>" . utf8_encode($item['bname']) . "</strong></a></td>" . PHP_EOL;
+			
+			if ($table_options['size']) {
+				$table_body = $table_body."            <td";
+				if (ENABLE_SORT) {
+					$table_body = $table_body." data-sort-value=\"0\"";
+				}
+				$table_body = $table_body.">&mdash;</td>" . PHP_EOL;
+			}
+
+			if ($table_options['age']) {
+				$table_body = $table_body."            <td";
+				if (ENABLE_SORT) {
+					$table_body = $table_body." data-sort-value=\"" . $item['mtime'] . "\"";
+				}
+				$table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
+			}
+
+			if ($table_options['perms']) {
+				$table_body = $table_body."            <td>";
+				$table_body = $table_body . $item['perms'] . "</td>" . PHP_EOL;
+			}
+
+			$table_body = $table_body."          </tr>" . PHP_EOL;
+
+		endforeach;
+	endif;
+
+	if($file_list):
+		foreach($file_list as $item) :
+			$table_body = $table_body."          <tr>" . PHP_EOL;
+			$table_body = $table_body."            <td";
+			if (ENABLE_SORT) {
+				$table_body = $table_body." data-sort-value=\"". utf8_encode($item['lbname']) . "\"" ;
+			}
+			$table_body = $table_body.">";
+			if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") {
+				$table_body = $table_body."<$icon_tag class=\"" . $item['class'] . "\"></$icon_tag>&nbsp;";
+			}
+			$table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\">" . utf8_encode($item['bname']) . "</a></td>" . PHP_EOL;
+
+			if ($table_options['size']) {
+				$table_body = $table_body."            <td";
+				if (ENABLE_SORT) {
+					$table_body = $table_body." data-sort-value=\"" . $item['bytes'] . "\"";
+				}
+					$table_body = $table_body.">" . $item['size']['num'] . "<span>" . $item['size']['str'] . "</span></td>" . PHP_EOL;
+			}
+
+			if ($table_options['age']) {
+				$table_body = $table_body."            <td";
+				if (ENABLE_SORT) {
+					$table_body = $table_body." data-sort-value=\"".$item['mtime']."\"";
+				}
+				$table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
+			}
+
+			if ($table_options['perms']) {
+				$table_body = $table_body."            <td>";
+				$table_body = $table_body . $item['perms'] . "</td>" . PHP_EOL;
+			}
+
+			$table_body = $table_body."          </tr>" . PHP_EOL;
+		endforeach;
+	endif;
+} else {
+		$colspan = $table_count + 1;
+		$table_body = $table_body."          <tr>" . PHP_EOL;
+		$table_body = $table_body."            <td colspan=\"$colspan\" style=\"font-style:italic\">";
+		if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") {
+			$table_body = $table_body."<$icon_tag class=\"" . $item['class'] . "\">&nbsp;</$icon_tag>";
+		} 
+		$table_body = $table_body."empty folder</td>" . PHP_EOL;
+		$table_body = $table_body."          </tr>" . PHP_EOL;
+} 
+
+
 /*** HTML TEMPLATE ***/
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"> 
-	<? if (ENABLE_VIEWPORT) { ?><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"><? } ?>
-	<title>Index of <?=$this_domain?><?=$this_folder?></title>
-	<? if (FAV_ICON) { ?><link rel="shortcut icon" href="<?=FAV_ICON?>"><? } ?>
-	<? if (IPHONE_ICON) { ?><link rel="apple-touch-icon" href="<?=IPHONE_ICON?>" /><? } ?>
-    <? if (IPHONE_ICON_RETINA) { ?><link rel="apple-touch-icon" sizes="72x72" href="<?=IPHONE_ICON_RETINA?>" /><? } ?>
-    <? if (IPAD_ICON) { ?><link rel="apple-touch-icon" sizes="114x114" href="<?=IPAD_ICON?>" /><? } ?>
-    <? if (IPAD_ICON_RETINA) { ?><link rel="apple-touch-icon" sizes="144x144" href="<?=IPAD_ICON_RETINA?>" /><? } ?>
-    <? if (METRO_TILE_COLOR && METRO_TILE_IMAGE) { ?>
-    	<meta name="msapplication-TileColor" content="#<?=METRO_TILE_COLOR?>">" />;
-    	<meta name="msapplication-TileImage" content="#<?=METRO_TILE_IMAGE?>">" />;
-    <? } ?>
-	<link rel="stylesheet" href="<?=$bootstrap_cdn?>" />
-	<? if (ENABLE_AWESOME) { ?><link rel="stylesheet" href="<?=FONT_AWESOME?>" /><? } ?>
-	<style type="text/css">th{cursor:pointer}<?if (ENABLE_ICONS && ENABLE_AWESOME) { ?>i:before{width:28px}<? } ?></style>
+<?=$header?>
 </head>
 <body>
-	<div class="container">
-		<div class="breadcrumb">
-			<li><a href="<?=$this_protocol . $this_domain?>"><?=$home?></a></li><? foreach($dir_name as $dir => $name) : ?>
-				<? if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')): ?>
-					<? $parent = ''; ?>
-					<?for ($i = 1; $i <= $dir; $i++): ?>
-						<? $parent .= rawurlencode($dir_name[$i]) . '/'; ?>
-					<?endfor;?>
-					<li><a href="/<?=$parent?>"><?=utf8_encode($name)?></a></li>
-				<?endif; ?>
-			<? endforeach; ?>
-		</div>
-		<table id="bs-table" class="table <?=TABLE_STYLE?>">
-			<thead>
-				<tr>
-					<th<? if (ENABLE_SORT) { ?> data-sort="string"<? } ?>><? if (ENABLE_SORT) { ?><? if (ENABLE_ICONS) { ?><i class="<?=$sort_icon?>">&nbsp;</i><? } ?><? } ?>Name</th>
-					<? if ($table_options['size']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Size</th><? } ?>
-					<? if ($table_options['age']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Date Modified</th><? } ?>
-					<? if ($table_options['perms']) { ?><th<? if (ENABLE_SORT) { ?> data-sort="int"<? } ?>>Permissions</th><? } ?>
-				</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td colspan="<?=$table_count+1?>">
-						<small class="pull-left text-muted"><?=$contained?></small>
-						<small class="pull-right text-muted">Fork me on <a href="https://github.com/idleberg/Bootstrap-Listr" target="_blank" class="text-muted">GitHub</a></small>
-					</td>
-				</tr>
-			</tfoot>
-			<tbody>
-		<!-- folders -->
-		<? if(($folder_list) || ($file_list) ) { ?>
-			<? if($folder_list): ?>
-			<? foreach($folder_list as $item) : ?>
-					<tr>
-						<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=utf8_encode($item['lbname'])?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$folder_icon?>">&nbsp;</i><? } ?><a href="<?=rawurlencode($item['bname'])?>/"><strong><?=utf8_encode($item['bname'])?></strong></a></td>
-						<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="0"<? } ?>>&mdash;</td><? } ?>
-						<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>ago</td><? } ?>
-						<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
-					</tr>
-			<? endforeach; ?>
-			<? endif; ?>
-			<!-- files -->
-			<? if($file_list): ?>
-			<? foreach($file_list as $item) : ?>
-					<tr>
-						<td<? if (ENABLE_SORT) { ?> data-sort-value="<?=utf8_encode($item['lname'])?>"<? } ?>><? if (ENABLE_ICONS) { ?><i class="<?=$item['class']?>">&nbsp;</i><? } ?><a href="<?=rawurlencode($item['bname'])?>"><?=utf8_encode($item['bname'])?></a></td>
-						<? if ($table_options['size']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['bytes']?>"<? } ?>><?=$item['size']['num']?> <span><?=$item['size']['str']?></span></td><? } ?>
-						<? if ($table_options['age']) { ?><td<? if (ENABLE_SORT) { ?> data-sort-value="<?=$item['mtime']?>"<? } ?>><?=time_ago($item['mtime'])?>ago</td><? } ?>
-						<? if ($table_options['perms']) { ?><td><?=$item['perms']?></td><? } ?>
-					</tr>
-			<? endforeach; ?>
-			<? endif; ?>
-		<? } else { ?>
-			<tr>
-				<td colspan="<?=$table_count+1?>" style="font-style:italic"><? if (ENABLE_ICONS) { ?><i class="<?=$item['class']?>">&nbsp;</i><? } ?>empty folder</td>
-			</tr>
-		<? } ?>
-			</tbody>                          
-		</table>
-	</div>
-	<? if (ENABLE_SORT) { ?>
-		<script type="text/javascript" src="<?=JQUERY?>"></script>
-		<script type="text/javascript" src="<?=STUPID_TABLE?>"></script>
-		<script type="text/javascript">$("#bs-table").stupidtable();</script>
-	<? } ?>
-	<? if (ANALYTICS_ID) { ?>
-		<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","<?=ANALYTICS_ID?>"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.type="text/javascript";ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s)})();</script>
-	<? } ?>
+  <div class="container">
+    <ol class="breadcrumb">
+<?=$breadcrumbs?>
+    </ol>
+    <div class="table-responsive">
+      <table id="bs-table" class="table <?=TABLE_STYLE?>">
+        <thead>
+          <tr>
+<?=$table_header?>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td colspan="<?=$table_count+1?>">
+              <small class="pull-left text-muted"><?=$contained?></small>
+              <a class="pull-right small text-muted" href="https://github.com/idleberg/Bootstrap-Listr" title="Bootstrap Listr on GitHub" target="_blank">Bootstrap Listr</a>
+            </td>
+          </tr>
+        </tfoot>
+        <tbody>
+<?=$table_body?>
+        </tbody>                          
+      </table>
+    </div>
+  </div>
+<?=$footer?>
 </body>
 </html>
