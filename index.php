@@ -40,6 +40,7 @@ define(DOC_ICONS, 'glyphicons');
  * 
  *     'amelia' - http://bootswatch.com/amelia/
  *   'cerulean' - http://bootswatch.com/cerulean/
+ *      'cosmo' - http://bootswatch.com/cosmo/
  *     'cyborg' - http://bootswatch.com/cyborg/
  *     'darkly' - http://bootswatch.com/darkly/
  *     'flatly' - http://bootswatch.com/flatly/
