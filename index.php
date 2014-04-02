@@ -33,7 +33,7 @@ define(ENABLE_SORT, true);
  *   'glyphicons' - Bootstrap glyphicons (default)
  *  'fontawesome' - Font Awesome icons
  */
-define(DOC_ICONS, 'fontawesome');
+define(DOC_ICONS, 'glyphicons');
 
 /* Bootstrap Themes:
  *    'default' - http://getbootstrap.com
