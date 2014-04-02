@@ -468,7 +468,7 @@ if (METRO_TILE_IMAGE) $header = $header."  <meta name=\"msapplication-TileImage\
 $header = $header."  <link rel=\"stylesheet\" href=\"$bootstrap_cdn\" />" . PHP_EOL;
 if (DOC_ICONS == "fontawesome") {
 	$header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
-	$fa_css = "table .fa,table .glyphicon{width:20px}";
+	$fa_css = "table .fa,table .glyphicon{width:15px}";
 }
 $header = $header."  <style type=\"text/css\">th{cursor:pointer}".$fa_css."</style>" . PHP_EOL;
 
