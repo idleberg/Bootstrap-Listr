@@ -59,7 +59,7 @@ This project is built upon—or includes—code from the following people:
 
 This work by Jan T. Sott is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/deed.en_US)
 
-(I am aware that this license isn't ideal for software, but the choice wasn't mine)
+__Note:__ I am aware that Creative Commons [advises](http://wiki.creativecommons.org/FAQ#Can_I_apply_a_Creative_Commons_license_to_software.3F) against using their licenses for software. The choice hasn't been mine and I hope to resolve this issue in the future.
 
 ## Donate
 
