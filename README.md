@@ -51,13 +51,15 @@ For your convenience, we use CDNs for Bootstrap and JQuery. While this is an oft
 
 This project is built upon—or includes—code from the following people:
 
-* Greg Johnson - [PHP Directory Lister](http://greg-j.com/phpdl/)
+* Greg Johnson - [PHPDL lite](http://greg-j.com/phpdl/) [dead link]
 * Na Wong - [Listr](http://nadesign.net/listr/)
 * Joe McCullough - [Stupid Table Plugin](http://joequery.github.io/Stupid-Table-Plugin/)
 
 ## License
 
 This work by Jan T. Sott is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/deed.en_US)
+
+(I am aware that this license isn't ideal for software, but the choice wasn't mine)
 
 ## Donate
 
