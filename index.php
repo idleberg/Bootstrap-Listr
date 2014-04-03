@@ -510,7 +510,7 @@ $table_header = $table_header."Name</th>" . PHP_EOL;
 if ($table_options['size']) {
 	$table_header = $table_header."            <th";
 	if (ENABLE_SORT) {
-		$table_header = $table_header." data-sort=\"int\">";
+		$table_header = $table_header." class=\"text-right\" data-sort=\"int\">";
 	} else {
 		$table_header = $table_header.">";
 	}
@@ -520,7 +520,7 @@ if ($table_options['size']) {
 if ($table_options['age']) {
 	$table_header = $table_header."            <th";
 	if (ENABLE_SORT) {
-		$table_header = $table_header." data-sort=\"int\">";
+		$table_header = $table_header." class=\"text-right\" data-sort=\"int\">";
 	} else {
 		$table_header = $table_header.">";
 	}
@@ -530,7 +530,7 @@ if ($table_options['age']) {
 if ($table_options['perms']) {
 	$table_header = $table_header."            <th";
 	if (ENABLE_SORT) {
-		$table_header = $table_header." data-sort=\"int\">";
+		$table_header = $table_header." class=\"text-right\" data-sort=\"int\">";
 	} else {
 		$table_header = $table_header.">";
 	}
@@ -557,7 +557,7 @@ if(($folder_list) || ($file_list) ) {
 			if ($table_options['size']) {
 				$table_body = $table_body."            <td";
 				if (ENABLE_SORT) {
-					$table_body = $table_body." data-sort-value=\"0\"";
+					$table_body = $table_body." class=\"text-right\" data-sort-value=\"0\"";
 				}
 				$table_body = $table_body.">&mdash;</td>" . PHP_EOL;
 			}
@@ -565,13 +565,13 @@ if(($folder_list) || ($file_list) ) {
 			if ($table_options['age']) {
 				$table_body = $table_body."            <td";
 				if (ENABLE_SORT) {
-					$table_body = $table_body." data-sort-value=\"" . $item['mtime'] . "\"";
+					$table_body = $table_body." class=\"text-right\" data-sort-value=\"" . $item['mtime'] . "\"";
 				}
 				$table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
 			}
 
 			if ($table_options['perms']) {
-				$table_body = $table_body."            <td>";
+				$table_body = $table_body."            <td class=\"text-right\">";
 				$table_body = $table_body . $item['perms'] . "</td>" . PHP_EOL;
 			}
 
@@ -596,7 +596,7 @@ if(($folder_list) || ($file_list) ) {
 			if ($table_options['size']) {
 				$table_body = $table_body."            <td";
 				if (ENABLE_SORT) {
-					$table_body = $table_body." data-sort-value=\"" . $item['bytes'] . "\"";
+					$table_body = $table_body." class=\"text-right\" data-sort-value=\"" . $item['bytes'] . "\"";
 				}
 					$table_body = $table_body.">" . $item['size']['num'] . " " . $item['size']['str'] . "</td>" . PHP_EOL;
 			}
@@ -604,13 +604,13 @@ if(($folder_list) || ($file_list) ) {
 			if ($table_options['age']) {
 				$table_body = $table_body."            <td";
 				if (ENABLE_SORT) {
-					$table_body = $table_body." data-sort-value=\"".$item['mtime']."\"";
+					$table_body = $table_body." class=\"text-right\" data-sort-value=\"".$item['mtime']."\"";
 				}
 				$table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
 			}
 
 			if ($table_options['perms']) {
-				$table_body = $table_body."            <td>";
+				$table_body = $table_body."            <td class=\"text-right\">";
 				$table_body = $table_body . $item['perms'] . "</td>" . PHP_EOL;
 			}
 
