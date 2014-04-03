@@ -17,7 +17,7 @@ error_reporting(1);
 
 /*** SETTINGS ***/
 
-/* Table Styles (can be combined)
+/* Table Styles (can be combined, e.g. 'table-hover table-striped')
  *   'table-striped' - add zebra-striping 
  *  'table-bordered' - borders on all sides of the table and cells
  *     'table-hover' - enable a hover state on table rows
