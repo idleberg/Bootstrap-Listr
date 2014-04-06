@@ -22,7 +22,7 @@ You can configure a number of settings in the header of the script file:
 * Optional columns for size, modified date, permissions
 * Document icons
 * Column sorting
-* Viewport
+* Responsive tables
 * List of ignored files
 * Default location for JavaScript libraries and style sheets
 * Google Analytics

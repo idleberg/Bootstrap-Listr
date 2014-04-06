@@ -25,6 +25,11 @@ error_reporting(1);
  */
 define(TABLE_STYLE, 'table-hover');
 
+/* Responsive Table
+ * See http://getbootstrap.com/css/#tables-responsive for details
+ */
+define(RESPONSIVE_TABLE, false);
+
 // Toggle column sorting
 define(ENABLE_SORT, true);
 
@@ -495,6 +500,12 @@ foreach($dir_name as $dir => $name) :
 	endif;
 endforeach;
 
+// Set responsiveness
+if (RESPONSIVE_TABLE) {
+	$responsive_open = "    <div class=\"table-responsive\">" . PHP_EOL;
+	$responsive_close = "    </div>" . PHP_EOL;
+}
+
 // Set table header
 $table_header = $table_header."            <th";
 if (ENABLE_SORT) {
@@ -642,7 +653,7 @@ if(($folder_list) || ($file_list) ) {
     <ol class="breadcrumb">
 <?=$breadcrumbs?>
     </ol>
-    <div class="table-responsive">
+<?=$responsive_open?>
       <table id="bs-table" class="table <?=TABLE_STYLE?>">
         <thead>
           <tr>
@@ -661,7 +672,7 @@ if(($folder_list) || ($file_list) ) {
 <?=$table_body?>
         </tbody>                          
       </table>
-    </div>
+<?=$responsive_close?>
   </div>
 <?=$footer?>
 </body>
