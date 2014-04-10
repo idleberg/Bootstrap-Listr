@@ -149,10 +149,10 @@ if (DOC_ICONS == 'fontawesome') {
 	$filetype = array(
 		'archive'	=> array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','tar','tgz','wsz','xar','zip'),
 		'apple'		=> array('app','ipa','ipsw','saver'),
-		'audio'		=> array('aac','ac3','aif','aiff','au','flac','it','m4a','m4p','med','mid','mod','mp2','mp3','mpc','ned','ogg','oma','s3m','sid','umx','wav','wv','xm'),
+		'audio'		=> array('aac','ac3','aif','aiff','au','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ogg','oma','s3m','sid','umx','wav','wv','xm'),
 		'calendar'	=> array('icbu','ics'),
-		'config'	=> array('conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
-		'contact'	=> array('abbu','oab','pab','vcard','vcf'),
+		'config'	=> array('cfg','conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
+		'contact'	=> array('abbu','contact','oab','pab','vcard','vcf'),
 		'doc' 		=> array('abw','doc','docm','docs','docx','dot','key','numbers','odb','odf','odg','odp','odt','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wp','wp4','wp5','wp6','wp7','wpd','xls','xlsx','xps'),
 		'downloads'	=> array('crdownload','download','opdownload','part'),
 		'ebook'		=> array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
