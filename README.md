@@ -51,7 +51,7 @@ For your convenience, we use CDNs for Bootstrap and JQuery. While this is an oft
 
 This project is built upon—or includes—code from the following people:
 
-* Greg Johnson - [PHPDL lite](http://greg-j.com/phpdl/) [dead link]
+* Greg Johnson - [PHPDL lite](http://web.archive.org/web/20130920165711/http://greg-j.com/phpdl/) [Wayback Machine]
 * Na Wong - [Listr](http://nadesign.net/listr/)
 * Joe McCullough - [Stupid Table Plugin](http://joequery.github.io/Stupid-Table-Plugin/)
 
