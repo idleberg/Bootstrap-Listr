@@ -147,7 +147,7 @@ if (DOC_ICONS == "glyphicons") {
 
 if (DOC_ICONS == 'fontawesome') {
 	$filetype = array(
-		'archive'	=> array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','tar','tgz','wsz','xar','zip'),
+		'archive'	=> array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','tar','tgz','wsz','xar','zip'),
 		'apple'		=> array('app','ipa','ipsw','saver'),
 		'audio'		=> array('aac','ac3','aif','aiff','au','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ogg','oma','s3m','sid','umx','wav','wv','xm'),
 		'calendar'	=> array('icbu','ics'),

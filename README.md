@@ -37,11 +37,11 @@ If you prefer a different file name for the script, you can rename it without wo
 
 ### Font Awesome
 
-Rather than using generic icons, you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) for file-specific icons. Note that this will require extra resources, hence increase the load time.
+Rather than using generic icons, you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) for beautiful, file-specific icons. Note that this will require extra resources, hence increase the load time.
 
 ### Theming
 
-Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) themes, please note that some of these do not include the [glyphicons](http://getbootstrap.com/components/#glyphicons) used in the script. You can disable glyphicons in the script header.
+Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) themes, please note that some of these do not include the [glyphicons](http://getbootstrap.com/components/#glyphicons) used in the script. You can disable glyphicons in the script header or use Font Awesome icons instead.
 
 ### Libraries & Style-sheets
 
@@ -51,7 +51,7 @@ For your convenience, we use CDNs for Bootstrap and JQuery. While this is an oft
 
 This project is built upon—or includes—code from the following people:
 
-* Greg Johnson - [PHPDL lite](http://web.archive.org/web/20130920165711/http://greg-j.com/phpdl/) [Wayback Machine]
+* Greg Johnson - [PHPDL lite](http://web.archive.org/web/20130920165711/http://greg-j.com/phpdl/) [Internet Archive]
 * Na Wong - [Listr](http://nadesign.net/listr/)
 * Joe McCullough - [Stupid Table Plugin](http://joequery.github.io/Stupid-Table-Plugin/)
 
