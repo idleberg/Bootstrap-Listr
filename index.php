@@ -166,7 +166,7 @@ if (DOC_ICONS == 'fontawesome') {
 		'script'	=> array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','htm','html','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xhtml','xml','yml'),
 		'text'		=> array('ans','asc','ascii','csv','diz','latex','log','markdown','md','nfo','rst','rtf','tex','text','txt'),
 		'video'		=> array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
-		'windows'	=> array('dll','exe','msi','ps1','scr','sys')
+		'windows'	=> array('dll','exe','msi','pif','ps1','scr','sys')
 	);
 	$home = "<i class=\"fa fa-home fa-lg\"></i> ";
 } else{
