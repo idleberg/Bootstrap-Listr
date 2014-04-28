@@ -28,7 +28,7 @@ define(TABLE_STYLE, 'table-hover');
 /* Responsive Table
  * See http://getbootstrap.com/css/#tables-responsive for details
  */
-define(RESPONSIVE_TABLE, false);
+define(RESPONSIVE_TABLE, true);
 
 // Toggle column sorting
 define(ENABLE_SORT, true);
@@ -458,6 +458,9 @@ function time_ago($timestamp, $recursive = 0)
 
 
 /*** HTML LOGIC ***/
+
+// Set HTTP header
+header('Content-Type: text/html; charset=utf-8');
 
 // Set HTML header
 $header = "  <meta charset=\"utf-8\">" . PHP_EOL;
