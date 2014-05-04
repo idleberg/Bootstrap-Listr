@@ -1,0 +1,16 @@
+{
+  "name": "node-travis",
+  "version" : "0.0.0",
+  "author" : "Jan T. Sott",
+  "license" : "MIT",
+  "private" : true,
+  "devDependencies": {
+    "grunt":              "0.4.1",
+    "grunt-cli":          "0.1.9",
+    "grunt-phplint":      "0.0.5",
+    "grunt-notify":       "*"
+  },
+  "scripts": {
+    "test": "grunt --verbose"
+  }
+}
