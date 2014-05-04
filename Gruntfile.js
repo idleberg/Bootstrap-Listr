@@ -1,5 +1,6 @@
 /**
- * Gruntfile.js
+ * Using Grunt for PHP
+ * https://chrsm.org/post/using-grunt-for-php/
  */
 module.exports = function(grunt) {
   grunt.initConfig({
