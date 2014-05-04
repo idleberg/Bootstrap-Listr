@@ -14,7 +14,6 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-phplint');
-  grunt.loadNpmTasks('grunt-notify');
   grunt.registerTask('precommit', ['phplint:all']);
   grunt.registerTask('default', ['phplint:all']);
 };

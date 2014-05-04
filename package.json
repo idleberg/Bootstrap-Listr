@@ -7,8 +7,7 @@
   "devDependencies": {
     "grunt":              "0.4.1",
     "grunt-cli":          "0.1.9",
-    "grunt-phplint":      "0.0.5",
-    "grunt-notify":       "*"
+    "grunt-phplint":      "0.0.5"
   },
   "scripts": {
     "test": "grunt --verbose"
