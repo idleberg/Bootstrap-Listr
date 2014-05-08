@@ -101,6 +101,7 @@ $ignore_list = array(
 	'.bzrignore',
 	'.bzrtags',
 	'.git',
+	'.gitattributes',
 	'.gitignore',
 	'.hg',
 	'.hgignore',
@@ -115,6 +116,9 @@ $ignore_list = array(
 	'robots.txt',
 	'Thumbs.db'
 );
+
+// Hide file extension?
+define(HIDE_EXTENSION, false);
 
 
 /*** DIRECTORY LOGIC ***/
@@ -603,7 +607,12 @@ if(($folder_list) || ($file_list) ) {
 			if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") {
 				$table_body = $table_body."<$icon_tag class=\"" . $item['class'] . "\"></$icon_tag>&nbsp;";
 			}
-			$table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\">" . utf8_encode($item['bname']) . "</a></td>" . PHP_EOL;
+			if (HIDE_EXTENSION) {
+				$display_name = utf8_encode($item['name']);
+			} else {
+				$display_name = utf8_encode($item['bname']);
+			}
+			$table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\">" . $display_name . "</a></td>" . PHP_EOL;
 
 			if ($table_options['size']) {
 				$table_body = $table_body."            <td";
