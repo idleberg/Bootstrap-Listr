@@ -62,7 +62,7 @@ define(DOC_ICONS, 'glyphicons');
 define(BOOTSTRAP_THEME, 'default');
 
 // External style sheets
-   define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
+   define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
      define(CUSTOM_CSS, null);
 
 // External JavaScript
@@ -156,8 +156,9 @@ if (DOC_ICONS == 'fontawesome') {
 		'calendar'	=> array('icbu','ics'),
 		'config'	=> array('cfg','conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
 		'contact'	=> array('abbu','contact','oab','pab','vcard','vcf'),
+		'database' 	=> array('bde','crp','db','db2','db3','dbb','dbf','dbk','dbs','dbx','edb','fdb','frm','fw','fw2','fw3','gdb','itdb','mdb','ndb','nsf','rdb','sas7mdb','sql','sqlite','tdb','wdb'),
 		'doc' 		=> array('abw','doc','docm','docs','docx','dot','key','numbers','odb','odf','odg','odp','odt','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wp','wp4','wp5','wp6','wp7','wpd','xls','xlsx','xps'),
-		'downloads'	=> array('crdownload','download','opdownload','part'),
+		'downloads'	=> array('!bt','!qb','!ut','crdownload','download','opdownload','part'),
 		'ebook'		=> array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
 		'email'		=> array('eml','emlx','mbox','msg','pst'),
 		'font'		=> array('eot','fon','otf','pfm','ttf','woff'),
@@ -268,50 +269,52 @@ if ($handle = opendir('.'))
 			if($info['extension'] == '') $item['ext'] = '.';
 
 			if (DOC_ICONS == 'fontawesome') {
-				$sort_icon = 'fa fa-sort';
-				$folder_icon = 'fa fa-folder';
+				$sort_icon = 'fa fa-sort fa-fw';
+				$folder_icon = 'fa fa-folder fa-fw';
 				if(in_array($item[lext], $filetype['archive'])){
-					$item['class'] = 'fa fa-archive';
+					$item['class'] = 'fa fa-archive fa-fw';
 				}elseif(in_array($item[lext], $filetype['apple'])){
-					$item['class'] = 'fa fa-apple';
+					$item['class'] = 'fa fa-apple fa-fw';
 				}elseif(in_array($item[lext], $filetype['audio'])){
-					$item['class'] = 'fa fa-music';
+					$item['class'] = 'fa fa-music fa-fw';
 				}elseif(in_array($item[lext], $filetype['calendar'])){
-					$item['class'] = 'fa fa-calendar';
+					$item['class'] = 'fa fa-calendar fa-fw';
 				}elseif(in_array($item[lext], $filetype['config'])){
-					$item['class'] = 'fa fa-cogs';
+					$item['class'] = 'fa fa-cogs fa-fw';
 				}elseif(in_array($item[lext], $filetype['contact'])){
-					$item['class'] = 'fa fa-group';
+					$item['class'] = 'fa fa-group fa-fw';
+				}elseif(in_array($item[lext], $filetype['database'])){
+					$item['class'] = 'fa fa-database fa-fw';
 				}elseif(in_array($item[lext], $filetype['doc'])){
-					$item['class'] = 'fa fa-file-text';
+					$item['class'] = 'fa fa-file-text fa-fw';
 				}elseif(in_array($item[lext], $filetype['downloads'])){
-					$item['class'] = 'fa fa-cloud-download';
+					$item['class'] = 'fa fa-cloud-download fa-fw';
 				}elseif(in_array($item[lext], $filetype['ebook'])){
-					$item['class'] = 'fa fa-book';
+					$item['class'] = 'fa fa-book fa-fw';
 				}elseif(in_array($item[lext], $filetype['email'])){
-					$item['class'] = 'fa fa-envelope';
+					$item['class'] = 'fa fa-envelope fa-fw';
 				}elseif(in_array($item[lext], $filetype['font'])){
-					$item['class'] = 'fa fa-font';
+					$item['class'] = 'fa fa-font fa-fw';
 				}elseif(in_array($item[lext], $filetype['image'])){
-					$item['class'] = 'fa fa-picture-o';
+					$item['class'] = 'fa fa-picture-o fa-fw';
 				}elseif(in_array($item[lext], $filetype['link'])){
-					$item['class'] = 'fa fa-link';
+					$item['class'] = 'fa fa-link fa-fw';
 				}elseif(in_array($item[lext], $filetype['linux'])){
-					$item['class'] = 'fa fa-linux';
+					$item['class'] = 'fa fa-linux fa-fw';
 				}elseif(in_array($item[lext], $filetype['palette'])){
-					$item['class'] = 'fa fa-tasks';
+					$item['class'] = 'fa fa-tasks fa-fw';
 				}elseif(in_array($item[lext], $filetype['raw'])){
-					$item['class'] = 'fa fa-camera';
+					$item['class'] = 'fa fa-camera fa-fw';
 				}elseif(in_array($item[lext], $filetype['script'])){
-					$item['class'] = 'fa fa-code';
+					$item['class'] = 'fa fa-code fa-fw';
 				}elseif(in_array($item[lext], $filetype['text'])){
-					$item['class'] = 'fa fa-file-text-o';
+					$item['class'] = 'fa fa-file-text-o fa-fw';
 				}elseif(in_array($item[lext], $filetype['video'])){
-					$item['class'] = 'fa fa-film';
+					$item['class'] = 'fa fa-film fa-fw';
 				}elseif(in_array($item[lext], $filetype['windows'])){
-					$item['class'] = 'fa fa-windows';
+					$item['class'] = 'fa fa-windows fa-fw';
 				}else{
-					$item['class'] = 'fa fa-file-o';		
+					$item['class'] = 'fa fa-file-o  fa-fw';		
 				}
 			} else {
 				$sort_icon = 'glyphicon glyphicon-sort';
@@ -480,7 +483,6 @@ if (METRO_TILE_IMAGE) $header = $header."  <meta name=\"msapplication-TileImage\
 $header = $header."  <link rel=\"stylesheet\" href=\"$bootstrap_cdn\" />" . PHP_EOL;
 if (DOC_ICONS == "fontawesome") {
 	$header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
-	$fa_css = "table .fa,table .glyphicon{width:18px}";
 }
 $header = $header."  <style type=\"text/css\">th{cursor:pointer}".$fa_css."</style>" . PHP_EOL;
 
