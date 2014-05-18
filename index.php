@@ -83,8 +83,7 @@ define(ANALYTICS_ID, ''); // UA-XXXXX-Y or UA-XXXXX-YY
 // Configure optional table columns
 $table_options = array (
 	'size'	=> true,
-	'age'	=> true,
-	'perms'	=> false
+	'age'	=> true
 );
 
 // Set sorting properties.
@@ -334,10 +333,6 @@ if ($handle = opendir('.'))
 				$item['mtime']		=	$stat['mtime'];
 			}
 			
-			if ($table_options['perms']) {
-				$item['perms']		=	substr(sprintf('%o', fileperms($file)), -4);
-			}
-			
 			// Add files to the file list...
 			if(is_dir($info['basename'])){
 				array_push($folder_list, $item);
@@ -514,7 +509,7 @@ if (RESPONSIVE_TABLE) {
 }
 
 // Set table header
-$table_header = $table_header."            <th";
+$table_header = $table_header."            <th \"col-md-8 col-lg-9 text-right\"";
 if (ENABLE_SORT) {
 	$table_header = $table_header." data-sort=\"string\">";
 	if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") { 
@@ -528,7 +523,7 @@ $table_header = $table_header."Name</th>" . PHP_EOL;
 if ($table_options['size']) {
 	$table_header = $table_header."            <th";
 	if (ENABLE_SORT) {
-		$table_header = $table_header." class=\"text-right\" data-sort=\"int\">";
+		$table_header = $table_header." class=\"col-md-2 col-lg-1 text-right\" data-sort=\"int\">";
 	} else {
 		$table_header = $table_header.">";
 	}
@@ -538,21 +533,11 @@ if ($table_options['size']) {
 if ($table_options['age']) {
 	$table_header = $table_header."            <th";
 	if (ENABLE_SORT) {
-		$table_header = $table_header." class=\"text-right\" data-sort=\"int\">";
+		$table_header = $table_header." class=\"col-md-2 col-lg-2 text-right\" data-sort=\"int\">";
 	} else {
 		$table_header = $table_header.">";
 	}
-	$table_header = $table_header."Date Modified</th>" . PHP_EOL;
-}
-
-if ($table_options['perms']) {
-	$table_header = $table_header."            <th";
-	if (ENABLE_SORT) {
-		$table_header = $table_header." class=\"text-right\" data-sort=\"int\">";
-	} else {
-		$table_header = $table_header.">";
-	}
-	$table_header = $table_header."Permissions</th>" . PHP_EOL;
+	$table_header = $table_header."Modified</th>" . PHP_EOL;
 }
 
 // Set table body
@@ -586,11 +571,6 @@ if(($folder_list) || ($file_list) ) {
 					$table_body = $table_body." class=\"text-right\" data-sort-value=\"" . $item['mtime'] . "\"";
 				}
 				$table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
-			}
-
-			if ($table_options['perms']) {
-				$table_body = $table_body."            <td class=\"text-right\">";
-				$table_body = $table_body . $item['perms'] . "</td>" . PHP_EOL;
 			}
 
 			$table_body = $table_body."          </tr>" . PHP_EOL;
@@ -630,11 +610,6 @@ if(($folder_list) || ($file_list) ) {
 					$table_body = $table_body." class=\"text-right\" data-sort-value=\"".$item['mtime']."\"";
 				}
 				$table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
-			}
-
-			if ($table_options['perms']) {
-				$table_body = $table_body."            <td class=\"text-right\">";
-				$table_body = $table_body . $item['perms'] . "</td>" . PHP_EOL;
 			}
 
 			$table_body = $table_body."          </tr>" . PHP_EOL;
