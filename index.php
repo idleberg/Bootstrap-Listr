@@ -18,10 +18,10 @@ error_reporting(1);
 /*** SETTINGS ***/
 
 /* Table Styles (can be combined, e.g. 'table-hover table-striped')
+ *     'table-hover' - enable a hover state on table rows (default)
  *   'table-striped' - add zebra-striping 
- *  'table-bordered' - borders on all sides of the table and cells
- *     'table-hover' - enable a hover state on table rows
- * 'table-condensed' - to make tables more compact by cutting cell padding in half
+ *  'table-bordered' - show borders on all sides of the table and cells
+ * 'table-condensed' - make tables more compact by cutting cell padding in half
  */
 define(TABLE_STYLE, 'table-hover');
 
