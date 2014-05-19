@@ -522,7 +522,7 @@ if (RESPONSIVE_TABLE) {
 }
 
 // Set table header
-$table_header = $table_header."            <th \"col-md-8 text-right\"";
+$table_header = $table_header."            <th \"col-md-8 col-lg-9 text-right\"";
 if (ENABLE_SORT) {
 	$table_header = $table_header." data-sort=\"string\">";
 	if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") { 
@@ -536,7 +536,7 @@ $table_header = $table_header."Name</th>" . PHP_EOL;
 if ($table_options['size']) {
 	$table_header = $table_header."            <th";
 	if (ENABLE_SORT) {
-		$table_header = $table_header." class=\"col-md-2 text-right\" data-sort=\"int\">";
+		$table_header = $table_header." class=\"col-md-2 col-lg-1 text-right\" data-sort=\"int\">";
 	} else {
 		$table_header = $table_header.">";
 	}
@@ -546,7 +546,7 @@ if ($table_options['size']) {
 if ($table_options['age']) {
 	$table_header = $table_header."            <th";
 	if (ENABLE_SORT) {
-		$table_header = $table_header." class=\"col-md-2 text-right\" data-sort=\"int\">";
+		$table_header = $table_header." class=\"col-md-2 col-lg-2 text-right\" data-sort=\"int\">";
 	} else {
 		$table_header = $table_header.">";
 	}
