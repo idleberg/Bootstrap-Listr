@@ -1,4 +1,4 @@
-# Bootstrap Listr <iframe src="http://ghbtns.com/github-btn.html?user=user&repo=github-buttons&type=watch" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+# Bootstrap Listr
 
 A simple PHP script to display folders and files on a server in a well formed list, making use of the [Bootstrap 3.1](http://getbootstrap.com) framework.
 
