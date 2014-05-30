@@ -15,7 +15,7 @@ Clone this repository using `git clone https://github.com/idleberg/Bootstrap-Lis
 
 ### robots.txt ###
 
-The basic file you're after is `index.php`, but the repository also comes with a restrictive `robots.txt` file. Should you wish your page to be indexed by web crawlers et al, you can delete the file or adjust its [settings](http://www.robotstxt.org/robotstxt.html). Also note, that `index.php` has `robots.txt` on its ignore-list.
+The basic file you're after is `index.php`, but the repository also comes with a restrictive `robots.txt` file. Should you wish your page to be indexed by web crawlers et al, you can delete the file or adjust its [settings](http://www.robotstxt.org/robotstxt.html). Also note that by default, `index.php` has `robots.txt` on its ignore-list, meaning the file will be hidden in the view.
 
 ## Usage
 
