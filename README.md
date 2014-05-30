@@ -13,7 +13,7 @@ For examples using different configurations, have a look at the [live demos](htt
 
 Clone this repository using `git clone https://github.com/idleberg/Bootstrap-Listr` or [`download`](https://raw.github.com/idleberg/Bootstrap-Listr/master/index.php) the raw file.
 
-### `robots.txt` ###
+### robots.txt ###
 
 The basic file you're after is `index.php`, but the repository also comes with a restrictive `robots.txt` file. Should you wish your page to be indexed by web crawlers et al, you can delete the file or adjust its [settings](http://www.robotstxt.org/robotstxt.html). Also note, that `index.php` has `robots.txt` on its ignore-list.
 
