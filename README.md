@@ -11,6 +11,8 @@ For examples using different configurations, have a look at the [live demos](htt
 
 Clone this repository using `git clone https://github.com/idleberg/Bootstrap-Listr` or [`download`](https://raw.github.com/idleberg/Bootstrap-Listr/master/index.php) the raw file.
 
+The basic file you're after is `index.php`, but the repository also comes with a restrictive `robots.txt` file. Should you wish your page to be indexed by web crawlers et al, you can delete the file or adjust its [settings](http://www.robotstxt.org/robotstxt.html).
+
 ## Usage
 
 I am unaware of a method to use one index file for several directories at once (feel free to correct me!), hence you will have to copy the index in every directory where you would like to use it. Since Bootstrap Listr is a one-file solution, doing so is relatively easy.
