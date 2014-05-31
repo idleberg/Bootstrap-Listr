@@ -74,12 +74,11 @@ define(BOOTSTRAP_THEME, 'default');
  */
 define(FONTAWESOME_STYLE,'fa-fw');
 
-// External style sheets
+// External resources
    define(FONT_AWESOME, '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
      define(CUSTOM_CSS, null);
-
-// External JavaScript
-      define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
+    define(GOOGLE_FONT, null); // e.g. 'Open+Sans' or 'Open+Sans:400,300,700'
+         define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
 
 // Browser and Device Icons
           define(FAV_ICON, ''); // 16x16 or 32x32 
@@ -496,6 +495,9 @@ if (DOC_ICONS == "fontawesome") {
 	$header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
 }
 $header = $header."  <style type=\"text/css\">th{cursor:pointer}".$fa_css."</style>" . PHP_EOL;
+if (GOOGLE_FONT) {
+$header = $header."  <link href=\"http://fonts.googleapis.com/css?family=".GOOGLE_FONT."\" rel=\"stylesheet\" type=\"text/css\">" . PHP_EOL;
+}
 
 // Set HTML footer
 if (ENABLE_SORT) {
