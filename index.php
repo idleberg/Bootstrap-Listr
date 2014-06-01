@@ -23,7 +23,7 @@ error_reporting(1);
  *  'table-bordered' - show borders on all sides of the table and cells
  * 'table-condensed' - make tables more compact by cutting cell padding in half
  */
-define(TABLE_STYLE, 'table-hover ');
+define(TABLE_STYLE, 'table-hover');
 
 /* Responsive Table
  * See http://getbootstrap.com/css/#tables-responsive for details
@@ -496,7 +496,7 @@ if (DOC_ICONS == "fontawesome") {
 }
 $header = $header."  <style type=\"text/css\">th{cursor:pointer}".$fa_css."</style>" . PHP_EOL;
 if (GOOGLE_FONT) {
-$header = $header."  <link href=\"http://fonts.googleapis.com/css?family=".GOOGLE_FONT."\" rel=\"stylesheet\" type=\"text/css\">" . PHP_EOL;
+$header = $header."  <link href=\"//fonts.googleapis.com/css?family=".GOOGLE_FONT."\" rel=\"stylesheet\" type=\"text/css\">" . PHP_EOL;
 }
 
 // Set HTML footer
