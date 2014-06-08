@@ -527,7 +527,7 @@ if (RESPONSIVE_TABLE) {
 }
 
 // Set table header
-$table_header = $table_header."            <th \"ccol-lg-8 text-right\"";
+$table_header = $table_header."            <th \"col-lg-8 text-right\"";
 if (ENABLE_SORT) {
 	$table_header = $table_header." data-sort=\"string\">";
 	if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") { 
