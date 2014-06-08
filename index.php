@@ -541,7 +541,7 @@ $table_header = $table_header."Name</th>" . PHP_EOL;
 if ($table_options['size']) {
 	$table_header = $table_header."            <th";
 	if (ENABLE_SORT) {
-		$table_header = $table_header." class=\"col-lg-8 text-right\" data-sort=\"int\">";
+		$table_header = $table_header." class=\"col-lg-2 text-right\" data-sort=\"int\">";
 	} else {
 		$table_header = $table_header.">";
 	}
