@@ -531,8 +531,7 @@ if (RESPONSIVE_TABLE) {
 }
 
 // Set table header
-$table_header = $table_header."            <th class=\"col-lg-8 text-right\">";
-$table_header = $table_header."Name</th>" . PHP_EOL;
+$table_header = $table_header."            <th class=\"col-lg-8 text-left\" data-sort=\"string\">Name</th>";
 
 if ($table_options['size']) {
 	$table_header = $table_header."            <th";
