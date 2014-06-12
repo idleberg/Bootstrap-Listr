@@ -132,6 +132,11 @@ $ignore_list = array(
 define(HIDE_EXTENSION, false);
 
 
+/*** HTTP Header ***/
+header("Content-Type: text/html; charset=utf-8");
+header("Cache-Control: no-cache, must-revalidate");
+
+
 /*** DIRECTORY LOGIC ***/
 
 // Get this folder and files name.
@@ -281,7 +286,6 @@ if ($handle = opendir('.'))
 			if($info['extension'] == '') $item['ext'] = '.';
 
 			if (DOC_ICONS == 'fontawesome') {
-				$sort_icon = 'fa fa-sort ' . FONTAWESOME_STYLE;
 				$folder_icon = 'fa fa-folder ' . FONTAWESOME_STYLE;
 				if(in_array($item[lext], $filetype['archive'])){
 					$item['class'] = 'fa fa-archive ' . FONTAWESOME_STYLE;
@@ -331,7 +335,6 @@ if ($handle = opendir('.'))
 					$item['class'] = 'fa fa-file-o ' . FONTAWESOME_STYLE;		
 				}
 			} else {
-				$sort_icon = 'glyphicon glyphicon-sort';
 				$folder_icon = 'glyphicon glyphicon-folder-close';
 				$item['class'] = 'glyphicon glyphicon-file';
 			}
@@ -528,15 +531,7 @@ if (RESPONSIVE_TABLE) {
 }
 
 // Set table header
-$table_header = $table_header."            <th \"col-lg-8 text-right\"";
-if (ENABLE_SORT) {
-	$table_header = $table_header." data-sort=\"string\">";
-	if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") { 
-		$table_header = $table_header."<$icon_tag class=\"$sort_icon\"></$icon_tag>&nbsp;";
-	}
-} else {
-	$table_header = $table_header.">";
-}
+$table_header = $table_header."            <th class=\"col-lg-8 text-right\">";
 $table_header = $table_header."Name</th>" . PHP_EOL;
 
 if ($table_options['size']) {
