@@ -141,7 +141,7 @@ define(HIDE_EXTENSION, false);
 /*** DIRECTORY LOGIC ***/
 
 // Get this folder and files name.
-$this_domain = $_SERVER['SERVER_NAME'];
+$this_domain = $_SERVER['HTTP_HOST'];
 $this_script = basename(__FILE__);
 
 $get_path = (isset($_GET['path'])) ? $_GET['path'] : "";
