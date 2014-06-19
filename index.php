@@ -25,6 +25,13 @@ error_reporting(1);
  */
 define(TABLE_STYLE, 'table-hover');
 
+
+
+/* Responsive Table
+ * See http://getbootstrap.com/css/#tables-responsive for details
+ */
+define(FOLDER_ROOT, '_public');
+
 /* Responsive Table
  * See http://getbootstrap.com/css/#tables-responsive for details
  */
@@ -38,7 +45,7 @@ define(ENABLE_SORT, true);
  *   'glyphicons' - Bootstrap glyphicons (default)
  *  'fontawesome' - Font Awesome icons
  */
-define(DOC_ICONS, 'glyphicons');
+define(DOC_ICONS, 'fontawesome');
 
 /* Bootstrap Themes:
  *    'default' - http://getbootstrap.com
@@ -131,15 +138,54 @@ $ignore_list = array(
 // Hide file extension?
 define(HIDE_EXTENSION, false);
 
-
-/*** HTTP Header ***/
-header("Content-Type: text/html; charset=utf-8");
-header("Cache-Control: no-cache, must-revalidate");
-
-
 /*** DIRECTORY LOGIC ***/
 
 // Get this folder and files name.
+$this_domain = $_SERVER['SERVER_NAME'];
+$this_script = basename(__FILE__);
+
+$get_path = (isset($_GET['path'])) ? $_GET['path'] : "";
+$this_folder = str_replace('..', '', $get_path);
+$this_folder = str_replace($this_script, '', $this_folder);
+$this_folder = str_replace('index.php', '', $this_folder);
+$this_folder = str_replace('//', '/', $this_folder);
+
+$navigation_dir = "./" . FOLDER_ROOT . "/" .$this_folder;
+
+$dir_name = explode("/", $this_folder);
+
+if(substr($navigation_dir, -1) != "/"){
+	if (file_exists($navigation_dir)) {
+
+		// GET MIME 
+		$mime_file = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $navigation_dir);
+		
+		// Direct download
+		if($mime_file == "inode/x-empty" || $mime_file == ""){
+			header('Content-Description: File Transfer');
+			header('Content-Type: application/octet-stream');
+			header('Content-Disposition: attachment; filename="'.basename($navigation_dir).'"');
+		}
+		// Recognizable mime
+		else{
+			header('Content-Type: ' . $mime_file);
+		}
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header("Accept-Ranges: bytes");
+		header('Pragma: public');
+		header('Content-Length: ' . filesize($navigation_dir));
+		ob_clean();
+		flush();
+		readfile($navigation_dir);
+		exit;	    
+	}
+	else{
+		echo "404 — Not found";
+	}
+	exit;
+}
+
 
 if ($_SERVER['HTTPS']) {
 	$this_protocol = "https://";
@@ -147,11 +193,8 @@ if ($_SERVER['HTTPS']) {
 	$this_protocol = "http://";
 }
 
-$this_script = basename(__FILE__);
-$this_folder = str_replace('/'.$this_script, '', $_SERVER['SCRIPT_NAME']);
 
-$this_domain = $_SERVER['SERVER_NAME'];
-$dir_name = explode("/", $this_folder);
+
 	
 // Declare vars used beyond this point.
 $file_list = array();
@@ -266,7 +309,7 @@ foreach($table_options as $value)
 }
 
 // Open the current directory...
-if ($handle = opendir('.'))
+if ($handle = opendir($navigation_dir))
 {
 	// ...start scanning through it.
     while (false !== ($file = readdir($handle)))
@@ -340,7 +383,7 @@ if ($handle = opendir('.'))
 			}
 
 			if ($table_options['size'] || $table_options['age'])
-				$stat				=	stat($file); // ... slow, but faster than using filemtime() & filesize() instead.
+				$stat				=	stat($navigation_dir.$file); // ... slow, but faster than using filemtime() & filesize() instead.
 
 			if ($table_options['size']) {
 				$item['bytes']		=	$stat['size'];
@@ -352,7 +395,7 @@ if ($handle = opendir('.'))
 			}
 			
 			// Add files to the file list...
-			if(is_dir($info['basename'])){
+			if(is_dir($navigation_dir.$file)){
 				array_push($folder_list, $item);
 			}
 			// ...and folders to the folder list.
@@ -641,6 +684,9 @@ if(($folder_list) || ($file_list) ) {
 
 
 /*** HTML TEMPLATE ***/
+/*** HTTP Header ***/
+header("Content-Type: text/html; charset=utf-8");
+header("Cache-Control: no-cache, must-revalidate");
 
 ?>
 <!DOCTYPE html>
@@ -664,7 +710,6 @@ if(($folder_list) || ($file_list) ) {
           <tr>
             <td colspan="<?=$table_count+1?>">
               <small class="pull-left text-muted"><?=$contained?></small>
-              <a class="pull-right small text-muted" href="https://github.com/idleberg/Bootstrap-Listr" title="Bootstrap Listr on GitHub" target="_blank">Fork me on GitHub</a>
             </td>
           </tr>
         </tfoot>
