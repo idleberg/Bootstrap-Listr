@@ -141,7 +141,6 @@ define(HIDE_EXTENSION, false);
 /*** DIRECTORY LOGIC ***/
 
 // Get this folder and files name.
-$this_domain = $_SERVER['HTTP_HOST'];
 $this_script = basename(__FILE__);
 
 $get_path = (isset($_GET['path'])) ? $_GET['path'] : "";
@@ -152,7 +151,10 @@ $this_folder = str_replace('//', '/', $this_folder);
 
 $navigation_dir = "./" . FOLDER_ROOT . "/" .$this_folder;
 
+
+$absolute_path = str_replace($this_folder, '', $_SERVER['REQUEST_URI']);
 $dir_name = explode("/", $this_folder);
+
 
 if(substr($navigation_dir, -1) != "/"){
 	if (file_exists($navigation_dir)) {
@@ -185,15 +187,6 @@ if(substr($navigation_dir, -1) != "/"){
 	}
 	exit;
 }
-
-
-if ($_SERVER['HTTPS']) {
-	$this_protocol = "https://";
-} else {
-	$this_protocol = "http://";
-}
-
-
 
 	
 // Declare vars used beyond this point.
@@ -554,16 +547,15 @@ if (ENABLE_SORT) {
 if (ANALYTICS_ID) {
 	$footer = $footer."  <script type=\"text/javascript\">var _gaq=_gaq||[];_gaq.push([\"_setAccount\",\"".ANALYTICS_ID."\"]);_gaq.push([\"_trackPageview\"]);(function(){var ga=document.createElement(\"script\");ga.type=\"text/javascript\";ga.async=true;ga.src=(\"https:\"==document.location.protocol?\"https://ssl\":\"http://www\")+\".google-analytics.com/ga.js\";var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(ga,s)})();</script>" . PHP_EOL;
 }
-
 // Set breadcrumbs
-$breadcrumbs = $breadcrumbs."      <li><a href=\"".$this_protocol . $this_domain."\">$home</a></li>" . PHP_EOL;
+$breadcrumbs = $breadcrumbs."      <li><a href=\"".$absolute_path."\">$home</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
 	if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
 		$parent = '';
-		for ($i = 1; $i <= $dir; $i++):
+		for ($i = 0; $i <= $dir; $i++):
 			$parent .= rawurlencode($dir_name[$i]) . '/';
 		endfor;
-    	$breadcrumbs = $breadcrumbs."      <li><a href=\"/$parent\">".utf8_encode($name)."</a></li>" . PHP_EOL;
+    	$breadcrumbs = $breadcrumbs."      <li><a href=\"".$absolute_path.$parent."\">".utf8_encode($name)."</a></li>" . PHP_EOL;
 	endif;
 endforeach;
 
