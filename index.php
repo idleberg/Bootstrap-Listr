@@ -416,6 +416,7 @@ if($file_list && $folder_list || $file_list)
 $total_folders = count($folder_list);
 $total_files = count($file_list);
 
+$contained = "";
 if ($total_folders > 0){
 	if ($total_folders > 1){
 		$funit = 'folders';
@@ -430,8 +431,11 @@ if ($total_files > 0){
 	}else{
 		$iunit = 'file';
 	}
+	if ($total_folders > 0){
+		$contained .= ' and ';
+	}
 	if (isset($contained)){
-		$contained .= ' and '.$total_files.' '.$iunit;
+		$contained .= $total_files.' '.$iunit;
 	}else{
 		$contained = $total_files.' '.$iunit;	
 	}
