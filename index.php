@@ -27,10 +27,9 @@ define(TABLE_STYLE, 'table-hover');
 
 
 
-/* Responsive Table
- * See http://getbootstrap.com/css/#tables-responsive for details
+/* Path where your public files/directories are located
  */
-define(FOLDER_ROOT, '_public');
+define(FOLDER_ROOT, './_public/');
 
 /* Responsive Table
  * See http://getbootstrap.com/css/#tables-responsive for details
@@ -149,7 +148,7 @@ $this_folder = str_replace($this_script, '', $this_folder);
 $this_folder = str_replace('index.php', '', $this_folder);
 $this_folder = str_replace('//', '/', $this_folder);
 
-$navigation_dir = "./" . FOLDER_ROOT . "/" .$this_folder;
+$navigation_dir = FOLDER_ROOT .$this_folder;
 
 
 $absolute_path = str_replace($this_folder, '', $_SERVER['REQUEST_URI']);
