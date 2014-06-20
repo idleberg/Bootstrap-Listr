@@ -21,12 +21,18 @@ Also note that by default, `index.php` has `robots.txt` on its ignore-list, mean
 
 ## Usage
 
-I am unaware of a method to use one index file for several directories at once (feel free to correct me!), hence you will have to copy the index in every directory where you would like to use it. Since Bootstrap Listr is a one-file solution, doing so is relatively easy.
+You put `index.php` and `.htaccess` on the directory where you want to have access to the directory listing (for example `http://localhost/resources/`).
+
+The files/directories that you want to show to public have to be inside the folder `_public` (keep the .htaccess file that is inside it).
+
+(For example you may access to your file.txt like this `http://localhost/resources/file.txt`, while in the server it's located in `/resources/_public/file.txt`)
+
 
 ### Options
 
 You can configure a number of settings in the header of the script file:
 
+* Public directory name
 * Optional columns for size, modified date, permissions
 * Document icons
 * Column sorting
@@ -34,14 +40,6 @@ You can configure a number of settings in the header of the script file:
 * List of ignored files
 * Default location for JavaScript libraries and style sheets
 * Google Analytics
-
-### Naming
-
-If you prefer a different file name for the script, you can rename it without worrying about the ignore list. However, depending on your server, you might have declare the renamed file as your directory index.
-
-* Apache: `DirectoryIndex myIndex.php` (see [documentation](http://httpd.apache.org/docs/2.2/mod/mod_dir.html))
-* lighttpd: `index-file.names = ( "/myIndex.php" )` (see [documentation](http://redmine.lighttpd.net/projects/1/wiki/Docs_ModDirlisting))
-* nginx: `index myIndex.php` (see [documentation](http://nginx.org/en/docs/http/ngx_http_index_module.html))
 
 ### Font Awesome
 
