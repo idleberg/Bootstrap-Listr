@@ -41,8 +41,8 @@ define(ENABLE_SORT, true);
 
 /* Document Icons:
  *         'none' - No icons
- *   'glyphicons' - Bootstrap glyphicons (default)
- *  'fontawesome' - Font Awesome icons
+ *   'glyphicons' - Bootstrap glyphicons
+ *  'fontawesome' - Font Awesome icons (default)
  */
 define(DOC_ICONS, 'fontawesome');
 
