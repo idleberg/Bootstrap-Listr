@@ -151,7 +151,7 @@ $this_folder = str_replace('//', '/', $this_folder);
 $navigation_dir = FOLDER_ROOT .$this_folder;
 
 
-$absolute_path = str_replace($this_folder, '', $_SERVER['REQUEST_URI']);
+$absolute_path = str_replace(str_replace("%2F", "/", rawurlencode($this_folder)), '', $_SERVER['REQUEST_URI']);
 $dir_name = explode("/", $this_folder);
 
 
