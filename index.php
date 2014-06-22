@@ -89,6 +89,9 @@ define(IPHONE_ICON_RETINA, ''); // 114x114
   define(METRO_TILE_COLOR, ''); //
   define(METRO_TILE_IMAGE, ''); // 144x144
 
+// Display link to Bootstrap-Listr in footer
+define(GIVE_KUDOS, true);
+
 // Google Analytics ID
 define(ANALYTICS_ID, ''); // UA-XXXXX-Y or UA-XXXXX-YY
 
@@ -637,7 +640,12 @@ if(($folder_list) || ($file_list) ) {
 		} 
 		$table_body = $table_body."empty folder</td>" . PHP_EOL;
 		$table_body = $table_body."          </tr>" . PHP_EOL;
-} 
+}
+
+// Give kudos
+if (GIVE_KUDOS) {
+	$kudos = "<a class=\"pull-right small text-muted\" href=\"https://github.com/idleberg/Bootstrap-Listr\" title=\"Bootstrap Listr on GitHub\" target=\"_blank\">Fork me on GitHub</a>";
+}
 
 
 /*** HTML TEMPLATE ***/
@@ -664,7 +672,7 @@ if(($folder_list) || ($file_list) ) {
           <tr>
             <td colspan="<?=$table_count+1?>">
               <small class="pull-left text-muted"><?=$contained?></small>
-              <a class="pull-right small text-muted" href="https://github.com/idleberg/Bootstrap-Listr" title="Bootstrap Listr on GitHub" target="_blank">Fork me on GitHub</a>
+<?=$kudos?>
             </td>
           </tr>
         </tfoot>
