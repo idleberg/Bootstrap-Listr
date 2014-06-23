@@ -139,6 +139,35 @@ define(HIDE_EXTENSION, false);
 header("Content-Type: text/html; charset=utf-8");
 header("Cache-Control: no-cache, must-revalidate");
 
+/** It changes the dir... if it's possible... **/
+function cdir() {
+	if( ! isset($_GET['dir']) || ! is_string($_GET['dir']) )
+		return false; //?dir[]=may generate a Full Path Disclousure bug.
+	$rplc = array(
+			"#\..#", // no more...
+			"#^[/]#",
+			"#[/]$#"
+		);
+	$dir = preg_replace($rplc, "", $_GET['dir']); // because this is not a shell.
+	if( is_dir($dir) )
+		return chdir($dir);
+	else
+		return;
+}
+cdir();
+// add to breadcrumbs...
+function addtbc() { 
+	if( end($x = explode('/', getcwd() ) ) == $x_ = end( $d = explode('/', dirname(__FILE__) ) ) )
+		return '';
+	$path = array_slice($x, array_search($x_, $x) + 1 );
+	$full_path = str_replace(dirname(__FILE__) . '/', '', getcwd() );
+	$bc = '';
+	foreach($path as $a):
+		$fp = substr($full_path, 0, stripos($full_path, $a) + strlen($a) );
+		$bc .= sprintf('<li><a href="?dir=%s">%s</a></li>', $fp, $a);
+	endforeach;
+	return $bc;
+}
 
 /*** DIRECTORY LOGIC ***/
 
@@ -516,7 +545,7 @@ if (ANALYTICS_ID) {
 }
 
 // Set breadcrumbs
-$breadcrumbs = $breadcrumbs."      <li><a href=\"".$this_protocol . $this_domain."\">$home</a></li>" . PHP_EOL;
+$breadcrumbs = $breadcrumbs."      <li><a href=\"" . $_SERVER['PHP_SELF'] . "\">$home</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
 	if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
 		$parent = '';
@@ -526,6 +555,7 @@ foreach($dir_name as $dir => $name) :
     	$breadcrumbs = $breadcrumbs."      <li><a href=\"/$parent\">".utf8_encode($name)."</a></li>" . PHP_EOL;
 	endif;
 endforeach;
+$breadcrumbs .= addtbc();
 
 // Set responsiveness
 if (RESPONSIVE_TABLE) {
@@ -571,7 +601,9 @@ if(($folder_list) || ($file_list) ) {
 			if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") {
 				$table_body = $table_body."<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
 			}
-			$table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "/\"><strong>" . utf8_encode($item['bname']) . "</strong></a></td>" . PHP_EOL;
+			$x = str_replace( array($x2 = dirname(__FILE__), $x2 . '/'), "", getcwd() );
+			if('' !== $x) $x .= '/';
+			$table_body = $table_body."<a href=\"?dir=" . $x . rawurlencode( htmlspecialchars($item['bname']) ) . "/\"><strong>" . utf8_encode($item['bname']) . "</strong></a></td>" . PHP_EOL;
 			
 			if ($table_options['size']) {
 				$table_body = $table_body."            <td";
@@ -610,7 +642,7 @@ if(($folder_list) || ($file_list) ) {
 			} else {
 				$display_name = utf8_encode($item['bname']);
 			}
-			$table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\">" . $display_name . "</a></td>" . PHP_EOL;
+			$table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\">" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
 
 			if ($table_options['size']) {
 				$table_body = $table_body."            <td";
