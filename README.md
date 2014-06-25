@@ -63,6 +63,8 @@ This project is built upon—or includes—code from the following people:
 * Na Wong - [Listr](http://nadesign.net/listr/)
 * Joe McCullough - [Stupid Table Plugin](http://joequery.github.io/Stupid-Table-Plugin/)
 
+Thanks to [melalj](https://github.com/melalj) and [Zerquix18](https://github.com/Zerquix18) for contributing code to make this project better!
+
 ## License
 
 This work by Jan T. Sott is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/deed.en_US)
