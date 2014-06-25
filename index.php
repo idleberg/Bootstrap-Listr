@@ -153,7 +153,7 @@ if ($_SERVER['HTTPS']) {
 $this_script = basename(__FILE__);
 $this_folder = str_replace('/'.$this_script, '', $_SERVER['SCRIPT_NAME']);
 
-$this_domain = $_SERVER['SERVER_NAME'];
+$this_domain = $_SERVER['HTTP_HOST'];
 $dir_name = explode("/", $this_folder);
 	
 // Declare vars used beyond this point.
