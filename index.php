@@ -610,7 +610,7 @@ if(($folder_list) || ($file_list) ) {
 			} else {
 				$display_name = utf8_encode($item['bname']);
 			}
-			$table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\">" . $display_name . "</a></td>" . PHP_EOL;
+			$table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\">" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
 
 			if ($table_options['size']) {
 				$table_body = $table_body."            <td";
