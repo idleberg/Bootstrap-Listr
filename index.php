@@ -255,7 +255,7 @@ if (CUSTOM_CSS) {
 			$bootstrap_cdn = $cdn_pre .'yeti'. $cdn_post;
 			break;
 		default:
-			$bootstrap_cdn = '//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css';
+			$bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css';
 	}
 }
 
