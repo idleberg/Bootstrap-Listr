@@ -290,49 +290,49 @@ if ($handle = opendir('.'))
 
 			if (DOC_ICONS == 'fontawesome') {
 				$folder_icon = 'fa fa-folder ' . FONTAWESOME_STYLE;
-				if(in_array($item[lext], $filetype['archive'])){
+				if(in_array($item['lext'], $filetype['archive'])){
 					$item['class'] = 'fa fa-archive ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['apple'])){
+				}elseif(in_array($item['lext'], $filetype['apple'])){
 					$item['class'] = 'fa fa-apple ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['audio'])){
+				}elseif(in_array($item['lext'], $filetype['audio'])){
 					$item['class'] = 'fa fa-music ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['calendar'])){
+				}elseif(in_array($item['lext'], $filetype['calendar'])){
 					$item['class'] = 'fa fa-calendar ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['config'])){
+				}elseif(in_array($item['lext'], $filetype['config'])){
 					$item['class'] = 'fa fa-cogs ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['contact'])){
+				}elseif(in_array($item['lext'], $filetype['contact'])){
 					$item['class'] = 'fa fa-group ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['database'])){
+				}elseif(in_array($item['lext'], $filetype['database'])){
 					$item['class'] = 'fa fa-database ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['doc'])){
+				}elseif(in_array($item['lext'], $filetype['doc'])){
 					$item['class'] = 'fa fa-file-text ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['downloads'])){
+				}elseif(in_array($item['lext'], $filetype['downloads'])){
 					$item['class'] = 'fa fa-cloud-download ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['ebook'])){
+				}elseif(in_array($item['lext'], $filetype['ebook'])){
 					$item['class'] = 'fa fa-book ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['email'])){
+				}elseif(in_array($item['lext'], $filetype['email'])){
 					$item['class'] = 'fa fa-envelope ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['font'])){
+				}elseif(in_array($item['lext'], $filetype['font'])){
 					$item['class'] = 'fa fa-font ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['image'])){
+				}elseif(in_array($item['lext'], $filetype['image'])){
 					$item['class'] = 'fa fa-picture-o ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['link'])){
+				}elseif(in_array($item['lext'], $filetype['link'])){
 					$item['class'] = 'fa fa-link ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['linux'])){
+				}elseif(in_array($item['lext'], $filetype['linux'])){
 					$item['class'] = 'fa fa-linux ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['palette'])){
+				}elseif(in_array($item['lext'], $filetype['palette'])){
 					$item['class'] = 'fa fa-tasks ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['raw'])){
+				}elseif(in_array($item['lext'], $filetype['raw'])){
 					$item['class'] = 'fa fa-camera ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['script'])){
+				}elseif(in_array($item['lext'], $filetype['script'])){
 					$item['class'] = 'fa fa-code ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['text'])){
+				}elseif(in_array($item['lext'], $filetype['text'])){
 					$item['class'] = 'fa fa-file-text-o ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['video'])){
+				}elseif(in_array($item['lext'], $filetype['video'])){
 					$item['class'] = 'fa fa-film ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['website'])){
+				}elseif(in_array($item['lext'], $filetype['website'])){
 					$item['class'] = 'fa fa-globe ' . FONTAWESOME_STYLE;
-				}elseif(in_array($item[lext], $filetype['windows'])){
+				}elseif(in_array($item['lext'], $filetype['windows'])){
 					$item['class'] = 'fa fa-windows ' . FONTAWESOME_STYLE;
 				}else{
 					$item['class'] = 'fa fa-file-o ' . FONTAWESOME_STYLE;		
