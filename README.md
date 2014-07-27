@@ -3,7 +3,7 @@
 A simple PHP script to display folders and files on a server in a well formed list, making use of the [Bootstrap 3.2](http://getbootstrap.com) framework.
 
 ![Screenshot](https://raw.github.com/idleberg/Bootstrap-Listr/gh-pages/images/screenshot-font_awesome.png)  
-*Screenshot: Example with [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons enabled*
+*Screenshot: Example with [Font Awesome](#font-awesome) icons enabled*
 
 For examples using different configurations, have a look at the [live demos](http://demo.idleberg.com/Bootstrap-Listr)!
 
@@ -37,9 +37,6 @@ If you prefer a different file name for the script, you can rename it without wo
 * lighttpd: `index-file.names = ( "/myIndex.php" )` (see [documentation](http://redmine.lighttpd.net/projects/1/wiki/Docs_ModDirlisting))
 * nginx: `index myIndex.php` (see [documentation](http://nginx.org/en/docs/http/ngx_http_index_module.html))
 
-### Viewer
-
-To view images or videos in a Bootstrap modal, you can enable the viewer in the script header. The required Bootstrap JavaScript library will be added to your page automatically.
 
 ### Font Awesome
 
@@ -48,6 +45,10 @@ Rather than using generic icons, you can enable [Font Awesome](http://fortawesom
 ### Theming
 
 Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) themes, please note that some of these do not include the [glyphicons](http://getbootstrap.com/components/#glyphicons) used in the script. You can disable glyphicons in the script header or use Font Awesome icons instead.
+
+### Viewer
+
+To view images or videos in a [Bootstrap Modal](http://getbootstrap.com/javascript/#modals), you can enable the viewer in the script header. The required Bootstrap JavaScript library will be added to your page automatically.
 
 ### Libraries & Style-sheets
 
