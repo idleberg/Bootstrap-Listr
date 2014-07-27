@@ -510,9 +510,9 @@ if (DOC_ICONS == "fontawesome") {
     $header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
 }
 if (ENABLE_VIEWER) {
-    $modal = ".modal img{display:block;margin:0 auto;max-width:100%}.modal video,.modal audio{width:100%}";
+    $modal_css = ".modal img{display:block;margin:0 auto;max-width:100%}.modal video,.modal audio{width:100%}";
 }
-$header = $header."  <style type=\"text/css\">th{cursor:pointer}".$modal."</style>" . PHP_EOL;
+$header = $header."  <style type=\"text/css\">th{cursor:pointer}".$modal_css."</style>" . PHP_EOL;
 if (GOOGLE_FONT) {
 $header = $header."  <link href=\"//fonts.googleapis.com/css?family=".GOOGLE_FONT."\" rel=\"stylesheet\" type=\"text/css\">" . PHP_EOL;
 }
@@ -631,14 +631,14 @@ if(($folder_list) || ($file_list) ) {
             // inject modal class if necessary
             if (ENABLE_VIEWER) {
                 if (in_array($item['ext'], $audio_files)) {
-                    $modal = ' class="audio-modal"';
+                    $modal_class = ' class="audio-modal"';
                 } else if (in_array($item['ext'], $image_files)) {
-                    $modal = ' class="image-modal"';
+                    $modal_class = ' class="image-modal"';
                 } else if (in_array($item['ext'], $video_files)) {
-                    $modal = ' class="video-modal"';
+                    $modal_class = ' class="video-modal"';
                 }
             }
-            $table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\"$modal>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
+            $table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\"$modal_class>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
 
             if ($table_options['size']) {
                 $table_body = $table_body."            <td";
