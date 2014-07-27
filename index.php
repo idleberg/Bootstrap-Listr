@@ -190,7 +190,7 @@ if (DOC_ICONS == 'fontawesome') {
         'linux'     => array('bin','deb','rpm'),
         'palette'     => array('ase','clm','clr','gpl'),
         'raw'         => array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
-        'script'    => array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xhtml','xml','yml'),
+        'script'    => array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xml','yml'),
         'text'        => array('ans','asc','ascii','csv','diz','latex','log','markdown','md','nfo','rst','rtf','tex','text','txt'),
         'video'        => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
         'website'    => array('htm','html','xht','xhtml'),
@@ -207,6 +207,7 @@ if (DOC_ICONS == 'fontawesome') {
 if (ENABLE_VIEWER) {
     $audio_files = array('m4a','mp3','oga','ogg','webma','wav');
     $image_files = array('gif','jpe','jpeg','jpg','png','svg','webp');
+    $source_files = array('bat','cmd','css','hml','htaccess','htpasswd','js','json','less','php','php3','pl','py','rb','sass','scpt','scss','sh','xml','yml');
     $video_files = array('mp4','m4v','ogv','webm');
 }
 
@@ -523,7 +524,7 @@ if ( (ENABLE_SORT) || (ENABLE_VIEWER) ) {
 }
 if (ENABLE_VIEWER) {
     $footer = $footer."  <script type=\"text/javascript\" src=\"".BOOTSTRAPJS."\"></script>" . PHP_EOL;
-    $footer = $footer."  <script type=\"text/javascript\">$(\".audio-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<audio src=\"'+t+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>'),$(\".fullview\").attr(\"href\",t).text(\"Download\"),$(\".modal-title\").text(t),$(\"#viewer-modal\").modal(\"show\")}),$(\".image-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<img src=\"'+t+'\"/>'),$(\".fullview\").attr(\"href\",t).text(\"Fullsize\"),$(\".modal-title\").text(t),$(\"#viewer-modal\").modal(\"show\")}),$(\".video-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<video src=\"'+t+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>'),$(\".fullview\").attr(\"href\",t).text(\"Download\"),$(\".modal-title\").text(t),$(\"#viewer-modal\").modal(\"show\")}),$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var e=document.getElementById(\"player\");e&&e.pause()});</script>" . PHP_EOL;
+    $footer = $footer."  <script type=\"text/javascript\">$(\".audio-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<audio src=\"'+t+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>'),$(\".fullview\").attr(\"href\",t).text(\"Download\"),$(\".modal-title\").text(t),$(\"#viewer-modal\").modal(\"show\")}),$(\".image-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<img src=\"'+t+'\"/>'),$(\".fullview\").attr(\"href\",t).text(\"Fullsize\"),$(\".modal-title\").text(t),$(\"#viewer-modal\").modal(\"show\")}),$(\".video-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<video src=\"'+t+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>'),$(\".fullview\").attr(\"href\",t).text(\"Download\"),$(\".modal-title\").text(t),$(\"#viewer-modal\").modal(\"show\")}),$(\".source-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<pre><code id=\"source\"></code></pre>'),$(\"#source\").load(t),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(t),$(\"#viewer-modal\").modal(\"show\")}),$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var e=document.getElementById(\"player\");e&&e.pause()});</script>" . PHP_EOL;
 }
 if (ENABLE_SORT) {
     $footer = $footer."  <script type=\"text/javascript\">(function(c){c.fn.stupidtable=function(b){return this.each(function(){var a=c(this);b=b||{};b=c.extend({},c.fn.stupidtable.default_sort_fns,b);a.on(\"click.stupidtable\",\"th\",function(){var d=c(this),f=0,g=c.fn.stupidtable.dir;a.find(\"th\").slice(0,d.index()).each(function(){var a=c(this).attr(\"colspan\")||1;f+=parseInt(a,10)});var e=d.data(\"sort-default\")||g.ASC;d.data(\"sort-dir\")&&(e=d.data(\"sort-dir\")===g.ASC?g.DESC:g.ASC);var l=d.data(\"sort\")||null;null!==l&&(a.trigger(\"beforetablesort\",{column:f, direction:e}),a.css(\"display\"),setTimeout(function(){var h=[],m=b[l],k=a.children(\"tbody\").children(\"tr\");k.each(function(a,b){var d=c(b).children().eq(f),e=d.data(\"sort-value\"),d=\"undefined\"!==typeof e?e:d.text();h.push([d,b])});h.sort(function(a,b){return m(a[0],b[0])});e!=g.ASC&&h.reverse();k=c.map(h,function(a){return a[1]});a.children(\"tbody\").append(k);a.find(\"th\").data(\"sort-dir\",null).removeClass(\"sorting-desc sorting-asc\");d.data(\"sort-dir\",e).addClass(\"sorting-\"+e);a.trigger(\"aftertablesort\", {column:f,direction:e});a.css(\"display\")},10))})})};c.fn.stupidtable.dir={ASC:\"asc\",DESC:\"desc\"};c.fn.stupidtable.default_sort_fns={\"int\":function(b,a){return parseInt(b,10)-parseInt(a,10)},\"float\":function(b,a){return parseFloat(b)-parseFloat(a)},string:function(b,a){return b<a?-1:b>a?1:0},\"string-ins\":function(b,a){b=b.toLowerCase();a=a.toLowerCase();return b<a?-1:b>a?1:0}}})(jQuery);$(\"#bs-table\").stupidtable();</script>" . PHP_EOL;
@@ -634,6 +635,8 @@ if(($folder_list) || ($file_list) ) {
                     $modal_class = ' class="audio-modal"';
                 } else if (in_array($item['ext'], $image_files)) {
                     $modal_class = ' class="image-modal"';
+                } else if (in_array($item['ext'], $source_files)) {
+                    $modal_class = ' class="source-modal"';
                 } else if (in_array($item['ext'], $video_files)) {
                     $modal_class = ' class="video-modal"';
                 }
