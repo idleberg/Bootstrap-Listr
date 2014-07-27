@@ -2,9 +2,6 @@
 
 A simple PHP script to display folders and files on a server in a well formed list, making use of the [Bootstrap 3.2](http://getbootstrap.com) framework.
 
-![Screenshot](https://raw.github.com/idleberg/Bootstrap-Listr/gh-pages/images/screenshot-font_awesome.png)  
-*Screenshot: Example with [Font Awesome](#font-awesome) icons enabled*
-
 For examples using different configurations, have a look at the [live demos](http://demo.idleberg.com/Bootstrap-Listr)!
 
 ## Installation
