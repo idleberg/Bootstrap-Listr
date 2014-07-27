@@ -37,6 +37,10 @@ If you prefer a different file name for the script, you can rename it without wo
 * lighttpd: `index-file.names = ( "/myIndex.php" )` (see [documentation](http://redmine.lighttpd.net/projects/1/wiki/Docs_ModDirlisting))
 * nginx: `index myIndex.php` (see [documentation](http://nginx.org/en/docs/http/ngx_http_index_module.html))
 
+### Viewer
+
+To view images or videos in a Bootstrap modal, you can enable the viewer in the script header. The required Bootstrap JavaScript library will be added to your page automatically.
+
 ### Font Awesome
 
 Rather than using generic icons, you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) for beautiful, file-specific icons. Note that this will require extra resources, hence increase the load time.
@@ -47,7 +51,7 @@ Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) the
 
 ### Libraries & Style-sheets
 
-For your convenience, we use CDNs for Bootstrap and JQuery. Should you have reasons against this, you can change the default locations in the script header.
+For your convenience, CDNs for Bootstrap and JQuery. Should you have reasons against this, you can change the default locations in the script header.
 
 ## Credits
 
