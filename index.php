@@ -175,7 +175,7 @@ if (DOC_ICONS == 'fontawesome') {
     $filetype = array(
         'archive'    => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
         'apple'        => array('app','ipa','ipsw','saver'),
-        'audio'        => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','ogg','oma','s3m','sid','umx','wav','wv','xm'),
+        'audio'        => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','oga','ogg','oma','s3m','sid','umx','wav','webma','wv','xm'),
         'calendar'    => array('icbu','ics'),
         'config'    => array('cfg','conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
         'contact'    => array('abbu','contact','oab','pab','vcard','vcf'),
@@ -205,6 +205,7 @@ if (DOC_ICONS == 'fontawesome') {
     }    
 }
 if (ENABLE_VIEWER) {
+    $audio_files = array('m4a','mp3','oga','ogg','webma','wav');
     $image_files = array('gif','jpe','jpeg','jpg','png','svg','webp');
     $video_files = array('mp4','m4v','ogv','webm');
 }
@@ -509,7 +510,7 @@ if (DOC_ICONS == "fontawesome") {
     $header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
 }
 if (ENABLE_VIEWER) {
-    $modal = ".modal img{display:block;margin:0 auto;max-width:100%}.modal video{width:100%;height:auto}";
+    $modal = ".modal img{display:block;margin:0 auto;max-width:100%}.modal video,.modal audio{width:100%}";
 }
 $header = $header."  <style type=\"text/css\">th{cursor:pointer}".$modal."</style>" . PHP_EOL;
 if (GOOGLE_FONT) {
@@ -522,7 +523,7 @@ if ( (ENABLE_SORT) || (ENABLE_VIEWER) ) {
 }
 if (ENABLE_VIEWER) {
     $footer = $footer."  <script type=\"text/javascript\" src=\"".BOOTSTRAPJS."\"></script>" . PHP_EOL;
-    $footer = $footer."  <script type=\"text/javascript\">$(\".image-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<img src=\"'+t+'\"/>'),$(\".fullview\").attr(\"href\",t).text(\"Fullsize\"),$(\".modal-title\").text(t),$(\"#viewer-modal\").modal(\"show\")}),$(\".video-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<video src=\"'+t+'\" id=\"video-player\" autoplay controls>Video format or MIME type is not supported</video>'),$(\".fullview\").attr(\"href\",t).text(\"Download\"),$(\".modal-title\").text(t),$(\"#viewer-modal\").modal(\"show\")}),$('#viewer-modal').on('hide.bs.modal',function(e){var t=document.getElementById(\"video-player\");if(t){t.pause()}})</script>" . PHP_EOL;
+    $footer = $footer."  <script type=\"text/javascript\">$(\".audio-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<audio src=\"'+t+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>'),$(\".fullview\").attr(\"href\",t).text(\"Download\"),$(\".modal-title\").text(t),$(\"#viewer-modal\").modal(\"show\")}),$(\".image-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<img src=\"'+t+'\"/>'),$(\".fullview\").attr(\"href\",t).text(\"Fullsize\"),$(\".modal-title\").text(t),$(\"#viewer-modal\").modal(\"show\")}),$(\".video-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<video src=\"'+t+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>'),$(\".fullview\").attr(\"href\",t).text(\"Download\"),$(\".modal-title\").text(t),$(\"#viewer-modal\").modal(\"show\")}),$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var e=document.getElementById(\"player\");e&&e.pause()});</script>" . PHP_EOL;
 }
 if (ENABLE_SORT) {
     $footer = $footer."  <script type=\"text/javascript\">(function(c){c.fn.stupidtable=function(b){return this.each(function(){var a=c(this);b=b||{};b=c.extend({},c.fn.stupidtable.default_sort_fns,b);a.on(\"click.stupidtable\",\"th\",function(){var d=c(this),f=0,g=c.fn.stupidtable.dir;a.find(\"th\").slice(0,d.index()).each(function(){var a=c(this).attr(\"colspan\")||1;f+=parseInt(a,10)});var e=d.data(\"sort-default\")||g.ASC;d.data(\"sort-dir\")&&(e=d.data(\"sort-dir\")===g.ASC?g.DESC:g.ASC);var l=d.data(\"sort\")||null;null!==l&&(a.trigger(\"beforetablesort\",{column:f, direction:e}),a.css(\"display\"),setTimeout(function(){var h=[],m=b[l],k=a.children(\"tbody\").children(\"tr\");k.each(function(a,b){var d=c(b).children().eq(f),e=d.data(\"sort-value\"),d=\"undefined\"!==typeof e?e:d.text();h.push([d,b])});h.sort(function(a,b){return m(a[0],b[0])});e!=g.ASC&&h.reverse();k=c.map(h,function(a){return a[1]});a.children(\"tbody\").append(k);a.find(\"th\").data(\"sort-dir\",null).removeClass(\"sorting-desc sorting-asc\");d.data(\"sort-dir\",e).addClass(\"sorting-\"+e);a.trigger(\"aftertablesort\", {column:f,direction:e});a.css(\"display\")},10))})})};c.fn.stupidtable.dir={ASC:\"asc\",DESC:\"desc\"};c.fn.stupidtable.default_sort_fns={\"int\":function(b,a){return parseInt(b,10)-parseInt(a,10)},\"float\":function(b,a){return parseFloat(b)-parseFloat(a)},string:function(b,a){return b<a?-1:b>a?1:0},\"string-ins\":function(b,a){b=b.toLowerCase();a=a.toLowerCase();return b<a?-1:b>a?1:0}}})(jQuery);$(\"#bs-table\").stupidtable();</script>" . PHP_EOL;
@@ -627,13 +628,17 @@ if(($folder_list) || ($file_list) ) {
                 $display_name = utf8_encode($item['bname']);
             }
 
-            if ( (ENABLE_VIEWER) && (in_array($item['ext'], $image_files)) ) {
-                $table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\" class=\"image-modal\">" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
-            } else if ( (ENABLE_VIEWER) && (in_array($item['ext'], $video_files)) ) {
-                $table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\" class=\"video-modal\">" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
-            } else  {
-                $table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\">" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
+            // inject modal class if necessary
+            if (ENABLE_VIEWER) {
+                if (in_array($item['ext'], $audio_files)) {
+                    $modal = ' class="audio-modal"';
+                } else if (in_array($item['ext'], $image_files)) {
+                    $modal = ' class="image-modal"';
+                } else if (in_array($item['ext'], $video_files)) {
+                    $modal = ' class="video-modal"';
+                }
             }
+            $table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\"$modal>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
 
             if ($table_options['size']) {
                 $table_body = $table_body."            <td";
