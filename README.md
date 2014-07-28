@@ -45,7 +45,7 @@ Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) the
 
 ### Viewer
 
-To view images or play audio & video files in a [Bootstrap Modal](http://getbootstrap.com/javascript/#modals), you can enable the viewer in the script header. The required Bootstrap JavaScript library will be added to your page automatically.
+To load images, text, videos and audio into a [Bootstrap Modal](http://getbootstrap.com/javascript/#modals), you can enable the viewer in the script header. The required Bootstrap JavaScript library will be added to your page automatically.
 
 ### Libraries & Style-sheets
 
