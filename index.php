@@ -631,13 +631,13 @@ if(($folder_list) || ($file_list) ) {
 
             // inject modal class if necessary
             if (ENABLE_VIEWER) {
-                if (in_array($item['ext'], $audio_files)) {
+                if (in_array($item['lext'], $audio_files)) {
                     $modal_class = ' class="audio-modal"';
-                } else if (in_array($item['ext'], $image_files)) {
+                } else if (in_array($item['lext'], $image_files)) {
                     $modal_class = ' class="image-modal"';
-                } else if (in_array($item['ext'], $source_files)) {
+                } else if (in_array($item['lext'], $source_files)) {
                     $modal_class = ' class="source-modal"';
-                } else if (in_array($item['ext'], $video_files)) {
+                } else if (in_array($item['lext'], $video_files)) {
                     $modal_class = ' class="video-modal"';
                 }
             }
