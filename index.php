@@ -36,6 +36,13 @@ define(ENABLE_SORT, true);
 // Toggle media viewer
 define(ENABLE_VIEWER, false);
 
+/* Size of modal used for media viewer (pixel widths refer to standard theme)
+ * 'modal-sm' - 300px
+ *         '' - 600px
+ * 'modal-lg' - 900px (default)
+ */
+define(MODAL_SIZE, 'modal-lg');
+
 /* Document Icons:
  *         'none' - No icons
  *   'glyphicons' - Bootstrap glyphicons (default)
@@ -193,7 +200,7 @@ if (DOC_ICONS == 'fontawesome') {
         'script'    => array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xml','yml'),
         'text'        => array('ans','asc','ascii','csv','diz','latex','log','markdown','md','nfo','rst','rtf','tex','text','txt'),
         'video'        => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
-        'website'    => array('htm','html','xht','xhtml'),
+        'website'    => array('htm','html','mhtml','mht','xht','xhtml'),
         'windows'    => array('dll','exe','msi','pif','ps1','scr','sys')
     );
     $home = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
@@ -206,7 +213,6 @@ if (DOC_ICONS == 'fontawesome') {
 }
 if (ENABLE_VIEWER) {
     $audio_files = array('m4a','mp3','oga','ogg','webma','wav');
-    $flash_files = array('swf');
     $image_files = array('gif','jpe','jpeg','jpg','png','svg','webp');
     $quicktime_files = array('3g2','3gp','3gp2','3gpp','mov','qt');
     $source_files = array('bat','cmd','css','hml','htaccess','htpasswd','js','json','less','php','php3','pl','py','rb','sass','scpt','scss','sh','xml','yml');
@@ -635,7 +641,7 @@ if(($folder_list) || ($file_list) ) {
             if (ENABLE_VIEWER) {
                 if (in_array($item['lext'], $audio_files)) {
                     $modal_class = ' class="audio-modal"';
-                } else if (in_array($item['lext'], $flash_files)) {
+                } else if ($item['lext'] == 'swf') {
                     $modal_class = ' class="flash-modal"';
                 } else if (in_array($item['lext'], $image_files)) {
                     $modal_class = ' class="image-modal"';
@@ -722,7 +728,7 @@ if (GIVE_KUDOS) {
 <?=$responsive_close?>
 <? if (ENABLE_VIEWER) { ?>
     <div class="modal fade" id="viewer-modal" tabindex="-1" role="dialog" aria-labelledby="file-name" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog <?=MODAL_SIZE?>">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
