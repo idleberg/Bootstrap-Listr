@@ -86,7 +86,7 @@ define(FONTAWESOME_STYLE,'fa-fw');
 
 // External resources
    define(FONT_AWESOME, '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
-     define(CUSTOM_CSS, null);
+     define(CUSTOM_THEME, null);
     define(GOOGLE_FONT, null); // e.g. 'Open+Sans' or 'Open+Sans:400,300,700'
          define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
     define(BOOTSTRAPJS, '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js');
@@ -219,7 +219,7 @@ if (ENABLE_VIEWER) {
     $video_files = array('mp4','m4v','ogv','webm');
 }
 
-if (CUSTOM_CSS) {
+if (CUSTOM_THEME) {
     $bootstrap_cdn = CUSTOM_CSS;
 } else {
     $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/';
