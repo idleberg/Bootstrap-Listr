@@ -191,13 +191,14 @@ if (DOC_ICONS == 'fontawesome') {
         'downloads'    => array('!bt','!qb','!ut','crdownload','download','opdownload','part'),
         'ebook'        => array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
         'email'        => array('eml','emlx','mbox','msg','pst'),
+        'feed'        => array('atom','rss'),
         'font'        => array('eot','fon','otf','pfm','ttf','woff'),
         'image'        => array('ai','bmp','cdr','emf','eps','gif','icns','ico','jp2','jpe','jpeg','jpg','jpx','pcx','pict','png','psd','psp','svg','tga','tif','tiff','webp','wmf'),
         'link'         => array('lnk','url','webloc'),
         'linux'     => array('bin','deb','rpm'),
         'palette'     => array('ase','clm','clr','gpl'),
         'raw'         => array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
-        'script'    => array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','rss','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xml','yml'),
+        'script'    => array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xml','yml'),
         'text'        => array('ans','asc','ascii','csv','diz','latex','log','markdown','md','nfo','rst','rtf','tex','text','txt'),
         'video'        => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
         'website'    => array('htm','html','mhtml','mht','xht','xhtml'),
@@ -329,6 +330,8 @@ if ($handle = opendir('.'))
                     $item['class'] = 'fa fa-book ' . FONTAWESOME_STYLE;
                 }elseif(in_array($item['lext'], $filetype['email'])){
                     $item['class'] = 'fa fa-envelope ' . FONTAWESOME_STYLE;
+                }elseif(in_array($item['lext'], $filetype['feed'])){
+                    $item['class'] = 'fa fa-rss ' . FONTAWESOME_STYLE;
                 }elseif(in_array($item['lext'], $filetype['font'])){
                     $item['class'] = 'fa fa-font ' . FONTAWESOME_STYLE;
                 }elseif(in_array($item['lext'], $filetype['image'])){
