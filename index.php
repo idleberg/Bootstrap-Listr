@@ -145,7 +145,6 @@ $ignore_list = array(
 // Hide file extension?
 define(HIDE_EXTENSION, false);
 
-
 /*** HTTP Header ***/
 header("Content-Type: text/html; charset=utf-8");
 header("Cache-Control: no-cache, must-revalidate");
@@ -180,29 +179,29 @@ if (DOC_ICONS == "glyphicons") {
 
 if (DOC_ICONS == 'fontawesome') {
     $filetype = array(
-        'archive'    => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
-        'apple'        => array('app','ipa','ipsw','saver'),
-        'audio'        => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','oga','ogg','oma','s3m','sid','umx','wav','webma','wv','xm'),
-        'calendar'    => array('icbu','ics'),
+        'archive'   => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
+        'apple'     => array('app','ipa','ipsw','saver'),
+        'audio'     => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','oga','ogg','oma','s3m','sid','umx','wav','webma','wv','xm'),
+        'calendar'  => array('icbu','ics'),
         'config'    => array('cfg','conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
-        'contact'    => array('abbu','contact','oab','pab','vcard','vcf'),
-        'database'     => array('bde','crp','db','db2','db3','dbb','dbf','dbk','dbs','dbx','edb','fdb','frm','fw','fw2','fw3','gdb','itdb','mdb','ndb','nsf','rdb','sas7mdb','sql','sqlite','tdb','wdb'),
-        'doc'         => array('abw','doc','docm','docs','docx','dot','key','numbers','odb','odf','odg','odp','odt','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wp','wp4','wp5','wp6','wp7','wpd','xls','xlsx','xps'),
-        'downloads'    => array('!bt','!qb','!ut','crdownload','download','opdownload','part'),
-        'ebook'        => array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
-        'email'        => array('eml','emlx','mbox','msg','pst'),
-        'feed'        => array('atom','rss'),
-        'font'        => array('eot','fon','otf','pfm','ttf','woff'),
-        'image'        => array('ai','bmp','cdr','emf','eps','gif','icns','ico','jp2','jpe','jpeg','jpg','jpx','pcx','pict','png','psd','psp','svg','tga','tif','tiff','webp','wmf'),
-        'link'         => array('lnk','url','webloc'),
+        'contact'   => array('abbu','contact','oab','pab','vcard','vcf'),
+        'database'  => array('bde','crp','db','db2','db3','dbb','dbf','dbk','dbs','dbx','edb','fdb','frm','fw','fw2','fw3','gdb','itdb','mdb','ndb','nsf','rdb','sas7mdb','sql','sqlite','tdb','wdb'),
+        'doc'       => array('abw','doc','docm','docs','docx','dot','key','numbers','odb','odf','odg','odp','odt','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wp','wp4','wp5','wp6','wp7','wpd','xls','xlsx','xps'),
+        'downloads' => array('!bt','!qb','!ut','crdownload','download','opdownload','part'),
+        'ebook'     => array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
+        'email'     => array('eml','emlx','mbox','msg','pst'),
+        'feed'      => array('atom','rss'),
+        'font'      => array('eot','fon','otf','pfm','ttf','woff'),
+        'image'     => array('ai','bmp','cdr','emf','eps','gif','icns','ico','jp2','jpe','jpeg','jpg','jpx','pcx','pict','png','psd','psp','svg','tga','tif','tiff','webp','wmf'),
+        'link'      => array('lnk','url','webloc'),
         'linux'     => array('bin','deb','rpm'),
-        'palette'     => array('ase','clm','clr','gpl'),
-        'raw'         => array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
+        'palette'   => array('ase','clm','clr','gpl'),
+        'raw'       => array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
         'script'    => array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xml','yml'),
-        'text'        => array('ans','asc','ascii','csv','diz','latex','log','markdown','md','nfo','rst','rtf','tex','text','txt'),
-        'video'        => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
-        'website'    => array('htm','html','mhtml','mht','xht','xhtml'),
-        'windows'    => array('dll','exe','msi','pif','ps1','scr','sys')
+        'text'      => array('ans','asc','ascii','csv','diz','latex','log','markdown','md','nfo','rst','rtf','tex','text','txt'),
+        'video'     => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
+        'website'   => array('htm','html','mhtml','mht','xht','xhtml'),
+        'windows'   => array('dll','exe','msi','pif','ps1','scr','sys')
     );
     $home = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
 } else{
@@ -213,11 +212,11 @@ if (DOC_ICONS == 'fontawesome') {
     }    
 }
 if (ENABLE_VIEWER) {
-    $audio_files = array('m4a','mp3','oga','ogg','webma','wav');
-    $image_files = array('gif','jpe','jpeg','jpg','png','svg','webp');
+    $audio_files     = array('m4a','mp3','oga','ogg','webma','wav');
+    $image_files     = array('gif','jpe','jpeg','jpg','png','svg','webp');
     $quicktime_files = array('3g2','3gp','3gp2','3gpp','mov','qt');
-    $source_files = array('bat','cmd','css','hml','htaccess','htpasswd','js','json','less','sass','scpt','scss','sh','xml','yml');
-    $video_files = array('mp4','m4v','ogv','webm');
+    $source_files    = array('bat','cmd','css','hml','htaccess','htpasswd','js','json','less','sass','scpt','scss','sh','xml','yml');
+    $video_files     = array('mp4','m4v','ogv','webm');
 }
 
 if (CUSTOM_THEME) {
@@ -225,58 +224,14 @@ if (CUSTOM_THEME) {
 } else {
     $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/';
     $cdn_post = '/bootstrap.min.css';
+    $bootswatch = array('amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','readable','simplex','slate','spacelab','superhero','united','yeti');
 
-    switch(BOOTSTRAP_THEME) {
-        case 'amelia':
-            $bootstrap_cdn = $cdn_pre .'amelia'. $cdn_post;
-            break;
-        case 'cerulean':
-            $bootstrap_cdn = $cdn_pre .'cerulean'. $cdn_post;
-            break;
-        case 'cosmo':
-            $bootstrap_cdn = $cdn_pre .'cosmo'. $cdn_post;
-            break;
-        case 'cyborg':
-            $bootstrap_cdn = $cdn_pre .'cyborg'. $cdn_post;
-            break;
-        case 'darkly':
-            $bootstrap_cdn = $cdn_pre .'darkly'. $cdn_post;
-            break;
-        case 'flatly':
-            $bootstrap_cdn = $cdn_pre .'flatly'. $cdn_post;
-            break;
-        case 'journal':
-            $bootstrap_cdn = $cdn_pre .'journal'. $cdn_post;
-            break;
-        case 'lumen':
-            $bootstrap_cdn = $cdn_pre .'lumen'. $cdn_post;
-            break;
-        case 'readable':
-            $bootstrap_cdn = $cdn_pre .'readable'. $cdn_post;
-            break;
-        case 'simplex':
-            $bootstrap_cdn = $cdn_pre .'simplex'. $cdn_post;
-            break;
-        case 'slate':
-            $bootstrap_cdn = $cdn_pre .'slate'. $cdn_post;
-            break;
-        case 'spacelab':
-            $bootstrap_cdn = $cdn_pre .'spacelab'. $cdn_post;
-            break;
-        case 'superhero':
-            $bootstrap_cdn = $cdn_pre .'superhero'. $cdn_post;
-            break;
-        case 'united':
-            $bootstrap_cdn = $cdn_pre .'united'. $cdn_post;
-            break;
-        case 'yeti':
-            $bootstrap_cdn = $cdn_pre .'yeti'. $cdn_post;
-            break;
-        default:
-            $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css';
+    if (in_array(BOOTSTRAP_THEME, $bootswatch)) {
+        $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/'.BOOTSTRAP_THEME.'/bootstrap.min.css';
+    } else {
+        $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css';
     }
 }
-
 
 // Count optional columns
 $table_count = 0;
@@ -296,14 +251,14 @@ if ($handle = opendir('.'))
         if ($file != "." && $file != ".." && $file != $this_script && !in_array($file, $ignore_list) && (substr($file, 0, 1) != '.'))
         {
             // Get file info.
-            $info                =    pathinfo($file);
+            $info                  =    pathinfo($file);
             // Organize file info.
-            $item['name']        =    $info['filename'];
-            $item['lname']        =    strtolower($info['filename']);
-            $item['bname']        =    $info['basename'];
-            $item['lbname']        =    strtolower($info['basename']);
-            $item['ext']        =    $info['extension'];
-            $item['lext']        =    strtolower($info['extension']);
+            $item['name']          =     $info['filename'];
+            $item['lname']         =     strtolower($info['filename']);
+            $item['bname']         =     $info['basename'];
+            $item['lbname']        =     strtolower($info['basename']);
+            $item['ext']           =     $info['extension'];
+            $item['lext']          =     strtolower($info['extension']);
             if($info['extension'] == '') $item['ext'] = '.';
 
             if (DOC_ICONS == 'fontawesome') {
@@ -358,20 +313,20 @@ if ($handle = opendir('.'))
                     $item['class'] = 'fa fa-file-o ' . FONTAWESOME_STYLE;        
                 }
             } else {
-                $folder_icon = 'glyphicon glyphicon-folder-close';
+                $folder_icon   = 'glyphicon glyphicon-folder-close';
                 $item['class'] = 'glyphicon glyphicon-file';
             }
 
             if ($table_options['size'] || $table_options['age'])
-                $stat                =    stat($file); // ... slow, but faster than using filemtime() & filesize() instead.
+                $stat          =    stat($file); // ... slow, but faster than using filemtime() & filesize() instead.
 
             if ($table_options['size']) {
-                $item['bytes']        =    $stat['size'];
-                $item['size']        =    bytes_to_string($stat['size'], 2);
+                $item['bytes'] =    $stat['size'];
+                $item['size']  =    bytes_to_string($stat['size'], 2);
             }
 
             if ($table_options['age']) {
-                $item['mtime']        =    $stat['mtime'];
+                $item['mtime'] =    $stat['mtime'];
             }
             
             // Add files to the file list...
@@ -501,9 +456,6 @@ function time_ago($timestamp, $recursive = 0)
 
 
 /*** HTML LOGIC ***/
-
-// Set HTTP header
-header('Content-Type: text/html; charset=utf-8');
 
 // Set HTML header
 $header = "  <meta charset=\"utf-8\">" . PHP_EOL;
