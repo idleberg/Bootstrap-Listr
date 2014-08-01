@@ -38,7 +38,7 @@ define(RESPONSIVE_TABLE, true);
 define(ENABLE_SORT, true);
 
 // Toggle media viewer
-define(ENABLE_VIEWER, true);
+define(ENABLE_VIEWER, false);
 
 /* Size of modal used for media viewer (pixel widths refer to standard theme)
  * 'modal-sm' - 300px
@@ -52,7 +52,7 @@ define(MODAL_SIZE, 'modal-lg');
  *   'glyphicons' - Bootstrap glyphicons
  *  'fontawesome' - Font Awesome icons (default)
  */
-define(DOC_ICONS, 'fontawesome');
+define(DOC_ICONS, 'glyphicons');
 
 /* Bootstrap Themes:
  *    'default' - http://getbootstrap.com
