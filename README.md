@@ -8,7 +8,7 @@ A simple PHP script to display folders and files on a server in a well formed li
 
 ### GitHub
 
-Download the latest [`stable release`](https://github.com/idleberg/Bootstrap-Listr/releases) or clone the repository for the latest bleeding-edge development version.
+Download the latest [stable release](https://github.com/idleberg/Bootstrap-Listr/releases) or clone the repository for the latest bleeding-edge development version.
 
 ## Usage
 
