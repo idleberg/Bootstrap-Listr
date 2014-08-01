@@ -12,7 +12,7 @@ Download the latest [stable release](https://github.com/idleberg/Bootstrap-Listr
 
 ## Usage
 
-I am unaware of a method to use one index file for several directories at once (feel free to correct me!), hence you will have to copy the index in every directory where you would like to use it. Since Bootstrap Listr is a one-file solution, doing so is relatively easy.
+Once you deployed to your server, move all your files to the `_public` subfolder (change the folder in the head of the script). You might have to enable the `RewriteBase` setting in the `.htaccess` file, depending on your Apache settings.
 
 ### Options
 
