@@ -128,6 +128,7 @@ $ignore_list = array(
     '.git',
     '.gitattributes',
     '.gitignore',
+    '.gitmodules',
     '.hg',
     '.hgignore',
     '.hgtags',
