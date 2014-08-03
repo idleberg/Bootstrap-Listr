@@ -134,6 +134,7 @@ $ignore_list = array(
     '.hgtags',
     '.htaccess',
     '.htpasswd',
+    '.jshintrc',
     '.npmignore',
     '.Spotlight-V100',
     '.svn',
