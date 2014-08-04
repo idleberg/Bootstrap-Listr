@@ -12,7 +12,7 @@ Download the latest [stable release](https://github.com/idleberg/Bootstrap-Listr
 
 ## Usage
 
-Once you deployed to your server, move all your files to the `_public` subfolder (change the folder in the head of the script). You might have to enable the `RewriteBase` setting in the `.htaccess` file, depending on your Apache settings.
+Once you deployed to your server, move all your files to the `_public` subfolder (change the folder in the head of the script). You might have to enable the `RewriteBase` setting in the `.htaccess` file (and edit the folder name), depending on your Apache settings.
 
 ### Options
 
