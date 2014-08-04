@@ -15,141 +15,8 @@ error_reporting(1);
  */
 
 
-/*** SETTINGS ***/
+require_once('listr-config.php');
 
-/* Path where your files & folders are located
- */
-define(FOLDER_ROOT, './_public/');
-
-/* Table Styles (can be combined, e.g. 'table-hover table-striped')
- *     'table-hover' - enable a hover state on table rows (default)
- *   'table-striped' - add zebra-striping 
- *  'table-bordered' - show borders on all sides of the table and cells
- * 'table-condensed' - make tables more compact by cutting cell padding in half
- */
-define(TABLE_STYLE, 'table-hover');
-
-/* Responsive Table
- * See http://getbootstrap.com/css/#tables-responsive for details
- */
-define(RESPONSIVE_TABLE, true);
-
-// Toggle column sorting
-define(ENABLE_SORT, true);
-
-// Toggle media viewer
-define(ENABLE_VIEWER, false);
-
-/* Size of modal used for media viewer (pixel widths refer to standard theme)
- * 'modal-sm' - 300px
- *         '' - 600px
- * 'modal-lg' - 900px (default)
- */
-define(MODAL_SIZE, 'modal-lg');
-
-/* Document Icons:
- *         'none' - No icons
- *   'glyphicons' - Bootstrap glyphicons
- *  'fontawesome' - Font Awesome icons (default)
- */
-define(DOC_ICONS, 'glyphicons');
-
-/* Bootstrap Themes:
- *    'default' - http://getbootstrap.com
- * 
- *     'amelia' - http://bootswatch.com/amelia/
- *   'cerulean' - http://bootswatch.com/cerulean/
- *      'cosmo' - http://bootswatch.com/cosmo/
- *     'cyborg' - http://bootswatch.com/cyborg/
- *     'darkly' - http://bootswatch.com/darkly/
- *     'flatly' - http://bootswatch.com/flatly/
- *    'journal' - http://bootswatch.com/journal/
- *      'lumen' - http://bootswatch.com/lumen/
- *   'readable' - http://bootswatch.com/readable
- *    'simplex' - http://bootswatch.com/simplex
- *      'slate' - http://bootswatch.com/slate/
- *   'spacelab' - http://bootswatch.com/spacelab/
- *  'superhero' - http://bootswatch.com/superhero/
- *     'united' - http://bootswatch.com/united
- *       'yeti' - http://bootswatch.com/yeti/
- */
-define(BOOTSTRAP_THEME, 'default');
-
-/* Font Awesome Styles (can be combined, e.g. 'fa-lg fa-border'):
- *      'fa-fw' – fixed width (default)
- *      'fa-lg' – 33% increase
- *      'fa-2x' – 2x size
- *      'fa-3x' – 3x size
- *      'fa-4x' – 4x size
- *      'fa-5x' – 5x size
- *  'fa-border' – display border around icon
- *
- * Visit http://fontawesome.io/examples/ for further options
- */
-define(FONTAWESOME_STYLE,'fa-fw');
-
-// External resources
-   define(FONT_AWESOME, '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
-     define(CUSTOM_THEME, null);
-    define(GOOGLE_FONT, null); // e.g. 'Open+Sans' or 'Open+Sans:400,300,700'
-         define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
-    define(BOOTSTRAPJS, '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js');
-
-// Browser and Device Icons
-          define(FAV_ICON, ''); // 16x16 or 32x32 
-       define(IPHONE_ICON, ''); // 57x57
-define(IPHONE_ICON_RETINA, ''); // 114x114
-         define(IPAD_ICON, ''); // 72x72
-  define(IPAD_ICON_RETINA, ''); // 144x144
-  define(METRO_TILE_COLOR, ''); //
-  define(METRO_TILE_IMAGE, ''); // 144x144
-
-// Display link to Bootstrap-Listr in footer
-define(GIVE_KUDOS, true);
-
-// Google Analytics ID
-define(ANALYTICS_ID, ''); // UA-XXXXX-Y or UA-XXXXX-YY
-
-// Configure optional table columns
-$table_options = array (
-    'size'    => true,
-    'age'    => true
-);
-
-// Set sorting properties.
-$sort = array(
-    array('key'=>'lname',    'sort'=>'asc'), // ... this sets the initial sort "column" and order ...
-    array('key'=>'size',    'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
-);
-
-// Files you want to hide form the listing
-$ignore_list = array(
-    '.DAV',
-    '.DS_Store',
-    '.bzr',
-    '.bzrignore',
-    '.bzrtags',
-    '.git',
-    '.gitattributes',
-    '.gitignore',
-    '.gitmodules',
-    '.hg',
-    '.hgignore',
-    '.hgtags',
-    '.htaccess',
-    '.htpasswd',
-    '.jshintrc',
-    '.npmignore',
-    '.Spotlight-V100',
-    '.svn',
-    '__MACOSX',
-    'ehthumbs.db',
-    'robots.txt',
-    'Thumbs.db'
-);
-
-// Hide file extension?
-define(HIDE_EXTENSION, false);
 
 // Get this folder and files name.
 $this_script = basename(__FILE__);
@@ -167,35 +34,35 @@ $dir_name = explode("/", $this_folder);
 
 
 if(substr($navigation_dir, -1) != "/"){
-	if (file_exists($navigation_dir)) {
+    if (file_exists($navigation_dir)) {
 
-		// GET MIME 
-		$mime_file = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $navigation_dir);
-		
-		// Direct download
-		if($mime_file == "inode/x-empty" || $mime_file == ""){
-			header('Content-Description: File Transfer');
-			header('Content-Type: application/octet-stream');
-			header('Content-Disposition: attachment; filename="'.basename($navigation_dir).'"');
-		}
-		// Recognizable mime
-		else{
-			header('Content-Type: ' . $mime_file);
-		}
-		header('Expires: 0');
-		header('Cache-Control: must-revalidate');
-		header("Accept-Ranges: bytes");
-		header('Pragma: public');
-		header('Content-Length: ' . filesize($navigation_dir));
-		ob_clean();
-		flush();
-		readfile($navigation_dir);
-		exit;	    
-	}
-	else{
-		echo "404 — Not found";
-	}
-	exit;
+        // GET MIME 
+        $mime_file = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $navigation_dir);
+        
+        // Direct download
+        if($mime_file == "inode/x-empty" || $mime_file == ""){
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="'.basename($navigation_dir).'"');
+        }
+        // Recognizable mime
+        else{
+            header('Content-Type: ' . $mime_file);
+        }
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header("Accept-Ranges: bytes");
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($navigation_dir));
+        ob_clean();
+        flush();
+        readfile($navigation_dir);
+        exit;       
+    }
+    else{
+        echo "404 — Not found";
+    }
+    exit;
 }
 
 // Declare vars used beyond this point.
@@ -245,9 +112,9 @@ if (DOC_ICONS == 'fontawesome') {
 }
 if (ENABLE_VIEWER) {
     $audio_files     = array('m4a','mp3','oga','ogg','webma','wav');
-    $image_files     = array('gif','jpe','jpeg','jpg','png','svg','webp');
+    $image_files     = array('gif','ico','jpe','jpeg','jpg','png','svg','webp');
     $quicktime_files = array('3g2','3gp','3gp2','3gpp','mov','qt');
-    $source_files    = array('bat','cmd','css','hml','htaccess','htpasswd','js','json','less','sass','scpt','scss','sh','xml','yml');
+    $source_files    = array('bat','cmd','css','hml','htaccess','jade','js','json','less','sass','scpt','scss','sh','xml','yml');
     $video_files     = array('mp4','m4v','ogv','webm');
 }
 
@@ -349,30 +216,30 @@ if ($handle = opendir($navigation_dir))
                 $item['class'] = 'glyphicon glyphicon-file';
             }
 
-			if ($table_options['size'] || $table_options['age'])
-				$stat				=	stat($navigation_dir.$file); // ... slow, but faster than using filemtime() & filesize() instead.
+            if ($table_options['size'] || $table_options['age'])
+                $stat               =   stat($navigation_dir.$file); // ... slow, but faster than using filemtime() & filesize() instead.
 
-			if ($table_options['size']) {
-				$item['bytes']		=	$stat['size'];
-				$item['size']		=	bytes_to_string($stat['size'], 2);
-			}
+            if ($table_options['size']) {
+                $item['bytes']      =   $stat['size'];
+                $item['size']       =   bytes_to_string($stat['size'], 2);
+            }
 
-			if ($table_options['age']) {
-				$item['mtime']		=	$stat['mtime'];
-			}
-			
-			// Add files to the file list...
-			if(is_dir($navigation_dir.$file)){
-				array_push($folder_list, $item);
-			}
-			// ...and folders to the folder list.
-			else{
-				array_push($file_list, $item);
-			}
-			// Clear stat() cache to free up memory (not really needed).
-			clearstatcache();
-			// Add this items file size to this folders total size
-			$total_size += $item['bytes'];
+            if ($table_options['age']) {
+                $item['mtime']      =   $stat['mtime'];
+            }
+            
+            // Add files to the file list...
+            if(is_dir($navigation_dir.$file)){
+                array_push($folder_list, $item);
+            }
+            // ...and folders to the folder list.
+            else{
+                array_push($file_list, $item);
+            }
+            // Clear stat() cache to free up memory (not really needed).
+            clearstatcache();
+            // Add this items file size to this folders total size
+            $total_size += $item['bytes'];
         }
     }
     // Close the directory when finished.
@@ -401,20 +268,20 @@ if ($total_folders > 0){
     $contained = $total_folders.' '.$funit;
 }
 if ($total_files > 0){
-	if($total_files > 1){
-		$iunit = 'files';
-	}else{
-		$iunit = 'file';
-	}
-	if ($total_folders > 0){
-		$contained .= ' and ';
-	}
-	if (isset($contained)){
-		$contained .= $total_files.' '.$iunit;
-	}else{
-		$contained = $total_files.' '.$iunit;	
-	}
-	$contained = $contained.', '.$total_size['num'].' '.$total_size['str'].' in total';
+    if($total_files > 1){
+        $iunit = 'files';
+    }else{
+        $iunit = 'file';
+    }
+    if ($total_folders > 0){
+        $contained .= ' and ';
+    }
+    if (isset($contained)){
+        $contained .= $total_files.' '.$iunit;
+    }else{
+        $contained = $total_files.' '.$iunit;   
+    }
+    $contained = $contained.', '.$total_size['num'].' '.$total_size['str'].' in total';
 }
 
 /*** FUNCTIONS ***/
@@ -534,13 +401,13 @@ if (ANALYTICS_ID) {
 // Set breadcrumbs
 $breadcrumbs = $breadcrumbs."      <li><a href=\"".$absolute_path."\">$home</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
-	if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
-		$parent = '';
-		for ($i = 0; $i <= $dir; $i++):
-			$parent .= rawurlencode($dir_name[$i]) . '/';
-		endfor;
-    	$breadcrumbs = $breadcrumbs."      <li><a href=\"".$absolute_path.$parent."\">".utf8_encode($name)."</a></li>" . PHP_EOL;
-	endif;
+    if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
+        $parent = '';
+        for ($i = 0; $i <= $dir; $i++):
+            $parent .= rawurlencode($dir_name[$i]) . '/';
+        endfor;
+        $breadcrumbs = $breadcrumbs."      <li><a href=\"".$absolute_path.$parent."\">".utf8_encode($name)."</a></li>" . PHP_EOL;
+    endif;
 endforeach;
 
 // Set responsiveness
