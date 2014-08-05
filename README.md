@@ -12,7 +12,7 @@ Download the latest [stable release](https://github.com/idleberg/Bootstrap-Listr
 
 ## Usage
 
-I am unaware of a method to use one index file for several directories at once (feel free to correct me!), hence you will have to copy the index in every directory where you would like to use it. Since Bootstrap Listr is a one-file solution, doing so is relatively easy.
+This version of Bootstrap Listr does not support subfolders, hence you will have to copy the index in every directory where you would like to use it. You can test the [2.0-dev](https://github.com/idleberg/Bootstrap-Listr/tree/2.0-dev) branch for subfolder support.
 
 ### Options
 
