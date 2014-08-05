@@ -113,7 +113,7 @@ if (ENABLE_VIEWER) {
     $audio_files     = array('m4a','mp3','oga','ogg','webma','wav');
     $image_files     = array('gif','ico','jpe','jpeg','jpg','png','svg','webp');
     $quicktime_files = array('3g2','3gp','3gp2','3gpp','mov','qt');
-    $source_files    = array('bat','cmd','css','hml','htaccess','jade','js','json','less','sass','scpt','scss','sh','xml','yml');
+    $source_files    = array('applescript','bat','cmd','css','hml','jade','js','json','less','markdown','md','pl','py','rb','rst','sass','scss','sh','txt','xml','yml');
     $video_files     = array('mp4','m4v','ogv','webm');
 }
 
