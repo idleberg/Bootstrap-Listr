@@ -37,7 +37,7 @@ define(MODAL_SIZE, 'modal-lg');
  *   'glyphicons' - Bootstrap glyphicons
  *  'fontawesome' - Font Awesome icons (default)
  */
-define(DOC_ICONS, 'fontawesome');
+define(DOC_ICONS, 'glyphicons');
 
 /* Bootstrap Themes:
  *    'default' - http://getbootstrap.com
@@ -58,7 +58,7 @@ define(DOC_ICONS, 'fontawesome');
  *     'united' - http://bootswatch.com/united
  *       'yeti' - http://bootswatch.com/yeti/
  */
-define(BOOTSTRAP_THEME, 'flatly');
+define(BOOTSTRAP_THEME, 'default');
 
 /* Font Awesome Styles (can be combined, e.g. 'fa-lg fa-border'):
  *      'fa-fw' – fixed width (default)
