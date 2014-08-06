@@ -67,7 +67,7 @@
    *   'glyphicons' - Bootstrap glyphicons
    *  'fontawesome' - Font Awesome icons (default)
    */
-  define(DOC_ICONS, 'fontawesome');
+  define(DOC_ICONS, 'glyphicons');
 
   /* Bootstrap Themes:
    *    'default' - http://getbootstrap.com
