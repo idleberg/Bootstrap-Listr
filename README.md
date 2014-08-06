@@ -20,10 +20,14 @@ You can configure a number of settings in the header of the script file:
 
 * Optional columns for size, modified date, permissions
 * Document icons
+* File viewer for images, videos, audio and source code
 * Column sorting
 * Responsive tables
 * List of ignored files
 * Default location for JavaScript libraries and style sheets
+* Syntax highlighting in file viewer
+* Save to Dropbox
+* Share buttons
 * Google Analytics
 
 ### Naming
@@ -45,7 +49,11 @@ Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) the
 
 ### Viewer
 
-To load images, videos and audio into a [Bootstrap Modal](http://getbootstrap.com/javascript/#modals), you can enable the viewer in the script header. The required Bootstrap JavaScript library will be added to your page automatically.
+To load images, videos, audio and source code into a [Bootstrap Modal](http://getbootstrap.com/javascript/#modals), you can enable the viewer in the script header. The required Bootstrap JavaScript library will be added to your page automatically.
+
+#### Syntax Highlighter
+
+Source code in the viewer modal can make use of [highlight.js](http://highlightjs.org/). To enable it, simply [provide sources](http://cdnjs.com/libraries/highlight.js/) for the JavaScript and style-sheets. Due to performance concerns when applied on huge files, the highlighter will only apply once the button at the bottom of the viewer modal is pressed.
 
 ### Libraries & Style-sheets
 
