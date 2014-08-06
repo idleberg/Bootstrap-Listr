@@ -18,22 +18,22 @@ error_reporting(1);
 require_once('listr-config.php');
 
 // Get this folder and files name.
-$this_script = basename(__FILE__);
+$this_script    = basename(__FILE__);
 
-$get_path = (isset($_GET['path'])) ? $_GET['path'] : "";
-$this_folder = str_replace('..', '', $get_path);
-$this_folder = str_replace($this_script, '', $this_folder);
-$this_folder = str_replace('index.php', '', $this_folder);
-$this_folder = str_replace('//', '/', $this_folder);
+$get_path       = (isset($_GET['path'])) ? $_GET['path'] : "";
+$this_folder    = str_replace('..', '', $get_path);
+$this_folder    = str_replace($this_script, '', $this_folder);
+$this_folder    = str_replace('index.php', '', $this_folder);
+$this_folder    = str_replace('//', '/', $this_folder);
 
 $navigation_dir = FOLDER_ROOT .$this_folder;
+$root_dir       = dirname($_SERVER['PHP_SELF']);
 
-$absolute_path = str_replace(str_replace("%2F", "/", rawurlencode($this_folder)), '', $_SERVER['REQUEST_URI']);
-$dir_name = explode("/", $this_folder);
-
+$absolute_path  = str_replace(str_replace("%2F", "/", rawurlencode($this_folder)), '', $_SERVER['REQUEST_URI']);
+$dir_name       = explode("/", $this_folder);
 
 if(substr($navigation_dir, -1) != "/"){
-    if (file_exists($navigation_dir)) {
+    if(file_exists($navigation_dir)){
 
         // GET MIME 
         $mime_file = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $navigation_dir);
@@ -118,7 +118,7 @@ if (ENABLE_VIEWER) {
     $audio_files     = array('m4a','mp3','oga','ogg','webma','wav');
     $image_files     = array('gif','ico','jpe','jpeg','jpg','png','svg','webp');
     $quicktime_files = array('3g2','3gp','3gp2','3gpp','mov','qt');
-    $source_files    = array('applescript','bat','cmd','css','hml','jade','js','json','less','markdown','md','pl','py','rb','rst','sass','scss','sh','txt','xml','yml');
+    $source_files    = array('bat','cmd','css','hml','jade','js','json','less','markdown','md','pl','py','rb','rst','sass','scpt','scss','sh','txt','xml','yml');
     $video_files     = array('mp4','m4v','ogv','webm');
 }
 
@@ -290,14 +290,15 @@ if ($total_files > 0){
 
 /*** FUNCTIONS ***/
 
-function set_404_error() {
-    header('HTTP/1.0 404 Not Found');
-    echo "404 &mdash; Page not found";
-}
-
 /**
  *    http://us.php.net/manual/en/function.array-multisort.php#83117
  */
+
+function set_404_error() {
+    header('HTTP/1.0 404 Not Found');
+    echo "404 &mdash; Page not found";
+    // readfile('static/404.html');
+}
  
 function php_multisort($data,$keys)
 {
@@ -387,6 +388,9 @@ if (DOC_ICONS == "fontawesome") {
 }
 if (ENABLE_VIEWER) {
     $modal_css = ".modal img{display:block;margin:0 auto;max-width:100%}.modal video,.modal audio{width:100%}.viewer-wrapper{position:relative;padding-bottom:56.25%;height:0},.viewer-wrapper embed,.viewer-wrapper object{position:absolute;top:0;left:0;width:100%;height:100%}";
+    if ((HIGHLIGHTER_CSS) && (HIGHLIGHTER_JS)) {
+        $header = $header."  <link rel=\"stylesheet\" href=\"".HIGHLIGHTER_CSS."\" />" . PHP_EOL;
+    }
 }
 $header = $header."  <style type=\"text/css\">th{cursor:pointer}".$modal_css."</style>" . PHP_EOL;
 if (GOOGLE_FONT) {
@@ -398,8 +402,15 @@ if ( (ENABLE_SORT) || (ENABLE_VIEWER) ) {
     $footer = $footer."  <script type=\"text/javascript\" src=\"".JQUERY."\"></script>" . PHP_EOL;
 }
 if (ENABLE_VIEWER) {
-    $footer = $footer."  <script type=\"text/javascript\" src=\"".BOOTSTRAPJS."\"></script>" . PHP_EOL;
-    $footer = $footer."  <script type=\"text/javascript\">$(\".audio-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<audio src=\"'+t+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>'),$(\".fullview\").attr(\"href\",t).text(\"Listen\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".flash-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<div class=\"viewer-wrapper\"><object width=\"100%\" height=\"100%\" type=\"application/x-shockwave-flash\" data=\"'+t+'\"><param name=\"movie\" value=\"'+t+'\"><param name=\"quality\" value=\"high\"></object></div>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".image-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<img src=\"'+t+'\"/>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".video-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<video src=\"'+t+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".quicktime-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<div class=\"viewer-wrapper\"><embed width=\"100%\" height=\"100%\" src=\"'+t+'\" type=\"video/quicktime\" controller=\"true\" showlogo=\"false\" scale=\"aspect\"></div>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".source-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$.ajax(t,{dataType:'text',success:function(data){\$(\".modal-body\").empty().append('<pre><code id=\"source\"></code></pre>');$(\"#source\").text(data);$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")}})});$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var e=document.getElementById(\"player\");e&&e.pause()});</script>" . PHP_EOL;
+    $footer = $footer."  <script type=\"text/javascript\" src=\"".BOOTSTRAP_JS."\"></script>" . PHP_EOL;
+    if( (SHARE_BUTTON) && (DROPBOX_KEY) ){
+        $footer = $footer."  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"nzeq1welehd2rug\"></script>" . PHP_EOL;
+    }
+    $footer = $footer."  <script type=\"text/javascript\">$(function(){function a(e,b,d,c){\$(\".modal-body\").empty().append(e);$(\".fullview\").attr(\"href\",d).text(b);$(\".save-dropbox\").attr(\"href\",d);$(\".email-link\").attr(\"href\",\"mailto:?body=\"+c);$(\".twitter-link\").attr(\"href\",\"http://twitter.com/share?url=\"+c);$(\".facebook-link\").attr(\"href\",\"http://www.facebook.com/sharer/sharer.php?u=\"+c);$(\".google-link\").attr(\"href\",\"https://plus.google.com/share?url=\"+c);$(\".modal-title\").text(decodeURIComponent(d));$(\"#viewer-modal\").modal(\"show\")}$(\".audio-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<audio src=\"'+c+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>',\"Listen\",c,b)});$(\".flash-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<div class=\"viewer-wrapper\"><object width=\"100%\" height=\"100%\" type=\"application/x-shockwave-flash\" data=\"'+c+'\"><param name=\"movie\" value=\"'+c+'\"><param name=\"quality\" value=\"high\"></object></div>',\"View\",c,b)});$(\".image-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<img src=\"'+c+'\"/>',\"View\",c,b)});$(\".video-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<video src=\"'+c+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>',\"View\",c,b)});$(\".quicktime-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<div class=\"viewer-wrapper\"><embed width=\"100%\" height=\"100%\" src=\"'+c+'\" type=\"video/quicktime\" controller=\"true\" showlogo=\"false\" scale=\"aspect\"></div>',\"View\",c,b)});$(\".source-modal\").click(function(f){f.preventDefault();$(\".highlight\").removeClass(\"hidden\").removeAttr(\"disabled\");var c=$(this).attr(\"href\"),b=$(this).get(0).href;var d=c.split(\".\").pop();a('<pre><code id=\"source\" class=\"'+d+'\"></code></pre>',\"View\",c,b);$.ajax(c,{dataType:\"text\",success:function(e){\$(\"#source\").text(e)}})});$(\".highlight\").click(function(c){c.preventDefault();$(\".highlight\").attr(\"disabled\",\"disabled\");$(\"#source\").each(function(d,e){hljs.highlightBlock(e)});var b=$(\"code\").css(\"background-color\");$(\"pre\").css(\"background-color\",b)});$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var b=document.getElementById(\"player\");b&&b.pause()});$(\".save-dropbox\").click(function(c){c.preventDefault();var b=$(this).get(0).href;Dropbox.save(b)})});</script>" . PHP_EOL;
+    if( (HIGHLIGHTER_JS) && (HIGHLIGHTER_CSS) ){
+        $footer = $footer."  <script type=\"text/javascript\" src=\"".HIGHLIGHTER_JS."\"></script>" . PHP_EOL;
+        // $footer = $footer."  <script type=\"text/javascript\" src=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.0/languages/css.min.js\"></script>" . PHP_EOL;
+    }
 }
 if (ENABLE_SORT) {
     $footer = $footer."  <script type=\"text/javascript\">(function(c){c.fn.stupidtable=function(b){return this.each(function(){var a=c(this);b=b||{};b=c.extend({},c.fn.stupidtable.default_sort_fns,b);a.on(\"click.stupidtable\",\"th\",function(){var d=c(this),f=0,g=c.fn.stupidtable.dir;a.find(\"th\").slice(0,d.index()).each(function(){var a=c(this).attr(\"colspan\")||1;f+=parseInt(a,10)});var e=d.data(\"sort-default\")||g.ASC;d.data(\"sort-dir\")&&(e=d.data(\"sort-dir\")===g.ASC?g.DESC:g.ASC);var l=d.data(\"sort\")||null;null!==l&&(a.trigger(\"beforetablesort\",{column:f, direction:e}),a.css(\"display\"),setTimeout(function(){var h=[],m=b[l],k=a.children(\"tbody\").children(\"tr\");k.each(function(a,b){var d=c(b).children().eq(f),e=d.data(\"sort-value\"),d=\"undefined\"!==typeof e?e:d.text();h.push([d,b])});h.sort(function(a,b){return m(a[0],b[0])});e!=g.ASC&&h.reverse();k=c.map(h,function(a){return a[1]});a.children(\"tbody\").append(k);a.find(\"th\").data(\"sort-dir\",null).removeClass(\"sorting-desc sorting-asc\");d.data(\"sort-dir\",e).addClass(\"sorting-\"+e);a.trigger(\"aftertablesort\", {column:f,direction:e});a.css(\"display\")},10))})})};c.fn.stupidtable.dir={ASC:\"asc\",DESC:\"desc\"};c.fn.stupidtable.default_sort_fns={\"int\":function(b,a){return parseInt(b,10)-parseInt(a,10)},\"float\":function(b,a){return parseFloat(b)-parseFloat(a)},string:function(b,a){return b<a?-1:b>a?1:0},\"string-ins\":function(b,a){b=b.toLowerCase();a=a.toLowerCase();return b<a?-1:b>a?1:0}}})(jQuery);$(\"#bs-table\").stupidtable();</script>" . PHP_EOL;
@@ -408,7 +419,7 @@ if (ANALYTICS_ID) {
     $footer = $footer."  <script type=\"text/javascript\">var _gaq=_gaq||[];_gaq.push([\"_setAccount\",\"".ANALYTICS_ID."\"]);_gaq.push([\"_trackPageview\"]);(function(){var ga=document.createElement(\"script\");ga.type=\"text/javascript\";ga.async=true;ga.src=(\"https:\"==document.location.protocol?\"https://ssl\":\"http://www\")+\".google-analytics.com/ga.js\";var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(ga,s)})();</script>" . PHP_EOL;
 }
 // Set breadcrumbs
-$breadcrumbs = $breadcrumbs."      <li><a href=\"".$absolute_path."\">$home</a></li>" . PHP_EOL;
+$breadcrumbs = $breadcrumbs."      <li><a href=\"".$root_dir."\">$home</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
     if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
         $parent = '';
@@ -605,8 +616,31 @@ header("Cache-Control: no-cache, must-revalidate");
           </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
+<? if ((HIGHLIGHTER_JS) && (HIGHLIGHTER_CSS)) { ?>
+            <button type="button" class="pull-left btn btn-link highlight hidden">Apply code highlighting</button>
+<? } ?>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <a class="btn btn-primary fullview">View</a>
+<? if (SHARE_BUTTON) { ?>
+            <div class="btn-group">
+              <a class="btn btn-primary fullview"></a>
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+<? if (DROPBOX_KEY) { ?>
+                <li><a class="save-dropbox">Save to Dropbox</a></li>
+                <li class="divider"></li>
+<? } ?>
+                <li><a class="email-link">Email</a></li>
+                <li><a class="facebook-link">Facebook</a></li>
+                <li><a class="google-link">Google+</a></li>
+                <li><a class="twitter-link">Twitter</a></li>
+              </ul>
+            </div>
+<? } else { ?>
+            <a class="btn btn-primary fullview"></a>
+<? } ?>
           </div>
         </div>
       </div>
