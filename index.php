@@ -118,7 +118,7 @@ if (ENABLE_VIEWER) {
 }
 
 if (CUSTOM_THEME) {
-    $bootstrap_cdn = CUSTOM_CSS;
+    $bootstrap_cdn = CUSTOM_THEME;
 } else {
     $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/';
     $cdn_post = '/bootstrap.min.css';
