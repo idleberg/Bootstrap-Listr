@@ -59,9 +59,14 @@ if(substr($navigation_dir, -1) != "/"){
         exit;       
     }
     else{
-        echo "404 — Not found";
+        set_404_error();
     }
     exit;
+} else {
+    if(!file_exists($navigation_dir)){
+        set_404_error();
+        exit;  
+    }
 }
 
 // Declare vars used beyond this point.
@@ -284,6 +289,11 @@ if ($total_files > 0){
 }
 
 /*** FUNCTIONS ***/
+
+function set_404_error() {
+    header('HTTP/1.0 404 Not Found');
+    echo "404 &mdash; Page not found";
+}
 
 /**
  *    http://us.php.net/manual/en/function.array-multisort.php#83117
