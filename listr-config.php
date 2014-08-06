@@ -27,8 +27,8 @@
   define(ENABLE_VIEWER, true);
   // Add share buttons
   define(SHARE_BUTTON, false);
-  // Add 'SHare to Dropbox'
-  define(DROPBOX_KEY, false);
+  // Add your Dropbox API key to enable 'Share to Dropbox' (Get it at https://www.dropbox.com/developers/apps/create?app_type_checked=dropins)
+  define(DROPBOX_KEY, '');
 
   // Display link to Bootstrap-Listr in footer
   define(GIVE_KUDOS, true);
