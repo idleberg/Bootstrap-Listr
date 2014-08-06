@@ -94,6 +94,7 @@ if (DOC_ICONS == 'fontawesome') {
         'ebook'     => array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
         'email'     => array('eml','emlx','mbox','msg','pst'),
         'feed'      => array('atom','rss'),
+        'flash'     => array('fla','flv','swf'),
         'font'      => array('eot','fon','otf','pfm','ttf','woff'),
         'image'     => array('ai','bmp','cdr','emf','eps','gif','icns','ico','jp2','jpe','jpeg','jpg','jpx','pcx','pict','png','psd','psp','svg','tga','tif','tiff','webp','wmf'),
         'link'      => array('lnk','url','webloc'),
@@ -118,7 +119,7 @@ if (ENABLE_VIEWER) {
     $audio_files     = array('m4a','mp3','oga','ogg','webma','wav');
     $image_files     = array('gif','ico','jpe','jpeg','jpg','png','svg','webp');
     $quicktime_files = array('3g2','3gp','3gp2','3gpp','mov','qt');
-    $source_files    = array('bat','cmd','css','hml','jade','js','json','less','markdown','md','pl','py','rb','rst','sass','scpt','scss','sh','txt','xml','yml');
+    $source_files    = array('atom','bat','cmd','css','hml','jade','js','json','less','markdown','md','pl','py','rb','rss','rst','sass','scpt','scss','sh','txt','xml','yml');
     $video_files     = array('mp4','m4v','ogv','webm');
 }
 
@@ -190,6 +191,8 @@ if ($handle = opendir($navigation_dir))
                     $item['class'] = 'fa fa-envelope ' . FONTAWESOME_STYLE;
                 }elseif(in_array($item['lext'], $filetype['feed'])){
                     $item['class'] = 'fa fa-rss ' . FONTAWESOME_STYLE;
+                }elseif(in_array($item['lext'], $filetype['flash'])){
+                    $item['class'] = 'fa fa-bolt ' . FONTAWESOME_STYLE;
                 }elseif(in_array($item['lext'], $filetype['font'])){
                     $item['class'] = 'fa fa-font ' . FONTAWESOME_STYLE;
                 }elseif(in_array($item['lext'], $filetype['image'])){
