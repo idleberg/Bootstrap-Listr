@@ -1,1 +1,13 @@
+app/
+bower_components/
+crack.sh
+generators/
+Gruntfile.js
+gulpfile.js
+listr-*.php
+node_modules/
+package.json
+package.json
+src/
+temp/
 todo.md
