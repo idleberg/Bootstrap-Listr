@@ -70,7 +70,7 @@ This project is built upon—or includes—code from the following people:
 Contributors:
 
 * [@melalj](https://github.com/melalj) - subfolder support
-* [@Zerquix18](https://github.com/Zerquix18)
+* [@Zerquix18](https://github.com/Zerquix18) - security fixes
 
 ## License
 
