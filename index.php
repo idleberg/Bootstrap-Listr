@@ -47,6 +47,7 @@ define(MODAL_SIZE, 'modal-lg');
  *         'none' - No icons
  *   'glyphicons' - Bootstrap glyphicons (default)
  *  'fontawesome' - Font Awesome icons
+ *     'fa-files' - Font Awesome file icons
  */
 define(DOC_ICONS, 'glyphicons');
 
@@ -175,7 +176,7 @@ $total_size = 0;
 
 if (DOC_ICONS == "glyphicons") { 
     $icon_tag = 'span';
-} else if (DOC_ICONS == "fontawesome") { 
+} else if (DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") { 
     $icon_tag = 'i';
 }
 
@@ -206,7 +207,21 @@ if (DOC_ICONS == 'fontawesome') {
         'windows'   => array('dll','exe','msi','pif','ps1','scr','sys')
     );
     $home = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
-} else{
+} else if (DOC_ICONS == 'fa-files'){
+    $filetype = array(
+        'archive'    => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
+        'audio'      => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','oga','ogg','oma','s3m','sid','umx','wav','webma','wv','xm'),
+        'excel'      => array('xls','xlsx','numbers'),
+        'image'      => array('ai','bmp','cdr','emf','eps','gif','icns','ico','jp2','jpe','jpeg','jpg','jpx','pcx','pict','png','psd','psp','svg','tga','tif','tiff','webp','wmf'),
+        'pdf'        => array('pdf'),
+        'powerpoint' => array('pot','ppt','pptx','key'),
+        'script'     => array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xml','yml'),
+        'text'       => array('ans','asc','ascii','csv','diz','latex','log','markdown','md','nfo','rst','rtf','tex','text','txt'),
+        'video'      => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
+        'word'       => array('doc','docm','docs','docx','dot','pages'),
+    );
+    $home = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
+} else {
     if (DOC_ICONS == 'glyphicons') {
         $home = "<span class=\"glyphicon glyphicon-home\"></span>";
     } else {
@@ -311,6 +326,31 @@ if ($handle = opendir('.'))
                     $item['class'] = 'fa fa-globe ' . FONTAWESOME_STYLE;
                 }elseif(in_array($item['lext'], $filetype['windows'])){
                     $item['class'] = 'fa fa-windows ' . FONTAWESOME_STYLE;
+                }else{
+                    $item['class'] = 'fa fa-file-o ' . FONTAWESOME_STYLE;        
+                }
+            } else if (DOC_ICONS == 'fa-files') {
+                $folder_icon = 'fa fa-folder ' . FONTAWESOME_STYLE;
+                if(in_array($item['lext'], $filetype['archive'])){
+                    $item['class'] = 'fa fa-file-archive-o ' . FONTAWESOME_STYLE;
+                }elseif(in_array($item['lext'], $filetype['audio'])){
+                    $item['class'] = 'fa fa-file-audio-o ' . FONTAWESOME_STYLE;
+                }elseif(in_array($item['lext'], $filetype['excel'])){
+                    $item['class'] = 'fa fa-file-excel-o ' . FONTAWESOME_STYLE;
+                }elseif(in_array($item['lext'], $filetype['image'])){
+                    $item['class'] = 'fa fa-file-image-o ' . FONTAWESOME_STYLE;
+                }elseif(in_array($item['lext'], $filetype['pdf'])){
+                    $item['class'] = 'fa fa-file-pdf-o ' . FONTAWESOME_STYLE;
+                }elseif(in_array($item['lext'], $filetype['powerpoint'])){
+                    $item['class'] = 'fa fa-file-powerpoint-o ' . FONTAWESOME_STYLE;
+                }elseif(in_array($item['lext'], $filetype['script'])){
+                    $item['class'] = 'fa fa-file-code-o ' . FONTAWESOME_STYLE;
+                }elseif(in_array($item['lext'], $filetype['text'])){
+                    $item['class'] = 'fa fa-file-text-o ' . FONTAWESOME_STYLE;
+                }elseif(in_array($item['lext'], $filetype['video'])){
+                    $item['class'] = 'fa fa-file-video-o ' . FONTAWESOME_STYLE;
+                }elseif(in_array($item['lext'], $filetype['word'])){
+                    $item['class'] = 'fa fa-file-word-o ' . FONTAWESOME_STYLE;
                 }else{
                     $item['class'] = 'fa fa-file-o ' . FONTAWESOME_STYLE;        
                 }
@@ -472,7 +512,7 @@ if (IPAD_ICON_RETINA) $header = $header."  <link rel=\"apple-touch-icon\" sizes=
 if (METRO_TILE_COLOR) $header = $header."  <meta name=\"msapplication-TileColor\" content=\"#".METRO_TILE_COLOR."\" />" . PHP_EOL;
 if (METRO_TILE_IMAGE) $header = $header."  <meta name=\"msapplication-TileImage\" content=\"#".METRO_TILE_IMAGE."\" />" . PHP_EOL;
 $header = $header."  <link rel=\"stylesheet\" href=\"$bootstrap_cdn\" />" . PHP_EOL;
-if (DOC_ICONS == "fontawesome") {
+if (DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
     $header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
 }
 if (ENABLE_VIEWER) {
@@ -551,7 +591,7 @@ if(($folder_list) || ($file_list) ) {
                 $table_body = $table_body." data-sort-value=\"". utf8_encode($item['lbname']) . "\"" ;
             }
             $table_body = $table_body.">";
-            if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") {
+            if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
                 $table_body = $table_body."<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
             }
             $table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "/\"><strong>" . utf8_encode($item['bname']) . "</strong></a></td>" . PHP_EOL;
@@ -585,7 +625,7 @@ if(($folder_list) || ($file_list) ) {
                 $table_body = $table_body." data-sort-value=\"". utf8_encode($item['lbname']) . "\"" ;
             }
             $table_body = $table_body.">";
-            if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") {
+            if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
                 $table_body = $table_body."<$icon_tag class=\"" . $item['class'] . "\"></$icon_tag>&nbsp;";
             }
             if (HIDE_EXTENSION) {
@@ -637,7 +677,7 @@ if(($folder_list) || ($file_list) ) {
         $colspan = $table_count + 1;
         $table_body = $table_body."          <tr>" . PHP_EOL;
         $table_body = $table_body."            <td colspan=\"$colspan\" style=\"font-style:italic\">";
-        if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") {
+        if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
             $table_body = $table_body."<$icon_tag class=\"" . $item['class'] . "\">&nbsp;</$icon_tag>";
         } 
         $table_body = $table_body."empty folder</td>" . PHP_EOL;
