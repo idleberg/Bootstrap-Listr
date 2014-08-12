@@ -14,7 +14,7 @@ Download the latest [stable release](https://github.com/idleberg/Bootstrap-Listr
 
 Like its [predecessors](#credtis), Bootstrap Listr was meant as *one file to rule them all*, an easy to deploy single file solution. Since it does not support subfolders, you will have to copy the index in every directory where you would like to use it.
 
-Or, you can have a go at the [2.0](https://github.com/idleberg/Bootstrap-Listr/tree/2.0-dev) developer branch. While it is no longer a single file, it's easy to deploy and features subfolder support among other things.
+Or, you can have a go at the [2.0](https://github.com/idleberg/Bootstrap-Listr/tree/2.0-dev) developer branch. While it is no longer a single file, it's easy to deploy and features subfolder support among other things. See it in this [live demo](http://demo.idleberg.com/Bootstrap-Listr-2.0-dev/).
 
 ### Options
 
