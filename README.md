@@ -67,7 +67,10 @@ This project is built upon—or includes—code from the following people:
 * Na Wong - [Listr](http://nadesign.net/listr/)
 * Joe McCullough - [Stupid Table Plugin](http://joequery.github.io/Stupid-Table-Plugin/)
 
-Thanks to [melalj](https://github.com/melalj) and [Zerquix18](https://github.com/Zerquix18) for contributing code to make this project better!
+Contributors:
+
+* [melalj](https://github.com/melalj) - subfolder support
+* [Zerquix18](https://github.com/Zerquix18)
 
 ## License
 
