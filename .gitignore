@@ -1,5 +1,6 @@
 app/
 bower_components/
+config.json
 crack.sh
 generators/
 Gruntfile.js
