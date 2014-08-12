@@ -6,7 +6,6 @@ Gruntfile.js
 gulpfile.js
 node_modules/
 package.json
-package.json
 src/
 temp/
 todo.md
