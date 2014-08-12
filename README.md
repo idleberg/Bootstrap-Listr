@@ -6,7 +6,7 @@ A simple PHP script to display folders and files on a server in a well formed li
 
 ## Installation
 
-Download the latest [development version](https://github.com/idleberg/Bootstrap-Listr/archive/2.0-dev.zip) and deploy it to your webserver.
+Download the latest [development version](https://github.com/idleberg/Bootstrap-Listr/archive/2.0-dev.zip) and deploy it to your webserver. Copy the config file `cp listr-config.php-example listr-config.php` and edit your preferences.
 
 ## Usage
 
