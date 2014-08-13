@@ -103,6 +103,14 @@ define(IPHONE_ICON_RETINA, ''); // 114x114
   define(METRO_TILE_COLOR, ''); //
   define(METRO_TILE_IMAGE, ''); // 144x144
 
+  // OpenGraph Tags
+          define(OG_TITLE, '');
+    define(OG_DESCRIPTION, '');
+      define(OG_SITE_NAME, '');
+         define(OG_LOCALE, '');
+           define(OG_TYPE, '');
+          define(OG_IMAGE, ''); 
+
 // Display link to Bootstrap-Listr in footer
 define(GIVE_KUDOS, true);
 
@@ -513,6 +521,13 @@ if (IPAD_ICON) $header = $header."  <link rel=\"apple-touch-icon\" sizes=\"114x1
 if (IPAD_ICON_RETINA) $header = $header."  <link rel=\"apple-touch-icon\" sizes=\"144x144\" href=\"".IPAD_ICON_RETINA."\" />" . PHP_EOL;
 if (METRO_TILE_COLOR) $header = $header."  <meta name=\"msapplication-TileColor\" content=\"#".METRO_TILE_COLOR."\" />" . PHP_EOL;
 if (METRO_TILE_IMAGE) $header = $header."  <meta name=\"msapplication-TileImage\" content=\"#".METRO_TILE_IMAGE."\" />" . PHP_EOL;
+if (OG_TITLE) $header = $header."  <meta property=\"og:title\" content=\"".OG_TITLE."\" />" . PHP_EOL;
+if (OG_DESCRIPTION) $header = $header."  <meta property=\"og:description\" content=\"".OG_DESCRIPTION."\" />" . PHP_EOL;
+if (OG_SITE_NAME) $header = $header."  <meta property=\"og:site_name\" content=\"".OG_SITE_NAME."\" />" . PHP_EOL;
+if (OG_LOCALE) $header = $header."  <meta property=\"og:locale\" content=\"".OG_LOCALE."\" />" . PHP_EOL;
+if (OG_TYPE) $header = $header."  <meta property=\"og:type\" content=\"".OG_TYPE."\" />" . PHP_EOL;
+if (OG_IMAGE) $header = $header."  <meta property=\"og:image\" content=\"".OG_IMAGE."\" />" . PHP_EOL;
+
 $header = $header."  <link rel=\"stylesheet\" href=\"$bootstrap_cdn\" />" . PHP_EOL;
 if (DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
     $header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
