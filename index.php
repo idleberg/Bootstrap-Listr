@@ -62,12 +62,14 @@ define(DOC_ICONS, 'glyphicons');
  *     'flatly' - http://bootswatch.com/flatly/
  *    'journal' - http://bootswatch.com/journal/
  *      'lumen' - http://bootswatch.com/lumen/
- *   'readable' - http://bootswatch.com/readable
- *    'simplex' - http://bootswatch.com/simplex
+ *      'paper' - http://bootswatch.com/paper/ (release pending)
+ *   'readable' - http://bootswatch.com/readable/
+ *  'sandpaper' - http://bootswatch.com/sandpaper/ (release pending)
+ *    'simplex' - http://bootswatch.com/simplex/
  *      'slate' - http://bootswatch.com/slate/
  *   'spacelab' - http://bootswatch.com/spacelab/
  *  'superhero' - http://bootswatch.com/superhero/
- *     'united' - http://bootswatch.com/united
+ *     'united' - http://bootswatch.com/united/
  *       'yeti' - http://bootswatch.com/yeti/
  */
 define(BOOTSTRAP_THEME, 'default');
@@ -241,7 +243,7 @@ if (CUSTOM_THEME) {
 } else {
     $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/';
     $cdn_post = '/bootstrap.min.css';
-    $bootswatch = array('amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','readable','simplex','slate','spacelab','superhero','united','yeti');
+    $bootswatch = array('amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti');
 
     if (in_array(BOOTSTRAP_THEME, $bootswatch)) {
         $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/'.BOOTSTRAP_THEME.'/bootstrap.min.css';
@@ -539,7 +541,7 @@ if (ANALYTICS_ID) {
 }
 
 // Set breadcrumbs
-$breadcrumbs = $breadcrumbs."      <li><a href=\"".$this_protocol . $this_domain."\">$home</a></li>" . PHP_EOL;
+$breadcrumbs = $breadcrumbs."      <li><a href=\"".htmlentities($this_protocol . $this_domain, ENT_QUOTES, 'utf-8')."\">$home</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
     if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
         $parent = '';
@@ -588,13 +590,13 @@ if(($folder_list) || ($file_list) ) {
             $table_body = $table_body."          <tr>" . PHP_EOL;
             $table_body = $table_body."            <td";
             if (ENABLE_SORT) {
-                $table_body = $table_body." data-sort-value=\"". utf8_encode($item['lbname']) . "\"" ;
+                $table_body = $table_body." data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body = $table_body.">";
             if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
                 $table_body = $table_body."<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
             }
-            $table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "/\"><strong>" . utf8_encode($item['bname']) . "</strong></a></td>" . PHP_EOL;
+            $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . utf8_encode($item['bname']) . "</strong></a></td>" . PHP_EOL;
             
             if ($table_options['size']) {
                 $table_body = $table_body."            <td";
@@ -622,7 +624,7 @@ if(($folder_list) || ($file_list) ) {
             $table_body = $table_body."          <tr>" . PHP_EOL;
             $table_body = $table_body."            <td";
             if (ENABLE_SORT) {
-                $table_body = $table_body." data-sort-value=\"". utf8_encode($item['lbname']) . "\"" ;
+                $table_body = $table_body." data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body = $table_body.">";
             if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
@@ -652,7 +654,7 @@ if(($folder_list) || ($file_list) ) {
                     $modal_class = NULL;
                 }
             }
-            $table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\"$modal_class>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
+            $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$modal_class>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
 
             if ($table_options['size']) {
                 $table_body = $table_body."            <td";
