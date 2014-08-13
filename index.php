@@ -278,14 +278,14 @@ $footer = set_footer();
 
 // Set breadcrumbs
 $breadcrumbs = $breadcrumbs."    <ol class=\"breadcrumb\">" . PHP_EOL;
-$breadcrumbs = $breadcrumbs."      <li><a href=\"".$root_dir."\">$home</a></li>" . PHP_EOL;
+$breadcrumbs = $breadcrumbs."      <li><a href=\"".htmlentities($root_dir, ENT_QUOTES, 'utf-8')."\">$home</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
     if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
         $parent = '';
         for ($i = 0; $i <= $dir; $i++):
             $parent .= rawurlencode($dir_name[$i]) . '/';
         endfor;
-        $breadcrumbs = $breadcrumbs."      <li><a href=\"".$absolute_path.$parent."\">".utf8_encode($name)."</a></li>" . PHP_EOL;
+        $breadcrumbs = $breadcrumbs."      <li><a href=\"".htmlentities($absolute_path.$parent, ENT_QUOTES, 'utf-8')."\">".utf8_encode($name)."</a></li>" . PHP_EOL;
     endif;
 endforeach;
 $breadcrumbs = $breadcrumbs."    </ol>" . PHP_EOL;
@@ -328,13 +328,13 @@ if(($folder_list) || ($file_list) ) {
             $table_body = $table_body."          <tr>" . PHP_EOL;
             $table_body = $table_body."            <td";
             if (ENABLE_SORT) {
-                $table_body = $table_body." data-sort-value=\"". utf8_encode($item['lbname']) . "\"" ;
+                $table_body = $table_body." data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body = $table_body.">";
             if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") {
                 $table_body = $table_body."<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
             }
-            $table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "/\"><strong>" . utf8_encode($item['bname']) . "</strong></a></td>" . PHP_EOL;
+            $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . utf8_encode($item['bname']) . "</strong></a></td>" . PHP_EOL;
             
             if ($table_options['size']) {
                 $table_body = $table_body."            <td";
@@ -362,7 +362,7 @@ if(($folder_list) || ($file_list) ) {
             $table_body = $table_body."          <tr>" . PHP_EOL;
             $table_body = $table_body."            <td";
             if (ENABLE_SORT) {
-                $table_body = $table_body." data-sort-value=\"". utf8_encode($item['lbname']) . "\"" ;
+                $table_body = $table_body." data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body = $table_body.">";
             if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome") {
@@ -392,7 +392,7 @@ if(($folder_list) || ($file_list) ) {
                     $modal_class = NULL;
                 }
             }
-            $table_body = $table_body."<a href=\"" . rawurlencode($item['bname']) . "\"$modal_class>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
+            $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$modal_class>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
 
             if ($table_options['size']) {
                 $table_body = $table_body."            <td";

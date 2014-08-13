@@ -83,12 +83,14 @@
    *     'flatly' - http://bootswatch.com/flatly/
    *    'journal' - http://bootswatch.com/journal/
    *      'lumen' - http://bootswatch.com/lumen/
-   *   'readable' - http://bootswatch.com/readable
-   *    'simplex' - http://bootswatch.com/simplex
+   *      'paper' - http://bootswatch.com/paper/ (release pending)
+   *   'readable' - http://bootswatch.com/readable/
+   *  'sandpaper' - http://bootswatch.com/sandpaper/ (release pending)
+   *    'simplex' - http://bootswatch.com/simplex/
    *      'slate' - http://bootswatch.com/slate/
    *   'spacelab' - http://bootswatch.com/spacelab/
    *  'superhero' - http://bootswatch.com/superhero/
-   *     'united' - http://bootswatch.com/united
+   *     'united' - http://bootswatch.com/united/
    *       'yeti' - http://bootswatch.com/yeti/
    */
   define(BOOTSTRAP_THEME, 'default');

@@ -7,7 +7,7 @@ function set_bootstrap_theme() {
     } else {
         $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/';
         $cdn_post = '/bootstrap.min.css';
-        $bootswatch = array('amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','readable','simplex','slate','spacelab','superhero','united','yeti');
+        $bootswatch = array('amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti');
 
         if (in_array(BOOTSTRAP_THEME, $bootswatch)) {
             return '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/'.BOOTSTRAP_THEME.'/bootstrap.min.css';
