@@ -103,7 +103,7 @@ define(IPHONE_ICON_RETINA, ''); // 114x114
   define(METRO_TILE_COLOR, ''); //
   define(METRO_TILE_IMAGE, ''); // 144x144
 
-  // OpenGraph Tags
+  // OpenGraph Tags - http://ogp.me/
           define(OG_TITLE, '');
     define(OG_DESCRIPTION, '');
       define(OG_SITE_NAME, '');
