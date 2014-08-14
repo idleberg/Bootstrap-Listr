@@ -54,7 +54,12 @@ gulp.task('bower', function() {
 // Dialogs
 
 gulp.task('talk', function(){
-  return gulp.src('.')
+  var target = gulp.src('./src/index.html');
+  return gulp.src([
+      './node_modules/jquery/dist/jquery.min.js',
+      './node_modules/bootstrap/dist/js/bootstrap.min.js',
+      './node_modules/highlight.js/lib/highlight.js'
+    ])
     .pipe(prompt.prompt({
         type: 'input',
         name: 'type',
@@ -72,12 +77,12 @@ gulp.task('talk', function(){
         type: 'checkbox',
         name: 'bump',
         message: 'Which libaries do you want to include? Use the spacebar to make selection!',
-        choices: ['JQuery', 'Font Awesome', 'Highlight.js'],
+        choices: ['jQuery', 'Font Awesome', 'Highlight.js'],
       }, function(include){
-        // console.log(include)
 
         include.bump.forEach(function(entry) {
             console.log(entry + ' selected');
+            target.pipe(bower())
         });
     }));
 });
