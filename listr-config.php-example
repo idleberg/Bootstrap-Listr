@@ -9,7 +9,7 @@
   define(FONT_AWESOME,    '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
   define(CUSTOM_THEME,    '');
   define(GOOGLE_FONT,     ''); // e.g. 'Open+Sans' or 'Open+Sans:400,300,700'
-  define(JQUERY,          '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
+  define(JQUERY,          '//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js');
   define(BOOTSTRAP_JS,    '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js');
   define(HIGHLIGHTER_JS,  '');  // See http://cdnjs.com/libraries/highlight.js for details
   define(HIGHLIGHTER_CSS, '');
@@ -22,6 +22,14 @@
   define(IPAD_ICON_RETINA,   ''); // 144x144
   define(METRO_TILE_COLOR,   ''); //
   define(METRO_TILE_IMAGE,   ''); // 144x144
+
+  // OpenGraph Tags - http://ogp.me/
+  define(OG_TITLE,       '');
+  define(OG_DESCRIPTION, '');
+  define(OG_SITE_NAME,   '');
+  define(OG_LOCALE,      '');
+  define(OG_TYPE,        '');
+  define(OG_IMAGE,       ''); 
 
   // Toggle media viewer
   define(ENABLE_VIEWER, true);
