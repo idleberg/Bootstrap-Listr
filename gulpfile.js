@@ -10,8 +10,7 @@ var bower   = require('gulp-bower');
  */
 
 gulp.task('lint',   ['csslint', 'jshint', 'phplint']);
-gulp.task('travis', ['lint']);
-
+gulp.task('travis', ['csslint', 'jshint']);
 
 /*
  * Sub-tasks
@@ -50,4 +49,24 @@ gulp.task('jshint', function() {
 gulp.task('bower', function() {
   return bower()
     .pipe(gulp.dest('./bower_components'))
+});
+
+// Dialogs
+
+gulp.task('talk', function(){
+  return gulp.src('.')
+    .pipe(prompt.prompt({
+        type: 'input',
+        name: 'type',
+        message: 'How would you like to load external resources?\n\t1. CDNs (default)\n\t2. local assets\nYour choice:',
+        default: '1'
+    }, function(res){
+        var sources;
+        if(res.type === '2'){
+          console.log(res.type + ' == local assets')
+        }else{
+          console.log(res.type + ' == cdn')
+        }
+
+    }));
 });
