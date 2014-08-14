@@ -4,9 +4,7 @@ config.json
 crack.sh
 generators/
 Gruntfile.js
-gulpfile.js
 node_modules/
-package.json
 src/
 temp/
 todo.md
