@@ -54,11 +54,13 @@ gulp.task('bower', function() {
 // Dialogs
 
 gulp.task('talk', function(){
-  var target = gulp.src('./src/index.html');
-  return gulp.src([
+  var target = gulp.src([
       './node_modules/jquery/dist/jquery.min.js',
       './node_modules/bootstrap/dist/js/bootstrap.min.js',
       './node_modules/highlight.js/lib/highlight.js'
+    ]);
+  gulp.src([
+      '.'
     ])
     .pipe(prompt.prompt({
         type: 'input',
@@ -82,7 +84,7 @@ gulp.task('talk', function(){
 
         include.bump.forEach(function(entry) {
             console.log(entry + ' selected');
-            target.pipe(bower())
         });
+        
     }));
 });
