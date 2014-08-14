@@ -67,6 +67,17 @@ gulp.task('talk', function(){
         }else{
           console.log(res.type + ' == cdn')
         }
+    }))
+    .pipe(prompt.prompt({
+        type: 'checkbox',
+        name: 'bump',
+        message: 'Which libaries do you want to include? Use the spacebar to make selection!',
+        choices: ['JQuery', 'Font Awesome', 'Highlight.js'],
+      }, function(include){
+        // console.log(include)
 
+        include.bump.forEach(function(entry) {
+            console.log(entry + ' selected');
+        });
     }));
 });

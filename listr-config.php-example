@@ -11,7 +11,8 @@
   define(GOOGLE_FONT,     ''); // e.g. 'Open+Sans' or 'Open+Sans:400,300,700'
   define(JQUERY,          '//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js');
   define(BOOTSTRAP_JS,    '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js');
-  define(HIGHLIGHTER_JS,  '');  // See http://cdnjs.com/libraries/highlight.js for details
+  define(STUPIDTABLE,     '//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js');
+  define(HIGHLIGHTER_JS,  '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js');  // See http://cdnjs.com/libraries/highlight.js for details
   define(HIGHLIGHTER_CSS, '');
 
   // Browser and Device Icons
