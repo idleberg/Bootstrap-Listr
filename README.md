@@ -16,20 +16,20 @@ A simple PHP script to display folders and files on a server in a well formed li
 
 Several gulp tasks are now available. You start with these three steps:
 
-   # create and populate "app/"
-   gulp init
+    # create and populate "app/"
+    gulp init
 
-   # choose dependencies
-   gulp setup
+    # choose dependencies
+    gulp setup
 
-   # set Bootswatch theme (optional)
-   # gulp theme
+    # set Bootswatch theme (optional)
+    # gulp theme
 
-   # set Highlight.js theme (optional)
-   # gulp highlight
+    # set Highlight.js theme (optional)
+    # gulp highlight
 
-   # minify CSS, uglify JS
-   gulp make
+    # minify CSS, uglify JS
+    gulp make
 
 You also have `gulp clean` and `gulp lint` at hand, `gulp css`, `gulp js` & `gulp php` will lint the specific file-types.
 
