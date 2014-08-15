@@ -7,16 +7,43 @@ A simple PHP script to display folders and files on a server in a well formed li
 ## Installation
 
 1. Download the latest [development version](https://github.com/idleberg/Bootstrap-Listr/archive/2.0-dev.zip)
-
 2. Unzip, then deploy to your webserver
+3. Install Node.js and Bower dependencies `npm install; bower install`*
 
-3. Clone config file `cp listr-config.php-example listr-config.php`
+\* *Make sure you have npm, Bower and Gulp installed `npm install bower gulp -g`*
 
-4. Edit your preferences in `listr-config.php`
+## Building
 
-## Usage
+Several gulp tasks are now available. You start with these three steps:
 
-Once you deployed to your server, move all your files to the `_public` subfolder (change the folder in the head of the script). You might have to enable the `RewriteBase` setting in the `.htaccess` file (and edit the folder name), depending on your Apache settings.
+   # create and populate "app/"
+   gulp init
+
+   # choose dependencies
+   gulp setup
+
+   # set Bootswatch theme (optional)
+   # gulp theme
+
+   # set Highlight.js theme (optional)
+   # gulp highlight
+
+   # minify CSS, uglify JS
+   gulp make
+
+You also have `gulp clean` and `gulp lint` at hand, `gulp css`, `gulp js` & `gulp php` will lint the specific file-types.
+
+## Deployment
+
+Copy `app/` to your server, then rename `listr-config.php-example` to `listr-config.php` and edit your settings. All files that should be accessible through Bootstrap Listr go into the `_public` subfolder (you can change the folder in the config). You might have to enable the `RewriteBase` setting in the `.htaccess` file (and edit the folder name), depending on your Apache settings.
+
+If you prefer a different file name for the script, you can rename it without worrying about the ignore list. However, depending on your server, you might have declare the renamed file as your directory index.
+
+* Apache: `DirectoryIndex myIndex.php` (see [documentation](http://httpd.apache.org/docs/2.2/mod/mod_dir.html))
+* lighttpd: `index-file.names = ( "/myIndex.php" )` (see [documentation](http://redmine.lighttpd.net/projects/1/wiki/Docs_ModDirlisting))
+* nginx: `index myIndex.php` (see [documentation](http://nginx.org/en/docs/http/ngx_http_index_module.html))
+
+If you have config files for servers other than Apache, feel free to [share](#contribute) them.
 
 ### Options
 
@@ -33,15 +60,6 @@ You can configure a number of settings in the header of the script file:
 * Save to Dropbox
 * Share buttons
 * Google Analytics
-
-### Naming
-
-If you prefer a different file name for the script, you can rename it without worrying about the ignore list. However, depending on your server, you might have declare the renamed file as your directory index.
-
-* Apache: `DirectoryIndex myIndex.php` (see [documentation](http://httpd.apache.org/docs/2.2/mod/mod_dir.html))
-* lighttpd: `index-file.names = ( "/myIndex.php" )` (see [documentation](http://redmine.lighttpd.net/projects/1/wiki/Docs_ModDirlisting))
-* nginx: `index myIndex.php` (see [documentation](http://nginx.org/en/docs/http/ngx_http_index_module.html))
-
 
 ### Font Awesome
 
@@ -62,6 +80,12 @@ Source code in the viewer modal can make use of [highlight.js](http://highlightj
 ### Libraries & Style-sheets
 
 For your convenience, CDNs for Bootstrap and JQuery. Should you have reasons against this, you can change the default locations in the script header.
+
+## Contribute
+
+1. Fork the repository
+2. Make your changes
+3. Send a pull request with your changes
 
 ## Credits
 
