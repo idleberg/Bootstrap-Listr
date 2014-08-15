@@ -1,18 +1,8 @@
 {
-  "name": "OGraphr-devkit",
-  "version": "0.8.26",
+  "name": "listr-dev",
+  "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "jquery-bootgrid": "~1.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/idleberg/Bootstrap-Listr.git"
-  },
-  "author": "Jan T. Sott",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/idleberg/Bootstrap-Listr/issues"
-  },
-  "homepage": "https://github.com/idleberg/Bootstrap-Listr"
+    "jquery-bootgrid": "1.0.0-rc2"
+  }
 }
