@@ -101,6 +101,8 @@
    *  'superhero' - http://bootswatch.com/superhero/
    *     'united' - http://bootswatch.com/united/
    *       'yeti' - http://bootswatch.com/yeti/
+   *
+   *    'm8tro-*' - replace * with aqua, blue, brown, green, orange, purple, red, yellow
    */
   define(BOOTSTRAP_THEME, 'default');
 
