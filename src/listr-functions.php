@@ -28,6 +28,14 @@ function set_header($theme) {
     $header = $header."  <meta name=\"generator\" content=\"Bootstrap Listr\" />" . PHP_EOL;
     $header = $header."  <title>Index of ".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."</title>" . PHP_EOL;
 
+    if (SELF_MODE == 'cdn') {
+        $bootstrap_css   = $theme;
+        $fontawesome_css = FONT_AWESOME;
+    } else {
+        $bootstrap_css   = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/bootstrap.min.css";
+        $fontawesome_css = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/font-awesome.min.css";
+    }
+
     if (FAV_ICON) $header = $header."  <link rel=\"shortcut icon\" href=\"".FAV_ICON."\" />" . PHP_EOL;
     if (IPHONE_ICON) $header = $header."  <link rel=\"apple-touch-icon\" sizes=\"57x57\" href=\"".IPHONE_ICON."\" />" . PHP_EOL;
     if (IPHONE_ICON_RETINA) $header = $header."  <link rel=\"apple-touch-icon\" sizes=\"72x72\" href=\"".IPHONE_ICON_RETINA."\" />" . PHP_EOL;
@@ -42,11 +50,11 @@ function set_header($theme) {
     if (OG_TYPE) $header = $header."  <meta property=\"og:type\" content=\"".OG_TYPE."\" />" . PHP_EOL;
     if (OG_IMAGE) $header = $header."  <meta property=\"og:image\" content=\"".OG_IMAGE."\" />" . PHP_EOL;
     // $header = $header."  <link rel=\"stylesheet\" href=\"$theme\" />" . PHP_EOL;
-    $header = $header."  <link rel=\"stylesheet\" href=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/bootstrap.min.css\" />" . PHP_EOL;
+    $header = $header."  <link rel=\"stylesheet\" href=\"$bootstrap_css\" />" . PHP_EOL;
 
     if (DOC_ICONS == "fontawesome") {
         // $header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
-        $header = $header."  <link rel=\"stylesheet\" href=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/font-awesome.min.css\" />" . PHP_EOL;
+        $header = $header."  <link rel=\"stylesheet\" href=\"$fontawsome_css\" />" . PHP_EOL;
     }
 
     if (ENABLE_VIEWER) {    
@@ -70,32 +78,37 @@ function set_header($theme) {
 
 // Set HTML footer
 function set_footer(){
-    if (ERROR_PAGE) {
 
-        if ( (ENABLE_SORT) || (ENABLE_VIEWER) ) {
-            // $footer = $footer."  <script type=\"text/javascript\" src=\"".JQUERY."\"></script>" . PHP_EOL;
-            $footer = $footer."  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/jquery.min.js\"></script>" . PHP_EOL;
+    if (SELF_MODE == 'cdn') {
+        $jquery_js    = JQUERY;
+        $bootstrap_js = BOOTSTRAP_JS;
+    } else {
+        $jquery_js    = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/jquery.min.js";
+        $bootstrap_js = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/bootstrap.min.js";
+    }
+
+    if ( (ENABLE_SORT) || (ENABLE_VIEWER) ) {
+        // $footer = $footer."  <script type=\"text/javascript\" src=\"".JQUERY."\"></script>" . PHP_EOL;
+        $footer = $footer."  <script type=\"text/javascript\" src=\"$jquery_js\"></script>" . PHP_EOL;
+    }
+
+    if ((ENABLE_SORT) && (STUPIDTABLE)) {
+        $footer = $footer."  <script type=\"text/javascript\" src=\"".STUPIDTABLE."\"></script>" . PHP_EOL;
+    }
+
+    if (ENABLE_VIEWER) {
+        // $footer = $footer."  <script type=\"text/javascript\" src=\"".BOOTSTRAP_JS."\"></script>" . PHP_EOL;
+        $footer = $footer."  <script type=\"text/javascript\" src=\"$bootstrap_js\"></script>" . PHP_EOL;
+        
+        if( (SHARE_BUTTON) && (DROPBOX_KEY) ){
+            $footer = $footer."  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"nzeq1welehd2rug\"></script>" . PHP_EOL;
         }
-
-        if ((ENABLE_SORT) && (STUPIDTABLE)) {
-            $footer = $footer."  <script type=\"text/javascript\" src=\"".STUPIDTABLE."\"></script>" . PHP_EOL;
+        // $footer = $footer."  <script type=\"text/javascript\">$(function(){function a(e,b,d,c){\$(\".modal-body\").empty().append(e);$(\".fullview\").attr(\"href\",d).text(b);$(\".save-dropbox\").attr(\"href\",d);$(\".email-link\").attr(\"href\",\"mailto:?body=\"+c);$(\".twitter-link\").attr(\"href\",\"http://twitter.com/share?url=\"+c);$(\".facebook-link\").attr(\"href\",\"http://www.facebook.com/sharer/sharer.php?u=\"+c);$(\".google-link\").attr(\"href\",\"https://plus.google.com/share?url=\"+c);$(\".modal-title\").text(decodeURIComponent(d));$(\"#viewer-modal\").modal(\"show\")}$(\".audio-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<audio src=\"'+c+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>',\"Listen\",c,b)});$(\".flash-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<div class=\"viewer-wrapper\"><object width=\"100%\" height=\"100%\" type=\"application/x-shockwave-flash\" data=\"'+c+'\"><param name=\"movie\" value=\"'+c+'\"><param name=\"quality\" value=\"high\"></object></div>',\"View\",c,b)});$(\".image-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<img src=\"'+c+'\"/>',\"View\",c,b)});$(\".video-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<video src=\"'+c+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>',\"View\",c,b)});$(\".quicktime-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<div class=\"viewer-wrapper\"><embed width=\"100%\" height=\"100%\" src=\"'+c+'\" type=\"video/quicktime\" controller=\"true\" showlogo=\"false\" scale=\"aspect\"></div>',\"View\",c,b)});$(\".source-modal\").click(function(f){f.preventDefault();$(\".highlight\").removeClass(\"hidden\").removeAttr(\"disabled\");var c=$(this).attr(\"href\"),b=$(this).get(0).href;var d=c.split(\".\").pop();a('<pre><code id=\"source\" class=\"'+d+'\"></code></pre>',\"View\",c,b);$.ajax(c,{dataType:\"text\",success:function(e){\$(\"#source\").text(e)}})});$(\".highlight\").click(function(c){c.preventDefault();$(\".highlight\").attr(\"disabled\",\"disabled\");$(\"#source\").each(function(d,e){hljs.highlightBlock(e)});var b=$(\"code\").css(\"background-color\");$(\"pre\").css(\"background-color\",b)});$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var b=document.getElementById(\"player\");b&&b.pause();$(\".highlight\").addClass(\"hidden\")});$(\".save-dropbox\").click(function(c){c.preventDefault();var b=$(this).get(0).href;Dropbox.save(b)})});</script>" . PHP_EOL;
+        $footer = $footer."  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.min.js\"></script>" . PHP_EOL;
+        
+        if( (HIGHLIGHTER_JS) && (HIGHLIGHTER_CSS) ){
+            $footer = $footer."  <script type=\"text/javascript\" src=\"".HIGHLIGHTER_JS."\"></script>" . PHP_EOL;
         }
-
-        if (ENABLE_VIEWER) {
-            // $footer = $footer."  <script type=\"text/javascript\" src=\"".BOOTSTRAP_JS."\"></script>" . PHP_EOL;
-            $footer = $footer."  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/bootstrap.min.js\"></script>" . PHP_EOL;
-            
-            if( (SHARE_BUTTON) && (DROPBOX_KEY) ){
-                $footer = $footer."  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"nzeq1welehd2rug\"></script>" . PHP_EOL;
-            }
-            // $footer = $footer."  <script type=\"text/javascript\">$(function(){function a(e,b,d,c){\$(\".modal-body\").empty().append(e);$(\".fullview\").attr(\"href\",d).text(b);$(\".save-dropbox\").attr(\"href\",d);$(\".email-link\").attr(\"href\",\"mailto:?body=\"+c);$(\".twitter-link\").attr(\"href\",\"http://twitter.com/share?url=\"+c);$(\".facebook-link\").attr(\"href\",\"http://www.facebook.com/sharer/sharer.php?u=\"+c);$(\".google-link\").attr(\"href\",\"https://plus.google.com/share?url=\"+c);$(\".modal-title\").text(decodeURIComponent(d));$(\"#viewer-modal\").modal(\"show\")}$(\".audio-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<audio src=\"'+c+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>',\"Listen\",c,b)});$(\".flash-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<div class=\"viewer-wrapper\"><object width=\"100%\" height=\"100%\" type=\"application/x-shockwave-flash\" data=\"'+c+'\"><param name=\"movie\" value=\"'+c+'\"><param name=\"quality\" value=\"high\"></object></div>',\"View\",c,b)});$(\".image-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<img src=\"'+c+'\"/>',\"View\",c,b)});$(\".video-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<video src=\"'+c+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>',\"View\",c,b)});$(\".quicktime-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<div class=\"viewer-wrapper\"><embed width=\"100%\" height=\"100%\" src=\"'+c+'\" type=\"video/quicktime\" controller=\"true\" showlogo=\"false\" scale=\"aspect\"></div>',\"View\",c,b)});$(\".source-modal\").click(function(f){f.preventDefault();$(\".highlight\").removeClass(\"hidden\").removeAttr(\"disabled\");var c=$(this).attr(\"href\"),b=$(this).get(0).href;var d=c.split(\".\").pop();a('<pre><code id=\"source\" class=\"'+d+'\"></code></pre>',\"View\",c,b);$.ajax(c,{dataType:\"text\",success:function(e){\$(\"#source\").text(e)}})});$(\".highlight\").click(function(c){c.preventDefault();$(\".highlight\").attr(\"disabled\",\"disabled\");$(\"#source\").each(function(d,e){hljs.highlightBlock(e)});var b=$(\"code\").css(\"background-color\");$(\"pre\").css(\"background-color\",b)});$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var b=document.getElementById(\"player\");b&&b.pause();$(\".highlight\").addClass(\"hidden\")});$(\".save-dropbox\").click(function(c){c.preventDefault();var b=$(this).get(0).href;Dropbox.save(b)})});</script>" . PHP_EOL;
-            $footer = $footer."  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.min.js\"></script>" . PHP_EOL;
-            
-            if( (HIGHLIGHTER_JS) && (HIGHLIGHTER_CSS) ){
-                $footer = $footer."  <script type=\"text/javascript\" src=\"".HIGHLIGHTER_JS."\"></script>" . PHP_EOL;
-            }
-        }
-
     }
 
     if (ANALYTICS_ID) {

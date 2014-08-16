@@ -5,7 +5,13 @@
   // Path where your files & folders are located
   define(FOLDER_ROOT, './_public/');
 
-  // External resources
+  /* Specify whether to load dependencies from CDNs or locally
+   * 'local' - use local dependencies as generated with the Gulp tasks (default)
+   *   'cdn' - use content delivery networks, you can specify CDNs below
+   */
+  define(SELF_MODE, 'local');
+
+  // CDN-hosted resources
   define(FONT_AWESOME,    '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
   define(CUSTOM_THEME,    '');
   define(GOOGLE_FONT,     ''); // e.g. 'Open+Sans' or 'Open+Sans:400,300,700'
