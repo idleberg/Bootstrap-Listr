@@ -71,6 +71,8 @@ define(DOC_ICONS, 'glyphicons');
  *  'superhero' - http://bootswatch.com/superhero/
  *     'united' - http://bootswatch.com/united/
  *       'yeti' - http://bootswatch.com/yeti/
+ *
+ *    'm8tro-*' - replace * with aqua, blue, brown, green, orange, purple, red, yellow
  */
 define(BOOTSTRAP_THEME, 'default');
 
@@ -252,11 +254,14 @@ if (CUSTOM_THEME) {
     $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/';
     $cdn_post = '/bootstrap.min.css';
     $bootswatch = array('amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti');
+    $m8tro = array('m8tro-aqua','m8tro-blue','m8tro-brown','m8tro-green','m8tro-orange','m8tro-purple','m8tro-red','m8tro-yellow');
 
     if (in_array(BOOTSTRAP_THEME, $bootswatch)) {
-        $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/'.BOOTSTRAP_THEME.'/bootstrap.min.css';
+        return '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/'.BOOTSTRAP_THEME.'/bootstrap.min.css';
+    } else if (in_array(BOOTSTRAP_THEME, $m8tro)) {
+        return '//idleberg.github.io/m8tro-listr/'.BOOTSTRAP_THEME.'.min.css';
     } else {
-        $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css';
+        return '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css';
     }
 }
 
