@@ -25,9 +25,6 @@ Several gulp tasks are now available. You start with these three steps:
     # set Bootswatch theme (optional)
     # gulp theme
 
-    # set Highlight.js theme (optional)
-    # gulp highlight
-
     # minify CSS, uglify JS
     gulp make
 
