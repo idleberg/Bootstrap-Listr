@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.1
+VERSION=0.1.1
 set -e
 
 # Functions
@@ -23,24 +23,25 @@ function bower_error(){
 
 # Let's go
 echo $'\n'crack-listr $VERSION
-echo ===============
+echo =================
+
+if [ -e 'node_modules' ]
+then
+    echo "Node modules seem to be in place"
+else
+    echo 'Node modules not found'
+    echo 'Downloading…'
+    npm install || npm_error
+fi
 
 if [ -e 'bower_components' ]
 then
     echo 'Bower components seem to be in place'
 else
     echo 'Bower components not found'
-    echo 'Downloading components…'
+    echo 'Downloading…'
     bower install || bower_error
 fi
-
-while true; do
-        read -p "How about you, ready? (y/n) " yn
-        case $yn in
-            [Yy*]* ) break;;
-            [Nn]* ) echo 'Aborted by user.'; exit;;
-        esac
-    done
 
 echo $'Initializing…'
 gulp init --silent
