@@ -41,22 +41,24 @@ function set_header($theme) {
     if (OG_LOCALE) $header = $header."  <meta property=\"og:locale\" content=\"".OG_LOCALE."\" />" . PHP_EOL;
     if (OG_TYPE) $header = $header."  <meta property=\"og:type\" content=\"".OG_TYPE."\" />" . PHP_EOL;
     if (OG_IMAGE) $header = $header."  <meta property=\"og:image\" content=\"".OG_IMAGE."\" />" . PHP_EOL;
-    $header = $header."  <link rel=\"stylesheet\" href=\"$theme\" />" . PHP_EOL;
+    // $header = $header."  <link rel=\"stylesheet\" href=\"$theme\" />" . PHP_EOL;
+    $header = $header."  <link rel=\"stylesheet\" href=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/bootstrap.min.css\" />" . PHP_EOL;
 
     if (DOC_ICONS == "fontawesome") {
-        $header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
+        // $header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
+        $header = $header."  <link rel=\"stylesheet\" href=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/font-awesome.min.css\" />" . PHP_EOL;
     }
 
     if (ENABLE_VIEWER) {    
-        $modal_css = ".modal img{display:block;margin:0 auto;max-width:100%}.modal video,.modal audio{width:100%}.viewer-wrapper{position:relative;padding-bottom:56.25%;height:0}.viewer-wrapper embed,.viewer-wrapper object{position:absolute;top:0;left:0;width:100%;height:100%}";
+        // $modal_css = ".modal img{display:block;margin:0 auto;max-width:100%}.modal video,.modal audio{width:100%}.viewer-wrapper{position:relative;padding-bottom:56.25%;height:0}.viewer-wrapper embed,.viewer-wrapper object{position:absolute;top:0;left:0;width:100%;height:100%}";
 
         if ((HIGHLIGHTER_CSS) && (HIGHLIGHTER_JS)) {
             $header = $header."  <link rel=\"stylesheet\" href=\"".HIGHLIGHTER_CSS."\" />" . PHP_EOL;
         }
     }
 
-    $header = $header."  <style type=\"text/css\">th{cursor:pointer}".$modal_css."</style>" . PHP_EOL;
-    // $header = $header."  <link rel=\"stylesheet\" href=\"//".$_SERVER['SERVER_NAME']."/".dirname($_SERVER['PHP_SELF'])."/assets/css/listr.pack.css\" />" . PHP_EOL;
+    // $header = $header."  <style type=\"text/css\">th{cursor:pointer}".$modal_css."</style>" . PHP_EOL;
+    $header = $header."  <link rel=\"stylesheet\" href=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/listr.min.css\" />" . PHP_EOL;
 
     if (GOOGLE_FONT) {
         $header = $header."  <link href=\"//fonts.googleapis.com/css?family=".GOOGLE_FONT."\" rel=\"stylesheet\" type=\"text/css\">" . PHP_EOL;
@@ -71,27 +73,29 @@ function set_footer(){
     if (ERROR_PAGE) {
 
         if ( (ENABLE_SORT) || (ENABLE_VIEWER) ) {
-            $footer = $footer."  <script type=\"text/javascript\" src=\"".JQUERY."\"></script>" . PHP_EOL;
+            // $footer = $footer."  <script type=\"text/javascript\" src=\"".JQUERY."\"></script>" . PHP_EOL;
+            $footer = $footer."  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/jquery.min.js\"></script>" . PHP_EOL;
+        }
+
+        if ((ENABLE_SORT) && (STUPIDTABLE)) {
+            $footer = $footer."  <script type=\"text/javascript\" src=\"".STUPIDTABLE."\"></script>" . PHP_EOL;
         }
 
         if (ENABLE_VIEWER) {
-            $footer = $footer."  <script type=\"text/javascript\" src=\"".BOOTSTRAP_JS."\"></script>" . PHP_EOL;
+            // $footer = $footer."  <script type=\"text/javascript\" src=\"".BOOTSTRAP_JS."\"></script>" . PHP_EOL;
+            $footer = $footer."  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/bootstrap.min.js\"></script>" . PHP_EOL;
             
             if( (SHARE_BUTTON) && (DROPBOX_KEY) ){
                 $footer = $footer."  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"nzeq1welehd2rug\"></script>" . PHP_EOL;
             }
-            $footer = $footer."  <script type=\"text/javascript\">$(function(){function a(e,b,d,c){\$(\".modal-body\").empty().append(e);$(\".fullview\").attr(\"href\",d).text(b);$(\".save-dropbox\").attr(\"href\",d);$(\".email-link\").attr(\"href\",\"mailto:?body=\"+c);$(\".twitter-link\").attr(\"href\",\"http://twitter.com/share?url=\"+c);$(\".facebook-link\").attr(\"href\",\"http://www.facebook.com/sharer/sharer.php?u=\"+c);$(\".google-link\").attr(\"href\",\"https://plus.google.com/share?url=\"+c);$(\".modal-title\").text(decodeURIComponent(d));$(\"#viewer-modal\").modal(\"show\")}$(\".audio-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<audio src=\"'+c+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>',\"Listen\",c,b)});$(\".flash-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<div class=\"viewer-wrapper\"><object width=\"100%\" height=\"100%\" type=\"application/x-shockwave-flash\" data=\"'+c+'\"><param name=\"movie\" value=\"'+c+'\"><param name=\"quality\" value=\"high\"></object></div>',\"View\",c,b)});$(\".image-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<img src=\"'+c+'\"/>',\"View\",c,b)});$(\".video-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<video src=\"'+c+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>',\"View\",c,b)});$(\".quicktime-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<div class=\"viewer-wrapper\"><embed width=\"100%\" height=\"100%\" src=\"'+c+'\" type=\"video/quicktime\" controller=\"true\" showlogo=\"false\" scale=\"aspect\"></div>',\"View\",c,b)});$(\".source-modal\").click(function(f){f.preventDefault();$(\".highlight\").removeClass(\"hidden\").removeAttr(\"disabled\");var c=$(this).attr(\"href\"),b=$(this).get(0).href;var d=c.split(\".\").pop();a('<pre><code id=\"source\" class=\"'+d+'\"></code></pre>',\"View\",c,b);$.ajax(c,{dataType:\"text\",success:function(e){\$(\"#source\").text(e)}})});$(\".highlight\").click(function(c){c.preventDefault();$(\".highlight\").attr(\"disabled\",\"disabled\");$(\"#source\").each(function(d,e){hljs.highlightBlock(e)});var b=$(\"code\").css(\"background-color\");$(\"pre\").css(\"background-color\",b)});$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var b=document.getElementById(\"player\");b&&b.pause();$(\".highlight\").addClass(\"hidden\")});$(\".save-dropbox\").click(function(c){c.preventDefault();var b=$(this).get(0).href;Dropbox.save(b)})});</script>" . PHP_EOL;
-            // $footer = $footer."  <script type=\"text/javascript\" href=\"//".$_SERVER['SERVER_NAME']."/".dirname($_SERVER['PHP_SELF'])."assets/js/listr.pack.js\"></script>" . PHP_EOL;
+            // $footer = $footer."  <script type=\"text/javascript\">$(function(){function a(e,b,d,c){\$(\".modal-body\").empty().append(e);$(\".fullview\").attr(\"href\",d).text(b);$(\".save-dropbox\").attr(\"href\",d);$(\".email-link\").attr(\"href\",\"mailto:?body=\"+c);$(\".twitter-link\").attr(\"href\",\"http://twitter.com/share?url=\"+c);$(\".facebook-link\").attr(\"href\",\"http://www.facebook.com/sharer/sharer.php?u=\"+c);$(\".google-link\").attr(\"href\",\"https://plus.google.com/share?url=\"+c);$(\".modal-title\").text(decodeURIComponent(d));$(\"#viewer-modal\").modal(\"show\")}$(\".audio-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<audio src=\"'+c+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>',\"Listen\",c,b)});$(\".flash-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<div class=\"viewer-wrapper\"><object width=\"100%\" height=\"100%\" type=\"application/x-shockwave-flash\" data=\"'+c+'\"><param name=\"movie\" value=\"'+c+'\"><param name=\"quality\" value=\"high\"></object></div>',\"View\",c,b)});$(\".image-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<img src=\"'+c+'\"/>',\"View\",c,b)});$(\".video-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<video src=\"'+c+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>',\"View\",c,b)});$(\".quicktime-modal\").click(function(d){d.preventDefault();var c=$(this).attr(\"href\"),b=$(this).get(0).href;a('<div class=\"viewer-wrapper\"><embed width=\"100%\" height=\"100%\" src=\"'+c+'\" type=\"video/quicktime\" controller=\"true\" showlogo=\"false\" scale=\"aspect\"></div>',\"View\",c,b)});$(\".source-modal\").click(function(f){f.preventDefault();$(\".highlight\").removeClass(\"hidden\").removeAttr(\"disabled\");var c=$(this).attr(\"href\"),b=$(this).get(0).href;var d=c.split(\".\").pop();a('<pre><code id=\"source\" class=\"'+d+'\"></code></pre>',\"View\",c,b);$.ajax(c,{dataType:\"text\",success:function(e){\$(\"#source\").text(e)}})});$(\".highlight\").click(function(c){c.preventDefault();$(\".highlight\").attr(\"disabled\",\"disabled\");$(\"#source\").each(function(d,e){hljs.highlightBlock(e)});var b=$(\"code\").css(\"background-color\");$(\"pre\").css(\"background-color\",b)});$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var b=document.getElementById(\"player\");b&&b.pause();$(\".highlight\").addClass(\"hidden\")});$(\".save-dropbox\").click(function(c){c.preventDefault();var b=$(this).get(0).href;Dropbox.save(b)})});</script>" . PHP_EOL;
+            $footer = $footer."  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.min.js\"></script>" . PHP_EOL;
             
             if( (HIGHLIGHTER_JS) && (HIGHLIGHTER_CSS) ){
                 $footer = $footer."  <script type=\"text/javascript\" src=\"".HIGHLIGHTER_JS."\"></script>" . PHP_EOL;
             }
         }
 
-        if ((ENABLE_SORT) && (STUPIDTABLE)) {
-            $footer = $footer."  <script type=\"text/javascript\" src=\"".STUPIDTABLE."\"></script>" . PHP_EOL;
-            $footer = $footer."  <script type=\"text/javascript\">$(\"#bs-table\").stupidtable()</script>" . PHP_EOL;
-        }
     }
 
     if (ANALYTICS_ID) {
