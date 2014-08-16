@@ -158,21 +158,20 @@ gulp.task('setup', function(){
 
         include.bump.forEach(function(entry) {
             if(entry === 'Viewer') {
-              // sources = './node_modules/jquery/dist/jquery.min.js'
-              console.log('jQuery and bootstrap.js included')
+              console.log(' +  jQuery and bootstrap.js included')
               jquery.pipe(gulp.dest('./app/assets/js/'));
               bsjs.pipe(gulp.dest('./app/assets/js/'));
             }
             if(entry === 'Font Awesome') {
-              // sources = './node_modules/font-awesome/css/font-awesome.min.css'
-              console.log(entry + ' included')
+              console.log(' +  ' + entry + ' included')
               fa.pipe(gulp.dest('./app/assets/css/'));
               fafont.pipe(gulp.dest('./app/assets/fonts/'));
             }
             if(entry === 'Highlight.js') {
-              // sources = './node_modules/highlight.js/lib/highlight.js'
-              console.log(entry + ' included')
-              hljs.pipe(gulp.dest('./app/assets/js/'));
+              console.log(' +  ' + entry + ' included')
+              hljs.pipe(concat('./highlight.min.js'))
+              .pipe(uglify())
+              .pipe(gulp.dest('./app/assets/js/'));
             }
         });
         
@@ -193,9 +192,8 @@ gulp.task('theme', function(){
         message: 'Which Bootstrap theme would you like to use?',
         default: 'default'
     }, function(res){
-
+        console.log(' +  ' + res.task)
         if(res.task === 'default') {
-              console.log(res.task)
               gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
               .pipe(concat('./bootstrap.min.css'))
               .pipe(gulp.dest('./app/assets/css/'));
@@ -236,3 +234,13 @@ gulp.task('highlight', function(){
         }
     }));
 });
+
+gulp.task('help', function() {
+
+  console.log('')
+  console.log('gulp' + ' ' + 'server'.green + '                 ' + '# Start a server.'.grey)
+  console.log('gulp' + ' ' + 'compile'.green + '                ' + '# Compile files.'.grey)
+  console.log('gulp' + ' ' + 'watch'.green + '                  ' + '# Watch files.'.grey)
+  console.log('')
+
+} )
