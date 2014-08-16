@@ -2,7 +2,6 @@
 app/
 bower_components/
 config.json
-crack.sh
 generators/
 node_modules/
 todo.md
