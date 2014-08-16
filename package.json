@@ -22,5 +22,8 @@
     "highlight.js": "~8.1.0",
     "jquery":       "~2.1.1",
     "phplint":      "~0.1.1"
+  },
+   "scripts": {
+    "test": "gulp travis"
   }
 }
