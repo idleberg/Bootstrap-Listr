@@ -142,6 +142,7 @@ gulp.task('bower', function() {
 gulp.task('setup', function(){
   var bscss  = gulp.src('./node_modules/bootstrap/dist/css/bootstrap.css');
   var bsjs   = gulp.src('./node_modules/bootstrap/dist/js/bootstrap.js');
+  var bsfont = gulp.src('./node_modules/bootstrap/fonts/*');
   var fa     = gulp.src('./node_modules/font-awesome/css/font-awesome.css');
   var fafont = gulp.src('./node_modules/font-awesome/fonts/*');
   var hljs   = gulp.src('./node_modules/highlight.js/lib/highlight.js');
@@ -154,22 +155,19 @@ gulp.task('setup', function(){
     .pipe(prompt.prompt({
         type: 'checkbox',
         name: 'bump',
-        message: 'Which libaries do you want to include?',
-        choices: ['Bootstrap JS', 'jQuery', 'Font Awesome', 'Highlight.js'],
+        message: 'Which features do you want to enable?',
+        choices: ['Viewer', 'Font Awesome', 'Highlight.js'],
       }, function(include){
 
         bscss.pipe(gulp.dest('./.tmp/'));
+        bsfont.pipe(gulp.dest('./app/assets/fonts/'));
 
         include.bump.forEach(function(entry) {
-            if(entry === 'Bootstrap JS') {
+            if(entry === 'Viewer') {
               // sources = './node_modules/jquery/dist/jquery.min.js'
-              console.log(entry + ' included')
+              console.log('jQuery and bootstrap.js included')
+              jquery.pipe(gulp.dest('./app/assets/js/'));
               bsjs.pipe(gulp.dest('./.tmp/'));
-            }
-            if(entry === 'jQuery') {
-              // sources = './node_modules/jquery/dist/jquery.min.js'
-              console.log(entry + ' included')
-              jquery.pipe(gulp.dest('./.app/assets/js/'));
             }
             if(entry === 'Font Awesome') {
               // sources = './node_modules/font-awesome/css/font-awesome.min.css'
@@ -204,15 +202,15 @@ gulp.task('theme', function(){
 
         if(res.task === 'default') {
               console.log(res.task)
-              gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
-              .pipe(concat('./bootstrap.min.css'))
+              gulp.src('./node_modules/bootstrap/dist/css/bootstrap.css')
+              .pipe(concat('./bootstrap.css'))
               .pipe(gulp.dest('./.tmp/'));
         } else {
               var bootswatch = ['amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti'];
 
               if (bootswatch.indexOf(res.task)) {
                 gulp.src('./node_modules/bootswatch/' + res.task + '/bootstrap.min.css')
-                .pipe(concat('./bootstrap.min.css'))
+                .pipe(concat('./bootstrap.css'))
                 .pipe(gulp.dest('./.tmp/'));
               }
         }
