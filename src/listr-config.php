@@ -43,7 +43,7 @@
   // Add share buttons
   define(SHARE_BUTTON, false);
   // Add your Dropbox API key to enable 'Share to Dropbox' (Get it at https://www.dropbox.com/developers/apps/create?app_type_checked=dropins)
-  define(DROPBOX_KEY, '');
+  define(DROPBOX_KEY, null);
 
   // Hide file extension (think about a good reason for enabling this, probably a bad idea)
   define(HIDE_EXTENSION, false);
