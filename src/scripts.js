@@ -73,4 +73,5 @@ $(function() {
         var b = $(this).get(0).href;
         Dropbox.save(b)
     })
+    $("#bs-table").stupidtable()
 });
