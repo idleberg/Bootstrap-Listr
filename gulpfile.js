@@ -34,6 +34,11 @@ gulp.task('init', ['clean'], function() {
     .pipe(gulp.dest('./app/'));
 
   gulp.src([
+      './src/locale/*'
+    ])
+    .pipe(gulp.dest('./app/locale'));
+
+  gulp.src([
       './src/listr-config.php'
     ])
     .pipe(concat('./listr-config.php-example'))
