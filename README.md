@@ -8,9 +8,7 @@ A simple PHP script to display folders and files on a server in a well formed li
 
 1. Download the latest [development version](https://github.com/idleberg/Bootstrap-Listr/archive/2.0-dev.zip)
 2. Unzip, then deploy to your webserver
-3. Install Node.js and Bower dependencies `npm install; bower install`*
-
-\* *Make sure you have npm, Bower and Gulp installed `npm install bower gulp -g`*
+3. Install Node.js `npm install` and Gulp `npm install gulp -g`
 
 ## Building
 
