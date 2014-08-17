@@ -1,4 +1,4 @@
-var bower   = require('gulp-bower');
+
 var clean   = require('gulp-rimraf');
 var concat  = require('gulp-concat');
 var csslint = require('gulp-csslint');
@@ -14,7 +14,7 @@ var uglify  = require('gulp-uglify');
  */
 
 gulp.task('lint',   ['csslint', 'jshint', 'phplint']);
-gulp.task('make',   ['bower', 'cssmin', 'uglify']);
+gulp.task('make',   ['cssmin', 'uglify']);
 gulp.task('minify', ['cssmin', 'uglify']);
 gulp.task('travis', ['csslint', 'jshint']);
 
@@ -101,7 +101,6 @@ gulp.task('cssmin', function() {
  */
 gulp.task('jshint', function() {
   gulp.src([
-      './bower.json',
       './src/scripts.js'
     ])
     .pipe(jshint())
@@ -118,14 +117,6 @@ gulp.task('uglify', function() {
     .pipe(uglify())
     .pipe(concat('./listr.min.js'))
     .pipe(gulp.dest('./app/assets/js/'))
-});
-
-/*
- * BOWER INSTALL
- */
-gulp.task('bower', function() {
-  return bower()
-    .pipe(gulp.dest('./bower_components/'))
 });
 
 /*
