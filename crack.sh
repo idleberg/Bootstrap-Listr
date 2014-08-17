@@ -1,24 +1,12 @@
 #!/bin/bash
 
-VERSION=0.1.1
+VERSION=0.1.2
 set -e
 
 # Functions
 function npm_error(){
     echo 'You need to install Node before we can continue (http://nodejs.org/)'
     exit 1
-}
-
-function bower_error(){
-    while true; do
-        read -p "Bower is not installed. Do you want to install it now? (y/n) " yn
-        case $yn in
-            [Yy*]* ) npm install bower || npm_error; break;;
-            [Nn]* ) echo 'Aborted by user.'; exit;;
-        esac
-    done
-
-    exit
 }
 
 # Let's go
@@ -32,15 +20,6 @@ else
     echo 'Node modules not found'
     echo 'Downloading…'
     npm install || npm_error
-fi
-
-if [ -e 'bower_components' ]
-then
-    echo 'Bower components seem to be in place'
-else
-    echo 'Bower components not found'
-    echo 'Downloading…'
-    bower install || bower_error
 fi
 
 echo $'Initializing…'

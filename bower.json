@@ -1,8 +1,0 @@
-{
-  "name": "listr-dev",
-  "version": "0.0.1",
-  "private": true,
-  "devDependencies": {
-    "jquery-bootgrid": "1.0.0-rc2"
-  }
-}
