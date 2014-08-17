@@ -16,7 +16,7 @@ A simple PHP script to display folders and files on a server in a well formed li
 
 #### init, setup, make
 
-Several gulp tasks are now available to build your local Listr app. You would usually follow these steps to do so:
+Several [Gulp](http://gulpjs.com/) tasks are now available to build your local Listr app. You would usually follow these steps to do so:
 
     # create and populate "app/"
     gulp init
@@ -44,6 +44,8 @@ Instead of running your dependencies locally, you can make use of various conten
 
 Copy `app/` to your server, then rename `listr-config.php-example` to `listr-config.php` and edit your settings. All files that should be accessible through Bootstrap Listr go into the `_public` subfolder (you can change the folder in the config). You might have to enable the `RewriteBase` setting in the `.htaccess` file (and edit the folder name), depending on your Apache settings.
 
+### Naming
+
 If you prefer a different file name for the script, you can rename it without worrying about the ignore list. However, depending on your server, you might have declare the renamed file as your directory index.
 
 * Apache: `DirectoryIndex myIndex.php` (see [documentation](http://httpd.apache.org/docs/2.2/mod/mod_dir.html))
@@ -52,7 +54,7 @@ If you prefer a different file name for the script, you can rename it without wo
 
 If you have config files for servers other than Apache, feel free to [share](#contribute) them.
 
-### Options
+## Options
 
 You can configure a number of settings in the file `listr-config.php`:
 
