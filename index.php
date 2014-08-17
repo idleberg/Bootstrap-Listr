@@ -257,11 +257,11 @@ if (CUSTOM_THEME) {
     $m8tro = array('m8tro-aqua','m8tro-blue','m8tro-brown','m8tro-green','m8tro-orange','m8tro-purple','m8tro-red','m8tro-yellow');
 
     if (in_array(BOOTSTRAP_THEME, $bootswatch)) {
-        return '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/'.BOOTSTRAP_THEME.'/bootstrap.min.css';
+        $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/'.BOOTSTRAP_THEME.'/bootstrap.min.css';
     } else if (in_array(BOOTSTRAP_THEME, $m8tro)) {
-        return '//idleberg.github.io/m8tro-listr/'.BOOTSTRAP_THEME.'.min.css';
+        $bootstrap_cdn = '//idleberg.github.io/m8tro-listr/'.BOOTSTRAP_THEME.'.min.css';
     } else {
-        return '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css';
+        $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css';
     }
 }
 
