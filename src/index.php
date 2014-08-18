@@ -154,11 +154,11 @@ if ($options['general']['enable_viewer']) {
 if ($options['general']['text_direction'] == 'rtl') {
     $direction = " dir=\"rtl\"";
     $right = "left";
-    $$left = "right";
+    $left = "right";
 } else {
     $direction = " dir=\"ltr\"";
     $right = "right";
-    $$left = "left";
+    $left = "left";
 }
 
 $bootstrap_cdn = set_bootstrap_theme();
