@@ -21,13 +21,13 @@
     "custom_theme":    "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
   },
   "icons": {
-    "fav_icon":        false,
-    "iphone":          false,
-    "iphone_retina":   false,
-    "ipad":            false,
-    "ipad_retina":     false,
-    "metro_tile_color":false,
-    "metro_tile_image":false
+    "fav_icon":         false,
+    "iphone":           false,
+    "iphone_retina":    false,
+    "ipad":             false,
+    "ipad_retina":      false,
+    "metro_tile_color": false,
+    "metro_tile_image": false
   },
   "opengraph": {
     "title":       null,

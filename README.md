@@ -38,11 +38,11 @@ For your convenience, there's a bash script provided which performs the all of t
 
 ### CDN
 
-Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). You can edit `listr-config.php` to suit your needs, like setting your [Bootswatch theme](#theming).
+Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). You can edit `config.json` to suit your needs, like setting your [Bootswatch theme](#theming).
 
 ## Deployment
 
-Copy `app/` to your server, then rename `listr-config.php-example` to `listr-config.php` and edit your settings. All files that should be accessible through Bootstrap Listr go into the `_public` subfolder (you can change the folder in the config). You might have to enable the `RewriteBase` setting in the `.htaccess` file (and edit the folder name), depending on your Apache settings.
+Copy `app/` to your server, then rename `config.json-example` to `config.json` and edit your settings. All files that should be accessible through Bootstrap Listr go into the `_public` subfolder (you can change the folder in the config). You might have to enable the `RewriteBase` setting in the `.htaccess` file (and edit the folder name), depending on your Apache settings.
 
 ### Naming
 
@@ -56,7 +56,7 @@ If you have config files for servers other than Apache, feel free to [share](#co
 
 ## Options
 
-You can configure a number of settings in the file `listr-config.php`:
+You can configure a number of settings in the file `config.json`:
 
 * Optional columns for size, modified date, permissions
 * Document icons
@@ -72,15 +72,15 @@ You can configure a number of settings in the file `listr-config.php`:
 
 ### Font Awesome
 
-Rather than using generic icons, you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) for beautiful, file-specific icons. Note that this will require extra resources, hence increase the load time. You can enable Font Awesome in `listr-config.php`.
+Rather than using generic icons, you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) for beautiful, file-specific icons. Note that this will require extra resources, hence increase the load time. You can enable Font Awesome in `config.json`.
 
 ### Theming
 
-Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) themes, please note that some of these do not include the [glyphicons](http://getbootstrap.com/components/#glyphicons) used in the script. You can disable glyphicons in `listr-config.php`.
+Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) themes, please note that some of these do not include the [glyphicons](http://getbootstrap.com/components/#glyphicons) used in the script. You can disable glyphicons in `config.json`.
 
 ### Viewer
 
-To load images, videos, audio and source code into a [Bootstrap Modal](http://getbootstrap.com/javascript/#modals), the viewer is enabled by default. You can change this in `listr-config.php`. The required Bootstrap JavaScript library will be added to your page automatically.
+To load images, videos, audio and source code into a [Bootstrap Modal](http://getbootstrap.com/javascript/#modals), the viewer is enabled by default. You can change this in `config.json`. The required Bootstrap JavaScript library will be added to your page automatically.
 
 #### Syntax Highlighter
 
@@ -88,7 +88,7 @@ Source code in the viewer modal can make use of [highlight.js](http://highlightj
 
 ### Libraries & Style-sheets
 
-For your convenience, CDNs for Bootstrap and JQuery. Should you have reasons against this, you can change the default locations in `listr-config.php`.
+For your convenience, CDNs for Bootstrap and JQuery. Should you have reasons against this, you can change the default locations in `config.json`.
 
 ## Contribute
 
