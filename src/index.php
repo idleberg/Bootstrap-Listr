@@ -367,7 +367,7 @@ if ($options['bootstrap']['responsive_table']) {
 }
 
 // Set table header
-$table_header = $table_header."            <th class=\"col-lg-8 text-".$$left."\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
+$table_header = $table_header."            <th class=\"col-lg-8 text-".$left."\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
 if ($table_options['size']) {
     $table_header = $table_header."            <th";
@@ -398,7 +398,7 @@ if(($folder_list) || ($file_list) ) {
             $table_body = $table_body."          <tr>" . PHP_EOL;
             $table_body = $table_body."            <td";
             if ($options['general']['enable_sort']) {
-                $table_body = $table_body." class=\"text-".$$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body = $table_body." class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body = $table_body.">";
             if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files" ) {
@@ -432,7 +432,7 @@ if(($folder_list) || ($file_list) ) {
             $table_body = $table_body."          <tr>" . PHP_EOL;
             $table_body = $table_body."            <td";
             if ($options['general']['enable_sort']) {
-                $table_body = $table_body." class=\"text-".$$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body = $table_body." class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body = $table_body.">";
             if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files") {
