@@ -2,6 +2,9 @@
 /*** FUNCTIONS ***/
 
 function set_bootstrap_theme() {
+
+    global $options;
+    
     if ($options['cdn']['custom_theme']) {
         return $options['cdn']['custom_theme'];
     } else {
@@ -65,7 +68,7 @@ function set_header($theme) {
             if ($options['general']['dependencies'] == 'cdn') {
                 $header = $header."  <link rel=\"stylesheet\" href=\"".$options['cdn']['highlight_css']."\" />" . PHP_EOL;
             } else {
-                $header = $header."  <link rel=\"stylesheet\" href=\"".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/highlight.min.css\" />" . PHP_EOL;
+                $header = $header."  <link rel=\"stylesheet\" href=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/highlight.min.css\" />" . PHP_EOL;
             }
         }
     }
@@ -115,7 +118,7 @@ function set_footer(){
              if ($options['general']['dependencies'] == 'cdn') {
                 $footer = $footer."  <script type=\"text/javascript\" src=\"".$options['cdn']['highlight_js']."\"></script>" . PHP_EOL;
             } else {
-                $footer = $footer."  <script type=\"text/javascript\" src=\"".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/highlight.min.js></script>" . PHP_EOL;
+                $footer = $footer."  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/highlight.min.js\"></script>" . PHP_EOL;
             }
         }
 
