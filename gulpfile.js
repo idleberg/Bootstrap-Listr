@@ -42,7 +42,7 @@ gulp.task('init', ['clean'], function() {
   gulp.src([
       './src/config.json'
     ])
-    .pipe(concat('./config.json-example'))
+    .pipe(concat('./config.json'))
     .pipe(gulp.dest('./app/'));
 
   gulp.src([
@@ -113,7 +113,7 @@ gulp.task('reset', function () {
         "stupid_table":    "//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
         "highlight_js":    "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js",
         "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css",
-        "custom_theme":    "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+        "custom_theme":    null
       },
       "icons": {
         "fav_icon":         false,
