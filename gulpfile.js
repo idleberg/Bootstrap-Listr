@@ -96,7 +96,7 @@ gulp.task('reset', function () {
     .pipe(jeditor({
       "general": {
         "root_dir":       "./_public/",
-        "mode":           "local",
+        "dependencies":   "local",
         "locale":         "en_US",
         "text_direction": "ltr",
         "enable_viewer":  true,
@@ -107,12 +107,12 @@ gulp.task('reset', function () {
       },
       "cdn": {
         "jquery":          "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js",
-        "bootstrap":       "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'",
+        "bootstrap":       "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js",
         "font_awesome":    "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css",
         "google_font":     false,
         "stupid_table":    "//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
-        "highlighter_js":  "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js",
-        "highlighter_css": false,
+        "highlight_js":    "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js",
+        "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css",
         "custom_theme":    "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
       },
       "icons": {
