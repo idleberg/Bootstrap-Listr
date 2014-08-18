@@ -3,11 +3,11 @@
 <head>
 <?=$header?>
 </head>
-<body>
+<body<?=$direction?>>
   <div class="container">
 <?=$breadcrumbs?>
 <?=$responsive_open?>
-      <table id="bs-table" class="table <?=TABLE_STYLE?>">
+      <table id="bs-table" class="table <?=$options['bootstrap']['table_style']?>">
         <thead>
           <tr>
 <?=$table_header?>
@@ -16,7 +16,7 @@
         <tfoot>
           <tr>
             <td colspan="<?=$table_count+1?>">
-              <small class="pull-left text-muted"><?=$contained?></small>
+              <small class="pull-<?=$$left?> text-muted" dir="ltr"><?=$contained?></small>
               <?=$kudos?>
             </td>
           </tr>
@@ -26,21 +26,21 @@
         </tbody>                          
       </table>
 <?=$responsive_close?>
-<? if (ENABLE_VIEWER) { ?>
+<? if ($options['general']['enable_viewer']) { ?>
     <div class="modal fade" id="viewer-modal" tabindex="-1" role="dialog" aria-labelledby="file-name" aria-hidden="true">
-      <div class="modal-dialog <?=MODAL_SIZE?>">
+      <div class="modal-dialog <?=$options['bootstrap']['modal_size']?>">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="file-name">&nbsp;</h4>
+            <button type="button" class="close pull-<?=$right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title pull-<?=$left?>" id="file-name">&nbsp;</h4>
           </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
-<? if ((HIGHLIGHTER_JS) && (HIGHLIGHTER_CSS)) { ?>
-            <button type="button" class="pull-left btn btn-link highlight hidden">Apply code highlighting</button>
+<? if (($options['cdn']['highlight_js']) && ($options['cdn']['highlight_css'])) { ?>
+            <button type="button" class="btn btn-link highlight hidden"><?=_('Apply code highlighting')?></button>
 <? } ?>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-<? if (SHARE_BUTTON) { ?>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><?=_('Close')?></button>
+<? if ($options['general']['share_button']) { ?>
             <div class="btn-group">
               <a class="btn btn-primary fullview"></a>
               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -48,7 +48,7 @@
                 <span class="sr-only">Toggle Dropdown</span>
               </button>
               <ul class="dropdown-menu" role="menu">
-<? if (DROPBOX_KEY) { ?>
+<? if ($options['keys']['dropbox_app']) { ?>
                 <li><a class="save-dropbox">Save to Dropbox</a></li>
                 <li class="divider"></li>
 <? } ?>
