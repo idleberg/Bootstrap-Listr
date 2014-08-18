@@ -37,7 +37,7 @@
           <div class="modal-body"></div>
           <div class="modal-footer">
 <? if (($options['cdn']['highlight_js']) && ($options['cdn']['highlight_css'])) { ?>
-            <button type="button" class="btn btn-link highlight hidden"><?=_('Apply code highlighting')?></button>
+            <button type="button" class="btn btn-link highlight hidden pull-<?=$left?>"><?=_('Apply code highlighting')?></button>
 <? } ?>
             <button type="button" class="btn btn-default" data-dismiss="modal"><?=_('Close')?></button>
 <? if ($options['general']['share_button']) { ?>
