@@ -1,9 +1,7 @@
 .tmp/
 app/
 bower_components/
-config.json
 generators/
 node_modules/
-src/listr-localization.php
-src/locale/
+src/locale
 todo.md
