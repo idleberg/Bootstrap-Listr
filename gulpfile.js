@@ -5,6 +5,7 @@ var csslint = require('gulp-csslint');
 var cssmin  = require('gulp-cssmin');
 var gulp    = require('gulp');
 var jshint  = require('gulp-jshint');
+var jeditor = require('gulp-json-editor');
 var phplint = require('phplint');
 var prompt  = require('gulp-prompt');
 var uglify  = require('gulp-uglify');
@@ -27,21 +28,21 @@ gulp.task('init', ['clean'], function() {
 
   gulp.src([
       './src/index.php',
-      './src/listr-config.php-example',
       './src/listr-functions.php',
+      './src/listr-l10n.php',
       './src/listr-template.php'
     ])
     .pipe(gulp.dest('./app/'));
 
   gulp.src([
-      './src/locale/*'
+      './src/locale/**/*'
     ])
-    .pipe(gulp.dest('./app/locale'));
+    .pipe(gulp.dest('./app/locale/'));
 
   gulp.src([
-      './src/listr-config.php'
+      './src/config.json'
     ])
-    .pipe(concat('./listr-config.php-example'))
+    .pipe(concat('./config.json-example'))
     .pipe(gulp.dest('./app/'));
 
   gulp.src([
@@ -58,6 +59,27 @@ gulp.task('init', ['clean'], function() {
 });
 
 /*
+ * UPGRADE
+ *
+ * Upgrade files in app/. Does not touch config.json and .htaccess files!
+ */
+gulp.task('upgrade', function() {
+
+  gulp.src([
+      './src/index.php',
+      './src/listr-functions.php',
+      './src/listr-l10n.php',
+      './src/listr-template.php'
+    ])
+    .pipe(gulp.dest('./app/'));
+
+  gulp.src([
+      './src/locale/**/*'
+    ])
+    .pipe(gulp.dest('./app/locale/'));
+});
+
+/*
  * CLEAN-UP
  *
  * Delete all files in /app
@@ -68,6 +90,91 @@ gulp.task('clean', function () {
     ], {read: false})
     .pipe(clean());
 });
+
+gulp.task('reset', function () {
+  gulp.src("./app/config.json")
+    .pipe(jeditor({
+      "general": {
+        "root_dir":       "./_public/",
+        "mode":           "local",
+        "locale":         "en_US",
+        "text_direction": "ltr",
+        "enable_viewer":  true,
+        "share_button":   false,
+        "hide_extension": false,
+        "enable_sort":    true,
+        "give_kudos":     true
+      },
+      "cdn": {
+        "jquery":          "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js",
+        "bootstrap":       "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'",
+        "font_awesome":    "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css",
+        "google_font":     false,
+        "stupid_table":    "//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
+        "highlighter_js":  "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js",
+        "highlighter_css": false,
+        "custom_theme":    "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      },
+      "icons": {
+        "fav_icon":        false,
+        "iphone":          false,
+        "iphone_retina":   false,
+        "ipad":            false,
+        "ipad_retina":     false,
+        "metro_tile_color":false,
+        "metro_tile_image":false
+      },
+      "opengraph": {
+        "title":       null,
+        "description": null,
+        "site_name":   null,
+        "type":        null,
+        "image":       null
+      },
+      "keys": {
+        "dropbox_app":      false,
+        "google_analytics": false
+      },
+      "bootstrap": {
+        "table_style":       "table-hover",
+        "responsive_table":  true,
+        "modal_size":        "modal-lg",
+        "icons":             "glyphicons",
+        "theme":             "default",
+        "fontawesome_style": "fa-fw"
+      },
+      "columns": {
+        "size": true,
+        "age":  true
+      },
+      "ignored_files": [
+        ".DAV",
+        ".DS_Store",
+        ".bzr",
+        ".bzrignore",
+        ".bzrtags",
+        ".git",
+        ".gitattributes",
+        ".gitignore",
+        ".gitmodules",
+        ".hg",
+        ".hgignore",
+        ".hgtags",
+        ".htaccess",
+        ".htpasswd",
+        ".jshintrc",
+        ".npmignore",
+        ".Spotlight-V100",
+        ".svn",
+        "__MACOSX",
+        "ehthumbs.db",
+        "robots.txt",
+        "Thumbs.db"
+      ]
+    }))
+    .pipe(gulp.dest("./app"));
+});
+
 
 /*
  * LINT PHP
@@ -192,7 +299,14 @@ gulp.task('theme', function(){
         if(res.task === 'default') {
               gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
               .pipe(concat('./bootstrap.min.css'))
-              .pipe(gulp.dest('./app/assets/css/'));
+              .pipe(gulp.dest('./app/assets/css/')),
+              gulp.src("./app/config.json")
+                .pipe(jeditor({
+                  'bootstrap': {
+                    'theme': 'default'
+                  }
+                }))
+                .pipe(gulp.dest("./app/"));
         } else {
               var bootswatch = ['amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti'];
               // var m8tro       = ['m8tro-aqua','m8tro-blue','m8tro-brown','m8tro-green','m8tro-orange','m8tro-purple','m8tro-red','m8tro-yellow']
@@ -200,7 +314,14 @@ gulp.task('theme', function(){
               if (bootswatch.indexOf(res.task)) {
                 gulp.src('./node_modules/bootswatch/' + res.task + '/bootstrap.min.css')
                 .pipe(concat('./bootstrap.min.css'))
-                .pipe(gulp.dest('./app/assets/css/'));
+                .pipe(gulp.dest('./app/assets/css/')),
+                gulp.src("./app/config.json")
+                .pipe(jeditor({
+                  'bootstrap': {
+                    'theme': res.task
+                  }
+                }))
+                .pipe(gulp.dest("./app/"));
               }
         }
     }));
