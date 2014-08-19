@@ -87,6 +87,7 @@ function set_header($theme) {
 // Set HTML footer
 function set_footer(){
 
+    $footer = null;
     global $options;
 
     if ($options['general']['dependencies'] == 'cdn') {
@@ -155,12 +156,13 @@ function php_multisort($data,$keys)
     }
     $idkeys = array_keys($data);
     $i=0;
+    $sort = null;
     foreach ($keys as $k)
     {
         if($i>0){$sort.=',';}
         $sort.='$cols['.$k['key'].']';
-        if($k['sort']){$sort.=',SORT_'.strtoupper($k['sort']);}
-        if($k['type']){$sort.=',SORT_'.strtoupper($k['type']);}
+        if(isset($k['sort'])){$sort.=',SORT_'.strtoupper($k['sort']);}
+        if(isset($k['type'])){$sort.=',SORT_'.strtoupper($k['type']);}
         $i++;
     }
     $sort .= ',$idkeys';

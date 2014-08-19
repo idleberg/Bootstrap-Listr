@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(1);
+error_reporting(E_ALL);
 
 /**
  *      Bootstrap Listr
@@ -187,9 +187,13 @@ if ($handle = opendir($navigation_dir))
             $item['lname']         =     strtolower($info['filename']);
             $item['bname']         =     $info['basename'];
             $item['lbname']        =     strtolower($info['basename']);
-            $item['ext']           =     $info['extension'];
-            $item['lext']          =     strtolower($info['extension']);
-            if($info['extension'] == '') $item['ext'] = '.';
+            
+            if (isset($info['extension'])) {
+                $item['ext']           =     $info['extension'];
+                $item['lext']          =     strtolower($info['extension']);
+            } else {
+                $item['ext'] = '.';
+            }
 
             if ($options['bootstrap']['icons'] == 'fontawesome') {
                 $folder_icon = 'fa fa-folder ' . $options['bootstrap']['fontawesome_style'];
@@ -347,6 +351,7 @@ $header = set_header($bootstrap_cdn, $options);
 $footer = set_footer($options);
 
 // Set breadcrumbs
+$breadcrumbs = null;
 $breadcrumbs = $breadcrumbs."    <ol class=\"breadcrumb\"".$direction.">" . PHP_EOL;
 $breadcrumbs = $breadcrumbs."      <li><a href=\"".htmlentities($root_dir, ENT_QUOTES, 'utf-8')."\">$home</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
@@ -367,6 +372,7 @@ if ($options['bootstrap']['responsive_table']) {
 }
 
 // Set table header
+$table_header = null;
 $table_header = $table_header."            <th class=\"col-lg-8 text-".$left."\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
 if ($table_options['size']) {
@@ -390,6 +396,7 @@ if ($table_options['age']) {
 }
 
 // Set table body
+$table_body = null;
 if(($folder_list) || ($file_list) ) {
 
     if($folder_list):    
@@ -498,12 +505,6 @@ if(($folder_list) || ($file_list) ) {
 if ($options['general']['give_kudos']) {
     $kudos = "<a class=\"pull-".$right." small text-muted\" href=\"https://github.com/idleberg/Bootstrap-Listr\" title=\"Bootstrap Listr on GitHub\" target=\"_blank\">"._('Fork me on GitHub')."</a>";
 }
-
-
-/*** HTML TEMPLATE ***/
-/*** HTTP Header ***/
-header("Content-Type: text/html; charset=utf-8");
-header("Cache-Control: no-cache, must-revalidate");
 
 require_once('listr-template.php');
 ?>

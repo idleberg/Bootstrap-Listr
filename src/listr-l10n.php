@@ -21,10 +21,4 @@ bind_textdomain_codeset($domain, 'UTF-8');
 
 textdomain($domain);
 
-// echo _("Let's test this thing");
-
-// $var1 = "#variable1";
-// $var2 = "#variable2";
-// $index = sprintf(_('Index of %1$s%2$s'), $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
-echo $index;
 ?>
