@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(1);
+error_reporting(E_ERROR);
 
 /**
  *      Bootstrap Listr
@@ -23,25 +23,25 @@ error_reporting(1);
  *  'table-bordered' - show borders on all sides of the table and cells
  * 'table-condensed' - make tables more compact by cutting cell padding in half
  */
-define(TABLE_STYLE, 'table-hover');
+define('TABLE_STYLE', 'table-hover');
 
 /* Responsive Table
  * See http://getbootstrap.com/css/#tables-responsive for details
  */
-define(RESPONSIVE_TABLE, true);
+define('RESPONSIVE_TABLE', true);
 
 // Toggle column sorting
-define(ENABLE_SORT, true);
+define('ENABLE_SORT', true);
 
 // Toggle media viewer
-define(ENABLE_VIEWER, false);
+define('ENABLE_VIEWER', false);
 
 /* Size of modal used for media viewer (pixel widths refer to standard theme)
  * 'modal-sm' - 300px
  *         '' - 600px
  * 'modal-lg' - 900px (default)
  */
-define(MODAL_SIZE, 'modal-lg');
+define('MODAL_SIZE', 'modal-lg');
 
 /* Document Icons:
  *         'none' - No icons
@@ -49,7 +49,7 @@ define(MODAL_SIZE, 'modal-lg');
  *  'fontawesome' - Font Awesome icons
  *     'fa-files' - Font Awesome file icons
  */
-define(DOC_ICONS, 'glyphicons');
+define('DOC_ICONS', 'glyphicons');
 
 /* Bootstrap Themes:
  *    'default' - http://getbootstrap.com
@@ -74,7 +74,7 @@ define(DOC_ICONS, 'glyphicons');
  *
  *    'm8tro-*' - replace * with aqua, blue, brown, green, orange, purple, red, yellow
  */
-define(BOOTSTRAP_THEME, 'default');
+define('BOOTSTRAP_THEME', 'default');
 
 /* Font Awesome Styles (can be combined, e.g. 'fa-lg fa-border'):
  *      'fa-fw' – fixed width (default)
@@ -87,37 +87,37 @@ define(BOOTSTRAP_THEME, 'default');
  *
  * Visit http://fontawesome.io/examples/ for further options
  */
-define(FONTAWESOME_STYLE,'fa-fw');
+define('FONTAWESOME_STYLE','fa-fw');
 
 // External resources
-   define(FONT_AWESOME, '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
-     define(CUSTOM_THEME, null);
-    define(GOOGLE_FONT, null); // e.g. 'Open+Sans' or 'Open+Sans:400,300,700'
-         define(JQUERY, '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
-    define(BOOTSTRAPJS, '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js');
+   define('FONT_AWESOME', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+     define('CUSTOM_THEME', null);
+    define('GOOGLE_FONT', null); // e.g. 'Open+Sans' or 'Open+Sans:400,300',700'
+         define('JQUERY', '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
+    define('BOOTSTRAPJS', '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js');
 
 // Browser and Device Icons
-          define(FAV_ICON, ''); // 16x16 or 32x32 
-       define(IPHONE_ICON, ''); // 57x57
-define(IPHONE_ICON_RETINA, ''); // 114x114
-         define(IPAD_ICON, ''); // 72x72
-  define(IPAD_ICON_RETINA, ''); // 144x144
-  define(METRO_TILE_COLOR, ''); //
-  define(METRO_TILE_IMAGE, ''); // 144x144
+          define('FAV_ICON', ''); // 16x16 or 32x32 
+       define('IPHONE_ICON', ''); // 57x57
+define('IPHONE_ICON_RETINA', ''); // 114x114
+         define('IPAD_ICON', ''); // 72x72
+  define('IPAD_ICON_RETINA', ''); // 144x144
+  define('METRO_TILE_COLOR', ''); //
+  define('METRO_TILE_IMAGE', ''); // 144x144
 
   // OpenGraph Tags - http://ogp.me/
-          define(OG_TITLE, '');
-    define(OG_DESCRIPTION, '');
-      define(OG_SITE_NAME, '');
-         define(OG_LOCALE, '');
-           define(OG_TYPE, '');
-          define(OG_IMAGE, ''); 
+          define('OG_TITLE', '');
+    define('OG_DESCRIPTION', '');
+      define('OG_SITE_NAME', '');
+         define('OG_LOCALE', '');
+           define('OG_TYPE', '');
+          define('OG_IMAGE', ''); 
 
 // Display link to Bootstrap-Listr in footer
-define(GIVE_KUDOS, true);
+define('GIVE_KUDOS', true);
 
 // Google Analytics ID
-define(ANALYTICS_ID, ''); // UA-XXXXX-Y or UA-XXXXX-YY
+define('ANALYTICS_ID', ''); // UA-XXXXX-Y or UA-XXXXX-YY
 
 // Configure optional table columns
 $table_options = array (
@@ -158,7 +158,7 @@ $ignore_list = array(
 );
 
 // Hide file extension?
-define(HIDE_EXTENSION, false);
+define('HIDE_EXTENSION', false);
 
 /*** HTTP Header ***/
 header("Content-Type: text/html; charset=utf-8");
@@ -169,7 +169,7 @@ header("Cache-Control: no-cache, must-revalidate");
 
 // Get this folder and files name.
 
-if ($_SERVER['HTTPS']) {
+if (isset($_SERVER['HTTPS'])) {
     $this_protocol = "https://";
 } else {
     $this_protocol = "http://";
@@ -289,9 +289,12 @@ if ($handle = opendir('.'))
             $item['lname']         =     strtolower($info['filename']);
             $item['bname']         =     $info['basename'];
             $item['lbname']        =     strtolower($info['basename']);
-            $item['ext']           =     $info['extension'];
-            $item['lext']          =     strtolower($info['extension']);
-            if($info['extension'] == '') $item['ext'] = '.';
+            if (isset($info['extension'])) {
+                $item['ext']       =     $info['extension'];
+                $item['lext']      =     strtolower($info['extension']);
+            } else {
+                if(!isset($info['extension'])) $item['ext'] = '.';
+            }
 
             if (DOC_ICONS == 'fontawesome') {
                 $folder_icon = 'fa fa-folder ' . FONTAWESOME_STYLE;
@@ -455,12 +458,13 @@ function php_multisort($data,$keys)
     }
     $idkeys = array_keys($data);
     $i=0;
+    $sort=null;
     foreach ($keys as $k)
     {
         if($i>0){$sort.=',';}
         $sort.='$cols['.$k['key'].']';
-        if($k['sort']){$sort.=',SORT_'.strtoupper($k['sort']);}
-        if($k['type']){$sort.=',SORT_'.strtoupper($k['type']);}
+        if(isset($k['sort'])){$sort.=',SORT_'.strtoupper($k['sort']);}
+        if(isset($k['type'])){$sort.=',SORT_'.strtoupper($k['type']);}
         $i++;
     }
     $sort .= ',$idkeys';
@@ -537,6 +541,7 @@ $header = $header."  <link rel=\"stylesheet\" href=\"$bootstrap_cdn\" />" . PHP_
 if (DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
     $header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
 }
+$modal_css = null;
 if (ENABLE_VIEWER) {
     $modal_css = ".modal img{display:block;margin:0 auto;max-width:100%}.modal video,.modal audio{width:100%}.viewer-wrapper{position:relative;padding-bottom:56.25%;height:0},.viewer-wrapper embed,.viewer-wrapper object{position:absolute;top:0;left:0;width:100%;height:100%}";
 }
@@ -546,6 +551,7 @@ $header = $header."  <link href=\"//fonts.googleapis.com/css?family=".GOOGLE_FON
 }
 
 // Set HTML footer
+$footer = null;
 if ( (ENABLE_SORT) || (ENABLE_VIEWER) ) {
     $footer = $footer."  <script type=\"text/javascript\" src=\"".JQUERY."\"></script>" . PHP_EOL;
 }
@@ -561,6 +567,7 @@ if (ANALYTICS_ID) {
 }
 
 // Set breadcrumbs
+$breadcrumbs = null;
 $breadcrumbs = $breadcrumbs."      <li><a href=\"".htmlentities($this_protocol . $this_domain, ENT_QUOTES, 'utf-8')."\">$home</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
     if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
@@ -579,6 +586,7 @@ if (RESPONSIVE_TABLE) {
 }
 
 // Set table header
+$table_header = null;
 $table_header = $table_header."            <th class=\"col-lg-8 text-left\" data-sort=\"string\">Name</th>";
 
 if ($table_options['size']) {
@@ -606,7 +614,7 @@ if(($folder_list) || ($file_list) ) {
 
     if($folder_list):    
         foreach($folder_list as $item) :
-
+            $table_body = null;
             $table_body = $table_body."          <tr>" . PHP_EOL;
             $table_body = $table_body."            <td";
             if (ENABLE_SORT) {
@@ -657,6 +665,7 @@ if(($folder_list) || ($file_list) ) {
             }
 
             // inject modal class if necessary
+            $modal_class = null;
             if (ENABLE_VIEWER) {
                 if (in_array($item['lext'], $audio_files)) {
                     $modal_class = ' class="audio-modal"';
@@ -670,8 +679,6 @@ if(($folder_list) || ($file_list) ) {
 -                    $modal_class = ' class="source-modal"';
                 } else if (in_array($item['lext'], $video_files)) {
                     $modal_class = ' class="video-modal"';
-                } else {
-                    $modal_class = NULL;
                 }
             }
             $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$modal_class>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
