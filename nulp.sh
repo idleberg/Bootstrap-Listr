@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.2.1
+VERSION=0.2.2
 
 1=''
 yellow='\033[33m'
@@ -19,10 +19,9 @@ function completed(){
 }
 
 # Hello, my name is
-echo $'\n'crack-listr $VERSION
-echo =================
+echo $'\n'nulp $VERSION
+echo ==========
 
-# Check Node modules
 if [ -z $1 ]
 then
     if [[ -e './node_modules/bootstrap' && -e './node_modules/bootswatch' && -e './node_modules/font-awesome' && -e './node_modules/highlight.js' && -e './node_modules/jquery' ]]
@@ -43,7 +42,6 @@ then
                     rm -rf "./app";
                     break;;
                 [Nn]* )
-                    echo "Aborted by user."
                     exit;;
             esac
         done
@@ -58,7 +56,12 @@ then
     mkdir -p "./app/_public"
     cp -v "./src/public.htaccess" "./app/_public/.htaccess"
     cp -v "./src/root.htaccess" "./app/.htaccess"
-    cp -v "./src/config.json" "./app/"
+    if [ -e './app/config.json' ]
+    then
+        cp -v "./src/config.json" "./app/config.json-example"
+    else
+        cp -v "./src/config.json" "./app/"
+    fi
     cp -v "./src/index.php" "./app/"
     cp -v "./src/listr-functions.php" "./app/"
     cp -v "./src/listr-l10n.php" "./app/"
@@ -147,3 +150,4 @@ then
     fi
 fi
 
+completed

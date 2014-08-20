@@ -18,6 +18,7 @@ gulp.task('lint',   ['csslint', 'jshint', 'phplint']);
 gulp.task('make',   ['cssmin', 'uglify']);
 gulp.task('minify', ['cssmin', 'uglify']);
 gulp.task('travis', ['csslint', 'jshint']);
+gulp.task('update', ['upgrade']);
 
 /*
  * SELF COPY
@@ -71,6 +72,12 @@ gulp.task('upgrade', function() {
       './src/listr-l10n.php',
       './src/listr-template.php'
     ])
+    .pipe(gulp.dest('./app/'));
+
+  gulp.src([
+      './src/config.json'
+    ])
+    .pipe(concat('./config.json-example'))
     .pipe(gulp.dest('./app/'));
 
   gulp.src([

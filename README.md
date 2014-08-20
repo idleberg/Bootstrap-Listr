@@ -34,11 +34,11 @@ Steps 2-3 can be repeated anytime after the first. You also have `gulp clean` an
 
 #### Bash script
 
-If for some reason you can't use Gulp, there is a bash script provided to perform most of the tasks. Run `./crack.sh` and follow instructions. As with the Gulp tasks, you can use `./crack.sh init`, `./crack.sh setup` and `./crack.sh theme` for individual steps of the scripts.
+If for some reason you can't use Gulp, there is a bash script provided to perform most of the tasks. Run `./nulp.sh` and follow instructions. As with the Gulp tasks, you can use `./nulp.sh init`, `./nulp.sh setup` and `./nulp.sh theme` for individual steps of the scripts.
 
 ### CDN
 
-Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). You can edit `config.json` to suit your needs, like setting your [Bootswatch theme](#theming).
+Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). Initialize your app using `gulp init` (or `nulp.sh init`) and edit `config.json` to suit your needs, like setting a [Bootswatch theme](#theming).
 
 ## Deployment
 
