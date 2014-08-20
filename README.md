@@ -30,11 +30,11 @@ Several [Gulp](http://gulpjs.com/) tasks are now available to build your local L
     # minify CSS, uglify JS
     gulp make
 
-Steps 2-3 can be repeated anytime after the first. You also have `gulp clean` and `gulp lint` at hand, `gulp css`, `gulp js` & `gulp php` will lint the specific file-types.
+Steps 2-3 can be repeated anytime after the first. You also have `gulp clean`, `gulp upgrade` and `gulp lint` at hand, `gulp css`, `gulp js` & `gulp php` will lint the specific file-types.
 
 #### Bash script
 
-If for some reason you can't use Gulp, there is a bash script provided to perform most of the tasks. Run `./nulp.sh` and follow instructions. As with the Gulp tasks, you can use `./nulp.sh init`, `./nulp.sh setup` and `./nulp.sh theme` for individual steps of the scripts.
+If for some reason you can't use Gulp, there is a bash script provided to perform most of the tasks. Run `./nulp.sh` and follow instructions. As with the Gulp tasks, you can use `./nulp.sh init`, `./nulp.sh setup` and `./nulp.sh theme` for individual steps of the script.
 
 ### CDN
 
