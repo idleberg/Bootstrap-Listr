@@ -285,7 +285,15 @@ gulp.task('setup', function(){
             }
         });
         
-    }));
+    }))
+
+    gulp.src("./app/config.json")
+      .pipe(jeditor({
+        'general': {
+          'dependencies': 'local'
+        }
+      }))
+      .pipe(gulp.dest("./app/"));
 });
 
 /*
