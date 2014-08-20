@@ -69,9 +69,15 @@ then
 
     mkdir -p "./app/assets/css"
     cp -v "./node_modules/bootstrap/dist/css/bootstrap.min.css" "./app/assets/css/"
+    cp -v "./src/style.css" "./app/assets/css/listr.css"
+    echo -e "${yellow}Action required:${default} Expecting a minified style-sheet (/assets/css/listr.min.css)";
 
     mkdir -p "./app/assets/fonts"
     cp -r -v "./node_modules/bootstrap/dist/fonts/" "./app/assets/fonts/"
+
+    mkdir -p "./app/assets/js"
+    cp -v "./src/scripts.js" "./app/assets/js/listr.js"
+    echo -e "${yellow}Action required:${default} Expecting a minified library (/assets/js/listr.min.js)";
 
     if [[ $1 && $1 == 'theme' ]]
     then
@@ -114,7 +120,7 @@ then
             [Yy]* )
                 mkdir -p "./app/assets/js";
                 cp "./node_modules/highlight.js/lib/highlight.js" "./app/assets/js/";
-                echo -e "${yellow}Action required:${default} Bootstrap Listr expects a minified library (highlight.min.js)";
+                echo -e "${yellow}Action required:${default} Expecting a minified library (/assets/js/highlight.min.js)";
                 break;;
             [Nn]* )
                 break;;
