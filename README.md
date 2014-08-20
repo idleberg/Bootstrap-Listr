@@ -34,7 +34,7 @@ You also have `gulp clean` and `gulp lint` at hand, `gulp css`, `gulp js` & `gul
 
 #### crack.sh
 
-For your convenience, there's a bash script provided which performs the all of the tasks mentioned above. Run `./crack.sh` and follow instructions.
+If for some reason you can't use Gulp, there is a bash script provided to perform most of the tasks. Run `./crack.sh` and follow instructions.
 
 ### CDN
 
