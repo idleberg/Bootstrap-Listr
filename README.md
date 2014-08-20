@@ -30,7 +30,7 @@ Several [Gulp](http://gulpjs.com/) tasks are now available to build your local L
     # minify CSS, uglify JS
     gulp make
 
-You also have `gulp clean` and `gulp lint` at hand, `gulp css`, `gulp js` & `gulp php` will lint the specific file-types.
+Steps 2-3 can be repeated anytime after the first. You also have `gulp clean` and `gulp lint` at hand, `gulp css`, `gulp js` & `gulp php` will lint the specific file-types.
 
 #### crack.sh
 
