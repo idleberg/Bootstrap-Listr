@@ -1,56 +1,56 @@
 $(function() {
-    function a(e, b, d, c) {
-        $(".modal-body").empty().append(e);
-        $(".fullview").attr("href", d).text(b);
-        $(".save-dropbox").attr("href", d);
-        $(".email-link").attr("href", "mailto:?body=" + c);
-        $(".twitter-link").attr("href", "http://twitter.com/share?url=" + c);
-        $(".facebook-link").attr("href", "http://www.facebook.com/sharer/sharer.php?u=" + c);
-        $(".google-link").attr("href", "https://plus.google.com/share?url=" + c);
-        $(".modal-title").text(decodeURIComponent(d));
+    function set_modal(content, button, file, uri) {
+        $(".modal-body").empty().append(content);
+        $(".fullview").attr("href", file).text(button);
+        $(".save-dropbox").attr("href", file);
+        $(".email-link").attr("href", "mailto:?body=" + uri);
+        $(".twitter-link").attr("href", "http://twitter.com/share?url=" + uri);
+        $(".facebook-link").attr("href", "http://www.facebook.com/sharer/sharer.php?u=" + uri);
+        $(".google-link").attr("href", "https://plus.google.com/share?url=" + uri);
+        $(".modal-title").text(decodeURIComponent(file));
         $("#viewer-modal").modal("show");
     }
-    $(".audio-modal").click(function(d) {
-        d.preventDefault();
-        var c = $(this).attr("href"),
-            b = $(this).get(0).href;
-        a('<audio src="' + c + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>', "Listen", c, b);
+    $(".audio-modal").click(function(e) {
+        e.preventDefault();
+        var file = $(this).attr("href"),
+            uri = $(this).get(0).href;
+        set_modal('<audio src="' + file + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>', "Listen", file, uri);
     });
-    $(".flash-modal").click(function(d) {
-        d.preventDefault();
-        var c = $(this).attr("href"),
-            b = $(this).get(0).href;
-        a('<div class="viewer-wrapper"><object width="100%" height="100%" type="application/x-shockwave-flash" data="' + c + '"><param name="movie" value="' + c + '"><param name="quality" value="high"></object></div>', "View", c, b);
+    $(".flash-modal").click(function(e) {
+        e.preventDefault();
+        var file = $(this).attr("href"),
+            uri = $(this).get(0).href;
+        set_modal('<div class="viewer-wrapper"><object width="100%" height="100%" type="application/x-shockwave-flash" data="' + file + '"><param name="movie" value="' + file + '"><param name="quality" value="high"></object></div>', "View", file, uri);
     });
-    $(".image-modal").click(function(d) {
-        d.preventDefault();
-        var c = $(this).attr("href"),
-            b = $(this).get(0).href;
-        a('<img src="' + c + '"/>', "View", c, b);
+    $(".image-modal").click(function(e) {
+        e.preventDefault();
+        var file = $(this).attr("href"),
+            uri = $(this).get(0).href;
+        set_modal('<img src="' + file + '"/>', "View", file, uri);
     });
-    $(".video-modal").click(function(d) {
-        d.preventDefault();
-        var c = $(this).attr("href"),
-            b = $(this).get(0).href;
-        a('<video src="' + c + '" id="player" autoplay controls>Video format or MIME type is not supported</video>', "View", c, b);
+    $(".video-modal").click(function(e) {
+        e.preventDefault();
+        var file = $(this).attr("href"),
+            uri = $(this).get(0).href;
+        set_modal('<video src="' + file + '" id="player" autoplay controls>Video format or MIME type is not supported</video>', "View", file, uri);
     });
-    $(".quicktime-modal").click(function(d) {
-        d.preventDefault();
-        var c = $(this).attr("href"),
-            b = $(this).get(0).href;
-        a('<div class="viewer-wrapper"><embed width="100%" height="100%" src="' + c + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"></div>', "View", c, b);
+    $(".quicktime-modal").click(function(e) {
+        e.preventDefault();
+        var file = $(this).attr("href"),
+            uri = $(this).get(0).href;
+        set_modal('<div class="viewer-wrapper"><embed width="100%" height="100%" src="' + file + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"></div>', "View", file, uri);
     });
-    $(".source-modal").click(function(f) {
-        f.preventDefault();
+    $(".source-modal").click(function(e) {
+        e.preventDefault();
         $(".highlight").removeClass("hidden").removeAttr("disabled");
-        var c = $(this).attr("href"),
-            b = $(this).get(0).href;
-        var d = c.split(".").pop();
-        a('<pre><code id="source" class="' + d + '"></code></pre>', "View", c, b);
-        $.ajax(c, {
+        var file = $(this).attr("href"),
+            uri = $(this).get(0).href;
+        var d = file.split(".").pop();
+        set_modal('<pre><code id="source" class="' + d + '"></code></pre>', "View", file, uri);
+        $.ajax(file, {
             dataType: "text",
-            success: function(e) {
-                $("#source").text(e);
+            success: function(contents) {
+                $("#source").text(contents);
             }
         });
     });
