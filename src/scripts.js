@@ -46,7 +46,7 @@ $(function() {
         var file = $(this).attr("href"),
             uri = $(this).get(0).href;
         var d = file.split(".").pop();
-        set_modal('<pre><code id="source" class="' + d + '"></code></pre>', "View", file, uri);
+        set_modal('<pre><code id="source" class="' + d + '" dir="rtl"></code></pre>', "View", file, uri);
         $.ajax(file, {
             dataType: "text",
             success: function(contents) {
