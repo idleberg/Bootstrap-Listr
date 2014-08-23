@@ -34,11 +34,11 @@ Steps 2-3 can be repeated anytime after the first. You also have `gulp clean`, `
 
 #### Bash script
 
-If for some reason you can't use Gulp, there is a bash script provided to perform most of the tasks. Run `./nulp.sh` and follow instructions. As with the Gulp tasks, you can use `./nulp.sh init`, `./nulp.sh setup` and `./nulp.sh theme` for individual steps of the script.
+If for some reason you can't use Gulp, there is a bash script provided to perform most of the tasks. Run `./setup.sh` and follow instructions. As with the Gulp tasks, you can use `./setup.sh init`, `./setup.sh setup` and `./setup.sh theme` for individual steps of the script.
 
 ### CDN
 
-Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). Initialize your app using `gulp init` (or `nulp.sh init`) and edit `config.json` to suit your needs, like setting a [Bootswatch theme](#theming).
+Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). Initialize your app using `gulp init` (or `setup.sh init`) and edit `config.json` to suit your needs, like setting a [Bootswatch theme](#theming).
 
 ## Deployment
 
