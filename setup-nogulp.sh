@@ -19,8 +19,8 @@ function completed(){
 }
 
 # Hello, my name is
-echo $'\n'nulp $VERSION
-echo ==========
+echo $'\n'Listr-setup $VERSION
+echo =================
 
 if [ -z $1 ]
 then

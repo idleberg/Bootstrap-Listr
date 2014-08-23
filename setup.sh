@@ -10,7 +10,7 @@ function npm_error(){
 }
 
 # Let's go
-echo $'\n'crack-listr $VERSION
+echo $'\n'Listr-setup $VERSION
 echo =================
 
 if [ -e 'node_modules' ]
