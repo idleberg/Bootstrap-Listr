@@ -45,7 +45,7 @@
 <?php if ($options['general']['share_button']) { ?>
               <div class="btn-group">
                 <a class="btn btn-primary btn-view fullview hidden"><?php echo _('View')?></span></a>
-                <a class="btn btn-primary btn-listen fullview hidden"><?php echo _('Listen')?></span></a>
+                <a class="btn btn-primary btn-listen fullview hidden"><?php echo _('View')?></span></a>
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                   <span class="caret"></span>
                   <span class="sr-only">Toggle Dropdown</span>
