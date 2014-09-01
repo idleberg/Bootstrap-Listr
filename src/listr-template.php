@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?=$header?>
+<?php echo $header?>
 </head>
-<body<?=$direction?>>
+<body<?php echo $direction?>>
   <div class="container">
-<?=$breadcrumbs?>
-<?=$responsive_open?>
-      <table id="bs-table" class="table <?=$options['bootstrap']['table_style']?>">
+<?php echo $breadcrumbs?>
+<?php echo $responsive_open?>
+      <table id="bs-table" class="table <?php echo $options['bootstrap']['table_style']?>">
         <thead>
           <tr>
-<?=$table_header?>
+<?php echo $table_header?>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <td colspan="<?=$table_count+1?>">
-              <small class="pull-<?=$left?> text-muted" dir="ltr"><?=$contained?></small>
-              <?=$kudos?>
+            <td colspan="<?php echo $table_count+1?>">
+              <small class="pull-<?php echo $left?> text-muted" dir="ltr"><?php echo $contained?></small>
+              <?php echo $kudos?>
             </td>
           </tr>
         </tfoot>
         <tbody>
-<?=$table_body?>
+<?php echo $table_body?>
         </tbody>                          
       </table>
-<?=$responsive_close?>
-<? if ($options['general']['enable_viewer']) { ?>
+<?php echo $responsive_close?>
+<?php if ($options['general']['enable_viewer']) { ?>
     <div class="modal fade" id="viewer-modal" tabindex="-1" role="dialog" aria-labelledby="file-name" aria-hidden="true">
-      <div class="modal-dialog <?=$options['bootstrap']['modal_size']?>">
+      <div class="modal-dialog <?php echo $options['bootstrap']['modal_size']?>">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close pull-<?=$right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title text-<?=$left?>" id="file-name">&nbsp;</h4>
+            <button type="button" class="close pull-<?php echo $right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-<?php echo $left?>" id="file-name">&nbsp;</h4>
           </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
-            <div class="pull-<?=$left?>">
-<? if (($options['cdn']['highlight_js']) && ($options['cdn']['highlight_css'])) { ?>
-              <button type="button" class="btn btn-link highlight hidden"><?=_('Apply code highlighting')?></button>
+            <div class="pull-<?php echo $left?>">
+<?php if (($options['cdn']['highlight_js']) && ($options['cdn']['highlight_css'])) { ?>
+              <button type="button" class="btn btn-link highlight hidden"><?php echo _('Apply code highlighting')?></button>
             </div>
-<? } ?>     <div class="pull-<?=$right?>">
-              <button type="button" class="btn btn-default" data-dismiss="modal"><?=_('Close')?></button>
-<? if ($options['general']['share_button']) { ?>
+<?php } ?>     <div class="pull-<?php echo $right?>">
+              <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _('Close')?></button>
+<?php if ($options['general']['share_button']) { ?>
               <div class="btn-group">
                 <a class="btn btn-primary fullview"></a>
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -50,10 +50,10 @@
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-<? if ($options['keys']['dropbox_app']) { ?>
+<?php if ($options['keys']['dropbox_app']) { ?>
                   <li><a class="save-dropbox">Save to Dropbox</a></li>
                   <li class="divider"></li>
-<? } ?>
+<?php } ?>
                   <li><a class="email-link">Email</a></li>
                   <li><a class="facebook-link">Facebook</a></li>
                   <li><a class="google-link">Google+</a></li>
@@ -61,15 +61,15 @@
                 </ul>
               </div>
             </div>
-<? } else { ?>
+<?php } else { ?>
             <a class="btn btn-primary fullview"></a>
-<? } ?>
+<?php } ?>
           </div>
         </div>
       </div>
     </div>
-<? } ?>
+<?php } ?>
   </div>
-<?=$footer?>
+<?php echo $footer?>
 </body>
 </html>
