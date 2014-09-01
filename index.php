@@ -624,7 +624,7 @@ if(($folder_list) || ($file_list) ) {
             if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
                 $table_body = $table_body."<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
             }
-            $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . utf8_encode($item['bname']) . "</strong></a></td>" . PHP_EOL;
+            $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . $item['bname'] . "</strong></a></td>" . PHP_EOL;
             
             if ($table_options['size']) {
                 $table_body = $table_body."            <td";
@@ -659,9 +659,9 @@ if(($folder_list) || ($file_list) ) {
                 $table_body = $table_body."<$icon_tag class=\"" . $item['class'] . "\"></$icon_tag>&nbsp;";
             }
             if (HIDE_EXTENSION) {
-                $display_name = utf8_encode($item['name']);
+                $display_name = $item['name'];
             } else {
-                $display_name = utf8_encode($item['bname']);
+                $display_name = $item['bname'];
             }
 
             // inject modal class if necessary
@@ -725,36 +725,36 @@ if (GIVE_KUDOS) {
 <!DOCTYPE html>
 <html>
 <head>
-<?=$header?>
+<?php echo $header?>
 </head>
 <body>
   <div class="container">
     <ol class="breadcrumb">
-<?=$breadcrumbs?>
+<?php echo $breadcrumbs?>
     </ol>
-<?=$responsive_open?>
-      <table id="bs-table" class="table <?=TABLE_STYLE?>">
+<?php echo $responsive_open?>
+      <table id="bs-table" class="table <?php echo TABLE_STYLE?>">
         <thead>
           <tr>
-<?=$table_header?>
+<?php echo $table_header?>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <td colspan="<?=$table_count+1?>">
-              <small class="pull-left text-muted"><?=$contained?></small>
-              <?=$kudos?>
+            <td colspan="<?php echo $table_count+1?>">
+              <small class="pull-left text-muted"><?php echo $contained?></small>
+              <?php echo $kudos?>
             </td>
           </tr>
         </tfoot>
         <tbody>
-<?=$table_body?>
+<?php echo $table_body?>
         </tbody>                          
       </table>
-<?=$responsive_close?>
-<? if (ENABLE_VIEWER) { ?>
+<?php echo $responsive_close?>
+<?php if (ENABLE_VIEWER) { ?>
     <div class="modal fade" id="viewer-modal" tabindex="-1" role="dialog" aria-labelledby="file-name" aria-hidden="true">
-      <div class="modal-dialog <?=MODAL_SIZE?>">
+      <div class="modal-dialog <?php echo MODAL_SIZE?>">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -768,8 +768,8 @@ if (GIVE_KUDOS) {
         </div>
       </div>
     </div>
-<? } ?>
+<?php } ?>
   </div>
-<?=$footer?>
+<?php echo $footer?>
 </body>
 </html>
