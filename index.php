@@ -624,7 +624,7 @@ if(($folder_list) || ($file_list) ) {
             if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
                 $table_body = $table_body."<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
             }
-            $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . utf8_encode($item['bname']) . "</strong></a></td>" . PHP_EOL;
+            $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . $item['bname'] . "</strong></a></td>" . PHP_EOL;
             
             if ($table_options['size']) {
                 $table_body = $table_body."            <td";
@@ -659,9 +659,9 @@ if(($folder_list) || ($file_list) ) {
                 $table_body = $table_body."<$icon_tag class=\"" . $item['class'] . "\"></$icon_tag>&nbsp;";
             }
             if (HIDE_EXTENSION) {
-                $display_name = utf8_encode($item['name']);
+                $display_name = $item['name'];
             } else {
-                $display_name = utf8_encode($item['bname']);
+                $display_name = $item['bname'];
             }
 
             // inject modal class if necessary
