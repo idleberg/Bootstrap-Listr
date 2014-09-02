@@ -34,7 +34,7 @@ Steps 2-3 can be repeated anytime after the first. You also have `gulp clean`, `
 
 #### Bash script
 
-If for some reason you can't use Gulp, there is a bash script provided to perform most of the tasks. Run `./setup.sh` and follow instructions. As with the Gulp tasks, you can use `./setup.sh init`, `./setup.sh setup` and `./setup.sh theme` for individual steps of the script.
+If for some reason you can't use Gulp, there is a bash script provided to perform most of the tasks. Run `./setup.sh` and follow instructions, take note that you will have to perform several tasks by hand. As with the Gulp tasks, you can use `./setup.sh init`, `./setup.sh setup` and `./setup.sh theme` for individual steps of the script.
 
 ### CDN
 
@@ -61,6 +61,7 @@ You can configure a number of settings in the file `config.json`:
 * Optional columns for size, modified date, permissions
 * Document icons
 * File viewer for images, videos, audio and source code
+* Search box to filter results
 * Column sorting
 * Responsive tables
 * List of ignored files
@@ -81,6 +82,10 @@ Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) the
 ### Viewer
 
 To load images, videos, audio and source code into a [Bootstrap Modal](http://getbootstrap.com/javascript/#modals), the viewer is enabled by default. You can change this in `config.json`. The required Bootstrap JavaScript library will be added to your page automatically.
+
+### Search Box
+
+For long directories, you might want to filter the results. The search box allows you exactly that, all you have to do is enable it in the settings.
 
 #### Syntax Highlighter
 

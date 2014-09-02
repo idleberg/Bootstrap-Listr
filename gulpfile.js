@@ -107,6 +107,7 @@ gulp.task('reset', function () {
         "locale":         "en_US",
         "text_direction": "ltr",
         "enable_viewer":  true,
+        "enable_search":  true,
         "share_button":   false,
         "hide_extension": false,
         "enable_sort":    true,
@@ -118,6 +119,7 @@ gulp.task('reset', function () {
         "font_awesome":    "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css",
         "google_font":     false,
         "stupid_table":    "//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
+        "searcher":        false,
         "highlight_js":    "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js",
         "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css",
         "custom_theme":    null
@@ -252,6 +254,7 @@ gulp.task('setup', function(){
   var fafont = gulp.src('./node_modules/font-awesome/fonts/*');
   var hljs   = gulp.src('./node_modules/highlight.js/lib/highlight.js');
   var jquery = gulp.src('./node_modules/jquery/dist/jquery.min.js');
+  var search = gulp.src('./node_modules/jquery-searcher/dist/jquery.searcher.min.js');
 
   gulp.src([
       '.'
@@ -261,7 +264,7 @@ gulp.task('setup', function(){
         type: 'checkbox',
         name: 'bump',
         message: 'Which features do you want to enable?',
-        choices: ['Viewer', 'Font Awesome', 'Highlight.js'],
+        choices: ['Viewer', 'Search Box', 'Font Awesome', 'Highlight.js'],
       }, function(include){
 
         bscss.pipe(gulp.dest('./app/assets/css/'));
@@ -269,9 +272,14 @@ gulp.task('setup', function(){
 
         include.bump.forEach(function(entry) {
             if(entry === 'Viewer') {
-              console.log(' +  jQuery and bootstrap.js included')
+              console.log(' +  Viewer included')
               jquery.pipe(gulp.dest('./app/assets/js/'));
               bsjs.pipe(gulp.dest('./app/assets/js/'));
+            }
+            if(entry === 'Search Box') {
+              console.log(' +  Search Box included')
+              jquery.pipe(gulp.dest('./app/assets/js/'));
+              search.pipe(gulp.dest('./app/assets/js/'));
             }
             if(entry === 'Font Awesome') {
               console.log(' +  ' + entry + ' included')

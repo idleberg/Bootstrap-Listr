@@ -92,10 +92,16 @@ $total_size = 0;
 
 if ($options['bootstrap']['icons'] == "glyphicons") { 
     $icon_tag = 'span';
-    $home = "<span class=\"glyphicon glyphicon-home\"></span>";
+    $home_icon = "<span class=\"glyphicon glyphicon-home\"></span>";
+    if ($options['general']['enable_search'] == true) {
+        $search_icon = "          <span class=\"glyphicon glyphicon-search form-control-feedback\"></span>" . PHP_EOL;
+    }
 } else if ($options['bootstrap']['icons'] == "fontawesome") { 
     $icon_tag = 'i';
-    $home = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
+    $home_icon = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
+    if ($options['general']['enable_search'] == true) {
+        $search_icon = null;
+    }
     $filetype = array(
         'archive'   => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
         'apple'     => array('app','ipa','ipsw','saver'),
@@ -123,8 +129,11 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
         'windows'   => array('dll','exe','msi','pif','ps1','scr','sys')
     );
 } else if ($options['bootstrap']['icons'] == 'fa-files'){
-    $icon_tag = 'i';
-    $home = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
+    $icon_tag  = 'i';
+    $home_icon = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
+    if ($options['general']['enable_search'] == true) {
+        $search_icon = null;
+    }
     $filetype = array(
         'archive'    => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
         'audio'      => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','oga','ogg','oma','s3m','sid','umx','wav','webma','wv','xm'),
@@ -137,10 +146,10 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
         'video'      => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
         'word'       => array('doc','docm','docs','docx','dot','pages'),
     );
-    $home = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
+    $home_icon = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
 } else {
-    $icon_tag = 'span';
-    $home = $this_domain;
+    $icon_tag  = 'span';
+    $home_icon = $this_domain;
 }  
 
 if ($options['general']['enable_viewer']) {
@@ -152,13 +161,15 @@ if ($options['general']['enable_viewer']) {
 }
 
 if ($options['general']['text_direction'] == 'rtl') {
-    $direction = " dir=\"rtl\"";
-    $right = "left";
-    $left = "right";
+    $direction     = " dir=\"rtl\"";
+    $right         = "left";
+    $left          = "right";
+    $search_offset = null;
 } else {
-    $direction = " dir=\"ltr\"";
-    $right = "right";
-    $left = "left";
+    $direction     = " dir=\"ltr\"";
+    $right         = "right";
+    $left          = "left";
+    $search_offset = " col-sm-offset-9";
 }
 
 $bootstrap_cdn = set_bootstrap_theme();
@@ -351,19 +362,30 @@ $header = set_header($bootstrap_cdn, $options);
 $footer = set_footer($options);
 
 // Set breadcrumbs
-$breadcrumbs = null;
-$breadcrumbs = $breadcrumbs."    <ol class=\"breadcrumb\"".$direction.">" . PHP_EOL;
-$breadcrumbs = $breadcrumbs."      <li><a href=\"".htmlentities($root_dir, ENT_QUOTES, 'utf-8')."\">$home</a></li>" . PHP_EOL;
+$breadcrumbs  = "    <ol class=\"breadcrumb\"".$direction.">" . PHP_EOL;
+$breadcrumbs .= "      <li><a href=\"".htmlentities($root_dir, ENT_QUOTES, 'utf-8')."\">$home_icon</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
     if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
         $parent = '';
         for ($i = 0; $i <= $dir; $i++):
             $parent .= rawurlencode($dir_name[$i]) . '/';
         endfor;
-        $breadcrumbs = $breadcrumbs."      <li><a href=\"".htmlentities($absolute_path.$parent, ENT_QUOTES, 'utf-8')."\">".utf8_encode($name)."</a></li>" . PHP_EOL;
+        $breadcrumbs .= "      <li><a href=\"".htmlentities($absolute_path.$parent, ENT_QUOTES, 'utf-8')."\">".utf8_encode($name)."</a></li>" . PHP_EOL;
     endif;
 endforeach;
 $breadcrumbs = $breadcrumbs."    </ol>" . PHP_EOL;
+
+if ($options['general']['enable_search'] == true) {
+    $search  = "    <div class=\"row\">" . PHP_EOL;
+    $search .= "      <div class=\"col-sm-3$search_offset\">" . PHP_EOL;
+    $search .= "        <div class=\"form-group has-feedback\">" . PHP_EOL;
+    $search .= "          <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
+    $search .= "          <input type=\"text\" class=\"form-control\" id=\"search\" placeholder=\"". _('Search')."\">" . PHP_EOL;
+    $search .= "$search_icon";
+    $search .= "       </div>" . PHP_EOL;
+    $search .= "      </div>" . PHP_EOL;
+    $search .= "    </div>" . PHP_EOL;
+}
 
 // Set grid
 if ($options['bootstrap']['fluid_grid'] == true) {
@@ -381,26 +403,26 @@ if ($options['bootstrap']['responsive_table']) {
 
 // Set table header
 $table_header = null;
-$table_header = $table_header."            <th class=\"col-lg-8 text-".$left."\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
+$table_header .= "            <th class=\"col-lg-8 text-".$left."\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
 if ($table_options['size']) {
-    $table_header = $table_header."            <th";
+    $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
-        $table_header = $table_header." class=\"col-lg-2 text-".$right."\" data-sort=\"int\">";
+        $table_header .= " class=\"col-lg-2 text-".$right."\" data-sort=\"int\">";
     } else {
-        $table_header = $table_header.">";
+        $table_header .= ">";
     }
-    $table_header = $table_header._('Size')."</th>" . PHP_EOL;
+    $table_header .= _('Size')."</th>" . PHP_EOL;
 }
 
 if ($table_options['age']) {
-    $table_header = $table_header."            <th";
+    $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
-        $table_header = $table_header." class=\"col-lg-2 text-".$right."\" data-sort=\"int\">";
+        $table_header .= " class=\"col-lg-2 text-".$right."\" data-sort=\"int\">";
     } else {
-        $table_header = $table_header.">";
+        $table_header .= ">";
     }
-    $table_header = $table_header._('Modified')."</th>" . PHP_EOL;
+    $table_header .= _('Modified')."</th>" . PHP_EOL;
 }
 
 // Set table body
@@ -410,48 +432,48 @@ if(($folder_list) || ($file_list) ) {
     if($folder_list):    
         foreach($folder_list as $item) :
 
-            $table_body = $table_body."          <tr>" . PHP_EOL;
-            $table_body = $table_body."            <td";
+            $table_body .= "          <tr>" . PHP_EOL;
+            $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body = $table_body." class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
-            $table_body = $table_body.">";
+            $table_body .= ">";
             if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files" ) {
-                $table_body = $table_body."<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
+                $table_body .= "<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
             }
-            $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . $item['bname'] . "</strong></a></td>" . PHP_EOL;
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . $item['bname'] . "</strong></a></td>" . PHP_EOL;
             
             if ($table_options['size']) {
-                $table_body = $table_body."            <td";
+                $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body = $table_body." class=\"text-".$right."\" data-sort-value=\"0\"";
+                    $table_body .= " class=\"text-".$right."\" data-sort-value=\"0\"";
                 }
-                $table_body = $table_body.">&mdash;</td>" . PHP_EOL;
+                $table_body .= ">&mdash;</td>" . PHP_EOL;
             }
 
             if ($table_options['age']) {
-                $table_body = $table_body."            <td";
+                $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body = $table_body." class=\"text-".$right."\" data-sort-value=\"" . $item['mtime'] . "\"";
+                    $table_body .= " class=\"text-".$right."\" data-sort-value=\"" . $item['mtime'] . "\"";
                 }
-                $table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
+                $table_body .= ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
             }
 
-            $table_body = $table_body."          </tr>" . PHP_EOL;
+            $table_body .= "          </tr>" . PHP_EOL;
 
         endforeach;
     endif;
 
     if($file_list):
         foreach($file_list as $item) :
-            $table_body = $table_body."          <tr>" . PHP_EOL;
-            $table_body = $table_body."            <td";
+            $table_body .= "          <tr>" . PHP_EOL;
+            $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body = $table_body." class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
-            $table_body = $table_body.">";
+            $table_body .= ">";
             if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files") {
-                $table_body = $table_body."<$icon_tag class=\"" . $item['class'] . "\"></$icon_tag>&nbsp;";
+                $table_body .= "<$icon_tag class=\"" . $item['class'] . "\"></$icon_tag>&nbsp;";
             }
             if ($options['general']['hide_extension']) {
                 $display_name = $item['name'];
@@ -477,36 +499,36 @@ if(($folder_list) || ($file_list) ) {
                     $modal_class = NULL;
                 }
             }
-            $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$modal_class>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$modal_class>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
 
             if ($table_options['size']) {
-                $table_body = $table_body."            <td";
+                $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body = $table_body." class=\"text-".$right."\" data-sort-value=\"" . $item['bytes'] . "\"";
+                    $table_body .= " class=\"text-".$right."\" data-sort-value=\"" . $item['bytes'] . "\"";
                 }
-                    $table_body = $table_body.">" . $item['size']['num'] . " " . $item['size']['str'] . "</td>" . PHP_EOL;
+                    $table_body .= ">" . $item['size']['num'] . " " . $item['size']['str'] . "</td>" . PHP_EOL;
             }
 
             if ($table_options['age']) {
-                $table_body = $table_body."            <td";
+                $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body = $table_body." class=\"text-".$right."\" data-sort-value=\"".$item['mtime']."\"";
+                    $table_body .= " class=\"text-".$right."\" data-sort-value=\"".$item['mtime']."\"";
                 }
-                $table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
+                $table_body .= ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
             }
 
-            $table_body = $table_body."          </tr>" . PHP_EOL;
+            $table_body .= "          </tr>" . PHP_EOL;
         endforeach;
     endif;
 } else {
         $colspan = $table_count + 1;
-        $table_body = $table_body."          <tr>" . PHP_EOL;
-        $table_body = $table_body."            <td colspan=\"$colspan\" style=\"font-style:italic\">";
+        $table_body .= "          <tr>" . PHP_EOL;
+        $table_body .= "            <td colspan=\"$colspan\" style=\"font-style:italic\">";
         if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files" ) {
-            $table_body = $table_body."<$icon_tag class=\"" . $item['class'] . "\">&nbsp;</$icon_tag>";
+            $table_body .= "<$icon_tag class=\"" . $item['class'] . "\">&nbsp;</$icon_tag>";
         } 
-        $table_body = $table_body."empty folder</td>" . PHP_EOL;
-        $table_body = $table_body."          </tr>" . PHP_EOL;
+        $table_body .= "empty folder</td>" . PHP_EOL;
+        $table_body .= "          </tr>" . PHP_EOL;
 }
 
 // Give kudos
