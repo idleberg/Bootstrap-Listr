@@ -4,7 +4,7 @@
 <?php echo $header?>
 </head>
 <body<?php echo $direction?>>
-  <div class="container">
+  <div class="<?php echo $container ?>">
 <?php echo $breadcrumbs?>
 <?php echo $responsive_open?>
       <table id="bs-table" class="table <?php echo $options['bootstrap']['table_style']?>">

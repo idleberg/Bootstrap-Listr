@@ -143,6 +143,7 @@ gulp.task('reset', function () {
         "google_analytics": false
       },
       "bootstrap": {
+        "fluid_grid":        false,
         "table_style":       "table-hover",
         "responsive_table":  true,
         "modal_size":        "modal-lg",
