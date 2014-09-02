@@ -365,6 +365,14 @@ foreach($dir_name as $dir => $name) :
 endforeach;
 $breadcrumbs = $breadcrumbs."    </ol>" . PHP_EOL;
 
+// Set grid
+if ($options['bootstrap']['fluid_grid'] == true) {
+    $container = "container-fluid";
+} else {
+    $container = "container";
+
+}
+
 // Set responsiveness
 if ($options['bootstrap']['responsive_table']) {
     $responsive_open = "    <div class=\"table-responsive\">" . PHP_EOL;
