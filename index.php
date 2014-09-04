@@ -412,7 +412,7 @@ if($folder_list)
 // Sort file list.
 if($file_list)
     $file_list = php_multisort($file_list, $sort);
-// Calculate the total folder size (fix: total size cannont display while there is no folder inside the directory)
+// Calculate the total folder size (fix: total size cannot display while there is no folder inside the directory)
 if($file_list && $folder_list || $file_list)
     $total_size = bytes_to_string($total_size, 2);
 
