@@ -12,7 +12,7 @@ Download the latest [stable release](https://github.com/idleberg/Bootstrap-Listr
 
 Like its [predecessors](#credits), Bootstrap Listr was meant as *one file to rule them all*, an easy to deploy single file solution. Since it does not support subfolders, you will have to copy the index in every directory where you would like to use it.
 
-Or, you can have a go at the [2.0 developer branch](https://github.com/idleberg/Bootstrap-Listr/tree/2.0-dev). While it is no longer a single file, it's easy to deploy and features subfolder support among other things. See it in this [live demo](http://demo.idleberg.com/Bootstrap-Listr-2.0-dev/).
+Or, you can have a go at the [2.0 developer branch](https://github.com/idleberg/Bootstrap-Listr/tree/2.0-dev). While it is no longer a single file, it's easy to deploy and features **subfolder support** among other things. See it in this [live demo](http://demo.idleberg.com/Bootstrap-Listr-2.0-dev/).
 
 ### Options
 
@@ -34,10 +34,9 @@ If you prefer a different file name for the script, you can rename it without wo
 * lighttpd: `index-file.names = ( "/myIndex.php" )` (see [documentation](http://redmine.lighttpd.net/projects/1/wiki/Docs_ModDirlisting))
 * nginx: `index myIndex.php` (see [documentation](http://nginx.org/en/docs/http/ngx_http_index_module.html))
 
-
 ### Font Awesome
 
-Rather than using generic icons, you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) for beautiful, file-specific icons. Note that this will require extra resources, hence increase the load time.
+Rather than using generic icons, you can choose between two [Font Awesome](http://fortawesome.github.io/Font-Awesome/) themes for beautiful, file-specific icons. Note that this will require extra resources, hence increase the load time.
 
 ### Theming
 
