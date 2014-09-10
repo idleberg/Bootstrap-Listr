@@ -5,7 +5,7 @@
     "locale":         "en_US",
     "text_direction": "ltr",
     "enable_viewer":  true,
-    "enable_search":  false,
+    "enable_search":  true,
     "share_button":   false,
     "hide_extension": false,
     "enable_sort":    true,
