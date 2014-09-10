@@ -99,90 +99,10 @@ gulp.task('clean', function () {
 });
 
 gulp.task('reset', function () {
-  gulp.src("./app/config.json")
-    .pipe(jeditor({
-      "general": {
-        "root_dir":       "./_public/",
-        "dependencies":   "local",
-        "locale":         "en_US",
-        "text_direction": "ltr",
-        "enable_viewer":  true,
-        "enable_search":  true,
-        "share_button":   false,
-        "hide_extension": false,
-        "enable_sort":    true,
-        "give_kudos":     true
-      },
-      "cdn": {
-        "jquery":          "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js",
-        "bootstrap":       "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js",
-        "font_awesome":    "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css",
-        "google_font":     false,
-        "stupid_table":    "//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
-        "searcher":        false,
-        "highlight_js":    "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js",
-        "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css",
-        "custom_theme":    null
-      },
-      "icons": {
-        "fav_icon":         false,
-        "iphone":           false,
-        "iphone_retina":    false,
-        "ipad":             false,
-        "ipad_retina":      false,
-        "metro_tile_color": false,
-        "metro_tile_image": false
-      },
-      "opengraph": {
-        "title":       null,
-        "description": null,
-        "site_name":   null,
-        "type":        null,
-        "image":       null
-      },
-      "keys": {
-        "dropbox_app":      false,
-        "google_analytics": false
-      },
-      "bootstrap": {
-        "fluid_grid":        false,
-        "table_style":       "table-hover",
-        "responsive_table":  true,
-        "modal_size":        "modal-lg",
-        "icons":             "glyphicons",
-        "theme":             "default",
-        "fontawesome_style": "fa-fw"
-      },
-      "columns": {
-        "size": true,
-        "age":  true
-      },
-      "ignored_files": [
-        ".DAV",
-        ".DS_Store",
-        ".bzr",
-        ".bzrignore",
-        ".bzrtags",
-        ".git",
-        ".gitattributes",
-        ".gitignore",
-        ".gitmodules",
-        ".hg",
-        ".hgignore",
-        ".hgtags",
-        ".htaccess",
-        ".htpasswd",
-        ".jshintrc",
-        ".npmignore",
-        ".Spotlight-V100",
-        ".svn",
-        "__MACOSX",
-        "ehthumbs.db",
-        "robots.txt",
-        "Thumbs.db"
-      ]
-    }))
-    .pipe(gulp.dest("./app"));
+  gulp.src([
+      './src/config.json'
+    ])
+    .pipe(gulp.dest('./app/'));
 });
 
 
@@ -285,6 +205,7 @@ gulp.task('setup', function(){
               console.log(' +  ' + entry + ' included')
               fa.pipe(gulp.dest('./app/assets/css/'));
               fafont.pipe(gulp.dest('./app/assets/fonts/'));
+              var icons = 'fontawesome';
             }
             if(entry === 'Highlight.js') {
               console.log(' +  ' + entry + ' included')
@@ -303,6 +224,33 @@ gulp.task('setup', function(){
         }
       }))
       .pipe(gulp.dest("./app/"));
+});
+
+/*
+ * APACHE SERVER CONFIGS
+ *
+ * Append HTML5 Boilerplate's Apache rules to .htaccess
+ */
+gulp.task('apache', function(){
+
+  gulp.src([
+      './src/root.htaccess'
+    ])
+
+    .pipe(prompt.prompt({
+        type: 'input',
+        name: 'h5bp',
+        message: 'Do you want to append H5BP\'s Apache Server Config rules?',
+        default: 'y'
+      }, function(res){
+        if(res.h5bp === 'y') {
+              console.log(' +  H5BP\'s Apache Server Config')
+              gulp.src(['./src/root.htaccess','./node_modules/apache-server-configs/dist/.htaccess'])
+              .pipe(concat('.htaccess'))
+              .pipe(gulp.dest('./app/'))
+        }
+        
+    }));
 });
 
 /*
