@@ -16,7 +16,6 @@ var uglify  = require('gulp-uglify');
 
 gulp.task('lint',   ['csslint', 'jshint', 'phplint']);
 gulp.task('make',   ['cssmin', 'uglify']);
-gulp.task('minify', ['cssmin', 'uglify']);
 gulp.task('travis', ['csslint', 'jshint']);
 gulp.task('update', ['upgrade']);
 
