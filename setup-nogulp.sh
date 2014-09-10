@@ -139,7 +139,7 @@ then
     while true; do
         read -p $'\nEnter the name of your Bootswatch theme (or skip for default): ' theme
 
-        case $theme in    
+        case $theme in
             'amelia'|'cerulean'|'cosmo'|'cyborg'|'darkly'|'flatly'|'journal'|'lumen'|'paper'|'readable'|'sandstone'|'simplex'|'slate'|'spacelab'|'superhero'|'united'|'yeti') 
                 echo "Using $theme theme"
                 cp "./node_modules/bootswatch/$theme/bootstrap.min.css" "./app/assets/css/"
