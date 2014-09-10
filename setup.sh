@@ -27,6 +27,7 @@ gulp init --silent
 
 echo $'Running setup…'
 gulp setup --silent
+gulp apache --silent
 gulp theme --silent
 
 echo $'Cracking…'
