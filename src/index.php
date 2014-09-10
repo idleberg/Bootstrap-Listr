@@ -492,7 +492,7 @@ if(($folder_list) || ($file_list) ) {
                 } else if (in_array($item['lext'], $quicktime_files)) {
                     $modal_class = ' class="quicktime-modal"';
                 } else if (in_array($item['lext'], $source_files)) {
--                    $modal_class = ' class="source-modal"';
+                    $modal_class = ' class="source-modal"';
                 } else if (in_array($item['lext'], $video_files)) {
                     $modal_class = ' class="video-modal"';
                 } else {
