@@ -1,4 +1,4 @@
- <?php
+<?php
 /*** FUNCTIONS ***/
 
 function set_bootstrap_theme() {
