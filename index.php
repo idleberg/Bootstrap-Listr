@@ -64,7 +64,7 @@ define('DOC_ICONS', 'glyphicons');
  *      'lumen' - http://bootswatch.com/lumen/
  *      'paper' - http://bootswatch.com/paper/ (release pending)
  *   'readable' - http://bootswatch.com/readable/
- *  'sandpaper' - http://bootswatch.com/sandpaper/ (release pending)
+ *  'sandstone' - http://bootswatch.com/sandstone/ (release pending)
  *    'simplex' - http://bootswatch.com/simplex/
  *      'slate' - http://bootswatch.com/slate/
  *   'spacelab' - http://bootswatch.com/spacelab/
