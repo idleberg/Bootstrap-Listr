@@ -376,11 +376,15 @@ endforeach;
 $breadcrumbs = $breadcrumbs."    </ol>" . PHP_EOL;
 
 if ($options['general']['enable_search'] == true) {
+    $autofocus = null;
+    if ($options['general']['autofocus_search'] == true) {
+        $autofocus = " autofocus";
+    }
     $search  = "    <div class=\"row\">" . PHP_EOL;
     $search .= "      <div class=\"col-sm-3$search_offset\">" . PHP_EOL;
     $search .= "        <div class=\"form-group has-feedback\">" . PHP_EOL;
     $search .= "          <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
-    $search .= "          <input type=\"text\" class=\"form-control\" id=\"search\" placeholder=\"". _('Search')."\">" . PHP_EOL;
+    $search .= "          <input type=\"text\" class=\"form-control\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
     $search .= "$search_icon";
     $search .= "       </div>" . PHP_EOL;
     $search .= "      </div>" . PHP_EOL;

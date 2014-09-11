@@ -1,25 +1,26 @@
 {
   "general": {
-    "root_dir":       "./_public/",
-    "dependencies":   "cdn",
-    "locale":         "en_US",
-    "text_direction": "ltr",
-    "enable_viewer":  true,
-    "enable_search":  true,
-    "share_button":   false,
-    "hide_extension": false,
-    "enable_sort":    true,
-    "give_kudos":     true
+    "root_dir":         "./_public/",
+    "dependencies":     "cdn",
+    "locale":           "en_US",
+    "text_direction":   "ltr",
+    "enable_sort":      true,
+    "enable_viewer":    true,
+    "enable_search":    true,
+    "autofocus_search": false,
+    "share_button":     false,
+    "hide_extension":   false,
+    "give_kudos":       true
   },
   "cdn": {
-    "jquery":          "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js",
+    "jquery":          "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",
     "bootstrap":       "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js",
     "font_awesome":    "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css",
     "google_font":     false,
     "stupid_table":    "//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
     "searcher":        null,
-    "highlight_js":    "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js",
-    "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css",
+    "highlight_js":    "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js",
+    "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/github.min.css",
     "custom_theme":    null
   },
   "icons": {
