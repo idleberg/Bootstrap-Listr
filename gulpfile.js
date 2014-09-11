@@ -328,7 +328,7 @@ gulp.task('hlcss', function(){
 
           gulp.src("./app/config.json")
           .pipe(jeditor({
-            'highlighter': {
+            'highlight': {
               'theme': res.task
             }
           }))
