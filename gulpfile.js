@@ -17,7 +17,11 @@ var uglify  = require('gulp-uglify');
 gulp.task('lint',   ['csslint', 'jshint', 'phplint']);
 gulp.task('make',   ['cssmin', 'uglify']);
 gulp.task('travis', ['csslint', 'jshint']);
-gulp.task('update', ['upgrade']);
+
+// Aliases
+gulp.task('bscss',       ['theme']);
+gulp.task('update',      ['upgrade']);
+gulp.task('highlighter', ['hlcss']);
 
 /*
  * SELF COPY
@@ -286,6 +290,7 @@ gulp.task('theme', function(){
                 gulp.src('./node_modules/bootswatch/' + res.task + '/bootstrap.min.css')
                 .pipe(concat('./bootstrap.min.css'))
                 .pipe(gulp.dest('./app/assets/css/')),
+
                 gulp.src("./app/config.json")
                 .pipe(jeditor({
                   'bootstrap': {
@@ -303,32 +308,52 @@ gulp.task('theme', function(){
  *
  * Pick a CSS for Highlight.js
  */
-gulp.task('highlight', function(){
+gulp.task('hlcss', function(){
 
  gulp.src('.')
     .pipe(prompt.prompt({
         type: 'input',
         name: 'task',
         message: 'Which Highlight.js theme would you like to use?',
-        default: 'railscasts'
+        default: 'default'
     }, function(res){
 
         var highlighter = ['arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'dark', 'default', 'docco', 'far', 'foundation', 'github', 'googlecode', 'idea', 'ir_black', 'magula', 'mono-blue', 'monokai', 'monokai_sublime', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn']
 
         if (highlighter.indexOf(res.task)) {
-          gulp.src('./node_modules/highlight.js/src/themes/' + res.task + '.css')
-          .pipe(concat('./highlight-theme.css'))
+          gulp.src('./node_modules/highlight.js/styles/' + res.task + '.css')
+          .pipe(concat('./highlight.min.css'))
+          .pipe(cssmin())
           .pipe(gulp.dest('./app/assets/css/'));
+
+          gulp.src("./app/config.json")
+          .pipe(jeditor({
+            'highlighter': {
+              'theme': res.task
+            }
+          }))
+          .pipe(gulp.dest("./app/"));
         }
     }));
 });
 
 gulp.task('help', function() {
 
-  console.log('')
-  console.log('gulp' + ' ' + 'server'.green + '                 ' + '# Start a server.'.grey)
-  console.log('gulp' + ' ' + 'compile'.green + '                ' + '# Compile files.'.grey)
-  console.log('gulp' + ' ' + 'watch'.green + '                  ' + '# Watch files.'.grey)
-  console.log('')
+  console.log('\nListr Gulp Tasks')
+  console.log('================\n')
+  console.log('Available tasks:')
+  console.log('     help - this dialog')
+  console.log('   apache - append H5BP Apache Server Config to default .htaccess')
+  console.log('    clean - delete app-folder')
+  console.log('    hlcss - specify default Highlighter.js style-sheet')
+  console.log('     init - create app-folder and copy required files')
+  console.log('     lint - run tasks to lint all CSS, JavaScript and PHP files')
+  console.log('     make - minify all CSS and JavaScript files')
+  console.log('    reset - reset config.json to default')
+  console.log('    setup - configure Bootstrap Listr and copy dependencies')
+  console.log('    theme - specify default Bootstrap theme')
+  console.log('  upgrade - upgrade all PHP files in app-folder')
+  console.log('\nFor further details visit the GitHub repository:')
+  console.log('https://github.com/idleberg/Bootstrap-Listr\n')
 
 } )
