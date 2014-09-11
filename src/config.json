@@ -20,7 +20,7 @@
     "stupid_table":    "//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
     "searcher":        null,
     "highlight_js":    "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js",
-    "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/github.min.css",
+    "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css",
     "custom_theme":    null
   },
   "icons": {
@@ -51,6 +51,9 @@
     "icons":             "glyphicons",
     "theme":             "default",
     "fontawesome_style": "fa-fw"
+  },
+  "highlight": {
+    "theme": "default"
   },
   "columns": {
     "size": true,
