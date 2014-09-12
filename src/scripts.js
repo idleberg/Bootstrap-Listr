@@ -67,6 +67,8 @@ $(function() {
     $("#viewer-modal").on("hide.bs.modal", function() {
         var b = document.getElementById("player");
         b && b.pause();
+    });
+    $("#viewer-modal").on("hidden.bs.modal", function() {
         $(".highlight,.btn-view,.btn-listen").addClass("hidden");
     });
     $(".save-dropbox").click(function(c) {
