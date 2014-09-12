@@ -62,9 +62,9 @@ define('DOC_ICONS', 'glyphicons');
  *     'flatly' - http://bootswatch.com/flatly/
  *    'journal' - http://bootswatch.com/journal/
  *      'lumen' - http://bootswatch.com/lumen/
- *      'paper' - http://bootswatch.com/paper/ (release pending)
+ *      'paper' - http://bootswatch.com/paper/
  *   'readable' - http://bootswatch.com/readable/
- *  'sandstone' - http://bootswatch.com/sandstone/ (release pending)
+ *  'sandstone' - http://bootswatch.com/sandstone/
  *    'simplex' - http://bootswatch.com/simplex/
  *      'slate' - http://bootswatch.com/slate/
  *   'spacelab' - http://bootswatch.com/spacelab/
