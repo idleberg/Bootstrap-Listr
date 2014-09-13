@@ -1,3 +1,4 @@
+var meta = require('./package.json');
 
 var clean   = require('gulp-rimraf');
 var concat  = require('gulp-concat');
@@ -350,8 +351,8 @@ gulp.task('hlcss', function(){
 
 gulp.task('help', function() {
 
-  console.log('\nListr Gulp Tasks')
-  console.log('================\n')
+  console.log('\n' + meta.name + ' v' + meta.version)
+  console.log('==================\n')
   console.log('Available tasks:')
   console.log('     help - this dialog')
   console.log('   apache - append H5BP Apache Server Config to default .htaccess')
