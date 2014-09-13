@@ -8,13 +8,11 @@ A simple PHP script to display folders and files on a server in a well formed li
 
 1. Clone the repository `git clone --branch=2.0-dev https://github.com/idleberg/Bootstrap-Listr.git` 
 2. Change directory `cd Bootstrap-Listr`
-3. Install all Node dependencies `npm install` and (optionally) Gulp `npm install gulp -g` 
+3. Install all Node dependencies `npm install` and Gulp `npm install gulp -g` 
 
 ## Building
 
 ### Local
-
-#### Gulp tasks
 
 Several [Gulp](http://gulpjs.com/) tasks are now available to build your local Listr app. You would usually follow these steps to do so:
 
@@ -31,10 +29,6 @@ Several [Gulp](http://gulpjs.com/) tasks are now available to build your local L
     gulp make
 
 Steps 2-3 can be repeated anytime after the first. You also have `gulp clean`, `gulp upgrade` and `gulp lint` at hand, `gulp css`, `gulp js` & `gulp php` will lint the specific file-types.
-
-#### Bash script
-
-If for some reason you can't use Gulp, there is a bash script provided to perform most of the tasks. Run `./setup.sh` and follow instructions, take note that you will have to perform several tasks by hand. As with the Gulp tasks, you can use `./setup.sh init`, `./setup.sh setup` and `./setup.sh theme` for individual steps of the script.
 
 ### CDN
 
