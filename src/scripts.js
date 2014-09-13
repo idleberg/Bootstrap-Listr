@@ -76,11 +76,15 @@ $(function() {
         var b = $(this).get(0).href;
         Dropbox.save(b);
     });
-
+    $('#search').keyup(function(e){
+        if(e.keyCode == 27) {
+            $(this).val('');
+        }
+    });
+    
     if(jQuery().stupidtable) {
       $("#bs-table").stupidtable();
     }
-
     if(jQuery().searcher) {
       $("#bs-table").searcher({
         inputSelector: "#search"
