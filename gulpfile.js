@@ -177,7 +177,7 @@ gulp.task('setup', function(){
   var fa     = gulp.src('./node_modules/font-awesome/css/font-awesome.min.css');
   var fafont = gulp.src('./node_modules/font-awesome/fonts/*');
   var hljs   = gulp.src('./node_modules/highlight.js/lib/highlight.js');
-  var jquery = gulp.src('./node_modules/jquery/dist/jquery.min.js');
+  var jquery = gulp.src(['./node_modules/jquery/dist/jquery.min.js','./node_modules/jquery/dist/jquery.min.map']);
   var search = gulp.src('./node_modules/jquery-searcher/dist/jquery.searcher.min.js');
 
 
