@@ -296,7 +296,7 @@ gulp.task('theme', function(){
         } else {
               var bootswatch = ['amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti'];
 
-              if (bootswatch.indexOf(res.task) == 0 ) {
+              if (bootswatch.indexOf(res.task) != -1 ) {
                 console.log(' +  ' + res.task + ' (Bootswatch)')
                 gulp.src('./node_modules/bootswatch/' + res.task + '/bootstrap.min.css')
                 .pipe(concat('./bootstrap.min.css'))
@@ -331,7 +331,7 @@ gulp.task('hlcss', function(){
 
         var highlighter = ['arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'dark', 'default', 'docco', 'far', 'foundation', 'github', 'googlecode', 'idea', 'ir_black', 'magula', 'mono-blue', 'monokai', 'monokai_sublime', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn']
 
-        if (highlighter.indexOf(res.task) == 0) {
+        if (highlighter.indexOf(res.task) != -1) {
           gulp.src('./node_modules/highlight.js/styles/' + res.task + '.css')
           .pipe(concat('./highlight.min.css'))
           .pipe(cssmin())
