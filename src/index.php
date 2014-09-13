@@ -100,7 +100,7 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
     $icon_tag = 'i';
     $home_icon = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
     if ($options['general']['enable_search'] == true) {
-        $search_icon = null;
+        $search_icon = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
     }
     $filetype = array(
         'archive'   => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
@@ -132,7 +132,7 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
     $icon_tag  = 'i';
     $home_icon = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
     if ($options['general']['enable_search'] == true) {
-        $search_icon = null;
+        $search_icon = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
     }
     $filetype = array(
         'archive'    => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
@@ -376,6 +376,7 @@ foreach($dir_name as $dir => $name) :
 endforeach;
 $breadcrumbs = $breadcrumbs."    </ol>" . PHP_EOL;
 
+// Show search
 if ($options['general']['enable_search'] == true) {
     $autofocus = null;
     if ($options['general']['autofocus_search'] == true) {

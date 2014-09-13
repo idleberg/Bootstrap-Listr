@@ -25,3 +25,15 @@ th {
     width: 100%;
     height: 100%;
 }
+
+.fa.form-control-feedback {
+    position: absolute;
+    top: 25px;
+    right: 0;
+    z-index: 2;
+    display: block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+}
