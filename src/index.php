@@ -170,7 +170,7 @@ if ($options['general']['text_direction'] == 'rtl') {
     $direction     = " dir=\"ltr\"";
     $right         = "right";
     $left          = "left";
-    $search_offset = " col-sm-offset-9";
+    $search_offset = " col-xs-offset-6 col-sm-offset-9";
 }
 
 $bootstrap_cdn = set_bootstrap_theme();
@@ -382,7 +382,7 @@ if ($options['general']['enable_search'] == true) {
         $autofocus = " autofocus";
     }
     $search  = "    <div class=\"row\">" . PHP_EOL;
-    $search .= "      <div class=\"col-sm-3$search_offset\">" . PHP_EOL;
+    $search .= "      <div class=\"col-xs-6 col-sm-3$search_offset\">" . PHP_EOL;
     $search .= "        <div class=\"form-group has-feedback\">" . PHP_EOL;
     $search .= "          <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
     $search .= "          <input type=\"text\" class=\"form-control\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
