@@ -179,54 +179,65 @@ gulp.task('setup', function(){
   var jquery = gulp.src('./node_modules/jquery/dist/jquery.min.js');
   var search = gulp.src('./node_modules/jquery-searcher/dist/jquery.searcher.min.js');
 
-  gulp.src([
-      '.'
-    ])
 
-    .pipe(prompt.prompt({
-        type: 'checkbox',
-        name: 'bump',
-        message: 'Which features do you want to enable?',
-        choices: ['Viewer', 'Search Box', 'Font Awesome', 'Highlight.js'],
-      }, function(include){
+  gulp.src("./app/config.json")
 
-        bscss.pipe(gulp.dest('./app/assets/css/'));
-        bsfont.pipe(gulp.dest('./app/assets/fonts/'));
+  .pipe(prompt.prompt({
+      type: 'checkbox',
+      name: 'bump',
+      message: 'Which features do you want to enable?',
+      choices: ['Viewer', 'Search Box', 'Font Awesome', 'Highlight.js'],
+    }, function(include){
 
-        include.bump.forEach(function(entry) {
-            if(entry === 'Viewer') {
-              console.log(' +  Viewer included')
-              jquery.pipe(gulp.dest('./app/assets/js/'));
-              bsjs.pipe(gulp.dest('./app/assets/js/'));
+      bscss.pipe(gulp.dest('./app/assets/css/'));
+      bsfont.pipe(gulp.dest('./app/assets/fonts/'));
+
+      include.bump.forEach(function(entry) {
+
+          var enable_viewer = false;
+          var enable_search = false;
+          var icons = 'glyphicons';
+
+          if(entry === 'Viewer') {
+            console.log(' +  Viewer included')
+            jquery.pipe(gulp.dest('./app/assets/js/'));
+            bsjs.pipe(gulp.dest('./app/assets/js/'));
+            var enable_viewer = true;
+          }
+          if(entry === 'Search Box') {
+            console.log(' +  Search Box included')
+            jquery.pipe(gulp.dest('./app/assets/js/'));
+            search.pipe(gulp.dest('./app/assets/js/'));
+            var enable_search = true;
+          }
+          if(entry === 'Font Awesome') {
+            console.log(' +  ' + entry + ' included')
+            fa.pipe(gulp.dest('./app/assets/css/'));
+            fafont.pipe(gulp.dest('./app/assets/fonts/'));
+            var icons = 'fontawesome';
+          }
+          if(entry === 'Highlight.js') {
+            console.log(' +  ' + entry + ' included')
+            hljs.pipe(concat('./highlight.min.js'))
+            .pipe(uglify())
+            .pipe(gulp.dest('./app/assets/js/'));
+          }
+
+          gulp.src("./app/config.json")
+          .pipe(jeditor({
+            'general': {
+              'dependencies': 'local',
+              'enable_viewer': true,
+              'enable_search': true
+            },
+            'bootstrap': {
+              'icons': icons
             }
-            if(entry === 'Search Box') {
-              console.log(' +  Search Box included')
-              jquery.pipe(gulp.dest('./app/assets/js/'));
-              search.pipe(gulp.dest('./app/assets/js/'));
-            }
-            if(entry === 'Font Awesome') {
-              console.log(' +  ' + entry + ' included')
-              fa.pipe(gulp.dest('./app/assets/css/'));
-              fafont.pipe(gulp.dest('./app/assets/fonts/'));
-              var icons = 'fontawesome';
-            }
-            if(entry === 'Highlight.js') {
-              console.log(' +  ' + entry + ' included')
-              hljs.pipe(concat('./highlight.min.js'))
-              .pipe(uglify())
-              .pipe(gulp.dest('./app/assets/js/'));
-            }
-        });
-        
+          }))
+          .pipe(gulp.dest("./app/"));
+
+      })
     }))
-
-    gulp.src("./app/config.json")
-      .pipe(jeditor({
-        'general': {
-          'dependencies': 'local'
-        }
-      }))
-      .pipe(gulp.dest("./app/"));
 });
 
 /*

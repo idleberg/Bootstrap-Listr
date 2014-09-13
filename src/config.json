@@ -5,8 +5,8 @@
     "locale":           "en_US",
     "text_direction":   "ltr",
     "enable_sort":      true,
-    "enable_viewer":    true,
-    "enable_search":    true,
+    "enable_viewer":    false,
+    "enable_search":    false,
     "autofocus_search": false,
     "share_button":     false,
     "hide_extension":   false,
@@ -24,13 +24,13 @@
     "custom_theme":    null
   },
   "icons": {
-    "fav_icon":         false,
-    "iphone":           false,
-    "iphone_retina":    false,
-    "ipad":             false,
-    "ipad_retina":      false,
-    "metro_tile_color": false,
-    "metro_tile_image": false
+    "fav_icon":         null,
+    "iphone":           null,
+    "iphone_retina":    null,
+    "ipad":             null,
+    "ipad_retina":      null,
+    "metro_tile_color": null,
+    "metro_tile_image": null
   },
   "opengraph": {
     "title":       null,
