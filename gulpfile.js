@@ -281,8 +281,8 @@ gulp.task('theme', function(){
         message: 'Which Bootstrap theme would you like to use?',
         default: 'default'
     }, function(res){
-        console.log(' +  ' + res.task)
         if(res.task === 'default') {
+              console.log(' +  Default Bootstrap theme')
               gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
               .pipe(concat('./bootstrap.min.css'))
               .pipe(gulp.dest('./app/assets/css/')),
@@ -295,9 +295,9 @@ gulp.task('theme', function(){
                 .pipe(gulp.dest("./app/"));
         } else {
               var bootswatch = ['amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti'];
-              // var m8tro       = ['m8tro-aqua','m8tro-blue','m8tro-brown','m8tro-green','m8tro-orange','m8tro-purple','m8tro-red','m8tro-yellow']
 
-              if (bootswatch.indexOf(res.task)) {
+              if (bootswatch.indexOf(res.task) == 0 ) {
+                console.log(' +  ' + res.task + ' (Bootswatch)')
                 gulp.src('./node_modules/bootswatch/' + res.task + '/bootstrap.min.css')
                 .pipe(concat('./bootstrap.min.css'))
                 .pipe(gulp.dest('./app/assets/css/')),
@@ -331,7 +331,7 @@ gulp.task('hlcss', function(){
 
         var highlighter = ['arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'dark', 'default', 'docco', 'far', 'foundation', 'github', 'googlecode', 'idea', 'ir_black', 'magula', 'mono-blue', 'monokai', 'monokai_sublime', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn']
 
-        if (highlighter.indexOf(res.task)) {
+        if (highlighter.indexOf(res.task) == 0) {
           gulp.src('./node_modules/highlight.js/styles/' + res.task + '.css')
           .pipe(concat('./highlight.min.css'))
           .pipe(cssmin())
