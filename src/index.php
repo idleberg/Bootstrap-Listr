@@ -150,6 +150,7 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
 } else {
     $icon_tag  = 'span';
     $home_icon = $this_domain;
+    $search_icon = null;
 }  
 
 if ($options['general']['enable_viewer']) {
