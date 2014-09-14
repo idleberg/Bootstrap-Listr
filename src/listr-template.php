@@ -53,7 +53,7 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
 <?php if ($options['keys']['dropbox_app']) { ?>
-                  <li><a class="save-dropbox">Save to Dropbox</a></li>
+                  <li><a class="save-dropbox"><?php echo _('Save to Dropbox')?></a></li>
                   <li class="divider"></li>
 <?php } ?>
                   <li><a class="email-link">Email</a></li>
