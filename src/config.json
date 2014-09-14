@@ -39,21 +39,21 @@
     "type":        null,
     "image":       null
   },
-  "keys": {
-    "dropbox_app":      false,
-    "google_analytics": false
-  },
   "bootstrap": {
     "fluid_grid":        false,
     "table_style":       "table-hover",
     "responsive_table":  true,
     "modal_size":        "modal-lg",
-    "icons":             "glyphicons",
     "theme":             "default",
+    "icons":             "glyphicons",
     "fontawesome_style": "fa-fw"
   },
   "highlight": {
     "theme": "default"
+  },
+  "keys": {
+    "dropbox_app":      false,
+    "google_analytics": false
   },
   "columns": {
     "size": true,
