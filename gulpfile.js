@@ -14,15 +14,17 @@ var uglify  = require('gulp-uglify');
 /*
  * Task combos
  */
-
 gulp.task('lint',   ['csslint', 'jshint', 'phplint']);
 gulp.task('make',   ['cssmin', 'uglify']);
 gulp.task('travis', ['csslint', 'jshint']);
 
 // Aliases
-gulp.task('bscss',       ['theme']);
-gulp.task('update',      ['upgrade']);
+gulp.task('css',         ['csslint', 'cssmin']);
 gulp.task('highlighter', ['hlcss']);
+gulp.task('hljs',        ['hlcss']);
+gulp.task('js',          ['jshint', 'uglify']);
+gulp.task('php',         ['phplint']);
+gulp.task('update',      ['upgrade']);
 
 /*
  * SELF COPY
