@@ -1,8 +1,9 @@
 $(function() {
     function set_modal(content, button, file, uri) {
         $(".modal-body").empty().append(content);
-        $(button).removeClass("hidden");
+        // $(button).removeClass("hidden");
         $(".fullview").attr("href", file);
+        $(".fullview").text(button);
         $(".save-dropbox").attr("href", file);
         $(".email-link").attr("href", "mailto:?body=" + uri);
         $(".twitter-link").attr("href", "http://twitter.com/share?url=" + uri);
@@ -11,43 +12,50 @@ $(function() {
         $(".modal-title").text(decodeURIComponent(file));
         $("#viewer-modal").modal("show");
     }
+
     $(".audio-modal").click(function(e) {
         e.preventDefault();
         var file = $(this).attr("href"),
-            uri = $(this).get(0).href;
-        set_modal('<audio src="' + file + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>', ".btn-listen", file, uri);
+            uri  = $(this).get(0).href,
+            btn  = $(".fullview").data("listen");
+        set_modal('<audio src="' + file + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>', btn, file, uri);
     });
     $(".flash-modal").click(function(e) {
         e.preventDefault();
         var file = $(this).attr("href"),
-            uri = $(this).get(0).href;
-        set_modal('<div class="viewer-wrapper"><object width="100%" height="100%" type="application/x-shockwave-flash" data="' + file + '"><param name="movie" value="' + file + '"><param name="quality" value="high"></object></div>', ".btn-view", file, uri);
+            uri = $(this).get(0).href,
+            btn = $(".fullview").data("view");
+        set_modal('<div class="viewer-wrapper"><object width="100%" height="100%" type="application/x-shockwave-flash" data="' + file + '"><param name="movie" value="' + file + '"><param name="quality" value="high"></object></div>', btn, file, uri);
     });
     $(".image-modal").click(function(e) {
         e.preventDefault();
         var file = $(this).attr("href"),
-            uri = $(this).get(0).href;
-        set_modal('<img src="' + file + '"/>', ".btn-view", file, uri);
+            uri = $(this).get(0).href,
+            btn = $(".fullview").data("view");
+        set_modal('<img src="' + file + '"/>', btn, file, uri);
     });
     $(".video-modal").click(function(e) {
         e.preventDefault();
         var file = $(this).attr("href"),
-            uri = $(this).get(0).href;
-        set_modal('<video src="' + file + '" id="player" autoplay controls>Video format or MIME type is not supported</video>', ".btn-view", file, uri);
+            uri = $(this).get(0).href,
+            btn = $(".fullview").data("view");
+        set_modal('<video src="' + file + '" id="player" autoplay controls>Video format or MIME type is not supported</video>', btn, file, uri);
     });
     $(".quicktime-modal").click(function(e) {
         e.preventDefault();
         var file = $(this).attr("href"),
-            uri = $(this).get(0).href;
-        set_modal('<div class="viewer-wrapper"><embed width="100%" height="100%" src="' + file + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"></div>', ".btn-view", file, uri);
+            uri = $(this).get(0).href,
+            btn = $(".fullview").data("view");
+        set_modal('<div class="viewer-wrapper"><embed width="100%" height="100%" src="' + file + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"></div>', btn, file, uri);
     });
     $(".source-modal").click(function(e) {
         e.preventDefault();
         $(".highlight").removeClass("hidden").removeAttr("disabled");
         var file = $(this).attr("href"),
-            uri = $(this).get(0).href;
+            uri = $(this).get(0).href,
+            btn = $(".fullview").data("view");
         var d = file.split(".").pop();
-        set_modal('<pre><code id="source" class="' + d + '" dir="ltr"></code></pre>', ".btn-view", file, uri);
+        set_modal('<pre><code id="source" class="' + d + '" dir="ltr"></code></pre>', btn, file, uri);
         $.ajax(file, {
             dataType: "text",
             success: function(contents) {
@@ -69,7 +77,7 @@ $(function() {
         b && b.pause();
     });
     $("#viewer-modal").on("hidden.bs.modal", function() {
-        $(".highlight,.btn-view,.btn-listen").addClass("hidden");
+        $(".highlight").addClass("hidden");
     });
     $(".save-dropbox").click(function(c) {
         c.preventDefault();

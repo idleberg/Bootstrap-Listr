@@ -45,9 +45,7 @@
               <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _('Close')?></button>
 <?php if ($options['general']['share_button']) { ?>
               <div class="btn-group">
-                <a class="btn btn-primary fullview">
-                  <span class="btn-view hidden"><?php echo _('View')?></span>
-                  <span class="btn-listen hidden"><?php echo _('Listen')?></span>
+                <a class="btn btn-primary fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>">
                 </a>
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                   <span class="caret"></span>
@@ -66,8 +64,7 @@
               </div>
             </div>
 <?php } else { ?>
-            <a class="btn btn-primary btn-view fullview hidden"><?php echo _('View')?></span></a>
-            <a class="btn btn-primary btn-listen fullview hidden"><?php echo _('Listen')?></span></a>
+            <a class="btn btn-primary fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>"><?php echo _('View')?></span></a>
 <?php } ?>
           </div>
         </div>
