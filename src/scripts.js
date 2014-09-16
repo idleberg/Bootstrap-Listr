@@ -1,7 +1,6 @@
 $(function() {
     function set_modal(content, button, file, uri) {
         $(".modal-body").empty().append(content);
-        // $(button).removeClass("hidden");
         $(".fullview").attr("href", file);
         $(".fullview").text(button);
         $(".save-dropbox").attr("href", file);
