@@ -45,7 +45,7 @@
               <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _('Close')?></button>
 <?php if ($options['general']['share_button']) { ?>
               <div class="btn-group">
-                <a class="btn btn-primary fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>">
+                <a class="btn btn-primary fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?> role="button">
                 </a>
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                   <span class="caret"></span>
@@ -53,18 +53,18 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
 <?php if ($options['keys']['dropbox_app']) { ?>
-                  <li><a class="save-dropbox"><?php echo _('Save to Dropbox')?></a></li>
-                  <li class="divider"></li>
+                  <li role="presentation"><a role="menuitem" class="save-dropbox"><?php echo _('Save to Dropbox')?></a></li>
+                  <li role="presentation" class="divider"></li>
 <?php } ?>
-                  <li><a class="email-link">Email</a></li>
-                  <li><a class="facebook-link">Facebook</a></li>
-                  <li><a class="google-link">Google+</a></li>
-                  <li><a class="twitter-link">Twitter</a></li>
+                  <li role="presentation"><a role="menuitem"class="email-link">Email</a></li>
+                  <li role="presentation"><a role="menuitem"class="facebook-link">Facebook</a></li>
+                  <li role="presentation"><a role="menuitem"class="google-link">Google+</a></li>
+                  <li role="presentation"><a role="menuitem" class="twitter-link">Twitter</a></li>
                 </ul>
               </div>
             </div>
 <?php } else { ?>
-            <a class="btn btn-primary fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>"><?php echo _('View')?></span></a>
+            <a class="btn btn-primary fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>" role="button"></a>
 <?php } ?>
           </div>
         </div>
