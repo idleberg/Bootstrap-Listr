@@ -763,7 +763,7 @@ if (GIVE_KUDOS) {
           <div class="modal-body"></div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <a class="btn btn-primary fullview">View</a>
+            <a class="btn btn-primary fullview" role="button">View</a>
           </div>
         </div>
       </div>
