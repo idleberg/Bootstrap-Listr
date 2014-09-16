@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.1.2
+VERSION=0.2.0
 set -e
 
 # Functions
@@ -23,14 +23,17 @@ else
 fi
 
 echo $'Initializing…'
-gulp init --silent
+gulp init --silent      # clean up app-folder, copy files
 
 echo $'Running setup…'
-gulp setup --silent
-gulp apache --silent
-gulp theme --silent
+gulp bootstrap --silent # set Bootstrap/Bootswatch theme
+gulp viewer --silent    # include Viewer dependencies
+gulp search --silent    # include Search Box dependencies
+gulp icons --silent     # include Font Awesome icons
+gulp hljs --silent      # include Highlight.js
+gulp apache --silent    # append H5BP's Apache Server Config
 
 echo $'Cracking…'
-gulp make --silent
+gulp make --silent      # minify CSS & JS
 
 echo $'Completed.︎'

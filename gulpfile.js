@@ -1,15 +1,16 @@
 var meta = require('./package.json');
 
-var clean   = require('gulp-rimraf');
-var concat  = require('gulp-concat');
-var csslint = require('gulp-csslint');
-var cssmin  = require('gulp-cssmin');
-var gulp    = require('gulp');
-var jshint  = require('gulp-jshint');
-var jeditor = require('gulp-json-editor');
-var phplint = require('phplint');
-var prompt  = require('gulp-prompt');
-var uglify  = require('gulp-uglify');
+var clean     = require('gulp-rimraf');
+var concat    = require('gulp-concat');
+var csslint   = require('gulp-csslint');
+var cssmin    = require('gulp-cssmin');
+var download  = require('gulp-download');
+var gulp      = require('gulp');
+var jshint    = require('gulp-jshint');
+var jeditor   = require('gulp-json-editor');
+var phplint   = require('phplint');
+var prompt    = require('gulp-prompt');
+var uglify    = require('gulp-uglify');
 
 /*
  * Task combos
@@ -18,10 +19,11 @@ gulp.task('lint',   ['csslint', 'jshint', 'phplint']);
 gulp.task('make',   ['cssmin', 'uglify']);
 gulp.task('travis', ['csslint', 'jshint']);
 
-// Aliases
+// Task aliases
+gulp.task('bs',          ['bootstrap']);
 gulp.task('css',         ['csslint', 'cssmin']);
-gulp.task('highlighter', ['hlcss']);
-gulp.task('hljs',        ['hlcss']);
+gulp.task('fa',          ['fontawesome']);
+gulp.task('hljs',        ['highlighter']);
 gulp.task('js',          ['jshint', 'uglify']);
 gulp.task('php',         ['phplint']);
 gulp.task('update',      ['upgrade']);
@@ -104,13 +106,17 @@ gulp.task('clean', function () {
     .pipe(clean());
 });
 
+gulp.task('download', function () {
+  download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js')
+  .pipe(gulp.dest("./app/"));
+});
+
 gulp.task('reset', function () {
   gulp.src([
       './src/config.json'
     ])
     .pipe(gulp.dest('./app/'));
 });
-
 
 /*
  * LINT PHP
@@ -168,79 +174,197 @@ gulp.task('uglify', function() {
 });
 
 /*
- * SETUP
+ * BOOTSTRAP THEME SETUP
  *
- * All dependencies will be concatenated into a single file
+ * Pick a Bootstrap theme
  */
-gulp.task('setup', function(){
-  var bscss  = gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css');
-  var bsjs   = gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js');
-  var bsfont = gulp.src('./node_modules/bootstrap/fonts/*');
-  var fa     = gulp.src('./node_modules/font-awesome/css/font-awesome.min.css');
-  var fafont = gulp.src('./node_modules/font-awesome/fonts/*');
-  var hljs   = gulp.src('./node_modules/highlight.js/lib/index.js');
-  var jquery = gulp.src(['./node_modules/jquery/dist/jquery.min.js','./node_modules/jquery/dist/jquery.min.map']);
-  var search = gulp.src('./node_modules/jquery-searcher/dist/jquery.searcher.min.js');
+gulp.task('bootstrap', function(){
 
+ gulp.src('.')
+    .pipe(prompt.prompt({
+        type: 'input',
+        name: 'bootstrap',
+        message: 'Which Bootstrap theme would you like to use?',
+        default: 'default'
+    }, function(res){
 
-  gulp.src("./app/config.json")
+        var bootswatch = ['amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti'];
 
-  .pipe(prompt.prompt({
-      type: 'checkbox',
-      name: 'bump',
-      message: 'Which features do you want to enable?',
-      choices: ['Viewer', 'Search Box', 'Font Awesome', 'Highlight.js'],
-    }, function(include){
+        if(res.bootstrap === 'default') {
+              console.log(' +  default Bootstrap theme')
+              gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
+              .pipe(concat('./bootstrap.min.css'))
+              .pipe(gulp.dest('./app/assets/css/'))
+              gulp.src("./app/config.json")
+                .pipe(jeditor({
+                  'bootstrap': {
+                    'theme': 'default'
+                  }
+                }))
+                .pipe(gulp.dest("./app/"));
+        } else if (bootswatch.indexOf(res.bootstrap) != -1 ) {
+              console.log(' +  ' + res.bootstrap + ' (Bootswatch)')
+              gulp.src('./node_modules/bootswatch/' + res.bootstrap + '/bootstrap.min.css')
+              .pipe(concat('./bootstrap.min.css'))
+              .pipe(gulp.dest('./app/assets/css/')),
 
-      bscss.pipe(gulp.dest('./app/assets/css/'));
-      bsfont.pipe(gulp.dest('./app/assets/fonts/'));
+              gulp.src("./app/config.json")
+              .pipe(jeditor({
+                'bootstrap': {
+                  'theme': res.bootstrap
+                }
+              }))
+              .pipe(gulp.dest("./app/"));
+        } else {
+          console.warn(' -  Error: theme not supported')
+        }
+    }));
+});
 
-      include.bump.forEach(function(entry) {
+/*
+ * VIEWER SETUP
+ *
+ * Copy dependencies for the viewer modal
+ */
+gulp.task('viewer', function(){
 
-          var enable_viewer = false;
-          var enable_search = false;
-          var icons = 'glyphicons';
+  gulp.src('.')
 
-          if(entry === 'Viewer') {
-            console.log(' +  Viewer included')
-            jquery.pipe(gulp.dest('./app/assets/js/'));
-            bsjs.pipe(gulp.dest('./app/assets/js/'));
-            var enable_viewer = true;
-          }
-          if(entry === 'Search Box') {
-            console.log(' +  Search Box included')
-            jquery.pipe(gulp.dest('./app/assets/js/'));
-            search.pipe(gulp.dest('./app/assets/js/'));
-            var enable_search = true;
-          }
-          if(entry === 'Font Awesome') {
-            console.log(' +  ' + entry + ' included')
-            fa.pipe(gulp.dest('./app/assets/css/'));
-            fafont.pipe(gulp.dest('./app/assets/fonts/'));
-            var icons = 'fontawesome';
-          }
-          if(entry === 'Highlight.js') {
-            console.log(' +  ' + entry + ' included')
-            hljs.pipe(concat('./highlight.min.js'))
-            .pipe(uglify())
-            .pipe(gulp.dest('./app/assets/js/'));
-          }
+    .pipe(prompt.prompt({
+        type: 'input',
+        name: 'viewer',
+        message: 'Do you want to make use of the viewer modal?',
+        default: 'y'
+      }, function(res){
+        if(res.viewer === 'y') {
+              console.log(' +  Viewer included')
+              gulp.src([
+                './node_modules/bootstrap/dist/js/bootstrap.min.js',
+                './node_modules/jquery/dist/jquery.min.js',
+                './node_modules/jquery/dist/jquery.min.map'
+              ])
+              .pipe(gulp.dest('./app/assets/js/'));
 
-          gulp.src("./app/config.json")
-          .pipe(jeditor({
-            'general': {
-              'dependencies': 'local',
-              'enable_viewer': true,
-              'enable_search': true
-            },
-            'bootstrap': {
-              'icons': icons
-            }
-          }))
-          .pipe(gulp.dest("./app/"));
+              gulp.src("./app/config.json")
+              .pipe(jeditor({
+                'general': {
+                  'enable_viewer': true
+                }
+              }))
+              .pipe(gulp.dest("./app/"));
+        } else {
+          console.log(' -  Viewer skipped')
+        }
+    }));
+});
 
-      })
-    }))
+/*
+ * SEARCH BOX SETUP
+ *
+ * Copy dependencies for the search box
+ */
+gulp.task('search', function(){
+
+  gulp.src('.')
+
+    .pipe(prompt.prompt({
+        type: 'input',
+        name: 'search',
+        message: 'Do you want to make use of the search box?',
+        default: 'y'
+      }, function(res){
+        if(res.search === 'y') {
+              console.log(' +  Search Box included')
+              gulp.src([
+                './node_modules/jquery/dist/jquery.min.js',
+                './node_modules/jquery/dist/jquery.min.map',
+                './node_modules/jquery-searcher/dist/jquery.searcher.min.js'
+
+              ])
+              .pipe(gulp.dest('./app/assets/js/'))
+
+              gulp.src("./app/config.json")
+              .pipe(jeditor({
+                'general': {
+                  'enable_search': true
+                }
+              }))
+              .pipe(gulp.dest("./app/"));
+        } else {
+          console.log(' -  Search Box skipped')
+        }
+    }));
+});
+
+/*
+ * FONT AWESOME SETUP
+ *
+ * Copy dependencies for Font Awesome icons
+ */
+gulp.task('icons', function(){
+
+  gulp.src('.')
+
+    .pipe(prompt.prompt({
+        type: 'input',
+        name: 'fontawesome',
+        message: 'Do you want to make use of Font Awesome icons?',
+        default: 'y'
+      }, function(res){
+        if(res.fontawesome === 'y') {
+              console.log(' +  Font Awesome included')
+
+              gulp.src([
+                './node_modules/font-awesome/css/font-awesome.min.css'
+
+              ])
+              .pipe(gulp.dest('./app/assets/css/'))
+
+              gulp.src([
+                './node_modules/font-awesome/fonts/*'
+
+              ])
+              .pipe(gulp.dest('./app/assets/fonts/'))
+
+              gulp.src("./app/config.json")
+              .pipe(jeditor({
+                'bootstrap': {
+                  'icons': 'fontawesome'
+                }
+              }))
+              .pipe(gulp.dest("./app/"));
+        } else {
+          console.log(' -  Font Awesome skipped')
+        }
+    }));
+});
+
+/*
+ * HIGHLIGHT.JS SETUP
+ *
+ * Copy dependencies for the syntax highlighter
+ */
+gulp.task('highlighter', function(){
+
+  gulp.src('.')
+
+    .pipe(prompt.prompt({
+        type: 'input',
+        name: 'hljs',
+        message: 'Do you want to make use of the syntax highlighter?',
+        default: 'y'
+      }, function(res){
+        if(res.hljs === 'y') {
+              download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js')
+              .pipe(gulp.dest('./app/assets/js/'))
+              download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css')
+              .pipe(concat('./highlight.min.css'))
+              .pipe(gulp.dest('./app/assets/css/'));
+              console.log(' +  Highlight.js included (use "gulp theme" to pick a different theme')
+        } else {
+          console.log(' -  Highlight.js skipped')
+        }
+    }));
 });
 
 /*
@@ -261,91 +385,47 @@ gulp.task('apache', function(){
         default: 'y'
       }, function(res){
         if(res.h5bp === 'y') {
-              console.log(' +  H5BP\'s Apache Server Config')
+              console.log(' +  H5BP\'s Apache Server Config appended')
               gulp.src(['./src/root.htaccess','./node_modules/apache-server-configs/dist/.htaccess'])
               .pipe(concat('.htaccess'))
               .pipe(gulp.dest('./app/'))
+        } else {
+          console.log(' -  H5BP\'s Apache Server Config skipped')
         }
     }));
 });
 
 /*
- * BOOTSWATCH SETUP
+ * HIGHLIGHT.JS THEME
  *
- * Pick a Bootstrap theme
+ * Pick a style-sheet for Highlight.js
  */
 gulp.task('theme', function(){
 
  gulp.src('.')
     .pipe(prompt.prompt({
         type: 'input',
-        name: 'task',
-        message: 'Which Bootstrap theme would you like to use?',
-        default: 'default'
-    }, function(res){
-        if(res.task === 'default') {
-              console.log(' +  Default Bootstrap theme')
-              gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
-              .pipe(concat('./bootstrap.min.css'))
-              .pipe(gulp.dest('./app/assets/css/')),
-              gulp.src("./app/config.json")
-                .pipe(jeditor({
-                  'bootstrap': {
-                    'theme': 'default'
-                  }
-                }))
-                .pipe(gulp.dest("./app/"));
-        } else {
-              var bootswatch = ['amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti'];
-
-              if (bootswatch.indexOf(res.task) != -1 ) {
-                console.log(' +  ' + res.task + ' (Bootswatch)')
-                gulp.src('./node_modules/bootswatch/' + res.task + '/bootstrap.min.css')
-                .pipe(concat('./bootstrap.min.css'))
-                .pipe(gulp.dest('./app/assets/css/')),
-
-                gulp.src("./app/config.json")
-                .pipe(jeditor({
-                  'bootstrap': {
-                    'theme': res.task
-                  }
-                }))
-                .pipe(gulp.dest("./app/"));
-              }
-        }
-    }));
-});
-
-/*
- * HIGHLIGHT.JS SETUP
- *
- * Pick a CSS for Highlight.js
- */
-gulp.task('hlcss', function(){
-
- gulp.src('.')
-    .pipe(prompt.prompt({
-        type: 'input',
-        name: 'task',
+        name: 'hljs_theme',
         message: 'Which Highlight.js theme would you like to use?',
         default: 'default'
     }, function(res){
 
         var highlighter = ['arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'dark', 'default', 'docco', 'far', 'foundation', 'github', 'googlecode', 'idea', 'ir_black', 'magula', 'mono-blue', 'monokai', 'monokai_sublime', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn']
 
-        if (highlighter.indexOf(res.task) != -1) {
-          gulp.src('./node_modules/highlight.js/styles/' + res.task + '.css')
+        if (highlighter.indexOf(res.hljs_theme) != -1) {
+          download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/' + res.hljs_theme + '.min.css')
           .pipe(concat('./highlight.min.css'))
-          .pipe(cssmin())
           .pipe(gulp.dest('./app/assets/css/'));
 
           gulp.src("./app/config.json")
           .pipe(jeditor({
             'highlight': {
-              'theme': res.task
+              'theme': res.hljs_theme
             }
           }))
           .pipe(gulp.dest("./app/"));
+        } else {
+          console.warn(' -  Error: theme not supported')
         }
     }));
 });
@@ -355,17 +435,20 @@ gulp.task('help', function() {
   console.log('\n' + meta.name + ' v' + meta.version)
   console.log('==================\n')
   console.log('Available tasks:')
-  console.log('     help - this dialog')
-  console.log('   apache - append H5BP Apache Server Config to default .htaccess')
-  console.log('    clean - delete app-folder')
-  console.log('    hlcss - specify default Highlighter.js style-sheet')
-  console.log('     init - create app-folder and copy required files')
-  console.log('     lint - run tasks to lint all CSS, JavaScript and PHP files')
-  console.log('     make - minify all CSS and JavaScript files')
-  console.log('    reset - reset config.json to default')
-  console.log('    setup - configure Bootstrap Listr and copy dependencies')
-  console.log('    theme - specify default Bootstrap theme')
-  console.log('  upgrade - upgrade all PHP files in app-folder')
+  console.log('        help - this dialog')
+  console.log('      apache - append H5BP Apache Server Config to default .htaccess')
+  console.log('   bootstrap - specify default Bootstrap theme')
+  console.log('       clean - delete app-folder')
+  console.log(' fontawesome - include Font Awesome icons')
+  console.log('        hljs - include Highlight.js')
+  console.log('        init - create app-folder and copy required files')
+  console.log('        lint - run tasks to lint all CSS, JavaScript and PHP files')
+  console.log('        make - minify all CSS and JavaScript files')
+  console.log('       reset - reset config.json to default')
+  console.log('      search - include scripts for Search Box')
+  console.log('       theme - specify default Highlighter.js style-sheet')
+  console.log('     upgrade - upgrade all PHP files in app-folder')
+  console.log('      viewer - include scripts for Viewer modal')
   console.log('\nFor further details visit the GitHub repository:')
   console.log('https://github.com/idleberg/Bootstrap-Listr\n')
 
