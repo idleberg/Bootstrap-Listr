@@ -43,7 +43,7 @@ For a full list of available commands, type `gulp help`.
 
 ### CDN
 
-Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). Initialize your app using `gulp init` and set "dependencies" to "cdn" in your `config.json`. You can then specify your preferred CDNs (and all other preferences) in this file as well (see [below](#options) for details!)
+Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). Initialize your app using `gulp init` and set `dependencies` to `cdn` in your `config.json`. You can then specify your preferred CDNs (and all other preferences) in this file as well (see [below](#options) for details!)
 
 ## Deployment
 
@@ -68,7 +68,7 @@ You can configure a number of settings in the file `config.json`:
 
 ### Font Awesome
 
-Rather than using the default [Bootstrao Glyphicons](http://getbootstrap.com/components/#glyphicons), you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) for beautiful, file-specific icons. Note that this will require extra resources, hence increase the load time.
+Rather than using the default [Bootstrap Glyphicons](http://getbootstrap.com/components/#glyphicons), you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) for beautiful, file-specific icons. Note that this will require extra resources, hence increase the load time.
 
 ### Theming
 
