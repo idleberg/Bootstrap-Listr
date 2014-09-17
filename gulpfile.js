@@ -156,6 +156,7 @@ gulp.task('cssmin', function() {
  */
 gulp.task('jshint', function() {
   gulp.src([
+      './src/config.json',
       './src/scripts.js'
     ])
     .pipe(jshint())
