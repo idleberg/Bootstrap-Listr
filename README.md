@@ -12,7 +12,7 @@ A replacement for default server indexes, Bootstrap Listr beautifully displays f
 
 ## Building
 
-If you're already overwhelmed by the idea of having to build stuff, or wonder what happened to the old one-file solution—it's still available [here](https://github.com/idleberg/Bootstrap-Listr/tree/1.0-dev/)!
+If you're already overwhelmed by the idea of having to build stuff, or simply wonder what happened to the old one-file solution—get the old version [here](https://github.com/idleberg/Bootstrap-Listr/tree/1.0-dev/)!
 
 ### Local
 
