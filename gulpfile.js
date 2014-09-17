@@ -22,7 +22,8 @@ gulp.task('travis', ['csslint', 'jshint']);
 // Task aliases
 gulp.task('bs',          ['bootstrap']);
 gulp.task('css',         ['csslint', 'cssmin']);
-gulp.task('fa',          ['fontawesome']);
+gulp.task('fa',          ['icons']);
+gulp.task('fontawesome', ['icons']);
 gulp.task('hljs',        ['highlighter']);
 gulp.task('js',          ['jshint', 'uglify']);
 gulp.task('php',         ['phplint']);
