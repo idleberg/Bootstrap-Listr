@@ -41,7 +41,8 @@
             <div class="pull-<?php echo $left?>">
               <button type="button" class="btn btn-link highlight hidden"><?php echo _('Apply code highlighting')?></button>
             </div>
-<?php } ?>     <div class="pull-<?php echo $right?>">
+<?php } ?>
+            <div class="pull-<?php echo $right?>">
               <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _('Close')?></button>
 <?php if ($options['general']['share_button']) { ?>
               <div class="btn-group">
