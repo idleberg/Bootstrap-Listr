@@ -190,6 +190,7 @@ gulp.task('bootstrap', function(){
     }, function(res){
 
         var bootswatch = ['amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti'];
+        // var m8tro = ['m8tro-aqua', 'm8tro-blue', 'm8tro-brown', 'm8tro-green', 'm8tro-orange', 'm8tro-purple', 'm8tro-red', 'm8tro-yellow'];
 
         if(res.bootstrap === 'default') {
               console.log(' +  default Bootstrap theme')
