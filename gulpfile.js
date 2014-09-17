@@ -222,6 +222,13 @@ gulp.task('bootstrap', function(){
           console.warn(' -  Error: theme not supported')
         }
     }));
+
+  gulp.src([
+  './node_modules/bootstrap/fonts/*'
+
+  ])
+  .pipe(gulp.dest('./app/assets/fonts/'));
+  
 });
 
 /*
