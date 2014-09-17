@@ -1,12 +1,8 @@
 .tmp/
 app/
 bower_components/
-config.json
-crack.sh
 generators/
-gulpfile.js
-listr-*.php
 node_modules/
-package.json
-src/
+npm-debug.log
+src/locale
 todo.md

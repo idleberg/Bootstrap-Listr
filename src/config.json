@@ -1,0 +1,86 @@
+{
+  "general": {
+    "root_dir":         "./_public/",
+    "dependencies":     "local",
+    "locale":           "en_US",
+    "text_direction":   "ltr",
+    "enable_sort":      true,
+    "enable_viewer":    false,
+    "enable_search":    false,
+    "autofocus_search": false,
+    "share_button":     false,
+    "hide_extension":   false,
+    "give_kudos":       true
+  },
+  "cdn": {
+    "jquery":          "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",
+    "bootstrap":       "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js",
+    "font_awesome":    "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css",
+    "google_font":     false,
+    "stupid_table":    "//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
+    "searcher":        null,
+    "highlight_js":    "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js",
+    "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css",
+    "custom_theme":    null
+  },
+  "icons": {
+    "fav_icon":         null,
+    "iphone":           null,
+    "iphone_retina":    null,
+    "ipad":             null,
+    "ipad_retina":      null,
+    "metro_tile_color": null,
+    "metro_tile_image": null
+  },
+  "opengraph": {
+    "title":       null,
+    "description": null,
+    "site_name":   null,
+    "type":        null,
+    "image":       null
+  },
+  "bootstrap": {
+    "fluid_grid":        false,
+    "table_style":       "table-hover",
+    "responsive_table":  true,
+    "modal_size":        "modal-lg",
+    "theme":             "default",
+    "icons":             "glyphicons",
+    "fontawesome_style": "fa-fw"
+  },
+  "highlight": {
+    "theme": "default"
+  },
+  "keys": {
+    "dropbox_app":      false,
+    "google_analytics": false
+  },
+  "columns": {
+    "size": true,
+    "age":  true
+  },
+  "ignored_files": [
+    ".DAV",
+    ".DS_Store",
+    ".bzr",
+    ".bzrignore",
+    ".bzrtags",
+    ".git",
+    ".gitattributes",
+    ".gitignore",
+    ".gitmodules",
+    ".hg",
+    ".hgignore",
+    ".hgtags",
+    ".htaccess",
+    ".htpasswd",
+    ".jshintrc",
+    ".npmignore",
+    ".Spotlight-V100",
+    ".svn",
+    "__MACOSX",
+    "ehthumbs.db",
+    "robots.txt",
+    "Thumbs.db"
+  ]
+}
