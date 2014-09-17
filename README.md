@@ -1,4 +1,4 @@
-# Bootstrap Listr [![Build Status](https://travis-ci.org/idleberg/Bootstrap-Listr.svg)](https://travis-ci.org/idleberg/Bootstrap-Listr) [![Dependencies](https://david-dm.org/idleberg/Bootstrap-Listr.svg)](https://david-dm.org/idleberg/Bootstrap-Listr)
+# Bootstrap Listr [![Build Status](https://travis-ci.org/idleberg/Bootstrap-Listr.svg)](https://travis-ci.org/idleberg/Bootstrap-Listr) [![devDependencies](https://david-dm.org/idleberg/Bootstrap-Listr/dev-status.svg)](https://david-dm.org/idleberg/Bootstrap-Listr#info=devDependencies)
 
 A replacement for default server indexes, Bootstrap Listr beautifully displays folders and files in the browser. It is built upon the [Bootstrap](http://getbootstrap.com) framework and optionally makes use of [Bootswatch](http://bootswatch.com/) themes and [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons.
 
@@ -6,13 +6,13 @@ A replacement for default server indexes, Bootstrap Listr beautifully displays f
 
 ## Installation
 
-1. Clone the repository `git clone --branch=2.0-dev https://github.com/idleberg/Bootstrap-Listr.git` 
+1. Clone the repository `git clone https://github.com/idleberg/Bootstrap-Listr.git` 
 2. Change directory `cd Bootstrap-Listr`
 3. Install all Node dependencies `npm install`
 
 ## Building
 
-If you're already overwhelmed by the idea of having to build stuff, or wonder what happened to the old one-file solution—it's still available [here](https://github.com/idleberg/Bootstrap-Listr/tree/1.0-dev/)!
+If you're already overwhelmed by the idea of having to build stuff, or simply wonder what happened to the old one-file solution—get the old version [here](https://github.com/idleberg/Bootstrap-Listr/tree/1.0-dev/)!
 
 ### Local
 
@@ -43,7 +43,7 @@ For a full list of available commands, type `gulp help`.
 
 ### CDN
 
-Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). Initialize your app using `gulp init` and set "dependencies" to "cdn" in your `config.json`. You can then specify your preferred CDNs (and all other preferences) in this file as well (see [below](#options) for details!)
+Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). Initialize your app using `gulp init` and set `dependencies` to `cdn` in your `config.json`. You can then specify your preferred CDNs (and all other preferences) in this file as well (see [below](#options) for details!)
 
 ## Deployment
 
@@ -68,7 +68,7 @@ You can configure a number of settings in the file `config.json`:
 
 ### Font Awesome
 
-Rather than using the default [Bootstrao Glyphicons](http://getbootstrap.com/components/#glyphicons), you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) for beautiful, file-specific icons. Note that this will require extra resources, hence increase the load time.
+Rather than using the default [Bootstrap Glyphicons](http://getbootstrap.com/components/#glyphicons), you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) for beautiful, file-specific icons. Note that this will require extra resources, hence increase the load time.
 
 ### Theming
 
