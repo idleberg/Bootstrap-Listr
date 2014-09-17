@@ -45,7 +45,7 @@
               <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _('Close')?></button>
 <?php if ($options['general']['share_button']) { ?>
               <div class="btn-group">
-                <a class="btn btn-primary fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?> role="button">
+                <a class="btn btn-primary fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>" role="button">
                 </a>
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                   <span class="caret"></span>
@@ -56,9 +56,9 @@
                   <li role="presentation"><a role="menuitem" class="save-dropbox"><?php echo _('Save to Dropbox')?></a></li>
                   <li role="presentation" class="divider"></li>
 <?php } ?>
-                  <li role="presentation"><a role="menuitem"class="email-link">Email</a></li>
-                  <li role="presentation"><a role="menuitem"class="facebook-link">Facebook</a></li>
-                  <li role="presentation"><a role="menuitem"class="google-link">Google+</a></li>
+                  <li role="presentation"><a role="menuitem" class="email-link">Email</a></li>
+                  <li role="presentation"><a role="menuitem" class="facebook-link">Facebook</a></li>
+                  <li role="presentation"><a role="menuitem" class="google-link">Google+</a></li>
                   <li role="presentation"><a role="menuitem" class="twitter-link">Twitter</a></li>
                 </ul>
               </div>
