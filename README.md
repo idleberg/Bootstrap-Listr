@@ -12,9 +12,15 @@ A replacement for default server indexes, Bootstrap Listr beautifully displays f
 
 ## Building
 
+<<<<<<< HEAD
 If you're already overwhelmed by the idea of having to build stuff, or wonder what happened to the old one-file solution—it's still available [here](https://github.com/idleberg/Bootstrap-Listr/tree/1.0-dev/)!
 
 ### Local
+=======
+Like its [predecessors](#credits), Bootstrap Listr was meant as *one file to rule them all*, an easy to deploy single file solution. Since it does not support subfolders, you will have to copy the index in every directory where you would like to use it.
+
+Or, you can have a go at the [2.0 developer branch](https://github.com/idleberg/Bootstrap-Listr/tree/2.0-dev). While it is no longer a single file, it's easy to deploy and features **subfolder support** among other things. See it in this [live demo](http://demo.idleberg.com/Bootstrap-Listr-2.0-dev/).
+>>>>>>> 3bf51d682e032bc4c178aab33557e786fa7b7566
 
 [Gulp](http://gulpjs.com/) tasks are used to configure and build your app. You can install Gulp globally using `npm install gulp -g`. For your convenience, `setup.sh` is provided to run all setup tasks. Alternatively, you can run Gulp tasks manually:
 
@@ -72,11 +78,17 @@ Rather than using the default [Bootstrao Glyphicons](http://getbootstrap.com/com
 
 ### Theming
 
+<<<<<<< HEAD
 You can overwrite the `default` Bootstrap with any [Bootswatch](http://bootswatch.com/) theme (e.g. `united`) or add your `custom_theme` in the CDN settings. Please note that Bootswatch themes do not include [glyphicons](http://getbootstrap.com/components/#glyphicons).
 
 ### Viewer
 
 To load images, videos, audio and source code into a [Bootstrap Modal](http://getbootstrap.com/javascript/#modals), the viewer is enabled by default. You can change this in `config.json`. The required Bootstrap JavaScript library will be added to your page automatically.
+=======
+### Font Awesome
+
+Rather than using generic icons, you can choose between two [Font Awesome](http://fortawesome.github.io/Font-Awesome/) themes for beautiful, file-specific icons. Note that this will require extra resources, hence increase the load time.
+>>>>>>> 3bf51d682e032bc4c178aab33557e786fa7b7566
 
 ### Search Box
 
