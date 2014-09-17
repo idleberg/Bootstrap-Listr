@@ -93,9 +93,16 @@ $total_size = 0;
 if ($options['bootstrap']['icons'] == "glyphicons") { 
     $icon_tag = 'span';
     $home_icon = "<span class=\"glyphicon glyphicon-home\"></span>";
+    if ($options['general']['enable_search'] == true) {
+        $search_icon = "          <span class=\"glyphicon glyphicon-search form-control-feedback\"></span>" . PHP_EOL;
+    }
 } else if ($options['bootstrap']['icons'] == "fontawesome") { 
     $icon_tag = 'i';
     $home_icon = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
+    // if ($options['general']['enable_search'] == true) {
+    //     $search_icon = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
+    // }
+    $search_icon = null;
     $filetype = array(
         'archive'   => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
         'apple'     => array('app','ipa','ipsw','saver'),
@@ -125,6 +132,10 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
 } else if ($options['bootstrap']['icons'] == 'fa-files'){
     $icon_tag  = 'i';
     $home_icon = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
+    // if ($options['general']['enable_search'] == true) {
+    //     $search_icon = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
+    // }
+    $search_icon = null;
     $filetype = array(
         'archive'    => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
         'audio'      => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','oga','ogg','oma','s3m','sid','umx','wav','webma','wv','xm'),
@@ -137,10 +148,10 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
         'video'      => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
         'word'       => array('doc','docm','docs','docx','dot','pages'),
     );
-    $home_icon = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
 } else {
     $icon_tag  = 'span';
     $home_icon = $this_domain;
+    $search_icon = null;
 }  
 
 if ($options['general']['enable_viewer']) {
@@ -377,6 +388,7 @@ if ($options['general']['enable_search'] == true) {
     $search .= "        <div class=\"form-group has-feedback\">" . PHP_EOL;
     $search .= "          <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
     $search .= "          <input type=\"text\" class=\"form-control\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
+    $search .= "$search_icon";
     $search .= "       </div>" . PHP_EOL;
     $search .= "      </div>" . PHP_EOL;
     $search .= "    </div>" . PHP_EOL;
