@@ -137,6 +137,14 @@ function set_404_error() {
     echo "404 &mdash; Page not found";
 }
 
+function utf8ify($str) {
+    if (is_file(!utf8_decode($str))) {
+        return utf8_encode($str);
+    } else {
+        return $str;
+    }
+}
+
 /**
  *    http://us.php.net/manual/en/function.array-multisort.php#83117
  */

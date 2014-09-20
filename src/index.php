@@ -372,7 +372,7 @@ foreach($dir_name as $dir => $name) :
         for ($i = 0; $i <= $dir; $i++):
             $parent .= rawurlencode($dir_name[$i]) . '/';
         endfor;
-        $breadcrumbs .= "      <li><a href=\"".htmlentities($absolute_path.$parent, ENT_QUOTES, 'utf-8')."\">".utf8_encode($name)."</a></li>" . PHP_EOL;
+        $breadcrumbs .= "      <li><a href=\"".htmlentities($absolute_path.$parent, ENT_QUOTES, 'utf-8')."\">".$name."</a></li>" . PHP_EOL;
     endif;
 endforeach;
 $breadcrumbs = $breadcrumbs."    </ol>" . PHP_EOL;
@@ -448,7 +448,8 @@ if(($folder_list) || ($file_list) ) {
             if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files" ) {
                 $table_body .= "<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
             }
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . $item['bname'] . "</strong></a></td>" . PHP_EOL;
+
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . utf8ify($item['bname']) . "</strong></a></td>" . PHP_EOL;
             
             if ($table_options['size']) {
                 $table_body .= "            <td";
@@ -506,7 +507,7 @@ if(($folder_list) || ($file_list) ) {
                     $modal_class = NULL;
                 }
             }
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$modal_class>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$modal_class>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
 
             if ($table_options['size']) {
                 $table_body .= "            <td";
