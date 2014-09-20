@@ -208,7 +208,7 @@ function time_ago($timestamp, $recursive = 0)
     {
         $periods[$val] .= "s";
     }
-    $text = sprintf("%d %s ", $number, $periods[$val]);   
+    $text = sprintf("%d %s ago", $number, $periods[$val]);   
     
     if (($recursive == 1) && ($val >= 1) && (($current_time - $new_time) > 0))
     {
