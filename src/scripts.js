@@ -72,8 +72,10 @@ $(function() {
         $("pre").css("background-color", b);
     });
     $("#viewer-modal").on("hide.bs.modal", function() {
-        var b = document.getElementById("player");
-        b && b.pause();
+        var player = document.getElementById("player");
+        if (player) {
+            player.pause();
+        }
     });
     $("#viewer-modal").on("hidden.bs.modal", function() {
         $(".highlight").addClass("hidden");
