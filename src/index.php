@@ -464,7 +464,7 @@ if(($folder_list) || ($file_list) ) {
                 if ($options['general']['enable_sort']) {
                     $table_body .= " class=\"text-".$right."\" data-sort-value=\"" . $item['mtime'] . "\"";
                 }
-                $table_body .= ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
+                $table_body .= ">" . time_ago($item['mtime']) . "</td>" . PHP_EOL;
             }
 
             $table_body .= "          </tr>" . PHP_EOL;
@@ -522,7 +522,7 @@ if(($folder_list) || ($file_list) ) {
                 if ($options['general']['enable_sort']) {
                     $table_body .= " class=\"text-".$right."\" data-sort-value=\"".$item['mtime']."\"";
                 }
-                $table_body .= ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
+                $table_body .= ">" . time_ago($item['mtime']) . "</td>" . PHP_EOL;
             }
 
             $table_body .= "          </tr>" . PHP_EOL;
@@ -535,7 +535,7 @@ if(($folder_list) || ($file_list) ) {
         if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files" ) {
             $table_body .= "<$icon_tag class=\"" . $item['class'] . "\">&nbsp;</$icon_tag>";
         } 
-        $table_body .= "empty folder</td>" . PHP_EOL;
+        $table_body .= _("empty folder")."</td>" . PHP_EOL;
         $table_body .= "          </tr>" . PHP_EOL;
 }
 
