@@ -58,7 +58,7 @@ $(function() {
         $.ajax(file, {
             dataType: "text",
             success: function(contents) {
-                $("#source").text(contents);
+                $("#source").text(decodeURIComponent(contents));
             }
         });
     });
