@@ -2,6 +2,10 @@ th {
     cursor: pointer;
 }
 
+pre code {
+    word-break: break-word;
+}
+
 .modal img {
     display: block;
     margin: 0 auto;
