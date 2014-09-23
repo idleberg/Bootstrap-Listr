@@ -32,6 +32,7 @@ gulp search --silent    # include Search Box dependencies
 gulp icons --silent     # include Font Awesome icons
 gulp hljs --silent      # include Highlight.js
 gulp apache --silent    # append H5BP's Apache Server Config
+gulp robots --silent    # copy restrictive robots.txt
 
 echo $'Cracking…'
 gulp make --silent      # minify CSS & JS
