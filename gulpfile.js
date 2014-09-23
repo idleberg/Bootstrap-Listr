@@ -406,6 +406,34 @@ gulp.task('apache', function(){
 });
 
 /*
+ * ROBOTS
+ *
+ * Copy a restrictive robots.txt to app-folder
+ */
+gulp.task('robots', function(){
+
+  gulp.src([
+      './src/root.htaccess'
+    ])
+
+    .pipe(prompt.prompt({
+        type: 'input',
+        name: 'h5bp',
+        message: 'Do you want to lock out Web crawlers?',
+        default: 'y'
+      }, function(res){
+        if(res.h5bp === 'y') {
+              console.log(' +  robots.txt copied')
+              gulp.src(['./src/robots.txt'])
+              .pipe(concat('robots.txt'))
+              .pipe(gulp.dest('./app/'))
+        } else {
+          console.log(' -  robots.txt skipped')
+        }
+    }));
+});
+
+/*
  * HIGHLIGHT.JS THEME
  *
  * Pick a style-sheet for Highlight.js
