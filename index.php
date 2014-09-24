@@ -519,10 +519,11 @@ function time_ago($timestamp, $recursive = 0)
 /*** HTML LOGIC ***/
 
 // Set HTML header
-$header = "  <meta charset=\"utf-8\">" . PHP_EOL;
-$header = $header."  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=yes\">" . PHP_EOL;
-$header = $header."  <meta name=\"generator\" content=\"Bootstrap Listr\" />" . PHP_EOL;
-$header = $header."  <title>Index of ".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."</title>" . PHP_EOL;
+$header  = "  <meta charset=\"utf-8\">" . PHP_EOL;
+$header .= "  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">" . PHP_EOL;
+$header .= "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=yes\">" . PHP_EOL;
+$header .= "  <meta name=\"generator\" content=\"Bootstrap Listr\" />" . PHP_EOL;
+$header .= "  <title>Index of ".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."</title>" . PHP_EOL;
 if (FAV_ICON) $header = $header."  <link rel=\"shortcut icon\" href=\"".FAV_ICON."\" />" . PHP_EOL;
 if (IPHONE_ICON) $header = $header."  <link rel=\"apple-touch-icon\" sizes=\"57x57\" href=\"".IPHONE_ICON."\" />" . PHP_EOL;
 if (IPHONE_ICON_RETINA) $header = $header."  <link rel=\"apple-touch-icon\" sizes=\"72x72\" href=\"".IPHONE_ICON_RETINA."\" />" . PHP_EOL;
@@ -553,29 +554,29 @@ $header = $header."  <link href=\"//fonts.googleapis.com/css?family=".GOOGLE_FON
 // Set HTML footer
 $footer = null;
 if ( (ENABLE_SORT) || (ENABLE_VIEWER) ) {
-    $footer = $footer."  <script type=\"text/javascript\" src=\"".JQUERY."\"></script>" . PHP_EOL;
+    $footer .= "  <script type=\"text/javascript\" src=\"".JQUERY."\"></script>" . PHP_EOL;
 }
 if (ENABLE_VIEWER) {
-    $footer = $footer."  <script type=\"text/javascript\" src=\"".BOOTSTRAPJS."\"></script>" . PHP_EOL;
-    $footer = $footer."  <script type=\"text/javascript\">$(\".audio-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<audio src=\"'+t+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>'),$(\".fullview\").attr(\"href\",t).text(\"Listen\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".flash-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<div class=\"viewer-wrapper\"><object width=\"100%\" height=\"100%\" type=\"application/x-shockwave-flash\" data=\"'+t+'\"><param name=\"movie\" value=\"'+t+'\"><param name=\"quality\" value=\"high\"></object></div>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".image-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<img src=\"'+t+'\"/>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".video-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<video src=\"'+t+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".quicktime-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<div class=\"viewer-wrapper\"><embed width=\"100%\" height=\"100%\" src=\"'+t+'\" type=\"video/quicktime\" controller=\"true\" showlogo=\"false\" scale=\"aspect\"></div>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".source-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$.ajax(t,{dataType:'text',success:function(data){\$(\".modal-body\").empty().append('<pre><code id=\"source\"></code></pre>');$(\"#source\").text(data);$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")}})});$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var e=document.getElementById(\"player\");e&&e.pause()});</script>" . PHP_EOL;
+    $footer .= "  <script type=\"text/javascript\" src=\"".BOOTSTRAPJS."\"></script>" . PHP_EOL;
+    $footer .= "  <script type=\"text/javascript\">$(\".audio-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<audio src=\"'+t+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>'),$(\".fullview\").attr(\"href\",t).text(\"Listen\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".flash-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<div class=\"viewer-wrapper\"><object width=\"100%\" height=\"100%\" type=\"application/x-shockwave-flash\" data=\"'+t+'\"><param name=\"movie\" value=\"'+t+'\"><param name=\"quality\" value=\"high\"></object></div>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".image-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<img src=\"'+t+'\"/>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".video-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<video src=\"'+t+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".quicktime-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<div class=\"viewer-wrapper\"><embed width=\"100%\" height=\"100%\" src=\"'+t+'\" type=\"video/quicktime\" controller=\"true\" showlogo=\"false\" scale=\"aspect\"></div>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".source-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$.ajax(t,{dataType:'text',success:function(data){\$(\".modal-body\").empty().append('<pre><code id=\"source\"></code></pre>');$(\"#source\").text(data);$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")}})});$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var e=document.getElementById(\"player\");e&&e.pause()});</script>" . PHP_EOL;
 }
 if (ENABLE_SORT) {
-    $footer = $footer."  <script type=\"text/javascript\">(function(c){c.fn.stupidtable=function(b){return this.each(function(){var a=c(this);b=b||{};b=c.extend({},c.fn.stupidtable.default_sort_fns,b);a.on(\"click.stupidtable\",\"th\",function(){var d=c(this),f=0,g=c.fn.stupidtable.dir;a.find(\"th\").slice(0,d.index()).each(function(){var a=c(this).attr(\"colspan\")||1;f+=parseInt(a,10)});var e=d.data(\"sort-default\")||g.ASC;d.data(\"sort-dir\")&&(e=d.data(\"sort-dir\")===g.ASC?g.DESC:g.ASC);var l=d.data(\"sort\")||null;null!==l&&(a.trigger(\"beforetablesort\",{column:f, direction:e}),a.css(\"display\"),setTimeout(function(){var h=[],m=b[l],k=a.children(\"tbody\").children(\"tr\");k.each(function(a,b){var d=c(b).children().eq(f),e=d.data(\"sort-value\"),d=\"undefined\"!==typeof e?e:d.text();h.push([d,b])});h.sort(function(a,b){return m(a[0],b[0])});e!=g.ASC&&h.reverse();k=c.map(h,function(a){return a[1]});a.children(\"tbody\").append(k);a.find(\"th\").data(\"sort-dir\",null).removeClass(\"sorting-desc sorting-asc\");d.data(\"sort-dir\",e).addClass(\"sorting-\"+e);a.trigger(\"aftertablesort\", {column:f,direction:e});a.css(\"display\")},10))})})};c.fn.stupidtable.dir={ASC:\"asc\",DESC:\"desc\"};c.fn.stupidtable.default_sort_fns={\"int\":function(b,a){return parseInt(b,10)-parseInt(a,10)},\"float\":function(b,a){return parseFloat(b)-parseFloat(a)},string:function(b,a){return b<a?-1:b>a?1:0},\"string-ins\":function(b,a){b=b.toLowerCase();a=a.toLowerCase();return b<a?-1:b>a?1:0}}})(jQuery);$(\"#bs-table\").stupidtable();</script>" . PHP_EOL;
+    $footer .= "  <script type=\"text/javascript\">(function(c){c.fn.stupidtable=function(b){return this.each(function(){var a=c(this);b=b||{};b=c.extend({},c.fn.stupidtable.default_sort_fns,b);a.on(\"click.stupidtable\",\"th\",function(){var d=c(this),f=0,g=c.fn.stupidtable.dir;a.find(\"th\").slice(0,d.index()).each(function(){var a=c(this).attr(\"colspan\")||1;f+=parseInt(a,10)});var e=d.data(\"sort-default\")||g.ASC;d.data(\"sort-dir\")&&(e=d.data(\"sort-dir\")===g.ASC?g.DESC:g.ASC);var l=d.data(\"sort\")||null;null!==l&&(a.trigger(\"beforetablesort\",{column:f, direction:e}),a.css(\"display\"),setTimeout(function(){var h=[],m=b[l],k=a.children(\"tbody\").children(\"tr\");k.each(function(a,b){var d=c(b).children().eq(f),e=d.data(\"sort-value\"),d=\"undefined\"!==typeof e?e:d.text();h.push([d,b])});h.sort(function(a,b){return m(a[0],b[0])});e!=g.ASC&&h.reverse();k=c.map(h,function(a){return a[1]});a.children(\"tbody\").append(k);a.find(\"th\").data(\"sort-dir\",null).removeClass(\"sorting-desc sorting-asc\");d.data(\"sort-dir\",e).addClass(\"sorting-\"+e);a.trigger(\"aftertablesort\", {column:f,direction:e});a.css(\"display\")},10))})})};c.fn.stupidtable.dir={ASC:\"asc\",DESC:\"desc\"};c.fn.stupidtable.default_sort_fns={\"int\":function(b,a){return parseInt(b,10)-parseInt(a,10)},\"float\":function(b,a){return parseFloat(b)-parseFloat(a)},string:function(b,a){return b<a?-1:b>a?1:0},\"string-ins\":function(b,a){b=b.toLowerCase();a=a.toLowerCase();return b<a?-1:b>a?1:0}}})(jQuery);$(\"#bs-table\").stupidtable();</script>" . PHP_EOL;
 }
 if (ANALYTICS_ID) {
-    $footer = $footer."  <script type=\"text/javascript\">var _gaq=_gaq||[];_gaq.push([\"_setAccount\",\"".ANALYTICS_ID."\"]);_gaq.push([\"_trackPageview\"]);(function(){var ga=document.createElement(\"script\");ga.type=\"text/javascript\";ga.async=true;ga.src=(\"https:\"==document.location.protocol?\"https://ssl\":\"http://www\")+\".google-analytics.com/ga.js\";var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(ga,s)})();</script>" . PHP_EOL;
+    $footer .= "  <script type=\"text/javascript\">var _gaq=_gaq||[];_gaq.push([\"_setAccount\",\"".ANALYTICS_ID."\"]);_gaq.push([\"_trackPageview\"]);(function(){var ga=document.createElement(\"script\");ga.type=\"text/javascript\";ga.async=true;ga.src=(\"https:\"==document.location.protocol?\"https://ssl\":\"http://www\")+\".google-analytics.com/ga.js\";var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(ga,s)})();</script>" . PHP_EOL;
 }
 
 // Set breadcrumbs
 $breadcrumbs = null;
-$breadcrumbs = $breadcrumbs."      <li><a href=\"".htmlentities($this_protocol . $this_domain, ENT_QUOTES, 'utf-8')."\">$home</a></li>" . PHP_EOL;
+$breadcrumbs .= "      <li><a href=\"".htmlentities($this_protocol . $this_domain, ENT_QUOTES, 'utf-8')."\">$home</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
     if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
         $parent = '';
         for ($i = 1; $i <= $dir; $i++):
             $parent .= rawurlencode($dir_name[$i]) . '/';
         endfor;
-        $breadcrumbs = $breadcrumbs."      <li><a href=\"/$parent\">".utf8_encode($name)."</a></li>" . PHP_EOL;
+        $breadcrumbs .= "      <li><a href=\"/$parent\">".utf8_encode($name)."</a></li>" . PHP_EOL;
     endif;
 endforeach;
 
@@ -586,27 +587,27 @@ if (RESPONSIVE_TABLE) {
 }
 
 // Set table header
-$table_header = null;
-$table_header = $table_header."            <th class=\"col-lg-8 text-left\" data-sort=\"string\">Name</th>";
+$table_header  = null;
+$table_header .= "            <th class=\"col-lg-8 text-left\" data-sort=\"string\">Name</th>";
 
 if ($table_options['size']) {
-    $table_header = $table_header."            <th";
+    $table_header .= "            <th";
     if (ENABLE_SORT) {
-        $table_header = $table_header." class=\"col-lg-2 text-right\" data-sort=\"int\">";
+        $table_header .= " class=\"col-lg-2 text-right\" data-sort=\"int\">";
     } else {
-        $table_header = $table_header.">";
+        $table_header .= ">";
     }
-    $table_header = $table_header."Size</th>" . PHP_EOL;
+    $table_header .= "Size</th>" . PHP_EOL;
 }
 
 if ($table_options['age']) {
-    $table_header = $table_header."            <th";
+    $table_header .= "            <th";
     if (ENABLE_SORT) {
-        $table_header = $table_header." class=\"col-lg-2 text-right\" data-sort=\"int\">";
+        $table_header .= " class=\"col-lg-2 text-right\" data-sort=\"int\">";
     } else {
-        $table_header = $table_header.">";
+        $table_header .= ">";
     }
-    $table_header = $table_header."Modified</th>" . PHP_EOL;
+    $table_header .= "Modified</th>" . PHP_EOL;
 }
 
 // Set table body
@@ -615,48 +616,48 @@ if(($folder_list) || ($file_list) ) {
     if($folder_list):    
         foreach($folder_list as $item) :
             $table_body = null;
-            $table_body = $table_body."          <tr>" . PHP_EOL;
-            $table_body = $table_body."            <td";
+            $table_body .= "          <tr>" . PHP_EOL;
+            $table_body .= "            <td";
             if (ENABLE_SORT) {
-                $table_body = $table_body." data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
-            $table_body = $table_body.">";
+            $table_body .= ">";
             if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
-                $table_body = $table_body."<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
+                $table_body .= "<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
             }
-            $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . $item['bname'] . "</strong></a></td>" . PHP_EOL;
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . $item['bname'] . "</strong></a></td>" . PHP_EOL;
             
             if ($table_options['size']) {
-                $table_body = $table_body."            <td";
+                $table_body .= "            <td";
                 if (ENABLE_SORT) {
-                    $table_body = $table_body." class=\"text-right\" data-sort-value=\"0\"";
+                    $table_body .= " class=\"text-right\" data-sort-value=\"0\"";
                 }
-                $table_body = $table_body.">&mdash;</td>" . PHP_EOL;
+                $table_body .= ">&mdash;</td>" . PHP_EOL;
             }
 
             if ($table_options['age']) {
-                $table_body = $table_body."            <td";
+                $table_body .= "            <td";
                 if (ENABLE_SORT) {
-                    $table_body = $table_body." class=\"text-right\" data-sort-value=\"" . $item['mtime'] . "\"";
+                    $table_body .= " class=\"text-right\" data-sort-value=\"" . $item['mtime'] . "\"";
                 }
                 $table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
             }
 
-            $table_body = $table_body."          </tr>" . PHP_EOL;
+            $table_body .= "          </tr>" . PHP_EOL;
 
         endforeach;
     endif;
 
     if($file_list):
         foreach($file_list as $item) :
-            $table_body = $table_body."          <tr>" . PHP_EOL;
-            $table_body = $table_body."            <td";
+            $table_body .= "          <tr>" . PHP_EOL;
+            $table_body .= "            <td";
             if (ENABLE_SORT) {
-                $table_body = $table_body." data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
-            $table_body = $table_body.">";
+            $table_body .= ">";
             if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
-                $table_body = $table_body."<$icon_tag class=\"" . $item['class'] . "\"></$icon_tag>&nbsp;";
+                $table_body .= "<$icon_tag class=\"" . $item['class'] . "\"></$icon_tag>&nbsp;";
             }
             if (HIDE_EXTENSION) {
                 $display_name = $item['name'];
@@ -681,36 +682,36 @@ if(($folder_list) || ($file_list) ) {
                     $modal_class = ' class="video-modal"';
                 }
             }
-            $table_body = $table_body."<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$modal_class>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$modal_class>" . htmlspecialchars($display_name) . "</a></td>" . PHP_EOL;
 
             if ($table_options['size']) {
-                $table_body = $table_body."            <td";
+                $table_body .= "            <td";
                 if (ENABLE_SORT) {
-                    $table_body = $table_body." class=\"text-right\" data-sort-value=\"" . $item['bytes'] . "\"";
+                    $table_body .= " class=\"text-right\" data-sort-value=\"" . $item['bytes'] . "\"";
                 }
-                    $table_body = $table_body.">" . $item['size']['num'] . " " . $item['size']['str'] . "</td>" . PHP_EOL;
+                    $table_body .= ">" . $item['size']['num'] . " " . $item['size']['str'] . "</td>" . PHP_EOL;
             }
 
             if ($table_options['age']) {
-                $table_body = $table_body."            <td";
+                $table_body .= "            <td";
                 if (ENABLE_SORT) {
-                    $table_body = $table_body." class=\"text-right\" data-sort-value=\"".$item['mtime']."\"";
+                    $table_body .= " class=\"text-right\" data-sort-value=\"".$item['mtime']."\"";
                 }
                 $table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
             }
 
-            $table_body = $table_body."          </tr>" . PHP_EOL;
+            $table_body .= "          </tr>" . PHP_EOL;
         endforeach;
     endif;
 } else {
         $colspan = $table_count + 1;
-        $table_body = $table_body."          <tr>" . PHP_EOL;
-        $table_body = $table_body."            <td colspan=\"$colspan\" style=\"font-style:italic\">";
+        $table_body .= "          <tr>" . PHP_EOL;
+        $table_body .= "            <td colspan=\"$colspan\" style=\"font-style:italic\">";
         if (DOC_ICONS == "glyphicons" || DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
-            $table_body = $table_body."<$icon_tag class=\"" . $item['class'] . "\">&nbsp;</$icon_tag>";
+            $table_body .= "<$icon_tag class=\"" . $item['class'] . "\">&nbsp;</$icon_tag>";
         } 
-        $table_body = $table_body."empty folder</td>" . PHP_EOL;
-        $table_body = $table_body."          </tr>" . PHP_EOL;
+        $table_body .= "empty folder</td>" . PHP_EOL;
+        $table_body .= "          </tr>" . PHP_EOL;
 }
 
 // Give kudos
