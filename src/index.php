@@ -91,18 +91,18 @@ $folder_list = array();
 $total_size = 0;
 
 if ($options['bootstrap']['icons'] == "glyphicons") { 
-    $icon_tag = 'span';
-    $home_icon = "<span class=\"glyphicon glyphicon-home\"></span>";
+    $icons['tag'] = 'span';
+    $icons['home'] = "<span class=\"glyphicon glyphicon-home\"></span>";
     if ($options['general']['enable_search'] == true) {
-        $search_icon = "          <span class=\"glyphicon glyphicon-search form-control-feedback\"></span>" . PHP_EOL;
+        $icons['search'] = "          <span class=\"glyphicon glyphicon-search form-control-feedback\"></span>" . PHP_EOL;
     }
 } else if ($options['bootstrap']['icons'] == "fontawesome") { 
-    $icon_tag = 'i';
-    $home_icon = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
+    $icons['tag'] = 'i';
+    $icons['home'] = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
     // if ($options['general']['enable_search'] == true) {
-    //     $search_icon = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
+    //     $icons['search'] = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
     // }
-    $search_icon = null;
+    $icons['search'] = null;
     $filetype = array(
         'archive'   => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
         'apple'     => array('app','ipa','ipsw','saver'),
@@ -130,12 +130,12 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
         'windows'   => array('dll','exe','msi','pif','ps1','scr','sys')
     );
 } else if ($options['bootstrap']['icons'] == 'fa-files'){
-    $icon_tag  = 'i';
-    $home_icon = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
+    $icons['tag']  = 'i';
+    $icons['home'] = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
     // if ($options['general']['enable_search'] == true) {
-    //     $search_icon = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
+    //     $icons['search'] = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
     // }
-    $search_icon = null;
+    $icons['search'] = null;
     $filetype = array(
         'archive'    => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
         'audio'      => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','oga','ogg','oma','s3m','sid','umx','wav','webma','wv','xm'),
@@ -149,9 +149,9 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
         'word'       => array('doc','docm','docs','docx','dot','pages'),
     );
 } else {
-    $icon_tag  = 'span';
-    $home_icon = $this_domain;
-    $search_icon = null;
+    $icons['tag']  = 'span';
+    $icons['home'] = $this_domain;
+    $icons['search'] = null;
 }  
 
 if ($options['general']['enable_viewer']) {
@@ -365,7 +365,7 @@ $footer = set_footer($options);
 
 // Set breadcrumbs
 $breadcrumbs  = "    <ol class=\"breadcrumb\"".$direction.">" . PHP_EOL;
-$breadcrumbs .= "      <li><a href=\"".htmlentities($root_dir, ENT_QUOTES, 'utf-8')."\">$home_icon</a></li>" . PHP_EOL;
+$breadcrumbs .= "      <li><a href=\"".htmlentities($root_dir, ENT_QUOTES, 'utf-8')."\">".$icons['home']."</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
     if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
         $parent = '';
@@ -388,7 +388,7 @@ if ($options['general']['enable_search'] == true) {
     $search .= "        <div class=\"form-group has-feedback\">" . PHP_EOL;
     $search .= "          <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
     $search .= "          <input type=\"text\" class=\"form-control\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
-    $search .= "$search_icon";
+    $search .= $icons['search'];
     $search .= "       </div>" . PHP_EOL;
     $search .= "      </div>" . PHP_EOL;
     $search .= "    </div>" . PHP_EOL;
@@ -446,7 +446,7 @@ if(($folder_list) || ($file_list) ) {
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files" ) {
-                $table_body .= "<$icon_tag class=\"$folder_icon\"></$icon_tag>&nbsp;";
+                $table_body .= "<".$icons['tag']." class=\"$folder_icon\"></".$icons['tag'].">&nbsp;";
             }
 
             $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . utf8ify($item['bname']) . "</strong></a></td>" . PHP_EOL;
@@ -481,7 +481,7 @@ if(($folder_list) || ($file_list) ) {
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files") {
-                $table_body .= "<$icon_tag class=\"" . $item['class'] . "\"></$icon_tag>&nbsp;";
+                $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\"></".$icons['tag'].">&nbsp;";
             }
             if ($options['general']['hide_extension']) {
                 $display_name = $item['name'];
@@ -533,7 +533,7 @@ if(($folder_list) || ($file_list) ) {
         $table_body .= "          <tr>" . PHP_EOL;
         $table_body .= "            <td colspan=\"$colspan\" style=\"font-style:italic\">";
         if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files" ) {
-            $table_body .= "<$icon_tag class=\"" . $item['class'] . "\">&nbsp;</$icon_tag>";
+            $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\">&nbsp;</".$icons['tag'].">";
         } 
         $table_body .= _("empty folder")."</td>" . PHP_EOL;
         $table_body .= "          </tr>" . PHP_EOL;
