@@ -3,7 +3,7 @@ th {
 }
 
 pre code {
-    word-break: break-word;
+    word-break: normal;
 }
 
 .modal img {
