@@ -301,6 +301,7 @@ if ($handle = opendir($navigation_dir))
 
             if ($table_options['age']) {
                 $item['mtime']      =   $stat['mtime'];
+                $item['iso_mtime']  =   gmdate("Y-m-d H:i:s", $item['mtime']);
             }
             
             // Add files to the file list...
@@ -356,8 +357,8 @@ if ($total_files > 0){
     }else{
         $contained = $total_files.' '.$iunit;   
     }
-    $contained = $contained.', '.$total_size['num'].' '.$total_size['str'].' in total';
-    // $contained = sprintf(_('%1$s folders and %2$s files, %3$s %4$s in total'), $total_folders, $total_files, $total_size['num'], $total_size['str']);
+    // $contained .= ", ". sprintf(_('%1$s %2$s in total'), $total_size['num'], $total_size['str']);
+    $contained = sprintf(_('%1$s folders and %2$s files, %3$s %4$s in total'), $total_folders, $total_files, $total_size['num'], $total_size['str']);
 }
 
 $header = set_header($bootstrap_cdn, $options);
@@ -463,6 +464,7 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
                     $table_body .= " class=\"text-".$right."\" data-sort-value=\"" . $item['mtime'] . "\"";
+                    $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
                 $table_body .= ">" . time_ago($item['mtime']) . "</td>" . PHP_EOL;
             }
@@ -513,6 +515,7 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
                     $table_body .= " class=\"text-".$right."\" data-sort-value=\"" . $item['bytes'] . "\"";
+                    $table_body .= " title=\"" . $item['bytes'] . " " ._('bytes')."\"";
                 }
                     $table_body .= ">" . $item['size']['num'] . " " . $item['size']['str'] . "</td>" . PHP_EOL;
             }
@@ -521,6 +524,7 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
                     $table_body .= " class=\"text-".$right."\" data-sort-value=\"".$item['mtime']."\"";
+                    $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
                 $table_body .= ">" . time_ago($item['mtime']) . "</td>" . PHP_EOL;
             }
