@@ -149,7 +149,6 @@ function utf8ify($str) {
 /**
  *    http://us.php.net/manual/en/function.array-multisort.php#83117
  */
- 
 function php_multisort($data,$keys)
 {
     foreach ($data as $key => $row)
@@ -193,28 +192,17 @@ function bytes_to_string($size, $precision = 0) {
 }
 
 /**
- *    @ http://us.php.net/manual/en/function.time.php#71342
+ *    @ http://css-tricks.com/snippets/php/time-ago-function/
  */
-function time_ago($timestamp, $recursive = 0)
-{
-    $current_time = time();
-    $difference = $current_time - $timestamp;
-    $periods = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
-    $lengths = array(1, 60, 3600, 86400, 604800, 2630880, 31570560, 315705600);
-    for ($val = sizeof($lengths) - 1; ($val >= 0) && (($number = $difference / $lengths[$val]) <= 1); $val--);
-    if ($val < 0) $val = 0;
-    $new_time = $current_time - ($difference % $lengths[$val]);
-    $number = floor($number);
-    if($number != 1)
-    {
-        $periods[$val] .= "s";
-    }
-    $text = sprintf("%d %s ago", $number, $periods[$val]);   
-    
-    if (($recursive == 1) && ($val >= 1) && (($current_time - $new_time) > 0))
-    {
-        $text .= time_ago($new_time);
-    }
-    return $text;
+function time_ago($tm,$rcs = 0) {
+    $cur_tm = time(); $dif = $cur_tm-$tm;
+    $pds = array('second','minute','hour','day','week','month','year','decade');
+    $lngh = array(1,60,3600,86400,604800,2630880,31570560,315705600);
+    for($v = sizeof($lngh)-1; ($v >= 0)&&(($no = $dif/$lngh[$v])<=1); $v--); if($v < 0) $v = 0; $_tm = $cur_tm-($dif%$lngh[$v]);
+
+    $no = floor($no); if($no <> 1) $pds[$v] .='s';
+    $x=sprintf(_(sprintf('%%d %s ago', $pds[$v])), $no);
+    if(($rcs == 1)&&($v >= 1)&&(($cur_tm-$_tm) > 0)) $x .= time_ago($_tm);
+    return $x;
 }
 ?>
