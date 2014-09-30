@@ -42,6 +42,10 @@ Rather than using generic icons, you can choose between two [Font Awesome](http:
 
 Should you decide to use [Bootswatch](http://bootswatch.com/) (or any other) themes, please note that some of these do not include the [glyphicons](http://getbootstrap.com/components/#glyphicons) used in the script. You can disable glyphicons in the script header or use Font Awesome icons instead.
 
+### Search Box
+
+To filter files and folders displayed in the table, enable search in the script header. Additionally, you can enable autofocus to set the focus to the search box on load.
+
 ### Viewer
 
 To load images, videos and audio into a [Bootstrap Modal](http://getbootstrap.com/javascript/#modals), you can enable the viewer in the script header. The required Bootstrap JavaScript library will be added to your page automatically.
