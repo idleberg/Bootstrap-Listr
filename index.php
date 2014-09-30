@@ -33,6 +33,10 @@ define('RESPONSIVE_TABLE', true);
 // Toggle column sorting
 define('ENABLE_SORT', true);
 
+// Toggle search box
+   define('ENABLE_SEARCH', false);
+define('ENABLE_AUTOFOCUS', false);
+
 // Toggle media viewer
 define('ENABLE_VIEWER', false);
 
@@ -95,6 +99,8 @@ define('FONTAWESOME_STYLE','fa-fw');
     define('GOOGLE_FONT', null); // e.g. 'Open+Sans' or 'Open+Sans:400,300',700'
          define('JQUERY', '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
     define('BOOTSTRAPJS', '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js');
+    define('STUPIDTABLE', '//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.js');
+    define('JQ_SEARCHER', '//cdnjs.cloudflare.com/ajax/libs/jquery-searcher/0.2.0/jquery.searcher.min.js');
 
 // Browser and Device Icons
           define('FAV_ICON', ''); // 16x16 or 32x32 
@@ -553,18 +559,26 @@ $header = $header."  <link href=\"//fonts.googleapis.com/css?family=".GOOGLE_FON
 
 // Set HTML footer
 $footer = null;
+$custom_js = null;
 if ( (ENABLE_SORT) || (ENABLE_VIEWER) ) {
-    $footer .= "  <script type=\"text/javascript\" src=\"".JQUERY."\"></script>" . PHP_EOL;
-}
-if (ENABLE_VIEWER) {
-    $footer .= "  <script type=\"text/javascript\" src=\"".BOOTSTRAPJS."\"></script>" . PHP_EOL;
-    $footer .= "  <script type=\"text/javascript\">$(\".audio-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<audio src=\"'+t+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>'),$(\".fullview\").attr(\"href\",t).text(\"Listen\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".flash-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<div class=\"viewer-wrapper\"><object width=\"100%\" height=\"100%\" type=\"application/x-shockwave-flash\" data=\"'+t+'\"><param name=\"movie\" value=\"'+t+'\"><param name=\"quality\" value=\"high\"></object></div>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".image-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<img src=\"'+t+'\"/>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".video-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<video src=\"'+t+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".quicktime-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<div class=\"viewer-wrapper\"><embed width=\"100%\" height=\"100%\" src=\"'+t+'\" type=\"video/quicktime\" controller=\"true\" showlogo=\"false\" scale=\"aspect\"></div>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".source-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$.ajax(t,{dataType:'text',success:function(data){\$(\".modal-body\").empty().append('<pre><code id=\"source\"></code></pre>');$(\"#source\").text(data);$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")}})});$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var e=document.getElementById(\"player\");e&&e.pause()});</script>" . PHP_EOL;
+    $footer    .= "  <script type=\"text/javascript\" src=\"".JQUERY."\"></script>" . PHP_EOL;
 }
 if (ENABLE_SORT) {
-    $footer .= "  <script type=\"text/javascript\">(function(c){c.fn.stupidtable=function(b){return this.each(function(){var a=c(this);b=b||{};b=c.extend({},c.fn.stupidtable.default_sort_fns,b);a.on(\"click.stupidtable\",\"th\",function(){var d=c(this),f=0,g=c.fn.stupidtable.dir;a.find(\"th\").slice(0,d.index()).each(function(){var a=c(this).attr(\"colspan\")||1;f+=parseInt(a,10)});var e=d.data(\"sort-default\")||g.ASC;d.data(\"sort-dir\")&&(e=d.data(\"sort-dir\")===g.ASC?g.DESC:g.ASC);var l=d.data(\"sort\")||null;null!==l&&(a.trigger(\"beforetablesort\",{column:f, direction:e}),a.css(\"display\"),setTimeout(function(){var h=[],m=b[l],k=a.children(\"tbody\").children(\"tr\");k.each(function(a,b){var d=c(b).children().eq(f),e=d.data(\"sort-value\"),d=\"undefined\"!==typeof e?e:d.text();h.push([d,b])});h.sort(function(a,b){return m(a[0],b[0])});e!=g.ASC&&h.reverse();k=c.map(h,function(a){return a[1]});a.children(\"tbody\").append(k);a.find(\"th\").data(\"sort-dir\",null).removeClass(\"sorting-desc sorting-asc\");d.data(\"sort-dir\",e).addClass(\"sorting-\"+e);a.trigger(\"aftertablesort\", {column:f,direction:e});a.css(\"display\")},10))})})};c.fn.stupidtable.dir={ASC:\"asc\",DESC:\"desc\"};c.fn.stupidtable.default_sort_fns={\"int\":function(b,a){return parseInt(b,10)-parseInt(a,10)},\"float\":function(b,a){return parseFloat(b)-parseFloat(a)},string:function(b,a){return b<a?-1:b>a?1:0},\"string-ins\":function(b,a){b=b.toLowerCase();a=a.toLowerCase();return b<a?-1:b>a?1:0}}})(jQuery);$(\"#bs-table\").stupidtable();</script>" . PHP_EOL;
+    $footer    .= "  <script type=\"text/javascript\" src=\"".STUPIDTABLE."\"></script>" . PHP_EOL;
+    $custom_js .= "$(\"#bs-table\").stupidtable();";
+}
+if (ENABLE_SEARCH) {
+    $footer    .= "  <script type=\"text/javascript\" src=\"".JQ_SEARCHER."\"></script>" . PHP_EOL;
+    $custom_js .= "$(\"#bs-table\").searcher({inputSelector:\"#search\"});";
+}
+if (ENABLE_VIEWER) {
+    $footer    .= "  <script type=\"text/javascript\" src=\"".BOOTSTRAPJS."\"></script>" . PHP_EOL;
+    $footer    .= "  <script type=\"text/javascript\">$(\".audio-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<audio src=\"'+t+'\" id=\"player\" autoplay controls>Your browser does not support the audio element.</audio>'),$(\".fullview\").attr(\"href\",t).text(\"Listen\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".flash-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<div class=\"viewer-wrapper\"><object width=\"100%\" height=\"100%\" type=\"application/x-shockwave-flash\" data=\"'+t+'\"><param name=\"movie\" value=\"'+t+'\"><param name=\"quality\" value=\"high\"></object></div>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".image-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<img src=\"'+t+'\"/>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".video-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<video src=\"'+t+'\" id=\"player\" autoplay controls>Video format or MIME type is not supported</video>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".quicktime-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$(\".modal-body\").empty().append('<div class=\"viewer-wrapper\"><embed width=\"100%\" height=\"100%\" src=\"'+t+'\" type=\"video/quicktime\" controller=\"true\" showlogo=\"false\" scale=\"aspect\"></div>'),$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")});$(\".source-modal\").click(function(e){e.preventDefault();var t=$(this).attr(\"href\");$.ajax(t,{dataType:'text',success:function(data){\$(\".modal-body\").empty().append('<pre><code id=\"source\"></code></pre>');$(\"#source\").text(data);$(\".fullview\").attr(\"href\",t).text(\"View\"),$(\".modal-title\").text(decodeURIComponent(t)),$(\"#viewer-modal\").modal(\"show\")}})});$(\"#viewer-modal\").on(\"hide.bs.modal\",function(){var e=document.getElementById(\"player\");e&&e.pause()});$custom_js</script>" . PHP_EOL;
+} else {
+    $footer    .= "  <script type=\"text/javascript\">$custom_js</script>" . PHP_EOL;
 }
 if (ANALYTICS_ID) {
-    $footer .= "  <script type=\"text/javascript\">var _gaq=_gaq||[];_gaq.push([\"_setAccount\",\"".ANALYTICS_ID."\"]);_gaq.push([\"_trackPageview\"]);(function(){var ga=document.createElement(\"script\");ga.type=\"text/javascript\";ga.async=true;ga.src=(\"https:\"==document.location.protocol?\"https://ssl\":\"http://www\")+\".google-analytics.com/ga.js\";var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(ga,s)})();</script>" . PHP_EOL;
+    $footer    .= "  <script type=\"text/javascript\">var _gaq=_gaq||[];_gaq.push([\"_setAccount\",\"".ANALYTICS_ID."\"]);_gaq.push([\"_trackPageview\"]);(function(){var ga=document.createElement(\"script\");ga.type=\"text/javascript\";ga.async=true;ga.src=(\"https:\"==document.location.protocol?\"https://ssl\":\"http://www\")+\".google-analytics.com/ga.js\";var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(ga,s)})();</script>" . PHP_EOL;
 }
 
 // Set breadcrumbs
@@ -579,6 +593,23 @@ foreach($dir_name as $dir => $name) :
         $breadcrumbs .= "      <li><a href=\"/$parent\">".utf8_encode($name)."</a></li>" . PHP_EOL;
     endif;
 endforeach;
+
+// Show search
+if (ENABLE_SEARCH) {
+    $autofocus = null;
+    if (ENABLE_AUTOFOCUS) {
+        $autofocus = " autofocus";
+    }
+    $search  = "    <div class=\"row\">" . PHP_EOL;
+    $search .= "      <div class=\"col-xs-6 col-sm-3 col-xs-offset-6 col-sm-offset-9\">" . PHP_EOL;
+    $search .= "        <div class=\"form-group has-feedback\">" . PHP_EOL;
+    $search .= "          <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
+    $search .= "          <input type=\"text\" class=\"form-control\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
+    $search .= $icons['search'];
+    $search .= "       </div>" . PHP_EOL;
+    $search .= "      </div>" . PHP_EOL;
+    $search .= "    </div>" . PHP_EOL;
+}
 
 // Set responsiveness
 if (RESPONSIVE_TABLE) {
@@ -733,6 +764,7 @@ if (GIVE_KUDOS) {
     <ol class="breadcrumb">
 <?php echo $breadcrumbs?>
     </ol>
+<?php echo $search?>
 <?php echo $responsive_open?>
       <table id="bs-table" class="table <?php echo TABLE_STYLE?>">
         <thead>
