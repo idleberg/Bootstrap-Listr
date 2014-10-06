@@ -393,6 +393,7 @@ if ($handle = opendir('.'))
 
             if ($table_options['age']) {
                 $item['mtime'] =    $stat['mtime'];
+                $item['iso_mtime']  =   gmdate("Y-m-d H:i:s", $item['mtime']);
             }
             
             // Add files to the file list...
@@ -669,6 +670,7 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= "            <td";
                 if (ENABLE_SORT) {
                     $table_body .= " class=\"text-right\" data-sort-value=\"" . $item['mtime'] . "\"";
+                    $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
                 $table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
             }
@@ -718,6 +720,7 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= "            <td";
                 if (ENABLE_SORT) {
                     $table_body .= " class=\"text-right\" data-sort-value=\"" . $item['bytes'] . "\"";
+                    $table_body .= " title=\"" . $item['bytes'] . " " ._('bytes')."\"";
                 }
                     $table_body .= ">" . $item['size']['num'] . " " . $item['size']['str'] . "</td>" . PHP_EOL;
             }
@@ -726,6 +729,7 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= "            <td";
                 if (ENABLE_SORT) {
                     $table_body .= " class=\"text-right\" data-sort-value=\"".$item['mtime']."\"";
+                    $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
                 $table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
             }
