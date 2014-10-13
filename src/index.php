@@ -7,7 +7,7 @@ error_reporting(E_ERROR);
  *
  *       Author:    Jan T. Sott
  *         Info:    http://github.com/idleberg/Bootstrap-Listr
- *      License:    Creative Commons Attribution-ShareAlike 3.0
+ *      License:    The MIT License (MIT)
  *
  *      Credits:    Greg Johnson - PHPDL lite (http://greg-j.com/phpdl/)
  *                  Na Wong - Listr (http://nadesign.net/listr/)
