@@ -357,8 +357,8 @@ if ($total_files > 0){
     }else{
         $contained = $total_files.' '.$iunit;   
     }
-    // $contained .= ", ". sprintf(_('%1$s %2$s in total'), $total_size['num'], $total_size['str']);
-    $contained = sprintf(_('%1$s folders and %2$s files, %3$s %4$s in total'), $total_folders, $total_files, $total_size['num'], $total_size['str']);
+    $contained .= ", ". sprintf(_('%1$s %2$s in total'), $total_size['num'], $total_size['str']);
+    // $contained = sprintf(_('%1$s folders and %2$s files, %3$s %4$s in total'), $total_folders, $total_files, $total_size['num'], $total_size['str']);
 }
 
 $header = set_header($bootstrap_cdn);
