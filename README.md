@@ -74,7 +74,7 @@ Rather than using the default [Bootstrap Glyphicons](http://getbootstrap.com/com
 
 ### Theming
 
-You can overwrite the `default` Bootstrap with any [Bootswatch](http://bootswatch.com/) theme (e.g. `united`) or add your `custom_theme` in the CDN settings. Please note that Bootswatch themes do not include [glyphicons](http://getbootstrap.com/components/#glyphicons).
+You can overwrite the `default` Bootstrap style with any [Bootswatch](http://bootswatch.com/) theme (e.g. `united`) or add a custom style-sheet in the asset settings. Please note that Bootswatch themes do not include [glyphicons](http://getbootstrap.com/components/#glyphicons).
 
 ### Viewer
 
