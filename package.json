@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "private": true,
   "devDependencies": {
-    "apache-server-configs": "~2.8.0",
+    "apache-server-configs": "~2.9.0",
     "bootstrap":             "~3.2.0",
     "bootswatch":            "~3.2.0",
     "font-awesome":          "~4.2.0",
