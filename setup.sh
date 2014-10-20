@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.2.4
+VERSION=0.3
 set -e
 
 # Functions
@@ -10,33 +10,34 @@ function npm_error(){
 }
 
 # Let's go
-echo $'\n'Listr-setup $VERSION
-echo =================
+echo $'\n'cracklistr $VERSION
+echo ==============
 
 if [[ -e 'node_modules/apache-server-configs' && -e 'node_modules/bootstrap/dist' && -e 'node_modules/bootswatch' && -e 'node_modules/font-awesome' && -e 'node_modules/jquery' && -e 'node_modules/jquery-searcher' ]]
 then
-    echo "Node modules found"
+    echo "    Node modules found"
 else
-    echo 'Missing Node modules'
-    echo 'Downloading'
+    echo '    Missing Node modules, downloading'
     npm install || npm_error
 fi
 
-if [ -e 'app' ]
+if [ -e 'app/config.json' ]
 then
-	echo $'Cleaning up'
-	gulp clean --silent
+    # upgrade codebase only
+    echo $'    Updating codebase'
+    gulp upgrade --silent
+else
+    # clean up app-folder, copy files
+    echo $'    Initializing application'
+    gulp init --silent
 fi
 
-# clean up app-folder, copy files
-gulp init --silent
 
-echo $'Initializing'
 
 # clean up app-folder, copy files
 gulp init --silent
 
-echo $'Running setup'
+echo $'    Running setup'
 
 # set Bootstrap/Bootswatch theme
 gulp bootstrap --silent
@@ -63,7 +64,7 @@ gulp apache --silent
 # copy restrictive robots.txt
 gulp robots --silent
 
-echo $'Minifying'
+echo $'    Cracking...'
 
 # minify CSS & JS
 gulp make --silent
@@ -72,8 +73,8 @@ gulp make --silent
 gulp merge --silent
 if [[ -e 'app/assets/css/listr.pack.css' || -e 'app/assets/js/listr.pack.js' ]]
 then
-	echo $'Merging'
+	echo $'    Crunching...'
 	gulp post_merge --silent
 fi
 
-echo $'Completed!'
+echo $'    GAME OVER!'
