@@ -13,12 +13,12 @@ function npm_error(){
 echo $'\n'Listr-setup $VERSION
 echo =================
 
-if [ -e 'node_modules' ]
+if [[ -e 'node_modules/apache-server-configs' && -e 'node_modules/bootstrap/dist' && -e 'node_modules/bootswatch' && -e 'node_modules/font-awesome' && -e 'node_modules/jquery' && -e 'node_modules/jquery-searcher' ]]
 then
-    echo "Node modules seem to be in place"
+    echo "Node modules found"
 else
-    echo 'Node modules not found'
-    echo 'Downloading…'
+    echo 'Missing Node modules'
+    echo 'Downloading'
     npm install || npm_error
 fi
 
