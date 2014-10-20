@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.2.2
+VERSION=0.2.3
 set -e
 
 # Functions
@@ -22,10 +22,21 @@ else
     npm install || npm_error
 fi
 
-echo $'Initializing…'
-gulp init --silent      # clean up app-folder, copy files
+if [ -e 'app' ]
+then
+	echo $'Cleaning up'
+	gulp clean --silent
+fi
 
-echo $'Running setup…'
+# clean up app-folder, copy files
+gulp init --silent
+
+echo $'Initializing'
+
+# clean up app-folder, copy files
+gulp init --silent
+
+echo $'Running setup'
 
 # set Bootstrap/Bootswatch theme
 gulp bootstrap --silent
@@ -52,9 +63,17 @@ gulp apache --silent
 # copy restrictive robots.txt
 gulp robots --silent
 
-echo $'Cracking…'
+echo $'Minifying assets'
 
 # minify CSS & JS
 gulp make --silent
 
-echo $'Completed.︎'
+# merge all CSS and JS
+gulp merge --silent
+if [[ -e 'app/assets/css/listr.pack.css' || -e 'app/assets/js/listr.pack.js' ]]
+then
+	echo $'Merging assets'
+	gulp post_merge --silent
+fi
+
+echo $'Completed!'

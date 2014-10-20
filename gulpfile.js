@@ -1,6 +1,6 @@
 var meta = require('./package.json');
 
-var clean     = require('gulp-rimraf');
+var del     = require('del');
 var concat    = require('gulp-concat');
 var csslint   = require('gulp-csslint');
 var cssmin    = require('gulp-cssmin');
@@ -27,6 +27,7 @@ gulp.task('fontawesome', ['icons']);
 gulp.task('highlighter', ['hljs']);
 gulp.task('js',          ['jshint', 'uglify']);
 gulp.task('php',         ['phplint']);
+gulp.task('theme',       ['hljs_theme']);
 gulp.task('update',      ['upgrade']);
 
 /*
@@ -34,38 +35,38 @@ gulp.task('update',      ['upgrade']);
  *
  * Create file structure in app/, copy all PHP & .htaccess
  */
-gulp.task('init', ['clean'], function() {
+gulp.task('init', function() {
 
   gulp.src([
-      './src/index.php',
-      './src/listr-functions.php',
-      './src/listr-l10n.php',
-      './src/listr-template.php'
+      'src/index.php',
+      'src/listr-functions.php',
+      'src/listr-l10n.php',
+      'src/listr-template.php'
     ])
-    .pipe(gulp.dest('./app/'));
+    .pipe(gulp.dest('app/'));
 
   gulp.src([
-      './src/locale/**/*'
+      'src/locale/**/*'
     ])
-    .pipe(gulp.dest('./app/locale/'));
+    .pipe(gulp.dest('app/locale/'));
 
   gulp.src([
-      './src/config.json'
+      'src/config.json'
     ])
-    .pipe(concat('./config.json'))
-    .pipe(gulp.dest('./app/'));
+    .pipe(concat('config.json'))
+    .pipe(gulp.dest('app/'));
 
   gulp.src([
-      './src/root.htaccess'
+      'src/root.htaccess'
     ])
-    .pipe(concat('./.htaccess'))
-    .pipe(gulp.dest('./app/'));
+    .pipe(concat('.htaccess'))
+    .pipe(gulp.dest('app/'));
 
   gulp.src([
-      './src/public.htaccess'
+      'src/public.htaccess'
     ])
-    .pipe(concat('./.htaccess'))
-    .pipe(gulp.dest('./app/_public/'));
+    .pipe(concat('.htaccess'))
+    .pipe(gulp.dest('app/_public/'));
 });
 
 /*
@@ -76,42 +77,39 @@ gulp.task('init', ['clean'], function() {
 gulp.task('upgrade', function() {
 
   gulp.src([
-      './src/index.php',
-      './src/listr-functions.php',
-      './src/listr-l10n.php',
-      './src/listr-template.php'
+      'src/index.php',
+      'src/listr-functions.php',
+      'src/listr-l10n.php',
+      'src/listr-template.php'
     ])
-    .pipe(gulp.dest('./app/'));
+    .pipe(gulp.dest('app/'));
 
   gulp.src([
-      './src/config.json'
+      'src/config.json'
     ])
-    .pipe(concat('./config.json-example'))
-    .pipe(gulp.dest('./app/'));
+    .pipe(concat('config.json-example'))
+    .pipe(gulp.dest('app/'));
 
   gulp.src([
-      './src/locale/**/*'
+      'src/locale/**/*'
     ])
-    .pipe(gulp.dest('./app/locale/'));
+    .pipe(gulp.dest('app/locale/'));
 });
 
 /*
  * CLEAN-UP
  *
- * Delete all files in /app
+ * Delete all files in app
  */
 gulp.task('clean', function () {
-  return gulp.src([
-      './app/',
-    ], {read: false})
-    .pipe(clean());
+  return del(['app/']);
 });
 
 gulp.task('reset', function () {
   gulp.src([
-      './src/config.json'
+      'src/config.json'
     ])
-    .pipe(gulp.dest('./app/'));
+    .pipe(gulp.dest('app/'));
 });
 
 /*
@@ -119,7 +117,7 @@ gulp.task('reset', function () {
  */
 gulp.task('phplint', function () {
   return phplint([
-        './src/*.php'
+        'src/*.php'
     ]);
 });
 
@@ -128,7 +126,7 @@ gulp.task('phplint', function () {
  */
 gulp.task('csslint', function() {
   gulp.src([
-      './src/style.css'
+      'src/style.css'
     ])
     .pipe(csslint())
     .pipe(csslint.reporter())
@@ -139,11 +137,11 @@ gulp.task('csslint', function() {
  */
 gulp.task('cssmin', function() {
   gulp.src([
-      './src/style.css'
+      'src/style.css'
     ])
-    .pipe(concat('./listr.min.css'))
+    .pipe(concat('listr.min.css'))
     .pipe(cssmin())
-    .pipe(gulp.dest('./app/assets/css/'))
+    .pipe(gulp.dest('app/assets/css/'))
 });
 
 /*
@@ -151,8 +149,8 @@ gulp.task('cssmin', function() {
  */
 gulp.task('jshint', function() {
   gulp.src([
-      './src/config.json',
-      './src/scripts.js'
+      'src/config.json',
+      'src/scripts.js'
     ])
     .pipe(jshint())
     .pipe(jshint.reporter())
@@ -163,11 +161,64 @@ gulp.task('jshint', function() {
  */
 gulp.task('uglify', function() {
   gulp.src([
-      './src/scripts.js'
+      'src/scripts.js'
     ])
     .pipe(uglify())
-    .pipe(concat('./listr.min.js'))
-    .pipe(gulp.dest('./app/assets/js/'))
+    .pipe(concat('listr.min.js'))
+    .pipe(gulp.dest('app/assets/js/'))
+});
+
+/*
+ * MERGE ASSETS
+ */
+
+gulp.task('post_merge', function() {
+  del([
+    'app/assets/css/*.css',
+    '!app/assets/css/listr.pack.css',
+    'app/assets/js/*.js',
+    '!app/assets/js/jquery.min.js',
+    '!app/assets/js/listr.pack.js'
+  ])
+});
+
+gulp.task('merge', function(){
+
+  gulp.src([
+      'app/assets'
+    ])
+
+    .pipe(prompt.prompt({
+        type: 'input',
+        name: 'merge',
+        message: 'Do you want to merge all assets?',
+        default: 'y'
+    }, function(res){
+        if(res.merge === 'y') {
+              gulp.src([
+                  'app/assets/css/*.css',
+                  '!app/assets/css/listr.pack.css'
+                ])
+                .pipe(concat('listr.pack.css'))
+                .pipe(gulp.dest('app/assets/css/')),
+
+                gulp.src([
+                  'app/assets/js/*.js',
+                  '!app/assets/js/jquery.min.js',
+                  '!app/assets/js/listr.pack.js'
+                ])
+                .pipe(concat('listr.pack.js'))
+                .pipe(gulp.dest('app/assets/js/'));
+
+                gulp.src("app/config.json")
+                .pipe(jeditor({
+                  'general': {
+                    'dependencies': "pack"
+                  }
+                }))
+                .pipe(gulp.dest("app/"));
+        }
+    }));
 });
 
 /*
@@ -196,38 +247,36 @@ gulp.task('bootstrap', function(){
     }, function(res){
 
         if(res.bootstrap === 'default') {
-              console.log(' +  default Bootstrap theme')
-              gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
-              .pipe(concat('./bootstrap.min.css'))
-              .pipe(gulp.dest('./app/assets/css/'))
-              gulp.src("./app/config.json")
+              gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
+              .pipe(concat('bootstrap.min.css'))
+              .pipe(gulp.dest('app/assets/css/'))
+              gulp.src("app/config.json")
                 .pipe(jeditor({
                   'bootstrap': {
                     'theme': 'default'
                   }
                 }))
-                .pipe(gulp.dest("./app/"));
+                .pipe(gulp.dest("app/"));
         } else if (bootswatch.indexOf(res.bootstrap) != -1 ) {
-              console.log(' +  ' + res.bootstrap + ' (Bootswatch)')
-              gulp.src('./node_modules/bootswatch/' + res.bootstrap + '/bootstrap.min.css')
-              .pipe(concat('./bootstrap.min.css'))
-              .pipe(gulp.dest('./app/assets/css/')),
+              gulp.src('node_modules/bootswatch/' + res.bootstrap + '/bootstrap.min.css')
+              .pipe(concat('bootstrap.min.css'))
+              .pipe(gulp.dest('app/assets/css/')),
 
-              gulp.src("./app/config.json")
+              gulp.src("app/config.json")
               .pipe(jeditor({
                 'bootstrap': {
                   'theme': res.bootstrap
                 }
               }))
-              .pipe(gulp.dest("./app/"));
+              .pipe(gulp.dest("app/"));
         }
     }));
 
   gulp.src([
-  './node_modules/bootstrap/fonts/*'
+  'node_modules/bootstrap/fonts/*'
 
   ])
-  .pipe(gulp.dest('./app/assets/fonts/'));
+  .pipe(gulp.dest('app/assets/fonts/'));
   
 });
 
@@ -247,23 +296,20 @@ gulp.task('viewer', function(){
         default: 'y'
     }, function(res){
         if(res.viewer === 'y') {
-              console.log(' +  Viewer included')
               gulp.src([
-                './node_modules/bootstrap/dist/js/bootstrap.min.js',
-                './node_modules/jquery/dist/jquery.min.js',
-                './node_modules/jquery/dist/jquery.min.map'
+                'node_modules/bootstrap/dist/js/bootstrap.min.js',
+                'node_modules/jquery/dist/jquery.min.js',
+                'node_modules/jquery/dist/jquery.min.map'
               ])
-              .pipe(gulp.dest('./app/assets/js/'));
+              .pipe(gulp.dest('app/assets/js/'));
 
-              gulp.src("./app/config.json")
+              gulp.src("app/config.json")
               .pipe(jeditor({
                 'general': {
                   'enable_viewer': true
                 }
               }))
-              .pipe(gulp.dest("./app/"));
-        } else {
-          console.log(' -  Viewer skipped')
+              .pipe(gulp.dest("app/"));
         }
     }));
 });
@@ -284,24 +330,21 @@ gulp.task('search', function(){
         default: 'y'
     }, function(res){
         if(res.search === 'y') {
-              console.log(' +  Search Box included')
               gulp.src([
-                './node_modules/jquery/dist/jquery.min.js',
-                './node_modules/jquery/dist/jquery.min.map',
-                './node_modules/jquery-searcher/dist/jquery.searcher.min.js'
+                'node_modules/jquery/dist/jquery.min.js',
+                'node_modules/jquery/dist/jquery.min.map',
+                'node_modules/jquery-searcher/dist/jquery.searcher.min.js'
 
               ])
-              .pipe(gulp.dest('./app/assets/js/'))
+              .pipe(gulp.dest('app/assets/js/'))
 
-              gulp.src("./app/config.json")
+              gulp.src("app/config.json")
               .pipe(jeditor({
                 'general': {
                   'enable_search': true
                 }
               }))
-              .pipe(gulp.dest("./app/"));
-        } else {
-          console.log(' -  Search Box skipped')
+              .pipe(gulp.dest("app/"));
         }
     }));
 });
@@ -322,29 +365,26 @@ gulp.task('icons', function(){
         default: 'y'
     }, function(res){
         if(res.fontawesome === 'y') {
-              console.log(' +  Font Awesome included')
 
               gulp.src([
-                './node_modules/font-awesome/css/font-awesome.min.css'
+                'node_modules/font-awesome/css/font-awesome.min.css'
 
               ])
-              .pipe(gulp.dest('./app/assets/css/'))
+              .pipe(gulp.dest('app/assets/css/'))
 
               gulp.src([
-                './node_modules/font-awesome/fonts/*'
+                'node_modules/font-awesome/fonts/*'
 
               ])
-              .pipe(gulp.dest('./app/assets/fonts/'))
+              .pipe(gulp.dest('app/assets/fonts/'))
 
-              gulp.src("./app/config.json")
+              gulp.src("app/config.json")
               .pipe(jeditor({
                 'bootstrap': {
                   'icons': 'fontawesome'
                 }
               }))
-              .pipe(gulp.dest("./app/"));
-        } else {
-          console.log(' -  Font Awesome skipped')
+              .pipe(gulp.dest("app/"));
         }
     }));
 });
@@ -366,13 +406,7 @@ gulp.task('hljs', function(){
     }, function(res){
         if(res.hljs === 'y') {
               download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js')
-              .pipe(gulp.dest('./app/assets/js/'))
-              // download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css')
-              // .pipe(concat('./highlight.min.css'))
-              // .pipe(gulp.dest('./app/assets/css/'));
-              console.log(' +  Highlight.js included')
-        } else {
-          console.log(' -  Highlight.js skipped')
+              .pipe(gulp.dest('app/assets/js/'))
         }
     }));
 });
@@ -385,7 +419,7 @@ gulp.task('hljs', function(){
 gulp.task('apache', function(){
 
   gulp.src([
-      './src/root.htaccess'
+      'src/root.htaccess'
     ])
 
     .pipe(prompt.prompt({
@@ -395,12 +429,9 @@ gulp.task('apache', function(){
         default: 'y'
     }, function(res){
         if(res.h5bp === 'y') {
-              console.log(' +  H5BP\'s Apache Server Config appended')
-              gulp.src(['./src/root.htaccess','./node_modules/apache-server-configs/dist/.htaccess'])
+              gulp.src(['src/root.htaccess','node_modules/apache-server-configs/dist/.htaccess'])
               .pipe(concat('.htaccess'))
-              .pipe(gulp.dest('./app/'))
-        } else {
-          console.log(' -  H5BP\'s Apache Server Config skipped')
+              .pipe(gulp.dest('app/'))
         }
     }));
 });
@@ -413,7 +444,7 @@ gulp.task('apache', function(){
 gulp.task('robots', function(){
 
   gulp.src([
-      './src/root.htaccess'
+      'src/root.htaccess'
     ])
 
     .pipe(prompt.prompt({
@@ -423,12 +454,9 @@ gulp.task('robots', function(){
         default: 'y'
     }, function(res){
         if(res.h5bp === 'y') {
-              console.log(' +  robots.txt copied')
-              gulp.src(['./src/robots.txt'])
+              gulp.src(['src/robots.txt'])
               .pipe(concat('robots.txt'))
-              .pipe(gulp.dest('./app/'))
-        } else {
-          console.log(' -  robots.txt skipped')
+              .pipe(gulp.dest('app/'))
         }
     }));
 });
@@ -459,17 +487,18 @@ gulp.task('hljs_theme', function(){
     }, function(res){
 
         if (hljs_theme.indexOf(res.highlighter) != -1) {
-          download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/' + res.hljs_theme + '.min.css')
-          .pipe(concat('./highlight.min.css'))
-          .pipe(gulp.dest('./app/assets/css/'));
+          download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/' + res.highlighter + '.min.css')
 
-          gulp.src("./app/config.json")
+          .pipe(concat('highlight.min.css'))
+          .pipe(gulp.dest('app/assets/css/'));
+
+          gulp.src("app/config.json")
           .pipe(jeditor({
             'highlight': {
               'theme': res.hljs_theme
             }
           }))
-          .pipe(gulp.dest("./app/"));
+          .pipe(gulp.dest("app/"));
         }
     }));
 });
@@ -488,6 +517,7 @@ gulp.task('help', function() {
   console.log('        init - create app-folder and copy required files')
   console.log('        lint - run tasks to lint all CSS, JavaScript and PHP files')
   console.log('        make - minify all CSS and JavaScript files')
+  console.log('       merge - merge all CSS and JavaScript files')
   console.log('       reset - reset config.json to default')
   console.log('      search - include scripts for Search Box')
   console.log('       theme - specify default Highlighter.js style-sheet')
