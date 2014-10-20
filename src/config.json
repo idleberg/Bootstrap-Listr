@@ -7,6 +7,7 @@
     "enable_sort":      true,
     "enable_viewer":    false,
     "enable_search":    false,
+    "enable_highlight": false,
     "autofocus_search": false,
     "share_button":     false,
     "hide_extension":   false,
