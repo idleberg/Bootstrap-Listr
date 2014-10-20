@@ -76,6 +76,12 @@ gulp.task('init', function() {
  */
 gulp.task('upgrade', function() {
 
+
+  del([
+    'app/assets/css/listr.pack.css',
+    'app/assets/js/listr.pack.js'
+  ])
+
   gulp.src([
       'src/index.php',
       'src/listr-functions.php',
@@ -413,6 +419,56 @@ gulp.task('hljs', function(){
         if(res.hljs === 'y') {
               download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js')
               .pipe(gulp.dest('app/assets/js/'))
+
+              gulp.src("app/config.json")
+              .pipe(jeditor({
+                'general': {
+                  'enable_highlight': true
+                }
+              }))
+              .pipe(gulp.dest("app/"));
+        }
+    }));
+});
+
+/*
+ * HIGHLIGHT.JS THEME
+ *
+ * Pick a style-sheet for Highlight.js
+ */
+gulp.task('hljs_theme', function(){
+
+ var hljs_theme = ['arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'dark', 'default', 'docco', 'far', 'foundation', 'github', 'googlecode', 'idea', 'ir_black', 'magula', 'mono-blue', 'monokai', 'monokai_sublime', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn']
+
+ gulp.src('.')
+    .pipe(prompt.prompt({
+        type: 'input',
+        name: 'highlighter',
+        message: 'Which Highlight.js theme would you like to use?',
+        default: 'github',
+        validate: function(pass){
+
+            if (hljs_theme.indexOf(pass) == -1 ) {
+                return false;
+            }
+
+            return true;
+        }
+    }, function(res){
+
+        if (hljs_theme.indexOf(res.highlighter) != -1) {
+          download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/' + res.highlighter + '.min.css')
+
+          .pipe(concat('highlight.min.css'))
+          .pipe(gulp.dest('app/assets/css/'));
+
+          gulp.src("app/config.json")
+          .pipe(jeditor({
+            'highlight': {
+              'theme': res.hljs_theme
+            }
+          }))
+          .pipe(gulp.dest("app/"));
         }
     }));
 });
@@ -463,48 +519,6 @@ gulp.task('robots', function(){
               gulp.src(['src/robots.txt'])
               .pipe(concat('robots.txt'))
               .pipe(gulp.dest('app/'))
-        }
-    }));
-});
-
-/*
- * HIGHLIGHT.JS THEME
- *
- * Pick a style-sheet for Highlight.js
- */
-gulp.task('hljs_theme', function(){
-
- var hljs_theme = ['arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'dark', 'default', 'docco', 'far', 'foundation', 'github', 'googlecode', 'idea', 'ir_black', 'magula', 'mono-blue', 'monokai', 'monokai_sublime', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn']
-
- gulp.src('.')
-    .pipe(prompt.prompt({
-        type: 'input',
-        name: 'highlighter',
-        message: 'Which Highlight.js theme would you like to use?',
-        default: 'github',
-        validate: function(pass){
-
-            if (hljs_theme.indexOf(pass) == -1 ) {
-                return false;
-            }
-
-            return true;
-        }
-    }, function(res){
-
-        if (hljs_theme.indexOf(res.highlighter) != -1) {
-          download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/' + res.highlighter + '.min.css')
-
-          .pipe(concat('highlight.min.css'))
-          .pipe(gulp.dest('app/assets/css/'));
-
-          gulp.src("app/config.json")
-          .pipe(jeditor({
-            'highlight': {
-              'theme': res.hljs_theme
-            }
-          }))
-          .pipe(gulp.dest("app/"));
         }
     }));
 });
