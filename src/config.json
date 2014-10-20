@@ -10,6 +10,7 @@
     "autofocus_search": false,
     "share_button":     false,
     "hide_extension":   false,
+    "custom_title":     null,
     "give_kudos":       true
   },
   "cdn": {

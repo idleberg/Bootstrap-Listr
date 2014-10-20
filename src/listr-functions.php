@@ -28,7 +28,11 @@ function set_header($theme) {
 
     global $options;
     
-    $index   = sprintf(_('Index of %1$s%2$s'), $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
+    if ($options['general']['custom_title'] == null) {
+        $index   = sprintf(_('Index of %1$s%2$s'), $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
+    } else {
+        $index   = $options['general']['custom_title'];
+    }
     $header  = "  <meta charset=\"utf-8\">" . PHP_EOL;
     $header .= "  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">" . PHP_EOL;
     $header .= "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=yes\">" . PHP_EOL;
