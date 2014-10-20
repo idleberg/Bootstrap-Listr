@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.2.1
+VERSION=0.2.2
 set -e
 
 # Functions
@@ -26,15 +26,35 @@ echo $'Initializing…'
 gulp init --silent      # clean up app-folder, copy files
 
 echo $'Running setup…'
-gulp bootstrap --silent # set Bootstrap/Bootswatch theme
-gulp viewer --silent    # include Viewer dependencies
-gulp search --silent    # include Search Box dependencies
-gulp icons --silent     # include Font Awesome icons
-gulp hljs --silent      # include Highlight.js
-gulp apache --silent    # append H5BP's Apache Server Config
-gulp robots --silent    # copy restrictive robots.txt
+
+# set Bootstrap/Bootswatch theme
+gulp bootstrap --silent
+
+# include Viewer dependencies
+gulp viewer --silent
+
+# include Search Box dependencies
+gulp search --silent
+
+# include Font Awesome icons
+gulp icons --silent
+
+# include Highlight.js
+gulp hljs --silent
+if [ -e 'app/assets/js/highlight.min.js' ]
+then
+	gulp hljs_theme --silent
+fi
+
+# append H5BP's Apache Server Config
+gulp apache --silent
+
+# copy restrictive robots.txt
+gulp robots --silent
 
 echo $'Cracking…'
-gulp make --silent      # minify CSS & JS
+
+# minify CSS & JS
+gulp make --silent
 
 echo $'Completed.︎'

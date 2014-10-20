@@ -24,7 +24,7 @@ gulp.task('bs',          ['bootstrap']);
 gulp.task('css',         ['csslint', 'cssmin']);
 gulp.task('fa',          ['icons']);
 gulp.task('fontawesome', ['icons']);
-gulp.task('hljs',        ['highlighter']);
+gulp.task('highlighter', ['hljs']);
 gulp.task('js',          ['jshint', 'uglify']);
 gulp.task('php',         ['phplint']);
 gulp.task('update',      ['upgrade']);
@@ -354,7 +354,7 @@ gulp.task('icons', function(){
  *
  * Copy dependencies for the syntax highlighter
  */
-gulp.task('highlighter', function(){
+gulp.task('hljs', function(){
 
   gulp.src('.')
 
@@ -367,10 +367,10 @@ gulp.task('highlighter', function(){
         if(res.hljs === 'y') {
               download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js')
               .pipe(gulp.dest('./app/assets/js/'))
-              download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css')
-              .pipe(concat('./highlight.min.css'))
-              .pipe(gulp.dest('./app/assets/css/'));
-              console.log(' +  Highlight.js included (use "gulp theme" to pick a different theme')
+              // download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css')
+              // .pipe(concat('./highlight.min.css'))
+              // .pipe(gulp.dest('./app/assets/css/'));
+              console.log(' +  Highlight.js included')
         } else {
           console.log(' -  Highlight.js skipped')
         }
@@ -438,7 +438,7 @@ gulp.task('robots', function(){
  *
  * Pick a style-sheet for Highlight.js
  */
-gulp.task('theme', function(){
+gulp.task('hljs_theme', function(){
 
  var hljs_theme = ['arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'dark', 'default', 'docco', 'far', 'foundation', 'github', 'googlecode', 'idea', 'ir_black', 'magula', 'mono-blue', 'monokai', 'monokai_sublime', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn']
 
@@ -447,7 +447,7 @@ gulp.task('theme', function(){
         type: 'input',
         name: 'highlighter',
         message: 'Which Highlight.js theme would you like to use?',
-        default: 'default',
+        default: 'github',
         validate: function(pass){
 
             if (hljs_theme.indexOf(pass) == -1 ) {
