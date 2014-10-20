@@ -108,7 +108,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('download', function () {
-  download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js')
+  download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js')
   .pipe(gulp.dest("./app/"));
 });
 
@@ -370,9 +370,9 @@ gulp.task('highlighter', function(){
         default: 'y'
     }, function(res){
         if(res.hljs === 'y') {
-              download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js')
+              download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js')
               .pipe(gulp.dest('./app/assets/js/'))
-              download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css')
+              download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/default.min.css')
               .pipe(concat('./highlight.min.css'))
               .pipe(gulp.dest('./app/assets/css/'));
               console.log(' +  Highlight.js included (use "gulp theme" to pick a different theme')
