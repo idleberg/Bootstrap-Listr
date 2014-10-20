@@ -13,7 +13,7 @@
     "custom_title":     null,
     "give_kudos":       true
   },
-  "cdn": {
+  "assets": {
     "jquery":          "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",
     "bootstrap":       "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js",
     "font_awesome":    "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css",
@@ -22,7 +22,13 @@
     "searcher":        null,
     "highlight_js":    "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js",
     "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css",
-    "custom_theme":    null
+    "custom_theme":    null,
+    "append_css":      [
+      null
+    ],
+    "append_js":       [
+      null
+    ]
   },
   "icons": {
     "fav_icon":         null,
