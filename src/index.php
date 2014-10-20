@@ -190,6 +190,7 @@ if ($handle = opendir($navigation_dir))
     // ...start scanning through it.
     while (false !== ($file = readdir($handle)))
     {
+
         // Make sure we don't list this folder,file or their links.
         if ($file != "." && $file != ".." && $file != $this_script && !in_array($file, $ignore_list) && (substr($file, 0, 1) != '.'))
         {
@@ -312,10 +313,13 @@ if ($handle = opendir($navigation_dir))
             else{
                 array_push($file_list, $item);
             }
+
             // Clear stat() cache to free up memory (not really needed).
             clearstatcache();
             // Add this items file size to this folders total size
             $total_size += $item['bytes'];
+        } else if ($file == ".listr") {
+            $loptions    = json_decode(file_get_contents($navigation_dir.$file), true);
         }
     }
     // Close the directory when finished.
@@ -327,7 +331,7 @@ if($folder_list)
 // Sort file list.
 if($file_list)
     $file_list = php_multisort($file_list, $sort);
-// Calculate the total folder size (fix: total size cannont display while there is no folder inside the directory)
+// Calculate the total folder size (fix: total size cannot display while there is no folder inside the directory)
 if($file_list && $folder_list || $file_list)
     $total_size = bytes_to_string($total_size, 2);
 
@@ -359,6 +363,12 @@ if ($total_files > 0){
     }
     $contained .= ", ". sprintf(_('%1$s %2$s in total'), $total_size['num'], $total_size['str']);
     // $contained = sprintf(_('%1$s folders and %2$s files, %3$s %4$s in total'), $total_folders, $total_files, $total_size['num'], $total_size['str']);
+}
+
+if(isset($loptions)) {
+    $options = array_merge($options, $loptions);
+} else {
+
 }
 
 $header = set_header($bootstrap_cdn);
