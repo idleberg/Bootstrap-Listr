@@ -180,18 +180,25 @@ gulp.task('uglify', function() {
  *
  * Pick a Bootstrap theme
  */
-gulp.task('bootstrap', function(){
+gulp.task('bootstrap', function(){   
+
+ var bootswatch = ['default','amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti'];   
 
  gulp.src('.')
     .pipe(prompt.prompt({
         type: 'input',
         name: 'bootstrap',
         message: 'Which Bootstrap theme would you like to use?',
-        default: 'default'
-    }, function(res){
+        default: 'default',
+        validate: function(pass){
 
-        var bootswatch = ['amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti'];
-        // var m8tro = ['m8tro-aqua', 'm8tro-blue', 'm8tro-brown', 'm8tro-green', 'm8tro-orange', 'm8tro-purple', 'm8tro-red', 'm8tro-yellow'];
+            if (bootswatch.indexOf(pass) == -1 ) {
+                return false;
+            }
+
+            return true;
+        }
+    }, function(res){
 
         if(res.bootstrap === 'default') {
               console.log(' +  default Bootstrap theme')
@@ -218,8 +225,6 @@ gulp.task('bootstrap', function(){
                 }
               }))
               .pipe(gulp.dest("./app/"));
-        } else {
-          console.warn(' -  Error: theme not supported')
         }
     }));
 
@@ -245,7 +250,7 @@ gulp.task('viewer', function(){
         name: 'viewer',
         message: 'Do you want to make use of the viewer modal?',
         default: 'y'
-      }, function(res){
+    }, function(res){
         if(res.viewer === 'y') {
               console.log(' +  Viewer included')
               gulp.src([
@@ -282,7 +287,7 @@ gulp.task('search', function(){
         name: 'search',
         message: 'Do you want to make use of the search box?',
         default: 'y'
-      }, function(res){
+    }, function(res){
         if(res.search === 'y') {
               console.log(' +  Search Box included')
               gulp.src([
@@ -320,7 +325,7 @@ gulp.task('icons', function(){
         name: 'fontawesome',
         message: 'Do you want to make use of Font Awesome icons?',
         default: 'y'
-      }, function(res){
+    }, function(res){
         if(res.fontawesome === 'y') {
               console.log(' +  Font Awesome included')
 
@@ -363,7 +368,7 @@ gulp.task('highlighter', function(){
         name: 'hljs',
         message: 'Do you want to make use of the syntax highlighter?',
         default: 'y'
-      }, function(res){
+    }, function(res){
         if(res.hljs === 'y') {
               download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js')
               .pipe(gulp.dest('./app/assets/js/'))
@@ -393,7 +398,7 @@ gulp.task('apache', function(){
         name: 'h5bp',
         message: 'Do you want to append H5BP\'s Apache Server Config rules?',
         default: 'y'
-      }, function(res){
+    }, function(res){
         if(res.h5bp === 'y') {
               console.log(' +  H5BP\'s Apache Server Config appended')
               gulp.src(['./src/root.htaccess','./node_modules/apache-server-configs/dist/.htaccess'])
@@ -421,7 +426,7 @@ gulp.task('robots', function(){
         name: 'h5bp',
         message: 'Do you want to lock out Web crawlers?',
         default: 'y'
-      }, function(res){
+    }, function(res){
         if(res.h5bp === 'y') {
               console.log(' +  robots.txt copied')
               gulp.src(['./src/robots.txt'])
@@ -440,17 +445,25 @@ gulp.task('robots', function(){
  */
 gulp.task('theme', function(){
 
+ var hljs_theme = ['arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'dark', 'default', 'docco', 'far', 'foundation', 'github', 'googlecode', 'idea', 'ir_black', 'magula', 'mono-blue', 'monokai', 'monokai_sublime', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn']
+
  gulp.src('.')
     .pipe(prompt.prompt({
         type: 'input',
-        name: 'hljs_theme',
+        name: 'highlighter',
         message: 'Which Highlight.js theme would you like to use?',
-        default: 'default'
+        default: 'default',
+        validate: function(pass){
+
+            if (hljs_theme.indexOf(pass) == -1 ) {
+                return false;
+            }
+
+            return true;
+        }
     }, function(res){
 
-        var highlighter = ['arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'dark', 'default', 'docco', 'far', 'foundation', 'github', 'googlecode', 'idea', 'ir_black', 'magula', 'mono-blue', 'monokai', 'monokai_sublime', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn']
-
-        if (highlighter.indexOf(res.hljs_theme) != -1) {
+        if (hljs_theme.indexOf(res.highlighter) != -1) {
           download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/' + res.hljs_theme + '.min.css')
           .pipe(concat('./highlight.min.css'))
           .pipe(gulp.dest('./app/assets/css/'));
@@ -462,8 +475,6 @@ gulp.task('theme', function(){
             }
           }))
           .pipe(gulp.dest("./app/"));
-        } else {
-          console.warn(' -  Error: theme not supported')
         }
     }));
 });

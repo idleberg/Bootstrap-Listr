@@ -1,6 +1,6 @@
 {
   "name": "listr-setup",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": true,
   "devDependencies": {
     "apache-server-configs": "~2.10.0",
