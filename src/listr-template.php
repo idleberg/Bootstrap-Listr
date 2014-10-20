@@ -37,7 +37,7 @@
           </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
-<?php if (($options['cdn']['highlight_js']) && ($options['cdn']['highlight_css'])) { ?>
+<?php if (($options['assets']['highlight_js']) && ($options['assets']['highlight_css'])) { ?>
             <div class="pull-<?php echo $left?>">
               <button type="button" class="btn btn-link highlight hidden"><?php echo _('Apply code highlighting')?></button>
             </div>
