@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.2.3
+VERSION=0.2.4
 set -e
 
 # Functions
@@ -63,7 +63,7 @@ gulp apache --silent
 # copy restrictive robots.txt
 gulp robots --silent
 
-echo $'Minifying assets'
+echo $'Minifying'
 
 # minify CSS & JS
 gulp make --silent
@@ -72,7 +72,7 @@ gulp make --silent
 gulp merge --silent
 if [[ -e 'app/assets/css/listr.pack.css' || -e 'app/assets/js/listr.pack.js' ]]
 then
-	echo $'Merging assets'
+	echo $'Merging'
 	gulp post_merge --silent
 fi
 
