@@ -5,21 +5,17 @@ function set_bootstrap_theme() {
 
     global $options;
     
-    if ($options['assets']['custom_theme']) {
-        return $options['assets']['custom_theme'];
-    } else {
-        $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/';
-        $cdn_post = '/bootstrap.min.css';
-        $bootswatch = array('amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti');
-        $m8tro = array('m8tro-aqua','m8tro-blue','m8tro-brown','m8tro-green','m8tro-orange','m8tro-purple','m8tro-red','m8tro-yellow');
+    $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/';
+    $cdn_post = '/bootstrap.min.css';
+    $bootswatch = array('amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti');
+    $m8tro = array('m8tro-aqua','m8tro-blue','m8tro-brown','m8tro-green','m8tro-orange','m8tro-purple','m8tro-red','m8tro-yellow');
 
-        if (in_array($options['bootstrap']['theme'], $bootswatch)) {
-            return '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/'.$options['bootstrap']['theme'].'/bootstrap.min.css';
-        } else if (in_array($options['bootstrap']['theme'], $m8tro)) {
-            return '//idleberg.github.io/m8tro-listr/'.$options['bootstrap']['theme'].'.min.css';
-        } else {
-            return '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css';
-        }
+    if (in_array($options['bootstrap']['theme'], $bootswatch)) {
+        return '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/'.$options['bootstrap']['theme'].'/bootstrap.min.css';
+    } else if (in_array($options['bootstrap']['theme'], $m8tro)) {
+        return '//idleberg.github.io/m8tro-listr/'.$options['bootstrap']['theme'].'.min.css';
+    } else {
+        return '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css';
     }
 }
 
