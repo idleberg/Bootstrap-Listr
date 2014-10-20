@@ -91,6 +91,12 @@ gulp.task('upgrade', function() {
     .pipe(gulp.dest('app/'));
 
   gulp.src([
+      'src/root.htaccess'
+    ])
+    .pipe(concat('.htaccess-example'))
+    .pipe(gulp.dest('app/'));
+
+  gulp.src([
       'src/locale/**/*'
     ])
     .pipe(gulp.dest('app/locale/'));
@@ -402,7 +408,7 @@ gulp.task('hljs', function(){
         type: 'input',
         name: 'hljs',
         message: 'Do you want to make use of the syntax highlighter?',
-        default: 'y'
+        default: 'n'
     }, function(res){
         if(res.hljs === 'y') {
               download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js')
