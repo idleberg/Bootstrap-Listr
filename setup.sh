@@ -32,8 +32,6 @@ else
     gulp init --silent
 fi
 
-
-
 # clean up app-folder, copy files
 gulp init --silent
 
