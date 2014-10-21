@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.3
+VERSION=0.3.1
 set -e
 
 # Functions
@@ -11,7 +11,7 @@ function npm_error(){
 
 # Let's go
 echo $'\n'cracklistr $VERSION
-echo ==============
+echo ================
 
 if [[ -e 'node_modules/apache-server-configs' && -e 'node_modules/bootstrap/dist' && -e 'node_modules/bootswatch' && -e 'node_modules/font-awesome' && -e 'node_modules/jquery' && -e 'node_modules/jquery-searcher' ]]
 then
@@ -31,8 +31,6 @@ else
     echo $'    Initializing application'
     gulp init --silent
 fi
-
-
 
 # clean up app-folder, copy files
 gulp init --silent
@@ -77,4 +75,4 @@ then
 	gulp post_merge --silent
 fi
 
-echo $'    GAME OVER!'
+echo $'    Game over!'

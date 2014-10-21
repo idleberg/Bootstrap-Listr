@@ -91,12 +91,6 @@ gulp.task('upgrade', function() {
     .pipe(gulp.dest('app/'));
 
   gulp.src([
-      'src/config.json'
-    ])
-    .pipe(concat('config.json-example'))
-    .pipe(gulp.dest('app/'));
-
-  gulp.src([
       'src/root.htaccess'
     ])
     .pipe(concat('.htaccess-example'))
