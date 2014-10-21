@@ -77,4 +77,4 @@ then
 	gulp post_merge --silent
 fi
 
-echo $'    GAME OVER!'
+echo $'    Game over!'
