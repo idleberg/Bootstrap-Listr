@@ -67,8 +67,8 @@ function set_header($theme) {
 
         if ($options['general']['enable_viewer']) {    
 
-            if ( ($options['assets']['enable_highlight'] == true) && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
-                if ($options['general']['dependencies'] == 'cdn') {
+            if ($options['general']['enable_highlight'] == true) {
+                if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
                     $header .= "  <link rel=\"stylesheet\" href=\"".$options['assets']['highlight_css']."\" />" . PHP_EOL;
                 } else {
                     $header .= "  <link rel=\"stylesheet\" href=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/highlight.min.css\" />" . PHP_EOL;
@@ -131,8 +131,8 @@ function set_footer(){
                 $footer .= "  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"nzeq1welehd2rug\"></script>" . PHP_EOL;
             }
 
-            if( ($options['assets']['enable_highlight'] == true) && ($options['assets']['highlight_js']) && ($options['assets']['highlight_css']) ){
-                 if ($options['general']['dependencies'] == 'cdn') {
+            if($options['general']['enable_highlight'] == true) {
+                 if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
                     $footer .= "  <script type=\"text/javascript\" src=\"".$options['assets']['highlight_js']."\"></script>" . PHP_EOL;
                 } else {
                     $footer .= "  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/highlight.min.js\"></script>" . PHP_EOL;
