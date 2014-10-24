@@ -56,9 +56,6 @@
     "icons":             "glyphicons",
     "fontawesome_style": "fa-fw"
   },
-  "highlight": {
-    "theme": "default"
-  },
   "keys": {
     "dropbox_app":      false,
     "google_analytics": false
@@ -68,11 +65,11 @@
     "age":  true
   },
   "ignored_files": [
-    ".DAV",
-    ".DS_Store",
     ".bzr",
     ".bzrignore",
     ".bzrtags",
+    ".DAV",
+    ".DS_Store",
     ".git",
     ".gitattributes",
     ".gitignore",
@@ -83,6 +80,7 @@
     ".htaccess",
     ".htpasswd",
     ".jshintrc",
+    ".listr",
     ".npmignore",
     ".Spotlight-V100",
     ".svn",
