@@ -26,6 +26,7 @@ gulp.task('fa',          ['icons']);
 gulp.task('fontawesome', ['icons']);
 gulp.task('highlighter', ['hljs']);
 gulp.task('js',          ['jshint', 'uglify']);
+gulp.task('minify',      ['make']);
 gulp.task('php',         ['phplint']);
 gulp.task('theme',       ['hljs_theme']);
 gulp.task('update',      ['upgrade']);
