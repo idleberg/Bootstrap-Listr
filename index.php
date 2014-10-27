@@ -672,7 +672,7 @@ if(($folder_list) || ($file_list) ) {
                     $table_body .= " class=\"text-right\" data-sort-value=\"" . $item['mtime'] . "\"";
                     $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
-                $table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
+                $table_body .= ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
             }
 
             $table_body .= "          </tr>" . PHP_EOL;
@@ -731,7 +731,7 @@ if(($folder_list) || ($file_list) ) {
                     $table_body .= " class=\"text-right\" data-sort-value=\"".$item['mtime']."\"";
                     $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
-                $table_body = $table_body . ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
+                $table_body .= ">" . time_ago($item['mtime']) . "ago</td>" . PHP_EOL;
             }
 
             $table_body .= "          </tr>" . PHP_EOL;
