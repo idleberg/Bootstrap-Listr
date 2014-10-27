@@ -643,10 +643,10 @@ if ($table_options['age']) {
 
 // Set table body
 if(($folder_list) || ($file_list) ) {
+   $table_body = null;
 
     if($folder_list):    
         foreach($folder_list as $item) :
-            $table_body = null;
             $table_body .= "          <tr>" . PHP_EOL;
             $table_body .= "            <td";
             if (ENABLE_SORT) {
