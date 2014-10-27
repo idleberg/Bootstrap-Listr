@@ -24,6 +24,7 @@ gulp.task('bs',          ['bootstrap']);
 gulp.task('css',         ['csslint', 'cssmin']);
 gulp.task('fa',          ['icons']);
 gulp.task('fontawesome', ['icons']);
+gulp.task('deps',        ['dependencies']);
 gulp.task('highlighter', ['hljs']);
 gulp.task('js',          ['jshint', 'uglify']);
 gulp.task('minify',      ['make']);
@@ -178,7 +179,40 @@ gulp.task('uglify', function() {
 /*
  * MERGE ASSETS
  */
+gulp.task('dependencies', function() {
+  gulp.src([
+      'app/assets'
+    ])
 
+    .pipe(prompt.prompt({
+        type: 'input',
+        name: 'dependencies',
+        message: 'Do you want to load dependencies locally (l) or from CDN (c)?',
+        default: 'l'
+    }, function(res){
+        if( (res.dependencies === 'l') || (res.dependencies === 'local') ) {
+            gulp.src("app/config.json")
+            .pipe(jeditor({
+              'general': {
+                'dependencies': "local"
+              }
+            }))
+            .pipe(gulp.dest("app/"));
+        } else if( (res.dependencies === 'c')  || (res.dependencies === 'cdn') ) {
+            gulp.src("app/config.json")
+            .pipe(jeditor({
+              'general': {
+                'dependencies': "cdn"
+              }
+            }))
+            .pipe(gulp.dest("app/"));
+        }
+    }));
+});
+
+/*
+ * MERGE ASSETS
+ */
 gulp.task('post_merge', function() {
   del([
     'app/assets/css/*.css',
@@ -202,28 +236,28 @@ gulp.task('merge', function(){
         default: 'y'
     }, function(res){
         if(res.merge === 'y') {
+            gulp.src([
+                'app/assets/css/*.css',
+                '!app/assets/css/listr.pack.css'
+              ])
+              .pipe(concat('listr.pack.css'))
+              .pipe(gulp.dest('app/assets/css/')),
+
               gulp.src([
-                  'app/assets/css/*.css',
-                  '!app/assets/css/listr.pack.css'
-                ])
-                .pipe(concat('listr.pack.css'))
-                .pipe(gulp.dest('app/assets/css/')),
+                'app/assets/js/*.js',
+                '!app/assets/js/jquery.min.js',
+                '!app/assets/js/listr.pack.js'
+              ])
+              .pipe(concat('listr.pack.js'))
+              .pipe(gulp.dest('app/assets/js/'));
 
-                gulp.src([
-                  'app/assets/js/*.js',
-                  '!app/assets/js/jquery.min.js',
-                  '!app/assets/js/listr.pack.js'
-                ])
-                .pipe(concat('listr.pack.js'))
-                .pipe(gulp.dest('app/assets/js/'));
-
-                gulp.src("app/config.json")
-                .pipe(jeditor({
-                  'general': {
-                    'dependencies': "pack"
-                  }
-                }))
-                .pipe(gulp.dest("app/"));
+              gulp.src("app/config.json")
+              .pipe(jeditor({
+                'general': {
+                  'dependencies': "pack"
+                }
+              }))
+              .pipe(gulp.dest("app/"));
         }
     }));
 });
@@ -254,28 +288,28 @@ gulp.task('bootstrap', function(){
     }, function(res){
 
         if(res.bootstrap === 'default') {
-              gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
-              .pipe(concat('bootstrap.min.css'))
-              .pipe(gulp.dest('app/assets/css/'))
-              gulp.src("app/config.json")
-                .pipe(jeditor({
-                  'bootstrap': {
-                    'theme': 'default'
-                  }
-                }))
-                .pipe(gulp.dest("app/"));
-        } else if (bootswatch.indexOf(res.bootstrap) != -1 ) {
-              gulp.src('node_modules/bootswatch/' + res.bootstrap + '/bootstrap.min.css')
-              .pipe(concat('bootstrap.min.css'))
-              .pipe(gulp.dest('app/assets/css/')),
-
-              gulp.src("app/config.json")
+            gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
+            .pipe(concat('bootstrap.min.css'))
+            .pipe(gulp.dest('app/assets/css/'))
+            gulp.src("app/config.json")
               .pipe(jeditor({
                 'bootstrap': {
-                  'theme': res.bootstrap
+                  'theme': 'default'
                 }
               }))
               .pipe(gulp.dest("app/"));
+        } else if (bootswatch.indexOf(res.bootstrap) != -1 ) {
+            gulp.src('node_modules/bootswatch/' + res.bootstrap + '/bootstrap.min.css')
+            .pipe(concat('bootstrap.min.css'))
+            .pipe(gulp.dest('app/assets/css/')),
+
+            gulp.src("app/config.json")
+            .pipe(jeditor({
+              'bootstrap': {
+                'theme': res.bootstrap
+              }
+            }))
+            .pipe(gulp.dest("app/"));
         }
     }));
 
@@ -303,20 +337,20 @@ gulp.task('viewer', function(){
         default: 'y'
     }, function(res){
         if(res.viewer === 'y') {
-              gulp.src([
-                'node_modules/bootstrap/dist/js/bootstrap.min.js',
-                'node_modules/jquery/dist/jquery.min.js',
-                'node_modules/jquery/dist/jquery.min.map'
-              ])
-              .pipe(gulp.dest('app/assets/js/'));
+            gulp.src([
+              'node_modules/bootstrap/dist/js/bootstrap.min.js',
+              'node_modules/jquery/dist/jquery.min.js',
+              'node_modules/jquery/dist/jquery.min.map'
+            ])
+            .pipe(gulp.dest('app/assets/js/'));
 
-              gulp.src("app/config.json")
-              .pipe(jeditor({
-                'general': {
-                  'enable_viewer': true
-                }
-              }))
-              .pipe(gulp.dest("app/"));
+            gulp.src("app/config.json")
+            .pipe(jeditor({
+              'general': {
+                'enable_viewer': true
+              }
+            }))
+            .pipe(gulp.dest("app/"));
         }
     }));
 });
@@ -337,21 +371,21 @@ gulp.task('search', function(){
         default: 'y'
     }, function(res){
         if(res.search === 'y') {
-              gulp.src([
-                'node_modules/jquery/dist/jquery.min.js',
-                'node_modules/jquery/dist/jquery.min.map',
-                'node_modules/jquery-searcher/dist/jquery.searcher.min.js'
+            gulp.src([
+              'node_modules/jquery/dist/jquery.min.js',
+              'node_modules/jquery/dist/jquery.min.map',
+              'node_modules/jquery-searcher/dist/jquery.searcher.min.js'
 
-              ])
-              .pipe(gulp.dest('app/assets/js/'))
+            ])
+            .pipe(gulp.dest('app/assets/js/'))
 
-              gulp.src("app/config.json")
-              .pipe(jeditor({
-                'general': {
-                  'enable_search': true
-                }
-              }))
-              .pipe(gulp.dest("app/"));
+            gulp.src("app/config.json")
+            .pipe(jeditor({
+              'general': {
+                'enable_search': true
+              }
+            }))
+            .pipe(gulp.dest("app/"));
         }
     }));
 });
@@ -373,25 +407,25 @@ gulp.task('icons', function(){
     }, function(res){
         if(res.fontawesome === 'y') {
 
-              gulp.src([
-                'node_modules/font-awesome/css/font-awesome.min.css'
+            gulp.src([
+              'node_modules/font-awesome/css/font-awesome.min.css'
 
-              ])
-              .pipe(gulp.dest('app/assets/css/'))
+            ])
+            .pipe(gulp.dest('app/assets/css/'))
 
-              gulp.src([
-                'node_modules/font-awesome/fonts/*'
+            gulp.src([
+              'node_modules/font-awesome/fonts/*'
 
-              ])
-              .pipe(gulp.dest('app/assets/fonts/'))
+            ])
+            .pipe(gulp.dest('app/assets/fonts/'))
 
-              gulp.src("app/config.json")
-              .pipe(jeditor({
-                'bootstrap': {
-                  'icons': 'fontawesome'
-                }
-              }))
-              .pipe(gulp.dest("app/"));
+            gulp.src("app/config.json")
+            .pipe(jeditor({
+              'bootstrap': {
+                'icons': 'fontawesome'
+              }
+            }))
+            .pipe(gulp.dest("app/"));
         }
     }));
 });
@@ -412,16 +446,16 @@ gulp.task('hljs', function(){
         default: 'n'
     }, function(res){
         if(res.hljs === 'y') {
-              download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js')
-              .pipe(gulp.dest('app/assets/js/'))
+            download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js')
+            .pipe(gulp.dest('app/assets/js/'))
 
-              gulp.src("app/config.json")
-              .pipe(jeditor({
-                'general': {
-                  'enable_highlight': true
-                }
-              }))
-              .pipe(gulp.dest("app/"));
+            gulp.src("app/config.json")
+            .pipe(jeditor({
+              'general': {
+                'enable_highlight': true
+              }
+            }))
+            .pipe(gulp.dest("app/"));
         }
     }));
 });
@@ -486,9 +520,9 @@ gulp.task('apache', function(){
         default: 'y'
     }, function(res){
         if(res.h5bp === 'y') {
-              gulp.src(['src/root.htaccess','node_modules/apache-server-configs/dist/.htaccess'])
-              .pipe(concat('.htaccess'))
-              .pipe(gulp.dest('app/'))
+            gulp.src(['src/root.htaccess','node_modules/apache-server-configs/dist/.htaccess'])
+            .pipe(concat('.htaccess'))
+            .pipe(gulp.dest('app/'))
         }
     }));
 });
@@ -511,9 +545,9 @@ gulp.task('robots', function(){
         default: 'y'
     }, function(res){
         if(res.h5bp === 'y') {
-              gulp.src(['src/robots.txt'])
-              .pipe(concat('robots.txt'))
-              .pipe(gulp.dest('app/'))
+            gulp.src(['src/robots.txt'])
+            .pipe(concat('robots.txt'))
+            .pipe(gulp.dest('app/'))
         }
     }));
 });

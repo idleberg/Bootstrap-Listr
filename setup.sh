@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.3.1
+VERSION=0.3.2
 set -e
 
 # Functions
@@ -36,6 +36,9 @@ fi
 gulp init --silent
 
 echo $'    Running setup'
+
+# set dependencies source
+gulp dependencies --silent
 
 # set Bootstrap/Bootswatch theme
 gulp bootstrap --silent

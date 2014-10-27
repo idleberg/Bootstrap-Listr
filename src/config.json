@@ -1,7 +1,7 @@
 {
   "general": {
     "root_dir":         "./_public/",
-    "dependencies":     "local",
+    "dependencies":     "cdn",
     "locale":           "en_US",
     "text_direction":   "ltr",
     "enable_sort":      true,
