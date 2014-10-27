@@ -93,12 +93,6 @@ gulp.task('upgrade', function() {
     .pipe(gulp.dest('app/'));
 
   gulp.src([
-      'src/root.htaccess'
-    ])
-    .pipe(concat('.htaccess-example'))
-    .pipe(gulp.dest('app/'));
-
-  gulp.src([
       'src/locale/**/*'
     ])
     .pipe(gulp.dest('app/locale/'));
