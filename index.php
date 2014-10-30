@@ -17,6 +17,9 @@ error_reporting(E_ERROR);
 
 /*** SETTINGS ***/
 
+// Set Bootstrap version
+define('BOOTSTRAP_VERSION', '3.3.0');
+
 /* Table Styles (can be combined, e.g. 'table-hover table-striped')
  *     'table-hover' - enable a hover state on table rows (default)
  *   'table-striped' - add zebra-striping 
@@ -98,7 +101,7 @@ define('FONTAWESOME_STYLE','fa-fw');
      define('CUSTOM_THEME', null);
     define('GOOGLE_FONT', null); // e.g. 'Open+Sans' or 'Open+Sans:400,300',700'
          define('JQUERY', '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
-    define('BOOTSTRAPJS', '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js');
+    define('BOOTSTRAPJS', '//maxcdn.bootstrapcdn.com/bootstrap/'.BOOTSTRAP_VERSION.'/js/bootstrap.min.js');
     define('STUPIDTABLE', '//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.js');
     define('JQ_SEARCHER', '//cdnjs.cloudflare.com/ajax/libs/jquery-searcher/0.2.0/jquery.searcher.min.js');
 
@@ -257,17 +260,17 @@ if (ENABLE_VIEWER) {
 if (CUSTOM_THEME) {
     $bootstrap_cdn = CUSTOM_THEME;
 } else {
-    $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/';
+    $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/'.BOOTSTRAP_VERSION.'/';
     $cdn_post = '/bootstrap.min.css';
     $bootswatch = array('amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti');
     $m8tro = array('m8tro-aqua','m8tro-blue','m8tro-brown','m8tro-green','m8tro-orange','m8tro-purple','m8tro-red','m8tro-yellow');
 
     if (in_array(BOOTSTRAP_THEME, $bootswatch)) {
-        $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/'.BOOTSTRAP_THEME.'/bootstrap.min.css';
+        $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootswatch/'.BOOTSTRAP_VERSION.'/'.BOOTSTRAP_THEME.'/bootstrap.min.css';
     } else if (in_array(BOOTSTRAP_THEME, $m8tro)) {
         $bootstrap_cdn = '//idleberg.github.io/m8tro-listr/'.BOOTSTRAP_THEME.'.min.css';
     } else {
-        $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css';
+        $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootstrap/'.BOOTSTRAP_VERSION.'/css/bootstrap.min.css';
     }
 }
 
