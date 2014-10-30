@@ -60,8 +60,7 @@ define('DOC_ICONS', 'glyphicons');
 
 /* Bootstrap Themes:
  *    'default' - http://getbootstrap.com
- * 
- *     'amelia' - http://bootswatch.com/amelia/
+ *
  *   'cerulean' - http://bootswatch.com/cerulean/
  *      'cosmo' - http://bootswatch.com/cosmo/
  *     'cyborg' - http://bootswatch.com/cyborg/
@@ -262,7 +261,7 @@ if (CUSTOM_THEME) {
 } else {
     $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/'.BOOTSTRAP_VERSION.'/';
     $cdn_post = '/bootstrap.min.css';
-    $bootswatch = array('amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti');
+    $bootswatch = array('cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti');
     $m8tro = array('m8tro-aqua','m8tro-blue','m8tro-brown','m8tro-green','m8tro-orange','m8tro-purple','m8tro-red','m8tro-yellow');
 
     if (in_array(BOOTSTRAP_THEME, $bootswatch)) {
