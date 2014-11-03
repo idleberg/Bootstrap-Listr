@@ -299,11 +299,10 @@ if ($handle = opendir('.'))
             $item['lbname']        =     strtolower($info['basename']);
             if (isset($info['extension'])) {
                 $item['ext']       =     $info['extension'];
-                $item['lext']      =     strtolower($info['extension']);
             } else {
                 $item['ext']  = '.';
-                $item['lext'] = '.';
             }
+            $item['lext']      =     strtolower($info['extension']);
 
             if (DOC_ICONS == 'fontawesome') {
                 $folder_icon = 'fa fa-folder ' . FONTAWESOME_STYLE;
