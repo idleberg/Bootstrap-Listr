@@ -206,7 +206,8 @@ if ($handle = opendir($navigation_dir))
                 $item['ext']           =     $info['extension'];
                 $item['lext']          =     strtolower($info['extension']);
             } else {
-                $item['ext'] = '.';
+                $item['ext']  = '.';
+                $item['lext'] = '.';
             }
 
             if ($options['bootstrap']['icons'] == 'fontawesome') {
