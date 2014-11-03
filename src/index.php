@@ -201,14 +201,13 @@ if ($handle = opendir($navigation_dir))
             $item['lname']         =     strtolower($info['filename']);
             $item['bname']         =     $info['basename'];
             $item['lbname']        =     strtolower($info['basename']);
-            
+
             if (isset($info['extension'])) {
-                $item['ext']           =     $info['extension'];
-                $item['lext']          =     strtolower($info['extension']);
+                $item['ext'] = $info['extension'];
             } else {
-                $item['ext']  = '.';
-                $item['lext'] = '.';
+                $item['ext'] = '.';
             }
+            $item['lext'] = strtolower($info['extension']);
 
             if ($options['bootstrap']['icons'] == 'fontawesome') {
                 $folder_icon = 'fa fa-folder ' . $options['bootstrap']['fontawesome_style'];
