@@ -301,7 +301,8 @@ if ($handle = opendir('.'))
                 $item['ext']       =     $info['extension'];
                 $item['lext']      =     strtolower($info['extension']);
             } else {
-                if(!isset($info['extension'])) $item['ext'] = '.';
+                $item['ext']  = '.';
+                $item['lext'] = '.';
             }
 
             if (DOC_ICONS == 'fontawesome') {
