@@ -16,9 +16,9 @@ error_reporting(E_ERROR);
 
 // require_once('listr-config.php');
 $file    = "config.json";
-$options    = json_decode(file_get_contents($file), true);
+$options = json_decode(file_get_contents($file), true);
 
-if($options['general']['locale']) {
+if($options['general']['locale'] != null ) {
     require_once('listr-l10n.php');
 }
 require_once('listr-functions.php');
@@ -365,10 +365,9 @@ if ($total_files > 0){
     // $contained = sprintf(_('%1$s folders and %2$s files, %3$s %4$s in total'), $total_folders, $total_files, $total_size['num'], $total_size['str']);
 }
 
+// Merge local settings with global settings
 if(isset($loptions)) {
     $options = array_merge($options, $loptions);
-} else {
-
 }
 
 $header = set_header($bootstrap_cdn);
