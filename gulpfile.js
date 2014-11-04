@@ -22,6 +22,7 @@ gulp.task('travis', ['csslint', 'jshint']);
 // Task aliases
 gulp.task('bs',          ['bootstrap']);
 gulp.task('css',         ['csslint', 'cssmin']);
+gulp.task('debug',       ['bootlint']);
 gulp.task('fa',          ['icons']);
 gulp.task('fontawesome', ['icons']);
 gulp.task('deps',        ['dependencies']);
@@ -546,6 +547,27 @@ gulp.task('robots', function(){
     }));
 });
 
+/*
+ * BOOTLINT
+ *
+ * Include the Bootstrap linter
+ */
+gulp.task('bootlint', function(){
+
+  gulp
+    .src('node_modules/bootlint/dist/browser/bootlint.js')
+    .pipe(gulp.dest('app/assets/js/'))
+
+  gulp.src("app/config.json")
+    .pipe(jeditor({
+      'debug': {
+        'bootlint': true
+      }
+    }))
+    .pipe(gulp.dest("app/"));
+
+});
+
 gulp.task('help', function() {
 
   console.log('\n' + meta.name + ' v' + meta.version)
@@ -555,6 +577,7 @@ gulp.task('help', function() {
   console.log('       apache - append H5BP Apache Server Config to default .htaccess')
   console.log('    bootstrap - specify default Bootstrap theme')
   console.log('        clean - delete app-folder')
+  console.log('        debug - add Bootlint script')
   console.log(' dependencies - specifiy the source for all dependencies')
   console.log('  fontawesome - include Font Awesome icons')
   console.log('         hljs - include Highlight.js')

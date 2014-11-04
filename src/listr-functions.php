@@ -153,6 +153,15 @@ function set_footer(){
         $footer .= "  <script type=\"text/javascript\">var _gaq=_gaq||[];_gaq.push([\"_setAccount\",\"".$options['keys']['google_analytics']."\"]);_gaq.push([\"_trackPageview\"]);(function(){var ga=document.createElement(\"script\");ga.type=\"text/javascript\";ga.async=true;ga.src=(\"https:\"==document.location.protocol?\"https://ssl\":\"http://www\")+\".google-analytics.com/ga.js\";var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(ga,s)})();</script>" . PHP_EOL;
     }
 
+    if ($options['debug']['bootlint'] == true) {
+        if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['bootlint']) ){
+            $bootlint = $options['assets']['bootlint'];
+        } else {
+            $bootlint = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/bootlint.js";
+        }
+        $footer .= "  <script type=\"text/javascript\" src=\"$bootlint\"></script>" . PHP_EOL;
+    }
+
     return $footer;
 }
 
