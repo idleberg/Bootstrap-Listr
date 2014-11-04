@@ -24,6 +24,7 @@
     "searcher":        null,
     "highlight_js":    "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js",
     "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css",
+    "bootlint":        "//maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js",
     "custom_theme":    null,
     "append_css":      [
       null
@@ -89,5 +90,8 @@
     "ehthumbs.db",
     "robots.txt",
     "Thumbs.db"
-  ]
+  ],
+  "debug": {
+    "bootlint": false
+  }
 }
