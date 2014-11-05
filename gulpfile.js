@@ -172,7 +172,9 @@ gulp.task('uglify', function() {
 });
 
 /*
- * MERGE ASSETS
+ * DEPENDENCIES
+ *
+ * Specify how to load dependencies
  */
 gulp.task('dependencies', function() {
   gulp.src([
@@ -314,6 +316,36 @@ gulp.task('bootstrap', function(){
   ])
   .pipe(gulp.dest('app/assets/fonts/'));
   
+});
+
+/*
+ * STUPIDTABLE SETUP
+ *
+ * Copy dependencies for the Stupid Table table sorter
+ */
+gulp.task('sort', function(){
+
+  gulp.src('.')
+
+    .pipe(prompt.prompt({
+        type: 'input',
+        name: 'stupidtable',
+        message: 'Do you want to enable table sorting?',
+        default: 'y'
+    }, function(res){
+        if(res.stupidtable === 'y') {
+            download('http://cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js')
+            .pipe(gulp.dest('app/assets/js/'))
+
+            gulp.src("app/config.json")
+            .pipe(jeditor({
+              'general': {
+                'enable_sort': true
+              }
+            }))
+            .pipe(gulp.dest("app/"));
+        }
+    }));
 });
 
 /*

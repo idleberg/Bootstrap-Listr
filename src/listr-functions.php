@@ -116,8 +116,12 @@ function set_footer(){
         $footer    .= "  <script type=\"text/javascript\" src=\"$packed_js\"></script>" . PHP_EOL;
     } else {
 
-        if (($options['general']['enable_sort']) && ($options['assets']['stupid_table'])) {
-            $footer .= "  <script type=\"text/javascript\" src=\"".$options['assets']['stupid_table']."\"></script>" . PHP_EOL;
+        if($options['general']['enable_sort'] == true) {
+             if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['stupid_table']) ) {
+                $footer .= "  <script type=\"text/javascript\" src=\"".$options['assets']['stupid_table']."\"></script>" . PHP_EOL;
+            } else {
+                $footer .= "  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/stupidtable.min.js\"></script>" . PHP_EOL;
+            }
         }
 
         if ($options['general']['enable_search'] == true) {
