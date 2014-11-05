@@ -619,6 +619,7 @@ gulp.task('help', function() {
   console.log('        merge - merge all CSS and JavaScript files')
   console.log('        reset - reset config.json to default')
   console.log('       search - include scripts for Search Box')
+  console.log('         sort - include script for table sorting')
   console.log('        theme - specify default Highlighter.js style-sheet')
   console.log('      upgrade - upgrade all PHP files in app-folder')
   console.log('       viewer - include scripts for Viewer modal')
