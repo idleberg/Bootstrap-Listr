@@ -1,6 +1,6 @@
 var meta = require('./package.json');
 
-var del     = require('del');
+var del       = require('del');
 var concat    = require('gulp-concat');
 var csslint   = require('gulp-csslint');
 var cssmin    = require('gulp-cssmin');
@@ -23,6 +23,7 @@ gulp.task('travis', ['csslint', 'jshint']);
 gulp.task('bs',          ['bootstrap']);
 gulp.task('css',         ['csslint', 'cssmin']);
 gulp.task('debug',       ['bootlint']);
+gulp.task('default',     ['help']);
 gulp.task('fa',          ['icons']);
 gulp.task('fontawesome', ['icons']);
 gulp.task('deps',        ['dependencies']);
@@ -624,6 +625,6 @@ gulp.task('help', function() {
   console.log('      upgrade - upgrade all PHP files in app-folder')
   console.log('       viewer - include scripts for Viewer modal')
   console.log('\nFor further details visit the GitHub repository:')
-  console.log('https://github.com/idleberg/Bootstrap-Listr\n')
+  console.log(meta.homepage)
 
 } )
