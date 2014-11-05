@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.3.2
+VERSION=0.3.3
 set -e
 
 # Functions
@@ -42,6 +42,9 @@ gulp dependencies --silent
 
 # set Bootstrap/Bootswatch theme
 gulp bootstrap --silent
+
+# include Stupid Table dependencies
+gulp sort --silent
 
 # include Viewer dependencies
 gulp viewer --silent
