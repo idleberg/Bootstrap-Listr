@@ -5,7 +5,7 @@
   "homepage": "https://github.com/idleberg/Bootstrap-Listr",
   "devDependencies": {
     "apache-server-configs": "^2.11.0",
-    "bootlint":              "^0.7.0",
+    "bootlint":              "^0.8.0",
     "bootstrap":             "^3.2.0",
     "bootswatch":            "^3.2.0",
     "del":                   "~0.1.3",
