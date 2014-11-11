@@ -89,7 +89,8 @@
     "__MACOSX",
     "ehthumbs.db",
     "robots.txt",
-    "Thumbs.db"
+    "Thumbs.db",
+    "thumbs.tps"
   ],
   "debug": {
     "bootlint": false
