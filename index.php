@@ -162,7 +162,8 @@ $ignore_list = array(
     '__MACOSX',
     'ehthumbs.db',
     'robots.txt',
-    'Thumbs.db'
+    'Thumbs.db',
+    'thumbs.tps'
 );
 
 // Hide file extension?
