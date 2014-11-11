@@ -1,6 +1,6 @@
 # Bootstrap Listr
 
-A simple PHP script to display folders and files on a server in a well formed list, making use of the [Bootstrap 3.2](http://getbootstrap.com) framework.
+A simple PHP script to display folders and files on a server in a well formed list, making use of the [Bootstrap](http://getbootstrap.com) framework.
 
 *Watch a [live demo](http://demo.idleberg.com/Bootstrap-Listr)!*
 
