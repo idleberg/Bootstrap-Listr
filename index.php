@@ -18,7 +18,7 @@ error_reporting(E_ERROR);
 /*** SETTINGS ***/
 
 // Set Bootstrap version
-define('BOOTSTRAP_VERSION', '3.3.0');
+define('BOOTSTRAP_VERSION', '3.3.1');
 
 /* Table Styles (can be combined, e.g. 'table-hover table-striped')
  *     'table-hover' - enable a hover state on table rows (default)
