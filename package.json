@@ -6,8 +6,8 @@
   "devDependencies": {
     "apache-server-configs": "^2.11.0",
     "bootlint":              "^0.8.0",
-    "bootstrap":             "^3.2.0",
-    "bootswatch":            "^3.2.0",
+    "bootstrap":             "^3.3.1",
+    "bootswatch":            "^3.3.0",
     "del":                   "~0.1.3",
     "font-awesome":          "^4.2.0",
     "gulp":                  "^3.8.9",
