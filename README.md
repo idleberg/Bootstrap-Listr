@@ -20,26 +20,28 @@ If you're already overwhelmed by the idea of having to build stuff, or simply wo
 
 [Gulp](http://gulpjs.com/) tasks are used to configure and build your app. You can install Gulp globally using `npm install gulp -g`. For your convenience, `setup.sh` is provided to run all setup tasks. Alternatively, you can run Gulp tasks manually:
 
-    # create and populate app-folder
-    gulp init
+```bash
+# create and populate app-folder
+gulp init
 
-    # choose default theme (optional)
-    gulp bootstrap
+# choose default theme (optional)
+gulp bootstrap
 
-    # enable the Viewer modal (optional)
-    gulp viewer
+# enable the Viewer modal (optional)
+gulp viewer
 
-    # enable the Search Box (optional)
-    gulp search
+# enable the Search Box (optional)
+gulp search
 
-    # enable Font Awesome icons (optional)
-    gulp icons
+# enable Font Awesome icons (optional)
+gulp icons
 
-    # enable syntax highlighting (optional)
-    gulp highlighter
+# enable syntax highlighting (optional)
+gulp highlighter
 
-    # minify CSS, uglify JS
-    gulp make
+# minify CSS, uglify JS
+gulp make
+```
 
 For a full list of available commands, type `gulp help`.
 
