@@ -43,12 +43,12 @@
             </div>
 <?php } ?>
             <div class="pull-<?php echo $right?>">
-              <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _('Close')?></button>
+              <button type="button" class="btn <?php echo $options['bootstrap']['button-default'] ?>" data-dismiss="modal"><?php echo _('Close')?></button>
 <?php if ($options['general']['share_button']) { ?>
               <div class="btn-group">
-                <a class="btn btn-primary fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>" role="button">
+                <a class="btn <?php echo  $options['bootstrap']['button-primary'] ?> fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>" role="button">
                 </a>
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn <?php echo $options['bootstrap']['button-primary'] ?> dropdown-toggle" data-toggle="dropdown">
                   <span class="caret"></span>
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
@@ -65,7 +65,7 @@
               </div>
             </div>
 <?php } else { ?>
-            <a class="btn btn-primary fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>" role="button"></a>
+            <a class="btn <?php echo $options['bootstrap']['button-primary'] ?> fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>" role="button"></a>
 <?php } ?>
           </div>
         </div>
