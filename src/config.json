@@ -54,6 +54,8 @@
     "table_style":       "table-hover",
     "responsive_table":  true,
     "modal_size":        "modal-lg",
+    "button-primary":    "btn-primary",
+    "button-default":    "btn-default",
     "theme":             "default",
     "icons":             "glyphicons",
     "fontawesome_style": "fa-fw"
