@@ -41,6 +41,10 @@ gulp.task('update',      ['upgrade']);
  */
 gulp.task('init', function() {
 
+  del([
+    'app/assets'
+  ])
+
   gulp.src([
       'src/index.php',
       'src/listr-functions.php',
@@ -79,7 +83,6 @@ gulp.task('init', function() {
  * Upgrade files in app/. Does not touch config.json and .htaccess files!
  */
 gulp.task('upgrade', function() {
-
 
   del([
     'app/assets/css/listr.pack.css',
