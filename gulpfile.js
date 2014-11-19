@@ -8,6 +8,8 @@ var download  = require('gulp-download');
 var gulp      = require('gulp');
 var jshint    = require('gulp-jshint');
 var jeditor   = require('gulp-json-editor');
+var less      = require('gulp-less');
+var path      = require('path');
 var phplint   = require('phplint');
 var prompt    = require('gulp-prompt');
 var uglify    = require('gulp-uglify');
@@ -288,21 +290,60 @@ gulp.task('bootstrap', function(){
         }
     }, function(res){
 
+        bootstrap_less = [
+          'node_modules/bootstrap/less/variables.less',
+          'node_modules/bootstrap/less/mixins.less',
+          'node_modules/bootstrap/less/normalize.less',
+          'node_modules/bootstrap/less/glyphicons.less',
+          'node_modules/bootstrap/less/scaffolding.less',
+          'node_modules/bootstrap/less/type.less',
+          'node_modules/bootstrap/less/code.less',
+          'node_modules/bootstrap/less/grid.less',
+          'node_modules/bootstrap/less/tables.less',
+          'node_modules/bootstrap/less/buttons.less',
+          'node_modules/bootstrap/less/component-animations.less',
+          'node_modules/bootstrap/less/dropdowns.less',
+          'node_modules/bootstrap/less/button-groups.less',
+          'node_modules/bootstrap/less/responsive-embed.less',
+          'node_modules/bootstrap/less/close.less',
+          'node_modules/bootstrap/less/modals.less',
+          'node_modules/bootstrap/less/utilities.less',
+          'node_modules/bootstrap/less/responsive-utilities.less'
+        ]
+
         if(res.bootstrap === 'default') {
-            gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
+            gulp.src(bootstrap_less)
+            .pipe(concat('bootstrap.less'))
+            .pipe(less({
+              paths: [ path.join(__dirname, 'less', 'includes') ]
+            }))
             .pipe(concat('bootstrap.min.css'))
+            .pipe(cssmin())
             .pipe(gulp.dest('app/assets/css/'))
+            
             gulp.src("app/config.json")
-              .pipe(jeditor({
-                'bootstrap': {
-                  'theme': 'default'
-                }
-              }))
-              .pipe(gulp.dest("app/"));
+            .pipe(jeditor({
+              'bootstrap': {
+                'theme': 'default'
+              }
+            }))
+            .pipe(gulp.dest("app/"));
+
         } else if (bootswatch.indexOf(res.bootstrap) != -1 ) {
-            gulp.src('node_modules/bootswatch/' + res.bootstrap + '/bootstrap.min.css')
+            gulp.src(
+              bootstrap_less,
+              [
+                'node_modules/bootswatch/' + res.bootstrap + '/variables.less',
+                'node_modules/bootswatch/' + res.bootstrap + '/bootswatch.less'
+              ]
+            )
+            .pipe(concat('bootstrap.less'))
+            .pipe(less({
+              paths: [ path.join(__dirname, 'less', 'includes') ]
+            }))
             .pipe(concat('bootstrap.min.css'))
-            .pipe(gulp.dest('app/assets/css/')),
+            .pipe(cssmin())
+            .pipe(gulp.dest('app/assets/css/'))
 
             gulp.src("app/config.json")
             .pipe(jeditor({
@@ -316,7 +357,6 @@ gulp.task('bootstrap', function(){
 
   gulp.src([
   'node_modules/bootstrap/fonts/*'
-
   ])
   .pipe(gulp.dest('app/assets/fonts/'));
   
