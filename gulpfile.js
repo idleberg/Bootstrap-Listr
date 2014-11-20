@@ -331,7 +331,6 @@ gulp.task('bootstrap', function(){
             .pipe(gulp.dest("app/"));
 
         } else if (bootswatch.indexOf(res.bootstrap) != -1 ) {
-          console.log('node_modules/bootswatch/' + res.bootstrap + '/variables.less')
             bootstrap_less.push('node_modules/bootswatch/' + res.bootstrap + '/variables.less')
             bootstrap_less.push('node_modules/bootswatch/' + res.bootstrap + '/bootswatch.less')
             
