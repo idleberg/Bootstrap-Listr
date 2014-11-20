@@ -11,8 +11,7 @@ var jeditor   = require('gulp-json-editor');
 var less      = require('gulp-less');
 var path      = require('path');
 var phplint   = require('phplint');
-var prompt    = require('gulp-prompt');
-var uglify    = require('gulp-uglify');
+var prompt    = require('gulp-prompt');var uglify    = require('gulp-uglify');
 
 /*
  * Task combos
@@ -301,9 +300,11 @@ gulp.task('bootstrap', function(){
           'node_modules/bootstrap/less/grid.less',
           'node_modules/bootstrap/less/tables.less',
           'node_modules/bootstrap/less/buttons.less',
+          'node_modules/bootstrap/less/forms.less',
           'node_modules/bootstrap/less/component-animations.less',
           'node_modules/bootstrap/less/dropdowns.less',
           'node_modules/bootstrap/less/button-groups.less',
+          'node_modules/bootstrap/less/breadcrumbs.less',
           'node_modules/bootstrap/less/responsive-embed.less',
           'node_modules/bootstrap/less/close.less',
           'node_modules/bootstrap/less/modals.less',
@@ -409,11 +410,20 @@ gulp.task('viewer', function(){
     }, function(res){
         if(res.viewer === 'y') {
             gulp.src([
-              'node_modules/bootstrap/dist/js/bootstrap.min.js',
-              'node_modules/jquery/dist/jquery.min.js',
-              'node_modules/jquery/dist/jquery.min.map'
+              'node_modules/bootstrap/js/transition.js',
+              'node_modules/bootstrap/js/dropdown.js',
+              'node_modules/bootstrap/js/modal.js'
             ])
+            .pipe(concat('bootstrap.min.js'))
+            .pipe(uglify())
             .pipe(gulp.dest('app/assets/js/'));
+
+            // gulp.src([
+            //   // 'node_modules/bootstrap/dist/js/bootstrap.min.js',
+            //   'node_modules/jquery/dist/jquery.min.js',
+            //   'node_modules/jquery/dist/jquery.min.map'
+            // ])
+            // .pipe(gulp.dest('app/assets/js/'));
 
             gulp.src("app/config.json")
             .pipe(jeditor({
