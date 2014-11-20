@@ -54,6 +54,35 @@ To load images, videos and audio into a [Bootstrap Modal](http://getbootstrap.co
 
 For your convenience, CDNs for Bootstrap and JQuery. Should you have reasons against this, you can change the default locations in the script header.
 
+Should you prefer to deploy [your own](http://getbootstrap.com/customize) Bootstrap files, you can reduce their size by using the following `config.json`:
+
+```json
+{
+  "css": [
+    "type.less",
+    "code.less",
+    "grid.less",
+    "tables.less",
+    "forms.less",
+    "buttons.less",
+    "responsive-utilities.less",
+    "glyphicons.less",
+    "button-groups.less",
+    "breadcrumbs.less",
+    "responsive-embed.less",
+    "close.less",
+    "component-animations.less",
+    "dropdowns.less",
+    "modals.less"
+  ],
+  "js": [
+    "dropdown.js",
+    "modal.js",
+    "transition.js"
+  ]
+}
+```
+
 ## Credits
 
 This project is built upon—or includes—code from the following people:
