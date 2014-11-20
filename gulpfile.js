@@ -331,13 +331,10 @@ gulp.task('bootstrap', function(){
             .pipe(gulp.dest("app/"));
 
         } else if (bootswatch.indexOf(res.bootstrap) != -1 ) {
-            gulp.src(
-              bootstrap_less,
-              [
-                'node_modules/bootswatch/' + res.bootstrap + '/variables.less',
-                'node_modules/bootswatch/' + res.bootstrap + '/bootswatch.less'
-              ]
-            )
+            bootstrap_less.push('node_modules/bootswatch/' + res.bootstrap + '/variables.less')
+            bootstrap_less.push('node_modules/bootswatch/' + res.bootstrap + '/bootswatch.less')
+            
+            gulp.src(bootstrap_less)
             .pipe(concat('bootstrap.less'))
             .pipe(less({
               paths: [ path.join(__dirname, 'less', 'includes') ]
