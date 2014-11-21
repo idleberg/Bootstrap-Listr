@@ -11,7 +11,8 @@ var jeditor   = require('gulp-json-editor');
 var less      = require('gulp-less');
 var path      = require('path');
 var phplint   = require('phplint');
-var prompt    = require('gulp-prompt');var uglify    = require('gulp-uglify');
+var prompt    = require('gulp-prompt');
+var uglify    = require('gulp-uglify');
 
 /*
  * Task combos
