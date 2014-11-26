@@ -17,7 +17,7 @@
         <tfoot>
           <tr>
             <td colspan="<?php echo $table_count+1?>">
-              <small class="pull-<?php echo $left?> text-muted" dir="ltr"><?php echo $contained?></small>
+              <small class="pull-<?php echo $left?> text-muted" dir="ltr"><?php echo $summary?></small>
               <?php echo $kudos?>
             </td>
           </tr>
