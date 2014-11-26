@@ -338,31 +338,23 @@ if($file_list && $folder_list || $file_list)
 $total_folders = count($folder_list);
 $total_files = count($file_list);
 
-$contained = "";
-if ($total_folders > 0){
-    if ($total_folders > 1){
-        $funit = 'folders';
-    }else{
-        $funit = 'folder';
-    }
-    $contained = $total_folders.' '.$funit;
-}
-if ($total_files > 0){
-    if($total_files > 1){
-        $iunit = 'files';
-    }else{
-        $iunit = 'file';
-    }
-    if ($total_folders > 0){
-        $contained .= ' and ';
-    }
-    if (isset($contained)){
-        $contained .= $total_files.' '.$iunit;
-    }else{
-        $contained = $total_files.' '.$iunit;   
-    }
-    $contained .= ", ". sprintf(_('%1$s %2$s in total'), $total_size['num'], $total_size['str']);
-    // $contained = sprintf(_('%1$s folders and %2$s files, %3$s %4$s in total'), $total_folders, $total_files, $total_size['num'], $total_size['str']);
+// Localized summary, hopefully not overly complicated
+if ( ($total_folders == 1) && ($total_files == 0) ) {
+    $summary = sprintf(_('%1$s folder'), $total_folders);
+} else if ( ($total_folders > 1) && ($total_files == 0) ) {
+    $summary = sprintf(_('%1$s folders'), $total_folders);
+} else if ( ($total_folders == 0) && ($total_files == 1) ) {
+    $summary = sprintf(_('%1$s file, %2$s %3$s in total'), $total_files, $total_size['num'], $total_size['str']);
+} else if ( ($total_folders == 0) && ($total_files > 1) ) {
+    $summary = sprintf(_('%1$s files, %2$s %3$s in total'), $total_files, $total_size['num'], $total_size['str']);
+} else if ( ($total_folders == 1) && ($total_files == 1) ) {
+    $summary = sprintf(_('%1$s folder and %2$s file, %3$s %4$s in total'), $total_folders, $total_files, $total_size['num'], $total_size['str']);
+} else if ( ($total_folders == 1) && ($total_files >1) ) {
+    $summary = sprintf(_('%1$s folder and %2$s files, %3$s %4$s in total'), $total_folders, $total_files, $total_size['num'], $total_size['str']);
+} else if ( ($total_folders > 1) && ($total_files == 1) ) {
+    $summary = sprintf(_('%1$s folders and %2$s file, %3$s %4$s in total'), $total_folders, $total_files, $total_size['num'], $total_size['str']);
+} else if ( ($total_folders > 1) && ($total_files > 1) ) {
+    $summary = sprintf(_('%1$s folders and %2$s files, %3$s %4$s in total'), $total_folders, $total_files, $total_size['num'], $total_size['str']);
 }
 
 // Merge local settings with global settings
@@ -409,7 +401,6 @@ if ($options['bootstrap']['fluid_grid'] == true) {
     $container = "container-fluid";
 } else {
     $container = "container";
-
 }
 
 // Set responsiveness
