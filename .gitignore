@@ -4,5 +4,4 @@ bower_components/
 generators/
 node_modules/
 npm-debug.log
-src/locale
 todo.md
