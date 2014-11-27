@@ -5,10 +5,10 @@ function set_bootstrap_theme() {
 
     global $options;
     
-    $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/';
-    $cdn_post = '/bootstrap.min.css';
+    $cdn_pre    = '//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/';
+    $cdn_post   = '/bootstrap.min.css';
     $bootswatch = array('amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti');
-    $m8tro = array('m8tro-aqua','m8tro-blue','m8tro-brown','m8tro-green','m8tro-orange','m8tro-purple','m8tro-red','m8tro-yellow');
+    $m8tro      = array('m8tro-aqua','m8tro-blue','m8tro-brown','m8tro-green','m8tro-orange','m8tro-purple','m8tro-red','m8tro-yellow');
 
     if (in_array($options['bootstrap']['theme'], $bootswatch)) {
         return '//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/'.$options['bootstrap']['theme'].'/bootstrap.min.css';
