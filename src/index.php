@@ -176,6 +176,25 @@ if ($options['general']['text_direction'] == 'rtl') {
 
 $bootstrap_cdn = set_bootstrap_theme();
 
+// Set Bootstrap defaults
+if (isset($options['bootstrap']['modal_size'])) {
+    $modal_size = $options['bootstrap']['modal_size'];
+} else {
+    $modal_size = 'modal-lg';
+}
+
+if (isset($options['bootstrap']['button-default'])) {
+    $btn_default = $options['bootstrap']['button-default'];
+} else {
+    $btn_default = 'btn-default';
+}
+
+if (isset($options['bootstrap']['button-primary'])) {
+    $btn_primary = $options['bootstrap']['button-primary'];
+} else {
+    $btn_primary = 'btn-primary';
+}
+
 // Count optional columns
 $table_count = 0;
 foreach($table_options as $value)
