@@ -17,7 +17,7 @@
         <tfoot>
           <tr>
             <td colspan="<?php echo $table_count+1?>">
-              <small class="pull-<?php echo $left?> text-muted" dir="ltr"><?php echo $summary?></small>
+              <small class="pull-<?php echo $left?> text-muted" dir="ltr"><?php echo $summary ?></small>
               <?php echo $kudos?>
             </td>
           </tr>
@@ -29,7 +29,7 @@
 <?php echo $responsive_close?>
 <?php if ($options['general']['enable_viewer']) { ?>
     <div class="modal fade" id="viewer-modal" tabindex="-1" role="dialog" aria-labelledby="file-name" aria-hidden="true">
-      <div class="modal-dialog <?php echo $options['bootstrap']['modal_size']?>">
+      <div class="modal-dialog <?php echo $modal_size ?>">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close pull-<?php echo $right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -39,16 +39,16 @@
           <div class="modal-footer">
 <?php if (($options['assets']['highlight_js']) && ($options['assets']['highlight_css'])) { ?>
             <div class="pull-<?php echo $left?>">
-              <button type="button" class="btn btn-link highlight hidden"><?php echo _('Apply syntax highlighting')?></button>
+              <button type="button" class="btn btn-link highlight hidden"><?php echo _('Apply code highlighting')?></button>
             </div>
 <?php } ?>
             <div class="pull-<?php echo $right?>">
-              <button type="button" class="btn <?php echo $options['bootstrap']['button-default'] ?>" data-dismiss="modal"><?php echo _('Close')?></button>
+              <button type="button" class="btn <?php echo $btn_default ?>" data-dismiss="modal"><?php echo _('Close')?></button>
 <?php if ($options['general']['share_button']) { ?>
               <div class="btn-group">
-                <a class="btn <?php echo  $options['bootstrap']['button-primary'] ?> fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>" role="button">
+                <a class="btn <?php echo $btn_primary ?> fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>" role="button">
                 </a>
-                <button type="button" class="btn <?php echo $options['bootstrap']['button-primary'] ?> dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn <?php echo $btn_primary ?> dropdown-toggle" data-toggle="dropdown">
                   <span class="caret"></span>
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
@@ -65,7 +65,7 @@
               </div>
             </div>
 <?php } else { ?>
-            <a class="btn <?php echo $options['bootstrap']['button-primary'] ?> fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>" role="button"></a>
+            <a class="btn <?php echo $btn_primary ?> fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>" role="button"></a>
 <?php } ?>
           </div>
         </div>
