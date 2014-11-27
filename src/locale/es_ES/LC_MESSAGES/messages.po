@@ -113,16 +113,16 @@ msgstr "vaciar carpeta"
 
 # summary
 msgid "%1$s folder and %2$s file, %3$s %4$s in total"
-msgstr "%1$s carpeta con %2$s archivo, %3$s %4$s en total"
+msgstr "%1$s carpeta y %2$s archivo, %3$s %4$s en total"
 
 msgid "%1$s folder and %2$s files, %3$s %4$s in total"
-msgstr "%1$s carpeta con %2$s archivos, %3$s %4$s en total"
+msgstr "%1$s carpeta y %2$s archivos, %3$s %4$s en total"
 
 msgid "%1$s folders and %2$s file, %3$s %4$s in total"
-msgstr "%1$s carpetas con %2$s archivo, %3$s %4$s en total"
+msgstr "%1$s carpetas y %2$s archivo, %3$s %4$s en total"
 
 msgid "%1$s folders and %2$s files, %3$s %4$s in total"
-msgstr "%1$s carpetas con %2$s archivos, %3$s %4$s en total"
+msgstr "%1$s carpetas y %2$s archivos, %3$s %4$s en total"
 
 msgid "%1$s folder"
 msgstr "%1$s carpeta"
@@ -156,4 +156,4 @@ msgstr "Enregistrer sur Dropbox"
 
 # GITHUB
 msgid "Fork me on GitHub"
-msgstr "Listr en GitHub"
+msgstr "Encontrame en GitHub"
