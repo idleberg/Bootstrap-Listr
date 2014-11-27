@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Bootstrap Listr 2.0\n"
-"Last Translator: Gengo.com/Translator #6377, Stefane Rakita\n"
+"Last Translator: Gengo.com/Translator #6377\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
