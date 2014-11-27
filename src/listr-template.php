@@ -63,10 +63,10 @@
                   <li role="presentation"><a role="menuitem" class="twitter-link">Twitter</a></li>
                 </ul>
               </div>
-            </div>
 <?php } else { ?>
             <a class="btn <?php echo $btn_primary ?> fullview" data-view="<?php echo _('View')?>" data-listen="<?php echo _('Listen')?>" role="button"></a>
 <?php } ?>
+            </div>
           </div>
         </div>
       </div>
