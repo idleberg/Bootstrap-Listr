@@ -69,6 +69,7 @@ You can configure a number of settings in the file `config.json`:
 * Save to Dropbox
 * Share buttons
 * Google Analytics
+* Language
 
 ### Font Awesome
 
@@ -89,6 +90,10 @@ To filter files and folders displayed in the table, set `enable_search` to `true
 ### Syntax Highlighter
 
 Source code in the viewer modal can be highlighted using [highlight.js](http://highlightjs.org/). Due to performance concerns when applied on huge files, the highlighter will only apply once the button at the bottom of the viewer modal is pressed.
+
+### Language
+
+Several languages are supported as of alpha 4, you can specify your preferred language in `config.json`. Currently supported are French (`fr_FR`), German (`de_DE`), Portuguese (`pt_PT`) and Spanish (`es_ES`).
 
 ## Contribute
 
