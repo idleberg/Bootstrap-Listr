@@ -24,7 +24,7 @@ gulp.task('travis', ['csslint', 'jshint']);
 // Task aliases
 gulp.task('bs',          ['bootstrap']);
 gulp.task('css',         ['csslint', 'cssmin']);
-gulp.task('debug',       ['bootlint']);
+gulp.task('debug',       ['bootlint','jquery']);
 gulp.task('default',     ['help']);
 gulp.task('fa',          ['icons']);
 gulp.task('fontawesome', ['icons']);
@@ -416,13 +416,6 @@ gulp.task('viewer', function(){
             .pipe(uglify())
             .pipe(gulp.dest('app/assets/js/'));
 
-            // gulp.src([
-            //   // 'node_modules/bootstrap/dist/js/bootstrap.min.js',
-            //   'node_modules/jquery/dist/jquery.min.js',
-            //   'node_modules/jquery/dist/jquery.min.map'
-            // ])
-            // .pipe(gulp.dest('app/assets/js/'));
-
             gulp.src("app/config.json")
             .pipe(jeditor({
               'general': {
@@ -452,9 +445,7 @@ gulp.task('search', function(){
         if(res.search === 'y') {
             gulp.src([
               'node_modules/jquery/dist/jquery.min.js',
-              'node_modules/jquery/dist/jquery.min.map',
               'node_modules/jquery-searcher/dist/jquery.searcher.min.js'
-
             ])
             .pipe(gulp.dest('app/assets/js/'))
 
@@ -632,6 +623,19 @@ gulp.task('robots', function(){
 });
 
 /*
+ * JQUERY SOURCE MAP
+ *
+ * Copy jQuery including source map
+ */
+gulp.task('jquery', function(){
+  gulp.src([
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/jquery/dist/jquery.min.map'
+  ])
+  .pipe(gulp.dest('app/assets/js/'))
+});
+
+/*
  * BOOTLINT
  *
  * Include the Bootstrap linter
@@ -661,7 +665,7 @@ gulp.task('help', function() {
   console.log('       apache - append H5BP Apache Server Config to default .htaccess')
   console.log('    bootstrap - specify default Bootstrap theme')
   console.log('        clean - delete app-folder')
-  console.log('        debug - add Bootlint script')
+  console.log('        debug - add Bootlint and jQuery source map')
   console.log(' dependencies - specifiy the source for all dependencies')
   console.log('  fontawesome - include Font Awesome icons')
   console.log('         hljs - include Highlight.js')
