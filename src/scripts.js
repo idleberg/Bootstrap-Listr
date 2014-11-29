@@ -88,7 +88,7 @@ $(function() {
         $(".highlight").addClass("hidden");
     });
 
-    if(jQuery().stupidtable) {
+    if(Dropbox) {
         $(".save-dropbox").click(function(c) {
             c.preventDefault();
             var b = $(this).get(0).href;
