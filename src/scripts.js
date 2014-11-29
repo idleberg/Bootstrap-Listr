@@ -1,4 +1,5 @@
 $(function() {
+    
     function set_modal(content, button, file, uri) {
         $(".modal-body").empty().append(content);
         $(".fullview").attr("href", file);
@@ -19,6 +20,7 @@ $(function() {
             btn  = $(".fullview").data("listen");
         set_modal('<audio src="' + file + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>', btn, file, uri);
     });
+
     $(".flash-modal").click(function(e) {
         e.preventDefault();
         var file = $(this).attr("href"),
@@ -26,6 +28,7 @@ $(function() {
             btn = $(".fullview").data("view");
         set_modal('<div class="viewer-wrapper"><object width="100%" height="100%" type="application/x-shockwave-flash" data="' + file + '"><param name="movie" value="' + file + '"><param name="quality" value="high"></object></div>', btn, file, uri);
     });
+
     $(".image-modal").click(function(e) {
         e.preventDefault();
         var file = $(this).attr("href"),
@@ -33,6 +36,7 @@ $(function() {
             btn = $(".fullview").data("view");
         set_modal('<img src="' + file + '"/>', btn, file, uri);
     });
+
     $(".video-modal").click(function(e) {
         e.preventDefault();
         var file = $(this).attr("href"),
@@ -40,6 +44,7 @@ $(function() {
             btn = $(".fullview").data("view");
         set_modal('<video src="' + file + '" id="player" autoplay controls>Video format or MIME type is not supported</video>', btn, file, uri);
     });
+
     $(".quicktime-modal").click(function(e) {
         e.preventDefault();
         var file = $(this).attr("href"),
@@ -47,6 +52,7 @@ $(function() {
             btn = $(".fullview").data("view");
         set_modal('<div class="viewer-wrapper"><embed width="100%" height="100%" src="' + file + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"></div>', btn, file, uri);
     });
+
     $(".source-modal").click(function(e) {
         e.preventDefault();
         $(".highlight").removeClass("hidden").removeAttr("disabled");
@@ -62,6 +68,7 @@ $(function() {
             }
         });
     });
+
     $(".highlight").click(function(c) {
         c.preventDefault();
         $(".highlight").attr("disabled", "disabled");
@@ -80,11 +87,15 @@ $(function() {
     $("#viewer-modal").on("hidden.bs.modal", function() {
         $(".highlight").addClass("hidden");
     });
-    $(".save-dropbox").click(function(c) {
-        c.preventDefault();
-        var b = $(this).get(0).href;
-        Dropbox.save(b);
-    });
+
+    if(Dropbox) {
+        $(".save-dropbox").click(function(c) {
+            c.preventDefault();
+            var b = $(this).get(0).href;
+            Dropbox.save(b);
+        });
+    }
+
     $('#search').keyup(function(e){
         if(e.keyCode == 27) {
             $(this).val('');
@@ -94,6 +105,7 @@ $(function() {
     if(jQuery().stupidtable) {
       $("#bs-table").stupidtable();
     }
+
     if(jQuery().searcher) {
       $("#bs-table").searcher({
         inputSelector: "#search"

@@ -111,6 +111,10 @@ function set_footer(){
         $footer .= "  <script type=\"text/javascript\" src=\"$jquery_js\"></script>" . PHP_EOL;
     }
 
+    if( ($options['general']['enable_viewer']) && ($options['general']['share_button']) && ($options['keys']['dropbox_app']) ){
+        $footer .= "  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"".$options['keys']['dropbox_app']."\"></script>" . PHP_EOL;
+    }
+
     if ($options['general']['dependencies'] == 'pack') {
         $packed_js  = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.pack.js";
         $footer    .= "  <script type=\"text/javascript\" src=\"$packed_js\"></script>" . PHP_EOL;
@@ -132,7 +136,7 @@ function set_footer(){
             $footer .= "  <script type=\"text/javascript\" src=\"$bootstrap_js\"></script>" . PHP_EOL;
             
             if( ($options['general']['share_button']) && ($options['keys']['dropbox_app']) ){
-                $footer .= "  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"nzeq1welehd2rug\"></script>" . PHP_EOL;
+                $footer .= "  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"".$options['keys']['dropbox_app']."\"></script>" . PHP_EOL;
             }
 
             if($options['general']['enable_highlight'] == true) {
