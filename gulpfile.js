@@ -516,7 +516,12 @@ gulp.task('hljs', function(){
         default: 'n'
     }, function(res){
         if(res.hljs === 'y') {
-            download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js')
+            // download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js')
+            // .pipe(gulp.dest('app/assets/js/'))
+            gulp.src([
+              'node_modules/highlightjs/highlight.pack.js'
+            ])
+            .pipe(concat('highlight.min.js'))
             .pipe(gulp.dest('app/assets/js/'))
 
             gulp.src("app/config.json")
@@ -556,9 +561,12 @@ gulp.task('hljs_theme', function(){
     }, function(res){
 
         if (hljs_theme.indexOf(res.highlighter) != -1) {
-          download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/' + res.highlighter + '.min.css')
-
+          // download('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/' + res.highlighter + '.min.css')
+          gulp.src([
+              'node_modules/highlightjs/styles/' + res.highlighter + '.css'
+          ])
           .pipe(concat('highlight.min.css'))
+          .pipe(cssmin())
           .pipe(gulp.dest('app/assets/css/'));
 
           gulp.src("app/config.json")
