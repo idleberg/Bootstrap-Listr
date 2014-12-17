@@ -27,7 +27,7 @@ Alternatively, you can run Gulp tasks manually:
 
 To change the default highlighter.js theme, you can run `gulp hljs`. Just make sure you haven't merged your assets prior to this. You can merge your assets afterwards using `gulp merge`.
 
-For your convenience, you can also run `setup.sh` to install all Node packages and the setup tasks.
+For your convenience, you can also run `tools/setup.sh` to install all Node packages and the setup tasks.
 
 ### CDN
 
