@@ -23,7 +23,7 @@ var concat   = require('gulp-concat'),
     jshint   = require('gulp-jshint'),
     less     = require('gulp-less'),
     path     = require('path'),
-    phplint  = require('phplint'),
+    phplint  = require('phplint').lint,
     prompt   = require('gulp-prompt'),
     sequence = require('run-sequence');
     uglify   = require('gulp-uglify'),
@@ -628,10 +628,14 @@ gulp.task('reset', function () {
 
 
 // Lint PHP files
-gulp.task('phplint', function () {
-  return phplint([
-        'src/*.php'
-    ]);
+gulp.task('phplint', function(cb) {
+  phplint(['src/*.php'], {limit: 10}, function (err, stdout, stderr) {
+    if (err) {
+      cb(err);
+      process.exit(1);
+    }
+    cb();
+  });
 });
 
 
