@@ -35,8 +35,6 @@ fi
 # clean up app-folder, copy files
 gulp init --silent
 
-echo $'Running setup'
-
 # set dependencies source
 gulp setup --silent
 

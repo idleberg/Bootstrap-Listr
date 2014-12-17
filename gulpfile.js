@@ -23,7 +23,7 @@ var concat   = require('gulp-concat'),
     jshint   = require('gulp-jshint'),
     less     = require('gulp-less'),
     path     = require('path'),
-    phplint  = require('phplint').lint,
+    // phplint  = require('phplint'),
     prompt   = require('gulp-prompt'),
     sequence = require('run-sequence');
     uglify   = require('gulp-uglify'),
@@ -35,7 +35,7 @@ var concat   = require('gulp-concat'),
  */
 
 // Task combos
-gulp.task('lint',   ['csslint', 'jshint', 'phplint']);
+gulp.task('lint',   ['csslint', 'jshint'/*, 'phplint'*/]);
 gulp.task('make',   ['cssmin', 'uglify']);
 gulp.task('travis', ['csslint', 'jshint']);
 gulp.task('css',    ['csslint', 'cssmin']);
@@ -47,7 +47,7 @@ gulp.task('default',    ['help']);
 gulp.task('deps',       ['depends']);
 gulp.task('jsmin',      ['uglify']);
 gulp.task('minify',     ['make']);
-gulp.task('php',        ['phplint']);
+// gulp.task('php',        ['phplint']);
 gulp.task('bootswatch', ['swatch']);
 gulp.task('update',     ['upgrade']);
 
@@ -628,15 +628,11 @@ gulp.task('reset', function () {
 
 
 // Lint PHP files
-gulp.task('phplint', function(cb) {
-  phplint(['src/*.php'], {limit: 10}, function (err, stdout, stderr) {
-    if (err) {
-      cb(err);
-      process.exit(1);
-    }
-    cb();
-  });
-});
+// gulp.task('phplint', function () {
+//   return phplint([
+//         'src/*.php'
+//     ]);
+// });
 
 
 // Lint CSS files
