@@ -88,7 +88,7 @@ $(function() {
         $(".highlight").addClass("hidden");
     });
 
-    if(Dropbox) {
+    if(typeof(Dropbox) !== 'undefined') {
         $(".save-dropbox").click(function(c) {
             c.preventDefault();
             var b = $(this).get(0).href;
