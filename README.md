@@ -16,34 +16,18 @@ A replacement for default server indexes, Bootstrap Listr beautifully displays f
 
 If you're already overwhelmed by the idea of having to build stuff, or simply wonder what happened to the old one-file solution—get the old version [here](https://github.com/idleberg/Bootstrap-Listr/tree/1.0-dev/)!
 
-### Local
+### Gulp
 
-[Gulp](http://gulpjs.com/) tasks are used to configure and build your app. You can install Gulp globally using `npm install gulp -g`. For your convenience, `setup.sh` is provided to run all setup tasks. Alternatively, you can run Gulp tasks manually:
+[Gulp](http://gulpjs.com/) tasks are used to configure and build your app. You can install Gulp globally using `npm install gulp -g`. 
 
-```bash
-# create and populate app-folder
-gulp init
+Alternatively, you can run Gulp tasks manually:
 
-# choose default theme (optional)
-gulp bootstrap
+1. Use `gulp init` to copy base files (or use `gulp upgrade` to preserve an existing setup)
+2. Setup the application using `gulp setup`
 
-# enable the Viewer modal (optional)
-gulp viewer
+To change the default highlighter.js theme, you can run `gulp hljs`. Just make sure you haven't merged your assets prior to this. You can merge your assets afterwards using `gulp merge`.
 
-# enable the Search Box (optional)
-gulp search
-
-# enable Font Awesome icons (optional)
-gulp icons
-
-# enable syntax highlighting (optional)
-gulp highlighter
-
-# minify CSS, uglify JS
-gulp make
-```
-
-For a full list of available commands, type `gulp help`.
+For your convenience, you can also run `setup.sh` to install all Node packages and the setup tasks.
 
 ### CDN
 
