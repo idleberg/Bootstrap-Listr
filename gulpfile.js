@@ -18,7 +18,6 @@ var colog    = require('colog'),
     csslint  = require('gulp-csslint'),
     cssmin   = require('gulp-cssmin'),
     del      = require('del'),
-    download = require('gulp-download'),
     gulp     = require('gulp'),
     jeditor  = require('gulp-json-editor'),
     jshint   = require('gulp-jshint'),
@@ -136,7 +135,7 @@ gulp.task('select', function(){
           console.log('Including syntax highlighter assets…');
  
           gulp
-            .src('node_modules/highlightjs/highlight.pack.js')
+            .src('node_modules/bower_components/highlightjs/highlight.pack.js')
             .pipe(concat('highlight.min.js'))
             .pipe(gulp.dest('app/assets/js/'))
 
@@ -144,7 +143,7 @@ gulp.task('select', function(){
 
           gulp
             .src([
-              'node_modules/highlightjs/styles/github.css'
+              'node_modules/bower_components/highlightjs/styles/github.css'
             ])
             .pipe(concat('highlight.min.css'))
             .pipe(cssmin())
@@ -279,7 +278,7 @@ gulp.task('depends', function() {
 // Select Bootstrap theme
 gulp.task('swatch', function(){
 
-  var bootswatch     = ['(none)','Amelia','Cerulean','Cosmo','Cyborg','Darkly','Flatly','Journal','Lumen','Paper','Readable','Sandstone','Simplex','Slate','Spacelab','Superhero','United','Yeti'],
+  var bootswatch     = ['(none)','Amelia','Cerulean','Cosmo','Cyborg','Darkly','Flatly','Journal','Lumen','M8tro','Paper','Readable','Sandstone','Simplex','Slate','Spacelab','Superhero','United','Yeti'],
       bootstrap_less = [
           'node_modules/bootstrap/less/variables.less',
           'node_modules/bootstrap/less/mixins.less',
@@ -348,6 +347,20 @@ gulp.task('swatch', function(){
               }))
               .pipe(gulp.dest("app/"));
 
+          // Set M8tro theme (http://idleberg.github.io/m8tro-bootstrap/)
+          } else if (res.theme[0] === 'M8tro') {
+            console.log('Copying M8tro Bootstrap theme…')
+
+            gulp.src('node_modules/bower_components/m8tro-bootstrap/dist/css/m8tro.min.css')
+            .pipe(gulp.dest('app/assets/css/'))
+            
+            gulp.src("app/config.json")
+            .pipe(jeditor({
+              'bootstrap': {
+                'theme': 'm8tro'
+              }
+            }))
+            .pipe(gulp.dest("app/"));
 
           // Set Bootswatch theme
           } else if (bootswatch.indexOf(res.theme[0])  > -1 ) {
@@ -375,7 +388,6 @@ gulp.task('swatch', function(){
               }))
               .pipe(gulp.dest("app/"));
           }
-        
     }));
 });
 
@@ -400,7 +412,7 @@ gulp.task('hljs', function(){
            colog.error('ERROR: You can only select one theme, using '+selection)
          }
 
-        var source_dir = 'node_modules/highlightjs/styles/'
+        var source_dir = 'node_modules/bower_components/highlightjs/styles/'
 
          // Set default theme
          if (res.theme == '') {
@@ -442,15 +454,15 @@ gulp.task('hljs', function(){
             if (res.theme[0] == 'brown_paper') {
 
                console.log ('Copying extra-file brown_papersq.png');
-               gulp.src('node_modules/highlightjs/styles/brown_papersq.png')
+               gulp.src('node_modules/bower_components/highlightjs/styles/brown_papersq.png')
                .pipe(gulp.dest('app/assets/css/'));
             } else if (res.theme[0] == 'pojoaque') {
                console.log ('Copying extra-file pojoaque.jpg');
-               gulp.src('node_modules/highlightjs/styles/pojoaque.jpg')
+               gulp.src('node_modules/bower_components/highlightjs/styles/pojoaque.jpg')
                .pipe(gulp.dest('app/assets/css/'));
             } else if (res.theme[0] == 'school_book') {
                console.log ('Copying extra-file school_book.png');
-               gulp.src('node_modules/highlightjs/styles/school_book.png')
+               gulp.src('node_modules/bower_components/highlightjs/styles/school_book.png')
                .pipe(gulp.dest('app/assets/css/'));
             }
          }
@@ -553,46 +565,46 @@ gulp.task('init', function() {
   ])
 
   gulp.src([
-      'src/index.php',
-      'src/listr-functions.php',
-      'src/listr-l10n.php',
-      'src/listr-template.php'
-    ])
-    .pipe(gulp.dest('app/'));
+    'src/index.php',
+    'src/listr-functions.php',
+    'src/listr-l10n.php',
+    'src/listr-template.php'
+  ])
+  .pipe(gulp.dest('app/'));
 
   gulp.src([
       'src/locale/**/*'
     ])
-    .pipe(gulp.dest('app/locale/'));
+  .pipe(gulp.dest('app/locale/'));
 
   gulp.src([
       'src/config.json'
-    ])
-    .pipe(concat('config.json'))
-    .pipe(gulp.dest('app/'));
+  ])
+  .pipe(concat('config.json'))
+  .pipe(gulp.dest('app/'));
 
   gulp.src([
       'src/root.htaccess'
-    ])
-    .pipe(concat('.htaccess'))
-    .pipe(gulp.dest('app/'));
+  ])
+  .pipe(concat('.htaccess'))
+  .pipe(gulp.dest('app/'));
 
   gulp.src([
       'src/public.htaccess'
-    ])
-    .pipe(concat('.htaccess'))
-    .pipe(gulp.dest('app/_public/'));
+  ])
+  .pipe(concat('.htaccess'))
+  .pipe(gulp.dest('app/_public/'));
 
-  download('http://cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js')
-    .pipe(gulp.dest('app/assets/js/'))
+  gulp.src('node_modules/stupid-jquery-table-sort/stupidtable.min.js')
+  .pipe(gulp.dest('app/assets/js/'))
 
-    gulp.src("app/config.json")
-    .pipe(jeditor({
-      'general': {
-        'enable_sort': true
-      }
-    }))
-    .pipe(gulp.dest("app/"));
+  gulp.src("app/config.json")
+  .pipe(jeditor({
+    'general': {
+      'enable_sort': true
+    }
+  }))
+  .pipe(gulp.dest("app/"));
 });
 
 
@@ -600,31 +612,31 @@ gulp.task('init', function() {
 gulp.task('upgrade', function() {
 
   del([
-    'app/assets/css/listr.pack.css',
-    'app/assets/js/listr.pack.js'
+  'app/assets/css/listr.pack.css',
+  'app/assets/js/listr.pack.js'
+])
+
+  gulp.src([
+    'src/index.php',
+    'src/listr-functions.php',
+    'src/listr-l10n.php',
+    'src/listr-template.php'
   ])
+  .pipe(gulp.dest('app/'));
 
   gulp.src([
-      'src/index.php',
-      'src/listr-functions.php',
-      'src/listr-l10n.php',
-      'src/listr-template.php'
-    ])
-    .pipe(gulp.dest('app/'));
-
-  gulp.src([
-      'src/locale/**/*'
-    ])
-    .pipe(gulp.dest('app/locale/'));
+    'src/locale/**/*'
+  ])
+  .pipe(gulp.dest('app/locale/'));
 });
 
 
 // Reset config.json
 gulp.task('reset', function () {
   gulp.src([
-      'src/config.json'
-    ])
-    .pipe(gulp.dest('app/'));
+    'src/config.json'
+  ])
+  .pipe(gulp.dest('app/'));
 });
 
 
@@ -639,43 +651,43 @@ gulp.task('reset', function () {
 // Lint CSS files
 gulp.task('csslint', function() {
   gulp.src([
-      'src/style.css'
-    ])
-    .pipe(csslint())
-    .pipe(csslint.reporter())
+    'src/style.css'
+  ])
+  .pipe(csslint())
+  .pipe(csslint.reporter())
 });
 
 
 // Minify CSS files
 gulp.task('cssmin', function() {
   gulp.src([
-      'src/style.css'
-    ])
-    .pipe(concat('listr.min.css'))
-    .pipe(cssmin())
-    .pipe(gulp.dest('app/assets/css/'))
+    'src/style.css'
+  ])
+  .pipe(concat('listr.min.css'))
+  .pipe(cssmin())
+  .pipe(gulp.dest('app/assets/css/'))
 });
 
 
 // Lint JS files
 gulp.task('jshint', function() {
   gulp.src([
-      'src/config.json',
-      'src/scripts.js'
-    ])
-    .pipe(jshint())
-    .pipe(jshint.reporter())
+    'src/config.json',
+    'src/scripts.js'
+  ])
+  .pipe(jshint())
+  .pipe(jshint.reporter())
 });
 
 
 // Minify JS files
 gulp.task('uglify', function() {
    gulp.src([
-       'src/scripts.js'
-     ])
-     .pipe(uglify())
-     .pipe(concat('listr.min.js'))
-     .pipe(gulp.dest('app/assets/js/'))
+     'src/scripts.js'
+   ])
+   .pipe(uglify())
+   .pipe(concat('listr.min.js'))
+   .pipe(gulp.dest('app/assets/js/'))
 });
 
 
