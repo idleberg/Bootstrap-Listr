@@ -162,7 +162,7 @@ gulp.task('select', function(){
             .pipe(gulp.dest('app/assets/css/'))
 
           gulp
-            .src('node_modules/font-awesome/fonts/*')
+            .src('node_modules/font-awesome/fonts/fontawesome-webfont.*')
             .pipe(gulp.dest('app/assets/fonts/'))
 
           del([
