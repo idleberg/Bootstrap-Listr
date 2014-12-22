@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.4.0
+VERSION=0.4.1
 set -e
 
 # Functions
@@ -13,7 +13,7 @@ function npm_error(){
 echo $'\n'cracklistr $VERSION
 echo ================
 
-if [[ -e 'node_modules/apache-server-configs' && -e 'node_modules/bootstrap/dist' && -e 'node_modules/bootswatch' && -e 'node_modules/font-awesome' && -e 'node_modules/jquery' && -e 'node_modules/jquery-searcher' ]]
+if [[ -e 'node_modules/apache-server-configs' && -e 'node_modules/bootstrap/dist' && -e 'node_modules/bootswatch' && -e 'node_modules/font-awesome' && -e 'node_modules/bower_components/hightlightjs' && -e 'node_modules/jquery' && -e 'node_modules/jquery-searcher' && -e 'node_modules/bower_components/m8tro-bootstrap' && -e 'node_modules/bower_components/stupid-jquery-table-sort' ]]
 then
     echo "Node modules found"
 else
@@ -31,9 +31,6 @@ else
     echo $'Initializing application'
     gulp init --silent
 fi
-
-# clean up app-folder, copy files
-gulp init --silent
 
 # set dependencies source
 gulp setup --silent
