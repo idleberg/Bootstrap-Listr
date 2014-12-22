@@ -33,6 +33,24 @@
       null
     ]
   },
+  "bootstrap": {
+    "fluid_grid":        false,
+    "table_style":       "table-hover",
+    "responsive_table":  true,
+    "modal_size":        "modal-lg",
+    "button-primary":    "btn-primary",
+    "button-default":    "btn-default",
+    "theme":             "default",
+    "icons":             "glyphicons",
+    "fontawesome_style": "fa-fw"
+  },
+  "highlight": {
+    "theme": "github"
+  },
+  "keys": {
+    "dropbox_app":      false,
+    "google_analytics": false
+  },
   "icons": {
     "fav_icon":         null,
     "iphone":           null,
@@ -48,21 +66,6 @@
     "site_name":   null,
     "type":        null,
     "image":       null
-  },
-  "bootstrap": {
-    "fluid_grid":        false,
-    "table_style":       "table-hover",
-    "responsive_table":  true,
-    "modal_size":        "modal-lg",
-    "button-primary":    "btn-primary",
-    "button-default":    "btn-default",
-    "theme":             "default",
-    "icons":             "glyphicons",
-    "fontawesome_style": "fa-fw"
-  },
-  "keys": {
-    "dropbox_app":      false,
-    "google_analytics": false
   },
   "columns": {
     "size": true,
