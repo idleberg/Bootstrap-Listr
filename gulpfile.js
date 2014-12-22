@@ -278,7 +278,7 @@ gulp.task('depends', function() {
 // Select Bootstrap theme
 gulp.task('swatch', function(){
 
-  var bootswatch     = ['(none)','Amelia','Cerulean','Cosmo','Cyborg','Darkly','Flatly','Journal','Lumen','Paper','Readable','Sandstone','Simplex','Slate','Spacelab','Superhero','United','Yeti'],
+  var bootswatch     = ['(none)','Amelia','Cerulean','Cosmo','Cyborg','Darkly','Flatly','Journal','Lumen','M8tro','Paper','Readable','Sandstone','Simplex','Slate','Spacelab','Superhero','United','Yeti'],
       bootstrap_less = [
           'node_modules/bootstrap/less/variables.less',
           'node_modules/bootstrap/less/mixins.less',
@@ -347,6 +347,20 @@ gulp.task('swatch', function(){
               }))
               .pipe(gulp.dest("app/"));
 
+          // Set M8tro theme (http://idleberg.github.io/m8tro-bootstrap/)
+          } else if (res.theme[0] === 'M8tro') {
+            console.log('Copying M8tro Bootstrap theme…')
+
+            gulp.src('node_modules/bower_components/m8tro-bootstrap/dist/css/m8tro.min.css')
+            .pipe(gulp.dest('app/assets/css/'))
+            
+            gulp.src("app/config.json")
+            .pipe(jeditor({
+              'bootstrap': {
+                'theme': 'm8tro'
+              }
+            }))
+            .pipe(gulp.dest("app/"));
 
           // Set Bootswatch theme
           } else if (bootswatch.indexOf(res.theme[0])  > -1 ) {
@@ -374,7 +388,6 @@ gulp.task('swatch', function(){
               }))
               .pipe(gulp.dest("app/"));
           }
-        
     }));
 });
 
