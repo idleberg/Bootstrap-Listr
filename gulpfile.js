@@ -352,6 +352,7 @@ gulp.task('swatch', function(){
             console.log('Copying M8tro Bootstrap theme…')
 
             gulp.src('node_modules/bower_components/m8tro-bootstrap/dist/css/m8tro.min.css')
+            .pipe(concat('bootstrap.min.css'))
             .pipe(gulp.dest('app/assets/css/'))
             
             gulp.src("app/config.json")
