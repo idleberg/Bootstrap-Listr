@@ -136,7 +136,7 @@ gulp.task('select', function(){
           console.log('Including syntax highlighter assets…');
  
           gulp
-            .src('node_modules/highlightjs/highlight.pack.js')
+            .src('node_modules/bower_components/highlightjs/highlight.pack.js')
             .pipe(concat('highlight.min.js'))
             .pipe(gulp.dest('app/assets/js/'))
 
@@ -144,7 +144,7 @@ gulp.task('select', function(){
 
           gulp
             .src([
-              'node_modules/highlightjs/styles/github.css'
+              'node_modules/bower_components/highlightjs/styles/github.css'
             ])
             .pipe(concat('highlight.min.css'))
             .pipe(cssmin())
@@ -400,7 +400,7 @@ gulp.task('hljs', function(){
            colog.error('ERROR: You can only select one theme, using '+selection)
          }
 
-        var source_dir = 'node_modules/highlightjs/styles/'
+        var source_dir = 'node_modules/bower_components/highlightjs/styles/'
 
          // Set default theme
          if (res.theme == '') {
@@ -442,15 +442,15 @@ gulp.task('hljs', function(){
             if (res.theme[0] == 'brown_paper') {
 
                console.log ('Copying extra-file brown_papersq.png');
-               gulp.src('node_modules/highlightjs/styles/brown_papersq.png')
+               gulp.src('node_modules/bower_components/highlightjs/styles/brown_papersq.png')
                .pipe(gulp.dest('app/assets/css/'));
             } else if (res.theme[0] == 'pojoaque') {
                console.log ('Copying extra-file pojoaque.jpg');
-               gulp.src('node_modules/highlightjs/styles/pojoaque.jpg')
+               gulp.src('node_modules/bower_components/highlightjs/styles/pojoaque.jpg')
                .pipe(gulp.dest('app/assets/css/'));
             } else if (res.theme[0] == 'school_book') {
                console.log ('Copying extra-file school_book.png');
-               gulp.src('node_modules/highlightjs/styles/school_book.png')
+               gulp.src('node_modules/bower_components/highlightjs/styles/school_book.png')
                .pipe(gulp.dest('app/assets/css/'));
             }
          }
