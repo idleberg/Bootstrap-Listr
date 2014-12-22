@@ -36,9 +36,9 @@ fi
 gulp setup --silent
 
 # include Highlight.js
-if [ -e 'app/assets/js/highlight.min.js' ]
-then
-	gulp hljs --silent
-fi
+# if [ -e 'app/assets/js/highlight.min.js' ]
+# then
+# 	gulp hljs --silent
+# fi
 
 echo $'Game over!'
