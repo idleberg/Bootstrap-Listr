@@ -558,11 +558,7 @@ gulp.task('clean', function () {
 
 
 // Create file structure in app/, copy all PHP & .htaccess
-gulp.task('init', function() {
-
-  del([
-    'app/assets'
-  ])
+gulp.task('init', ['clean'], function() {
 
   gulp.src([
     'src/index.php',
@@ -596,7 +592,8 @@ gulp.task('init', function() {
   .pipe(gulp.dest('app/_public/'));
 
   gulp.src('node_modules/stupid-jquery-table-sort/stupidtable.min.js')
-  .pipe(gulp.dest('app/assets/js/'))
+  .pipe(concat('stupidtable.min.js'))
+  .pipe(gulp.dest('app/assets/js/'));
 
   gulp.src("app/config.json")
   .pipe(jeditor({
