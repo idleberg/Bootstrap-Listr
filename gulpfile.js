@@ -13,7 +13,8 @@ var meta     = require('./package.json');
   };
 
 // Gulp plugins
-var concat   = require('gulp-concat'),
+var colog    = require('colog'),
+    concat   = require('gulp-concat'),
     csslint  = require('gulp-csslint'),
     cssmin   = require('gulp-cssmin'),
     del      = require('del'),
@@ -23,10 +24,9 @@ var concat   = require('gulp-concat'),
     jshint   = require('gulp-jshint'),
     less     = require('gulp-less'),
     path     = require('path'),
-    // phplint  = require('phplint'),
     prompt   = require('gulp-prompt'),
-    sequence = require('run-sequence');
-    uglify   = require('gulp-uglify'),
+    sequence = require('run-sequence'),
+    uglify   = require('gulp-uglify');
 
 /*
  * _|_ _  _|   _|_ _. _  _  _  _ _
@@ -150,7 +150,7 @@ gulp.task('select', function(){
             .pipe(cssmin())
             .pipe(gulp.dest('app/assets/css/'));
 
-          console.info('NOTE: You can change the default highlight.js theme using "gulp hljs"');
+          colog.warning('NOTE: You can change the default highlight.js theme using "gulp hljs"');
         }
 
 
@@ -318,7 +318,7 @@ gulp.task('swatch', function(){
             } else {
               var selection = '“'+res.theme[0]+'”';
             }
-            console.warn('WARNING: You can only select one theme, using '+selection)
+            colog.error('ERROR: You can only select one theme, using '+selection)
           }
 
           // Copy glyphicons
@@ -379,6 +379,7 @@ gulp.task('swatch', function(){
     }));
 });
 
+
 // Choose a highlight.js theme
 gulp.task('hljs', function(){
 
@@ -396,7 +397,7 @@ gulp.task('hljs', function(){
          if (res.theme.length > 1) {
            
            var selection = '“'+res.theme[0]+'”';
-           console.warn('WARNING: You can only select one theme, using '+selection)
+           colog.error('ERROR: You can only select one theme, using '+selection)
          }
 
         var source_dir = 'node_modules/highlightjs/styles/'
