@@ -367,7 +367,7 @@ gulp.task('swatch', function(){
           } else if (bootswatch.indexOf(res.theme[0])  > -1 ) {
               
               var slug = res.theme[0].toLowerCase();
-              console.log('Compiling Bootswatch theme “'+res.theme+'”…')
+              console.log('Compiling Bootstrap theme “'+res.theme[0]+'”…')
 
               bootstrap_less.push('node_modules/bootswatch/' + slug + '/variables.less')
               bootstrap_less.push('node_modules/bootswatch/' + slug + '/bootswatch.less')
