@@ -306,7 +306,7 @@ gulp.task('swatch', function(){
     .pipe(prompt.prompt({
         type: 'checkbox',
         name: 'theme',
-        message: 'Choose your a default Bootswatch theme',
+        message: 'Choose your a default Bootstrap theme',
         choices: bootswatch,
       }, function(res){
 
