@@ -306,7 +306,7 @@ gulp.task('swatch', function(){
     .pipe(prompt.prompt({
         type: 'checkbox',
         name: 'theme',
-        message: 'Choose your a default Bootswatch theme',
+        message: 'Choose your a default Bootstrap theme',
         choices: bootswatch,
       }, function(res){
 
@@ -352,6 +352,7 @@ gulp.task('swatch', function(){
             console.log('Copying M8tro Bootstrap theme…')
 
             gulp.src('node_modules/bower_components/m8tro-bootstrap/dist/css/m8tro.min.css')
+            .pipe(concat('bootstrap.min.css'))
             .pipe(gulp.dest('app/assets/css/'))
             
             gulp.src("app/config.json")
@@ -366,7 +367,7 @@ gulp.task('swatch', function(){
           } else if (bootswatch.indexOf(res.theme[0])  > -1 ) {
               
               var slug = res.theme[0].toLowerCase();
-              console.log('Compiling Bootswatch theme “'+res.theme+'”…')
+              console.log('Compiling Bootstrap theme “'+res.theme[0]+'”…')
 
               bootstrap_less.push('node_modules/bootswatch/' + slug + '/variables.less')
               bootstrap_less.push('node_modules/bootswatch/' + slug + '/bootswatch.less')
