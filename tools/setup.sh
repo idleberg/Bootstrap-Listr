@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.4.1
+VERSION=0.4.2
 set -e
 
 # Functions
@@ -13,7 +13,7 @@ function npm_error(){
 echo $'\n'cracklistr $VERSION
 echo ================
 
-if [[ -e 'node_modules/apache-server-configs' && -e 'node_modules/bootstrap/dist' && -e 'node_modules/bootswatch' && -e 'node_modules/font-awesome' && -e 'node_modules/bower_components/hightlightjs' && -e 'node_modules/jquery' && -e 'node_modules/jquery-searcher' && -e 'node_modules/bower_components/m8tro-bootstrap' && -e 'node_modules/bower_components/stupid-jquery-table-sort' ]]
+if [[ -d 'node_modules/apache-server-configs/dist' && -d 'node_modules/bootstrap' && -d 'node_modules/bootswatch' && -d 'node_modules/font-awesome' && -d 'node_modules/bower_components/highlightjs' && -d 'node_modules/jquery' && -d 'node_modules/jquery-searcher' && -d 'node_modules/bower_components/m8tro-bootstrap' && -d 'node_modules/bower_components/stupid-jquery-table-sort' ]]
 then
     echo "Node modules found"
 else
@@ -36,9 +36,9 @@ fi
 gulp setup --silent
 
 # include Highlight.js
-# if [ -e 'app/assets/js/highlight.min.js' ]
-# then
-# 	gulp hljs --silent
-# fi
+if [ -e 'app/assets/js/highlight.min.js' ]
+then
+	gulp hljs --silent
+fi
 
 echo $'Game over!'
