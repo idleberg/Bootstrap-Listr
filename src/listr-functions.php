@@ -15,7 +15,7 @@ function set_bootstrap_theme() {
     } else if (in_array($options['bootstrap']['theme'], $m8tro)) {
         return '//idleberg.github.io/m8tro-listr/'.$options['bootstrap']['theme'].'.min.css';
     } else {
-        return  $options['assets']['bootstrap_css'];;
+        return $options['assets']['bootstrap_css'];;
     }
 }
 
