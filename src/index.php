@@ -183,16 +183,40 @@ if (isset($options['bootstrap']['modal_size'])) {
     $modal_size = 'modal-lg';
 }
 
-if (isset($options['bootstrap']['button-default'])) {
-    $btn_default = $options['bootstrap']['button-default'];
+if (isset($options['bootstrap']['button_default'])) {
+    $btn_default = $options['bootstrap']['button_default'];
 } else {
     $btn_default = 'btn-default';
 }
 
-if (isset($options['bootstrap']['button-primary'])) {
-    $btn_primary = $options['bootstrap']['button-primary'];
+if (isset($options['bootstrap']['button_primary'])) {
+    $btn_primary = $options['bootstrap']['button_primary'];
 } else {
     $btn_primary = 'btn-primary';
+}
+
+if (isset($options['bootstrap']['button_highlight'])) {
+    $btn_highlight = $options['bootstrap']['button_highlight'];
+} else {
+    $btn_highlight = 'btn-link';
+}
+
+if (isset($options['bootstrap']['column_name'])) {
+    $column_name = $options['bootstrap']['column_name'];
+} else {
+    $column_name = 'col-lg-8';
+}
+
+if (isset($options['bootstrap']['column_size'])) {
+    $column_size = $options['bootstrap']['column_size'];
+} else {
+    $column_size = 'col-lg-2';
+}
+
+if (isset($options['bootstrap']['column_age'])) {
+    $column_age = $options['bootstrap']['column_age'];
+} else {
+    $column_age = 'col-lg-2';
 }
 
 // Count optional columns
@@ -428,14 +452,17 @@ if ($options['bootstrap']['responsive_table']) {
     $responsive_close = "    </div>" . PHP_EOL;
 }
 
+// Set column width
+
+
 // Set table header
 $table_header = null;
-$table_header .= "            <th class=\"col-lg-8 text-".$left."\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
+$table_header .= "            <th class=\"".$column_name." text-".$left."\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
 if ($table_options['size']) {
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
-        $table_header .= " class=\"col-lg-2 text-".$right."\" data-sort=\"int\">";
+        $table_header .= " class=\"".$column_size." text-".$right."\" data-sort=\"int\">";
     } else {
         $table_header .= ">";
     }
@@ -445,7 +472,7 @@ if ($table_options['size']) {
 if ($table_options['age']) {
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
-        $table_header .= " class=\"col-lg-2 text-".$right."\" data-sort=\"int\">";
+        $table_header .= " class=\"".$column_age." text-".$right."\" data-sort=\"int\">";
     } else {
         $table_header .= ">";
     }
