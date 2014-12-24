@@ -56,6 +56,7 @@
     "google_analytics": false
   },
   "icons": {
+    "ios_version":      7,
     "fav_icon":         null,
     "iphone":           null,
     "iphone_retina":    null,

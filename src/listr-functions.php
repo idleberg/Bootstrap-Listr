@@ -35,11 +35,24 @@ function set_header($theme) {
     $header .= "  <meta name=\"generator\" content=\"Bootstrap Listr\" />" . PHP_EOL;
     $header .= "  <title>".$index."</title>" . PHP_EOL;
 
+    // Set iOS touch icon sizes (https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html)
+    if ($options['icons']['ios_version'] >= 7) {
+        $size_iphone        = "60x60";
+        $size_ipad          = "76x76";
+        $size_iphone_retina = "120x120";
+        $size_ipad_retina   = "152x152";
+    } else {
+        $size_iphone        = "57x57";
+        $size_ipad          = "72x72";
+        $size_iphone_retina = "114x114";
+        $size_ipad_retina   = "144x144";
+    }
+
     if ($options['icons']['fav_icon']) $header .= "  <link rel=\"shortcut icon\" href=\"".$options['icons']['fav_icon']."\" />" . PHP_EOL;
-    if ($options['icons']['iphone']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"57x57\" href=\"".$options['icons']['iphone']."\" />" . PHP_EOL;
-    if ($options['icons']['ipad']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"72x72\" href=\"".$options['icons']['ipad']."\" />" . PHP_EOL;
-    if ($options['icons']['iphone_retina']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"114x114\" href=\"".$options['icons']['iphone_retina']."\" />" . PHP_EOL;
-    if ($options['icons']['ipad_retina']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"144x144\" href=\"".$options['icons']['ipad_retina']."\" />" . PHP_EOL;
+    if ($options['icons']['iphone']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_iphone."\" href=\"".$options['icons']['iphone']."\" />" . PHP_EOL;
+    if ($options['icons']['ipad']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_ipad."\" href=\"".$options['icons']['ipad']."\" />" . PHP_EOL;
+    if ($options['icons']['iphone_retina']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_iphone_retina."\" href=\"".$options['icons']['iphone_retina']."\" />" . PHP_EOL;
+    if ($options['icons']['ipad_retina']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_ipad_retina."\" href=\"".$options['icons']['ipad_retina']."\" />" . PHP_EOL;
     if ($options['icons']['metro_tile_color']) $header .= "  <meta name=\"msapplication-TileColor\" content=\"#".$options['icons']['metro_tile_color']."\" />" . PHP_EOL;
     if ($options['icons']['metro_tile_image']) $header .= "  <meta name=\"msapplication-TileImage\" content=\"#".$options['icons']['metro_tile_image']."\" />" . PHP_EOL;
     if ($options['opengraph']['title']) $header .= "  <meta property=\"og:title\" content=\"".$options['opengraph']['title']."\" />" . PHP_EOL;
