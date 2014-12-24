@@ -21,11 +21,13 @@ var colog    = require('colog'),
     gulp     = require('gulp'),
     jeditor  = require('gulp-json-editor'),
     jshint   = require('gulp-jshint'),
+    // lazypipe = require('lazypipe'),
     less     = require('gulp-less'),
     path     = require('path'),
     prompt   = require('gulp-prompt'),
     sequence = require('run-sequence'),
     uglify   = require('gulp-uglify');
+
 
 /*
  * _|_ _  _|   _|_ _. _  _  _  _ _
@@ -135,7 +137,7 @@ gulp.task('select', function(){
           console.log('Including syntax highlighter assets…');
  
           gulp
-            .src('node_modules/bower_components/highlightjs/highlight.pack.js')
+            .src('node_modules/_bower_components/highlightjs/highlight.pack.js')
             .pipe(concat('highlight.min.js'))
             .pipe(gulp.dest('app/assets/js/'))
 
@@ -143,7 +145,7 @@ gulp.task('select', function(){
 
           gulp
             .src([
-              'node_modules/bower_components/highlightjs/styles/github.css'
+              'node_modules/_bower_components/highlightjs/styles/github.css'
             ])
             .pipe(concat('highlight.min.css'))
             .pipe(cssmin())
@@ -353,9 +355,9 @@ gulp.task('swatch', function(){
             var slug = res.theme[0].toLowerCase();
             console.log('Compiling Bootstrap theme “M8tro”')
 
-            bootstrap_less.push('node_modules/bower_components/m8tro-bootstrap/src/themes/m8tro/palette.less')
-            bootstrap_less.push('node_modules/bower_components/m8tro-bootstrap/src/themes/m8tro-variables.less')
-            bootstrap_less.push('node_modules/bower_components/m8tro-bootstrap/src/themes/m8tro-theme.less')
+            bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro/palette.less')
+            bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro-variables.less')
+            bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro-theme.less')
 
             gulp.src(bootstrap_less)
             .pipe(concat('bootstrap.less'))
@@ -424,7 +426,7 @@ gulp.task('hljs', function(){
            colog.error('ERROR: You can only select one theme, using '+selection)
          }
 
-        var source_dir = 'node_modules/bower_components/highlightjs/styles/'
+        var source_dir = 'node_modules/_bower_components/highlightjs/styles/'
 
          // Set default theme
          if (res.theme == '') {
@@ -466,15 +468,15 @@ gulp.task('hljs', function(){
             if (res.theme[0] == 'brown_paper') {
 
                console.log ('Copying extra-file brown_papersq.png');
-               gulp.src('node_modules/bower_components/highlightjs/styles/brown_papersq.png')
+               gulp.src('node_modules/_bower_components/highlightjs/styles/brown_papersq.png')
                .pipe(gulp.dest('app/assets/css/'));
             } else if (res.theme[0] == 'pojoaque') {
                console.log ('Copying extra-file pojoaque.jpg');
-               gulp.src('node_modules/bower_components/highlightjs/styles/pojoaque.jpg')
+               gulp.src('node_modules/_bower_components/highlightjs/styles/pojoaque.jpg')
                .pipe(gulp.dest('app/assets/css/'));
             } else if (res.theme[0] == 'school_book') {
                console.log ('Copying extra-file school_book.png');
-               gulp.src('node_modules/bower_components/highlightjs/styles/school_book.png')
+               gulp.src('node_modules/_bower_components/highlightjs/styles/school_book.png')
                .pipe(gulp.dest('app/assets/css/'));
             }
          }
