@@ -349,10 +349,21 @@ gulp.task('swatch', function(){
 
           // Set M8tro theme (http://idleberg.github.io/m8tro-bootstrap/)
           } else if (res.theme[0] === 'M8tro') {
-            console.log('Copying M8tro Bootstrap theme…')
 
-            gulp.src('node_modules/bower_components/m8tro-bootstrap/dist/css/m8tro.min.css')
+            var slug = res.theme[0].toLowerCase();
+            console.log('Compiling Bootstrap theme “M8tro”')
+
+            bootstrap_less.push('node_modules/bower_components/m8tro-bootstrap/src/themes/m8tro/palette.less')
+            bootstrap_less.push('node_modules/bower_components/m8tro-bootstrap/src/themes/m8tro-variables.less')
+            bootstrap_less.push('node_modules/bower_components/m8tro-bootstrap/src/themes/m8tro-theme.less')
+
+            gulp.src(bootstrap_less)
+            .pipe(concat('bootstrap.less'))
+            .pipe(less({
+              paths: [ path.join(__dirname, 'less', 'includes') ]
+            }))
             .pipe(concat('bootstrap.min.css'))
+            .pipe(cssmin())
             .pipe(gulp.dest('app/assets/css/'))
             
             gulp.src("app/config.json")
@@ -367,7 +378,7 @@ gulp.task('swatch', function(){
           } else if (bootswatch.indexOf(res.theme[0])  > -1 ) {
               
               var slug = res.theme[0].toLowerCase();
-              console.log('Compiling Bootstrap theme “'+res.theme[0]+'”…')
+              console.log('Compiling Bootswatch theme “'+res.theme[0]+'”…')
 
               bootstrap_less.push('node_modules/bootswatch/' + slug + '/variables.less')
               bootstrap_less.push('node_modules/bootswatch/' + slug + '/bootswatch.less')
