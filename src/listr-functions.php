@@ -37,8 +37,8 @@ function set_header($theme) {
 
     if ($options['icons']['fav_icon']) $header .= "  <link rel=\"shortcut icon\" href=\"".$options['icons']['fav_icon']."\" />" . PHP_EOL;
     if ($options['icons']['iphone']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"57x57\" href=\"".$options['icons']['iphone']."\" />" . PHP_EOL;
-    if ($options['icons']['iphone_retina']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"72x72\" href=\"".$options['icons']['iphone_retina']."\" />" . PHP_EOL;
-    if ($options['icons']['ipad']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"114x114\" href=\"".$options['icons']['ipad']."\" />" . PHP_EOL;
+    if ($options['icons']['ipad']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"72x72\" href=\"".$options['icons']['ipad']."\" />" . PHP_EOL;
+    if ($options['icons']['iphone_retina']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"114x114\" href=\"".$options['icons']['iphone_retina']."\" />" . PHP_EOL;
     if ($options['icons']['ipad_retina']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"144x144\" href=\"".$options['icons']['ipad_retina']."\" />" . PHP_EOL;
     if ($options['icons']['metro_tile_color']) $header .= "  <meta name=\"msapplication-TileColor\" content=\"#".$options['icons']['metro_tile_color']."\" />" . PHP_EOL;
     if ($options['icons']['metro_tile_image']) $header .= "  <meta name=\"msapplication-TileImage\" content=\"#".$options['icons']['metro_tile_image']."\" />" . PHP_EOL;
