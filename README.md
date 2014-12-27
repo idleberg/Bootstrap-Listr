@@ -23,7 +23,8 @@ If you're already overwhelmed by the idea of having to build stuff, or simply wo
 Follow these steps to build your app:
 
 1. Use `gulp init` to copy base files (or `gulp upgrade` to preserve an existing setup)
-2. Setup the application using `gulp setup`
+2. Setup the application `gulp setup`
+3. Optionally merge all assets `gulp merge`
 
 For your convenience, you can also run `tools/setup.sh` to perform all of the above steps.
 
