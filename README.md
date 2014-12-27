@@ -1,6 +1,8 @@
 # Bootstrap Listr
 
-[![GitHub version](https://badge.fury.io/gh/idleberg%2FBootstrap-Listr.svg)](http://badge.fury.io/gh/idleberg%2FBootstrap-Listr) [![Build Status](https://travis-ci.org/idleberg/Bootstrap-Listr.svg)](https://travis-ci.org/idleberg/Bootstrap-Listr) [![devDependencies](https://david-dm.org/idleberg/Bootstrap-Listr/dev-status.svg)](https://david-dm.org/idleberg/Bootstrap-Listr#info=devDependencies)
+[![GitHub release](https://img.shields.io/github/tag/idleberg/Bootstrap-Listr.svg?style=flat-square)](https://github.com/idleberg/Bootstrap-Listr/releases)
+[![Travis](https://img.shields.io/travis/idleberg/Bootstrap-Listr.svg?style=flat-square)](https://travis-ci.org/idleberg/Bootstrap-Listr)
+[![David](https://img.shields.io/david/dev/idleberg/Bootstrap-Listr.svg?style=flat-square)](https://david-dm.org/idleberg/Bootstrap-Listr#info=devDependencies)
 
 A replacement for default server indices, Bootstrap Listr beautifully displays folders and files in the browser. It is built upon the [Bootstrap](http://getbootstrap.com) framework and optionally makes use of [Bootswatch](http://bootswatch.com/) themes and [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons.
 
