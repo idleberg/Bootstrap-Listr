@@ -84,7 +84,7 @@ gulp.task('select', function(){
       enable_search      = false;
       enable_highlight   = false;
       default_icons      = 'glyphicons';
-      default_hljs_theme = 'github';
+      // default_hljs_theme = 'github';
       include_bootlint   = false;
 
 
@@ -151,6 +151,9 @@ gulp.task('select', function(){
             .pipe(gulp.dest('app/assets/css/'));
 
           colog.warning('NOTE: You can change the default highlight.js theme using "gulp hljs"');
+          sequence(
+            'hljs'
+            )
         }
 
 
@@ -222,6 +225,7 @@ gulp.task('select', function(){
             .pipe(gulp.dest('app/assets/js/'))
         }
 
+
         // Write settings to config.json
         gulp.src("app/config.json")
             .pipe(jeditor({
@@ -232,9 +236,6 @@ gulp.task('select', function(){
               },
               'bootstrap': {
                 'icons': default_icons
-              },
-              'highlight': {
-                'theme': default_hljs_theme
               },
               'debug': {
                 'bootlint': include_bootlint
@@ -255,7 +256,10 @@ gulp.task('depends', function() {
         message: 'Do you want to load dependencies locally (l) or from CDN (c)?',
         default: 'l'
     }, function(res){
+        
         if( (res.dependencies === 'l') || (res.dependencies === 'local') ) {
+
+
             gulp.src("app/config.json")
             .pipe(jeditor({
               'general': {
@@ -263,6 +267,7 @@ gulp.task('depends', function() {
               }
             }))
             .pipe(gulp.dest("app/"));
+
         } else if( (res.dependencies === 'c')  || (res.dependencies === 'cdn') ) {
             gulp.src("app/config.json")
             .pipe(jeditor({
@@ -279,7 +284,7 @@ gulp.task('depends', function() {
 // Select Bootstrap theme
 gulp.task('swatch', function(){
 
-  var bootswatch     = ['(none)','Amelia','Cerulean','Cosmo','Cyborg','Darkly','Flatly','Journal','Lumen','M8tro','Paper','Readable','Sandstone','Simplex','Slate','Spacelab','Superhero','United','Yeti'],
+  var bootswatch     = ['(none)','Cerulean','Cosmo','Cyborg','Darkly','Flatly','Journal','Lumen','M8tro','Paper','Readable','Sandstone','Simplex','Slate','Spacelab','Superhero','United','Yeti'],
       bootstrap_less = [
           'node_modules/bootstrap/less/variables.less',
           'node_modules/bootstrap/less/mixins.less',
@@ -408,13 +413,13 @@ gulp.task('swatch', function(){
 // Choose a highlight.js theme
 gulp.task('hljs', function(){
 
- var hljs = ['arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'codepen-embed', 'color-brewer', 'dark', 'default', 'docco', 'far', 'foundation', 'github', 'googlecode', 'hybrid', 'idea', 'ir_black', 'kimbie.dark', 'kimbie.light', 'magula', 'mono-blue', 'monokai_sublime', 'monokai', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn'];
+ var hljs = [ 'arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'codepen-embed', 'color-brewer', 'dark', 'default', 'docco', 'far', 'foundation', 'github', 'googlecode', 'hybrid', 'idea', 'ir_black', 'kimbie.dark', 'kimbie.light', 'magula', 'mono-blue', 'monokai_sublime', 'monokai', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn' ];
 
  return gulp.src('./')
    .pipe(prompt.prompt({
        type: 'checkbox',
        name: 'theme',
-       message: 'Choose your a default highlight.js theme',
+       message: 'Choose a highlight.js theme',
        choices: hljs,
      }, function(res){
 
