@@ -2,7 +2,7 @@
 
 [![GitHub version](https://badge.fury.io/gh/idleberg%2FBootstrap-Listr.svg)](http://badge.fury.io/gh/idleberg%2FBootstrap-Listr) [![Build Status](https://travis-ci.org/idleberg/Bootstrap-Listr.svg)](https://travis-ci.org/idleberg/Bootstrap-Listr) [![devDependencies](https://david-dm.org/idleberg/Bootstrap-Listr/dev-status.svg)](https://david-dm.org/idleberg/Bootstrap-Listr#info=devDependencies)
 
-A replacement for default server indexes, Bootstrap Listr beautifully displays folders and files in the browser. It is built upon the [Bootstrap](http://getbootstrap.com) framework and optionally makes use of [Bootswatch](http://bootswatch.com/) themes and [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons.
+A replacement for default server indices, Bootstrap Listr beautifully displays folders and files in the browser. It is built upon the [Bootstrap](http://getbootstrap.com) framework and optionally makes use of [Bootswatch](http://bootswatch.com/) themes and [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons.
 
 *Watch a [live demo](http://demo.idleberg.com/Bootstrap-Listr-2.0-dev/)!*
 
@@ -18,16 +18,14 @@ If you're already overwhelmed by the idea of having to build stuff, or simply wo
 
 ### Gulp
 
-[Gulp](http://gulpjs.com/) tasks are used to configure and build your app. You can install Gulp globally using `npm install gulp -g`. 
+[Gulp](http://gulpjs.com/) tasks are used to configure and build your app. You can install Gulp globally using `npm install gulp -g`.
 
-Alternatively, you can run Gulp tasks manually:
+Follow these steps to build your app:
 
-1. Use `gulp init` to copy base files (or use `gulp upgrade` to preserve an existing setup)
+1. Use `gulp init` to copy base files (or `gulp upgrade` to preserve an existing setup)
 2. Setup the application using `gulp setup`
 
-To change the default highlighter.js theme, you can run `gulp hljs`. Just make sure you haven't merged your assets prior to this. You can merge your assets afterwards using `gulp merge`.
-
-For your convenience, you can also run `tools/setup.sh` to install all Node packages and the setup tasks.
+For your convenience, you can also run `tools/setup.sh` to perform all of the above steps.
 
 ### CDN
 
@@ -35,7 +33,7 @@ Instead of running your dependencies locally, you can make use of various conten
 
 ## Deployment
 
-Copy `app/` to your server, then rename `config.json-example` to `config.json` and edit your settings. All files that should be accessible in the browser go into the `_public` folder (you can change the folder in the config). Depending on your Apache settings, you might have to uncomment the `RewriteBase` setting in the `.htaccess` file (maybe add parent folder name after the slash.)
+Deploy `app/` to your server, if necessary rename `config.json-example` to `config.json`. All files that should be accessible in the browser go into the `_public` folder (you can change the folder in the config). Depending on your Apache settings, you might have to uncomment the `RewriteBase` setting in the `.htaccess` file (maybe add parent folder name after the slash.)
 
 ## Options
 
