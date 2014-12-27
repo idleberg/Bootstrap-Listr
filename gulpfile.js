@@ -71,7 +71,6 @@ gulp.task('setup', function(callback) {
       'bootswatch',
       'select',
       'make',
-      'merge',
       callback
     );
 });
@@ -493,7 +492,7 @@ gulp.task('merge', function(callback) {
         type: 'input',
         name: 'merge',
         message: 'Do you want to merge all assets?',
-        default: 'n'
+        default: 'y'
     }, function(res){
         if(res.merge === 'y') {
             console.log('Merging assets…');
