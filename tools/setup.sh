@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.4.3
+VERSION=0.4.4
 set -e
 
 # Functions
@@ -35,10 +35,6 @@ fi
 # set dependencies source
 gulp setup --silent
 
-# include Highlight.js
-if [ -e 'app/assets/js/highlight.min.js' ]
-then
-	gulp hljs --silent
-fi
+gulp merge --silent
 
 echo $'Game over!'
