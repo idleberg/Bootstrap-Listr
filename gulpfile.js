@@ -150,7 +150,7 @@ gulp.task('select', function(){
             .pipe(cssmin())
             .pipe(gulp.dest('app/assets/css/'));
 
-          colog.warning('NOTE: You can change the default highlight.js theme using "gulp hljs"');
+          // colog.warning('NOTE: You can change the default highlight.js theme using "gulp hljs"');
           sequence(
             'hljs'
             )
