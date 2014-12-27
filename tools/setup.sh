@@ -37,4 +37,4 @@ gulp setup --silent
 
 gulp merge --silent
 
-echo $'Game over!'
+echo $'\nGame over!'
