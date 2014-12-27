@@ -493,7 +493,7 @@ gulp.task('merge', function(callback) {
         type: 'input',
         name: 'merge',
         message: 'Do you want to merge all assets?',
-        default: 'y'
+        default: 'n'
     }, function(res){
         if(res.merge === 'y') {
             console.log('Merging assets…');
