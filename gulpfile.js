@@ -323,7 +323,7 @@ gulp.task('swatch', function(){
             } else {
               var selection = '“'+res.theme[0]+'”';
             }
-            colog.error('ERROR: You can only select one theme, using '+selection)
+            colog.warning('WARNING: You can only select one theme, using '+selection)
           }
 
           // Copy glyphicons
@@ -413,7 +413,7 @@ gulp.task('swatch', function(){
 // Choose a highlight.js theme
 gulp.task('hljs', function(){
 
- var hljs = [ 'arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'codepen-embed', 'color-brewer', 'dark', 'default', 'docco', 'far', 'foundation', 'github', 'googlecode', 'hybrid', 'idea', 'ir_black', 'kimbie.dark', 'kimbie.light', 'magula', 'mono-blue', 'monokai_sublime', 'monokai', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn' ];
+ var hljs = [ 'github', 'googlecode', 'hybrid', 'idea', 'ir_black', 'kimbie.dark', 'kimbie.light', 'magula', 'mono-blue', 'monokai_sublime', 'monokai', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn', 'arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'codepen-embed', 'color-brewer', 'dark', 'default', 'docco', 'far', 'foundation' ];
 
  return gulp.src('./')
    .pipe(prompt.prompt({
@@ -427,7 +427,7 @@ gulp.task('hljs', function(){
          if (res.theme.length > 1) {
            
            var selection = '“'+res.theme[0]+'”';
-           colog.error('ERROR: You can only select one theme, using '+selection)
+           colog.warning('WARNING: You can only select one theme, using '+selection)
          }
 
         var source_dir = 'node_modules/_bower_components/highlightjs/styles/'
@@ -720,7 +720,7 @@ gulp.task('help', function() {
   console.log('      depends - Specify the source for all dependencies')
   console.log('         init - Create app-folder and copy required files')
   console.log('        jsmin - Minify config.json')
-  console.log('         lint - Run tasks to lint all CSS, JavaScript and PHP files')
+  console.log('         lint - Run tasks to lint all CSS and JavaScript')
   console.log('         make - Minify all CSS and JavaScript files')
   console.log('        merge - Merge all CSS and JavaScript files')
   console.log('        reset - Reset config.json to default')
