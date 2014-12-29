@@ -671,7 +671,7 @@ gulp.task('csslint', function() {
   gulp.src([
     'src/style.css'
   ])
-  .pipe(cache('linting'))
+  .pipe(cache('linting_css'))
   .pipe(csslint())
   .pipe(csslint.reporter());
 });
@@ -695,7 +695,7 @@ gulp.task('jshint', function() {
     'src/config.json',
     'src/scripts.js'
   ])
-  .pipe(cache('linting'))
+  .pipe(cache('linting_js'))
   .pipe(jshint())
   .pipe(jshint.reporter());
 });
