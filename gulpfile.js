@@ -14,6 +14,7 @@ var meta     = require('./package.json');
 
 // Gulp plugins
 var colog    = require('colog'),
+    cache    = require('gulp-cached'),
     concat   = require('gulp-concat'),
     csslint  = require('gulp-csslint'),
     cssmin   = require('gulp-cssmin'),
@@ -21,12 +22,14 @@ var colog    = require('colog'),
     gulp     = require('gulp'),
     jeditor  = require('gulp-json-editor'),
     jshint   = require('gulp-jshint'),
+    jsonlint = require('gulp-json-lint'),
     // lazypipe = require('lazypipe'),
     less     = require('gulp-less'),
     path     = require('path'),
     prompt   = require('gulp-prompt'),
     sequence = require('run-sequence'),
-    uglify   = require('gulp-uglify');
+    uglify   = require('gulp-uglify'),
+    watch    = require('gulp-watch');
 
 
 /*
@@ -36,7 +39,7 @@ var colog    = require('colog'),
  */
 
 // Task combos
-gulp.task('lint',   ['csslint', 'jshint'/*, 'phplint'*/]);
+gulp.task('lint',   ['csslint', 'jshint', 'jsonlint' /*, 'phplint'*/]);
 gulp.task('make',   ['cssmin', 'uglify']);
 gulp.task('travis', ['csslint', 'jshint']);
 gulp.task('css',    ['csslint', 'cssmin']);
@@ -107,7 +110,7 @@ gulp.task('select', function(){
               'node_modules/jquery/dist/jquery.min.js',
               'node_modules/jquery-searcher/dist/jquery.searcher.min.js'
              ])
-            .pipe(gulp.dest('app/assets/js/'))
+            .pipe(gulp.dest('app/assets/js/'));
 
           enable_search = true;
         } 
@@ -125,7 +128,7 @@ gulp.task('select', function(){
             ])
             .pipe(concat('bootstrap.min.js'))
             .pipe(uglify())
-            .pipe(gulp.dest('app/assets/js/'))
+            .pipe(gulp.dest('app/assets/js/'));
 
           enable_viewer = true;
         }
@@ -138,7 +141,7 @@ gulp.task('select', function(){
           gulp
             .src('node_modules/_bower_components/highlightjs/highlight.pack.js')
             .pipe(concat('highlight.min.js'))
-            .pipe(gulp.dest('app/assets/js/'))
+            .pipe(gulp.dest('app/assets/js/'));
 
           enable_highlight = true;
 
@@ -153,7 +156,7 @@ gulp.task('select', function(){
           // colog.warning('NOTE: You can change the default highlight.js theme using "gulp hljs"');
           sequence(
             'hljs'
-            )
+          );
         }
 
 
@@ -163,15 +166,15 @@ gulp.task('select', function(){
 
           gulp
             .src('node_modules/font-awesome/css/font-awesome.min.css')
-            .pipe(gulp.dest('app/assets/css/'))
+            .pipe(gulp.dest('app/assets/css/'));
 
           gulp
             .src('node_modules/font-awesome/fonts/fontawesome-webfont.*')
-            .pipe(gulp.dest('app/assets/fonts/'))
+            .pipe(gulp.dest('app/assets/fonts/'));
 
           del([
               'app/assets/fonts/glyphicons-halflings-regular.*'
-            ])
+            ]);
 
           default_icons = 'fontawesome';
         }
@@ -187,7 +190,7 @@ gulp.task('select', function(){
               'node_modules/apache-server-configs/dist/.htaccess'
               ])
             .pipe(concat('.htaccess'))
-            .pipe(gulp.dest('app/'))
+            .pipe(gulp.dest('app/'));
         }
 
 
@@ -198,7 +201,7 @@ gulp.task('select', function(){
           gulp
             .src('src/robots.txt')
             .pipe(concat('robots.txt'))
-            .pipe(gulp.dest('app/'))
+            .pipe(gulp.dest('app/'));
         }
 
 
@@ -207,7 +210,7 @@ gulp.task('select', function(){
 
           gulp
             .src('node_modules/bootlint/dist/browser/bootlint.js')
-            .pipe(gulp.dest('app/assets/js/'))
+            .pipe(gulp.dest('app/assets/js/'));
 
           include_bootlint = true;
         }
@@ -222,7 +225,7 @@ gulp.task('select', function(){
               'node_modules/jquery/dist/jquery.min.js',
               'node_modules/jquery/dist/jquery.min.map'
             ])
-            .pipe(gulp.dest('app/assets/js/'))
+            .pipe(gulp.dest('app/assets/js/'));
         }
 
 
@@ -319,22 +322,22 @@ gulp.task('swatch', function(){
           // Warn if multiple items selected
           if (res.theme.length > 1) {
             if (res.theme[0] == '(none)') {
-                var selection = 'default';
+              selection = 'default';
             } else {
-              var selection = '“'+res.theme[0]+'”';
+               selection = '“'+res.theme[0]+'”';
             }
-            colog.warning('WARNING: You can only select one theme, using '+selection)
+            colog.warning('WARNING: You can only select one theme, using '+selection);
           }
 
           // Copy glyphicons
           gulp
             .src('node_modules/bootstrap/fonts/*')
-            .pipe(gulp.dest('app/assets/fonts/'))
+            .pipe(gulp.dest('app/assets/fonts/'));
 
           // Set default theme
-          if ((res.theme[0] === '(none)') || (res.theme == '')) {
+          if ((res.theme[0] === '(none)') || (res.theme === '')) {
               
-              console.log('Compiling default Bootstrap theme…')
+              console.log('Compiling default Bootstrap theme…');
 
               gulp.src(bootstrap_less)
               .pipe(concat('bootstrap.less'))
@@ -343,7 +346,7 @@ gulp.task('swatch', function(){
               }))
               .pipe(concat('bootstrap.min.css'))
               .pipe(cssmin())
-              .pipe(gulp.dest('app/assets/css/'))
+              .pipe(gulp.dest('app/assets/css/'));
               
               gulp.src("app/config.json")
               .pipe(jeditor({
@@ -356,12 +359,12 @@ gulp.task('swatch', function(){
           // Set M8tro theme (http://idleberg.github.io/m8tro-bootstrap/)
           } else if (res.theme[0] === 'M8tro') {
 
-            var slug = res.theme[0].toLowerCase();
-            console.log('Compiling Bootstrap theme “M8tro”')
+            slug = res.theme[0].toLowerCase();
+            console.log('Compiling Bootstrap theme “M8tro”');
 
-            bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro/palette.less')
-            bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro-variables.less')
-            bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro-theme.less')
+            bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro/palette.less');
+            bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro-variables.less');
+            bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro-theme.less');
 
             gulp.src(bootstrap_less)
             .pipe(concat('bootstrap.less'))
@@ -370,7 +373,7 @@ gulp.task('swatch', function(){
             }))
             .pipe(concat('bootstrap.min.css'))
             .pipe(cssmin())
-            .pipe(gulp.dest('app/assets/css/'))
+            .pipe(gulp.dest('app/assets/css/'));
             
             gulp.src("app/config.json")
             .pipe(jeditor({
@@ -383,12 +386,12 @@ gulp.task('swatch', function(){
           // Set Bootswatch theme
           } else if (bootswatch.indexOf(res.theme[0])  > -1 ) {
               
-              var slug = res.theme[0].toLowerCase();
-              console.log('Compiling Bootswatch theme “'+res.theme[0]+'”…')
+              slug = res.theme[0].toLowerCase();
+              console.log('Compiling Bootswatch theme “'+res.theme[0]+'”…');
 
-              bootstrap_less.push('node_modules/bootswatch/' + slug + '/variables.less')
-              bootstrap_less.push('node_modules/bootswatch/' + slug + '/bootswatch.less')
-              
+              bootstrap_less.push('node_modules/bootswatch/' + slug + '/variables.less');
+              bootstrap_less.push('node_modules/bootswatch/' + slug + '/bootswatch.less');
+
               gulp.src(bootstrap_less)
               .pipe(concat('bootstrap.less'))
               .pipe(less({
@@ -396,7 +399,7 @@ gulp.task('swatch', function(){
               }))
               .pipe(concat('bootstrap.min.css'))
               .pipe(cssmin())
-              .pipe(gulp.dest('app/assets/css/'))
+              .pipe(gulp.dest('app/assets/css/'));
 
               gulp.src("app/config.json")
               .pipe(jeditor({
@@ -427,13 +430,13 @@ gulp.task('hljs', function(){
          if (res.theme.length > 1) {
            
            var selection = '“'+res.theme[0]+'”';
-           colog.warning('WARNING: You can only select one theme, using '+selection)
+           colog.warning('WARNING: You can only select one theme, using '+selection);
          }
 
-        var source_dir = 'node_modules/_bower_components/highlightjs/styles/'
+        var source_dir = 'node_modules/_bower_components/highlightjs/styles/';
 
          // Set default theme
-         if (res.theme == '') {
+         if (res.theme === '') {
              
              console.log('Minifying highlight.js theme “github.css”…');
 
@@ -533,7 +536,7 @@ gulp.task('merge-scripts', function(){
       '!app/assets/js/listr.pack.js'
     ])
     .pipe(concat('listr.pack.js'))
-    .pipe(gulp.dest('app/assets/js/'))
+    .pipe(gulp.dest('app/assets/js/'));
 });
 
 
@@ -545,7 +548,7 @@ gulp.task('merge-styles', function(){
       '!app/assets/css/listr.pack.css'
     ])
     .pipe(concat('listr.pack.css'))
-    .pipe(gulp.dest('app/assets/css/'))
+    .pipe(gulp.dest('app/assets/css/'));
 });
 
 
@@ -559,7 +562,7 @@ gulp.task('post-merge', function() {
     '!app/assets/js/bootlint.js',
     '!app/assets/js/jquery.min.js',
     '!app/assets/js/listr.pack.js'
-  ])
+  ]);
 });
 
 
@@ -627,9 +630,9 @@ gulp.task('init', ['clean'], function() {
 gulp.task('upgrade', function() {
 
   del([
-  'app/assets/css/listr.pack.css',
-  'app/assets/js/listr.pack.js'
-])
+    'app/assets/css/listr.pack.css',
+    'app/assets/js/listr.pack.js'
+  ]);
 
   gulp.src([
     'src/index.php',
@@ -668,8 +671,9 @@ gulp.task('csslint', function() {
   gulp.src([
     'src/style.css'
   ])
+  .pipe(cache('linting'))
   .pipe(csslint())
-  .pipe(csslint.reporter())
+  .pipe(csslint.reporter());
 });
 
 
@@ -680,18 +684,20 @@ gulp.task('cssmin', function() {
   ])
   .pipe(concat('listr.min.css'))
   .pipe(cssmin())
-  .pipe(gulp.dest('app/assets/css/'))
+  .pipe(gulp.dest('app/assets/css/'));
 });
 
 
 // Lint JS files
 gulp.task('jshint', function() {
   gulp.src([
+    // 'gulpfile.js',
     'src/config.json',
     'src/scripts.js'
   ])
+  .pipe(cache('linting'))
   .pipe(jshint())
-  .pipe(jshint.reporter())
+  .pipe(jshint.reporter());
 });
 
 
@@ -702,7 +708,34 @@ gulp.task('uglify', function() {
    ])
    .pipe(uglify())
    .pipe(concat('listr.min.js'))
-   .pipe(gulp.dest('app/assets/js/'))
+   .pipe(gulp.dest('app/assets/js/'));
+});
+
+
+// Lint JSON files
+gulp.task('jsonlint', function() {
+  gulp.src([
+    'package.json',
+    'src/config.json',
+    'src/scripts.js'
+  ])
+  .pipe(cache('linting'))
+  .pipe(jshint())
+  .pipe(jshint.reporter());
+});
+
+
+// Watch task
+gulp.task('watch', function () {
+   gulp.watch([
+          'gulpfile.js',
+          'package.json',
+          'src/config.json',
+          'src/scripts.js',
+          'src/style.css'
+         ],
+         ['lint']
+   );
 });
 
 
@@ -713,22 +746,22 @@ gulp.task('help', function() {
 
   console.log('\n' + meta.name + ' v' + meta.version);
   console.log(repeat('=', title_length.length));
-  console.log('\nAvailable tasks:')
-  console.log('         help - This dialog')
-  console.log('        clean - Delete app-folder')
-  console.log('        debug - Add Bootlint and jQuery source map')
-  console.log('      depends - Specify the source for all dependencies')
-  console.log('         init - Create app-folder and copy required files')
-  console.log('        jsmin - Minify config.json')
-  console.log('         lint - Run tasks to lint all CSS and JavaScript')
-  console.log('         make - Minify all CSS and JavaScript files')
-  console.log('        merge - Merge all CSS and JavaScript files')
-  console.log('        reset - Reset config.json to default')
-  console.log('        setup - Run a full setup')
-  console.log('       swatch - Select default Bootstrap theme')
-  console.log('         hljs - Specify default Highlighter.js style-sheet')
-  console.log('      upgrade - Upgrade all PHP files in app-folder')
-  console.log('\nVisit our GitHub repository:')
-  console.log(meta.homepage)
+  console.log('\nAvailable tasks:');
+  console.log('         help - This dialog');
+  console.log('        clean - Delete app-folder');
+  console.log('        debug - Add Bootlint and jQuery source map');
+  console.log('      depends - Specify the source for all dependencies');
+  console.log('         init - Create app-folder and copy required files');
+  console.log('        jsmin - Minify config.json');
+  console.log('         lint - Run tasks to lint all CSS and JavaScript');
+  console.log('         make - Minify all CSS and JavaScript files');
+  console.log('        merge - Merge all CSS and JavaScript files');
+  console.log('        reset - Reset config.json to default');
+  console.log('        setup - Run a full setup');
+  console.log('       swatch - Select default Bootstrap theme');
+  console.log('         hljs - Specify default Highlighter.js style-sheet');
+  console.log('      upgrade - Upgrade all PHP files in app-folder');
+  console.log('\nVisit our GitHub repository:');
+  console.log(meta.homepage);
 
-} )
+} );
