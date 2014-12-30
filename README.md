@@ -34,7 +34,7 @@ Available tasks:
 
 Task      | Description
 ----------|------------
-`help`    | Shows help dialog
+`help`    | Show help dialog
 `init`    | Create app-folder and copy required files
 `make`    | Minify all CSS and JavaScript files
 `setup`   | Run a full setup
