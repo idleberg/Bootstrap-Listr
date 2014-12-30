@@ -39,12 +39,12 @@ var colog    = require('colog'),
  */
 
 // Task combos
-gulp.task('lint',   ['csslint', 'jshint', 'jsonlint' /*, 'phplint'*/]);
-gulp.task('make',   ['cssmin', 'uglify']);
-gulp.task('travis', ['csslint', 'jshint']);
-gulp.task('css',    ['csslint', 'cssmin']);
-gulp.task('debug',  ['bootlint','jquery']);
-gulp.task('js',     ['jshint', 'uglify']);
+gulp.task('lint',      ['csslint', 'jshint', 'jsonlint' /*, 'phplint'*/]);
+gulp.task('make',      ['cssmin', 'uglify']);
+gulp.task('travis',    ['csslint', 'jshint']);
+gulp.task('css',       ['csslint', 'cssmin']);
+gulp.task('debug',     ['bootlint','jquery']);
+gulp.task('js',        ['jshint', 'uglify']);
 
 // Task aliases
 gulp.task('default',    ['help']);
@@ -691,8 +691,7 @@ gulp.task('cssmin', function() {
 // Lint JS files
 gulp.task('jshint', function() {
   gulp.src([
-    // 'gulpfile.js',
-    'src/config.json',
+    'gulpfile.js',
     'src/scripts.js'
   ])
   .pipe(cache('linting_js'))
