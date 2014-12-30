@@ -716,12 +716,11 @@ gulp.task('uglify', function() {
 gulp.task('jsonlint', function() {
   gulp.src([
     'package.json',
-    'src/config.json',
-    'src/scripts.js'
+    'src/config.json'
   ])
-  .pipe(cache('linting'))
-  .pipe(jshint())
-  .pipe(jshint.reporter());
+  .pipe(cache('linting_json'))
+  .pipe(jsonlint())
+  .pipe(jsonlint.report('verbose'));
 });
 
 
