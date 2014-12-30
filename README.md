@@ -28,7 +28,26 @@ Follow these steps to build your app:
 2. Setup the application `gulp setup`
 3. Optionally merge all assets `gulp merge`
 
-For your convenience, you can also run `tools/setup.sh` to perform all of the above steps.
+For your convenience, you can also run `tools/setup.sh` to perform all of the above 
+
+Available tasks:
+
+Task      | Description
+----------|------------
+`help`    | Shows help dialog
+`init`    | Create app-folder and copy required files
+`make`    | Minify all CSS and JavaScript files
+`setup`   | Run a full setup
+`upgrade` | Upgrade all PHP files in app-folder
+`merge`   | Merge all CSS and JavaScript files
+`depends` | Specify the source for all dependencies
+`clean`   | Delete app-folder
+`debug`   | Add Bootlint and jQuery source map
+`hljs`    | Specify default Highlighter.js style-sheet
+`jsmin`   | Minify config.json
+`lint`    | Run tasks to lint all CSS and JavaScript
+`reset`   | Reset config.json to default
+`swatch`  | Select default Bootstrap theme
 
 ### CDN
 
