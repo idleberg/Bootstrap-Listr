@@ -486,7 +486,13 @@ if(($folder_list) || ($file_list) ) {
     if($folder_list):    
         foreach($folder_list as $item) :
 
-            $table_body .= "          <tr>" . PHP_EOL;
+            if ($options['bootstrap']['tablerow_folders'] != "") {
+                $tr_folders = " class=\"".$options['bootstrap']['tablerow_folders']."\"";
+            } else {
+                $tr_folders = null;
+            }
+
+            $table_body .= "          <tr$tr_folders>" . PHP_EOL;
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
                 $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
@@ -522,7 +528,14 @@ if(($folder_list) || ($file_list) ) {
 
     if($file_list):
         foreach($file_list as $item) :
-            $table_body .= "          <tr>" . PHP_EOL;
+
+            if ($options['bootstrap']['tablerow_files'] != "") {
+                $tr_files = " class=\"".$options['bootstrap']['tablerow_files']."\"";
+            } else {
+                $tr_files = null;
+            }
+
+            $table_body .= "          <tr$tr_files>" . PHP_EOL;
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
                 $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
