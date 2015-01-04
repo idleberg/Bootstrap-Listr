@@ -612,7 +612,7 @@ gulp.task('init', ['clean'], function() {
   .pipe(concat('.htaccess'))
   .pipe(gulp.dest('app/_public/'));
 
-  gulp.src('node_modules/stupid-jquery-table-sort/stupidtable.min.js')
+  gulp.src('node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js')
   .pipe(concat('stupidtable.min.js'))
   .pipe(gulp.dest('app/assets/js/'));
 
@@ -646,6 +646,11 @@ gulp.task('upgrade', function() {
     'src/locale/**/*'
   ])
   .pipe(gulp.dest('app/locale/'));
+
+  gulp.src('node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js')
+  .pipe(concat('stupidtable.min.js'))
+  .pipe(gulp.dest('app/assets/js/'));
+
 });
 
 
