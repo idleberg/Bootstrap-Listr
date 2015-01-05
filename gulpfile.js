@@ -14,6 +14,7 @@ var meta     = require('./package.json');
 
 // Gulp plugins
 var colog    = require('colog'),
+    console  = require('better-console'),
     cache    = require('gulp-cached'),
     concat   = require('gulp-concat'),
     csslint  = require('gulp-csslint'),
@@ -65,6 +66,7 @@ gulp.task('update',     ['upgrade']);
  // Setup sequence
 gulp.task('setup', function(callback) {
 
+  console.clear();
   console.log('\n' + meta.name + ' v' + meta.version);
   console.log('The MIT License (MIT)');
   console.log('\nRunning setup');
@@ -97,7 +99,16 @@ gulp.task('select', function(){
         type: 'checkbox',
         name: 'feature',
         message: 'Which features would you like to use?',
-        choices: ['Viewer Modal', 'Search Box', 'Syntax Highlighter', 'Font Awesome', 'H5BP Apache Server Config', 'robots.txt', 'DEBUG: Bootlint', 'DEBUG: jQuery Source Map'],
+        choices: [
+          { name: 'Viewer Modal', checked: true },
+          { name: 'Search Box', checked: true },
+          { name: 'Syntax Highlighter', checked: true },
+          { name: 'Font Awesome', checked: true },
+          { name: 'H5BP Apache Server Config', checked: true },
+          { name: 'robots.txt', checked: true },
+          { name: 'DEBUG: Bootlint', checked: false },
+          { name: 'DEBUG: jQuery Source Map', checked: false },
+        ],
       }, function(res){
 
 
