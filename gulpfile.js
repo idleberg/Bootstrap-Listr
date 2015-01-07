@@ -7,10 +7,12 @@
 // Read package.json metadata
 var meta     = require('./package.json');
 
+
 // A handy repeat function
   var repeat = function (s, n, d) {
     return --n ? s + (d || "") + repeat(s, n, d) : "" + s;
   };
+
 
 // Gulp plugins
 var colog    = require('colog'),
@@ -20,11 +22,11 @@ var colog    = require('colog'),
     csslint  = require('gulp-csslint'),
     cssmin   = require('gulp-cssmin'),
     del      = require('del'),
+    fs       = require('fs'),
     gulp     = require('gulp'),
     jeditor  = require('gulp-json-editor'),
     jshint   = require('gulp-jshint'),
     jsonlint = require('gulp-json-lint'),
-    // lazypipe = require('lazypipe'),
     less     = require('gulp-less'),
     path     = require('path'),
     prompt   = require('gulp-prompt'),
@@ -47,8 +49,8 @@ gulp.task('css',       ['csslint', 'cssmin']);
 gulp.task('debug',     ['bootlint','jquery']);
 gulp.task('js',        ['jshint', 'uglify']);
 
+
 // Task aliases
-gulp.task('default',    ['help']);
 gulp.task('deps',       ['depends']);
 gulp.task('jsmin',      ['uglify']);
 gulp.task('minify',     ['make']);
@@ -63,13 +65,32 @@ gulp.task('update',     ['upgrade']);
  *           |              
  */
 
- // Setup sequence
-gulp.task('setup', function(callback) {
 
-  console.clear();
-  console.log('\n' + meta.name + ' v' + meta.version);
-  console.log('The MIT License (MIT)');
-  console.log('\nRunning setup');
+// Default task
+gulp.task('default', false, function (callback) {
+  setTimeout(function() {
+
+    console.clear();
+    console.log('\n' + meta.name + ' v' + meta.version);
+    console.log('The MIT License (MIT)');
+
+    if( !fs.existsSync('./app/config.json')) {
+      console.log('\nRunning setup…');
+      sequence(
+        'init',
+        'setup',
+        callback
+      );
+    } else {
+      console.log('\nConfiguration file detected\nRunning upgrade…');
+      gulp.start('upgrade');
+    }
+  }, 50);
+});
+
+
+// Setup sequence
+gulp.task('setup', function(callback) {
 
   sequence(
       'depends',
@@ -81,15 +102,21 @@ gulp.task('setup', function(callback) {
 });
 
 
+// Clean install
+gulp.task('install', ['clean'], function(callback) {
+
+  gulp.start('default');
+});
+
+
 // Feature selection
-gulp.task('select', function(){
+gulp.task('select', function(callback){
 
   // Set defaults
   var enable_viewer      = false,
       enable_search      = false;
       enable_highlight   = false;
       default_icons      = 'glyphicons';
-      // default_hljs_theme = 'github';
       include_bootlint   = false;
 
 
@@ -164,12 +191,8 @@ gulp.task('select', function(){
             .pipe(cssmin())
             .pipe(gulp.dest('app/assets/css/'));
 
-          // colog.warning('NOTE: You can change the default highlight.js theme using "gulp hljs"');
-          sequence(
-            'hljs'
-          );
+            sequence('hljs');
         }
-
 
         // Set default icons to Font Awesome
         if (res.feature.indexOf('Font Awesome') > -1) {
@@ -265,10 +288,19 @@ gulp.task('select', function(){
 gulp.task('depends', function() {
   return gulp.src('./')
     .pipe(prompt.prompt({
-        type: 'input',
+        type: 'list',
         name: 'dependencies',
-        message: 'Do you want to load dependencies locally (l) or from CDN (c)?',
-        default: 'l'
+        message: 'Choose how to load all dependencies',
+        choices: [
+          {
+            name: 'From your server',
+            value: 'local'
+          },
+          {
+            name: 'Use content delivery networks (CDN)',
+            value: 'cdn'
+          }
+      ]
     }, function(res){
         
         if( (res.dependencies === 'l') || (res.dependencies === 'local') ) {
@@ -324,21 +356,11 @@ gulp.task('swatch', function(){
       
   return gulp.src('./')
     .pipe(prompt.prompt({
-        type: 'checkbox',
+        type: 'list',
         name: 'theme',
         message: 'Choose your a default Bootstrap theme',
         choices: bootswatch,
       }, function(res){
-
-          // Warn if multiple items selected
-          if (res.theme.length > 1) {
-            if (res.theme[0] == '(none)') {
-              selection = 'default';
-            } else {
-               selection = '“'+res.theme[0]+'”';
-            }
-            colog.warning('WARNING: You can only select one theme, using '+selection);
-          }
 
           // Copy glyphicons
           gulp
@@ -346,7 +368,7 @@ gulp.task('swatch', function(){
             .pipe(gulp.dest('app/assets/fonts/'));
 
           // Set default theme
-          if ((res.theme[0] === '(none)') || (res.theme === '')) {
+          if (res.theme === '(none)') {
               
               console.log('Compiling default Bootstrap theme…');
 
@@ -368,9 +390,9 @@ gulp.task('swatch', function(){
               .pipe(gulp.dest("app/"));
 
           // Set M8tro theme (http://idleberg.github.io/m8tro-bootstrap/)
-          } else if (res.theme[0] === 'M8tro') {
+          } else if (res.theme === 'M8tro') {
 
-            slug = res.theme[0].toLowerCase();
+            slug = res.theme.toLowerCase();
             console.log('Compiling Bootstrap theme “M8tro”');
 
             bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro/palette.less');
@@ -395,10 +417,10 @@ gulp.task('swatch', function(){
             .pipe(gulp.dest("app/"));
 
           // Set Bootswatch theme
-          } else if (bootswatch.indexOf(res.theme[0])  > -1 ) {
+          } else {
               
-              slug = res.theme[0].toLowerCase();
-              console.log('Compiling Bootswatch theme “'+res.theme[0]+'”…');
+              slug = res.theme.toLowerCase();
+              console.log('Compiling Bootswatch theme “'+res.theme+'”…');
 
               bootstrap_less.push('node_modules/bootswatch/' + slug + '/variables.less');
               bootstrap_less.push('node_modules/bootswatch/' + slug + '/bootswatch.less');
@@ -429,76 +451,45 @@ gulp.task('hljs', function(){
 
  var hljs = [ 'github', 'googlecode', 'hybrid', 'idea', 'ir_black', 'kimbie.dark', 'kimbie.light', 'magula', 'mono-blue', 'monokai_sublime', 'monokai', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn', 'arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'codepen-embed', 'color-brewer', 'dark', 'default', 'docco', 'far', 'foundation' ];
 
- return gulp.src('./')
+  return gulp.src('./')
    .pipe(prompt.prompt({
-       type: 'checkbox',
+       type: 'list',
        name: 'theme',
        message: 'Choose a highlight.js theme',
        choices: hljs,
      }, function(res){
 
-         // Warn if multiple items selected
-         if (res.theme.length > 1) {
-           
-           var selection = '“'+res.theme[0]+'”';
-           colog.warning('WARNING: You can only select one theme, using '+selection);
-         }
-
         var source_dir = 'node_modules/_bower_components/highlightjs/styles/';
 
          // Set default theme
-         if (res.theme === '') {
-             
-             console.log('Minifying highlight.js theme “github.css”…');
+         console.log('Minifying highlight.js theme “'+res.theme+'”…');
+         gulp.src(source_dir+res.theme+'.css')
+         .pipe(concat('highlight.min.css'))
+         .pipe(cssmin())
+         .pipe(gulp.dest('app/assets/css/'));
 
-             gulp.src(source_dir+'github.css')
-             .pipe(concat('highlight.min.css'))
-             .pipe(cssmin())
-             .pipe(gulp.dest('app/assets/css/'));
-             
-             gulp.src("app/config.json")
-             .pipe(jeditor({
-               'highlight': {
-                 'theme': 'github'
-               }
-             }))
-             .pipe(gulp.dest("app/"));
+         gulp.src("app/config.json")
+         .pipe(jeditor({
+           'highlight': {
+             'theme': res.theme
+           }
+         }))
+         .pipe(gulp.dest("app/"));
 
-
-         // Set highlight.js theme
-         } else if (hljs.indexOf(res.theme[0])  > -1 ) {
-             
-             console.log('Minifying highlight.js theme “'+res.theme[0]+'”…');
-             gulp.src(source_dir+res.theme[0]+'.css')
-             .pipe(concat('highlight.min.css'))
-             .pipe(cssmin())
-             .pipe(gulp.dest('app/assets/css/'));
-
-             gulp.src("app/config.json")
-             .pipe(jeditor({
-               'highlight': {
-                 'theme': res.theme[0]
-               }
-             }))
-             .pipe(gulp.dest("app/"));
-
-             // Special cases
-            if (res.theme[0] == 'brown_paper') {
-
-               console.log ('Copying extra-file brown_papersq.png');
-               gulp.src('node_modules/_bower_components/highlightjs/styles/brown_papersq.png')
-               .pipe(gulp.dest('app/assets/css/'));
-            } else if (res.theme[0] == 'pojoaque') {
-               console.log ('Copying extra-file pojoaque.jpg');
-               gulp.src('node_modules/_bower_components/highlightjs/styles/pojoaque.jpg')
-               .pipe(gulp.dest('app/assets/css/'));
-            } else if (res.theme[0] == 'school_book') {
-               console.log ('Copying extra-file school_book.png');
-               gulp.src('node_modules/_bower_components/highlightjs/styles/school_book.png')
-               .pipe(gulp.dest('app/assets/css/'));
-            }
+         // Special cases
+         if (res.theme == 'brown_paper') {
+            console.log ('Copying extra-file brown_papersq.png');
+            gulp.src('node_modules/_bower_components/highlightjs/styles/brown_papersq.png')
+            .pipe(gulp.dest('app/assets/css/'));
+         } else if (res.theme == 'pojoaque') {
+            console.log ('Copying extra-file pojoaque.jpg');
+            gulp.src('node_modules/_bower_components/highlightjs/styles/pojoaque.jpg')
+            .pipe(gulp.dest('app/assets/css/'));
+         } else if (res.theme == 'school_book') {
+            console.log ('Copying extra-file school_book.png');
+            gulp.src('node_modules/_bower_components/highlightjs/styles/school_book.png')
+            .pipe(gulp.dest('app/assets/css/'));
          }
-       
    }));
 });
 
@@ -508,12 +499,18 @@ gulp.task('merge', function(callback) {
 
   gulp.src('app/assets')
     .pipe(prompt.prompt({
-        type: 'input',
+        type: 'list',
         name: 'merge',
         message: 'Do you want to merge all assets?',
-        default: 'y'
+        choices: [
+          'No, keep individual file',
+          {
+            name: 'Yes, merge all assets',
+            value: 'merge'
+          }
+        ]
     }, function(res){
-        if(res.merge === 'y') {
+        if(res.merge === 'merge') {
             console.log('Merging assets…');
 
             sequence(
@@ -766,6 +763,7 @@ gulp.task('help', function() {
   console.log('        debug - Add Bootlint and jQuery source map');
   console.log('      depends - Specify the source for all dependencies');
   console.log('         init - Create app-folder and copy required files');
+  console.log('      install - Run a clean installation');
   console.log('        jsmin - Minify config.json');
   console.log('         lint - Run tasks to lint all CSS and JavaScript');
   console.log('         make - Minify all CSS and JavaScript files');
