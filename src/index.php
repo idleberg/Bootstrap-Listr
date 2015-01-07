@@ -409,7 +409,13 @@ $header = set_header($bootstrap_cdn);
 $footer = set_footer();
 
 // Set breadcrumbs
-$breadcrumbs  = "    <ol class=\"breadcrumb\"".$direction.">" . PHP_EOL;
+if ($options['bootstrap']['breadcrumb_style'] != "") {
+    $breadcrumb_style = " ".$options['bootstrap']['breadcrumb_style'];
+} else {
+    $breadcrumb_style = null;
+}
+
+$breadcrumbs  = "    <ol class=\"breadcrumb$breadcrumb_style\"".$direction.">" . PHP_EOL;
 $breadcrumbs .= "      <li><a href=\"".htmlentities($root_dir, ENT_QUOTES, 'utf-8')."\">".$icons['home']."</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
     if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
