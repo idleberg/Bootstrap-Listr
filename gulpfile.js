@@ -15,8 +15,7 @@ var meta     = require('./package.json');
 
 
 // Gulp plugins
-var colog    = require('colog'),
-    console  = require('better-console'),
+var console  = require('better-console'),
     cache    = require('gulp-cached'),
     concat   = require('gulp-concat'),
     csslint  = require('gulp-csslint'),
@@ -191,7 +190,7 @@ gulp.task('select', function(callback){
             .pipe(cssmin())
             .pipe(gulp.dest('app/assets/css/'));
 
-            sequence('hljs');
+            gulp.start('hljs');
         }
 
         // Set default icons to Font Awesome
@@ -692,6 +691,8 @@ gulp.task('csslint', function() {
 
 // Minify CSS files
 gulp.task('cssmin', function() {
+  console.log('Minifying CSS…');
+
   gulp.src([
     'src/style.css'
   ])
@@ -715,6 +716,8 @@ gulp.task('jshint', function() {
 
 // Minify JS files
 gulp.task('uglify', function() {
+   console.log('Minifying JavaScript…');
+
    gulp.src([
      'src/scripts.js'
    ])
