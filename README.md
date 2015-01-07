@@ -22,20 +22,15 @@ If you're already overwhelmed by the idea of having to build stuff, or simply wo
 
 [Gulp](http://gulpjs.com/) tasks are used to configure and build your app. You can install Gulp globally using `npm install gulp -g`.
 
-Follow these steps to build your app:
+You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase. To force a clean install, run `gulp install`.
 
-1. Use `gulp init` to copy base files (or `gulp upgrade` to preserve an existing setup)
-2. Setup the application `gulp setup`
-3. Optionally merge all assets `gulp merge`
-
-For your convenience, you can also run `tools/setup.sh` to perform all of the above 
-
-Available tasks:
+All available tasks:
 
 Task      | Description
 ----------|------------
 `help`    | Show help dialog
 `init`    | Create app-folder and copy required files
+`install` | Run a clean installation
 `make`    | Minify all CSS and JavaScript files
 `setup`   | Run a full setup
 `upgrade` | Upgrade all PHP files in app-folder
