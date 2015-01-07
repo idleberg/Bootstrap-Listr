@@ -31,7 +31,8 @@ var console  = require('better-console'),
     prompt   = require('gulp-prompt'),
     sequence = require('run-sequence'),
     uglify   = require('gulp-uglify'),
-    watch    = require('gulp-watch');
+    watch    = require('gulp-watch'),
+    argv     = require('yargs').argv;
 
 
 /*
@@ -118,6 +119,29 @@ gulp.task('select', function(callback){
       default_icons      = 'glyphicons';
       include_bootlint   = false;
 
+  var features = [
+        { name: 'Viewer Modal', value: 'viewer' , checked: true },
+        { name: 'Search Box', value: 'search' , checked: true },
+        { name: 'Syntax Highlighter', value: 'highlighter' , checked: true },
+        { name: 'Font Awesome', value: 'font_awesome' , checked: true },
+        { name: 'H5BP Apache Server Config', value: 'htaccess' , checked: true },
+        { name: 'robots.txt', value: 'robots' , checked: true },
+        { name: 'DEBUG: Bootlint', value: 'bootlint' ,checked: false },
+        { name: 'DEBUG: jQuery Source Map', value: 'jquery_map', checked: false }
+      ];
+
+  // uncheck all features
+  if (argv.min) {
+    for (var i = 0; i < 6; i++) {
+       features[i].checked =  false;
+    }
+  }
+
+  // check debug features
+  if (argv.debug) {
+       features[6].checked =  true;
+       features[7].checked =  true;
+  }
 
   // Setup dialog
   return gulp.src('./')
@@ -125,21 +149,12 @@ gulp.task('select', function(callback){
         type: 'checkbox',
         name: 'feature',
         message: 'Which features would you like to use?',
-        choices: [
-          { name: 'Viewer Modal', checked: true },
-          { name: 'Search Box', checked: true },
-          { name: 'Syntax Highlighter', checked: true },
-          { name: 'Font Awesome', checked: true },
-          { name: 'H5BP Apache Server Config', checked: true },
-          { name: 'robots.txt', checked: true },
-          { name: 'DEBUG: Bootlint', checked: false },
-          { name: 'DEBUG: jQuery Source Map', checked: false },
-        ],
+        choices: features,
       }, function(res){
 
 
         // Enable search box
-        if (res.feature.indexOf('Search Box') > -1 ) {
+        if (res.feature.indexOf('search') > -1 ) {
           console.info('Including search box assets…');
           
           gulp
@@ -154,7 +169,7 @@ gulp.task('select', function(callback){
 
 
         // Enable Viewer Modal modal
-        if (res.feature.indexOf('Viewer Modal') > -1) {
+        if (res.feature.indexOf('viewer') > -1) {
           console.log('Compiling Bootstrap scripts…');
 
           gulp
@@ -172,7 +187,7 @@ gulp.task('select', function(callback){
 
 
         // Include syntax highlighter
-         if (res.feature.indexOf('Syntax Highlighter') > -1) {
+         if (res.feature.indexOf('highlighter') > -1) {
           console.log('Including syntax highlighter assets…');
  
           gulp
@@ -194,7 +209,7 @@ gulp.task('select', function(callback){
         }
 
         // Set default icons to Font Awesome
-        if (res.feature.indexOf('Font Awesome') > -1) {
+        if (res.feature.indexOf('font_awesome') > -1) {
           console.log('Including Font Awesome assets…');
 
           gulp
@@ -214,7 +229,7 @@ gulp.task('select', function(callback){
 
 
         // Include H5BP Apache Config
-        if (res.feature.indexOf('H5BP Apache Server Config') > -1) {
+        if (res.feature.indexOf('htaccess') > -1) {
           console.log('Appending H5BP Apache server configuration…');
 
           gulp
@@ -228,7 +243,7 @@ gulp.task('select', function(callback){
 
 
         // Include robots.txt 
-        if (res.feature.indexOf('robots.txt') > -1) {
+        if (res.feature.indexOf('robots') > -1) {
           console.log('Including robots.txt…');
 
           gulp
@@ -239,7 +254,7 @@ gulp.task('select', function(callback){
 
 
         // Include Bootlint for debugging
-        if (res.feature.indexOf('DEBUG: Bootlint') > -1) {
+        if (res.feature.indexOf('bootlint') > -1) {
 
           gulp
             .src('node_modules/bootlint/dist/browser/bootlint.js')
@@ -250,7 +265,7 @@ gulp.task('select', function(callback){
 
 
         // Include Bootlint for debugging
-        if (res.feature.indexOf('DEBUG: jQuery Source Map') > -1) {
+        if (res.feature.indexOf('jquery_map') > -1) {
 
 
           gulp
@@ -289,7 +304,7 @@ gulp.task('depends', function() {
     .pipe(prompt.prompt({
         type: 'list',
         name: 'dependencies',
-        message: 'Choose how to load all dependencies',
+        message: 'Choose how to load app dependencies',
         choices: [
           {
             name: 'From your server',
@@ -329,7 +344,7 @@ gulp.task('depends', function() {
 // Select Bootstrap theme
 gulp.task('swatch', function(){
 
-  var bootswatch     = ['(none)','Cerulean','Cosmo','Cyborg','Darkly','Flatly','Journal','Lumen','M8tro','Paper','Readable','Sandstone','Simplex','Slate','Spacelab','Superhero','United','Yeti'],
+  var bootswatch     = ['(default)','Cerulean','Cosmo','Cyborg','Darkly','Flatly','Journal','Lumen','M8tro','Paper','Readable','Sandstone','Simplex','Slate','Spacelab','Superhero','United','Yeti'],
       bootstrap_less = [
           'node_modules/bootstrap/less/variables.less',
           'node_modules/bootstrap/less/mixins.less',
@@ -357,7 +372,7 @@ gulp.task('swatch', function(){
     .pipe(prompt.prompt({
         type: 'list',
         name: 'theme',
-        message: 'Choose your a default Bootstrap theme',
+        message: 'Choose a Bootstrap theme',
         choices: bootswatch,
       }, function(res){
 
@@ -367,7 +382,7 @@ gulp.task('swatch', function(){
             .pipe(gulp.dest('app/assets/fonts/'));
 
           // Set default theme
-          if (res.theme === '(none)') {
+          if (res.theme === '(default)') {
               
               console.log('Compiling default Bootstrap theme…');
 
