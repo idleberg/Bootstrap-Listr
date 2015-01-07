@@ -10,7 +10,6 @@
     "bootstrap":             "^3.3.1",
     "bootswatch":            "^3.3.1",
     "bower":                 "^1.3.12",
-    "colog":                 "^1.0.4",
     "del":                   "^1.1.1",
     "font-awesome":          "^4.2.0",
     "gulp":                  "^3.8.10",
@@ -29,7 +28,8 @@
     "gulp-watch":            "^3.0.0",
     "jquery":                "^2.1.3",
     "jquery-searcher":       "^0.2.0",
-    "run-sequence":          "^1.0.2"
+    "run-sequence":          "^1.0.2",
+    "yargs":                "^1.3.3"
   },
    "scripts": {
     "test": "gulp lint",
