@@ -424,15 +424,23 @@ $breadcrumbs = $breadcrumbs."    </ol>" . PHP_EOL;
 
 // Show search
 if ($options['general']['enable_search'] == true) {
+
     $autofocus = null;
     if ($options['general']['autofocus_search'] == true) {
         $autofocus = " autofocus";
     }
+
+    if ($options['bootstrap']['input_size'] != "") {
+        $input_size = " ".$options['bootstrap']['input_size'];
+    } else {
+        $input_size = null;
+    }
+
     $search  = "    <div class=\"row\">" . PHP_EOL;
     $search .= "      <div class=\"col-xs-6 col-sm-3$search_offset\">" . PHP_EOL;
     $search .= "        <div class=\"form-group has-feedback\">" . PHP_EOL;
     $search .= "          <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
-    $search .= "          <input type=\"text\" class=\"form-control\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
+    $search .= "          <input type=\"text\" class=\"form-control$input_size\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
     $search .= $icons['search'];
     $search .= "       </div>" . PHP_EOL;
     $search .= "      </div>" . PHP_EOL;
