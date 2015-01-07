@@ -219,6 +219,24 @@ if (isset($options['bootstrap']['column_age'])) {
     $column_age = 'col-lg-2';
 }
 
+if ($options['bootstrap']['breadcrumb_style'] != "") {
+    $breadcrumb_style = " ".$options['bootstrap']['breadcrumb_style'];
+} else {
+    $breadcrumb_style = null;
+}
+
+if ($options['bootstrap']['fluid_grid'] == true) {
+    $container = "container-fluid";
+} else {
+    $container = "container";
+}
+
+// Set responsiveness
+if ($options['bootstrap']['responsive_table']) {
+    $responsive_open = "    <div class=\"table-responsive\">" . PHP_EOL;
+    $responsive_close = "    </div>" . PHP_EOL;
+}
+
 // Count optional columns
 $table_count = 0;
 foreach($table_options as $value)
@@ -409,7 +427,7 @@ $header = set_header($bootstrap_cdn);
 $footer = set_footer();
 
 // Set breadcrumbs
-$breadcrumbs  = "    <ol class=\"breadcrumb\"".$direction.">" . PHP_EOL;
+$breadcrumbs  = "    <ol class=\"breadcrumb$breadcrumb_style\"".$direction.">" . PHP_EOL;
 $breadcrumbs .= "      <li><a href=\"".htmlentities($root_dir, ENT_QUOTES, 'utf-8')."\">".$icons['home']."</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
     if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
@@ -424,36 +442,28 @@ $breadcrumbs = $breadcrumbs."    </ol>" . PHP_EOL;
 
 // Show search
 if ($options['general']['enable_search'] == true) {
+
     $autofocus = null;
     if ($options['general']['autofocus_search'] == true) {
         $autofocus = " autofocus";
     }
+
+    if ($options['bootstrap']['input_size'] != "") {
+        $input_size = " ".$options['bootstrap']['input_size'];
+    } else {
+        $input_size = null;
+    }
+
     $search  = "    <div class=\"row\">" . PHP_EOL;
     $search .= "      <div class=\"col-xs-6 col-sm-3$search_offset\">" . PHP_EOL;
     $search .= "        <div class=\"form-group has-feedback\">" . PHP_EOL;
     $search .= "          <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
-    $search .= "          <input type=\"text\" class=\"form-control\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
+    $search .= "          <input type=\"text\" class=\"form-control$input_size\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
     $search .= $icons['search'];
     $search .= "       </div>" . PHP_EOL;
     $search .= "      </div>" . PHP_EOL;
     $search .= "    </div>" . PHP_EOL;
 }
-
-// Set grid
-if ($options['bootstrap']['fluid_grid'] == true) {
-    $container = "container-fluid";
-} else {
-    $container = "container";
-}
-
-// Set responsiveness
-if ($options['bootstrap']['responsive_table']) {
-    $responsive_open = "    <div class=\"table-responsive\">" . PHP_EOL;
-    $responsive_close = "    </div>" . PHP_EOL;
-}
-
-// Set column width
-
 
 // Set table header
 $table_header = null;

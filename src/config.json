@@ -36,6 +36,7 @@
   "bootstrap": {
     "fluid_grid":        false,
     "table_style":       "table-hover",
+    "breadcrumb_style":  null,
     "responsive_table":  true,
     "modal_size":        "modal-lg",
     "button_primary":    "btn-primary",
@@ -44,6 +45,7 @@
     "column_name":       "col-lg-8",
     "column_size":       "col-lg-2",
     "column_age":        "col-lg-2",
+    "input_size":        null,
     "tablerow_folders":  null,
     "tablerow_files":    null,
     "theme":             "default",
