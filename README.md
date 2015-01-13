@@ -22,15 +22,14 @@ If you're already overwhelmed by the idea of having to build stuff, or simply wo
 
 [Gulp](http://gulpjs.com/) tasks are used to configure and build your app. You can install Gulp globally using `npm install gulp -g`.
 
-You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase. To force a clean install, run `gulp install`.
+You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase. To force a clean install, run `gulp -f`.
 
-All available tasks:
+Available tasks:
 
 Task      | Description
 ----------|------------
 `help`    | Show help dialog
 `init`    | Create app-folder and copy required files
-`install` | Run a clean installation
 `make`    | Minify all CSS and JavaScript files
 `setup`   | Run a full setup
 `upgrade` | Upgrade all PHP files in app-folder
@@ -43,6 +42,16 @@ Task      | Description
 `lint`    | Run tasks to lint all CSS and JavaScript
 `reset`   | Reset config.json to default
 `swatch`  | Select default Bootstrap theme
+
+Arguments can be used to control the setup task. By default, Bootstrap Listr uses a customized, smaller Bootstrap library. If you want to use the full library, you can override this using `gulp setup -b`. 
+
+Other arguments:
+
+Argument   | Description
+-----------|------------
+--min -m   | Unselects default setup components
+--debug -d | Selects debug components
+--self -s  | Only lint `gulpfile.js` and `package.json`
 
 ### CDN
 
