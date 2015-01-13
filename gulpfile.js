@@ -48,11 +48,11 @@ var console  = require('better-console'),
 
 // Task combos
 gulp.task('lint',      ['csslint', 'jshint', 'jsonlint' /*, 'phplint'*/]);
-gulp.task('make',      ['cssmin', 'uglify']);
-gulp.task('travis',    ['csslint', 'jshint']);
 gulp.task('css',       ['csslint', 'cssmin']);
 gulp.task('debug',     ['bootlint','jquery']);
 gulp.task('js',        ['jshint', 'uglify']);
+gulp.task('make',      ['cssmin', 'uglify']);
+gulp.task('travis',    ['csslint', 'jshint']);
 
 
 // Task aliases
@@ -150,13 +150,13 @@ gulp.task('select', function(callback){
   }
 
   if (argv.bootstrap == 'full') {
-    bootstrap_js = 'node_modules/bootstrap/dist/js/bootstrap.js'
+    bootstrap_js = 'node_modules/bootstrap/dist/js/bootstrap.js';
   } else {
     bootstrap_js = [
       'node_modules/bootstrap/js/transition.js',
       'node_modules/bootstrap/js/dropdown.js',
       'node_modules/bootstrap/js/modal.js'
-    ]
+    ];
   }
 
   // Setup dialog
