@@ -29,17 +29,17 @@ var console  = require('better-console'),
     jsonlint = require('gulp-json-lint'),
     less     = require('gulp-less'),
     path     = require('path'),
+    phplint   = require('phplint').lint,
     prompt   = require('gulp-prompt'),
     sequence = require('run-sequence'),
     uglify   = require('gulp-uglify'),
     watch    = require('gulp-watch'),
     argv     = require('yargs')
-                .alias('b', 'bootstrap')
-                .alias('d', 'debug')
-                .alias('f', 'force')
-                .alias('m', 'minimum')
+                .alias('b',   'bootstrap')
+                .alias('d',   'debug')
+                .alias('m',   'minimum')
                 .alias('min', 'minimum')
-                .alias('s', 'self')
+                .alias('s',   'self')
                 .argv;
 
 
@@ -53,8 +53,8 @@ var console  = require('better-console'),
 gulp.task('lint',      ['csslint', 'jshint', 'jsonlint' /*, 'phplint'*/]);
 gulp.task('css',       ['csslint', 'cssmin']);
 gulp.task('debug',     ['bootlint','jquery']);
-gulp.task('js',        ['jshint', 'uglify']);
-gulp.task('make',      ['cssmin', 'uglify']);
+gulp.task('js',        ['jshint',  'uglify']);
+gulp.task('make',      ['cssmin',  'uglify']);
 gulp.task('travis',    ['csslint', 'jshint']);
 
 
@@ -82,17 +82,23 @@ gulp.task('default', false, function (callback) {
     console.log('\n' + meta.name + ' v' + meta.version);
     console.log('The MIT License (MIT)');
 
-    if( (!fs.existsSync('./app/config.json')) || (argv.force)) {
+    if ( !fs.existsSync('./app/config.json') ) {
       console.log('\nRunning setup…');
-      sequence(
+      tasks = [
         'init',
-        'setup',
-        callback
-      );
+        'setup'
+      ];
     } else {
       console.log('\nConfiguration file detected\nRunning upgrade…');
-      gulp.start('upgrade');
+      tasks = [
+        'upgrade'
+      ];
     }
+
+    sequence(
+      tasks, callback
+    );
+
   }, 50);
 });
 
@@ -145,7 +151,7 @@ gulp.task('select', function(callback){
     }
   }
 
-  if (argv.bootstrap == 'full') {
+  if (argv.bootstrap) {
     bootstrap_js = 'node_modules/bootstrap/dist/js/bootstrap.js';
   } else {
     bootstrap_js = [
@@ -164,6 +170,7 @@ gulp.task('select', function(callback){
         choices: features,
       }, function(res){
 
+        tasks = [];
 
         // Enable search box
         if (res.feature.indexOf('search') > -1 ) {
@@ -359,7 +366,7 @@ gulp.task('swatch', function(){
   bootstrap_less.push(less_dir+'variables.less');
   bootstrap_less.push(less_dir+'mixins.less');
   bootstrap_less.push(less_dir+'normalize.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'print.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'print.less');
   bootstrap_less.push(less_dir+'glyphicons.less');
   bootstrap_less.push(less_dir+'scaffolding.less');
   bootstrap_less.push(less_dir+'type.less');
@@ -371,28 +378,28 @@ gulp.task('swatch', function(){
   bootstrap_less.push(less_dir+'component-animations.less');
   bootstrap_less.push(less_dir+'dropdowns.less');
   bootstrap_less.push(less_dir+'button-groups.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'input-groups.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'navs.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'navbar.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'input-groups.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'navs.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'navbar.less');
   bootstrap_less.push(less_dir+'breadcrumbs.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'pagination.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'pager.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'labels.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'badges.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'jumbotron.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'thumbnails.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'alerts.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'progress-bars.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'media.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'list-group.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'panels.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'pagination.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'pager.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'labels.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'badges.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'jumbotron.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'thumbnails.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'alerts.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'progress-bars.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'media.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'list-group.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'panels.less');
   bootstrap_less.push(less_dir+'responsive-embed.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'wells.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'wells.less');
   bootstrap_less.push(less_dir+'close.less');
   bootstrap_less.push(less_dir+'modals.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'tooltip.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'popovers.less');
-  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'carousel.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'tooltip.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'popovers.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'carousel.less');
   bootstrap_less.push(less_dir+'utilities.less');
   bootstrap_less.push(less_dir+'responsive-utilities.less');
       
@@ -714,11 +721,15 @@ gulp.task('reset', function () {
 
 
 // Lint PHP files
-// gulp.task('phplint', function () {
-//   return phplint([
-//         'src/*.php'
-//     ]);
-// });
+gulp.task('phplint', function(cb) {
+  phplint(['src/*.php'], {limit: 10}, function (err, stdout, stderr) {
+    if (err) {
+      cb(err);
+      process.exit(1);
+    }
+    cb();
+  });
+});
 
 
 // Lint CSS files
