@@ -33,8 +33,9 @@ var console  = require('better-console'),
     uglify   = require('gulp-uglify'),
     watch    = require('gulp-watch'),
     argv     = require('yargs')
-                .alias('bs', 'bootstrap')
+                .alias('b', 'bootstrap')
                 .alias('d', 'debug')
+                .alias('f', 'force')
                 .alias('m', 'minimum')
                 .alias('min', 'minimum')
                 .argv;
@@ -79,7 +80,7 @@ gulp.task('default', false, function (callback) {
     console.log('\n' + meta.name + ' v' + meta.version);
     console.log('The MIT License (MIT)');
 
-    if( !fs.existsSync('./app/config.json')) {
+    if( (!fs.existsSync('./app/config.json')) || (argv.force)) {
       console.log('\nRunning setup…');
       sequence(
         'init',
@@ -104,13 +105,6 @@ gulp.task('setup', function(callback) {
       'make',
       callback
     );
-});
-
-
-// Clean install
-gulp.task('install', ['clean'], function(callback) {
-
-  gulp.start('default');
 });
 
 
@@ -813,7 +807,6 @@ gulp.task('help', function() {
   console.log('        debug - Add Bootlint and jQuery source map');
   console.log('      depends - Specify the source for all dependencies');
   console.log('         init - Create app-folder and copy required files');
-  console.log('      install - Run a clean installation');
   console.log('        jsmin - Minify config.json');
   console.log('         lint - Run tasks to lint all CSS and JavaScript');
   console.log('         make - Minify all CSS and JavaScript files');
