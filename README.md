@@ -51,6 +51,7 @@ Argument   | Description
 -----------|------------
 --min -m   | Unselects default setup components
 --debug -d | Selects debug components
+--self -s  | Only lint `gulpfile.js` and `package.json`
 
 ### CDN
 
