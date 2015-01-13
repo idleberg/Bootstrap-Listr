@@ -50,11 +50,12 @@ var console  = require('better-console'),
  */
 
 // Task combos
-gulp.task('lint',      ['csslint', 'jshint', 'jsonlint' /*, 'phplint'*/]);
+gulp.task('lint',      ['csslint', 'jshint', 'jsonlint', 'phplint']);
 gulp.task('css',       ['csslint', 'cssmin']);
 gulp.task('debug',     ['bootlint','jquery']);
 gulp.task('js',        ['jshint',  'uglify']);
 gulp.task('make',      ['cssmin',  'uglify']);
+gulp.task('php',       ['phplint']);
 gulp.task('travis',    ['csslint', 'jshint']);
 
 
@@ -62,7 +63,6 @@ gulp.task('travis',    ['csslint', 'jshint']);
 gulp.task('deps',       ['depends']);
 gulp.task('jsmin',      ['uglify']);
 gulp.task('minify',     ['make']);
-// gulp.task('php',        ['phplint']);
 gulp.task('bootswatch', ['swatch']);
 gulp.task('update',     ['upgrade']);
 
@@ -799,9 +799,9 @@ gulp.task('jsonlint', function() {
    }
 
    gulp.src(src)
+  .pipe(debug())
   .pipe(cache('linting_json'))
   .pipe(jsonlint())
-  .pipe(debug())
   .pipe(jsonlint.report('verbose'));
 });
 

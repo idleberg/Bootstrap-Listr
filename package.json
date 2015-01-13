@@ -34,7 +34,7 @@
     "yargs":                 "^1.3.3"
   },
    "scripts": {
-    "test": "gulp lint",
+    "test": "gulp travis",
     "postinstall": "bower install"
   }
 }
