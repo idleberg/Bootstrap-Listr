@@ -99,7 +99,7 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
 } else if ($options['bootstrap']['icons'] == "fontawesome") { 
     $icons['tag']   = 'i';
     $icons['home']  = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
-    if ($options['general']['share_button_icons'] == true) { 
+    if ($options['general']['share_icons'] == true) { 
         $icons_dropbox  = "<i class=\"fa fa-dropbox fa-fw\"></i> ";
         $icons_email    = "<i class=\"fa fa-envelope fa-fw\"></i> ";
         $icons_facebook = "<i class=\"fa fa-facebook fa-fw\"></i> ";
