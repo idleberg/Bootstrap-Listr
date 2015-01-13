@@ -32,7 +32,12 @@ var console  = require('better-console'),
     sequence = require('run-sequence'),
     uglify   = require('gulp-uglify'),
     watch    = require('gulp-watch'),
-    argv     = require('yargs').argv;
+    argv     = require('yargs')
+                .alias('bs', 'bootstrap')
+                .alias('d', 'debug')
+                .alias('m', 'minimum')
+                .alias('min', 'minimum')
+                .argv;
 
 
 /*
@@ -119,6 +124,13 @@ gulp.task('select', function(callback){
       default_icons      = 'glyphicons';
       include_bootlint   = false;
 
+  // check debug features
+  if (argv.debug) {
+    debug_check = true;
+  } else {
+    debug_check = false;
+  }
+
   var features = [
         { name: 'Viewer Modal', value: 'viewer' , checked: true },
         { name: 'Search Box', value: 'search' , checked: true },
@@ -126,21 +138,25 @@ gulp.task('select', function(callback){
         { name: 'Font Awesome', value: 'font_awesome' , checked: true },
         { name: 'H5BP Apache Server Config', value: 'htaccess' , checked: true },
         { name: 'robots.txt', value: 'robots' , checked: true },
-        { name: 'DEBUG: Bootlint', value: 'bootlint' ,checked: false },
-        { name: 'DEBUG: jQuery Source Map', value: 'jquery_map', checked: false }
+        { name: 'DEBUG: Bootlint', value: 'bootlint' ,checked: debug_check },
+        { name: 'DEBUG: jQuery Source Map', value: 'jquery_map', checked: debug_check }
       ];
 
   // uncheck all features
-  if (argv.min) {
+  if (argv.minimum) {
     for (var i = 0; i < 6; i++) {
        features[i].checked =  false;
     }
   }
 
-  // check debug features
-  if (argv.debug) {
-       features[6].checked =  true;
-       features[7].checked =  true;
+  if (argv.bootstrap == 'full') {
+    bootstrap_js = 'node_modules/bootstrap/dist/js/bootstrap.js'
+  } else {
+    bootstrap_js = [
+      'node_modules/bootstrap/js/transition.js',
+      'node_modules/bootstrap/js/dropdown.js',
+      'node_modules/bootstrap/js/modal.js'
+    ]
   }
 
   // Setup dialog
@@ -173,11 +189,7 @@ gulp.task('select', function(callback){
           console.log('Compiling Bootstrap scripts…');
 
           gulp
-            .src([
-              'node_modules/bootstrap/js/transition.js',
-              'node_modules/bootstrap/js/dropdown.js',
-              'node_modules/bootstrap/js/modal.js'
-            ])
+            .src(bootstrap_js)
             .pipe(concat('bootstrap.min.js'))
             .pipe(uglify())
             .pipe(gulp.dest('app/assets/js/'));
@@ -345,28 +357,48 @@ gulp.task('depends', function() {
 gulp.task('swatch', function(){
 
   var bootswatch     = ['(default)','Cerulean','Cosmo','Cyborg','Darkly','Flatly','Journal','Lumen','M8tro','Paper','Readable','Sandstone','Simplex','Slate','Spacelab','Superhero','United','Yeti'],
-      bootstrap_less = [
-          'node_modules/bootstrap/less/variables.less',
-          'node_modules/bootstrap/less/mixins.less',
-          'node_modules/bootstrap/less/normalize.less',
-          'node_modules/bootstrap/less/glyphicons.less',
-          'node_modules/bootstrap/less/scaffolding.less',
-          'node_modules/bootstrap/less/type.less',
-          'node_modules/bootstrap/less/code.less',
-          'node_modules/bootstrap/less/grid.less',
-          'node_modules/bootstrap/less/tables.less',
-          'node_modules/bootstrap/less/buttons.less',
-          'node_modules/bootstrap/less/forms.less',
-          'node_modules/bootstrap/less/component-animations.less',
-          'node_modules/bootstrap/less/dropdowns.less',
-          'node_modules/bootstrap/less/button-groups.less',
-          'node_modules/bootstrap/less/breadcrumbs.less',
-          'node_modules/bootstrap/less/responsive-embed.less',
-          'node_modules/bootstrap/less/close.less',
-          'node_modules/bootstrap/less/modals.less',
-          'node_modules/bootstrap/less/utilities.less',
-          'node_modules/bootstrap/less/responsive-utilities.less'
-        ];
+      bootstrap_less = [],
+      less_dir       = 'node_modules/bootstrap/less/';
+
+  bootstrap_less.push(less_dir+'variables.less');
+  bootstrap_less.push(less_dir+'mixins.less');
+  bootstrap_less.push(less_dir+'normalize.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'print.less');
+  bootstrap_less.push(less_dir+'glyphicons.less');
+  bootstrap_less.push(less_dir+'scaffolding.less');
+  bootstrap_less.push(less_dir+'type.less');
+  bootstrap_less.push(less_dir+'code.less');
+  bootstrap_less.push(less_dir+'grid.less');
+  bootstrap_less.push(less_dir+'tables.less');
+  bootstrap_less.push(less_dir+'forms.less');
+  bootstrap_less.push(less_dir+'buttons.less');
+  bootstrap_less.push(less_dir+'component-animations.less');
+  bootstrap_less.push(less_dir+'dropdowns.less');
+  bootstrap_less.push(less_dir+'button-groups.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'input-groups.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'navs.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'navbar.less');
+  bootstrap_less.push(less_dir+'breadcrumbs.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'pagination.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'pager.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'labels.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'badges.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'jumbotron.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'thumbnails.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'alerts.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'progress-bars.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'media.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'list-group.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'panels.less');
+  bootstrap_less.push(less_dir+'responsive-embed.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'wells.less');
+  bootstrap_less.push(less_dir+'close.less');
+  bootstrap_less.push(less_dir+'modals.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'tooltip.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'popovers.less');
+  if (argv.bootstrap == 'full') bootstrap_less.push(less_dir+'carousel.less');
+  bootstrap_less.push(less_dir+'utilities.less');
+  bootstrap_less.push(less_dir+'responsive-utilities.less');
       
   return gulp.src('./')
     .pipe(prompt.prompt({
