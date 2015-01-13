@@ -20,6 +20,7 @@ var console  = require('better-console'),
     concat   = require('gulp-concat'),
     csslint  = require('gulp-csslint'),
     cssmin   = require('gulp-cssmin'),
+    debug    = require('gulp-debug'),
     del      = require('del'),
     fs       = require('fs'),
     gulp     = require('gulp'),
@@ -38,6 +39,7 @@ var console  = require('better-console'),
                 .alias('f', 'force')
                 .alias('m', 'minimum')
                 .alias('min', 'minimum')
+                .alias('s', 'self')
                 .argv;
 
 
@@ -721,6 +723,9 @@ gulp.task('reset', function () {
 
 // Lint CSS files
 gulp.task('csslint', function() {
+
+  if (argv.self) return;
+
   gulp.src([
     'src/style.css'
   ])
@@ -745,10 +750,15 @@ gulp.task('cssmin', function() {
 
 // Lint JS files
 gulp.task('jshint', function() {
-  gulp.src([
-    'gulpfile.js',
-    'src/scripts.js'
-  ])
+
+   if (argv.self) {
+    src = 'gulpfile.js';
+   } else {
+    src = ['gulpfile.js', 'src/scripts.js'];
+   }
+
+  gulp.src(src)
+  .pipe(debug())
   .pipe(cache('linting_js'))
   .pipe(jshint())
   .pipe(jshint.reporter());
@@ -770,12 +780,17 @@ gulp.task('uglify', function() {
 
 // Lint JSON files
 gulp.task('jsonlint', function() {
-  gulp.src([
-    'package.json',
-    'src/config.json'
-  ])
+  
+  if (argv.self) {
+    src = 'package.json';
+   } else {
+    src = ['package.json', 'src/config.json'];
+   }
+
+   gulp.src(src)
   .pipe(cache('linting_json'))
   .pipe(jsonlint())
+  .pipe(debug())
   .pipe(jsonlint.report('verbose'));
 });
 
