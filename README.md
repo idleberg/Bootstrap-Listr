@@ -22,7 +22,7 @@ If you're already overwhelmed by the idea of having to build stuff, or simply wo
 
 [Gulp](http://gulpjs.com/) tasks are used to configure and build your app. You can install Gulp globally using `npm install gulp -g`.
 
-You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase. To force a clean install, run `gulp -f`.
+You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase.
 
 Available tasks:
 
