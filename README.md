@@ -24,7 +24,7 @@ If you're already overwhelmed by the idea of having to build stuff, or simply wo
 
 You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase. To force a clean install, run `gulp install`.
 
-All available tasks:
+Available tasks:
 
 Task      | Description
 ----------|------------
@@ -43,6 +43,8 @@ Task      | Description
 `lint`    | Run tasks to lint all CSS and JavaScript
 `reset`   | Reset config.json to default
 `swatch`  | Select default Bootstrap theme
+
+Arguments can be used to control the setup task. By default, Bootstrap Listr uses a customized, smaller Bootstrap library. If you want to use the full library, you can override this using `gulp setup --bootstrap=full`. To build the application using the minimum of components use `gulp setup --min`. Use `gulp setup --debug` to include libraries for debugging.
 
 ### CDN
 
