@@ -97,8 +97,15 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
         $icons['search'] = "          <span class=\"glyphicon glyphicon-search form-control-feedback\"></span>" . PHP_EOL;
     }
 } else if ($options['bootstrap']['icons'] == "fontawesome") { 
-    $icons['tag'] = 'i';
-    $icons['home'] = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
+    $icons['tag']   = 'i';
+    $icons['home']  = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
+    if ($options['general']['share_button_icons'] == true) { 
+        $icons_dropbox  = "<i class=\"fa fa-dropbox fa-fw\"></i> ";
+        $icons_email    = "<i class=\"fa fa-envelope fa-fw\"></i> ";
+        $icons_facebook = "<i class=\"fa fa-facebook fa-fw\"></i> ";
+        $icons_gplus    = "<i class=\"fa fa-google-plus fa-fw\"></i> ";
+        $icons_twitter  = "<i class=\"fa fa-twitter fa-fw\"></i> ";
+    }
     // if ($options['general']['enable_search'] == true) {
     //     $icons['search'] = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
     // }

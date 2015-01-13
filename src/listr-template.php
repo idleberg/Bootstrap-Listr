@@ -54,13 +54,13 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
 <?php if ($options['keys']['dropbox_app']) { ?>
-                  <li role="presentation"><a role="menuitem" class="save-dropbox"><?php echo _('Save to Dropbox')?></a></li>
+                  <li role="presentation"><a role="menuitem" class="save-dropbox"><?php echo $icons_dropbox._('Save to Dropbox')?></a></li>
                   <li role="presentation" class="divider"></li>
 <?php } ?>
-                  <li role="presentation"><a role="menuitem" class="email-link">Email</a></li>
-                  <li role="presentation"><a role="menuitem" class="facebook-link">Facebook</a></li>
-                  <li role="presentation"><a role="menuitem" class="google-link">Google+</a></li>
-                  <li role="presentation"><a role="menuitem" class="twitter-link">Twitter</a></li>
+                  <li role="presentation"><a role="menuitem" class="email-link"><?php echo $icons_email ?>Email</a></li>
+                  <li role="presentation"><a role="menuitem" class="facebook-link"><?php echo $icons_facebook ?>Facebook</a></li>
+                  <li role="presentation"><a role="menuitem" class="google-link"><?php echo $icons_gplus ?>Google+</a></li>
+                  <li role="presentation"><a role="menuitem" class="twitter-link"><?php echo $icons_twitter ?>Twitter</a></li>
                 </ul>
               </div>
 <?php } else { ?>

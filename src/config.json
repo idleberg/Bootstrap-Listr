@@ -10,6 +10,7 @@
     "enable_highlight": false,
     "autofocus_search": false,
     "share_button":     false,
+    "share_icons":      false,
     "hide_extension":   false,
     "custom_title":     null,
     "give_kudos":       true
