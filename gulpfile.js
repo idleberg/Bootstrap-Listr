@@ -29,7 +29,7 @@ var console  = require('better-console'),
     jsonlint = require('gulp-json-lint'),
     less     = require('gulp-less'),
     path     = require('path'),
-    phplint   = require('phplint').lint,
+    phplint  = require('phplint').lint,
     prompt   = require('gulp-prompt'),
     sequence = require('run-sequence'),
     uglify   = require('gulp-uglify'),
@@ -60,10 +60,12 @@ gulp.task('travis',    ['csslint', 'jshint']);
 
 
 // Task aliases
+gulp.task('bootswatch', ['swatch']);
+gulp.task('cleansetup', ['setup-clean']);
 gulp.task('deps',       ['depends']);
 gulp.task('jsmin',      ['uglify']);
 gulp.task('minify',     ['make']);
-gulp.task('bootswatch', ['swatch']);
+gulp.task('setupclean', ['setup-clean']);
 gulp.task('update',     ['upgrade']);
 
 
@@ -113,6 +115,12 @@ gulp.task('setup', function(callback) {
       'make',
       callback
     );
+});
+
+
+gulp.task('setup-clean', ['clean'], function(callback) {   
+   
+  gulp.start('default');   
 });
 
 
