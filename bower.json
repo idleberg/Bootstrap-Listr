@@ -1,11 +1,11 @@
 {
   "name": "bootstrap-listr",
-  "version": "2.0.0-beta3",
+  "version": "2.0.0-beta4",
   "private": true,
   "homepage": "https://github.com/idleberg/Bootstrap-Listr",
   "devDependencies": {
     "highlightjs":              "^8.4.0",
-    "m8tro-bootstrap":          "3.3.1",
+    "m8tro-bootstrap":          "3.3.2",
     "stupid-jquery-table-sort": "*"
   }
 }
