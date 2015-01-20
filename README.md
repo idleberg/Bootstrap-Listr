@@ -22,27 +22,28 @@ If you're already overwhelmed by the idea of having to build stuff, or simply wo
 
 [Gulp](http://gulpjs.com/) tasks are used to configure and build your app. You can install Gulp globally using `npm install gulp -g`.
 
-You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase.
+You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase. To force a clean installation, you can use `gulp setup-clean`.
 
 Available tasks:
 
-Task      | Description
-----------|------------
-`help`    | Show help dialog
-`init`    | Create app-folder and copy required files
-`make`    | Minify all CSS and JavaScript files
-`setup`   | Run a full setup
-`upgrade` | Upgrade all PHP files in app-folder
-`merge`   | Merge all CSS and JavaScript files
-`depends` | Specify the source for all dependencies
-`clean`   | Delete app-folder
-`debug`   | Add Bootlint and jQuery source map
-`hljs`    | Specify default Highlighter.js style-sheet
-`jsmin`   | Minify config.json
-`lint`    | Run tasks to lint all CSS and JavaScript
-`reset`   | Reset config.json to default
-`swatch`  | Select default Bootstrap theme
-
+Task          | Description
+--------------|------------
+`help`        | Show help dialog
+`init`        | Create app-folder and copy required files
+`make`        | Minify all CSS and JavaScript files
+`setup`       | Run a full setup
+`setup-clean` | Run a full setup
+`upgrade`     | Upgrade all PHP files in app-folder
+`merge`       | Merge all CSS and JavaScript files
+`depends`     | Specify the source for all dependencies
+`clean`       | Delete app-folder
+`debug`       | Add Bootlint and jQuery source map
+`hljs`        | Specify default Highlighter.js style-sheet
+`jsmin`       | Minify config.json
+`lint`        | Run tasks to lint all CSS and JavaScript
+`reset`       | Reset config.json to default
+`swatch`      | Select default Bootstrap theme
+    
 Arguments can be used to control the setup task. By default, Bootstrap Listr uses a customized, smaller Bootstrap library. If you want to use the full library, you can override this using `gulp setup -b`. 
 
 Other arguments:
