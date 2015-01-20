@@ -32,7 +32,7 @@ Task          | Description
 `init`        | Create app-folder and copy required files
 `make`        | Minify all CSS and JavaScript files
 `setup`       | Run a full setup
-`setup-clean` | Run a full setup
+`setup-clean` | Force running a clean setup
 `upgrade`     | Upgrade all PHP files in app-folder
 `merge`       | Merge all CSS and JavaScript files
 `depends`     | Specify the source for all dependencies

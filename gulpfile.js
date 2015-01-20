@@ -847,6 +847,7 @@ gulp.task('help', function() {
   console.log('        merge - Merge all CSS and JavaScript files');
   console.log('        reset - Reset config.json to default');
   console.log('        setup - Run a full setup');
+  console.log('  setup-clean - Force running a clean setup');
   console.log('       swatch - Select default Bootstrap theme');
   console.log('         hljs - Specify default Highlighter.js style-sheet');
   console.log('      upgrade - Upgrade all PHP files in app-folder');
