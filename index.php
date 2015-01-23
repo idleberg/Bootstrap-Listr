@@ -96,7 +96,7 @@ define('BOOTSTRAP_THEME', 'default');
 define('FONTAWESOME_STYLE','fa-fw');
 
 // External resources
-   define('FONT_AWESOME', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
+   define('FONT_AWESOME', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
      define('CUSTOM_THEME', null);
     define('GOOGLE_FONT', null); // e.g. 'Open+Sans' or 'Open+Sans:400,300',700'
          define('JQUERY', '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
