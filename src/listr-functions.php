@@ -146,7 +146,11 @@ function set_footer(){
         }
 
         if ($options['general']['enable_search'] == true) {
-          $footer .= "  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/jquery.searcher.min.js\"></script>" . PHP_EOL;
+            if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['stupid_table']) ) {
+                $footer .= "  <script type=\"text/javascript\" src=\"".$options['assets']['searcher']."\"></script>" . PHP_EOL;
+            } else {
+                $footer .= "  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/jquery.searcher.min.js\"></script>" . PHP_EOL;
+            }
         }
 
         if ($options['general']['enable_viewer']) {
