@@ -37,7 +37,7 @@
           </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
-<?php if (($options['assets']['highlight_js']) && ($options['assets']['highlight_css'])) { ?>
+<?php if (($options['general']['enable_highlight'])) { ?>
             <div class="pull-<?php echo $left?>">
               <button type="button" class="btn <?php echo $btn_highlight ?> highlight hidden"><?php echo _('Apply syntax highlighting')?></button>
             </div>
