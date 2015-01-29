@@ -17,9 +17,9 @@
   },
   "assets": {
     "jquery":          "//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js",
-    "bootstrap_css":   "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css",
-    "bootstrap_js":    "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js",
-    "font_awesome":    "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css",
+    "bootstrap_css":   "//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css",
+    "bootstrap_js":    "//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js",
+    "font_awesome":    "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css",
     "google_font":     false,
     "stupid_table":    "//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
     "searcher":        "//cdnjs.cloudflare.com/ajax/libs/jquery-searcher/0.2.0/jquery.searcher.min.js",
