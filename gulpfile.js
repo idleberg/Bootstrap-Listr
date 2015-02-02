@@ -24,6 +24,7 @@ var console  = require('better-console'),
     del      = require('del'),
     fs       = require('fs'),
     gulp     = require('gulp'),
+    insert   = require('gulp-insert'),
     jeditor  = require('gulp-json-editor'),
     jshint   = require('gulp-jshint'),
     jsonlint = require('gulp-json-lint'),
@@ -186,7 +187,6 @@ gulp.task('select', function(callback){
           
           gulp
             .src([
-              'node_modules/jquery/dist/jquery.min.js',
               'node_modules/jquery-searcher/dist/jquery.searcher.min.js'
              ])
             .pipe(gulp.dest('app/assets/js/'));
@@ -271,7 +271,6 @@ gulp.task('select', function(callback){
 
           gulp
             .src('src/robots.txt')
-            .pipe(concat('robots.txt'))
             .pipe(gulp.dest('app/'));
         }
 
@@ -639,7 +638,11 @@ gulp.task('post-merge', function() {
 
 // Clean app folder
 gulp.task('clean', function () {
-  return del(['app/']);
+  return del([
+    'app/assets/',
+    'app/locale/',
+    'app/*.*'
+  ]);
 });
 
 
@@ -647,22 +650,21 @@ gulp.task('clean', function () {
 gulp.task('init', ['clean'], function() {
 
   gulp.src([
-    'src/index.php',
-    'src/listr-functions.php',
-    'src/listr-l10n.php',
-    'src/listr-template.php'
+    'src/php/index.php',
+    'src/php/listr-functions.php',
+    'src/php/listr-l10n.php',
+    'src/php/listr-template.php'
   ])
   .pipe(gulp.dest('app/'));
 
   gulp.src([
       'src/locale/**/*'
-    ])
+  ])
   .pipe(gulp.dest('app/locale/'));
 
   gulp.src([
       'src/config.json'
   ])
-  .pipe(concat('config.json'))
   .pipe(gulp.dest('app/'));
 
   gulp.src([
@@ -677,17 +679,18 @@ gulp.task('init', ['clean'], function() {
   .pipe(concat('.htaccess'))
   .pipe(gulp.dest('app/_public/'));
 
-  gulp.src('node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js')
-  .pipe(concat('stupidtable.min.js'))
+  gulp.src([
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js'
+  ])
   .pipe(gulp.dest('app/assets/js/'));
 
   gulp.src("app/config.json")
-  .pipe(jeditor({
-    'general': {
-      'enable_sort': true
-    }
-  }))
   .pipe(gulp.dest("app/"));
+
+  if (argv.dist) {
+    gulp.start('make');
+  }
 });
 
 
@@ -700,10 +703,10 @@ gulp.task('upgrade', function() {
   ]);
 
   gulp.src([
-    'src/index.php',
-    'src/listr-functions.php',
-    'src/listr-l10n.php',
-    'src/listr-template.php'
+    'src/php/index.php',
+    'src/php/listr-functions.php',
+    'src/php/listr-l10n.php',
+    'src/php/listr-template.php'
   ])
   .pipe(gulp.dest('app/'));
 
@@ -712,8 +715,10 @@ gulp.task('upgrade', function() {
   ])
   .pipe(gulp.dest('app/locale/'));
 
-  gulp.src('node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js')
-  .pipe(concat('stupidtable.min.js'))
+  gulp.src([
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js'
+  ])
   .pipe(gulp.dest('app/assets/js/'));
 
 });
@@ -730,7 +735,7 @@ gulp.task('reset', function () {
 
 // Lint PHP files
 gulp.task('phplint', function(cb) {
-  phplint(['src/*.php'], {limit: 10}, function (err, stdout, stderr) {
+  phplint(['src/php/*.php'], {limit: 10}, function (err, stdout, stderr) {
     if (err) {
       cb(err);
       process.exit(1);
@@ -771,9 +776,9 @@ gulp.task('cssmin', function() {
 gulp.task('jshint', function() {
 
    if (argv.self) {
-    src = 'gulpfile.js';
+    src = ['gulpfile.js', 'src/js/*.js'];
    } else {
-    src = ['gulpfile.js', 'src/scripts.js'];
+    src = 'src/js/*.js';
    }
 
   gulp.src(src)
@@ -801,9 +806,9 @@ gulp.task('uglify', function() {
 gulp.task('jsonlint', function() {
   
   if (argv.self) {
-    src = 'package.json';
-   } else {
     src = ['package.json', 'src/config.json'];
+   } else {
+    src = 'src/config.json';
    }
 
    gulp.src(src)
@@ -820,7 +825,7 @@ gulp.task('watch', function () {
           'gulpfile.js',
           'package.json',
           'src/config.json',
-          'src/scripts.js',
+          'src/js/*.js',
           'src/style.css'
          ],
          ['lint']

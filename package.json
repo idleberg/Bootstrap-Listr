@@ -19,6 +19,7 @@
     "gulp-csslint":          "^0.1.5",
     "gulp-cssmin":           "^0.1.6",
     "gulp-debug":            "^2.0.0",
+    "gulp-insert":           "^0.4.0",
     "gulp-jshint":           "^1.9.0",
     "gulp-json-editor":      "^2.2.1",
     "gulp-json-lint":        "^0.0.1",

@@ -1,0 +1,31 @@
+th {
+    cursor: pointer;
+}
+
+pre code {
+    word-break: normal;
+}
+
+.modal img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.modal video,.modal audio {
+    width: 100%;
+}
+
+.viewer-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.viewer-wrapper embed,.viewer-wrapper object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

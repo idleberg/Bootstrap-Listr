@@ -1,5 +1,6 @@
 .tmp/
 app/
+app/locale/ja_JA
 bower_components/
 generators/
 node_modules/
