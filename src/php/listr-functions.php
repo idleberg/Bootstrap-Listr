@@ -12,8 +12,8 @@ function set_bootstrap_theme() {
 
     if (in_array($options['bootstrap']['theme'], $bootswatch)) {
         return '//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/'.$options['bootstrap']['theme'].'/bootstrap.min.css';
-    } else if (in_array($options['bootstrap']['theme'], $m8tro)) {
-        return '//idleberg.github.io/m8tro-listr/'.$options['bootstrap']['theme'].'.min.css';
+    } else if ($options['bootstrap']['theme'] == "m8tro" ) {
+        return '//cdnjs.cloudflare.com/ajax/libs/m8tro-bootstrap/3.3.2/m8tro.min.css';
     } else {
         return $options['assets']['bootstrap_css'];;
     }
@@ -168,8 +168,9 @@ function set_footer(){
                 }
             }
 
-            $footer .= "  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.min.js\"></script>" . PHP_EOL;
         }
+        
+        $footer .= "  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.min.js\"></script>" . PHP_EOL;
     }
 
     foreach($options['assets']['append_js'] as $append_js) {
