@@ -87,7 +87,7 @@ function set_header($theme) {
             if ($options['general']['enable_highlight'] == true) {
                 if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
                     $header .= "  <link rel=\"stylesheet\" href=\"".$options['assets']['highlight_css']."\" />" . PHP_EOL;
-                } else {
+                } else if ($options['general']['dependencies'] == 'local') {
                     $header .= "  <link rel=\"stylesheet\" href=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/highlight.min.css\" />" . PHP_EOL;
                 }
             }
