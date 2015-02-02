@@ -764,7 +764,7 @@ gulp.task('cssmin', function() {
   console.log('Minifying CSS…');
 
   gulp.src([
-    'src/style.css'
+    'src/css/*.css'
   ])
   .pipe(concat('listr.min.css'))
   .pipe(cssmin())
@@ -794,7 +794,7 @@ gulp.task('uglify', function() {
    console.log('Minifying JavaScript…');
 
    gulp.src([
-     'src/scripts.js'
+     'src/js/*.js'
    ])
    .pipe(uglify())
    .pipe(concat('listr.min.js'))
@@ -826,7 +826,7 @@ gulp.task('watch', function () {
           'package.json',
           'src/config.json',
           'src/js/*.js',
-          'src/style.css'
+          'src/css/*.css'
          ],
          ['lint']
    );
