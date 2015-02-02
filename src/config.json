@@ -24,7 +24,7 @@
     "stupid_table":    "//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
     "searcher":        "//cdnjs.cloudflare.com/ajax/libs/jquery-searcher/0.2.0/jquery.searcher.min.js",
     "highlight_js":    "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js",
-    "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css",
+    "highlight_css":   "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css",
     "bootlint":        "//maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js",
     "custom_theme":    null,
     "append_css":      [

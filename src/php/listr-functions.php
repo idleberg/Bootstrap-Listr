@@ -12,8 +12,8 @@ function set_bootstrap_theme() {
 
     if (in_array($options['bootstrap']['theme'], $bootswatch)) {
         return '//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/'.$options['bootstrap']['theme'].'/bootstrap.min.css';
-    } else if (in_array($options['bootstrap']['theme'], $m8tro)) {
-        return '//idleberg.github.io/m8tro-listr/'.$options['bootstrap']['theme'].'.min.css';
+    } else if ($options['bootstrap']['theme'] == "m8tro" ) {
+        return '//cdnjs.cloudflare.com/ajax/libs/m8tro-bootstrap/3.3.2/m8tro.min.css';
     } else {
         return $options['assets']['bootstrap_css'];;
     }
@@ -78,7 +78,7 @@ function set_header($theme) {
 
         $header .= "  <link rel=\"stylesheet\" href=\"$bootstrap_css\" />" . PHP_EOL;
 
-        if ($fontawesome_css) {
+        if ( ($options['bootstrap']['icons'] == 'fontawesome') && ($fontawesome_css) ) {
             $header .= "  <link rel=\"stylesheet\" href=\"$fontawesome_css\" />" . PHP_EOL;
         }
 
@@ -87,7 +87,7 @@ function set_header($theme) {
             if ($options['general']['enable_highlight'] == true) {
                 if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
                     $header .= "  <link rel=\"stylesheet\" href=\"".$options['assets']['highlight_css']."\" />" . PHP_EOL;
-                } else {
+                } else if ($options['general']['dependencies'] == 'local') {
                     $header .= "  <link rel=\"stylesheet\" href=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/highlight.min.css\" />" . PHP_EOL;
                 }
             }
@@ -168,8 +168,9 @@ function set_footer(){
                 }
             }
 
-            $footer .= "  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.min.js\"></script>" . PHP_EOL;
         }
+        
+        $footer .= "  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.min.js\"></script>" . PHP_EOL;
     }
 
     foreach($options['assets']['append_js'] as $append_js) {
