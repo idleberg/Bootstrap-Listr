@@ -78,7 +78,7 @@ function set_header($theme) {
 
         $header .= "  <link rel=\"stylesheet\" href=\"$bootstrap_css\" />" . PHP_EOL;
 
-        if ($fontawesome_css) {
+        if ( ($options['bootstrap']['icons'] == 'fontawesome') && ($fontawesome_css) ) {
             $header .= "  <link rel=\"stylesheet\" href=\"$fontawesome_css\" />" . PHP_EOL;
         }
 
