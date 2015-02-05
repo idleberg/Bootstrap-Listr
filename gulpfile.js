@@ -472,6 +472,29 @@ gulp.task('swatch', function(){
             }))
             .pipe(gulp.dest("app/"));
 
+          // Set Material theme (http://fezvrasta.github.io/bootstrap-v-design/)
+          // } else if (res.theme === 'Material') {
+
+          //   slug = res.theme.toLowerCase();
+          //   console.log('Compiling Bootstrap theme “Material”');
+
+          //   gulp.src('node_modules/_bower_components/bootstrap-material-design/less/material.less')
+          //   .pipe(concat('bootstrap.less'))
+          //   .pipe(less({
+          //     paths: [ path.join(__dirname, 'less', 'includes') ]
+          //   }))
+          //   .pipe(concat('bootstrap.min.css'))
+          //   .pipe(cssmin())
+          //   .pipe(gulp.dest('app/assets/css/'));
+            
+          //   gulp.src("app/config.json")
+          //   .pipe(jeditor({
+          //     'bootstrap': {
+          //       'theme': 'material'
+          //     }
+          //   }))
+          //   .pipe(gulp.dest("app/"));
+
           // Set Bootswatch theme
           } else {
               
@@ -650,10 +673,10 @@ gulp.task('clean', function () {
 gulp.task('init', ['clean'], function() {
 
   gulp.src([
-    'src/php/index.php',
-    'src/php/listr-functions.php',
-    'src/php/listr-l10n.php',
-    'src/php/listr-template.php'
+    'src/index.php',
+    'src/listr-functions.php',
+    'src/listr-l10n.php',
+    'src/listr-template.php'
   ])
   .pipe(gulp.dest('app/'));
 
@@ -703,10 +726,10 @@ gulp.task('upgrade', function() {
   ]);
 
   gulp.src([
-    'src/php/index.php',
-    'src/php/listr-functions.php',
-    'src/php/listr-l10n.php',
-    'src/php/listr-template.php'
+    'src/index.php',
+    'src/listr-functions.php',
+    'src/listr-l10n.php',
+    'src/listr-template.php'
   ])
   .pipe(gulp.dest('app/'));
 
@@ -735,7 +758,7 @@ gulp.task('reset', function () {
 
 // Lint PHP files
 gulp.task('phplint', function(cb) {
-  phplint(['src/php/*.php'], {limit: 10}, function (err, stdout, stderr) {
+  phplint(['src/*.php'], {limit: 10}, function (err, stdout, stderr) {
     if (err) {
       cb(err);
       process.exit(1);
