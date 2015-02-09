@@ -478,7 +478,10 @@ gulp.task('swatch', function(){
           //   slug = res.theme.toLowerCase();
           //   console.log('Compiling Bootstrap theme “Material”');
 
-          //   gulp.src('node_modules/_bower_components/bootstrap-material-design/less/material.less')
+          //   bootstrap_less.push('node_modules/_bower_components/bootstrap-material-design/less/variables.less');
+          //   bootstrap_less.push('node_modules/_bower_components/bootstrap-material-design/less/theme.less');
+
+          //   gulp.src(bootstrap_less)
           //   .pipe(concat('bootstrap.less'))
           //   .pipe(less({
           //     paths: [ path.join(__dirname, 'less', 'includes') ]
@@ -663,7 +666,7 @@ gulp.task('post-merge', function() {
 gulp.task('clean', function () {
   return del([
     'app/assets/',
-    'app/locale/',
+    'app/l10n/',
     'app/*.*'
   ]);
 });
@@ -681,9 +684,9 @@ gulp.task('init', ['clean'], function() {
   .pipe(gulp.dest('app/'));
 
   gulp.src([
-      'src/locale/**/*'
+      'src/l10n/**/*'
   ])
-  .pipe(gulp.dest('app/locale/'));
+  .pipe(gulp.dest('app/l10n/'));
 
   gulp.src([
       'src/config.json'
@@ -734,9 +737,9 @@ gulp.task('upgrade', function() {
   .pipe(gulp.dest('app/'));
 
   gulp.src([
-    'src/locale/**/*'
+    'src/l10n/**/*'
   ])
-  .pipe(gulp.dest('app/locale/'));
+  .pipe(gulp.dest('app/l10n/'));
 
   gulp.src([
     'node_modules/jquery/dist/jquery.min.js',
