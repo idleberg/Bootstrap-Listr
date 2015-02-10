@@ -585,7 +585,7 @@ gulp.task('merge', function(callback) {
         name: 'merge',
         message: 'Do you want to merge all assets?',
         choices: [
-          'No, keep individual file',
+          'No, keep individual files',
           {
             name: 'Yes, merge all assets',
             value: 'merge'
