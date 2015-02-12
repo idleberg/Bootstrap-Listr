@@ -664,16 +664,22 @@ gulp.task('post-merge', function() {
 
 // Clean app folder
 gulp.task('clean', function () {
+
   return del([
-    'app/assets/',
-    'app/l10n/',
-    'app/*.*'
+    'app/*.php',
+    'app/.htaccess',
+    'app/_public/.htaccess',
+    'app/assets/css/*',
+    'app/assets/fonts/*',
+    'app/assets/js/*',
+    'app/config.json',
+    'app/l10n/'
   ]);
 });
 
 
 // Create file structure in app/, copy all PHP & .htaccess
-gulp.task('init', ['clean'], function() {
+gulp.task('init', function(cb) {
 
   gulp.src([
     'src/index.php',
@@ -706,18 +712,35 @@ gulp.task('init', ['clean'], function() {
   .pipe(gulp.dest('app/_public/'));
 
   gulp.src([
-    'node_modules/jquery/dist/jquery.min.js',
-    'node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js'
+    'node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js',
+    'node_modules/jquery/dist/jquery.min.js'
   ])
   .pipe(gulp.dest('app/assets/js/'));
 
-  gulp.src("app/config.json")
+  gulp.src("src/config.json")
   .pipe(gulp.dest("app/"));
 
   if (argv.dist) {
     gulp.start('make');
   }
+
 });
+
+gulp.task('copy_htaccess', function() {
+  return gulp.src([
+      'src/public.htaccess'
+  ])
+  .pipe(concat('.htaccess'))
+  .pipe(gulp.dest('app/_public/'));
+})
+
+gulp.task('copy_js', function() {
+  return gulp.src([
+    'node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js',
+    'node_modules/jquery/dist/jquery.min.js'
+  ])
+  .pipe(gulp.dest('app/assets/js/'));
+})
 
 
 // Upgrade files in app/. Does not touch config.json and .htaccess files!
