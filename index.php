@@ -37,7 +37,7 @@ define('RESPONSIVE_TABLE', true);
 define('ENABLE_SORT', true);
 
 // Toggle search box
-   define('ENABLE_SEARCH', false);
+define('ENABLE_SEARCH', false);
 define('ENABLE_AUTOFOCUS', false);
 
 // Toggle media viewer
@@ -298,11 +298,12 @@ if ($handle = opendir('.'))
             $item['bname']         =     $info['basename'];
             $item['lbname']        =     strtolower($info['basename']);
             if (isset($info['extension'])) {
-                $item['ext'] = $info['extension'];
+                $item['ext']  = $info['extension'];
+                $item['lext'] = strtolower($info['extension']);
             } else {
                 $item['ext']  = '.';
+                $item['lext'] = '.';
             }
-            $item['lext'] = strtolower($info['extension']);
 
             if (DOC_ICONS == 'fontawesome') {
                 $folder_icon = 'fa fa-folder ' . FONTAWESOME_STYLE;
@@ -598,6 +599,7 @@ foreach($dir_name as $dir => $name) :
 endforeach;
 
 // Show search
+$search = null;
 if (ENABLE_SEARCH) {
     $autofocus = null;
     if (ENABLE_AUTOFOCUS) {
@@ -614,6 +616,8 @@ if (ENABLE_SEARCH) {
 }
 
 // Set responsiveness
+$responsive_open  = null;
+$responsive_close = null;
 if (RESPONSIVE_TABLE) {
     $responsive_open = "    <div class=\"table-responsive\">" . PHP_EOL;
     $responsive_close = "    </div>" . PHP_EOL;
@@ -751,6 +755,7 @@ if(($folder_list) || ($file_list) ) {
 }
 
 // Give kudos
+$kudos = null;
 if (GIVE_KUDOS) {
     $kudos = "<a class=\"pull-right small text-muted\" href=\"https://github.com/idleberg/Bootstrap-Listr\" title=\"Bootstrap Listr on GitHub\" target=\"_blank\">Fork me on GitHub</a>";
 }
