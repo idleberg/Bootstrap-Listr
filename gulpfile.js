@@ -666,7 +666,7 @@ gulp.task('post-merge', function() {
 gulp.task('clean', function () {
 
   return del([
-    '/app/**/*'
+    './app/**/*'
   ]);
 });
 
@@ -683,7 +683,7 @@ gulp.task('init', ['clean'], function() {
   .pipe(gulp.dest('app/'));
 
   gulp.src([
-      '/src//l10n/**/*'
+      './src/l10n/**/*'
   ])
   .pipe(gulp.dest('app/l10n/'));
 
@@ -737,7 +737,7 @@ gulp.task('upgrade', function() {
   .pipe(gulp.dest('app/'));
 
   gulp.src([
-    '/src/l10n/**/*'
+    './src/l10n/**/*'
   ])
   .pipe(gulp.dest('app/l10n/'));
 
