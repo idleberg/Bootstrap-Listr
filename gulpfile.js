@@ -664,10 +664,9 @@ gulp.task('post-merge', function() {
 
 // Clean app folder
 gulp.task('clean', function () {
+
   return del([
-    'app/assets/',
-    'app/l10n/',
-    'app/*.*'
+    '/app/**/*'
   ]);
 });
 
@@ -684,7 +683,7 @@ gulp.task('init', ['clean'], function() {
   .pipe(gulp.dest('app/'));
 
   gulp.src([
-      'src/l10n/**/*'
+      '/src//l10n/**/*'
   ])
   .pipe(gulp.dest('app/l10n/'));
 
@@ -706,17 +705,18 @@ gulp.task('init', ['clean'], function() {
   .pipe(gulp.dest('app/_public/'));
 
   gulp.src([
-    'node_modules/jquery/dist/jquery.min.js',
-    'node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js'
+    'node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js',
+    'node_modules/jquery/dist/jquery.min.js'
   ])
   .pipe(gulp.dest('app/assets/js/'));
 
-  gulp.src("app/config.json")
+  gulp.src("src/config.json")
   .pipe(gulp.dest("app/"));
 
   if (argv.dist) {
     gulp.start('make');
   }
+
 });
 
 
@@ -737,7 +737,7 @@ gulp.task('upgrade', function() {
   .pipe(gulp.dest('app/'));
 
   gulp.src([
-    'src/l10n/**/*'
+    '/src/l10n/**/*'
   ])
   .pipe(gulp.dest('app/l10n/'));
 
