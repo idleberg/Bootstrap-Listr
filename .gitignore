@@ -1,8 +1,8 @@
 .tmp/
-dist/locale/ja_JA
+dist/l10n/ja_JA
 bower_components/
 generators/
 node_modules/
 npm-debug.log
-src/locale/ja_JA/
+src/l10n/ja_JA/
 todo.md
