@@ -1,6 +1,6 @@
 .tmp/
-dist/l10n/ja_JA
 bower_components/
+dist/l10n/ja_JA
 generators/
 node_modules/
 npm-debug.log
