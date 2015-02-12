@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.4.4
+VERSION=0.4.5
 set -e
 
 # Functions
@@ -21,13 +21,13 @@ else
     npm install || npm_error
 fi
 
-if [ -e 'app/config.json' ]
+if [ -e 'dist/config.json' ]
 then
     # upgrade codebase only
     echo $'Updating codebase'
     gulp upgrade --silent
 else
-    # clean up app-folder, copy files
+    # clean up dist-folder, copy files
     echo $'Initializing application'
     gulp init --silent
 fi

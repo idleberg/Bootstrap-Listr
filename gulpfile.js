@@ -85,7 +85,7 @@ gulp.task('default', false, function (callback) {
     console.log('\n' + meta.name + ' v' + meta.version);
     console.log('The MIT License (MIT)');
 
-    if ( !fs.existsSync('./app/config.json') ) {
+    if ( !fs.existsSync('./dist/config.json') ) {
       console.log('\nRunning setup…');
       tasks = [
         'init',
@@ -189,7 +189,7 @@ gulp.task('select', function(callback){
             .src([
               'node_modules/jquery-searcher/dist/jquery.searcher.min.js'
              ])
-            .pipe(gulp.dest('app/assets/js/'));
+            .pipe(gulp.dest('dist/assets/js/'));
 
           enable_search = true;
         } 
@@ -203,7 +203,7 @@ gulp.task('select', function(callback){
             .src(bootstrap_js)
             .pipe(concat('bootstrap.min.js'))
             .pipe(uglify())
-            .pipe(gulp.dest('app/assets/js/'));
+            .pipe(gulp.dest('dist/assets/js/'));
 
           enable_viewer = true;
         }
@@ -216,7 +216,7 @@ gulp.task('select', function(callback){
           gulp
             .src('node_modules/_bower_components/highlightjs/highlight.pack.js')
             .pipe(concat('highlight.min.js'))
-            .pipe(gulp.dest('app/assets/js/'));
+            .pipe(gulp.dest('dist/assets/js/'));
 
           enable_highlight = true;
 
@@ -226,7 +226,7 @@ gulp.task('select', function(callback){
             ])
             .pipe(concat('highlight.min.css'))
             .pipe(cssmin())
-            .pipe(gulp.dest('app/assets/css/'));
+            .pipe(gulp.dest('dist/assets/css/'));
 
             gulp.start('hljs');
         }
@@ -237,14 +237,14 @@ gulp.task('select', function(callback){
 
           gulp
             .src('node_modules/font-awesome/css/font-awesome.min.css')
-            .pipe(gulp.dest('app/assets/css/'));
+            .pipe(gulp.dest('dist/assets/css/'));
 
           gulp
             .src('node_modules/font-awesome/fonts/fontawesome-webfont.*')
-            .pipe(gulp.dest('app/assets/fonts/'));
+            .pipe(gulp.dest('dist/assets/fonts/'));
 
           del([
-              'app/assets/fonts/glyphicons-halflings-regular.*'
+              'dist/assets/fonts/glyphicons-halflings-regular.*'
             ]);
 
           default_icons = 'fontawesome';
@@ -261,7 +261,7 @@ gulp.task('select', function(callback){
               'node_modules/apache-server-configs/dist/.htaccess'
               ])
             .pipe(concat('.htaccess'))
-            .pipe(gulp.dest('app/'));
+            .pipe(gulp.dest('dist/'));
         }
 
 
@@ -271,7 +271,7 @@ gulp.task('select', function(callback){
 
           gulp
             .src('src/robots.txt')
-            .pipe(gulp.dest('app/'));
+            .pipe(gulp.dest('dist/'));
         }
 
 
@@ -280,7 +280,7 @@ gulp.task('select', function(callback){
 
           gulp
             .src('node_modules/bootlint/dist/browser/bootlint.js')
-            .pipe(gulp.dest('app/assets/js/'));
+            .pipe(gulp.dest('dist/assets/js/'));
 
           include_bootlint = true;
         }
@@ -295,12 +295,12 @@ gulp.task('select', function(callback){
               'node_modules/jquery/dist/jquery.min.js',
               'node_modules/jquery/dist/jquery.min.map'
             ])
-            .pipe(gulp.dest('app/assets/js/'));
+            .pipe(gulp.dest('dist/assets/js/'));
         }
 
 
         // Write settings to config.json
-        gulp.src("app/config.json")
+        gulp.src("dist/config.json")
             .pipe(jeditor({
               'general': {
                 'enable_search': enable_search,
@@ -314,7 +314,7 @@ gulp.task('select', function(callback){
                 'bootlint': include_bootlint
               }
             }))
-            .pipe(gulp.dest("app/"));
+            .pipe(gulp.dest("dist/"));
         
     }));
 });
@@ -342,22 +342,22 @@ gulp.task('depends', function() {
         if( (res.dependencies === 'l') || (res.dependencies === 'local') ) {
 
 
-            gulp.src("app/config.json")
+            gulp.src("dist/config.json")
             .pipe(jeditor({
               'general': {
                 'dependencies': "local"
               }
             }))
-            .pipe(gulp.dest("app/"));
+            .pipe(gulp.dest("dist/"));
 
         } else if( (res.dependencies === 'c')  || (res.dependencies === 'cdn') ) {
-            gulp.src("app/config.json")
+            gulp.src("dist/config.json")
             .pipe(jeditor({
               'general': {
                 'dependencies': "cdn"
               }
             }))
-            .pipe(gulp.dest("app/"));
+            .pipe(gulp.dest("dist/"));
         }
     }));
 });
@@ -421,7 +421,7 @@ gulp.task('swatch', function(){
           // Copy glyphicons
           gulp
             .src('node_modules/bootstrap/fonts/*')
-            .pipe(gulp.dest('app/assets/fonts/'));
+            .pipe(gulp.dest('dist/assets/fonts/'));
 
           // Set default theme
           if (res.theme === '(default)') {
@@ -435,15 +435,15 @@ gulp.task('swatch', function(){
               }))
               .pipe(concat('bootstrap.min.css'))
               .pipe(cssmin())
-              .pipe(gulp.dest('app/assets/css/'));
+              .pipe(gulp.dest('dist/assets/css/'));
               
-              gulp.src("app/config.json")
+              gulp.src("dist/config.json")
               .pipe(jeditor({
                 'bootstrap': {
                   'theme': 'default'
                 }
               }))
-              .pipe(gulp.dest("app/"));
+              .pipe(gulp.dest("dist/"));
 
           // Set M8tro theme (http://idleberg.github.io/m8tro-bootstrap/)
           } else if (res.theme === 'M8tro') {
@@ -462,15 +462,15 @@ gulp.task('swatch', function(){
             }))
             .pipe(concat('bootstrap.min.css'))
             .pipe(cssmin())
-            .pipe(gulp.dest('app/assets/css/'));
+            .pipe(gulp.dest('dist/assets/css/'));
             
-            gulp.src("app/config.json")
+            gulp.src("dist/config.json")
             .pipe(jeditor({
               'bootstrap': {
                 'theme': 'm8tro'
               }
             }))
-            .pipe(gulp.dest("app/"));
+            .pipe(gulp.dest("dist/"));
 
           // Set Material theme (http://fezvrasta.github.io/bootstrap-v-design/)
           // } else if (res.theme === 'Material') {
@@ -488,15 +488,15 @@ gulp.task('swatch', function(){
           //   }))
           //   .pipe(concat('bootstrap.min.css'))
           //   .pipe(cssmin())
-          //   .pipe(gulp.dest('app/assets/css/'));
+          //   .pipe(gulp.dest('dist/assets/css/'));
             
-          //   gulp.src("app/config.json")
+          //   gulp.src("dist/config.json")
           //   .pipe(jeditor({
           //     'bootstrap': {
           //       'theme': 'material'
           //     }
           //   }))
-          //   .pipe(gulp.dest("app/"));
+          //   .pipe(gulp.dest("dist/"));
 
           // Set Bootswatch theme
           } else {
@@ -514,15 +514,15 @@ gulp.task('swatch', function(){
               }))
               .pipe(concat('bootstrap.min.css'))
               .pipe(cssmin())
-              .pipe(gulp.dest('app/assets/css/'));
+              .pipe(gulp.dest('dist/assets/css/'));
 
-              gulp.src("app/config.json")
+              gulp.src("dist/config.json")
               .pipe(jeditor({
                 'bootstrap': {
                   'theme': slug
                 }
               }))
-              .pipe(gulp.dest("app/"));
+              .pipe(gulp.dest("dist/"));
           }
     }));
 });
@@ -548,29 +548,29 @@ gulp.task('hljs', function(){
          gulp.src(source_dir+res.theme+'.css')
          .pipe(concat('highlight.min.css'))
          .pipe(cssmin())
-         .pipe(gulp.dest('app/assets/css/'));
+         .pipe(gulp.dest('dist/assets/css/'));
 
-         gulp.src("app/config.json")
+         gulp.src("dist/config.json")
          .pipe(jeditor({
            'highlight': {
              'theme': res.theme
            }
          }))
-         .pipe(gulp.dest("app/"));
+         .pipe(gulp.dest("dist/"));
 
          // Special cases
          if (res.theme == 'brown_paper') {
             console.log ('Copying extra-file brown_papersq.png');
             gulp.src('node_modules/_bower_components/highlightjs/styles/brown_papersq.png')
-            .pipe(gulp.dest('app/assets/css/'));
+            .pipe(gulp.dest('dist/assets/css/'));
          } else if (res.theme == 'pojoaque') {
             console.log ('Copying extra-file pojoaque.jpg');
             gulp.src('node_modules/_bower_components/highlightjs/styles/pojoaque.jpg')
-            .pipe(gulp.dest('app/assets/css/'));
+            .pipe(gulp.dest('dist/assets/css/'));
          } else if (res.theme == 'school_book') {
             console.log ('Copying extra-file school_book.png');
             gulp.src('node_modules/_bower_components/highlightjs/styles/school_book.png')
-            .pipe(gulp.dest('app/assets/css/'));
+            .pipe(gulp.dest('dist/assets/css/'));
          }
    }));
 });
@@ -579,7 +579,7 @@ gulp.task('hljs', function(){
 // Merge sequence
 gulp.task('merge', function(callback) {
 
-  gulp.src('app/assets')
+  gulp.src('dist/assets')
     .pipe(prompt.prompt({
         type: 'list',
         name: 'merge',
@@ -602,13 +602,13 @@ gulp.task('merge', function(callback) {
                 );
 
               gulp
-              .src("app/config.json")
+              .src("dist/config.json")
               .pipe(jeditor({
                 'general': {
                   'dependencies': "pack"
                 }
               }))
-              .pipe(gulp.dest("app/"));
+              .pipe(gulp.dest("dist/"));
         }
     }));
 
@@ -620,13 +620,13 @@ gulp.task('merge-scripts', function(){
 
     return gulp
     .src([
-      'app/assets/js/*.js',
-      '!app/assets/js/bootlint.js',
-      '!app/assets/js/jquery.min.js',
-      '!app/assets/js/listr.pack.js'
+      'dist/assets/js/*.js',
+      '!dist/assets/js/bootlint.js',
+      '!dist/assets/js/jquery.min.js',
+      '!dist/assets/js/listr.pack.js'
     ])
     .pipe(concat('listr.pack.js'))
-    .pipe(gulp.dest('app/assets/js/'));
+    .pipe(gulp.dest('dist/assets/js/'));
 });
 
 
@@ -634,11 +634,11 @@ gulp.task('merge-scripts', function(){
 gulp.task('merge-styles', function(){
 
   return gulp.src([
-      'app/assets/css/*.css',
-      '!app/assets/css/listr.pack.css'
+      'dist/assets/css/*.css',
+      '!dist/assets/css/listr.pack.css'
     ])
     .pipe(concat('listr.pack.css'))
-    .pipe(gulp.dest('app/assets/css/'));
+    .pipe(gulp.dest('dist/assets/css/'));
 });
 
 
@@ -646,12 +646,12 @@ gulp.task('merge-styles', function(){
 gulp.task('post-merge', function() {
 
   return del([
-    'app/assets/css/*.css',
-    '!app/assets/css/listr.pack.css',
-    'app/assets/js/*.js',
-    '!app/assets/js/bootlint.js',
-    '!app/assets/js/jquery.min.js',
-    '!app/assets/js/listr.pack.js'
+    'dist/assets/css/*.css',
+    '!dist/assets/css/listr.pack.css',
+    'dist/assets/js/*.js',
+    '!dist/assets/js/bootlint.js',
+    '!dist/assets/js/jquery.min.js',
+    '!dist/assets/js/listr.pack.js'
   ]);
 });
 
@@ -662,56 +662,56 @@ gulp.task('post-merge', function() {
  *        |                     
  */
 
-// Clean app folder
+// Clean dist folder
 gulp.task('clean', function () {
 
   return del([
-    './app/**/*'
+    './dist/'
   ]);
 });
 
 
-// Create file structure in app/, copy all PHP & .htaccess
+// Create file structure in dist/, copy all PHP & .htaccess
 gulp.task('init', ['clean'], function() {
 
   gulp.src([
-    'src/index.php',
-    'src/listr-functions.php',
-    'src/listr-l10n.php',
-    'src/listr-template.php'
+    './src/index.php',
+    './src/listr-functions.php',
+    './src/listr-l10n.php',
+    './src/listr-template.php'
   ])
-  .pipe(gulp.dest('app/'));
+  .pipe(gulp.dest('dist/'));
 
   gulp.src([
       './src/l10n/**/*'
   ])
-  .pipe(gulp.dest('app/l10n/'));
+  .pipe(gulp.dest('dist/l10n/'));
 
   gulp.src([
       'src/config.json'
   ])
-  .pipe(gulp.dest('app/'));
+  .pipe(gulp.dest('dist/'));
 
   gulp.src([
       'src/root.htaccess'
   ])
   .pipe(concat('.htaccess'))
-  .pipe(gulp.dest('app/'));
+  .pipe(gulp.dest('dist/'));
 
   gulp.src([
       'src/public.htaccess'
   ])
   .pipe(concat('.htaccess'))
-  .pipe(gulp.dest('app/_public/'));
+  .pipe(gulp.dest('dist/_public/'));
 
   gulp.src([
     'node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js',
     'node_modules/jquery/dist/jquery.min.js'
   ])
-  .pipe(gulp.dest('app/assets/js/'));
+  .pipe(gulp.dest('dist/assets/js/'));
 
   gulp.src("src/config.json")
-  .pipe(gulp.dest("app/"));
+  .pipe(gulp.dest("dist/"));
 
   if (argv.dist) {
     gulp.start('make');
@@ -720,12 +720,12 @@ gulp.task('init', ['clean'], function() {
 });
 
 
-// Upgrade files in app/. Does not touch config.json and .htaccess files!
+// Upgrade files in dist/. Does not touch config.json and .htaccess files!
 gulp.task('upgrade', function() {
 
   del([
-    'app/assets/css/listr.pack.css',
-    'app/assets/js/listr.pack.js'
+    'dist/assets/css/listr.pack.css',
+    'dist/assets/js/listr.pack.js'
   ]);
 
   gulp.src([
@@ -734,18 +734,18 @@ gulp.task('upgrade', function() {
     'src/listr-l10n.php',
     'src/listr-template.php'
   ])
-  .pipe(gulp.dest('app/'));
+  .pipe(gulp.dest('dist/'));
 
   gulp.src([
     './src/l10n/**/*'
   ])
-  .pipe(gulp.dest('app/l10n/'));
+  .pipe(gulp.dest('dist/l10n/'));
 
   gulp.src([
     'node_modules/jquery/dist/jquery.min.js',
     'node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js'
   ])
-  .pipe(gulp.dest('app/assets/js/'));
+  .pipe(gulp.dest('dist/assets/js/'));
 
 });
 
@@ -755,7 +755,7 @@ gulp.task('reset', function () {
   gulp.src([
     'src/config.json'
   ])
-  .pipe(gulp.dest('app/'));
+  .pipe(gulp.dest('dist/'));
 });
 
 
@@ -794,7 +794,7 @@ gulp.task('cssmin', function() {
   ])
   .pipe(concat('listr.min.css'))
   .pipe(cssmin())
-  .pipe(gulp.dest('app/assets/css/'));
+  .pipe(gulp.dest('dist/assets/css/'));
 });
 
 
@@ -824,7 +824,7 @@ gulp.task('uglify', function() {
    ])
    .pipe(uglify())
    .pipe(concat('listr.min.js'))
-   .pipe(gulp.dest('app/assets/js/'));
+   .pipe(gulp.dest('dist/assets/js/'));
 });
 
 
@@ -868,10 +868,10 @@ gulp.task('help', function() {
   console.log(repeat('=', title_length.length));
   console.log('\nAvailable tasks:');
   console.log('         help - This dialog');
-  console.log('        clean - Delete app-folder');
+  console.log('        clean - Delete dist-folder');
   console.log('        debug - Add Bootlint and jQuery source map');
   console.log('      depends - Specify the source for all dependencies');
-  console.log('         init - Create app-folder and copy required files');
+  console.log('         init - Create dist-folder and copy required files');
   console.log('        jsmin - Minify config.json');
   console.log('         lint - Run tasks to lint all CSS and JavaScript');
   console.log('         make - Minify all CSS and JavaScript files');
@@ -881,7 +881,7 @@ gulp.task('help', function() {
   console.log('  setup-clean - Force running a clean setup');
   console.log('       swatch - Select default Bootstrap theme');
   console.log('         hljs - Specify default Highlighter.js style-sheet');
-  console.log('      upgrade - Upgrade all PHP files in app-folder');
+  console.log('      upgrade - Upgrade all PHP files in dist-folder');
   console.log('\nVisit our GitHub repository:');
   console.log(meta.homepage);
 

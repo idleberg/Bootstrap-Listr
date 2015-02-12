@@ -2,71 +2,71 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Bootstrap Listr 2.0\n"
-"Last Translator: Gengo\n"
-"Language: ja\n"
+"Last Translator: Jan T. Sott\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 # LABELS
 msgid "Index of %1$s%2$s"
-msgstr "%1$s%2$sの一覧"
+msgstr "Inhalt von %1$s%2$s"
 
 msgid "Name"
-msgstr "名前"
+msgstr "Name"
 
 msgid "Size"
-msgstr "サイズ"
+msgstr "Größe"
 
 msgid "Modified"
-msgstr "修正された"
+msgstr "Geändert"
 
 # TIME
 msgid "%d second ago"
-msgstr "%d秒後"
+msgstr "vor einer Sekunde"
 
 msgid_plural "%d seconds ago"
-msgstr "%d"
+msgstr "vor %d Sekunden"
 
 msgid "%d minute ago"
-msgstr "%d分後"
+msgstr "vor einer Minute"
 
 msgid "%d minutes ago"
 msgstr "vor %d Minuten"
 
 msgid "%d hour ago"
-msgstr "%d時間後"
+msgstr "vor einer Stunde"
 
 msgid "%d hours ago"
 msgstr "vor %d Stunden"
 
 msgid "%d day ago"
-msgstr "%d日後"
+msgstr "vor einem Tag"
 
 msgid "%d days ago"
 msgstr "vor %d Tagen"
 
 msgid "%d week ago"
-msgstr "%d週間後"
+msgstr "vor einer Woche"
 
 msgid "%d weeks ago"
 msgstr "vor %d Wochen"
 
 msgid "%d month ago"
-msgstr "%d月後"
+msgstr "vor einem Monat"
 
 msgid "%d months ago"
 msgstr "vor %d Monaten"
 
 msgid "%d year ago"
-msgstr "%d年後"
+msgstr "vor einem Jahr"
 
 msgid "%d years ago"
 msgstr "vor %d Jahren"
 
 msgid "%d decade ago"
-msgstr "%d 10年間後"
+msgstr "vor einem Jahrzehnt"
 
 msgid "%d decades ago"
 msgstr "vor %d Jahrzehnten"
@@ -74,7 +74,7 @@ msgstr "vor %d Jahrzehnten"
 # UNITS
 # bytes
 msgid "bytes"
-msgstr "バイト"
+msgstr "Byte"
 
 # kilobytes (acronym)
 msgid "KB"
@@ -109,7 +109,7 @@ msgid "YB"
 msgstr "YB"
 
 msgid "empty folder"
-msgstr "空フォルダ"
+msgstr "leerer Ordner"
 
 # SUMMARY
 msgid "%1$s folder"
@@ -138,23 +138,23 @@ msgstr "%1$s Ordner und %2$s Dateien, %3$s %4$s insgesamt"
 
 # MODAL
 msgid "Apply syntax highlighting"
-msgstr "シンタックスハイライトを適用"
+msgstr "Syntaxhervorhebung anwenden"
 
 msgid "View"
-msgstr "見る"
+msgstr "Ansehen"
 
 msgid "Listen"
-msgstr "聴く"
+msgstr "Anhören"
 
 msgid "Close"
-msgstr "閉じる"
+msgstr "Schließen"
 
 msgid "Search"
 msgstr "Suche"
 
 msgid "Save to Dropbox"
-msgstr "Dropboxに保存"
+msgstr "In Dropbox speichern"
 
 # KUDOS
 msgid "Fork me on GitHub"
-msgstr "GitHubでクローンする"
+msgstr "Fork&rsquo; mich auf GitHub"
