@@ -14,13 +14,15 @@ A replacement for default server indices, Bootstrap Listr beautifully displays f
 2. Change directory `cd Bootstrap-Listr`
 3. Install all Node dependencies `npm install`
 
-## Building
+## Usage
 
-If you're already overwhelmed by the idea of having to build stuff, or simply wonder what happened to the old one-file solution—get the old version [here](https://github.com/idleberg/Bootstrap-Listr/tree/1.0-dev/)!
+The simplest way is to use the default configuration. Copy the `dist`-folder to your webserver, then place all files that should be accessible in the browser go into the `_public` folder. Point your browser to the `dist`-folder rather than the to display the files and folder inside `_public`.
+
+## Building
 
 ### Gulp
 
-[Gulp](http://gulpjs.com/) tasks are used to configure and build your app. You can install Gulp globally using `npm install gulp -g`.
+[Gulp](http://gulpjs.com/) tasks are used to configure and build your application. You can install Gulp globally using `npm install gulp -g`.
 
 You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase. To force a clean installation, you can use `gulp setup-clean`.
 
@@ -29,14 +31,14 @@ Available tasks:
 Task          | Description
 --------------|------------
 `help`        | Show help dialog
-`init`        | Create app-folder and copy required files
+`init`        | Create dist-folder and copy required files
 `make`        | Minify all CSS and JavaScript files
 `setup`       | Run a full setup
 `setup-clean` | Force running a clean setup
 `upgrade`     | Upgrade all PHP files in app-folder
 `merge`       | Merge all CSS and JavaScript files
 `depends`     | Specify the source for all dependencies
-`clean`       | Delete app-folder
+`clean`       | Delete dist-folder
 `debug`       | Add Bootlint and jQuery source map
 `hljs`        | Specify default Highlighter.js style-sheet
 `jsmin`       | Minify config.json
@@ -56,11 +58,11 @@ Argument   | Description
 
 ### CDN
 
-Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). Initialize your app using `gulp init` and set `dependencies` to `cdn` in your `config.json`. You can then specify your preferred CDNs (and all other preferences) in this file as well (see [below](#options) for details!)
+Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). Initialize your application using `gulp init` and set `dependencies` to `cdn` in your `config.json`. You can then specify your preferred CDNs (and all other preferences) in this file as well (see [below](#options) for details!)
 
 ## Deployment
 
-Deploy `app/` to your server, if necessary rename `config.json-example` to `config.json`. All files that should be accessible in the browser go into the `_public` folder (you can change the folder in the config). Depending on your Apache settings, you might have to uncomment the `RewriteBase` setting in the `.htaccess` file (maybe add parent folder name after the slash.)
+Deploy `dist/` to your server, if necessary rename `config.json-example` to `config.json`. All files that should be accessible in the browser go into the `_public` folder (you can change the folder in the config). Depending on your Apache settings, you might have to uncomment the `RewriteBase` setting in the `.htaccess` file (maybe add parent folder name after the slash.)
 
 ## Options
 
