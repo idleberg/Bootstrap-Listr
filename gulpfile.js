@@ -451,9 +451,9 @@ gulp.task('swatch', function(){
             slug = res.theme.toLowerCase();
             console.log('Compiling Bootstrap theme “M8tro”');
 
-            bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro/palette.less');
-            bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro-variables.less');
-            bootstrap_less.push('node_modules/_bower_components/m8tro-bootstrap/src/themes/m8tro-theme.less');
+            bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro/palette.less');
+            bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro-variables.less');
+            bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro-theme.less');
 
             gulp.src(bootstrap_less)
             .pipe(concat('bootstrap.less'))
