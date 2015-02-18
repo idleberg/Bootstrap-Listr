@@ -14,7 +14,7 @@
     "font-awesome":          "^4.3.0",
     "gulp":                  "^3.8.11",
     "gulp-cached":           "^1.0.2",
-    "gulp-concat":           "^2.4.3",
+    "gulp-concat":           "^2.5.0",
     "gulp-css":              "^0.1.0",
     "gulp-csslint":          "^0.1.5",
     "gulp-cssmin":           "^0.1.6",
