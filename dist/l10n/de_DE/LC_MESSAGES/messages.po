@@ -1,7 +1,7 @@
 # META
 msgid ""
 msgstr ""
-"Project-Id-Version: Bootstrap Listr 2.0\n"
+"Project-Id-Version: Bootstrap Listr 2.0.1\n"
 "Last Translator: Jan T. Sott\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -145,6 +145,9 @@ msgstr "Ansehen"
 
 msgid "Listen"
 msgstr "Anhören"
+
+msgid "Open"
+msgstr "Öffnen"
 
 msgid "Close"
 msgstr "Schließen"
