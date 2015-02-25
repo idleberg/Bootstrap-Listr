@@ -1,7 +1,7 @@
 # META
 msgid ""
 msgstr ""
-"Project-Id-Version: Bootstrap Listr 2.0\n"
+"Project-Id-Version: Bootstrap Listr 2.0.1\n"
 "Last Translator: Gengo.com/Translator #6377\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -144,6 +144,9 @@ msgstr "Voir"
 
 msgid "Listen"
 msgstr "Écouter"
+
+msgid "Open"
+msgstr "Ouvrir"
 
 msgid "Close"
 msgstr "Fermer"
