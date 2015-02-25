@@ -620,10 +620,11 @@ gulp.task('merge-scripts', function(){
 
     return gulp
     .src([
-      'dist/assets/js/*.js',
-      '!dist/assets/js/bootlint.js',
-      '!dist/assets/js/jquery.min.js',
-      '!dist/assets/js/listr.pack.js'
+      'dist/assets/js/bootstrap.min.js',
+      'dist/assets/js/highlight.min.js',
+      'dist/assets/js/jquery.searcher.min.js',
+      'dist/assets/js/stupidtable.min.js',
+      'dist/assets/js/listr.min.js'
     ])
     .pipe(concat('listr.pack.js'))
     .pipe(gulp.dest('dist/assets/js/'));
@@ -867,22 +868,22 @@ gulp.task('help', function() {
   console.log('\n' + meta.name + ' v' + meta.version);
   console.log(repeat('=', title_length.length));
   console.log('\nAvailable tasks:');
-  console.log('         help - This dialog');
-  console.log('        clean - Delete dist-folder');
-  console.log('        debug - Add Bootlint and jQuery source map');
-  console.log('      depends - Specify the source for all dependencies');
-  console.log('         init - Create dist-folder and copy required files');
-  console.log('        jsmin - Minify config.json');
-  console.log('         lint - Run tasks to lint all CSS and JavaScript');
-  console.log('         make - Minify all CSS and JavaScript files');
-  console.log('        merge - Merge all CSS and JavaScript files');
-  console.log('        reset - Reset config.json to default');
-  console.log('        setup - Run a full setup');
-  console.log('  setup-clean - Force running a clean setup');
-  console.log('       swatch - Select default Bootstrap theme');
-  console.log('         hljs - Specify default Highlighter.js style-sheet');
-  console.log('      upgrade - Upgrade all PHP files in dist-folder');
-  console.log('\nVisit our GitHub repository:');
+  console.log('        help - This dialog');
+  console.log('       clean - Delete dist-folder');
+  console.log('       debug - Add Bootlint and jQuery source map');
+  console.log('     depends - Specify the source for all dependencies');
+  console.log('        init - Create dist-folder and copy required files');
+  console.log('       jsmin - Minify config.json');
+  console.log('        lint - Run tasks to lint all CSS and JavaScript');
+  console.log('        make - Minify all CSS and JavaScript files');
+  console.log('       merge - Merge all CSS and JavaScript files');
+  console.log('       reset - Reset config.json to default');
+  console.log('       setup - Run a full setup');
+  console.log(' setup-clean - Force running a clean setup');
+  console.log('      swatch - Select default Bootstrap theme');
+  console.log('        hljs - Specify default Highlighter.js style-sheet');
+  console.log('     upgrade - Upgrade all PHP files in dist-folder');
+  console.log('nVisit our GitHub repository:');
   console.log(meta.homepage);
 
 } );
