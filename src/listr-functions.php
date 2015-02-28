@@ -265,13 +265,12 @@ function time_ago($tm,$rcs = 0) {
 }
 
 /**
- *    http://teddy.fr/2007/11/28/how-serve-big-files-through-php/
+ *    @ http://teddy.fr/2007/11/28/how-serve-big-files-through-php/
  */
 function readfile_chunked($filename, $retrieved = TRUE) {
     $buffer    = "";
     $chunksize = 1024*1024
     $count     = 0;
-    // $handle = fopen($filename, "rb");
     $handle = fopen($filename, "rb");
     if ($handle === false) {
       return false;
