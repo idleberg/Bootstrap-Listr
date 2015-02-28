@@ -73,7 +73,8 @@ if(substr($navigation_dir, -1) != "/"){
         header('Content-Length: ' . filesize($navigation_dir));
         ob_clean();
         flush();
-        readfile($navigation_dir);     
+        // readfile($navigation_dir);     
+        readfile_chunked($navigation_dir);     
     } else {
         set_404_error();
     }
