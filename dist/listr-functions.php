@@ -263,4 +263,35 @@ function time_ago($tm,$rcs = 0) {
     if(($rcs == 1)&&($v >= 1)&&(($cur_tm-$_tm) > 0)) $x .= time_ago($_tm);
     return $x;
 }
+
+/**
+ *    @ http://teddy.fr/2007/11/28/how-serve-big-files-through-php/
+ */
+
+  // Read a file and display its content chunk by chunk
+  function readfile_chunked($filename, $retbytes = TRUE) {
+    $chunksize = 1024*1024;
+    $buffer = '';
+    $count =0;
+    // $handle = fopen($filename, 'rb');
+    $handle = fopen($filename, 'rb');
+    if ($handle === false) {
+      return false;
+    }
+    while (!feof($handle)) {
+      $buffer = fread($handle, $chunksize);
+      echo $buffer;
+      ob_flush();
+      flush();
+      if ($retbytes) {
+        $count += strlen($buffer);
+      }
+    }
+    $status = fclose($handle);
+    if ($retbytes && $status) {
+      return $count; // return num. bytes delivered like readfile() does.
+    }
+    return $status;
+}
+
 ?>
