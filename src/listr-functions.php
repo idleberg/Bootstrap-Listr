@@ -267,11 +267,15 @@ function time_ago($tm,$rcs = 0) {
 /**
  *    @ http://teddy.fr/2007/11/28/how-serve-big-files-through-php/
  */
-function readfile_chunked($filename, $retrieved = TRUE) {
-    $buffer    = "";
-    $chunksize = 1024*1024
-    $count     = 0;
-    $handle = fopen($filename, "rb");
+define('CHUNK_SIZE', 1024*1024); // Size (in bytes) of tiles chunk
+
+  // Read a file and display its content chunk by chunk
+  function readfile_chunked($filename, $retbytes = TRUE) {
+    $chunksize = 1024*1024;
+    $buffer = '';
+    $cnt =0;
+    // $handle = fopen($filename, 'rb');
+    $handle = fopen($filename, 'rb');
     if ($handle === false) {
       return false;
     }
@@ -280,15 +284,15 @@ function readfile_chunked($filename, $retrieved = TRUE) {
       echo $buffer;
       ob_flush();
       flush();
-      if ($retrieved) {
-        $count += strlen($buffer);
+      if ($retbytes) {
+        $cnt += strlen($buffer);
       }
     }
     $status = fclose($handle);
-    if ($retrieved && $status) {
-      return $count; // return num. bytes delivered like readfile() does.
+    if ($retbytes && $status) {
+      return $cnt; // return num. bytes delivered like readfile() does.
     }
     return $status;
-  }
+}
 
 ?>
