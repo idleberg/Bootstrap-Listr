@@ -263,4 +263,33 @@ function time_ago($tm,$rcs = 0) {
     if(($rcs == 1)&&($v >= 1)&&(($cur_tm-$_tm) > 0)) $x .= time_ago($_tm);
     return $x;
 }
+
+/**
+ *    http://teddy.fr/2007/11/28/how-serve-big-files-through-php/
+ */
+function readfile_chunked($filename, $retrieved = TRUE) {
+    $buffer    = "";
+    $chunksize = 1024*1024
+    $count     = 0;
+    // $handle = fopen($filename, "rb");
+    $handle = fopen($filename, "rb");
+    if ($handle === false) {
+      return false;
+    }
+    while (!feof($handle)) {
+      $buffer = fread($handle, $chunksize);
+      echo $buffer;
+      ob_flush();
+      flush();
+      if ($retrieved) {
+        $count += strlen($buffer);
+      }
+    }
+    $status = fclose($handle);
+    if ($retrieved && $status) {
+      return $count; // return num. bytes delivered like readfile() does.
+    }
+    return $status;
+  }
+
 ?>
