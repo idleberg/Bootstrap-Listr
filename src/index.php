@@ -163,11 +163,11 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
 }  
 
 if ($options['general']['enable_viewer']) {
-    $audio_files     = array('m4a','mp3','oga','ogg','webma','wav');
-    $image_files     = array('gif','ico','jpe','jpeg','jpg','png','svg','webp');
-    $quicktime_files = array('3g2','3gp','3gp2','3gpp','mov','qt');
-    $source_files    = array('atom','bat','cmd','css','hml','jade','js','json','less','markdown','md','pl','py','rb','rss','rst','sass','scpt','scss','sh','txt','xml','yml');
-    $video_files     = array('mp4','m4v','ogv','webm');
+    $audio_files     = explode(',', $options['viewer']['audio']);
+    $image_files     = explode(',', $options['viewer']['image']);
+    $quicktime_files = explode(',', $options['viewer']['quicktime']);
+    $source_files    = explode(',', $options['viewer']['source']);
+    $video_files     = explode(',', $options['viewer']['video']);
 }
 
 if ($options['general']['text_direction'] == 'rtl') {
