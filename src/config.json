@@ -57,7 +57,7 @@
     "audio":     "m4a,mp3,oga,ogg,webma,wav",
     "image":     "gif,ico,jpe,jpeg,jpg,png,svg,webp",
     "quicktime": "3g2,3gp,3gp2,3gpp,mov,qt",
-    "source":    "atom,bat,cmd,css,erb,hml,jade,js,json,less,markdown,md,pl,py,rb,rss,rst,sass,scpt,scss,sh,txt,xml,yml",
+    "source":    "atom,bat,cmd,css,erb,hml,jade,js,json,less,markdown,md,php,pl,py,rb,rss,rst,sass,scpt,scss,sh,txt,xml,yml",
     "video":     "mp4,m4v,ogv,webm"
   },
   "highlight": {
