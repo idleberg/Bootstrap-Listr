@@ -15,27 +15,28 @@ var meta     = require('./package.json');
 
 
 // Gulp plugins
-var console  = require('better-console'),
-    cache    = require('gulp-cached'),
-    concat   = require('gulp-concat'),
-    csslint  = require('gulp-csslint'),
-    cssmin   = require('gulp-cssmin'),
-    debug    = require('gulp-debug'),
-    del      = require('del'),
-    fs       = require('fs'),
-    gulp     = require('gulp'),
-    insert   = require('gulp-insert'),
-    jeditor  = require('gulp-json-editor'),
-    jshint   = require('gulp-jshint'),
-    jsonlint = require('gulp-json-lint'),
-    less     = require('gulp-less'),
-    path     = require('path'),
-    phplint  = require('phplint').lint,
-    prompt   = require('gulp-prompt'),
-    sequence = require('run-sequence'),
-    uglify   = require('gulp-uglify'),
-    watch    = require('gulp-watch'),
-    argv     = require('yargs')
+var console   = require('better-console'),
+    cache     = require('gulp-cached'),
+    concat    = require('gulp-concat'),
+    concatCss = require('gulp-concat-css')
+    csslint   = require('gulp-csslint'),
+    cssmin    = require('gulp-cssmin'),
+    debug     = require('gulp-debug'),
+    del       = require('del'),
+    fs        = require('fs'),
+    gulp      = require('gulp'),
+    insert    = require('gulp-insert'),
+    jeditor   = require('gulp-json-editor'),
+    jshint    = require('gulp-jshint'),
+    jsonlint  = require('gulp-json-lint'),
+    less      = require('gulp-less'),
+    path      = require('path'),
+    phplint   = require('phplint').lint,
+    prompt    = require('gulp-prompt'),
+    sequence  = require('run-sequence'),
+    uglify    = require('gulp-uglify'),
+    watch     = require('gulp-watch'),
+    argv      = require('yargs')
                 .alias('b',   'bootstrap')
                 .alias('d',   'debug')
                 .alias('m',   'minimum')
@@ -641,7 +642,8 @@ gulp.task('merge-styles', function(){
       'dist/assets/css/listr.min.css'
       // '!dist/assets/css/listr.pack.css'
     ])
-    .pipe(concat('listr.pack.css'))
+    .pipe(concatCss('listr.pack.css'))
+    .pipe(cssmin())
     .pipe(gulp.dest('dist/assets/css/'));
 });
 
