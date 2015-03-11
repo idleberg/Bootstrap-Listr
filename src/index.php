@@ -107,10 +107,9 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
         $icons_gplus    = "<i class=\"fa fa-google-plus fa-fw\"></i> ";
         $icons_twitter  = "<i class=\"fa fa-twitter fa-fw\"></i> ";
     }
-    // if ($options['general']['enable_search'] == true) {
-    //     $icons['search'] = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
-    // }
-    $icons['search'] = null;
+    if ($options['general']['enable_search'] == true) {
+        $icons['search'] = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
+    }
     $filetype = array(
         'archive'   => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
         'apple'     => array('app','ipa','ipsw','saver'),
@@ -140,10 +139,9 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
 } else if ($options['bootstrap']['icons'] == 'fa-files'){
     $icons['tag']  = 'i';
     $icons['home'] = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
-    // if ($options['general']['enable_search'] == true) {
-    //     $icons['search'] = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
-    // }
-    $icons['search'] = null;
+    if ($options['general']['enable_search'] == true) {
+        $icons['search'] = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
+    }
     $filetype = array(
         'archive'    => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
         'audio'      => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','oga','ogg','oma','s3m','sid','umx','wav','webma','wv','xm'),
