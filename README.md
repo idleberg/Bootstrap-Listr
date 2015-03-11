@@ -6,17 +6,15 @@
 
 A replacement for default server indices, Bootstrap Listr beautifully displays folders and files in the browser. It is built upon the [Bootstrap](http://getbootstrap.com) framework and optionally makes use of [Bootswatch](http://bootswatch.com/) themes and [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons.
 
-*Watch a [live demo](http://demo.idleberg.com/Bootstrap-Listr-2.0-dev/)!*
+*Watch a [live demo](http://demo.idleberg.com/Bootstrap-Listr-2/)!*
 
 ## Installation
 
-1. Clone the repository `git clone https://github.com/idleberg/Bootstrap-Listr.git` 
-2. Change directory `cd Bootstrap-Listr`
-3. Install all Node dependencies `npm install`
+Clone the repository `git clone https://github.com/idleberg/Bootstrap-Listr.git` or download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releases)
 
 ## Usage
 
-The simplest way is to use the default configuration. Copy the `dist`-folder to your webserver, then place all files that should be accessible in the browser go into the `_public` folder. Point your browser to the `dist`-folder rather than the to display the files and folder inside `_public`.
+The simplest way is to use the default configuration. Copy the `dist`-folder to your webserver, then place all files that should be accessible in the browser go into the `_public` folder. Point your browser to the `dist`-folder rather than the files and folder inside `_public`.
 
 ## Building
 
