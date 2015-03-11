@@ -97,7 +97,7 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
     if ($options['general']['enable_search'] == true) {
         $icons['search'] = "          <span class=\"glyphicon glyphicon-search form-control-feedback\"></span>" . PHP_EOL;
     }
-} else if ($options['bootstrap']['icons'] == "fontawesome") { 
+} else if (($options['bootstrap']['icons'] == "fontawesome") || ($options['bootstrap']['icons'] == 'fa-files')) { 
     $icons['tag']   = 'i';
     $icons['home']  = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
     if ($options['general']['share_icons'] == true) { 
@@ -110,50 +110,48 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
     if ($options['general']['enable_search'] == true) {
         $icons['search'] = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
     }
-    $filetype = array(
-        'archive'   => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
-        'apple'     => array('app','ipa','ipsw','saver'),
-        'audio'     => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','oga','ogg','oma','opus','s3m','sid','umx','wav','webma','wv','xm'),
-        'calendar'  => array('icbu','ics'),
-        'config'    => array('cfg','conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
-        'contact'   => array('abbu','contact','oab','pab','vcard','vcf'),
-        'database'  => array('bde','crp','db','db2','db3','dbb','dbf','dbk','dbs','dbx','edb','fdb','frm','fw','fw2','fw3','gdb','itdb','mdb','ndb','nsf','rdb','sas7mdb','sql','sqlite','tdb','wdb'),
-        'doc'       => array('abw','doc','docm','docs','docx','dot','key','numbers','odb','odf','odg','odp','odt','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wp','wp4','wp5','wp6','wp7','wpd','xls','xlsx','xps'),
-        'downloads' => array('!bt','!qb','!ut','crdownload','download','opdownload','part'),
-        'ebook'     => array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
-        'email'     => array('eml','emlx','mbox','msg','pst'),
-        'feed'      => array('atom','rss'),
-        'flash'     => array('fla','flv','swf'),
-        'font'      => array('eot','fon','otf','pfm','ttf','woff'),
-        'image'     => array('ai','bmp','cdr','emf','eps','gif','icns','ico','jp2','jpe','jpeg','jpg','jpx','pcx','pict','png','psd','psp','svg','tga','tif','tiff','webp','wmf'),
-        'link'      => array('lnk','url','webloc'),
-        'linux'     => array('bin','deb','rpm'),
-        'palette'   => array('ase','clm','clr','gpl'),
-        'raw'       => array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
-        'script'    => array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xml','yml'),
-        'text'      => array('ans','asc','ascii','csv','diz','latex','log','markdown','md','nfo','rst','rtf','tex','text','txt'),
-        'video'     => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
-        'website'   => array('htm','html','mhtml','mht','xht','xhtml'),
-        'windows'   => array('dll','exe','msi','pif','ps1','scr','sys')
-    );
-} else if ($options['bootstrap']['icons'] == 'fa-files'){
-    $icons['tag']  = 'i';
-    $icons['home'] = "<i class=\"fa fa-home fa-lg fa-fw\"></i> ";
-    if ($options['general']['enable_search'] == true) {
-        $icons['search'] = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
+
+    if ($options['bootstrap']['icons'] == "fontawesome") {
+        $filetype = array(
+            'archive'   => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
+            'apple'     => array('app','ipa','ipsw','saver'),
+            'audio'     => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','oga','ogg','oma','opus','s3m','sid','umx','wav','webma','wv','xm'),
+            'calendar'  => array('icbu','ics'),
+            'config'    => array('cfg','conf','ini','htaccess','htpasswd','plist','sublime-settings','xpy'),
+            'contact'   => array('abbu','contact','oab','pab','vcard','vcf'),
+            'database'  => array('bde','crp','db','db2','db3','dbb','dbf','dbk','dbs','dbx','edb','fdb','frm','fw','fw2','fw3','gdb','itdb','mdb','ndb','nsf','rdb','sas7mdb','sql','sqlite','tdb','wdb'),
+            'doc'       => array('abw','doc','docm','docs','docx','dot','key','numbers','odb','odf','odg','odp','odt','ods','otg','otp','ots','ott','pages','pdf','pot','ppt','pptx','sdb','sdc','sdd','sdw','sxi','wp','wp4','wp5','wp6','wp7','wpd','xls','xlsx','xps'),
+            'downloads' => array('!bt','!qb','!ut','crdownload','download','opdownload','part'),
+            'ebook'     => array('aeh','azw','ceb','chm','epub','fb2','ibooks','kf8','lit','lrf','lrx','mobi','pdb','pdg','prc','xeb'),
+            'email'     => array('eml','emlx','mbox','msg','pst'),
+            'feed'      => array('atom','rss'),
+            'flash'     => array('fla','flv','swf'),
+            'font'      => array('eot','fon','otf','pfm','ttf','woff'),
+            'image'     => array('ai','bmp','cdr','emf','eps','gif','icns','ico','jp2','jpe','jpeg','jpg','jpx','pcx','pict','png','psd','psp','svg','tga','tif','tiff','webp','wmf'),
+            'link'      => array('lnk','url','webloc'),
+            'linux'     => array('bin','deb','rpm'),
+            'palette'   => array('ase','clm','clr','gpl'),
+            'raw'       => array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
+            'script'    => array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xml','yml'),
+            'text'      => array('ans','asc','ascii','csv','diz','latex','log','markdown','md','nfo','rst','rtf','tex','text','txt'),
+            'video'     => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
+            'website'   => array('htm','html','mhtml','mht','xht','xhtml'),
+            'windows'   => array('dll','exe','msi','pif','ps1','scr','sys')
+        );
+    } else if ($options['bootstrap']['icons'] == 'fa-files') {
+        $filetype = array(
+            'archive'    => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
+            'audio'      => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','oga','ogg','oma','s3m','sid','umx','wav','webma','wv','xm'),
+            'excel'      => array('xls','xlsx','numbers'),
+            'image'      => array('ai','bmp','cdr','emf','eps','gif','icns','ico','jp2','jpe','jpeg','jpg','jpx','pcx','pict','png','psd','psp','svg','tga','tif','tiff','webp','wmf'),
+            'pdf'        => array('pdf'),
+            'powerpoint' => array('pot','ppt','pptx','key'),
+            'script'     => array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xml','yml'),
+            'text'       => array('ans','asc','ascii','csv','diz','latex','log','markdown','md','nfo','rst','rtf','tex','text','txt'),
+            'video'      => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
+            'word'       => array('doc','docm','docs','docx','dot','pages'),
+        );
     }
-    $filetype = array(
-        'archive'    => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
-        'audio'      => array('aac','ac3','aif','aiff','au','caf','flac','it','m4a','m4p','med','mid','mo3','mod','mp1','mp2','mp3','mpc','ned','ra','ram','oga','ogg','oma','s3m','sid','umx','wav','webma','wv','xm'),
-        'excel'      => array('xls','xlsx','numbers'),
-        'image'      => array('ai','bmp','cdr','emf','eps','gif','icns','ico','jp2','jpe','jpeg','jpg','jpx','pcx','pict','png','psd','psp','svg','tga','tif','tiff','webp','wmf'),
-        'pdf'        => array('pdf'),
-        'powerpoint' => array('pot','ppt','pptx','key'),
-        'script'     => array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xml','yml'),
-        'text'       => array('ans','asc','ascii','csv','diz','latex','log','markdown','md','nfo','rst','rtf','tex','text','txt'),
-        'video'      => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
-        'word'       => array('doc','docm','docs','docx','dot','pages'),
-    );
 } else {
     $icons['tag']  = 'span';
     $icons['home'] = $this_domain;
