@@ -635,8 +635,11 @@ gulp.task('merge-scripts', function(){
 gulp.task('merge-styles', function(){
 
   return gulp.src([
-      'dist/assets/css/*.css',
-      '!dist/assets/css/listr.pack.css'
+      'dist/assets/css/font-awesome.min.css',
+      'dist/assets/css/bootstrap.min.css',
+      'dist/assets/css/highlight.min.css',
+      'dist/assets/css/listr.min.css'
+      // '!dist/assets/css/listr.pack.css'
     ])
     .pipe(concat('listr.pack.css'))
     .pipe(gulp.dest('dist/assets/css/'));
