@@ -77,11 +77,11 @@ function set_header($theme) {
             $fontawesome_css = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/font-awesome.min.css";
         }
 
-        $header .= "  <link rel=\"stylesheet\" href=\"$bootstrap_css\" />" . PHP_EOL;
-
         if ( ($options['bootstrap']['icons'] == 'fontawesome') && ($fontawesome_css) ) {
             $header .= "  <link rel=\"stylesheet\" href=\"$fontawesome_css\" />" . PHP_EOL;
         }
+
+        $header .= "  <link rel=\"stylesheet\" href=\"$bootstrap_css\" />" . PHP_EOL;
 
         if ($options['general']['enable_viewer']) {    
 
