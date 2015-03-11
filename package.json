@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-listr",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "private": true,
   "homepage": "https://github.com/idleberg/Bootstrap-Listr",
   "devDependencies": {
@@ -15,6 +15,7 @@
     "gulp":                  "^3.8.11",
     "gulp-cached":           "^1.0.2",
     "gulp-concat":           "^2.5.2",
+    "gulp-concat-css":       "^2.1.1",
     "gulp-css":              "^0.1.0",
     "gulp-csslint":          "^0.1.5",
     "gulp-cssmin":           "^0.1.6",
