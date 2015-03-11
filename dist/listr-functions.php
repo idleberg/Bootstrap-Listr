@@ -156,10 +156,6 @@ function set_footer(){
 
         if ($options['general']['enable_viewer']) {
             $footer .= "  <script type=\"text/javascript\" src=\"$bootstrap_js\"></script>" . PHP_EOL;
-            
-            if( ($options['general']['share_button']) && ($options['keys']['dropbox_app']) ){
-                $footer .= "  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"".$options['keys']['dropbox_app']."\"></script>" . PHP_EOL;
-            }
 
             if($options['general']['enable_highlight'] == true) {
                  if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
