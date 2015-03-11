@@ -10,7 +10,7 @@ A replacement for default server indices, Bootstrap Listr beautifully displays f
 
 ## Installation
 
-Clone the repository `git clone https://github.com/idleberg/Bootstrap-Listr.git` or download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releases)
+Clone the repository `git clone https://github.com/idleberg/Bootstrap-Listr.git` or download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releases).
 
 ## Usage
 
