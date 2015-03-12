@@ -80,29 +80,7 @@ You can configure a number of settings in the file `config.json`:
 * Google Analytics
 * Language
 
-### Font Awesome
-
-Rather than using the default [Bootstrap Glyphicons](http://getbootstrap.com/components/#glyphicons), you can enable [Font Awesome](http://fortawesome.github.io/Font-Awesome/) for beautiful, file-specific icons. Note that this will require extra resources, hence increase the load time.
-
-### Theming
-
-You can overwrite the `default` Bootstrap style with any [Bootswatch](http://bootswatch.com/) theme (e.g. `united`) or add a custom style-sheet in the asset settings. Please note that Bootswatch themes do not include [glyphicons](http://getbootstrap.com/components/#glyphicons).
-
-### Viewer
-
-To load images, videos, audio and source code into a [Bootstrap Modal](http://getbootstrap.com/javascript/#modals), the viewer is enabled by default. You can change this in `config.json`. The required Bootstrap JavaScript library will be added to your page automatically.
-
-### Search Box
-
-To filter files and folders displayed in the table, set `enable_search` to `true`. Additionally, you can enable `autofocus_search` set the focus to the search box on load.
-
-### Syntax Highlighter
-
-Source code in the viewer modal can be highlighted using [highlight.js](http://highlightjs.org/). Due to performance concerns when applied on huge files, the highlighter will only apply once the button at the bottom of the viewer modal is pressed.
-
-### Language
-
-Several languages are supported as of alpha 4, you can specify your preferred language in `config.json`. Currently supported are French (`fr_FR`), German (`de_DE`), Portuguese (`pt_PT`) and Spanish (`es_ES`).
+For details, please visit the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki/Understanding-config.json).
 
 ## Contribute
 
