@@ -24,35 +24,7 @@ The simplest way is to use the default configuration. Copy the `dist`-folder to 
 
 You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase. To force a clean installation, you can use `gulp setup-clean`.
 
-Available tasks:
-
-Task          | Description
---------------|------------
-`help`        | Show help dialog
-`init`        | Create dist-folder and copy required files
-`make`        | Minify all CSS and JavaScript files
-`setup`       | Run a full setup
-`setup-clean` | Force running a clean setup
-`upgrade`     | Upgrade all PHP files in app-folder
-`merge`       | Merge all CSS and JavaScript files
-`depends`     | Specify the source for all dependencies
-`clean`       | Delete dist-folder
-`debug`       | Add Bootlint and jQuery source map
-`hljs`        | Specify default Highlighter.js style-sheet
-`jsmin`       | Minify config.json
-`lint`        | Run tasks to lint all CSS and JavaScript
-`reset`       | Reset config.json to default
-`swatch`      | Select default Bootstrap theme
-    
-Arguments can be used to control the setup task. By default, Bootstrap Listr uses a customized, smaller Bootstrap library. If you want to use the full library, you can override this using `gulp setup -b`. 
-
-Other arguments:
-
-Argument   | Description
------------|------------
---min -m   | Unselects default setup components
---debug -d | Selects debug components
---self -s  | Only lint `gulpfile.js` and `package.json`
+Please visit the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki/Gulp-tasks) for details.
 
 ### CDN
 
