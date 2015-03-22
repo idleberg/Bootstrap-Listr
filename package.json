@@ -7,7 +7,7 @@
     "apache-server-configs": "^2.11.0",
     "better-console":        "^0.2.3",
     "bootlint":              "^0.12.0",
-    "bootstrap":             "^3.3.2",
+    "bootstrap":             "^3.3.4",
     "bootswatch":            "^3.3.2",
     "bower":                 "^1.3.12",
     "del":                   "^1.1.1",
