@@ -52,7 +52,7 @@ You can configure a number of settings in the file `config.json`:
 * Google Analytics
 * Language
 
-For details, please visit the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki/Understanding-config.json).
+Please visit the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki/Understanding-config.json) for details.
 
 ## Contribute
 
