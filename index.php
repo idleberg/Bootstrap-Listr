@@ -196,9 +196,13 @@ $folder_list = array();
 $total_size = 0;
 
 if (DOC_ICONS == "glyphicons") { 
-    $icon_tag = 'span';
+    $icon_tag    = 'span';
+    $icon_search = "          <span class=\"glyphicon glyphicon-search form-control-feedback\"></span>" . PHP_EOL;
 } else if (DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") { 
-    $icon_tag = 'i';
+    $icon_tag    = 'i';
+    $icon_search = "          <i class=\"fa fa-search form-control-feedback\"></i>" . PHP_EOL;
+} else {
+    $icon_search = NULL;
 }
 
 if (DOC_ICONS == 'fontawesome') {
@@ -548,10 +552,10 @@ if (OG_LOCALE) $header = $header."  <meta property=\"og:locale\" content=\"".OG_
 if (OG_TYPE) $header = $header."  <meta property=\"og:type\" content=\"".OG_TYPE."\" />" . PHP_EOL;
 if (OG_IMAGE) $header = $header."  <meta property=\"og:image\" content=\"".OG_IMAGE."\" />" . PHP_EOL;
 
-$header = $header."  <link rel=\"stylesheet\" href=\"$bootstrap_cdn\" />" . PHP_EOL;
 if (DOC_ICONS == "fontawesome" || DOC_ICONS == "fa-files") {
     $header = $header."  <link rel=\"stylesheet\" href=\"".FONT_AWESOME."\" />" . PHP_EOL;
 }
+$header = $header."  <link rel=\"stylesheet\" href=\"$bootstrap_cdn\" />" . PHP_EOL;
 $modal_css = null;
 if (ENABLE_VIEWER) {
     $modal_css = ".modal img{display:block;margin:0 auto;max-width:100%}.modal video,.modal audio{width:100%}.viewer-wrapper{position:relative;padding-bottom:56.25%;height:0},.viewer-wrapper embed,.viewer-wrapper object{position:absolute;top:0;left:0;width:100%;height:100%}";
@@ -610,6 +614,7 @@ if (ENABLE_SEARCH) {
     $search .= "        <div class=\"form-group has-feedback\">" . PHP_EOL;
     $search .= "          <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
     $search .= "          <input type=\"text\" class=\"form-control\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
+    $search .= $icon_search;
     $search .= "       </div>" . PHP_EOL;
     $search .= "      </div>" . PHP_EOL;
     $search .= "    </div>" . PHP_EOL;
