@@ -5,7 +5,7 @@
   "homepage": "https://github.com/idleberg/Bootstrap-Listr",
   "devDependencies": {
     "highlightjs":              "^8.4.0",
-    "m8tro-bootstrap":          "3.3.2+3",
+    "m8tro-bootstrap":          "3.3.4",
     "stupid-jquery-table-sort": "*"
   }
 }
