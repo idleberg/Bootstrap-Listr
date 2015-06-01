@@ -13,7 +13,7 @@
     "share_icons":      false,
     "hide_extension":   false,
     "custom_title":     null,
-    "read_chunks":     false,
+    "read_chunks":      false,
     "give_kudos":       true
   },
   "assets": {
