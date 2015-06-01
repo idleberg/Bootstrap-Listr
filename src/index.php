@@ -73,9 +73,9 @@ if(substr($navigation_dir, -1) != "/"){
         header('Content-Length: ' . filesize($navigation_dir));
         ob_clean();
         flush();
-        if ($options['general']['read_chunked'] == true) { 
+        if ($options['general']['read_chunks'] == true) { 
             readfile_chunked($navigation_dir);
-        else {
+        } else {
             readfile($navigation_dir);     
         }  
     } else {
