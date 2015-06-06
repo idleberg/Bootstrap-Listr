@@ -711,7 +711,7 @@ gulp.task('init', ['clean'], function() {
   .pipe(gulp.dest('dist/_public/'));
 
   gulp.src([
-    'node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js',
+    'node_modules/_bower_components/jquery-stupid-table/stupidtable.min.js',
     'node_modules/jquery/dist/jquery.min.js'
   ])
   .pipe(gulp.dest('dist/assets/js/'));
@@ -749,7 +749,7 @@ gulp.task('upgrade', function() {
 
   gulp.src([
     'node_modules/jquery/dist/jquery.min.js',
-    'node_modules/_bower_components/stupid-jquery-table-sort/stupidtable.min.js'
+    'node_modules/_bower_components/jquery-stupid-table/stupidtable.min.js'
   ])
   .pipe(gulp.dest('dist/assets/js/'));
 
