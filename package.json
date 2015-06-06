@@ -12,7 +12,7 @@
     "bower":                 "^1.4.1",
     "del":                   "^1.2.0",
     "font-awesome":          "^4.3.0",
-    "gulp":                  "^3.8.11",
+    "gulp":                  "^3.9.0",
     "gulp-cached":           "^1.1.0",
     "gulp-concat":           "^2.5.2",
     "gulp-concat-css":       "^2.2.0",
