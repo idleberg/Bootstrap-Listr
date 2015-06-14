@@ -137,7 +137,7 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
             'raw'       => array('3fr','ari','arw','bay','cap','cr2','crw','dcs','dcr','dnf','dng','eip','erf','fff','iiq','k25','kdc','mdc','mef','mof','mrw','nef','nrw','obm','orf','pef','ptx','pxn','r3d','raf','raw','rwl','rw2','rwz','sr2','srf','srw','x3f'),
             'script'    => array('ahk','as','asp','aspx','bat','c','cfm','clj','cmd','cpp','css','el','erb','g','hml','java','js','json','jsp','less','nsh','nsi','php','php3','pl','py','rb','rhtml','sass','scala','scm','scpt','scptd','scss','sh','shtml','wsh','xml','yml'),
             'text'      => array('ans','asc','ascii','csv','diz','latex','log','markdown','md','nfo','rst','rtf','tex','text','txt'),
-            'video'     => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','flv','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','swf','vob','webm','wmv','xvid'),
+            'video'     => array('3g2','3gp','3gp2','3gpp','asf','avi','bik','bup','divx','ifo','m4v','mkv','mkv','mov','mp4','mpeg','mpg','rm','rv','ogv','qt','smk','vob','webm','wmv','xvid'),
             'website'   => array('htm','html','mhtml','mht','xht','xhtml'),
             'windows'   => array('dll','exe','msi','pif','ps1','scr','sys')
         );
@@ -166,7 +166,9 @@ if ($options['general']['enable_viewer']) {
     $image_files     = explode(',', $options['viewer']['image']);
     $quicktime_files = explode(',', $options['viewer']['quicktime']);
     $source_files    = explode(',', $options['viewer']['source']);
+    $text_files      = explode(',', $options['viewer']['text']);
     $video_files     = explode(',', $options['viewer']['video']);
+    $website_files   = explode(',', $options['viewer']['website']);
 }
 
 if ($options['general']['text_direction'] == 'rtl') {
@@ -579,8 +581,12 @@ if(($folder_list) || ($file_list) ) {
                     $modal_class = ' class="quicktime-modal"';
                 } else if (in_array($item['lext'], $source_files)) {
                     $modal_class = ' class="source-modal"';
+                } else if (in_array($item['lext'], $text_files)) {
+                    $modal_class = ' class="text-modal"';
                 } else if (in_array($item['lext'], $video_files)) {
                     $modal_class = ' class="video-modal"';
+                } else if (in_array($item['lext'], $website_files)) {
+                    $modal_class = ' class="website-modal"';
                 } else {
                     $modal_class = NULL;
                 }
