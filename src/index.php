@@ -166,7 +166,9 @@ if ($options['general']['enable_viewer']) {
     $image_files     = explode(',', $options['viewer']['image']);
     $quicktime_files = explode(',', $options['viewer']['quicktime']);
     $source_files    = explode(',', $options['viewer']['source']);
+    $text_files      = explode(',', $options['viewer']['text']);
     $video_files     = explode(',', $options['viewer']['video']);
+    $website_files   = explode(',', $options['viewer']['website']);
 }
 
 if ($options['general']['text_direction'] == 'rtl') {
@@ -579,8 +581,12 @@ if(($folder_list) || ($file_list) ) {
                     $modal_class = ' class="quicktime-modal"';
                 } else if (in_array($item['lext'], $source_files)) {
                     $modal_class = ' class="source-modal"';
+                } else if (in_array($item['lext'], $text_files)) {
+                    $modal_class = ' class="text-modal"';
                 } else if (in_array($item['lext'], $video_files)) {
                     $modal_class = ' class="video-modal"';
+                } else if (in_array($item['lext'], $website_files)) {
+                    $modal_class = ' class="website-modal"';
                 } else {
                     $modal_class = NULL;
                 }
