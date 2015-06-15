@@ -50,15 +50,26 @@ $(".quicktime-modal").click(function(e) {
 
 $(".source-modal").click(function(e) {
     e.preventDefault();
-    $(".highlight").removeClass("hidden").removeAttr("disabled");
     var file = $(this).attr("href"),
-        uri = $(this).get(0).href;
+        data = $(this).data("highlight"),
+        uri  = $(this).get(0).href;
+    if (data !== true) {
+        $(".highlight").removeClass("hidden").removeAttr("disabled");
+    }
     var d = file.split(".").pop();
     set_modal('<pre><code id="source" class="' + d + '" dir="ltr"></code></pre>', btn, file, uri);
     $.ajax(file, {
         dataType: "text",
         success: function(contents) {
+            // Inject source code
             $("#source").text(decodeURIComponent(contents));
+            
+            // Fire auto-highlighter
+            if (data === true) {
+                $("#source").each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            }
         }
     });
 });
@@ -66,11 +77,11 @@ $(".source-modal").click(function(e) {
 $(".highlight").click(function(c) {
     c.preventDefault();
     $(".highlight").attr("disabled", "disabled");
-    $("#source").each(function(d, e) {
-        hljs.highlightBlock(e);
+    $("#source").each(function(i, block) {
+        hljs.highlightBlock(block);
     });
-    var b = $("code").css("background-color");
-    $("pre").css("background-color", b);
+    var background = $("code").css("background-color");
+    $("pre").css("background-color", background);
 });
 
 $(".text-modal").click(function(e) {

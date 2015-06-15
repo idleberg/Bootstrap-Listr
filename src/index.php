@@ -580,7 +580,12 @@ if(($folder_list) || ($file_list) ) {
                 } else if (in_array($item['lext'], $quicktime_files)) {
                     $modal_class = ' class="quicktime-modal"';
                 } else if (in_array($item['lext'], $source_files)) {
-                    $modal_class = ' class="source-modal"';
+                    if ($options['general']['auto_highlight']) {
+                        $data_highlight = ' data-highlight="true"';
+                    } else {
+                        $data_highlight = null;
+                    }
+                    $modal_class = ' class="source-modal"'.$data_highlight;
                 } else if (in_array($item['lext'], $text_files)) {
                     $modal_class = ' class="text-modal"';
                 } else if (in_array($item['lext'], $video_files)) {
