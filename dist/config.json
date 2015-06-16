@@ -12,6 +12,7 @@
     "autofocus_search": false,
     "share_button":     false,
     "share_icons":      false,
+    "hide_dotfiles":    true,
     "hide_extension":   false,
     "custom_title":     null,
     "read_chunks":      false,
@@ -72,7 +73,7 @@
     "google_analytics": false
   },
   "icons": {
-    "ios_version":      7,
+    "ios_version":      8,
     "fav_icon":         null,
     "iphone":           null,
     "iphone_retina":    null,
@@ -114,10 +115,24 @@
     ".svn",
     "__MACOSX",
     "ehthumbs.db",
-    "robots.txt",
     "Thumbs.db",
     "thumbs.tps"
   ],
+   "hidden_files": [
+    ".bzrignore",
+    ".bzrtags",
+    ".DS_Store",
+    ".gitattributes",
+    ".gitignore",
+    ".gitmodules",
+    ".hgignore",
+    ".hgtags",
+    ".htaccess",
+    ".htpasswd",
+    ".jshintrc",
+    ".npmignore",
+    "robots.txt"
+   ],
   "debug": {
     "bootlint": false
   }

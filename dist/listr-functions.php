@@ -264,8 +264,8 @@ function time_ago($tm,$rcs = 0) {
  *    @ http://teddy.fr/2007/11/28/how-serve-big-files-through-php/
  */
 
-  // Read a file and display its content chunk by chunk
-  function readfile_chunked($filename, $retbytes = TRUE) {
+// Read a file and display its content chunk by chunk
+function readfile_chunked($filename, $retbytes = TRUE) {
     $chunksize = 1024*1024;
     $buffer = '';
     $count =0;
