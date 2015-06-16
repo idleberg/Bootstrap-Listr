@@ -554,6 +554,7 @@ if(($folder_list) || ($file_list) ) {
 
             $row_classes  = array();
             $file_classes = array();
+            $file_meta = array();
 
             // Style table rows
             if ($options['bootstrap']['tablerow_files'] != "") {
@@ -590,32 +591,36 @@ if(($folder_list) || ($file_list) ) {
             // inject modal class if necessary
             if ($options['general']['enable_viewer']) {
                 if (in_array($item['lext'], $audio_files)) {
-                     $file_classes[] = 'audio-modal';
+                    $file_classes[] = 'audio-modal';
                 } else if ($item['lext'] == 'swf') {
-                     $file_classes[] = 'flash-modal';
+                    $file_classes[] = 'flash-modal';
                 } else if (in_array($item['lext'], $image_files)) {
-                     $file_classes[] = 'image-modal';
+                    $file_classes[] = 'image-modal';
                 } else if (in_array($item['lext'], $quicktime_files)) {
                      $file_classes[] = 'quicktime-modal';
                 } else if (in_array($item['lext'], $source_files)) {
                     if ($options['general']['auto_highlight']) {
-                        $data_highlight = ' data-highlight="true"';
-                    } else {
-                        $data_highlight = null;
+                        $file_meta[] = 'data-highlight="true"';
                     }
-                     $file_classes[] = 'source-modal';
+                    $file_classes[] = 'source-modal';
                 } else if (in_array($item['lext'], $text_files)) {
-                     $file_classes[] = 'text-modal';
+                    $file_classes[] = 'text-modal';
                 } else if (in_array($item['lext'], $video_files)) {
-                     $file_classes[] = 'video-modal';
+                    $file_classes[] = 'video-modal';
                 } else if (in_array($item['lext'], $website_files)) {
-                     $file_classes[] = 'website-modal';
+                    $file_classes[] = 'website-modal';
                 }
             }
 
-            $file_attr = ' class="'.implode(" ", $file_classes).'"'.$data_highlight;
+            $file_data = ' '.implode(" ", $file_meta);
 
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
+            if ($file_classes != null) {
+                $file_attr = ' class="'.implode(" ", $file_classes).'"';
+            } else {
+                $file_attr = null;
+            }
+
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
 
             if ($table_options['size']) {
                 $table_body .= "            <td";
