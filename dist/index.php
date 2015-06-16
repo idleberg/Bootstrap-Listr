@@ -568,8 +568,10 @@ if(($folder_list) || ($file_list) ) {
             }
 
             // Concatenate tr-classes
-            if ($row_classes) {
+            if (!empty($row_classes)) {
                 $row_attr = ' class="'.implode(" ", $row_classes).'"';
+            } else {
+                $row_attr = null;
             }
 
             $table_body .= "          <tr$row_attr>" . PHP_EOL;
