@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-listr",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "private": true,
   "homepage": "https://github.com/idleberg/Bootstrap-Listr",
   "devDependencies": {
@@ -33,7 +33,7 @@
     "jquery-searcher":       "^0.2.0",
     "phplint":               "^1.5.0",
     "run-sequence":          "^1.1.0",
-    "yargs":                 "^3.10.0"
+    "yargs":                 "^3.11.0"
   },
    "scripts": {
     "test": "gulp travis",

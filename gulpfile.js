@@ -753,6 +753,8 @@ gulp.task('upgrade', function() {
   ])
   .pipe(gulp.dest('dist/assets/js/'));
 
+  gulp.start('upgrade_config');
+
 });
 
 
@@ -762,6 +764,27 @@ gulp.task('reset', function () {
     'src/config.json'
   ])
   .pipe(gulp.dest('dist/'));
+});
+
+
+// Upgrade config.json
+gulp.task('upgrade_config', function () {
+
+  if (meta.version == "2.1.0") {
+    
+    // Add hidden_files
+    var defaults     = require('./src/config.json');
+    
+    gulp.src("dist/config.json")
+      .pipe(jeditor(function(config) {
+        config.hidden_files = defaults.hidden_files;
+        config.general.hide_dotfiles = defaults.general.hide_dotfiles;
+        return config; 
+      }))
+      .pipe(gulp.dest("dist/"));
+
+  }
+  
 });
 
 

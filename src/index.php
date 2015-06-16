@@ -32,7 +32,7 @@ $sort = array(
     array('key'=>'size',  'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
 );
 
-// Files you want to hide form the listing
+// Files you want to hide from the listing
 $ignore_list = $options['ignored_files'];
 
 // Get this folder and files name.
@@ -166,7 +166,9 @@ if ($options['general']['enable_viewer']) {
     $image_files     = explode(',', $options['viewer']['image']);
     $quicktime_files = explode(',', $options['viewer']['quicktime']);
     $source_files    = explode(',', $options['viewer']['source']);
+    $text_files      = explode(',', $options['viewer']['text']);
     $video_files     = explode(',', $options['viewer']['video']);
+    $website_files   = explode(',', $options['viewer']['website']);
 }
 
 if ($options['general']['text_direction'] == 'rtl') {
@@ -260,8 +262,12 @@ if ($handle = opendir($navigation_dir))
     {
 
         // Make sure we don't list this folder,file or their links.
-        if ($file != "." && $file != ".." && $file != $this_script && !in_array($file, $ignore_list) && (substr($file, 0, 1) != '.'))
+        if ($file != "." && $file != ".." && $file != $this_script && !in_array($file, $ignore_list) )
         {
+            if ( ($options['general']['hide_dotfiles'] == true) && (substr($file, 0, 1) == '.') ) {
+                continue;
+            }
+
             // Get file info.
             $info                  =    pathinfo($file);
             // Organize file info.
@@ -546,13 +552,29 @@ if(($folder_list) || ($file_list) ) {
     if($file_list):
         foreach($file_list as $item) :
 
+            $row_classes  = array();
+            $file_classes = array();
+            $file_meta = array();
+
+            // Style table rows
             if ($options['bootstrap']['tablerow_files'] != "") {
-                $tr_files = " class=\"".$options['bootstrap']['tablerow_files']."\"";
-            } else {
-                $tr_files = null;
+                $row_classes[] = $options['bootstrap']['tablerow_files'];
             }
 
-            $table_body .= "          <tr$tr_files>" . PHP_EOL;
+            // Is file hidden?
+            if (in_array($item['bname'], $options['hidden_files'])) {
+                $row_classes[] = "hidden";
+                $file_classes[] = "text-muted";
+            }
+
+            // Concatenate tr-classes
+            if (!empty($row_classes)) {
+                $row_attr = ' class="'.implode(" ", $row_classes).'"';
+            } else {
+                $row_attr = null;
+            }
+
+            $table_body .= "          <tr$row_attr>" . PHP_EOL;
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
                 $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
@@ -570,22 +592,36 @@ if(($folder_list) || ($file_list) ) {
             // inject modal class if necessary
             if ($options['general']['enable_viewer']) {
                 if (in_array($item['lext'], $audio_files)) {
-                    $modal_class = ' class="audio-modal"';
+                    $file_classes[] = 'audio-modal';
                 } else if ($item['lext'] == 'swf') {
-                    $modal_class = ' class="flash-modal"';
+                    $file_classes[] = 'flash-modal';
                 } else if (in_array($item['lext'], $image_files)) {
-                    $modal_class = ' class="image-modal"';
+                    $file_classes[] = 'image-modal';
                 } else if (in_array($item['lext'], $quicktime_files)) {
-                    $modal_class = ' class="quicktime-modal"';
+                     $file_classes[] = 'quicktime-modal';
                 } else if (in_array($item['lext'], $source_files)) {
-                    $modal_class = ' class="source-modal"';
+                    if ($options['general']['auto_highlight']) {
+                        $file_meta[] = 'data-highlight="true"';
+                    }
+                    $file_classes[] = 'source-modal';
+                } else if (in_array($item['lext'], $text_files)) {
+                    $file_classes[] = 'text-modal';
                 } else if (in_array($item['lext'], $video_files)) {
-                    $modal_class = ' class="video-modal"';
-                } else {
-                    $modal_class = NULL;
+                    $file_classes[] = 'video-modal';
+                } else if (in_array($item['lext'], $website_files)) {
+                    $file_classes[] = 'website-modal';
                 }
             }
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$modal_class>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
+
+            $file_data = ' '.implode(" ", $file_meta);
+
+            if ($file_classes != null) {
+                $file_attr = ' class="'.implode(" ", $file_classes).'"';
+            } else {
+                $file_attr = null;
+            }
+
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
 
             if ($table_options['size']) {
                 $table_body .= "            <td";

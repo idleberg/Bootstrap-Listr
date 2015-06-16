@@ -34,6 +34,7 @@
           <div class="modal-header">
             <button type="button" class="close pull-<?php echo $right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title text-<?php echo $left?>" id="file-name">&nbsp;</h4>
+            <small class="text-muted" id="file-meta"></small>
           </div>
           <div class="modal-body"></div>
           <div class="modal-footer">

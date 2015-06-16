@@ -8,9 +8,11 @@
     "enable_viewer":    true,
     "enable_search":    true,
     "enable_highlight": false,
+    "auto_highlight":   false,
     "autofocus_search": false,
     "share_button":     false,
     "share_icons":      false,
+    "hide_dotfiles":    true,
     "hide_extension":   false,
     "custom_title":     null,
     "read_chunks":      false,
@@ -58,8 +60,10 @@
     "audio":     "m4a,mp3,oga,ogg,webma,wav",
     "image":     "gif,ico,jpe,jpeg,jpg,png,svg,webp",
     "quicktime": "3g2,3gp,3gp2,3gpp,mov,qt",
-    "source":    "atom,bat,cmd,css,hml,jade,js,json,less,markdown,md,php,pl,py,rb,rss,rst,sass,scpt,scss,sh,txt,xml,yml",
-    "video":     "mp4,m4v,ogv,webm"
+    "source":    "atom,bat,cmd,css,hml,jade,js,json,less,markdown,md,php,pl,py,rb,rss,rst,sass,scpt,scss,sh,xml,yml",
+    "text":      "txt",
+    "video":     "mp4,m4v,ogv,webm",
+    "website":   null
   },
   "highlight": {
     "theme": "github"
@@ -69,7 +73,7 @@
     "google_analytics": false
   },
   "icons": {
-    "ios_version":      7,
+    "ios_version":      8,
     "fav_icon":         null,
     "iphone":           null,
     "iphone_retina":    null,
@@ -111,10 +115,24 @@
     ".svn",
     "__MACOSX",
     "ehthumbs.db",
-    "robots.txt",
     "Thumbs.db",
     "thumbs.tps"
   ],
+   "hidden_files": [
+    ".bzrignore",
+    ".bzrtags",
+    ".DS_Store",
+    ".gitattributes",
+    ".gitignore",
+    ".gitmodules",
+    ".hgignore",
+    ".hgtags",
+    ".htaccess",
+    ".htpasswd",
+    ".jshintrc",
+    ".npmignore",
+    "robots.txt"
+   ],
   "debug": {
     "bootlint": false
   }
