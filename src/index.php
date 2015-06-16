@@ -589,7 +589,6 @@ if(($folder_list) || ($file_list) ) {
                 $display_name = $item['bname'];
             }
 
-
             // inject modal class if necessary
             if ($options['general']['enable_viewer']) {
                 if (in_array($item['lext'], $audio_files)) {
