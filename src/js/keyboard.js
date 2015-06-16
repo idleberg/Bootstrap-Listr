@@ -1,12 +1,11 @@
-var hidden = $("tr.hide");
+var hidden = $("tr.hidden");
 
 $(document).bind('keydown', function(event) {
 
 
     if( event.altKey ) {
-        $(hidden).addClass( "unhide" ).removeClass( "hide");
+        $(hidden).addClass( "reveal" ).removeClass( "hidden");
     }
 }).bind('keyup',function(){
-      // var hidden = $("tr.hide,tr.unhide");
-      $(hidden).removeClass( "unhide" ).addClass( "hide");
+      $(hidden).removeClass( "reveal" ).addClass( "hidden");
 });
