@@ -548,13 +548,33 @@ if(($folder_list) || ($file_list) ) {
     if($file_list):
         foreach($file_list as $item) :
 
+
+            // Style table rows
             if ($options['bootstrap']['tablerow_files'] != "") {
-                $tr_files = " class=\"".$options['bootstrap']['tablerow_files']."\"";
+                $row_classes = $options['bootstrap']['tablerow_files']."\"";
             } else {
-                $tr_files = null;
+                $row_classes = null;
             }
 
-            $table_body .= "          <tr$tr_files>" . PHP_EOL;
+            // Is file hidden?
+            if (in_array($item['bname'], $options['hidden_files'])) {
+                if($row_classes == null) {
+                    $row_classes .= "hide";
+                } else {
+                    $row_classes .= " hide";
+                }
+                $file_class = "text-muted";
+            } else {
+                $file_class = null;
+            }
+
+            if ($row_classes != null) {
+                $row_attr = " class=\"$row_classes\"";
+            } else {
+                $row_attr = null;
+            }
+
+            $table_body .= "          <tr$row_attr>" . PHP_EOL;
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
                 $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
@@ -572,31 +592,45 @@ if(($folder_list) || ($file_list) ) {
             // inject modal class if necessary
             if ($options['general']['enable_viewer']) {
                 if (in_array($item['lext'], $audio_files)) {
-                    $modal_class = ' class="audio-modal"';
+                    $modal_class = 'audio-modal';
                 } else if ($item['lext'] == 'swf') {
-                    $modal_class = ' class="flash-modal"';
+                    $modal_class = 'flash-modal';
                 } else if (in_array($item['lext'], $image_files)) {
-                    $modal_class = ' class="image-modal"';
+                    $modal_class = 'image-modal';
                 } else if (in_array($item['lext'], $quicktime_files)) {
-                    $modal_class = ' class="quicktime-modal"';
+                    $modal_class = 'quicktime-modal';
                 } else if (in_array($item['lext'], $source_files)) {
                     if ($options['general']['auto_highlight']) {
                         $data_highlight = ' data-highlight="true"';
                     } else {
                         $data_highlight = null;
                     }
-                    $modal_class = ' class="source-modal"'.$data_highlight;
+                    $modal_class = 'source-modal';
                 } else if (in_array($item['lext'], $text_files)) {
-                    $modal_class = ' class="text-modal"';
+                    $modal_class = 'text-modal';
                 } else if (in_array($item['lext'], $video_files)) {
-                    $modal_class = ' class="video-modal"';
+                    $modal_class = 'video-modal';
                 } else if (in_array($item['lext'], $website_files)) {
-                    $modal_class = ' class="website-modal"';
+                    $modal_class = 'website-modal';
                 } else {
-                    $modal_class = NULL;
+                    $modal_class = $file_class;
                 }
             }
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$modal_class>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
+
+            if (($file_class != null) && ($file_class != null)) {
+                $file_classes = " class=\"$file_class $modal_class\" $data_highlight";
+            } else {
+                if ($file_class != null) {
+                    $file_classes = " class=\"$file_class\"";
+                } else if ($modal_class != null) {
+                    $file_classes = " class=\"$modal_class\" $data_highlight";
+                } else {
+                    $file_classes = null;
+                }
+            }
+           
+
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_classes>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
 
             if ($table_options['size']) {
                 $table_body .= "            <td";
