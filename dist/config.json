@@ -52,6 +52,7 @@
     "input_size":        null,
     "tablerow_folders":  null,
     "tablerow_files":    null,
+    "hidden_files":      "text-muted",
     "theme":             "default",
     "icons":             "glyphicons",
     "fontawesome_style": "fa-fw"

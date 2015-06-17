@@ -1,32 +1,43 @@
+// Assign variables
+var viewer      = $("#viewer-modal");
+var modal_body  = $(".modal-body");
+var modal_title = $(".modal-title");
+var file_meta   = $("#file-meta")
+var full_view   = $(".fullview");
+var btn         = full_view.data("button");
+var dropbox     = $(".save-dropbox");
+var email       = $(".email-link");
+var twitter     = $(".twitter-link");
+var facebook    = $(".facebook-link");
+var google      = $(".google-link");
+
 function set_modal(content, button, file, uri, meta) {
     
     // Inject content 
-    $(".modal-body").empty().append(content);
+    modal_body.html(content);
     
     // Set meta
-    $(".fullview").attr("href", file);
-    $(".fullview").text(button);
+    full_view.attr("href", file);
+    full_view.text(button);
     
     // Populate Dropbox drop-in
-    $(".save-dropbox").attr("href", file);
+    dropbox.attr("href", file);
     
     // Populate share buttons
-    $(".email-link").attr("href", "mailto:?body=" + uri);
-    $(".twitter-link").attr("href", "http://twitter.com/share?url=" + uri);
-    $(".facebook-link").attr("href", "http://www.facebook.com/sharer/sharer.php?u=" + uri);
-    $(".google-link").attr("href", "https://plus.google.com/share?url=" + uri);
+    email.attr("href", "mailto:?body=" + uri);
+    twitter.attr("href", "http://twitter.com/share?url=" + uri);
+    facebook.attr("href", "http://www.facebook.com/sharer/sharer.php?u=" + uri);
+    google.attr("href", "https://plus.google.com/share?url=" + uri);
     
     // Set title
-    $(".modal-title").text(decodeURIComponent(file));
+    modal_title.text(decodeURIComponent(file));
 
     meta = typeof meta !== 'undefined' ? meta : null;
-    $("#file-meta").text(meta);
+    file_meta.text(meta);
     
     // Show modal
-    $("#viewer-modal").modal("show");
+    // viewer.modal("show");
 }
-
-btn = $(".fullview").data("button");
 
 $(".audio-modal").click(function(event) {
     
@@ -37,6 +48,7 @@ $(".audio-modal").click(function(event) {
         meta = $(this).data("modified");
     
     set_modal('<audio src="' + file + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>', btn, file, uri, meta);
+    viewer.modal("show");
 });
 
 $(".flash-modal").click(function(event) {
@@ -48,6 +60,7 @@ $(".flash-modal").click(function(event) {
         meta = $(this).data("modified");
     
     set_modal('<div class="viewer-wrapper"><object width="100%" height="100%" type="application/x-shockwave-flash" data="' + file + '"><param name="movie" value="' + file + '"><param name="quality" value="high"></object></div>', btn, file, uri, meta);
+    viewer.modal("show");
 });
 
 $(".image-modal").click(function(event) {
@@ -59,6 +72,7 @@ $(".image-modal").click(function(event) {
         meta = $(this).data("modified");
 
     set_modal('<img src="' + file + '"/>', btn, file, uri, meta);
+    viewer.modal("show");
 });
 
 $(".video-modal").click(function(event) {
@@ -70,6 +84,7 @@ $(".video-modal").click(function(event) {
         meta = $(this).data("modified");
     
     set_modal('<video src="' + file + '" id="player" autoplay controls>Video format or MIME type is not supported</video>', btn, file, uri, meta);
+    viewer.modal("show");
 });
 
 $(".quicktime-modal").click(function(event) {
@@ -81,6 +96,7 @@ $(".quicktime-modal").click(function(event) {
         meta = $(this).data("modified");
     
     set_modal('<div class="viewer-wrapper"><embed width="100%" height="100%" src="' + file + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"></div>', btn, file, uri, meta);
+    viewer.modal("show");
 });
 
 $(".source-modal").click(function(event) {
@@ -115,6 +131,8 @@ $(".source-modal").click(function(event) {
                 });
             }
         }
+    }).done(function( data ) {
+        viewer.modal("show");
     });
 });
     
@@ -143,7 +161,7 @@ $(".text-modal").click(function(event) {
         uri = $(this).get(0).href,
         meta = $(this).data("modified");
     
-    set_modal('<pre><code id="text" dir="ltr"></code></pre>', btn, file, uri, meta);
+    set_modal('<pre id="text"></pre>', btn, file, uri, meta);
     
     // Load file contents
     $.ajax(file, {
@@ -151,10 +169,12 @@ $(".text-modal").click(function(event) {
         success: function(contents) {
             $("#text").text(decodeURIComponent(contents));
         }
+    }).done(function( data ) {
+        viewer.modal("show");
     });
 });
 
-$("#viewer-modal").on("hide.bs.modal", function() {
+viewer.on("hide.bs.modal", function() {
     
     var player = document.getElementById("player");
     
@@ -163,7 +183,7 @@ $("#viewer-modal").on("hide.bs.modal", function() {
     }
 });
 
-$("#viewer-modal").on("hidden.bs.modal", function() {
+viewer.on("hidden.bs.modal", function() {
     
     $(".highlight").addClass("hidden");
 });
@@ -179,7 +199,11 @@ $(".website-modal").click(function(event) {
     set_modal('<div class="viewer-wrapper"><iframe id="website" src="' + file + '" width="100%" height="100%" frameborder="0"></iframe></div>', btn, file, uri, meta);
     
     // Load file contents
-    $.ajax(file, {
-        dataType: "html"
-    });
+    // $.ajax(file, {
+    //     dataType: "html"
+    // }).done(function( data ) {
+    //     viewer.modal("show");
+    // });
+
+    viewer.modal("show");
 });
