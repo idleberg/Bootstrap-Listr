@@ -780,6 +780,7 @@ gulp.task('upgrade_config', function () {
         config.hidden_files = defaults.hidden_files;
         config.general.hide_dotfiles = defaults.general.hide_dotfiles;
         config.bootstrap.hidden_files = defaults.bootstrap.hidden_files;
+        config.viewer.alt_load = defaults.viewer.alt_load;
         return config; 
       }))
       .pipe(gulp.dest("dist/"));

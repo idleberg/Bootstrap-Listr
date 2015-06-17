@@ -608,9 +608,17 @@ if(($folder_list) || ($file_list) ) {
                     if ($options['general']['auto_highlight']) {
                         $file_meta[] = 'data-highlight="true"';
                     }
-                    $file_classes[] = 'source-modal';
+                    if ($options['viewer']['alt_load'] == true) {
+                        $file_classes[] = 'source-modal-alt';
+                    } else {
+                        $file_classes[] = 'source-modal';
+                    }
                 } else if (in_array($item['lext'], $text_files)) {
-                    $file_classes[] = 'text-modal';
+                    if ($options['viewer']['alt_load'] == true) {
+                        $file_classes[] = 'text-modal-alt';
+                    } else {
+                        $file_classes[] = 'text-modal';
+                    }
                 } else if (in_array($item['lext'], $video_files)) {
                     $file_classes[] = 'video-modal';
                 } else if (in_array($item['lext'], $website_files)) {
@@ -628,6 +636,7 @@ if(($folder_list) || ($file_list) ) {
 
                         $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data data-modified=\"".$item_pretty_size."\">" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
 
+            // Size
             if ($table_options['size']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
@@ -637,6 +646,7 @@ if(($folder_list) || ($file_list) ) {
                     $table_body .= ">" . $item_pretty_size . "</td>" . PHP_EOL;
             }
 
+            // Modified
             if ($table_options['age']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
