@@ -208,7 +208,7 @@ $(".text-modal").click(function(event) {
     // arr[0] = file name
     // arr[1] = file uri
     // arr[2] = file meta
-    set_modal('<pre id="text"></pre>', arr[0], arr[1], arr[2]);
+    set_modal('<pre><code id="text"></code></pre>', arr[0], arr[1], arr[2]);
     
     // Load file contents
     $.ajax(arr[0], {
@@ -229,7 +229,7 @@ $(".text-modal-alt").click(function(event) {
     // arr[0] = file name
     // arr[1] = file uri
     // arr[2] = file meta
-    set_modal('<pre id="text"></pre>', arr[0], arr[1], arr[2]);
+    set_modal('<pre><code id="text"></code></pre>', arr[0], arr[1], arr[2]);
     
     // Load file contents
     $.ajax(arr[0], {
@@ -248,6 +248,7 @@ viewer.on("hide.bs.modal", function() {
     
     if (player) {
         player.pause();
+        player.src = "";
     }
 });
 
