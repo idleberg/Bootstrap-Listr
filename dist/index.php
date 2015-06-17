@@ -564,7 +564,10 @@ if(($folder_list) || ($file_list) ) {
             // Is file hidden?
             if (in_array($item['bname'], $options['hidden_files'])) {
                 $row_classes[] = "hidden";
-                $file_classes[] = "text-muted";
+                // muted class on row…
+                $row_classes[] = $options['bootstrap']['hidden_files'];
+                // …and again for the link
+                $file_classes[] = $options['bootstrap']['hidden_files'];
             }
 
             // Concatenate tr-classes
@@ -589,6 +592,7 @@ if(($folder_list) || ($file_list) ) {
                 $display_name = $item['bname'];
             }
 
+            $item_pretty_size = $item['size']['num'] . " " . $item['size']['str'];
 
             // inject modal class if necessary
             if ($options['general']['enable_viewer']) {
@@ -604,9 +608,17 @@ if(($folder_list) || ($file_list) ) {
                     if ($options['general']['auto_highlight']) {
                         $file_meta[] = 'data-highlight="true"';
                     }
-                    $file_classes[] = 'source-modal';
+                    if ($options['viewer']['alt_load'] == true) {
+                        $file_classes[] = 'source-modal-alt';
+                    } else {
+                        $file_classes[] = 'source-modal';
+                    }
                 } else if (in_array($item['lext'], $text_files)) {
-                    $file_classes[] = 'text-modal';
+                    if ($options['viewer']['alt_load'] == true) {
+                        $file_classes[] = 'text-modal-alt';
+                    } else {
+                        $file_classes[] = 'text-modal';
+                    }
                 } else if (in_array($item['lext'], $video_files)) {
                     $file_classes[] = 'video-modal';
                 } else if (in_array($item['lext'], $website_files)) {
@@ -622,17 +634,19 @@ if(($folder_list) || ($file_list) ) {
                 $file_attr = null;
             }
 
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
+                        $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data data-modified=\"".$item_pretty_size."\">" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
 
+            // Size
             if ($table_options['size']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
                     $table_body .= " class=\"text-".$right."\" data-sort-value=\"" . $item['bytes'] . "\"";
                     $table_body .= " title=\"" . $item['bytes'] . " " ._('bytes')."\"";
                 }
-                    $table_body .= ">" . $item['size']['num'] . " " . $item['size']['str'] . "</td>" . PHP_EOL;
+                    $table_body .= ">" . $item_pretty_size . "</td>" . PHP_EOL;
             }
 
+            // Modified
             if ($table_options['age']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
