@@ -773,12 +773,13 @@ gulp.task('upgrade_config', function () {
   if (meta.version == "2.1.0") {
     
     // Add hidden_files
-    var defaults     = require('./src/config.json');
+    var defaults = require('./src/config.json');
     
     gulp.src("dist/config.json")
       .pipe(jeditor(function(config) {
         config.hidden_files = defaults.hidden_files;
         config.general.hide_dotfiles = defaults.general.hide_dotfiles;
+        config.bootstrap.hidden_files = defaults.bootstrap.hidden_files;
         return config; 
       }))
       .pipe(gulp.dest("dist/"));
