@@ -34,7 +34,7 @@ $(".audio-modal").click(function(event) {
     
     var file = $(this).attr("href"),
         uri  = $(this).get(0).href,
-        meta = $(this).closest("td").next().text();
+        meta = $(this).data("modified");
     
     set_modal('<audio src="' + file + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>', btn, file, uri, meta);
 });
@@ -45,7 +45,7 @@ $(".flash-modal").click(function(event) {
     
     var file = $(this).attr("href"),
         uri = $(this).get(0).href,
-        meta = $(this).closest("td").next().text();
+        meta = $(this).data("modified");
     
     set_modal('<div class="viewer-wrapper"><object width="100%" height="100%" type="application/x-shockwave-flash" data="' + file + '"><param name="movie" value="' + file + '"><param name="quality" value="high"></object></div>', btn, file, uri, meta);
 });
@@ -56,7 +56,7 @@ $(".image-modal").click(function(event) {
     
     var file = $(this).attr("href"),
         uri = $(this).get(0).href,
-        meta = $(this).closest("td").next().text();
+        meta = $(this).data("modified");
 
     set_modal('<img src="' + file + '"/>', btn, file, uri, meta);
 });
@@ -67,7 +67,7 @@ $(".video-modal").click(function(event) {
     
     var file = $(this).attr("href"),
         uri = $(this).get(0).href,
-        meta = $(this).closest("td").next().text();
+        meta = $(this).data("modified");
     
     set_modal('<video src="' + file + '" id="player" autoplay controls>Video format or MIME type is not supported</video>', btn, file, uri, meta);
 });
@@ -78,7 +78,7 @@ $(".quicktime-modal").click(function(event) {
     
     var file = $(this).attr("href"),
         uri = $(this).get(0).href,
-        meta = $(this).closest("td").next().text();
+        meta = $(this).data("modified");
     
     set_modal('<div class="viewer-wrapper"><embed width="100%" height="100%" src="' + file + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"></div>', btn, file, uri, meta);
 });
@@ -90,7 +90,7 @@ $(".source-modal").click(function(event) {
     var file = $(this).attr("href"),
         data = $(this).data("highlight"),
         uri  = $(this).get(0).href,
-        meta = $(this).closest("td").next().text();
+        meta = $(this).data("modified");
 
     // Show & enable highlight button
     if (data !== true) {
@@ -141,7 +141,7 @@ $(".text-modal").click(function(event) {
     
     var file = $(this).attr("href"),
         uri = $(this).get(0).href,
-        meta = $(this).closest("td").next().text();
+        meta = $(this).data("modified");
     
     set_modal('<pre><code id="text" dir="ltr"></code></pre>', btn, file, uri, meta);
     
@@ -174,7 +174,7 @@ $(".website-modal").click(function(event) {
     
     var file = $(this).attr("href"),
         uri  = $(this).get(0).href,
-        meta = $(this).closest("td").next().text();
+        meta = $(this).data("modified");
     
     set_modal('<div class="viewer-wrapper"><iframe id="website" src="' + file + '" width="100%" height="100%" frameborder="0"></iframe></div>', btn, file, uri, meta);
     
