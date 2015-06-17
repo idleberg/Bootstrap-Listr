@@ -592,6 +592,8 @@ if(($folder_list) || ($file_list) ) {
                 $display_name = $item['bname'];
             }
 
+            $item_pretty_size = $item['size']['num'] . " " . $item['size']['str'];
+
             // inject modal class if necessary
             if ($options['general']['enable_viewer']) {
                 if (in_array($item['lext'], $audio_files)) {
@@ -624,7 +626,7 @@ if(($folder_list) || ($file_list) ) {
                 $file_attr = null;
             }
 
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
+                        $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data data-modified=\"".$item_pretty_size."\">" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
 
             if ($table_options['size']) {
                 $table_body .= "            <td";
@@ -632,7 +634,7 @@ if(($folder_list) || ($file_list) ) {
                     $table_body .= " class=\"text-".$right."\" data-sort-value=\"" . $item['bytes'] . "\"";
                     $table_body .= " title=\"" . $item['bytes'] . " " ._('bytes')."\"";
                 }
-                    $table_body .= ">" . $item['size']['num'] . " " . $item['size']['str'] . "</td>" . PHP_EOL;
+                    $table_body .= ">" . $item_pretty_size . "</td>" . PHP_EOL;
             }
 
             if ($table_options['age']) {
