@@ -2,7 +2,7 @@
 var viewer      = $("#viewer-modal");
 var modal_body  = $(".modal-body");
 var modal_title = $(".modal-title");
-var file_meta   = $("#file-meta")
+var file_meta   = $("#file-meta");
 var full_view   = $(".fullview");
 var button      = full_view.data("button");
 var dropbox     = $(".save-dropbox");
@@ -49,6 +49,26 @@ function modal_defaults(el) {
         meta = el.data("modified");
 
     return [file, uri, meta];
+}
+
+function source_defaults(el) {
+    var arr = modal_defaults( el );
+    var data = el.data("highlight");
+
+    // Show & enable highlight button
+    if (data !== true) {
+        $(".highlight").removeClass("hidden").removeAttr("disabled");
+    }
+
+    // Get file extension
+    var ext = arr[0].split(".").pop();
+
+    // arr[0] = file name
+    // arr[1] = file uri
+    // arr[2] = file meta
+    set_modal('<pre><code id="source" class="' + ext + '" dir="ltr"></code></pre>', arr[0], arr[1], arr[2]);
+
+    return [arr[0], data];
 }
 
 $(".audio-modal").click(function(event) {
@@ -118,22 +138,7 @@ $(".quicktime-modal").click(function(event) {
 
 $(".source-modal").click(function(event) {
     
-    var arr = modal_defaults( $(this) );
-
-    var data = $(this).data("highlight");
-
-    // Show & enable highlight button
-    if (data !== true) {
-        $(".highlight").removeClass("hidden").removeAttr("disabled");
-    }
-
-    // Get file extension
-    var ext = arr[0].split(".").pop();
-
-    // arr[0] = file name
-    // arr[1] = file uri
-    // arr[2] = file meta
-    set_modal('<pre><code id="source" class="' + ext + '" dir="ltr"></code></pre>', arr[0], arr[1], arr[2]);
+    arr = source_defaults( $(this) );
     
     // Load file contents
     $.ajax(arr[0], {
@@ -143,16 +148,40 @@ $(".source-modal").click(function(event) {
             $("#source").text(decodeURIComponent(contents));
             
             // Fire auto-highlighter
-            if (data === true) {
+            if (arr[1] === true) {
                 $("#source").each(function(i, block) {
                     hljs.highlightBlock(block);
                 });
             }
         }
-    }).done(function( data ) {
+    }).done(function() {
         // show modal
         viewer.modal("show");
     });
+});
+
+$(".source-modal-alt").click(function(event) {
+    
+    arr = source_defaults( $(this) );
+    
+    // Load file contents
+    $.ajax(arr[0], {
+        dataType: "text",
+        success: function(contents) {
+            // Inject source code
+            $("#source").text(decodeURIComponent(contents));
+            
+            // Fire auto-highlighter
+            if (arr[1] === true) {
+                $("#source").each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            }
+        }
+    });
+
+    // show modal
+    viewer.modal("show");
 });
     
 $(".highlight").click(function(event) {
@@ -187,10 +216,30 @@ $(".text-modal").click(function(event) {
         success: function(contents) {
             $("#text").text(decodeURIComponent(contents));
         }
-    }).done(function( data ) {
+    }).done(function() {
         // show modal
         viewer.modal("show");
     });
+});
+
+$(".text-modal-alt").click(function(event) {
+    
+    var arr = modal_defaults( $(this) );
+    
+    // arr[0] = file name
+    // arr[1] = file uri
+    // arr[2] = file meta
+    set_modal('<pre id="text"></pre>', arr[0], arr[1], arr[2]);
+    
+    // Load file contents
+    $.ajax(arr[0], {
+        dataType: "text",
+        success: function(contents) {
+            $("#text").text(decodeURIComponent(contents));
+        }
+    });
+    // show modal
+    viewer.modal("show");
 });
 
 viewer.on("hide.bs.modal", function() {
