@@ -36,19 +36,39 @@ $(document).bind('keyup', function(event) {
             }
         }
 
-        // Rewind player
+        // Seek backwards
         if (event.which === 37) {
+            player.currentTime -= 0.1;
+        }
+
+        // Seek forwards
+        if (event.which === 39) {
+            player.currentTime += 0.1;
+        }
+
+        // Rewind player
+        if (event.which === 37 && event.shiftKey) {
             player.currentTime = 0;
         }
 
         // Increase volume
         if (event.which === 38) {
-            player.volume+=0.1;
+            player.volume += 0.1;
+        }
+
+        // Max volume
+        if (event.which === 38 && event.shiftKey) {
+            player.volume = 1;
         }
 
         // Decrease volume
         if (event.which === 40) {
-            player.volume-=0.1;
+            player.volume -= 0.1;
+        }
+
+        // Mute volume
+        if (event.which === 40 && event.shiftKey) {
+            player.volume = 0;
         }
 
     }
