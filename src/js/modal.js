@@ -40,9 +40,9 @@ function set_modal(content, file, uri, meta) {
 }
 
 // Default actions for each modal
-function modal_defaults(el) {
+function modal_defaults(ev, el) {
     // prevent from loading link
-    event.preventDefault();
+    ev.preventDefault();
 
     var file = el.attr("href"),
         uri  = el.get(0).href,
@@ -51,8 +51,8 @@ function modal_defaults(el) {
     return [file, uri, meta];
 }
 
-function source_defaults(el) {
-    var arr = modal_defaults( el );
+function source_defaults( ev, el) {
+    var arr = modal_defaults( ev, el );
     var data = el.data("highlight");
 
     // Show & enable highlight button
@@ -73,7 +73,7 @@ function source_defaults(el) {
 
 $(".audio-modal").click(function(event) {
     
-    var arr = modal_defaults( $(this) );
+     var arr = modal_defaults( event, $(this) );
     
     // arr[0] = file name
     // arr[1] = file uri
@@ -86,7 +86,7 @@ $(".audio-modal").click(function(event) {
 
 $(".flash-modal").click(function(event) {
     
-    var arr = modal_defaults( $(this) );
+     var arr = modal_defaults( event, $(this) );
     
     // arr[0] = file name
     // arr[1] = file uri
@@ -99,7 +99,7 @@ $(".flash-modal").click(function(event) {
 
 $(".image-modal").click(function(event) {
     
-    var arr = modal_defaults( $(this) );
+     var arr = modal_defaults( event, $(this) );
 
     // arr[0] = file name
     // arr[1] = file uri
@@ -112,7 +112,7 @@ $(".image-modal").click(function(event) {
 
 $(".video-modal").click(function(event) {
     
-    var arr = modal_defaults( $(this) );
+     var arr = modal_defaults( event, $(this) );
 
     // arr[0] = file name
     // arr[1] = file uri
@@ -125,7 +125,7 @@ $(".video-modal").click(function(event) {
 
 $(".quicktime-modal").click(function(event) {
     
-    var arr = modal_defaults( $(this) );
+     var arr = modal_defaults( event, $(this) );
 
     // arr[0] = file name
     // arr[1] = file uri
@@ -138,7 +138,7 @@ $(".quicktime-modal").click(function(event) {
 
 $(".source-modal").click(function(event) {
     
-    arr = source_defaults( $(this) );
+    arr = source_defaults( event, $(this) );
     
     // Load file contents
     $.ajax(arr[0], {
@@ -162,7 +162,7 @@ $(".source-modal").click(function(event) {
 
 $(".source-modal-alt").click(function(event) {
     
-    arr = source_defaults( $(this) );
+    arr = source_defaults( event, $(this) );
     
     // Load file contents
     $.ajax(arr[0], {
@@ -203,7 +203,7 @@ $(".highlight").click(function(event) {
 
 $(".text-modal").click(function(event) {
     
-    var arr = modal_defaults( $(this) );
+     var arr = modal_defaults( event, $(this) );
     
     // arr[0] = file name
     // arr[1] = file uri
@@ -224,7 +224,7 @@ $(".text-modal").click(function(event) {
 
 $(".text-modal-alt").click(function(event) {
     
-    var arr = modal_defaults( $(this) );
+     var arr = modal_defaults( event, $(this) );
     
     // arr[0] = file name
     // arr[1] = file uri
@@ -259,7 +259,7 @@ viewer.on("hidden.bs.modal", function() {
 
 $(".website-modal").click(function(event) {
     
-    var arr = modal_defaults( $(this) );
+     var arr = modal_defaults( event, $(this) );
     
     // arr[0] = file name
     // arr[1] = file uri
