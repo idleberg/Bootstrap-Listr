@@ -164,6 +164,8 @@ $(".source-modal").click(function(event) {
             if (arr[1] === true) {
                 $("#source").each(function(i, block) {
                     hljs.highlightBlock(block);
+                    var background = $("code").css("background-color");
+                    $("pre").css("background-color", background);
                 });
             }
         }
