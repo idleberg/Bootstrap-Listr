@@ -5,18 +5,14 @@ function set_bootstrap_theme() {
 
     global $options;
     
-    $cdn_pre    = '//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/';
-    $cdn_post   = '/bootstrap.min.css';
     $bootswatch = array('amelia','cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti');
 
     if (in_array($options['bootstrap']['theme'], $bootswatch)) {
-        return '//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/'.$options['bootstrap']['theme'].'/bootstrap.min.css';
+        return str_replace("%theme%",$options['bootstrap']['theme'],$options['assets']['bootswatch_css']);
     } else if ($options['bootstrap']['theme'] == "m8tro" ) {
-        return '//cdnjs.cloudflare.com/ajax/libs/m8tro-bootstrap/3.3.2/m8tro.min.css';
-    // } else if ($options['bootstrap']['theme'] == "material" ) {
-    //     return '//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/css/material.min.css';
+        return $options['assets']['m8tro_css'];
     } else {
-        return $options['assets']['bootstrap_css'];;
+        return $options['assets']['bootstrap_css'];
     }
 }
 
