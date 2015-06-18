@@ -16,16 +16,23 @@ pre code {
     width: 100%;
 }
 
-.viewer-wrapper {
+.landscape-wrapper {
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
 }
 
-.viewer-wrapper embed,.viewer-wrapper object, .viewer-wrapper iframe {
+.landscape-wrapper embed,.landscape-wrapper object, .landscape-wrapper iframe,
+.portrait-wrapper iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.portrait-wrapper {
+  position: relative;
+  padding-bottom: 100%;
+  height: 0;
 }

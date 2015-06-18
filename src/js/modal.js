@@ -91,7 +91,7 @@ $(".flash-modal").click(function(event) {
     // arr[0] = file name
     // arr[1] = file uri
     // arr[2] = file meta
-    set_modal('<div class="viewer-wrapper"><object width="100%" height="100%" type="application/x-shockwave-flash" data="' + arr[0] + '"><param name="movie" value="' + arr[0] + '"><param name="quality" value="high"></object></div>', arr[0], arr[1], arr[2]);
+    set_modal('<div class="landscape-wrapper"><object width="100%" height="100%" type="application/x-shockwave-flash" data="' + arr[0] + '"><param name="movie" value="' + arr[0] + '"><param name="quality" value="high"></object></div>', arr[0], arr[1], arr[2]);
     
     // show modal
     viewer.modal("show");
@@ -106,6 +106,19 @@ $(".image-modal").click(function(event) {
     // arr[2] = file meta
     set_modal('<img src="' + arr[0] + '"/>', arr[0], arr[1], arr[2]);
 
+    // show modal
+    viewer.modal("show");
+});
+
+$(".pdf-modal").click(function(event) {
+    
+     var arr = modal_defaults( event, $(this) );
+
+    // arr[0] = file name
+    // arr[1] = file uri
+    // arr[2] = file meta
+    set_modal('<div class="portrait-wrapper"><iframe style="float:none;display:inline;" src="' + arr[0] + '" type="application/pdf" scale="aspect" frameborder="0"></iframe></div>', arr[0], arr[1], arr[2]);
+    
     // show modal
     viewer.modal("show");
 });
@@ -130,7 +143,7 @@ $(".quicktime-modal").click(function(event) {
     // arr[0] = file name
     // arr[1] = file uri
     // arr[2] = file meta
-    set_modal('<div class="viewer-wrapper"><embed width="100%" height="100%" src="' + arr[0] + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"></div>', arr[0], arr[1], arr[2]);
+    set_modal('<div class="landscape-wrapper"><embed width="100%" height="100%" src="' + arr[0] + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"></div>', arr[0], arr[1], arr[2]);
     
     // show modal
     viewer.modal("show");
@@ -264,7 +277,7 @@ $(".website-modal").click(function(event) {
     // arr[0] = file name
     // arr[1] = file uri
     // arr[2] = file meta
-    set_modal('<div class="viewer-wrapper"><iframe id="website" src="' + arr[0] + '" width="100%" height="100%" frameborder="0"></iframe></div>', arr[0], arr[1], arr[2]);
+    set_modal('<div class="landscape-wrapper"><iframe id="website" src="' + arr[0] + '" width="100%" height="100%" frameborder="0"></iframe></div>', arr[0], arr[1], arr[2]);
 
     viewer.modal("show");
 });

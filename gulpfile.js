@@ -770,7 +770,7 @@ gulp.task('reset', function () {
 // Upgrade config.json
 gulp.task('upgrade_config', function () {
 
-  if (meta.version == "2.1.0-beta") {
+  if (meta.version == "2.2.0-alpha") {
     
     // Add hidden_files
     var defaults = require('./src/config.json');
@@ -781,9 +781,11 @@ gulp.task('upgrade_config', function () {
         config.assets.m8tro_css = defaults.assets.m8tro_css;
         config.bootstrap.hidden_files_link = defaults.bootstrap.hidden_files_link;
         config.bootstrap.hidden_files_row = defaults.bootstrap.hidden_files_row;
+        config.bootstrap.tablerow_links = defaults.bootstrap.tablerow_links;
         config.general.hide_dotfiles = defaults.general.hide_dotfiles;
         config.hidden_files = defaults.hidden_files;
         config.viewer.alt_load = defaults.viewer.alt_load;
+        config.viewer.pdf = defaults.viewer.pdf;
         return config; 
       }))
       .pipe(gulp.dest("dist/"));
