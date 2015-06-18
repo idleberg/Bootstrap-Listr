@@ -36,12 +36,12 @@ $(document).bind('keyup', function(event) {
             }
         }
 
-        // Seek backwards
+        // Seek backward
         if (event.which === 37) {
             player.currentTime -= 1;
         }
 
-        // Seek forwards
+        // Seek forward
         if (event.which === 39) {
             player.currentTime += 1;
         }
