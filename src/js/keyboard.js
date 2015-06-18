@@ -38,12 +38,12 @@ $(document).bind('keyup', function(event) {
 
         // Seek backwards
         if (event.which === 37) {
-            player.currentTime -= 0.1;
+            player.currentTime -= 1;
         }
 
         // Seek forwards
         if (event.which === 39) {
-            player.currentTime += 0.1;
+            player.currentTime += 1;
         }
 
         // Rewind player
