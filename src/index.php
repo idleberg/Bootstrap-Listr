@@ -565,9 +565,9 @@ if(($folder_list) || ($file_list) ) {
             if (in_array($item['bname'], $options['hidden_files'])) {
                 $row_classes[] = "hidden";
                 // muted class on row…
-                $row_classes[] = $options['bootstrap']['hidden_files'];
+                $row_classes[] = $options['bootstrap']['hidden_files_row'];
                 // …and again for the link
-                $file_classes[] = $options['bootstrap']['hidden_files'];
+                $file_classes[] = $options['bootstrap']['hidden_files_link'];
             }
 
             // Concatenate tr-classes

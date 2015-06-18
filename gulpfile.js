@@ -779,7 +779,8 @@ gulp.task('upgrade_config', function () {
       .pipe(jeditor(function(config) {
         config.hidden_files = defaults.hidden_files;
         config.general.hide_dotfiles = defaults.general.hide_dotfiles;
-        config.bootstrap.hidden_files = defaults.bootstrap.hidden_files;
+        config.bootstrap.hidden_files_row = defaults.bootstrap.hidden_files_row;
+        config.bootstrap.hidden_files_link = defaults.bootstrap.hidden_files_link;
         config.viewer.alt_load = defaults.viewer.alt_load;
         return config; 
       }))
