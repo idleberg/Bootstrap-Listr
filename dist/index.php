@@ -164,6 +164,7 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
 if ($options['general']['enable_viewer']) {
     $audio_files     = explode(',', $options['viewer']['audio']);
     $image_files     = explode(',', $options['viewer']['image']);
+    $pdf_files       = explode(',', $options['viewer']['pdf']);
     $quicktime_files = explode(',', $options['viewer']['quicktime']);
     $source_files    = explode(',', $options['viewer']['source']);
     $text_files      = explode(',', $options['viewer']['text']);
@@ -509,11 +510,13 @@ if(($folder_list) || ($file_list) ) {
     if($folder_list):    
         foreach($folder_list as $item) :
 
-            if ($options['bootstrap']['tablerow_folders'] != "") {
-                $tr_folders = " class=\"".$options['bootstrap']['tablerow_folders']."\"";
+            if ($options['bootstrap']['tablerow_folders'] != null) {
+                $tr_folders = ' class="'.$options['bootstrap']['tablerow_folders'].'"';
             } else {
                 $tr_folders = null;
             }
+
+            // var_dump($options['bootstrap']['tablerow_folders']);
 
             $table_body .= "          <tr$tr_folders>" . PHP_EOL;
             $table_body .= "            <td";
@@ -525,7 +528,13 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= "<".$icons['tag']." class=\"$folder_icon\"></".$icons['tag'].">&nbsp;";
             }
 
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\"><strong>" . utf8ify($item['bname']) . "</strong></a></td>" . PHP_EOL;
+            if ($options['bootstrap']['tablerow_links'] != null) {
+                $tr_links = ' class="'.$options['bootstrap']['tablerow_links'].'"';
+            } else {
+                $tr_links = null;
+            }
+
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "/\" $tr_links><strong>" . utf8ify($item['bname']) . "</strong></a></td>" . PHP_EOL;
             
             if ($table_options['size']) {
                 $table_body .= "            <td";
@@ -602,6 +611,8 @@ if(($folder_list) || ($file_list) ) {
                     $file_classes[] = 'flash-modal';
                 } else if (in_array($item['lext'], $image_files)) {
                     $file_classes[] = 'image-modal';
+                } else if (in_array($item['lext'], $pdf_files)) {
+                    $file_classes[] = 'pdf-modal';
                 } else if (in_array($item['lext'], $quicktime_files)) {
                      $file_classes[] = 'quicktime-modal';
                 } else if (in_array($item['lext'], $source_files)) {
