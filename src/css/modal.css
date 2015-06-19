@@ -15,17 +15,3 @@ pre code {
 .modal video,.modal audio {
     width: 100%;
 }
-
-.viewer-wrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-}
-
-.viewer-wrapper embed,.viewer-wrapper object, .viewer-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}

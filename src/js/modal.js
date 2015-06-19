@@ -91,7 +91,7 @@ $(".flash-modal").click(function(event) {
     // arr[0] = file name
     // arr[1] = file uri
     // arr[2] = file meta
-    set_modal('<div class="viewer-wrapper"><object width="100%" height="100%" type="application/x-shockwave-flash" data="' + arr[0] + '"><param name="movie" value="' + arr[0] + '"><param name="quality" value="high"></object></div>', arr[0], arr[1], arr[2]);
+    set_modal('<div class="embed-responsive embed-responsive-4by3"><object class="embed-responsive-item" type="application/x-shockwave-flash" data="' + arr[0] + '"><param name="movie" value="' + arr[0] + '"><param name="quality" value="high"></object></div>', arr[0], arr[1], arr[2]);
     
     // show modal
     viewer.modal("show");
@@ -130,7 +130,7 @@ $(".quicktime-modal").click(function(event) {
     // arr[0] = file name
     // arr[1] = file uri
     // arr[2] = file meta
-    set_modal('<div class="viewer-wrapper"><embed width="100%" height="100%" src="' + arr[0] + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"></div>', arr[0], arr[1], arr[2]);
+    set_modal('<div class="embed-responsive embed-responsive-16by9"><embed class="embed-responsive-item" src="' + arr[0] + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"></div>', arr[0], arr[1], arr[2]);
     
     // show modal
     viewer.modal("show");
@@ -266,7 +266,7 @@ $(".website-modal").click(function(event) {
     // arr[0] = file name
     // arr[1] = file uri
     // arr[2] = file meta
-    set_modal('<div class="viewer-wrapper"><iframe id="website" src="' + arr[0] + '" width="100%" height="100%" frameborder="0"></iframe></div>', arr[0], arr[1], arr[2]);
+    set_modal('<div class="embed-responsive embed-responsive-4by3"><iframe id="website" class="embed-responsive-item" src="' + arr[0] + '" frameborder="0"></iframe></div>', arr[0], arr[1], arr[2]);
 
     viewer.modal("show");
 });
