@@ -16,14 +16,20 @@ pre code {
     width: 100%;
 }
 
-.landscape-wrapper {
+.video-wrapper {
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
 }
 
-.landscape-wrapper embed,.landscape-wrapper object, .landscape-wrapper iframe,
-.portrait-wrapper iframe {
+.document-wrapper {
+    position: relative;
+    padding-bottom: 75%;
+    height: 0;
+}
+
+.video-wrapper embed,.video-wrapper object, .video-wrapper iframe,
+.document-wrapper iframe, .document-wrapper embed {
     position: absolute;
     top: 0;
     left: 0;
@@ -31,8 +37,8 @@ pre code {
     height: 100%;
 }
 
-.portrait-wrapper {
+/*.portrait-wrapper {
   position: relative;
-  padding-bottom: 100%;
+  padding-bottom: 133%;
   height: 0;
-}
+}*/
