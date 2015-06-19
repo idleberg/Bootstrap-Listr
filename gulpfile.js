@@ -18,7 +18,7 @@ var meta     = require('./package.json');
 var console   = require('better-console'),
     cache     = require('gulp-cached'),
     concat    = require('gulp-concat'),
-    concatCss = require('gulp-concat-css')
+    concatCss = require('gulp-concat-css'),
     csslint   = require('gulp-csslint'),
     cssmin    = require('gulp-cssmin'),
     debug     = require('gulp-debug'),
@@ -770,7 +770,7 @@ gulp.task('reset', function () {
 // Upgrade config.json
 gulp.task('upgrade_config', function () {
 
-  if (meta.version == "2.1.0-beta") {
+  if (meta.version == "2.1.0") {
     
     // Add hidden_files
     var defaults = require('./src/config.json');
