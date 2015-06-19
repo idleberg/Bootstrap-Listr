@@ -117,7 +117,7 @@ $(".pdf-modal").click(function(event) {
     // arr[0] = file name
     // arr[1] = file uri
     // arr[2] = file meta
-    set_modal('<div class="embed-responsive embed-responsive-4by3"><iframe class="embed-responsive-item" src="' + arr[0] + '#view=FitH" type="application/pdf" scale="aspect" frameborder="0"></iframe></div>', arr[0], arr[1], arr[2]);
+    set_modal('<div class="embed-responsive embed-responsive-4by3"><iframe class="embed-responsive-item" src="' + arr[0] + '" type="application/pdf" scale="aspect" frameborder="0"></iframe></div>', arr[0], arr[1], arr[2]);
     
     // show modal
     viewer.modal("show");
