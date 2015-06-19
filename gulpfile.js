@@ -770,7 +770,7 @@ gulp.task('reset', function () {
 // Upgrade config.json
 gulp.task('upgrade_config', function () {
 
-  if (meta.version == "2.1.0-beta") {
+  if (meta.version == "2.1.0") {
     
     // Add hidden_files
     var defaults = require('./src/config.json');
