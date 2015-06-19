@@ -14,6 +14,8 @@
     "share_icons":      false,
     "hide_dotfiles":    true,
     "hide_extension":   false,
+    "virtual_files":    false,
+    "virtual_maxsize":  32,
     "custom_title":     null,
     "read_chunks":      false,
     "give_kudos":       true
@@ -70,14 +72,16 @@
     "source":    "atom,bat,cmd,css,hml,jade,js,json,less,markdown,md,php,pl,py,rb,rss,rst,sass,scpt,scss,sh,xml,yml",
     "text":      "txt",
     "video":     "mp4,m4v,ogv,webm",
-    "website":   null
+    "virtual":   "flickr,soundcloud,vimeo,youtube",
+    "website":   "htm,html,mhtm,mhtml,xhtm,xhtml"
   },
   "highlight": {
     "theme": "github"
   },
   "keys": {
-    "dropbox_app":      false,
-    "google_analytics": false
+    "dropbox":          null,
+    "google_analytics": null,
+    "soundcloud":       "15fd95172fa116c0837c4af8e45aa702"
   },
   "icons": {
     "ios_version":      8,

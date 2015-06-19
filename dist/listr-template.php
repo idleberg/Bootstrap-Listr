@@ -54,7 +54,7 @@
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-<?php if ($options['keys']['dropbox_app']) { ?>
+<?php if ($options['keys']['dropbox']) { ?>
                   <li role="presentation"><a role="menuitem" class="save-dropbox"><?php echo $icons_dropbox._('Save to Dropbox')?></a></li>
                   <li role="presentation" class="divider"></li>
 <?php } ?>

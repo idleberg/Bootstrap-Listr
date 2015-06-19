@@ -125,8 +125,8 @@ function set_footer(){
         $footer .= "  <script type=\"text/javascript\" src=\"$jquery_js\"></script>" . PHP_EOL;
     }
 
-    if( ($options['general']['enable_viewer']) && ($options['general']['share_button']) && ($options['keys']['dropbox_app']) ){
-        $footer .= "  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"".$options['keys']['dropbox_app']."\"></script>" . PHP_EOL;
+    if( ($options['general']['enable_viewer']) && ($options['general']['share_button']) && ($options['keys']['dropbox']) ){
+        $footer .= "  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"".$options['keys']['dropbox']."\"></script>" . PHP_EOL;
     }
 
     if ($options['general']['dependencies'] == 'pack') {

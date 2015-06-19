@@ -586,11 +586,11 @@ gulp.task('merge', function(callback) {
         name: 'merge',
         message: 'Do you want to merge all assets?',
         choices: [
-          'No, keep individual files',
           {
             name: 'Yes, merge all assets',
             value: 'merge'
-          }
+          },
+          'No, keep individual files'
         ]
     }, function(res){
         if(res.merge === 'merge') {
@@ -784,6 +784,8 @@ gulp.task('upgrade_config', function () {
         config.bootstrap.tablerow_links = defaults.bootstrap.tablerow_links;
         config.general.hide_dotfiles = defaults.general.hide_dotfiles;
         config.hidden_files = defaults.hidden_files;
+        config.keys.dropbox = defaults.keys.dropbox_app;
+        config.keys.soundcloud = defaults.keys.soundcloud;
         config.viewer.alt_load = defaults.viewer.alt_load;
         config.viewer.pdf = defaults.viewer.pdf;
         return config; 
@@ -892,6 +894,20 @@ gulp.task('watch', function () {
          ],
          ['lint']
    );
+});
+
+// Watch task
+gulp.task('_js', function () {
+   gulp.watch([
+            'src/js/*.js'
+         ],
+         ['uglify']);
+});
+gulp.task('_css', function () {
+   gulp.watch([
+            'src/css/*.css'
+         ],
+         ['cssmin']);
 });
 
 

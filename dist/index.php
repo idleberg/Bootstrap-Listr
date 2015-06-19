@@ -141,6 +141,12 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
             'website'   => array('htm','html','mhtml','mht','xht','xhtml'),
             'windows'   => array('dll','exe','msi','pif','ps1','scr','sys')
         );
+        if ($options['general']['virtual_files'] == true) {
+            $filetype['flickr']     = array('flickr');
+            $filetype['soundcloud'] = array('soundcloud');
+            $filetype['vimeo']      = array('vimeo');
+            $filetype['youtube']    = array('youtube');
+        }
     } else if ($options['bootstrap']['icons'] == 'fa-files') {
         $filetype = array(
             'archive'    => array('7z','ace','adf','air','apk','arj','bz2','bzip','cab','d64','dmg','git','hdf','ipf','iso','fdi','gz','jar','lha','lzh','lz','lzma','pak','phar','pkg','pimp','rar','safariextz','sfx','sit','sitx','sqx','sublime-package','swm','tar','tgz','wim','wsz','xar','zip'),
@@ -170,6 +176,9 @@ if ($options['general']['enable_viewer']) {
     $text_files      = explode(',', $options['viewer']['text']);
     $video_files     = explode(',', $options['viewer']['video']);
     $website_files   = explode(',', $options['viewer']['website']);
+    if ($options['general']['virtual_files'] == true) {
+        $virtual_files     = explode(',', $options['viewer']['virtual']);
+    }
 }
 
 if ($options['general']['text_direction'] == 'rtl') {
@@ -312,6 +321,8 @@ if ($handle = opendir($navigation_dir))
                     $item['class'] = 'fa fa-rss ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['flash'])){
                     $item['class'] = 'fa fa-bolt ' . $options['bootstrap']['fontawesome_style'];
+                }elseif((in_array($item['lext'], $filetype['flickr'])) && ($options['general']['virtual_files'])) {
+                    $item['class'] = 'fa fa-flickr ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['font'])){
                     $item['class'] = 'fa fa-font ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['image'])){
@@ -326,14 +337,20 @@ if ($handle = opendir($navigation_dir))
                     $item['class'] = 'fa fa-camera ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['script'])){
                     $item['class'] = 'fa fa-code ' . $options['bootstrap']['fontawesome_style'];
+                }elseif((in_array($item['lext'], $filetype['soundcloud'])) && ($options['general']['virtual_files'])) {
+                    $item['class'] = 'fa fa-soundcloud ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['text'])){
                     $item['class'] = 'fa fa-file-text-o ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['video'])){
                     $item['class'] = 'fa fa-film ' . $options['bootstrap']['fontawesome_style'];
+                }elseif((in_array($item['lext'], $filetype['vimeo'])) && ($options['general']['virtual_files'])) {
+                    $item['class'] = 'fa fa-vimeo-square ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['website'])){
                     $item['class'] = 'fa fa-globe ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['windows'])){
                     $item['class'] = 'fa fa-windows ' . $options['bootstrap']['fontawesome_style'];
+                }elseif((in_array($item['lext'], $filetype['youtube'])) && ($options['general']['virtual_files'])){
+                    $item['class'] = 'fa fa-youtube-play ' . $options['bootstrap']['fontawesome_style'];
                 }else{
                     $item['class'] = 'fa fa-file-o ' . $options['bootstrap']['fontawesome_style'];        
                 }
@@ -565,6 +582,8 @@ if(($folder_list) || ($file_list) ) {
             $file_classes = array();
             $file_meta = array();
 
+            $item_pretty_size = $item['size']['num'] . " " . $item['size']['str'];
+
             // Style table rows
             if ($options['bootstrap']['tablerow_files'] != "") {
                 $row_classes[] = $options['bootstrap']['tablerow_files'];
@@ -577,6 +596,34 @@ if(($folder_list) || ($file_list) ) {
                 $row_classes[] = $options['bootstrap']['hidden_files_row'];
                 // …and again for the link
                 $file_classes[] = $options['bootstrap']['hidden_files_link'];
+            }
+
+            // Is virtual file?
+            if ( ($options['general']['virtual_files'] == true) && (in_array($item['lext'], $virtual_files)) ){
+
+                if ( is_int($options['general']['virtual_maxsize']) == true) {
+                    $virtual_maxsize = $options['general']['virtual_maxsize'];
+                } else {
+                    $virtual_maxsize = 32;
+                }
+
+                if  (filesize($navigation_dir.$item['bname']) <= $virtual_maxsize) {
+
+                    $virtual_file =  htmlentities(file_get_contents($navigation_dir.$item['bname'], true));
+                    $virtual_attr = ' data-'.$item['lext'].'="'.$virtual_file.'"';
+                    
+                    if ( ($item['lext'] == 'soundcloud') && ($options['keys']['soundcloud'] != null) ) {
+                        $sc_url  = "http://api.soundcloud.com/".$virtual_file.".json?client_id=".$options['keys']['soundcloud'];
+                        $sc_json = json_decode(file_get_contents($sc_url), true);
+                        $virtual_attr .= ' data-url="'.$sc_json['permalink_url'].'"';  
+                    }
+                }
+
+                // Don't show file-size in .virtual-file
+                $modified_attr = null;
+            } else {
+                $virtual_attr = null;
+                $modified_attr = " data-modified=\"".$item_pretty_size."\"";
             }
 
             // Concatenate tr-classes
@@ -600,8 +647,6 @@ if(($folder_list) || ($file_list) ) {
             } else {
                 $display_name = $item['bname'];
             }
-
-            $item_pretty_size = $item['size']['num'] . " " . $item['size']['str'];
 
             // inject modal class if necessary
             if ($options['general']['enable_viewer']) {
@@ -634,6 +679,8 @@ if(($folder_list) || ($file_list) ) {
                     $file_classes[] = 'video-modal';
                 } else if (in_array($item['lext'], $website_files)) {
                     $file_classes[] = 'website-modal';
+                } else if (in_array($item['lext'], $virtual_files)) {
+                    $file_classes[] = 'virtual-modal';
                 }
             }
 
@@ -645,7 +692,7 @@ if(($folder_list) || ($file_list) ) {
                 $file_attr = null;
             }
 
-                        $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data data-modified=\"".$item_pretty_size."\">" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$modified_attr>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
 
             // Size
             if ($table_options['size']) {

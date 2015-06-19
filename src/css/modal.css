@@ -15,3 +15,7 @@ pre code {
 .modal video,.modal audio {
     width: 100%;
 }
+
+.embed-responsive-1by1 {
+  padding-bottom: 100%;
+}
