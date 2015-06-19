@@ -15,30 +15,3 @@ pre code {
 .modal video,.modal audio {
     width: 100%;
 }
-
-/*.video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-}
-
-.document-wrapper {
-    position: relative;
-    padding-bottom: 75%;
-    height: 0;
-}
-
-.video-wrapper embed,.video-wrapper object, .video-wrapper iframe,
-.document-wrapper iframe, .document-wrapper embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}*/
-
-/*.portrait-wrapper {
-  position: relative;
-  padding-bottom: 133%;
-  height: 0;
-}*/
