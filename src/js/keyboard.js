@@ -29,7 +29,7 @@ $(document).bind('keyup', function(event) {
 
             event.preventDefault();
 
-            if (player.paused == false) {
+            if (player.paused === false) {
               player.pause();
             } else {
               player.play();
