@@ -15,7 +15,7 @@ Download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releas
 
 ## Usage
 
-The simplest way is to use the default configuration. Copy the `dist`-folder to your webserver, then place all files that should be accessible in the browser go into the `_public` folder. Point your browser to the `dist`-folder rather than the files and folder inside `_public`.
+The simplest way is to use the default configuration. Copy the `dist`-folder to your webserver, then place all files that should be accessible in the browser go into the `_public` folder. Point your browser to the `dist`-folder rather than the files and folder inside `_public`. If you run 403 or 404 errors, please refer to the [FAQ](https://github.com/idleberg/Bootstrap-Listr/wiki/FAQ).
 
 ## Building
 
@@ -33,15 +33,15 @@ Instead of running your dependencies locally, you can make use of various conten
 
 ## Deployment
 
-Deploy `dist/` to your server, if necessary rename `config.json-example` to `config.json`. All files that should be accessible in the browser go into the `_public` folder (you can change the folder in the config). Depending on your Apache settings, you might have to uncomment the `RewriteBase` setting in the `.htaccess` file (maybe add parent folder name after the slash.)
+Deploy the entire `dist/` folder to your server. All files that should be accessible in the browser go into the `_public` folder (you can change the folder in the config). Depending on your Apache settings, you might have to uncomment the `RewriteBase` setting in the `.htaccess` file and maybe add parent folder name right after the slash.
 
 ## Options
 
 You can configure a number of settings in the file `config.json`:
 
-* Optional columns for size, modified date, permissions
+* Optional columns for size modified date
 * Document icons
-* File viewer for images, videos, audio and source code
+* File viewer for images, videos, audio, source code and HTML
 * Search box to filter results
 * Column sorting
 * Responsive tables
