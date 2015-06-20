@@ -74,8 +74,8 @@
     "theme": "github"
   },
   "keys": {
-    "dropbox_app":      false,
-    "google_analytics": false
+    "dropbox_app":      null,
+    "google_analytics": null
   },
   "icons": {
     "ios_version":      8,
