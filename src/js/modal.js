@@ -57,7 +57,8 @@ function set_vmodal(content, file, name, uri) {
     // Set title
     modal_title.text(name);
 
-    file_meta.html('<a href="' + uri + '" class="text-muted" title="' + name + '">' + uri + '</a>');
+    // file_meta.html('<a href="' + uri + '" class="text-muted" title="' + name + '">' + uri + '</a>');
+    file_meta.html(uri);
 }
 
 // Default actions for each modal
