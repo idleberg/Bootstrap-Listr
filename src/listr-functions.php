@@ -56,7 +56,7 @@ function set_header($theme) {
     if ($options['opengraph']['description']) $header .= "  <meta property=\"og:description\" content=\"".$options['opengraph']['description']."\" />" . PHP_EOL;
     if ($options['opengraph']['site_name']) $header .= "  <meta property=\"og:site_name\" content=\"".$options['opengraph']['site_name']."\" />" . PHP_EOL;
 
-    if ($options['keys']['google_analytics']) {
+    if ($options['keys']['google_analytics'] !== null) {
         $header .= "  <script type=\"text/javascript\">var _gaq=_gaq||[];_gaq.push([\"_setAccount\",\"".$options['keys']['google_analytics']."\"]);_gaq.push([\"_trackPageview\"]);(function(){var ga=document.createElement(\"script\");ga.type=\"text/javascript\";ga.async=true;ga.src=(\"https:\"==document.location.protocol?\"https://ssl\":\"http://www\")+\".google-analytics.com/ga.js\";var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(ga,s)})();</script>" . PHP_EOL;
     }
 
@@ -99,7 +99,7 @@ function set_header($theme) {
         }
     }
 
-    if ($options['assets']['google_font']) {
+    if ($options['assets']['google_font'] !== null) {
         $header .= "  <link href=\"".$options['assets']['google_font']."\" rel=\"stylesheet\" type=\"text/css\">" . PHP_EOL;
     }
 
@@ -125,7 +125,7 @@ function set_footer(){
         $footer .= "  <script type=\"text/javascript\" src=\"$jquery_js\"></script>" . PHP_EOL;
     }
 
-    if( ($options['general']['enable_viewer']) && ($options['general']['share_button']) && ($options['keys']['dropbox_app']) ){
+    if( ($options['general']['enable_viewer']) && ($options['general']['share_button']) && ($options['keys']['dropbox_app'] !== null) ){
         $footer .= "  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"".$options['keys']['dropbox_app']."\"></script>" . PHP_EOL;
     }
 

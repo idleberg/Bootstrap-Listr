@@ -770,10 +770,10 @@ gulp.task('reset', function () {
 // Upgrade config.json
 gulp.task('upgrade_config', function () {
 
-  if (meta.version == "2.1.0") {
-    
-    // Add hidden_files
-    var defaults = require('./src/config.json');
+  // Add hidden_files
+  var defaults = require('./src/config.json');
+
+  if (meta.version == "2.1.1") {
     
     gulp.src("dist/config.json")
       .pipe(jeditor(function(config) {
@@ -784,6 +784,17 @@ gulp.task('upgrade_config', function () {
         config.general.hide_dotfiles = defaults.general.hide_dotfiles;
         config.hidden_files = defaults.hidden_files;
         config.viewer.alt_load = defaults.viewer.alt_load;
+
+        if (config.cdn.google_font === false) {
+          config.cdn.google_font = null;
+        }
+        if (config.keys.dropbox_app === false) {
+          config.keys.dropbox_app = null;
+        }
+        if (config.keys.google_analytics === false) {
+          config.keys.google_analytics = null;
+        }
+
         return config; 
       }))
       .pipe(gulp.dest("dist/"));
