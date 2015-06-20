@@ -17,7 +17,7 @@ function set_bootstrap_theme() {
 }
 
 // Set header
-function set_header($theme) {
+function set_header($theme, $protocol = "//") {
 
     global $options;
     
@@ -61,7 +61,7 @@ function set_header($theme) {
     }
 
     if ($options['general']['dependencies'] == 'pack') {
-        $packed_css = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/listr.pack.css";
+        $packed_css = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/listr.pack.css";
         $header    .= "  <link rel=\"stylesheet\" href=\"$packed_css\" />" . PHP_EOL;
     } else {
 
@@ -69,8 +69,8 @@ function set_header($theme) {
             $bootstrap_css   = $theme;
             $fontawesome_css = $options['assets']['font_awesome'];
         } else {
-            $bootstrap_css   = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/bootstrap.min.css";
-            $fontawesome_css = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/font-awesome.min.css";
+            $bootstrap_css   = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/bootstrap.min.css";
+            $fontawesome_css = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/font-awesome.min.css";
         }
 
         if ( ($options['bootstrap']['icons'] == 'fontawesome') && ($fontawesome_css) ) {
@@ -85,12 +85,12 @@ function set_header($theme) {
                 if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
                     $header .= "  <link rel=\"stylesheet\" href=\"".$options['assets']['highlight_css']."\" />" . PHP_EOL;
                 } else if ($options['general']['dependencies'] == 'local') {
-                    $header .= "  <link rel=\"stylesheet\" href=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/highlight.min.css\" />" . PHP_EOL;
+                    $header .= "  <link rel=\"stylesheet\" href=\"$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/highlight.min.css\" />" . PHP_EOL;
                 }
             }
         }
 
-        $header .= "  <link rel=\"stylesheet\" href=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/listr.min.css\" />" . PHP_EOL;
+        $header .= "  <link rel=\"stylesheet\" href=\"$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/listr.min.css\" />" . PHP_EOL;
     }
 
     foreach($options['assets']['append_css'] as $append_css) {
@@ -108,7 +108,7 @@ function set_header($theme) {
 }
 
 // Set HTML footer
-function set_footer(){
+function set_footer($protocol){
 
     $footer = null;
     global $options;
@@ -117,8 +117,8 @@ function set_footer(){
         $jquery_js    = $options['assets']['jquery'];
         $bootstrap_js = $options['assets']['bootstrap_js'];
     } else {
-        $jquery_js    = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/jquery.min.js";
-        $bootstrap_js = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/bootstrap.min.js";
+        $jquery_js    = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/jquery.min.js";
+        $bootstrap_js = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/bootstrap.min.js";
     }
 
     if ( ($options['general']['enable_sort']) || ($options['general']['enable_viewer']) ) {
@@ -130,7 +130,7 @@ function set_footer(){
     }
 
     if ($options['general']['dependencies'] == 'pack') {
-        $packed_js  = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.pack.js";
+        $packed_js  = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.pack.js";
         $footer    .= "  <script type=\"text/javascript\" src=\"$packed_js\"></script>" . PHP_EOL;
     } else {
 
@@ -138,7 +138,7 @@ function set_footer(){
              if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['stupid_table']) ) {
                 $footer .= "  <script type=\"text/javascript\" src=\"".$options['assets']['stupid_table']."\"></script>" . PHP_EOL;
             } else {
-                $footer .= "  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/stupidtable.min.js\"></script>" . PHP_EOL;
+                $footer .= "  <script type=\"text/javascript\" src=\"$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/stupidtable.min.js\"></script>" . PHP_EOL;
             }
         }
 
@@ -146,7 +146,7 @@ function set_footer(){
             if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['stupid_table']) ) {
                 $footer .= "  <script type=\"text/javascript\" src=\"".$options['assets']['searcher']."\"></script>" . PHP_EOL;
             } else {
-                $footer .= "  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/jquery.searcher.min.js\"></script>" . PHP_EOL;
+                $footer .= "  <script type=\"text/javascript\" src=\"$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/jquery.searcher.min.js\"></script>" . PHP_EOL;
             }
         }
 
@@ -157,12 +157,12 @@ function set_footer(){
                  if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
                     $footer .= "  <script type=\"text/javascript\" src=\"".$options['assets']['highlight_js']."\"></script>" . PHP_EOL;
                 } else {
-                    $footer .= "  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/highlight.min.js\"></script>" . PHP_EOL;
+                    $footer .= "  <script type=\"text/javascript\" src=\"$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/highlight.min.js\"></script>" . PHP_EOL;
                 }
             }
         }
         
-        $footer .= "  <script type=\"text/javascript\" src=\"//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.min.js\"></script>" . PHP_EOL;
+        $footer .= "  <script type=\"text/javascript\" src=\"$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.min.js\"></script>" . PHP_EOL;
     }
 
     foreach($options['assets']['append_js'] as $append_js) {
@@ -175,7 +175,7 @@ function set_footer(){
         if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['bootlint']) ){
             $bootlint = $options['assets']['bootlint'];
         } else {
-            $bootlint = "//".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/bootlint.js";
+            $bootlint = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/bootlint.js";
         }
         $footer .= "  <script type=\"text/javascript\" src=\"$bootlint\"></script>" . PHP_EOL;
     }
@@ -285,5 +285,14 @@ function readfile_chunked($filename, $retbytes = TRUE) {
     }
     return $status;
 }
+
+// Get protocol
+// function get_protocol() {
+//     if ($_SERVER['HTTPS']) {
+//         return "https://";
+//     } else {
+//         return = "http://";
+//     }
+// }
 
 ?>
