@@ -770,11 +770,11 @@ gulp.task('reset', function () {
 // Upgrade config.json
 gulp.task('upgrade_config', function () {
 
+  // Add hidden_files
+  var defaults = require('./src/config.json');
+
   if (meta.version == "2.2.0-alpha") {
-    
-    // Add hidden_files
-    var defaults = require('./src/config.json');
-    
+
     gulp.src("dist/config.json")
       .pipe(jeditor(function(config) {
         config.assets.bootswatch_css = defaults.assets.bootswatch_css;
@@ -788,10 +788,20 @@ gulp.task('upgrade_config', function () {
         config.keys.soundcloud = defaults.keys.soundcloud;
         config.viewer.alt_load = defaults.viewer.alt_load;
         config.viewer.pdf = defaults.viewer.pdf;
+
+        if (config.cdn.google_font === false) {
+          config.cdn.google_font = null;
+        }
+        if (config.keys.dropbox_app === false) {
+          config.keys.dropbox_app = null;
+        }
+        if (config.keys.google_analytics === false) {
+          config.keys.google_analytics = null;
+        }
+
         return config; 
       }))
       .pipe(gulp.dest("dist/"));
-
   }
   
 });
