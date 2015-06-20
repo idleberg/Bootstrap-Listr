@@ -27,7 +27,7 @@
     "bootswatch_css":  "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/%theme%/bootstrap.min.css",
     "m8tro_css":       "//cdn.jsdelivr.net/bootstrap.m8tro/3.3.5/m8tro.min.css",
     "font_awesome":    "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css",
-    "google_font":     false,
+    "google_font":     null,
     "stupid_table":    "//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
     "searcher":        "//cdnjs.cloudflare.com/ajax/libs/jquery-searcher/0.2.0/jquery.searcher.min.js",
     "highlight_js":    "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js",
@@ -80,8 +80,7 @@
   },
   "keys": {
     "dropbox":          null,
-    "google_analytics": null,
-    "soundcloud":       "15fd95172fa116c0837c4af8e45aa702"
+    "google_analytics": null
   },
   "icons": {
     "ios_version":      8,
