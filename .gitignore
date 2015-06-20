@@ -5,4 +5,5 @@ generators/
 node_modules/
 npm-debug.log
 src/l10n/ja_JA/
+src/themes/
 todo.md
