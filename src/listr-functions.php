@@ -99,7 +99,7 @@ function set_header($theme) {
         }
     }
 
-    if ($options['assets']['google_font']) {
+    if ($options['assets']['google_font'] !== null) {
         $header .= "  <link href=\"".$options['assets']['google_font']."\" rel=\"stylesheet\" type=\"text/css\">" . PHP_EOL;
     }
 
