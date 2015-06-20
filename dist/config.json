@@ -20,9 +20,9 @@
   },
   "assets": {
     "jquery":          "//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js",
-    "bootstrap_css":   "//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css",
-    "bootstrap_js":    "//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js",
-    "bootswatch_css":  "//maxcdn.bootstrapcdn.com/bootswatch/latest/%theme%/bootstrap.min.css",
+    "bootstrap_css":   "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css",
+    "bootstrap_js":    "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js",
+    "bootswatch_css":  "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/%theme%/bootstrap.min.css",
     "m8tro_css":       "//cdn.jsdelivr.net/bootstrap.m8tro/3.3.5/m8tro.min.css",
     "font_awesome":    "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css",
     "google_font":     false,
