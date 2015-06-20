@@ -601,22 +601,41 @@ if(($folder_list) || ($file_list) ) {
             // Is virtual file?
             if ( ($options['general']['virtual_files'] == true) && (in_array($item['lext'], $virtual_files)) ){
 
+                
+
                 if ( is_int($options['general']['virtual_maxsize']) == true) {
                     $virtual_maxsize = $options['general']['virtual_maxsize'];
                 } else {
-                    $virtual_maxsize = 32;
+                    $virtual_maxsize = 256;
                 }
-
                 if  (filesize($navigation_dir.$item['bname']) <= $virtual_maxsize) {
 
-                    $virtual_file =  htmlentities(file_get_contents($navigation_dir.$item['bname'], true));
-                    $virtual_attr = ' data-'.$item['lext'].'="'.$virtual_file.'"';
-                    
-                    if ( ($item['lext'] == 'soundcloud') && ($options['keys']['soundcloud'] != null) ) {
-                        $sc_url  = "http://api.soundcloud.com/".$virtual_file.".json?client_id=".$options['keys']['soundcloud'];
-                        $sc_json = json_decode(file_get_contents($sc_url), true);
-                        $virtual_attr .= ' data-url="'.$sc_json['permalink_url'].'"';  
+                    $virtual_file =  json_decode(file_get_contents($navigation_dir.$item['bname'], true), true);
+
+                    if ($item['lext'] == 'flickr') {
+                        $virtual_attr =  ' data-flickr="'.htmlentities($virtual_file['user']).'/'.htmlentities($virtual_file['id']).'"';
+                        if ( $virtual_file['album'] != null) {
+                            $album = '/in/album-'.htmlentities($virtual_file['album']);
+                        } else {
+                            $album = null;
+                        }
+                        $virtual_attr .= ' data-url="https://www.flickr.com/'.htmlentities($virtual_file['user']).'/'.htmlentities($virtual_file['id']).$album.'"';  
+                        $virtual_attr .= ' data-name="'.htmlentities($virtual_file['name']).'"';  
+                    } else if ($item['lext'] == 'soundcloud') {
+                        $virtual_attr =  ' data-soundcloud="'.htmlentities($virtual_file['type']).'/'.htmlentities($virtual_file['id']).'"';
+                        $virtual_attr .= ' data-url="'.htmlentities($virtual_file['url']).'"';  
+                        $virtual_attr .= ' data-name="'.htmlentities($virtual_file['name']).'"';  
+                    } else if ($item['lext'] == 'vimeo') {
+                        $virtual_attr =  ' data-vimeo="'.htmlentities($virtual_file['id']).'"';
+                        $virtual_attr .= ' data-url="https://vimeo.com/'.htmlentities($virtual_file['id']).'"';  
+                        $virtual_attr .= ' data-name="'.htmlentities($virtual_file['name']).'"';  
+                    } else if ($item['lext'] == 'youtube') {
+                        $virtual_attr =  ' data-youtube="'.htmlentities($virtual_file['id']).'"';
+                        $virtual_attr .= ' data-url="https://youtube.com/watch?v='.htmlentities($virtual_file['id']).'"';  
+                        $virtual_attr .= ' data-name="'.htmlentities($virtual_file['name']).'"';  
                     }
+                } else {
+                    $virtual_attr = null;
                 }
 
                 // Don't show file-size in .virtual-file

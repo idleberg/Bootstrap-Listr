@@ -36,7 +36,7 @@ function set_modal(content, file, uri, meta) {
     file_meta.text(meta);
 }
 
-function set_vmodal(content, name, uri, meta) {
+function set_vmodal(content, file, name, uri) {
     
     // Inject content 
     modal_body.html(content);
@@ -46,19 +46,18 @@ function set_vmodal(content, name, uri, meta) {
     full_view.text(button);
     
     // Populate Dropbox drop-in
-    dropbox.attr("href", name);
+    dropbox.attr("href", file);
     
     // Populate share buttons
-    email.attr("href", "mailto:?body=" + uri);
-    twitter.attr("href", "http://twitter.com/share?url=" + uri);
+    email.attr("href", "mailto:?body=" + encodeURIComponent(name) + "%20" + uri);
+    twitter.attr("href", "http://twitter.com/share?text=" + encodeURIComponent(name) + "&amp;url=" + uri);
     facebook.attr("href", "http://www.facebook.com/sharer/sharer.php?u=" + uri);
     google.attr("href", "https://plus.google.com/share?url=" + uri);
     
     // Set title
     modal_title.text(name);
 
-    meta = typeof meta !== 'undefined' ? meta : null;
-    file_meta.text(meta);
+    file_meta.html('<a href="' + uri + '" class="text-muted" title="' + name + '">' + uri + '</a>');
 }
 
 // Default actions for each modal
@@ -164,32 +163,32 @@ $(".virtual-modal").click(function(event) {
     event.preventDefault();
 
     if (typeof $(this).data('vimeo') !== 'undefined') {
-        name = $(this).text();
+        file = $(this).html();
         id   = $(this).data("vimeo");
-        uri  = "https://vimeo.com/"+ id;
-        meta = "Vimeo";
-        set_vmodal('<div class="embed-responsive embed-responsive-16by9"><iframe id="virtual" class="embed-responsive-item" src="https://player.vimeo.com/video/' + id + '?autoplay=1&title=0&byline=0&portrait=0" frameborder="0" allowfullscreen>Video format or MIME type is not supported</iframe></div>', name, uri, meta);
+        name = $(this).data("name");
+        uri  = $(this).data("url");
+        set_vmodal('<div class="embed-responsive embed-responsive-16by9"><iframe id="virtual" class="embed-responsive-item" src="https://player.vimeo.com/video/' + id + '?autoplay=1&title=0&byline=0&portrait=0" frameborder="0" allowfullscreen>Video format or MIME type is not supported</iframe></div>', file, name, uri);
         viewer.modal("show");
     } else if (typeof $(this).data('youtube') !== 'undefined') {
-        name = $(this).html();
+        file = $(this).html();
         id   = $(this).data("youtube");
-        uri  = "https://www.youtube.com/watch?v="+ id;
-        meta = "YouTube";
-        set_vmodal('<div class="embed-responsive embed-responsive-16by9"><iframe id="virtual" class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&amp;rel=0&amp;showinfo=0" frameborder="0" allowfullscreen>Video format or MIME type is not supported</iframe></div>', name, uri, meta);
+        name = $(this).data("name");
+        uri  = $(this).data("url");
+        set_vmodal('<div class="embed-responsive embed-responsive-16by9"><iframe id="virtual" class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&amp;rel=0&amp;showinfo=0" frameborder="0" allowfullscreen>Video format or MIME type is not supported</iframe></div>', file, name, uri);
         viewer.modal("show");
     } else if (typeof $(this).data('flickr') !== 'undefined') {
-        name = $(this).html();
+        file = $(this).html();
         id   = $(this).data("flickr");
-        uri  = "https://www.flickr.com/photos/"+ id;
-        meta = "Flickr";
-        set_vmodal('<div class="embed-responsive embed-responsive-1by1"><iframe id="virtual" class="embed-responsive-item" src="https://www.flickr.com/photos/' + id + '/player/" scrolling="no" frameborder="0" allowfullscreen></iframe></div>', name, uri, meta);
+        name = $(this).data("name");
+        uri  = $(this).data("url");
+        set_vmodal('<div class="embed-responsive embed-responsive-1by1"><iframe id="virtual" class="embed-responsive-item" src="https://www.flickr.com/photos/' + id + '/player/" scrolling="no" frameborder="0" allowfullscreen></iframe></div>', file, name, uri);
         viewer.modal("show");
     } else if (typeof $(this).data('soundcloud') !== 'undefined') {
-        name = $(this).html();
+        file = $(this).html();
         id   = $(this).data("soundcloud");
+        name = $(this).data("name");
         uri  = $(this).data("url");
-        meta = "SoundCloud";
-        set_vmodal('<div class="embed-responsive embed-responsive-4by3"><iframe id="virtual" class="embed-responsive-item" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/' + id + '&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>', name, uri, meta);
+        set_vmodal('<div class="embed-responsive embed-responsive-4by3"><iframe id="virtual" class="embed-responsive-item" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/' + id + '&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>', file, name, uri);
         viewer.modal("show");
     }
 

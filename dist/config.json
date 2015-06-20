@@ -15,7 +15,7 @@
     "hide_dotfiles":    true,
     "hide_extension":   false,
     "virtual_files":    false,
-    "virtual_maxsize":  32,
+    "virtual_maxsize":  256,
     "custom_title":     null,
     "read_chunks":      false,
     "give_kudos":       true
