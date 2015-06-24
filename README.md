@@ -41,17 +41,19 @@ You can configure a number of settings in the file `config.json`:
 
 * Optional columns for size, modified date, permissions
 * Document icons
-* File viewer for images, videos, audio and source code
+* File viewer for images, videos, audio, source code, PDF and HTML
 * Search box to filter results
 * Column sorting
 * Responsive tables
 * List of ignored files
-* Default location for JavaScript libraries and style sheets
+* List of hidden files
+* Default location for JavaScript libraries and style sheets (CDN or local)
 * Syntax highlighting in file viewer
 * Save to Dropbox
 * Share buttons
 * Google Analytics
 * Language
+* Virtual files
 
 Please visit the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki/Understanding-config.json) for details.
 
