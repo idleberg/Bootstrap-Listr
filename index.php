@@ -96,13 +96,13 @@ define('BOOTSTRAP_THEME', 'default');
 define('FONTAWESOME_STYLE','fa-fw');
 
 // External resources
-   define('FONT_AWESOME', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+   define('FONT_AWESOME', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
      define('CUSTOM_THEME', null);
     define('GOOGLE_FONT', null); // e.g. 'Open+Sans' or 'Open+Sans:400,300',700'
-         define('JQUERY', '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
-    define('BOOTSTRAPJS', '//maxcdn.bootstrapcdn.com/bootstrap/'.BOOTSTRAP_VERSION.'/js/bootstrap.min.js');
-    define('STUPIDTABLE', '//cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.js');
-    define('JQ_SEARCHER', '//cdnjs.cloudflare.com/ajax/libs/jquery-searcher/0.2.0/jquery.searcher.min.js');
+         define('JQUERY', 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
+    define('BOOTSTRAPJS', 'https://maxcdn.bootstrapcdn.com/bootstrap'.BOOTSTRAP_VERSION.'/js/bootstrap.min.js');
+    define('STUPIDTABLE', 'https://cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.js');
+    define('JQ_SEARCHER', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-searcher/0.2.0/jquery.searcher.min.js');
 
 // Browser and Device Icons
           define('FAV_ICON', ''); // 16x16 or 32x32 
@@ -264,16 +264,16 @@ if (ENABLE_VIEWER) {
 if (CUSTOM_THEME) {
     $bootstrap_cdn = CUSTOM_THEME;
 } else {
-    $cdn_pre = '//maxcdn.bootstrapcdn.com/bootswatch/'.BOOTSTRAP_VERSION.'/';
+    $cdn_pre = 'https://maxcdn.bootstrapcdn.com/bootswatch/'.BOOTSTRAP_VERSION.'/';
     $cdn_post = '/bootstrap.min.css';
     $bootswatch = array('cerulean','cosmo','cyborg','darkly','flatly','journal','lumen','paper','readable','sandstone','simplex','slate','spacelab','superhero','united','yeti');
 
     if (in_array(BOOTSTRAP_THEME, $bootswatch)) {
-        $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootswatch/'.BOOTSTRAP_VERSION.'/'.BOOTSTRAP_THEME.'/bootstrap.min.css';
+        $bootstrap_cdn = 'https://maxcdn.bootstrapcdn.com/bootswatch/'.BOOTSTRAP_VERSION.'/'.BOOTSTRAP_THEME.'/bootstrap.min.css';
     } else if (BOOTSTRAP_THEME == "m8tro") {
-        $bootstrap_cdn = '//cdnjs.cloudflare.com/ajax/libs/m8tro-bootstrap/'.BOOTSTRAP_VERSION.'/m8tro.min.css';
+        $bootstrap_cdn = 'https://cdnjs.cloudflare.com/ajax/libs/m8tro-bootstrap/'.BOOTSTRAP_VERSION.'/m8tro.min.css';
     } else {
-        $bootstrap_cdn = '//maxcdn.bootstrapcdn.com/bootstrap/'.BOOTSTRAP_VERSION.'/css/bootstrap.min.css';
+        $bootstrap_cdn = 'https://maxcdn.bootstrapcdn.com/bootstrap/'.BOOTSTRAP_VERSION.'/css/bootstrap.min.css';
     }
 }
 
@@ -562,7 +562,7 @@ if (ENABLE_VIEWER) {
 }
 $header = $header."  <style type=\"text/css\">th{cursor:pointer}".$modal_css."</style>" . PHP_EOL;
 if (GOOGLE_FONT) {
-$header = $header."  <link href=\"//fonts.googleapis.com/css?family=".GOOGLE_FONT."\" rel=\"stylesheet\" type=\"text/css\">" . PHP_EOL;
+$header = $header."  <link href=\"https://fonts.googleapis.com/css?family=".GOOGLE_FONT."\" rel=\"stylesheet\" type=\"text/css\">" . PHP_EOL;
 }
 
 // Set HTML footer
