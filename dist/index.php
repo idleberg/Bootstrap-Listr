@@ -148,7 +148,7 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
             'website'   => array('htm','html','mhtml','mht','xht','xhtml'),
             'windows'   => array('dll','exe','msi','pif','ps1','scr','sys')
         );
-        if ($options['general']['virtual_files'] == true) {
+        if ( ($options['general']['virtual_files'] == true) && ($options['general']['enable_viewer'] == true) ){
             $filetype['flickr']     = array('flickr');
             $filetype['soundcloud'] = array('soundcloud');
             $filetype['vimeo']      = array('vimeo');
@@ -183,7 +183,7 @@ if ($options['general']['enable_viewer']) {
     $text_files      = explode(',', $options['viewer']['text']);
     $video_files     = explode(',', $options['viewer']['video']);
     $website_files   = explode(',', $options['viewer']['website']);
-    if ($options['general']['virtual_files'] == true) {
+    if ( ($options['general']['virtual_files'] == true) && ($options['general']['enable_viewer'] == true) ){
         $virtual_files     = explode(',', $options['viewer']['virtual']);
     }
 }
@@ -328,7 +328,7 @@ if ($handle = opendir($navigation_dir))
                     $item['class'] = 'fa fa-rss ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['flash'])){
                     $item['class'] = 'fa fa-bolt ' . $options['bootstrap']['fontawesome_style'];
-                }elseif((in_array($item['lext'], $filetype['flickr'])) && ($options['general']['virtual_files'])) {
+                }elseif((in_array($item['lext'], $filetype['flickr'])) && ($options['general']['virtual_files']) && ($options['general']['enable_viewer'] == true) ) {
                     $item['class'] = 'fa fa-flickr ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['font'])){
                     $item['class'] = 'fa fa-font ' . $options['bootstrap']['fontawesome_style'];
@@ -344,19 +344,19 @@ if ($handle = opendir($navigation_dir))
                     $item['class'] = 'fa fa-camera ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['script'])){
                     $item['class'] = 'fa fa-code ' . $options['bootstrap']['fontawesome_style'];
-                }elseif((in_array($item['lext'], $filetype['soundcloud'])) && ($options['general']['virtual_files'])) {
+                }elseif((in_array($item['lext'], $filetype['soundcloud'])) && ($options['general']['virtual_files']) && ($options['general']['enable_viewer'] == true) ) {
                     $item['class'] = 'fa fa-soundcloud ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['text'])){
                     $item['class'] = 'fa fa-file-text-o ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['video'])){
                     $item['class'] = 'fa fa-film ' . $options['bootstrap']['fontawesome_style'];
-                }elseif((in_array($item['lext'], $filetype['vimeo'])) && ($options['general']['virtual_files'])) {
+                }elseif((in_array($item['lext'], $filetype['vimeo'])) && ($options['general']['virtual_files']) && ($options['general']['enable_viewer'] == true) ) {
                     $item['class'] = 'fa fa-vimeo-square ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['website'])){
                     $item['class'] = 'fa fa-globe ' . $options['bootstrap']['fontawesome_style'];
                 }elseif(in_array($item['lext'], $filetype['windows'])){
                     $item['class'] = 'fa fa-windows ' . $options['bootstrap']['fontawesome_style'];
-                }elseif((in_array($item['lext'], $filetype['youtube'])) && ($options['general']['virtual_files'])){
+                }elseif((in_array($item['lext'], $filetype['youtube'])) && ($options['general']['virtual_files']) && ($options['general']['enable_viewer'] == true) ) {
                     $item['class'] = 'fa fa-youtube-play ' . $options['bootstrap']['fontawesome_style'];
                 }else{
                     $item['class'] = 'fa fa-file-o ' . $options['bootstrap']['fontawesome_style'];        
@@ -494,13 +494,13 @@ if ($options['general']['enable_search'] == true) {
 
     $search  = "    <div class=\"row\">" . PHP_EOL;
     $search .= "      <div class=\"col-xs-6 col-sm-3$search_offset\">" . PHP_EOL;
-    $search .= "        <div class=\"form-group has-feedback\">" . PHP_EOL;
-    $search .= "          <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
-    $search .= "          <input type=\"text\" class=\"form-control$input_size\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
+    $search .= "          <div class=\"form-group has-feedback\">" . PHP_EOL;
+    $search .= "            <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
+    $search .= "            <input type=\"text\" class=\"form-control$input_size\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
     $search .= $icons['search'];
-    $search .= "       </div>" . PHP_EOL;
-    $search .= "      </div>" . PHP_EOL;
-    $search .= "    </div>" . PHP_EOL;
+    $search .= "         </div>" . PHP_EOL; // form-group
+    $search .= "      </div>" . PHP_EOL; // col
+    $search .= "    </div>" . PHP_EOL; // row
 }
 
 // Set table header

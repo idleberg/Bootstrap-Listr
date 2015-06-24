@@ -781,6 +781,7 @@ gulp.task('upgrade_config', function () {
         config.assets.m8tro_css = defaults.assets.m8tro_css;
         config.bootstrap.hidden_files_link = defaults.bootstrap.hidden_files_link;
         config.bootstrap.hidden_files_row = defaults.bootstrap.hidden_files_row;
+        config.bootstrap.sticky_footer = defaults.bootstrap.sticky_footer;
         config.bootstrap.tablerow_links = defaults.bootstrap.tablerow_links;
         config.general.hide_dotfiles = defaults.general.hide_dotfiles;
         config.hidden_files = defaults.hidden_files;

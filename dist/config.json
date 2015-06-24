@@ -46,6 +46,7 @@
     "table_style":       "table-hover",
     "breadcrumb_style":  null,
     "responsive_table":  true,
+    "sticky_footer":     false,
     "modal_size":        "modal-lg",
     "button_primary":    "btn-primary",
     "button_default":    "btn-default",

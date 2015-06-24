@@ -1,3 +1,20 @@
 th {
     cursor: pointer;
 }
+
+//
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 2.5em;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: inherit;
+  height: 2.5em;
+  padding:8px;
+}
