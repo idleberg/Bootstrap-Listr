@@ -1,8 +1,6 @@
-.tmp/
-app/
 bower_components/
 config.json
-crack.sh
+dist/
 generators/
 gulpfile.js
 listr-*.php
