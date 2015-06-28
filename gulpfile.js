@@ -773,7 +773,7 @@ gulp.task('upgrade_config', function () {
   // Add hidden_files
   var defaults = require('./src/config.json');
 
-  if (meta.version == "2.1.1") {
+  if (meta.version == "2.1.2") {
     
     gulp.src("dist/config.json")
       .pipe(jeditor(function(config) {
