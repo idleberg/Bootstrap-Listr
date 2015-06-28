@@ -157,7 +157,7 @@ if ($options['bootstrap']['icons'] == "glyphicons") {
     }
 } else {
     $icons['tag']  = 'span';
-    $icons['home'] = $this_domain;
+    $icons['home'] = $_SERVER['HTTP_HOST'];
     $icons['search'] = null;
 }  
 
