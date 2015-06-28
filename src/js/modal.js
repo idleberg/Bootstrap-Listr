@@ -335,13 +335,15 @@ viewer.on("hide.bs.modal", function() {
         player.src = "";
     }
 
-    // Stop players in Firefox
-    $(".modal-body").empty();
 });
 
 viewer.on("hidden.bs.modal", function() {
     
+    // hide Highlighter button
     $(".highlight").addClass("hidden");
+
+    // Empty modal body to stop playback in Firefox
+    $(".modal-body").empty();
 });
 
 $(".website-modal").click(function(event) {
