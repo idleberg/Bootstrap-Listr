@@ -33,7 +33,6 @@
     "highlight_js":    "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js",
     "highlight_css":   "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css",
     "bootlint":        "https://maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js",
-    "custom_theme":    null,
     "append_css":      [
       null
     ],
