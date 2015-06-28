@@ -1,0 +1,14 @@
+{  
+   "tag":"span",
+   "default":"glyphicon-file",
+   "folder":"glyphicon-folder-close",
+   "home":"glyphicon-home",
+   "search":"glyphicon-search",
+   "share_icons":{  
+      "dropbox":"glyphicon-cloud-download",
+      "email":"glyphicon-envelope",
+      "facebook":"glyphicon-share",
+      "google_plus":"glyphicon-share",
+      "twitter":"glyphicon-share"
+   }
+}

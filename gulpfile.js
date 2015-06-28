@@ -694,6 +694,11 @@ gulp.task('init', ['clean'], function() {
   .pipe(gulp.dest('dist/l10n/'));
 
   gulp.src([
+      './src/themes/*'
+  ])
+  .pipe(gulp.dest('dist/themes/'));
+
+  gulp.src([
       'src/config.json'
   ])
   .pipe(gulp.dest('dist/'));

@@ -73,7 +73,7 @@ function set_header($theme, $protocol = "//") {
             $fontawesome_css = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/font-awesome.min.css";
         }
 
-        if ( ($options['bootstrap']['icons'] == 'fontawesome') && ($fontawesome_css) ) {
+        if ( (($options['bootstrap']['icons'] == 'fontawesome') || ($options['bootstrap']['icons'] == 'fa-files')) && ($fontawesome_css) ) {
             $header .= "  <link rel=\"stylesheet\" href=\"$fontawesome_css\" />" . PHP_EOL;
         }
 
@@ -181,6 +181,25 @@ function set_footer($protocol){
     }
 
     return $footer;
+}
+
+function load_iconset($input = "glyphicon") {
+
+    // Allow icon aliases
+    if ( ($input === 'font-awesome') || ($input === 'fontawesome') ) {
+        $input = "fa";
+    } else if ( ($input === 'glyphicon') || ($input === 'glyph') ) {
+        $input = "glyphicons";
+    }
+
+    // Does icon set exist?
+    if( file_exists('themes/'.$input.'.json')) {
+        $iconset = json_decode(file_get_contents('themes/'.$input.'.json'), true);
+        return $iconset;
+    } else {
+        throw new Exception($input.'.json not found');
+        break;
+    }
 }
 
 function set_404_error() {
