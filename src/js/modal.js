@@ -335,8 +335,8 @@ viewer.on("hide.bs.modal", function() {
         player.src = "";
     }
 
-    // Stop Vimeo
-    $("iframe#virtual").attr('src', null);
+    // Stop players in Firefox
+    $(".modal-body").empty();
 });
 
 viewer.on("hidden.bs.modal", function() {
