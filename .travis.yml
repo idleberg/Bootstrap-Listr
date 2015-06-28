@@ -3,3 +3,5 @@ node_js:
   - "0.12"
 script:
   - gulp travis
+notifications:
+  email: false
