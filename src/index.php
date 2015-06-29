@@ -111,7 +111,7 @@ if ($options['bootstrap']['icons'] != null) {
     }
 }
 
-
+// Set icons for included extension
 if (!empty($icons['files'])) {
     foreach ($icons['files'] as $type => $ext) {
         foreach ($ext as $k => $v) {
@@ -398,6 +398,11 @@ if ($options['general']['enable_search'] == true) {
 
 // Set table header
 $table_header = null;
+
+if ($table_options['count']) {
+    $table_header .= "            <th class=\"text-".$right."\" data-sort=\"int\">#</th>" . PHP_EOL;
+}
+
 $table_header .= "            <th class=\"".$column_name." text-".$left."\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
 if ($table_options['size']) {
@@ -422,6 +427,11 @@ if ($table_options['age']) {
 
 // Set table body
 $table_body = null;
+
+if ($table_options['count']) {
+    $row_counter = 1;
+}
+
 if(($folder_list) || ($file_list) ) {
 
     if($folder_list):    
@@ -433,9 +443,12 @@ if(($folder_list) || ($file_list) ) {
                 $tr_folders = null;
             }
 
-            // var_dump($options['bootstrap']['tablerow_folders']);
-
             $table_body .= "          <tr$tr_folders>" . PHP_EOL;
+
+            if ($table_options['count']) {
+                $table_body .= "            <td class=\"text-muted text-".$right."\" data-sort-value=\"$row_counter\">$row_counter</td>";
+            }
+
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
                 $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
@@ -472,6 +485,10 @@ if(($folder_list) || ($file_list) ) {
 
             $table_body .= "          </tr>" . PHP_EOL;
 
+            if ($table_options['count']) {
+                $row_counter += 1;
+            }
+
         endforeach;
     endif;
 
@@ -500,8 +517,6 @@ if(($folder_list) || ($file_list) ) {
 
             // Is virtual file?
             if ( ($options['general']['virtual_files'] == true) && (in_array($item['lext'], $virtual_files)) ){
-
-                
 
                 if ( is_int($options['general']['virtual_maxsize']) == true) {
                     $virtual_maxsize = $options['general']['virtual_maxsize'];
@@ -553,6 +568,11 @@ if(($folder_list) || ($file_list) ) {
             }
 
             $table_body .= "          <tr$row_attr>" . PHP_EOL;
+            
+            if ($table_options['count']) {
+                $table_body .= "            <td class=\"text-muted text-".$right."\" data-sort-value=\"$row_counter\">$row_counter</td>";
+            }
+            
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
                 $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
@@ -634,6 +654,10 @@ if(($folder_list) || ($file_list) ) {
             }
 
             $table_body .= "          </tr>" . PHP_EOL;
+
+            if ($table_options['count']) {
+                $row_counter += 1;
+            }
         endforeach;
     endif;
 } else {
