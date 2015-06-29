@@ -30,6 +30,7 @@ var console   = require('better-console'),
     jshint    = require('gulp-jshint'),
     jsonlint  = require('gulp-json-lint'),
     less      = require('gulp-less'),
+    notify    = require("gulp-notify"),
     path      = require('path'),
     phplint   = require('phplint').lint,
     prompt    = require('gulp-prompt'),
@@ -848,6 +849,7 @@ gulp.task('cssmin', function() {
   ])
   .pipe(concat('listr.min.css'))
   .pipe(cssmin())
+  .pipe(notify("Minfied: <%= file.relative %>"))
   .pipe(gulp.dest('dist/assets/css/'));
 });
 
@@ -878,6 +880,7 @@ gulp.task('uglify', function() {
    ])
    .pipe(uglify())
    .pipe(concat('listr.min.js'))
+   .pipe(notify("Uglified: <%= file.relative %>"))
    .pipe(gulp.dest('dist/assets/js/'));
 });
 
