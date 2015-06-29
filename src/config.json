@@ -100,7 +100,7 @@
     "image":       null
   },
   "columns": {
-    "count": true,
+    "count": false,
     "size": true,
     "age":  true
   },
