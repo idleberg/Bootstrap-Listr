@@ -373,7 +373,40 @@ gulp.task('swatch', function(){
       less_dir       = 'node_modules/bootstrap/less/';
 
   bootstrap_less.push(less_dir+'variables.less');
-  bootstrap_less.push(less_dir+'mixins/*.less');
+
+  // Mixins
+  // bootstrap_less.push(less_dir+'mixins/*.less');
+  bootstrap_less.push(less_dir+'mixins/hide-text.less');
+  bootstrap_less.push(less_dir+'mixins/opacity.less');
+  bootstrap_less.push(less_dir+'mixins/image.less');
+  bootstrap_less.push(less_dir+'mixins/labels.less');
+  bootstrap_less.push(less_dir+'mixins/reset-filter.less');
+  bootstrap_less.push(less_dir+'mixins/resize.less');
+  bootstrap_less.push(less_dir+'mixins/responsive-visibility.less');
+  bootstrap_less.push(less_dir+'mixins/size.less');
+  bootstrap_less.push(less_dir+'mixins/tab-focus.less');
+  bootstrap_less.push(less_dir+'mixins/reset-text.less');
+  bootstrap_less.push(less_dir+'mixins/text-emphasis.less');
+  bootstrap_less.push(less_dir+'mixins/text-overflow.less');
+  bootstrap_less.push(less_dir+'mixins/vendor-prefixes.less');
+ if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/alerts.less');
+ bootstrap_less.push(less_dir+'mixins/buttons.less');
+ if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/panels.less');
+ if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/pagination.less');
+ if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/list-group.less');
+ bootstrap_less.push(less_dir+'mixins/nav-divider.less');
+ bootstrap_less.push(less_dir+'mixins/forms.less');
+ if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/progress-bar.less');
+ bootstrap_less.push(less_dir+'mixins/table-row.less');
+ bootstrap_less.push(less_dir+'mixins/background-variant.less');
+ bootstrap_less.push(less_dir+'mixins/border-radius.less');
+ bootstrap_less.push(less_dir+'mixins/gradients.less');
+ bootstrap_less.push(less_dir+'mixins/clearfix.less');
+ bootstrap_less.push(less_dir+'mixins/center-block.less');
+ if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/nav-vertical-align.less');
+ bootstrap_less.push(less_dir+'mixins/grid-framework.less');
+ bootstrap_less.push(less_dir+'mixins/grid.less');
+
   bootstrap_less.push(less_dir+'normalize.less');
   if (argv.bootstrap) bootstrap_less.push(less_dir+'print.less');
   bootstrap_less.push(less_dir+'glyphicons.less');
