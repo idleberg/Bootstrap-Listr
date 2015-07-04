@@ -157,7 +157,7 @@ function set_footer(){
 function load_iconset($input = "glyphicon") {
 
     // Allow icon aliases
-    if ( ($input === 'font-awesome') || ($input === 'fontawesome') ) {
+    if ( ($input === 'font-awesome') || ($input === 'fontawesome') || ($input === 'fa') ) {
         $input = "fa";
     } else if ( ($input === 'glyphicon') || ($input === 'glyph') ) {
         $input = "glyphicons";
@@ -169,7 +169,6 @@ function load_iconset($input = "glyphicon") {
         return $iconset;
     } else {
         throw new Exception($input.'.json not found');
-        break;
     }
 }
 
