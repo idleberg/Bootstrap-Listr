@@ -104,7 +104,7 @@ function set_footer(){
 
     // jQuery
     if ( ($options['general']['enable_sort']) || ($options['general']['enable_viewer']) ) {
-        $footer .= "  <script type=\"text/javascript\" src=\"" . $options['assets']['jquery'] . "\"></script>" . PHP_EOL;
+        $footer .= "  <script type=\"text/javascript\" src=\"" . $options['assets']['jquery_js'] . "\"></script>" . PHP_EOL;
     }
 
     // Dropbox Dropins

@@ -7,6 +7,9 @@
 // Read package.json metadata
 var meta     = require('./package.json');
 
+// Read src/config.json
+var config = require('./src/config.json');
+
 
 // A handy repeat function
   var repeat = function (s, n, d) {
@@ -343,13 +346,13 @@ gulp.task('depends', function() {
         
         if( (res.dependencies === 'l') || (res.dependencies === 'local') ) {
 
-
-            gulp.src("dist/config.json")
-            .pipe(jeditor({
-              'assets': {
-                'jquery': "assets/js/jquery.min.js",
+          var assets = {
+            'assets': {
+                'jquery_js': "assets/js/jquery.min.js",
+                'jquery_map': "assets/js/jquery.min.map",
                 'bootstrap_css': "assets/js/bootstrap.min.css",
                 'bootstrap_js': "assets/js/bootstrap.min.js",
+                'bootswatch_css': null,
                 'font_awesome': "assets/css/font-awesome.min.css",
                 'stupid_table': "assets/js/stupidtable.min.js",
                 'searcher': "assets/js/jquery.searcher.min.js",
@@ -357,10 +360,32 @@ gulp.task('depends', function() {
                 'highlight_css': "assets/css/highlight.min.css",
                 'bootlint': "assets/js/bootlint.min.js"
               }
-            }))
-            .pipe(gulp.dest("dist/"));
+            }
 
+        } else {
+
+              var assets =  {
+                'assets': {
+                  'jquery_js': config.assets.jquery_js,
+                  'jquery_map': config.assets.jquery_map,
+                  'bootstrap_css': config.assets.bootstrap_css,
+                  'bootstrap_js': config.assets.bootstrap_js,
+                  'bootswatch_css': config.assets.bootswatch_css.replace('%theme%', config.bootstrap.theme),
+                  'font_awesome': config.assets.font_awesome,
+                  'stupid_table': config.assets.stupid_table,
+                  'searcher': config.assets.searcher,
+                  'highlight_js': config.assets.highlight_js,
+                  'highlight_css': config.assets.highlight_css.replace('%theme%', config.highlight.theme),
+                  'bootlint': config.assets.bootlint
+                }
+              }
         }
+
+        gulp.src("dist/config.json")
+        .pipe(jeditor(
+          assets
+        ))
+        .pipe(gulp.dest("dist/"));
     }));
 });
 
@@ -555,6 +580,9 @@ gulp.task('swatch', function(){
               .pipe(jeditor({
                 'bootstrap': {
                   'theme': slug
+                },
+                'assets': {
+                  'bootswatch_css': config.assets.bootswatch_css.replace('%theme%', slug),
                 }
               }))
               .pipe(gulp.dest("dist/"));
@@ -589,6 +617,9 @@ gulp.task('hljs', function(){
          .pipe(jeditor({
            'highlight': {
              'theme': res.theme
+           },
+           'assets': {
+              'highlight_css': config.assets.highlight_css.replace('%theme%', res.theme),
            }
          }))
          .pipe(gulp.dest("dist/"));
