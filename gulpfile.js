@@ -372,7 +372,7 @@ gulp.task('swatch', function(){
       less_dir       = 'node_modules/bootstrap/less/';
 
   bootstrap_less.push(less_dir+'variables.less');
-  bootstrap_less.push(less_dir+'mixins.less');
+  bootstrap_less.push(less_dir+'mixins/*.less');
   bootstrap_less.push(less_dir+'normalize.less');
   if (argv.bootstrap) bootstrap_less.push(less_dir+'print.less');
   bootstrap_less.push(less_dir+'glyphicons.less');
