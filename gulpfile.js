@@ -216,7 +216,7 @@ gulp.task('select', function(callback){
           console.log('Including syntax highlighter assets…');
  
           gulp
-            .src('node_modules/_bower_components/highlightjs/highlight.pack.js')
+            .src('node_modules/highlightjs/highlight.pack.js')
             .pipe(concat('highlight.min.js'))
             .pipe(gulp.dest('dist/assets/js/'));
 
@@ -224,7 +224,7 @@ gulp.task('select', function(callback){
 
           gulp
             .src([
-              'node_modules/_bower_components/highlightjs/styles/github.css'
+              'node_modules/highlightjs/styles/github.css'
             ])
             .pipe(concat('highlight.min.css'))
             .pipe(cssmin())
@@ -373,7 +373,7 @@ gulp.task('swatch', function(){
       less_dir       = 'node_modules/bootstrap/less/';
 
   bootstrap_less.push(less_dir+'variables.less');
-  bootstrap_less.push(less_dir+'mixins.less');
+  bootstrap_less.push(less_dir+'mixins/*.less');
   bootstrap_less.push(less_dir+'normalize.less');
   if (argv.bootstrap) bootstrap_less.push(less_dir+'print.less');
   bootstrap_less.push(less_dir+'glyphicons.less');
@@ -480,8 +480,8 @@ gulp.task('swatch', function(){
           //   slug = res.theme.toLowerCase();
           //   console.log('Compiling Bootstrap theme “Material”');
 
-          //   bootstrap_less.push('node_modules/_bower_components/bootstrap-material-design/less/variables.less');
-          //   bootstrap_less.push('node_modules/_bower_components/bootstrap-material-design/less/theme.less');
+          //   bootstrap_less.push('node_modules/bootstrap-material-design/less/variables.less');
+          //   bootstrap_less.push('node_modules/bootstrap-material-design/less/theme.less');
 
           //   gulp.src(bootstrap_less)
           //   .pipe(concat('bootstrap.less'))
@@ -543,7 +543,7 @@ gulp.task('hljs', function(){
        choices: hljs,
      }, function(res){
 
-        var source_dir = 'node_modules/_bower_components/highlightjs/styles/';
+        var source_dir = 'node_modules/highlightjs/styles/';
 
          // Set default theme
          console.log('Minifying highlight.js theme “'+res.theme+'”…');
@@ -563,15 +563,15 @@ gulp.task('hljs', function(){
          // Special cases
          if (res.theme == 'brown_paper') {
             console.log ('Copying extra-file brown_papersq.png');
-            gulp.src('node_modules/_bower_components/highlightjs/styles/brown_papersq.png')
+            gulp.src('node_modules/highlightjs/styles/brown_papersq.png')
             .pipe(gulp.dest('dist/assets/css/'));
          } else if (res.theme == 'pojoaque') {
             console.log ('Copying extra-file pojoaque.jpg');
-            gulp.src('node_modules/_bower_components/highlightjs/styles/pojoaque.jpg')
+            gulp.src('node_modules/highlightjs/styles/pojoaque.jpg')
             .pipe(gulp.dest('dist/assets/css/'));
          } else if (res.theme == 'school_book') {
             console.log ('Copying extra-file school_book.png');
-            gulp.src('node_modules/_bower_components/highlightjs/styles/school_book.png')
+            gulp.src('node_modules/highlightjs/styles/school_book.png')
             .pipe(gulp.dest('dist/assets/css/'));
          }
    }));
@@ -717,7 +717,7 @@ gulp.task('init', ['clean'], function() {
   .pipe(gulp.dest('dist/_public/'));
 
   gulp.src([
-    'node_modules/_bower_components/jquery-stupid-table/stupidtable.min.js',
+    'node_modules/jquery-stupid-table/stupidtable.min.js',
     'node_modules/jquery/dist/jquery.min.js'
   ])
   .pipe(gulp.dest('dist/assets/js/'));
@@ -755,11 +755,9 @@ gulp.task('upgrade', function() {
 
   gulp.src([
     'node_modules/jquery/dist/jquery.min.js',
-    'node_modules/_bower_components/jquery-stupid-table/stupidtable.min.js'
+    'node_modules/jquery-stupid-table/stupidtable.min.js'
   ])
   .pipe(gulp.dest('dist/assets/js/'));
-
-  gulp.start('upgrade_config');
 
 });
 
@@ -770,47 +768,6 @@ gulp.task('reset', function () {
     'src/config.json'
   ])
   .pipe(gulp.dest('dist/'));
-});
-
-
-// Upgrade config.json
-gulp.task('upgrade_config', function () {
-
-  // Add hidden_files
-  var defaults = require('./src/config.json');
-
-  if (meta.version == "2.2.0-alpha") {
-
-    gulp.src("dist/config.json")
-      .pipe(jeditor(function(config) {
-        config.assets.bootswatch_css = defaults.assets.bootswatch_css;
-        config.assets.m8tro_css = defaults.assets.m8tro_css;
-        config.bootstrap.hidden_files_link = defaults.bootstrap.hidden_files_link;
-        config.bootstrap.hidden_files_row = defaults.bootstrap.hidden_files_row;
-        config.bootstrap.sticky_footer = defaults.bootstrap.sticky_footer;
-        config.bootstrap.tablerow_links = defaults.bootstrap.tablerow_links;
-        config.general.hide_dotfiles = defaults.general.hide_dotfiles;
-        config.hidden_files = defaults.hidden_files;
-        config.keys.dropbox = defaults.keys.dropbox_app;
-        config.keys.soundcloud = defaults.keys.soundcloud;
-        config.viewer.alt_load = defaults.viewer.alt_load;
-        config.viewer.pdf = defaults.viewer.pdf;
-
-        if (config.cdn.google_font === false) {
-          config.cdn.google_font = null;
-        }
-        if (config.keys.dropbox_app === false) {
-          config.keys.dropbox_app = null;
-        }
-        if (config.keys.google_analytics === false) {
-          config.keys.google_analytics = null;
-        }
-
-        return config; 
-      }))
-      .pipe(gulp.dest("dist/"));
-  }
-  
 });
 
 
