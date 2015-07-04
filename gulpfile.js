@@ -753,8 +753,6 @@ gulp.task('upgrade', function() {
   ])
   .pipe(gulp.dest('dist/assets/js/'));
 
-  gulp.start('upgrade_config');
-
 });
 
 
@@ -764,43 +762,6 @@ gulp.task('reset', function () {
     'src/config.json'
   ])
   .pipe(gulp.dest('dist/'));
-});
-
-
-// Upgrade config.json
-gulp.task('upgrade_config', function () {
-
-  // Add hidden_files
-  var defaults = require('./src/config.json');
-
-  if (meta.version == "2.1.2") {
-    
-    gulp.src("dist/config.json")
-      .pipe(jeditor(function(config) {
-        config.assets.bootswatch_css = defaults.assets.bootswatch_css;
-        config.assets.m8tro_css = defaults.assets.m8tro_css;
-        config.bootstrap.hidden_files_link = defaults.bootstrap.hidden_files_link;
-        config.bootstrap.hidden_files_row = defaults.bootstrap.hidden_files_row;
-        config.general.hide_dotfiles = defaults.general.hide_dotfiles;
-        config.hidden_files = defaults.hidden_files;
-        config.viewer.alt_load = defaults.viewer.alt_load;
-
-        if (config.cdn.google_font === false) {
-          config.cdn.google_font = null;
-        }
-        if (config.keys.dropbox_app === false) {
-          config.keys.dropbox_app = null;
-        }
-        if (config.keys.google_analytics === false) {
-          config.keys.google_analytics = null;
-        }
-
-        return config; 
-      }))
-      .pipe(gulp.dest("dist/"));
-
-  }
-  
 });
 
 
