@@ -108,6 +108,7 @@ if ($options['bootstrap']['icons'] != null) {
         $icons = load_iconset($options['bootstrap']['icons']);
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
+        die();
     }
 }
 
