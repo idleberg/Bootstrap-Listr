@@ -51,11 +51,11 @@ $absolute_path  = str_replace(str_replace("%2F", "/", rawurlencode($this_folder)
 $dir_name       = explode("/", $this_folder);
 
 // Get protocol
-if ($_SERVER['HTTPS']) {
-    $protocol = "https://";
-} else {
-    $protocol = "http://";
-}
+// if ($_SERVER['HTTPS']) {
+//     $protocol = "https://";
+// } else {
+//     $protocol = "http://";
+// }
 
 if(substr($navigation_dir, -1) != "/"){
     if(file_exists($navigation_dir)){
@@ -354,8 +354,8 @@ if(isset($loptions)) {
     $options = array_merge($options, $loptions);
 }
 
-$header = set_header($bootstrap_cdn, $protocol);
-$footer = set_footer($protocol);
+$header = set_header($bootstrap_cdn);
+$footer = set_footer();
 
 // Set breadcrumbs
 $breadcrumbs  = "    <ol class=\"breadcrumb$breadcrumb_style\"".$direction.">" . PHP_EOL;

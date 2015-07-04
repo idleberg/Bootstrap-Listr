@@ -17,7 +17,7 @@ function set_bootstrap_theme() {
 }
 
 // Set header
-function set_header($theme, $protocol = "//") {
+function set_header($bootstrap_css) {
 
     global $options;
     
@@ -60,39 +60,28 @@ function set_header($theme, $protocol = "//") {
         $header .= "  <script type=\"text/javascript\">var _gaq=_gaq||[];_gaq.push([\"_setAccount\",\"".$options['keys']['google_analytics']."\"]);_gaq.push([\"_trackPageview\"]);(function(){var ga=document.createElement(\"script\");ga.type=\"text/javascript\";ga.async=true;ga.src=(\"https:\"==document.location.protocol?\"https://ssl\":\"http://www\")+\".google-analytics.com/ga.js\";var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(ga,s)})();</script>" . PHP_EOL;
     }
 
-    if ($options['general']['dependencies'] == 'pack') {
-        $packed_css = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/listr.pack.css";
-        $header    .= "  <link rel=\"stylesheet\" href=\"$packed_css\" />" . PHP_EOL;
+    if ($options['general']['concat_assets'] == true) {
+        $header    .= "  <link rel=\"stylesheet\" href=\"assets/css/listr.pack.css\" />" . PHP_EOL;
     } else {
 
-        if ($options['general']['dependencies'] == 'cdn') {
-            $bootstrap_css   = $theme;
-            $fontawesome_css = $options['assets']['font_awesome'];
-        } else {
-            $bootstrap_css   = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/bootstrap.min.css";
-            $fontawesome_css = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/font-awesome.min.css";
+        // Font Awesome CSS
+        if ( (($options['bootstrap']['icons'] == 'fontawesome') || ($options['bootstrap']['icons'] == 'fa-files')) ) {
+            $header .= "  <link rel=\"stylesheet\" href=\"" . $options['assets']['font_awesome'] . "\" />" . PHP_EOL;
         }
 
-        if ( (($options['bootstrap']['icons'] == 'fontawesome') || ($options['bootstrap']['icons'] == 'fa-files')) && ($fontawesome_css) ) {
-            $header .= "  <link rel=\"stylesheet\" href=\"$fontawesome_css\" />" . PHP_EOL;
-        }
-
+        // Bootstrap CSS
         $header .= "  <link rel=\"stylesheet\" href=\"$bootstrap_css\" />" . PHP_EOL;
 
-        if ($options['general']['enable_viewer']) {    
-
-            if ($options['general']['enable_highlight'] == true) {
-                if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
-                    $header .= "  <link rel=\"stylesheet\" href=\"".$options['assets']['highlight_css']."\" />" . PHP_EOL;
-                } else if ($options['general']['dependencies'] == 'local') {
-                    $header .= "  <link rel=\"stylesheet\" href=\"$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/highlight.min.css\" />" . PHP_EOL;
-                }
-            }
+        // Highlight.js CSS
+        if ( ($options['general']['enable_viewer']) && ($options['general']['enable_highlight'] == true) ) {
+            $header .= "  <link rel=\"stylesheet\" href=\"" . $options['assets']['highlight_css'] . "\" />" . PHP_EOL;
         }
 
-        $header .= "  <link rel=\"stylesheet\" href=\"$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/listr.min.css\" />" . PHP_EOL;
+        // Listr CSS
+        $header .= "  <link rel=\"stylesheet\" href=\"assets/css/listr.min.css\" />" . PHP_EOL;
     }
 
+    // Append CSS
     foreach($options['assets']['append_css'] as $append_css) {
         if ($append_css != null) {
             $header .= "  <link rel=\"stylesheet\" href=\"$append_css\" />" . PHP_EOL;
@@ -108,76 +97,58 @@ function set_header($theme, $protocol = "//") {
 }
 
 // Set HTML footer
-function set_footer($protocol){
+function set_footer(){
 
     $footer = null;
     global $options;
 
-    if ($options['general']['dependencies'] == 'cdn') {
-        $jquery_js    = $options['assets']['jquery'];
-        $bootstrap_js = $options['assets']['bootstrap_js'];
-    } else {
-        $jquery_js    = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/jquery.min.js";
-        $bootstrap_js = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/bootstrap.min.js";
-    }
-
+    // jQuery
     if ( ($options['general']['enable_sort']) || ($options['general']['enable_viewer']) ) {
-        $footer .= "  <script type=\"text/javascript\" src=\"$jquery_js\"></script>" . PHP_EOL;
+        $footer .= "  <script type=\"text/javascript\" src=\"" . $options['assets']['jquery'] . "\"></script>" . PHP_EOL;
     }
 
+    // Dropbox Dropins
     if( ($options['general']['enable_viewer']) && ($options['general']['share_button']) && ($options['keys']['dropbox'] !== null ) ){
-        $footer .= "  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"".$options['keys']['dropbox']."\"></script>" . PHP_EOL;
+        $footer .= "  <script type=\"text/javascript\" src=\"//www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"" . $options['keys']['dropbox'] . "\"></script>" . PHP_EOL;
     }
 
-    if ($options['general']['dependencies'] == 'pack') {
-        $packed_js  = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.pack.js";
-        $footer    .= "  <script type=\"text/javascript\" src=\"$packed_js\"></script>" . PHP_EOL;
+    if ($options['general']['concat_assets'] == true) {
+        $footer    .= "  <script type=\"text/javascript\" src=\"assets/js/listr.pack.js\"></script>" . PHP_EOL;
     } else {
 
-        if($options['general']['enable_sort'] == true) {
-             if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['stupid_table']) ) {
-                $footer .= "  <script type=\"text/javascript\" src=\"".$options['assets']['stupid_table']."\"></script>" . PHP_EOL;
-            } else {
-                $footer .= "  <script type=\"text/javascript\" src=\"$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/stupidtable.min.js\"></script>" . PHP_EOL;
-            }
+        // Stupid Table
+        if ( ($options['general']['enable_sort'] == true) && ($options['assets']['stupid_table']) ) {
+           $footer .= "  <script type=\"text/javascript\" src=\"" . $options['assets']['stupid_table'] . "\"></script>" . PHP_EOL;
         }
 
-        if ($options['general']['enable_search'] == true) {
-            if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['stupid_table']) ) {
-                $footer .= "  <script type=\"text/javascript\" src=\"".$options['assets']['searcher']."\"></script>" . PHP_EOL;
-            } else {
-                $footer .= "  <script type=\"text/javascript\" src=\"$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/jquery.searcher.min.js\"></script>" . PHP_EOL;
-            }
+        // jQuery Searcher
+        if ( ($options['general']['enable_search'] == true) && ($options['assets']['searcher']) ) {
+            $footer .= "  <script type=\"text/javascript\" src=\"" . $options['assets']['searcher'] . "\"></script>" . PHP_EOL;
         }
 
+        // Modal Viewer
         if ($options['general']['enable_viewer']) {
-            $footer .= "  <script type=\"text/javascript\" src=\"$bootstrap_js\"></script>" . PHP_EOL;
+            $footer .= "  <script type=\"text/javascript\" src=\"" . $options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
 
-            if($options['general']['enable_highlight'] == true) {
-                 if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
-                    $footer .= "  <script type=\"text/javascript\" src=\"".$options['assets']['highlight_js']."\"></script>" . PHP_EOL;
-                } else {
-                    $footer .= "  <script type=\"text/javascript\" src=\"$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/highlight.min.js\"></script>" . PHP_EOL;
-                }
+            // Highlighter.js
+            if ( ($options['general']['enable_highlight'] == true) && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
+                $footer .= "  <script type=\"text/javascript\" src=\"" . $options['assets']['highlight_js'] . "\"></script>" . PHP_EOL;
             }
         }
         
-        $footer .= "  <script type=\"text/javascript\" src=\"$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.min.js\"></script>" . PHP_EOL;
+        $footer .= "  <script type=\"text/javascript\" src=\"assets/js/listr.min.js\"></script>" . PHP_EOL;
     }
 
+    // Append JS
     foreach($options['assets']['append_js'] as $append_js) {
         if ($append_js != null) {
             $footer .= "  <script type=\"text/javascript\" src=\"$append_js\"></script>" . PHP_EOL;
         }
     }
 
+    // Bootlint
     if ($options['debug']['bootlint'] == true) {
-        if ( ($options['general']['dependencies'] == 'cdn') && ($options['assets']['bootlint']) ){
-            $bootlint = $options['assets']['bootlint'];
-        } else {
-            $bootlint = "$protocol".$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/bootlint.js";
-        }
-        $footer .= "  <script type=\"text/javascript\" src=\"$bootlint\"></script>" . PHP_EOL;
+        $footer .= "  <script type=\"text/javascript\" src=\"" . $options['assets']['bootlint'] . "\"></script>" . PHP_EOL;
     }
 
     return $footer;

@@ -346,20 +346,20 @@ gulp.task('depends', function() {
 
             gulp.src("dist/config.json")
             .pipe(jeditor({
-              'general': {
-                'dependencies': "local"
+              'assets': {
+                'jquery': "assets/js/jquery.min.js",
+                'bootstrap_css': "assets/js/bootstrap.min.css",
+                'bootstrap_js': "assets/js/bootstrap.min.js",
+                'font_awesome': "assets/css/font-awesome.min.css",
+                'stupid_table': "assets/js/stupidtable.min.js",
+                'searcher': "assets/js/jquery.searcher.min.js",
+                'highlight_js': "assets/js/highlight.min.js",
+                'highlight_css': "assets/css/highlight.min.css",
+                'bootlint': "assets/js/bootlint.min.js"
               }
             }))
             .pipe(gulp.dest("dist/"));
 
-        } else if( (res.dependencies === 'c')  || (res.dependencies === 'cdn') ) {
-            gulp.src("dist/config.json")
-            .pipe(jeditor({
-              'general': {
-                'dependencies': "cdn"
-              }
-            }))
-            .pipe(gulp.dest("dist/"));
         }
     }));
 });
@@ -640,7 +640,18 @@ gulp.task('merge', function(callback) {
               .src("dist/config.json")
               .pipe(jeditor({
                 'general': {
-                  'dependencies': "pack"
+                  'concat_assets': true
+                // },
+                // 'assets': {
+                //   'jquery': "assets/js/jquery.min.js",
+                //   'bootstrap_css': "assets/js/bootstrap.min.css",
+                //   'bootstrap_js': "assets/js/bootstrap.min.js",
+                //   'font_awesome': "assets/css/font-awesome.min.css",
+                //   'stupid_table': "assets/js/stupidtable.min.js",
+                //   'searcher': "assets/js/jquery.searcher.min.js",
+                //   'highlight_js': "assets/js/highlight.min.js",
+                //   'highlight_css': "assets/css/highlight.min.css",
+                //   'bootlint': "assets/hs/bootlint.min.js",
                 }
               }))
               .pipe(gulp.dest("dist/"));
