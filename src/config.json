@@ -1,7 +1,6 @@
 {
   "general": {
     "root_dir":         "./_public/",
-    "dependencies":     "cdn",
     "locale":           "en_US",
     "text_direction":   "ltr",
     "enable_sort":      true,
@@ -17,6 +16,7 @@
     "virtual_files":    false,
     "virtual_maxsize":  256,
     "custom_title":     null,
+    "concat_assets":    false,
     "read_chunks":      false,
     "give_kudos":       true
   },
@@ -30,7 +30,7 @@
     "font_awesome":    "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css",
     "google_font":     null,
     "stupid_table":    "https://cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
-    "searcher":        "https://cdnjs.cloudflare.com/ajax/libs/jquery-searcher/0.2.0/jquery.searcher.min.js",
+    "jquery_searcher": "https://cdnjs.cloudflare.com/ajax/libs/jquery-searcher/0.2.0/jquery.searcher.min.js",
     "highlight_js":    "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js",
     "highlight_css":   "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/%theme%.min.css",
     "bootlint":        "https://maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js",
@@ -43,11 +43,13 @@
   },
   "bootstrap": {
     "fluid_grid":        false,
+    "body_style":        null,
+    "container_style":   null,
     "table_style":       "table-hover",
     "breadcrumb_style":  null,
     "responsive_table":  true,
     "sticky_footer":     false,
-    "modal_size":        "modal-lg",
+    "modal_style":        "modal-lg",
     "button_primary":    "btn-primary",
     "button_default":    "btn-default",
     "button_highlight":  "btn-link",

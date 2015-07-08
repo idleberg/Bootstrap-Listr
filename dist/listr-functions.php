@@ -122,8 +122,8 @@ function set_footer(){
         }
 
         // jQuery Searcher
-        if ( ($options['general']['enable_search'] == true) && ($options['assets']['searcher']) ) {
-            $footer .= "  <script type=\"text/javascript\" src=\"" . $options['assets']['searcher'] . "\"></script>" . PHP_EOL;
+        if ( ($options['general']['enable_search'] == true) && ($options['assets']['jquery_searcher']) ) {
+            $footer .= "  <script type=\"text/javascript\" src=\"" . $options['assets']['jquery_searcher'] . "\"></script>" . PHP_EOL;
         }
 
         // Modal Viewer

@@ -178,10 +178,22 @@ if ($options['general']['text_direction'] == 'rtl') {
 $bootstrap_cdn = set_bootstrap_theme();
 
 // Set Bootstrap defaults
-if (isset($options['bootstrap']['modal_size'])) {
-    $modal_size = $options['bootstrap']['modal_size'];
+if (isset($options['bootstrap']['body_style'])) {
+    $body_style = ' class="' . $options['bootstrap']['body_style'] . '"';
 } else {
-    $modal_size = 'modal-lg';
+    $body_style = null;
+}
+
+if (isset($options['bootstrap']['container_style'])) {
+    $container_style = " ".$options['bootstrap']['container_style'];
+} else {
+    $container_style = null;
+}
+
+if (isset($options['bootstrap']['modal_style'])) {
+    $modal_style = $options['bootstrap']['modal_style'];
+} else {
+    $modal_style = 'modal-lg';
 }
 
 if (isset($options['bootstrap']['button_default'])) {

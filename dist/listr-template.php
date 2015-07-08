@@ -3,8 +3,8 @@
 <head>
 <?php echo $header?>
 </head>
-<body<?php echo $direction?>>
-  <div class="<?php echo $container ?>">
+<body<?php echo $body_style.$direction?>>
+  <div class="<?php echo $container.$container_style ?>">
 <?php echo $breadcrumbs?>
 <?php echo $search ?>
 <?php echo $responsive_open?>
@@ -31,7 +31,7 @@
 <?php echo $responsive_close?>
 <?php if ($options['general']['enable_viewer']) { ?>
     <div class="modal fade" id="viewer-modal" tabindex="-1" role="dialog" aria-labelledby="file-name" aria-hidden="true">
-      <div class="modal-dialog <?php echo $modal_size ?>">
+      <div class="modal-dialog <?php echo $modal_style ?>">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close pull-<?php echo $right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
