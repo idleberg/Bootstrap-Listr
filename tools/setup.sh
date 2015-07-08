@@ -13,7 +13,18 @@ function npm_error(){
 echo $'\n'cracklistr $VERSION
 echo ================
 
-if [[ -d 'node_modules/apache-server-configs/dist' && -d 'node_modules/bootstrap' && -d 'node_modules/bootswatch' && -d 'node_modules/font-awesome' && -d 'node_modules/_bower_components/highlightjs' && -d 'node_modules/jquery' && -d 'node_modules/jquery-searcher' && -d 'node_modules/_bower_components/m8tro-bootstrap' && -d 'node_modules/_bower_components/stupid-jquery-table-sort' ]]
+if [[
+    -d 'node_modules/apache-server-configs/dist' &&
+    -d 'node_modules/bootlint' &&
+    -d 'node_modules/bootstrap' &&
+    -d 'node_modules/bootswatch' &&
+    -d 'node_modules/font-awesome' &&
+    -d 'node_modules/highlightjs' &&
+    -d 'node_modules/jquery' &&
+    -d 'node_modules/jquery-searcher' &&
+    -d 'node_modules/jquery-stupid-table' &&
+    -d 'node_modules/m8tro-bootstrap'
+   ]]
 then
     echo "Node modules found"
 else
