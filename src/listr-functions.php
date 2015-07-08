@@ -65,7 +65,7 @@ function set_header($bootstrap_css) {
     } else {
 
         // Font Awesome CSS
-        if ( (($options['bootstrap']['icons'] == 'fontawesome') || ($options['bootstrap']['icons'] == 'fa-files')) ) {
+        if (  $options['bootstrap']['icons'] == 'fontawesome' || $options['bootstrap']['icons'] == 'fa' || $options['bootstrap']['icons'] == 'fa-files'  ) {
             $header .= "  <link rel=\"stylesheet\" href=\"" . $options['assets']['font_awesome'] . "\" />" . PHP_EOL;
         }
 
@@ -157,7 +157,7 @@ function set_footer(){
 function load_iconset($input = "glyphicon") {
 
     // Allow icon aliases
-    if ( ($input === 'font-awesome') || ($input === 'fontawesome') || ($input === 'fa') ) {
+    if ( $input === 'fontawesome' || $input === 'fa' ) {
         $input = "fa";
     } else if ( ($input === 'glyphicon') || ($input === 'glyph') ) {
         $input = "glyphicons";

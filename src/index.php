@@ -103,7 +103,7 @@ $total_size = 0;
 
 
 // Load icon set
-if ($options['bootstrap']['icons'] != null) {
+if ($options['bootstrap']['icons'] !== null) {
     try {
         $icons = load_iconset($options['bootstrap']['icons']);
     } catch (Exception $e) {
@@ -131,6 +131,7 @@ switch ($options['bootstrap']['icons']) {
         $icons['folder'] = 'glyphicon '.$icons['folder'];
         break;
     case "fontawesome":
+    case "fa":
     case "fa-files":
         $icons['prefix'] = "fa";
         $icons['home']   = "<i class=\"fa ".$icons['home']." fa-lg fa-fw\"></i> ";
@@ -467,7 +468,7 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
-            if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files" ) {
+            if ($options['bootstrap']['icons'] !== null ) {
                 $table_body .= "<".$icons['tag']." class=\"".$icons['folder']."\"></".$icons['tag'].">&nbsp;";
             }
 
@@ -591,7 +592,7 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
-            if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files") {
+            if ($options['bootstrap']['icons'] !== null ) {
                 $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\"></".$icons['tag'].">&nbsp;";
             }
             if ($options['general']['hide_extension']) {
@@ -677,7 +678,7 @@ if(($folder_list) || ($file_list) ) {
         $colspan = $table_count + 1;
         $table_body .= "          <tr>" . PHP_EOL;
         $table_body .= "            <td colspan=\"$colspan\" style=\"font-style:italic\">";
-        if ($options['bootstrap']['icons'] == "glyphicons" || $options['bootstrap']['icons'] == "fontawesome" || $options['bootstrap']['icons'] == "fa-files" ) {
+        if ($options['bootstrap']['icons']  !== null ) {
             $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\">&nbsp;</".$icons['tag'].">";
         } 
         $table_body .= _("empty folder")."</td>" . PHP_EOL;
