@@ -344,18 +344,21 @@ gulp.task('depends', function() {
       ]
     }, function(res){
         
-        if( (res.dependencies === 'l') || (res.dependencies === 'local') ) {
+        if (res.dependencies === 'local') {
 
           var assets = {
+            'general': {
+                'local_assets': true
+            },
             'assets': {
                 'jquery_js': "assets/js/jquery.min.js",
                 'jquery_map': "assets/js/jquery.min.map",
+                'jquery_searcher': "assets/js/jquery.searcher.min.js",
                 'bootstrap_css': "assets/js/bootstrap.min.css",
                 'bootstrap_js': "assets/js/bootstrap.min.js",
                 'bootswatch_css': null,
                 'font_awesome': "assets/css/font-awesome.min.css",
                 'stupid_table': "assets/js/stupidtable.min.js",
-                'searcher': "assets/js/jquery.searcher.min.js",
                 'highlight_js': "assets/js/highlight.min.js",
                 'highlight_css': "assets/css/highlight.min.css",
                 'bootlint': "assets/js/bootlint.min.js"
@@ -365,15 +368,18 @@ gulp.task('depends', function() {
         } else {
 
               var assets =  {
+                'general': {
+                    'local_assets': false
+                },
                 'assets': {
                   'jquery_js': config.assets.jquery_js,
                   'jquery_map': config.assets.jquery_map,
+                  'jquery_searcher': config.assets.jquery_searcher,
                   'bootstrap_css': config.assets.bootstrap_css,
                   'bootstrap_js': config.assets.bootstrap_js,
                   'bootswatch_css': config.assets.bootswatch_css.replace('%theme%', config.bootstrap.theme),
                   'font_awesome': config.assets.font_awesome,
                   'stupid_table': config.assets.stupid_table,
-                  'searcher': config.assets.searcher,
                   'highlight_js': config.assets.highlight_js,
                   'highlight_css': config.assets.highlight_css.replace('%theme%', config.highlight.theme),
                   'bootlint': config.assets.bootlint
@@ -532,32 +538,6 @@ gulp.task('swatch', function(){
             }))
             .pipe(gulp.dest("dist/"));
 
-          // Set Material theme (http://fezvrasta.github.io/bootstrap-v-design/)
-          // } else if (res.theme === 'Material') {
-
-          //   slug = res.theme.toLowerCase();
-          //   console.log('Compiling Bootstrap theme “Material”');
-
-          //   bootstrap_less.push('node_modules/bootstrap-material-design/less/variables.less');
-          //   bootstrap_less.push('node_modules/bootstrap-material-design/less/theme.less');
-
-          //   gulp.src(bootstrap_less)
-          //   .pipe(concat('bootstrap.less'))
-          //   .pipe(less({
-          //     paths: [ path.join(__dirname, 'less', 'includes') ]
-          //   }))
-          //   .pipe(concat('bootstrap.min.css'))
-          //   .pipe(cssmin())
-          //   .pipe(gulp.dest('dist/assets/css/'));
-            
-          //   gulp.src("dist/config.json")
-          //   .pipe(jeditor({
-          //     'bootstrap': {
-          //       'theme': 'material'
-          //     }
-          //   }))
-          //   .pipe(gulp.dest("dist/"));
-
           // Set Bootswatch theme
           } else {
               
@@ -580,9 +560,9 @@ gulp.task('swatch', function(){
               .pipe(jeditor({
                 'bootstrap': {
                   'theme': slug
-                },
-                'assets': {
-                  'bootswatch_css': config.assets.bootswatch_css.replace('%theme%', slug),
+                // },
+                // 'assets': {
+                //   'bootswatch_css': config.assets.bootswatch_css.replace('%theme%', slug),
                 }
               }))
               .pipe(gulp.dest("dist/"));
@@ -617,9 +597,9 @@ gulp.task('hjs', function(){
          .pipe(jeditor({
            'highlight': {
              'theme': res.theme
-           },
-           'assets': {
-              'highlight_css': config.assets.highlight_css.replace('%theme%', res.theme),
+           // },
+           // 'assets': {
+           //    'highlight_css': config.assets.highlight_css.replace('%theme%', res.theme),
            }
          }))
          .pipe(gulp.dest("dist/"));

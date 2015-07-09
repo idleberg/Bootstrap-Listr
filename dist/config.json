@@ -3,6 +3,8 @@
     "root_dir":         "./_public/",
     "locale":           "en_US",
     "text_direction":   "ltr",
+    "local_assets":     false,
+    "concat_assets":    false,
     "enable_sort":      true,
     "enable_viewer":    true,
     "enable_search":    true,
@@ -16,7 +18,6 @@
     "virtual_files":    false,
     "virtual_maxsize":  256,
     "custom_title":     null,
-    "concat_assets":    false,
     "read_chunks":      false,
     "give_kudos":       true
   },
