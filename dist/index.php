@@ -191,10 +191,10 @@ if (isset($options['bootstrap']['container_style'])) {
     $container_style = null;
 }
 
-if (isset($options['bootstrap']['modal_style'])) {
-    $modal_style = $options['bootstrap']['modal_style'];
+if (isset($options['bootstrap']['modal_size'])) {
+    $modal_size = $options['bootstrap']['modal_size'];
 } else {
-    $modal_style = 'modal-lg';
+    $modal_size = 'modal-lg';
 }
 
 if (isset($options['bootstrap']['button_default'])) {

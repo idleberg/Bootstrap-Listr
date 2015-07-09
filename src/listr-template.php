@@ -31,7 +31,7 @@
 <?php echo $responsive_close?>
 <?php if ($options['general']['enable_viewer']) { ?>
     <div class="modal fade" id="viewer-modal" tabindex="-1" role="dialog" aria-labelledby="file-name" aria-hidden="true">
-      <div class="modal-dialog <?php echo $modal_style ?>">
+      <div class="modal-dialog <?php echo $modal_size ?>">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close pull-<?php echo $right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
