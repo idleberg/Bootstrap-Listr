@@ -219,15 +219,17 @@ gulp.task('select', function(callback){
           console.log('Including syntax highlighter assets…');
  
           gulp
-            .src('node_modules/highlight.js/highlight.pack.js')
+            // .src('node_modules/highlight.js/build/highlight.pack.js')
+            .src('node_modules/highlightjs/highlight.pack.js')
             .pipe(concat('highlight.min.js'))
+            .pipe(uglify())
             .pipe(gulp.dest('dist/assets/js/'));
 
           enable_highlight = true;
 
           gulp
             .src([
-              'node_modules/highlight.js/src/styles/github.css'
+              'node_modules/highlightjs/styles/github.css'
             ])
             .pipe(concat('highlight.min.css'))
             .pipe(cssmin())
@@ -354,9 +356,9 @@ gulp.task('depends', function() {
                 'jquery_js': "assets/js/jquery.min.js",
                 'jquery_map': "assets/js/jquery.min.map",
                 'jquery_searcher': "assets/js/jquery.searcher.min.js",
-                'bootstrap_css': "assets/js/bootstrap.min.css",
+                'bootstrap_css': "assets/css/bootstrap.min.css",
                 'bootstrap_js': "assets/js/bootstrap.min.js",
-                'bootswatch_css': null,
+                'bootswatch_css': "assets/css/bootstrap.min.css",
                 'font_awesome': "assets/css/font-awesome.min.css",
                 'stupid_table': "assets/js/stupidtable.min.js",
                 'highlight_js': "assets/js/highlight.min.js",
@@ -584,7 +586,7 @@ gulp.task('hjs', function(){
        choices: hjs,
      }, function(res){
 
-        var source_dir = 'node_modules/highlight.js/src/styles/';
+        var source_dir = 'node_modules/highlightjs/styles/';
 
          // Set default theme
          console.log('Minifying highlight.js theme “'+res.theme+'”…');
