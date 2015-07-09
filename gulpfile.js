@@ -944,29 +944,29 @@ gulp.task('_css', function () {
 });
 
 
-// Build Highlight.js https://github.com/kilianc/rtail/blob/develop/gulpfile.js#L69
+// Build Highlight.js via https://github.com/kilianc/rtail/blob/develop/gulpfile.js#L69
 gulp.task('build_hjs', function (done) {
   var spawn = require('child_process').spawn;
   var opts = {
       cwd: __dirname + '/node_modules/highlight.js'
     }
 
-    var npmInstall = spawn('npm', ['install'], opts)
-    npmInstall.stdout.pipe(process.stdout)
-    npmInstall.stderr.pipe(process.stderr)
+  var npmInstall = spawn('npm', ['install'], opts)
+  npmInstall.stdout.pipe(process.stdout)
+  npmInstall.stderr.pipe(process.stderr)
 
-    npmInstall.on('close', function (code) {
-      if (0 !== code) throw new Error('npm install exited with ' + code)
+  npmInstall.on('close', function (code) {
+    if (0 !== code) throw new Error('npm install exited with ' + code)
 
-      var build = spawn('node', ['tools/build.js', '-n', 'applescript bash css haml js json less markdown php perl python ruby scss xml'], opts)
-      build.stdout.pipe(process.stdout)
-      build.stderr.pipe(process.stderr)
+    var build = spawn('node', ['tools/build.js', '-n', config.highlight.build], opts)
+    build.stdout.pipe(process.stdout)
+    build.stderr.pipe(process.stderr)
 
-      build.on('close', function (code) {
-        if (0 !== code) throw new Error('node tools/build.js exited with ' + code)
-        done()
-      })
+    build.on('close', function (code) {
+      if (0 !== code) throw new Error('node tools/build.js exited with ' + code)
+      done()
     })
+  })
 })
 
 // Help dialog
