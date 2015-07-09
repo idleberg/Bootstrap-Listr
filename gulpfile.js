@@ -10,6 +10,9 @@ var meta     = require('./package.json');
 // Read src/config.json
 var config = require('./src/config.json');
 
+// Highlighter.js Styles
+var hjs = [];
+
 
 // A handy repeat function
   var repeat = function (s, n, d) {
@@ -21,7 +24,7 @@ var config = require('./src/config.json');
 var console   = require('better-console'),
     cache     = require('gulp-cached'),
     concat    = require('gulp-concat'),
-    concatCss = require('gulp-concat-css')
+    concatCss = require('gulp-concat-css'),
     csslint   = require('gulp-csslint'),
     cssmin    = require('gulp-cssmin'),
     debug     = require('gulp-debug'),
@@ -47,7 +50,6 @@ var console   = require('better-console'),
                 .alias('min', 'minimum')
                 .alias('s',   'self')
                 .argv;
-
 
 /*
  * _|_ _  _|   _|_ _. _  _  _  _ _
@@ -345,10 +347,12 @@ gulp.task('depends', function() {
           }
       ]
     }, function(res){
+
+        var assets;
         
         if (res.dependencies === 'local') {
 
-          var assets = {
+          assets = {
             'general': {
                 'local_assets': true
             },
@@ -365,11 +369,11 @@ gulp.task('depends', function() {
                 'highlight_css': "assets/css/highlight.min.css",
                 'bootlint': "assets/js/bootlint.min.js"
               }
-            }
+            };
 
         } else {
 
-              var assets =  {
+              assets =  {
                 'general': {
                     'local_assets': false
                 },
@@ -386,7 +390,7 @@ gulp.task('depends', function() {
                   'highlight_css': config.assets.highlight_css.replace('%theme%', config.highlight.theme),
                   'bootlint': config.assets.bootlint
                 }
-              }
+              };
         }
 
         gulp.src("dist/config.json")
@@ -397,13 +401,32 @@ gulp.task('depends', function() {
     }));
 });
 
+function getDirectories(path) {
+  return fs.readdirSync(path).filter(function (file) {
+    return fs.statSync(path+'/'+file).isDirectory();
+  });
+}
+
 
 // Select Bootstrap theme
 gulp.task('swatch', function(){
 
-  var bootswatch     = ['(default)','Cerulean','Cosmo','Cyborg','Darkly','Flatly','Journal','Lumen','M8tro','Paper','Readable','Sandstone','Simplex','Slate','Spacelab','Superhero','United','Yeti'],
+  var bootswatch     = ['(default)', 'm8tro'],
       bootstrap_less = [],
       less_dir       = 'node_modules/bootstrap/less/';
+
+  // Exclude folders from Bootswatch package
+  bootswatch_filter = ['2', 'api', 'assets', 'bower_components', 'default', 'global', 'help', 'tests'];
+  
+  // Iterate over Bootstrap package
+  bootswatch_dir = getDirectories('node_modules/bootswatch');
+  bootswatch_dir.forEach(function(entry) {
+    // Exclude non-themes
+    if (bootswatch_filter.indexOf(entry) == -1 ) {
+      bootswatch.push(entry);
+    }
+  });
+  bootswatch.sort();
 
   bootstrap_less.push(less_dir+'variables.less');
 
@@ -514,9 +537,8 @@ gulp.task('swatch', function(){
               .pipe(gulp.dest("dist/"));
 
           // Set M8tro theme (http://idleberg.github.io/m8tro-bootstrap/)
-          } else if (res.theme === 'M8tro') {
+          } else if (res.theme === 'm8tro') {
 
-            slug = res.theme.toLowerCase();
             console.log('Compiling Bootstrap theme “M8tro”');
 
             bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro/palette.less');
@@ -535,7 +557,7 @@ gulp.task('swatch', function(){
             gulp.src("dist/config.json")
             .pipe(jeditor({
               'bootstrap': {
-                'theme': 'm8tro'
+                'theme': res.theme
               }
             }))
             .pipe(gulp.dest("dist/"));
@@ -543,11 +565,10 @@ gulp.task('swatch', function(){
           // Set Bootswatch theme
           } else {
               
-              slug = res.theme.toLowerCase();
               console.log('Compiling Bootswatch theme “'+res.theme+'”…');
 
-              bootstrap_less.push('node_modules/bootswatch/' + slug + '/variables.less');
-              bootstrap_less.push('node_modules/bootswatch/' + slug + '/bootswatch.less');
+              bootstrap_less.push('node_modules/bootswatch/' + res.theme + '/variables.less');
+              bootstrap_less.push('node_modules/bootswatch/' + res.theme + '/bootswatch.less');
 
               gulp.src(bootstrap_less)
               .pipe(concat('bootstrap.less'))
@@ -561,7 +582,7 @@ gulp.task('swatch', function(){
               gulp.src("dist/config.json")
               .pipe(jeditor({
                 'bootstrap': {
-                  'theme': slug
+                  'theme': res.theme
                 // },
                 // 'assets': {
                 //   'bootswatch_css': config.assets.bootswatch_css.replace('%theme%', slug),
@@ -572,11 +593,20 @@ gulp.task('swatch', function(){
     }));
 });
 
+function getBasename(file) {
+  if(file.substr(file.lastIndexOf('.')+1) == 'css') {
+    hjs.push( file.substring(0, file.lastIndexOf(".")) );
+  }
+}
 
 // Choose a highlight.js theme
 gulp.task('hjs', function(){
 
- var hjs = [ 'github', 'googlecode', 'hybrid', 'idea', 'ir_black', 'kimbie.dark', 'kimbie.light', 'magula', 'mono-blue', 'monokai_sublime', 'monokai', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn', 'arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'codepen-embed', 'color-brewer', 'dark', 'default', 'docco', 'far', 'foundation' ];
+  css = fs.readdirSync('./node_modules/highlight.js/src/styles/')
+  css.forEach(getBasename)
+
+  hjs.sort();
+  hjs.concat(hjs.splice(0,hjs.indexOf('github')));
 
   return gulp.src('./')
    .pipe(prompt.prompt({
@@ -948,26 +978,26 @@ gulp.task('_css', function () {
 gulp.task('build_hjs', function (done) {
   var spawn = require('child_process').spawn;
   var opts = {
-      cwd: __dirname + '/node_modules/highlight.js'
-    }
+    cwd: __dirname + '/node_modules/highlight.js'
+  };
 
-  var npmInstall = spawn('npm', ['install'], opts)
-  npmInstall.stdout.pipe(process.stdout)
-  npmInstall.stderr.pipe(process.stderr)
+  var npmInstall = spawn('npm', ['install'], opts);
+  npmInstall.stdout.pipe(process.stdout);
+  npmInstall.stderr.pipe(process.stderr);
 
   npmInstall.on('close', function (code) {
-    if (0 !== code) throw new Error('npm install exited with ' + code)
+    if (0 !== code) throw new Error('npm install exited with ' + code);
 
-    var build = spawn('node', ['tools/build.js', '-n', config.highlight.build], opts)
-    build.stdout.pipe(process.stdout)
-    build.stderr.pipe(process.stderr)
+    var build = spawn('node', ['tools/build.js', '-n', config.highlight.build], opts);
+    build.stdout.pipe(process.stdout);
+    build.stderr.pipe(process.stderr);
 
     build.on('close', function (code) {
-      if (0 !== code) throw new Error('node tools/build.js exited with ' + code)
-      done()
-    })
-  })
-})
+      if (0 !== code) throw new Error('node tools/build.js exited with ' + code);
+      done();
+    });
+  });
+});
 
 // Help dialog
 gulp.task('help', function() {
@@ -992,7 +1022,7 @@ gulp.task('help', function() {
   console.log('      swatch - Select default Bootstrap theme');
   console.log('        hjs - Specify default Highlighter.js style-sheet');
   console.log('     upgrade - Upgrade all PHP files in dist-folder');
-  console.log('nVisit our GitHub repository:');
+  console.log('\nVisit our GitHub repository:');
   console.log(meta.homepage);
 
 } );
