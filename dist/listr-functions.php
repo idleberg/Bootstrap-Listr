@@ -159,7 +159,7 @@ function load_iconset($input = "glyphicon") {
     // Allow icon aliases
     if ( $input === 'fontawesome' || $input === 'fa' ) {
         $input = "fa";
-    } else if ( ($input === 'glyphicon') || ($input === 'glyph') ) {
+    } else if ($input === 'glyphicon') {
         $input = "glyphicons";
     }
 
