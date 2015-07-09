@@ -1,8 +1,9 @@
-/*
- *   _  _. _ |_ | _  _
- *\/(_|| |(_||_)|(/__\
- *                                     
- */
+//                    _       __    __         
+//  _   ______ ______(_)___ _/ /_  / /__  _____
+// | | / / __ `/ ___/ / __ `/ __ \/ / _ \/ ___/
+// | |/ / /_/ / /  / / /_/ / /_/ / /  __(__  ) 
+// |___/\__,_/_/  /_/\__,_/_.___/_/\___/____/  
+                                            
 
 // Read package.json metadata
 var meta     = require('./package.json');
@@ -51,11 +52,12 @@ var console   = require('better-console'),
                 .alias('s',   'self')
                 .argv;
 
-/*
- * _|_ _  _|   _|_ _. _  _  _  _ _
- *  | (_|_\|<   | | |(_|(_|(/_| _\
- *                    _| _|       
- */
+//    __             __      __       _                           
+//   / /_____ ______/ /__   / /______(_)___ _____ ____  __________
+//  / __/ __ `/ ___/ //_/  / __/ ___/ / __ `/ __ `/ _ \/ ___/ ___/
+// / /_/ /_/ (__  ) ,<    / /_/ /  / / /_/ / /_/ /  __/ /  (__  ) 
+// \__/\__,_/____/_/|_|   \__/_/  /_/\__, /\__, /\___/_/  /____/  
+//                                  /____//____/                  
 
 // Task combos
 gulp.task('lint',      ['csslint', 'jshint', 'jsonlint', 'phplint']);
@@ -75,14 +77,14 @@ gulp.task('jsmin',      ['uglify']);
 gulp.task('minify',     ['make']);
 gulp.task('setupclean', ['setup-clean']);
 gulp.task('update',     ['upgrade']);
+  
 
-
-/*
- *  _ _ _|_   _   _|_ _  _|  _
- * _\(/_ ||_||_)   | (_|_\|<_\
- *           |              
- */
-
+//               __                 __             __       
+//    ________  / /___  ______     / /_____ ______/ /_______
+//   / ___/ _ \/ __/ / / / __ \   / __/ __ `/ ___/ //_/ ___/
+//  (__  )  __/ /_/ /_/ / /_/ /  / /_/ /_/ (__  ) ,< (__  ) 
+// /____/\___/\__/\__,_/ .___/   \__/\__,_/____/_/|_/____/  
+//                    /_/                                   
 
 // Default task
 gulp.task('default', false, function (callback) {
@@ -401,37 +403,24 @@ gulp.task('depends', function() {
     }));
 });
 
-function getDirectories(path) {
-  return fs.readdirSync(path).filter(function (file) {
-    return fs.statSync(path+'/'+file).isDirectory();
-  });
-}
-
-
 // Select Bootstrap theme
 gulp.task('swatch', function(){
 
-  var bootswatch     = ['(default)', 'm8tro'],
+  var themes     = ['(default)', 'M8tro'],
       bootstrap_less = [],
       less_dir       = 'node_modules/bootstrap/less/';
 
-  // Exclude folders from Bootswatch package
-  bootswatch_filter = ['2', 'api', 'assets', 'bower_components', 'default', 'global', 'help', 'tests'];
-  
-  // Iterate over Bootstrap package
-  bootswatch_dir = getDirectories('node_modules/bootswatch');
-  bootswatch_dir.forEach(function(entry) {
-    // Exclude non-themes
-    if (bootswatch_filter.indexOf(entry) == -1 ) {
-      bootswatch.push(entry);
-    }
+  // Get Bootswatch themes
+  var bootswatch = require('./node_modules/bootswatch/api/3.json');
+  bootswatch.themes.forEach(function(entry) {
+    themes.push(entry.name);
   });
-  bootswatch.sort();
+  
+  themes.sort();
 
   bootstrap_less.push(less_dir+'variables.less');
 
   // Mixins
-  // bootstrap_less.push(less_dir+'mixins/*.less');
   bootstrap_less.push(less_dir+'mixins/hide-text.less');
   bootstrap_less.push(less_dir+'mixins/opacity.less');
   bootstrap_less.push(less_dir+'mixins/image.less');
@@ -445,6 +434,7 @@ gulp.task('swatch', function(){
   bootstrap_less.push(less_dir+'mixins/text-emphasis.less');
   bootstrap_less.push(less_dir+'mixins/text-overflow.less');
   bootstrap_less.push(less_dir+'mixins/vendor-prefixes.less');
+
  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/alerts.less');
  bootstrap_less.push(less_dir+'mixins/buttons.less');
  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/panels.less');
@@ -506,7 +496,7 @@ gulp.task('swatch', function(){
         type: 'list',
         name: 'theme',
         message: 'Choose a Bootstrap theme',
-        choices: bootswatch,
+        choices: themes,
       }, function(res){
 
           // Copy glyphicons
@@ -539,6 +529,8 @@ gulp.task('swatch', function(){
           // Set M8tro theme (http://idleberg.github.io/m8tro-bootstrap/)
           } else if (res.theme === 'm8tro') {
 
+            slug = res.theme.toLowerCase();
+
             console.log('Compiling Bootstrap theme “M8tro”');
 
             bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro/palette.less');
@@ -557,38 +549,37 @@ gulp.task('swatch', function(){
             gulp.src("dist/config.json")
             .pipe(jeditor({
               'bootstrap': {
-                'theme': res.theme
+                'theme': slug
               }
             }))
             .pipe(gulp.dest("dist/"));
 
           // Set Bootswatch theme
           } else {
-              
-              console.log('Compiling Bootswatch theme “'+res.theme+'”…');
 
-              bootstrap_less.push('node_modules/bootswatch/' + res.theme + '/variables.less');
-              bootstrap_less.push('node_modules/bootswatch/' + res.theme + '/bootswatch.less');
+            slug = res.theme.toLowerCase();
+            
+            console.log('Compiling Bootswatch theme “'+res.theme+'”…');
 
-              gulp.src(bootstrap_less)
-              .pipe(concat('bootstrap.less'))
-              .pipe(less({
-                paths: [ path.join(__dirname, 'less', 'includes') ]
-              }))
-              .pipe(concat('bootstrap.min.css'))
-              .pipe(cssmin())
-              .pipe(gulp.dest('dist/assets/css/'));
+            bootstrap_less.push('node_modules/bootswatch/' + slug + '/variables.less');
+            bootstrap_less.push('node_modules/bootswatch/' + slug + '/bootswatch.less');
 
-              gulp.src("dist/config.json")
-              .pipe(jeditor({
-                'bootstrap': {
-                  'theme': res.theme
-                // },
-                // 'assets': {
-                //   'bootswatch_css': config.assets.bootswatch_css.replace('%theme%', slug),
-                }
-              }))
-              .pipe(gulp.dest("dist/"));
+            gulp.src(bootstrap_less)
+            .pipe(concat('bootstrap.less'))
+            .pipe(less({
+              paths: [ path.join(__dirname, 'less', 'includes') ]
+            }))
+            .pipe(concat('bootstrap.min.css'))
+            .pipe(cssmin())
+            .pipe(gulp.dest('dist/assets/css/'));
+
+            gulp.src("dist/config.json")
+            .pipe(jeditor({
+              'bootstrap': {
+                'theme': slug
+              }
+            }))
+            .pipe(gulp.dest("dist/"));
           }
     }));
 });
@@ -602,8 +593,8 @@ function getBasename(file) {
 // Choose a highlight.js theme
 gulp.task('hjs', function(){
 
-  css = fs.readdirSync('./node_modules/highlight.js/src/styles/')
-  css.forEach(getBasename)
+  css = fs.readdirSync('./node_modules/highlight.js/src/styles/');
+  css.forEach(getBasename);
 
   hjs.sort();
   hjs.concat(hjs.splice(0,hjs.indexOf('github')));
@@ -750,11 +741,12 @@ gulp.task('post-merge', function() {
 });
 
 
-/*
- * |_  _ | _  _  _  _|_ _  _|  _
- * | |(/_||_)(/_|    | (_|_\|<_\
- *        |                     
- */
+//     __         __                   __             __       
+//    / /_  ___  / /___  ___  _____   / /_____ ______/ /_______
+//   / __ \/ _ \/ / __ \/ _ \/ ___/  / __/ __ `/ ___/ //_/ ___/
+//  / / / /  __/ / /_/ /  __/ /     / /_/ /_/ (__  ) ,< (__  ) 
+// /_/ /_/\___/_/ .___/\___/_/      \__/\__,_/____/_/|_/____/  
+//             /_/                                             
 
 // Clean dist folder
 gulp.task('clean', function () {
@@ -974,7 +966,7 @@ gulp.task('_css', function () {
 });
 
 
-// Build Highlight.js via https://github.com/kilianc/rtail/blob/develop/gulpfile.js#L69
+// Build Highlight.js (via https://github.com/kilianc/rtail/blob/develop/gulpfile.js#L69)
 gulp.task('build_hjs', function (done) {
   var spawn = require('child_process').spawn;
   var opts = {
