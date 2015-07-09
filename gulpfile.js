@@ -219,7 +219,7 @@ gulp.task('select', function(callback){
           console.log('Including syntax highlighter assets…');
  
           gulp
-            .src('node_modules/highlightjs/highlight.pack.js')
+            .src('node_modules/highlight.js/highlight.pack.js')
             .pipe(concat('highlight.min.js'))
             .pipe(gulp.dest('dist/assets/js/'));
 
@@ -227,13 +227,13 @@ gulp.task('select', function(callback){
 
           gulp
             .src([
-              'node_modules/highlightjs/styles/github.css'
+              'node_modules/highlight.js/src/styles/github.css'
             ])
             .pipe(concat('highlight.min.css'))
             .pipe(cssmin())
             .pipe(gulp.dest('dist/assets/css/'));
 
-            gulp.start('hljs');
+            gulp.start('hjs');
         }
 
         // Set default icons to Font Awesome
@@ -592,19 +592,19 @@ gulp.task('swatch', function(){
 
 
 // Choose a highlight.js theme
-gulp.task('hljs', function(){
+gulp.task('hjs', function(){
 
- var hljs = [ 'github', 'googlecode', 'hybrid', 'idea', 'ir_black', 'kimbie.dark', 'kimbie.light', 'magula', 'mono-blue', 'monokai_sublime', 'monokai', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn', 'arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'codepen-embed', 'color-brewer', 'dark', 'default', 'docco', 'far', 'foundation' ];
+ var hjs = [ 'github', 'googlecode', 'hybrid', 'idea', 'ir_black', 'kimbie.dark', 'kimbie.light', 'magula', 'mono-blue', 'monokai_sublime', 'monokai', 'obsidian', 'paraiso.dark', 'paraiso.light', 'pojoaque', 'railscasts', 'rainbow', 'school_book', 'solarized_dark', 'solarized_light', 'sunburst', 'tomorrow-night-blue', 'tomorrow-night-bright', 'tomorrow-night-eighties', 'tomorrow-night', 'tomorrow', 'vs', 'xcode', 'zenburn', 'arta', 'ascetic', 'atelier-dune.dark', 'atelier-dune.light', 'atelier-forest.dark', 'atelier-forest.light', 'atelier-heath.dark', 'atelier-heath.light', 'atelier-lakeside.dark', 'atelier-lakeside.light', 'atelier-seaside.dark', 'atelier-seaside.light', 'brown_paper', 'codepen-embed', 'color-brewer', 'dark', 'default', 'docco', 'far', 'foundation' ];
 
   return gulp.src('./')
    .pipe(prompt.prompt({
        type: 'list',
        name: 'theme',
        message: 'Choose a highlight.js theme',
-       choices: hljs,
+       choices: hjs,
      }, function(res){
 
-        var source_dir = 'node_modules/highlightjs/styles/';
+        var source_dir = 'node_modules/highlight.js/src/styles/';
 
          // Set default theme
          console.log('Minifying highlight.js theme “'+res.theme+'”…');
@@ -627,15 +627,15 @@ gulp.task('hljs', function(){
          // Special cases
          if (res.theme == 'brown_paper') {
             console.log ('Copying extra-file brown_papersq.png');
-            gulp.src('node_modules/highlightjs/styles/brown_papersq.png')
+            gulp.src(source_dir+'brown_papersq.png')
             .pipe(gulp.dest('dist/assets/css/'));
          } else if (res.theme == 'pojoaque') {
             console.log ('Copying extra-file pojoaque.jpg');
-            gulp.src('node_modules/highlightjs/styles/pojoaque.jpg')
+            gulp.src(source_dir+'pojoaque.jpg')
             .pipe(gulp.dest('dist/assets/css/'));
          } else if (res.theme == 'school_book') {
             console.log ('Copying extra-file school_book.png');
-            gulp.src('node_modules/highlightjs/styles/school_book.png')
+            gulp.src(source_dir+'school_book.png')
             .pipe(gulp.dest('dist/assets/css/'));
          }
    }));
@@ -754,7 +754,7 @@ gulp.task('clean', function () {
 
 
 // Create file structure in dist/, copy all PHP & .htaccess
-gulp.task('init', ['clean'], function() {
+gulp.task('init', ['clean', 'build_hjs'], function() {
 
   gulp.src([
     './src/index.php',
@@ -962,6 +962,31 @@ gulp.task('_css', function () {
 });
 
 
+// Build Highlight.js https://github.com/kilianc/rtail/blob/develop/gulpfile.js#L69
+gulp.task('build_hjs', function (done) {
+  var spawn = require('child_process').spawn;
+  var opts = {
+      cwd: __dirname + '/node_modules/highlight.js'
+    }
+
+    var npmInstall = spawn('npm', ['install'], opts)
+    npmInstall.stdout.pipe(process.stdout)
+    npmInstall.stderr.pipe(process.stderr)
+
+    npmInstall.on('close', function (code) {
+      if (0 !== code) throw new Error('npm install exited with ' + code)
+
+      var build = spawn('node', ['tools/build.js', '-n', 'json'], opts)
+      build.stdout.pipe(process.stdout)
+      build.stderr.pipe(process.stderr)
+
+      build.on('close', function (code) {
+        if (0 !== code) throw new Error('node tools/build.js exited with ' + code)
+        done()
+      })
+    })
+})
+
 // Help dialog
 gulp.task('help', function() {
 
@@ -983,7 +1008,7 @@ gulp.task('help', function() {
   console.log('       setup - Run a full setup');
   console.log(' setup-clean - Force running a clean setup');
   console.log('      swatch - Select default Bootstrap theme');
-  console.log('        hljs - Specify default Highlighter.js style-sheet');
+  console.log('        hjs - Specify default Highlighter.js style-sheet');
   console.log('     upgrade - Upgrade all PHP files in dist-folder');
   console.log('nVisit our GitHub repository:');
   console.log(meta.homepage);
