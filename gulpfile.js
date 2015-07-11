@@ -31,6 +31,7 @@ var console   = require('better-console'),
     debug     = require('gulp-debug'),
     del       = require('del'),
     fs        = require('fs'),
+    // gettext   = require('gulp-gettext'),
     gulp      = require('gulp'),
     insert    = require('gulp-insert'),
     jeditor   = require('gulp-json-editor'),
@@ -87,7 +88,7 @@ gulp.task('update',     ['upgrade']);
 //                    /_/                                   
 
 // Default task
-gulp.task('default', false, function (callback) {
+gulp.task('default', ['build_hjs'], function (callback) {
   setTimeout(function() {
 
     console.clear();
@@ -758,7 +759,7 @@ gulp.task('clean', function () {
 
 
 // Create file structure in dist/, copy all PHP & .htaccess
-gulp.task('init', ['clean', 'build_hjs'], function() {
+gulp.task('init', function() {
 
   gulp.src([
     './src/index.php',
@@ -772,6 +773,10 @@ gulp.task('init', ['clean', 'build_hjs'], function() {
       './src/l10n/**/*'
   ])
   .pipe(gulp.dest('dist/l10n/'));
+  // gulp.src('./src/l10n/**/*.po')
+  // .pipe(gettext())
+  // .pipe(gulp.dest('dist'))
+  // ;
 
   gulp.src([
       './src/themes/*'
