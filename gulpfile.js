@@ -221,8 +221,8 @@ gulp.task('select', function(callback){
           console.log('Including syntax highlighter assets…');
  
           gulp
-            .src('node_modules/highlight.js/build/highlight.pack.js')
-            // .src('node_modules/highlightjs/highlight.pack.js')
+            // .src('node_modules/highlight.js/build/highlight.pack.js')
+            .src('node_modules/highlightjs/highlight.pack.js')
             .pipe(concat('highlight.min.js'))
             .pipe(uglify())
             .pipe(gulp.dest('dist/assets/js/'));
@@ -231,7 +231,8 @@ gulp.task('select', function(callback){
 
           gulp
             .src([
-              'node_modules/highlight.js/src/styles/github.css'
+              // 'node_modules/highlight.js/src/styles/github.css'
+              'node_modules/highlightjs/styles/github.css'
             ])
             .pipe(concat('highlight.min.css'))
             .pipe(cssmin())
@@ -597,7 +598,8 @@ function getBasename(file) {
 // Choose a highlight.js theme
 gulp.task('hjs', function(){
 
-  css = fs.readdirSync('./node_modules/highlight.js/src/styles/');
+  // css = fs.readdirSync('./node_modules/highlight.js/src/styles/');
+  css = fs.readdirSync('./node_modules/highlightjs/styles/');
   css.forEach(getBasename);
 
   hjs.sort();
@@ -611,7 +613,8 @@ gulp.task('hjs', function(){
        choices: hjs,
      }, function(res){
 
-        var source_dir = 'node_modules/highlightjs/src/styles/';
+        // var source_dir = 'node_modules/highlight.js/src/styles/';
+        var source_dir = 'node_modules/highlightjs/styles/';
 
          // Set default theme
          console.log('Minifying highlight.js theme “'+res.theme+'”…');
