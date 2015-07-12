@@ -8,9 +8,6 @@
 // Read package.json metadata
 var meta     = require('./package.json');
 
-// Read src/config.json
-var config = require('./src/config.json');
-
 // Highlighter.js Styles
 var hjs = [];
 
@@ -350,8 +347,9 @@ gulp.task('depends', function() {
           }
       ]
     }, function(res){
-
+        
         var assets;
+
         
         if (res.dependencies === 'local') {
 
@@ -367,6 +365,7 @@ gulp.task('depends', function() {
                 'bootstrap_js': "assets/js/bootstrap.min.js",
                 'bootswatch_css': "assets/css/bootstrap.min.css",
                 'font_awesome': "assets/css/font-awesome.min.css",
+                'm8tro_css': "assets/css/bootstrap.min.css",
                 'stupid_table': "assets/js/stupidtable.min.js",
                 'highlight_js': "assets/js/highlight.min.js",
                 'highlight_css': "assets/css/highlight.min.css",
@@ -375,6 +374,9 @@ gulp.task('depends', function() {
             };
 
         } else {
+
+              // Read src/config.json
+              var config = require('./src/config.json');
 
               assets =  {
                 'general': {
@@ -386,11 +388,12 @@ gulp.task('depends', function() {
                   'jquery_searcher': config.assets.jquery_searcher,
                   'bootstrap_css': config.assets.bootstrap_css,
                   'bootstrap_js': config.assets.bootstrap_js,
-                  'bootswatch_css': config.assets.bootswatch_css.replace('%theme%', config.bootstrap.theme),
+                  'bootswatch_css': config.assets.bootswatch_css, //.replace('%theme%', config.bootstrap.theme),
                   'font_awesome': config.assets.font_awesome,
+                  'm8tro_css': config.assets.m8tro_css,
                   'stupid_table': config.assets.stupid_table,
                   'highlight_js': config.assets.highlight_js,
-                  'highlight_css': config.assets.highlight_css.replace('%theme%', config.highlight.theme),
+                  'highlight_css': config.assets.highlight_css, //.replace('%theme%', config.highlight.theme),
                   'bootlint': config.assets.bootlint
                 }
               };
@@ -436,23 +439,23 @@ gulp.task('swatch', function(){
   bootstrap_less.push(less_dir+'mixins/text-overflow.less');
   bootstrap_less.push(less_dir+'mixins/vendor-prefixes.less');
 
- if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/alerts.less');
- bootstrap_less.push(less_dir+'mixins/buttons.less');
- if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/panels.less');
- if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/pagination.less');
- if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/list-group.less');
- bootstrap_less.push(less_dir+'mixins/nav-divider.less');
- bootstrap_less.push(less_dir+'mixins/forms.less');
- if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/progress-bar.less');
- bootstrap_less.push(less_dir+'mixins/table-row.less');
- bootstrap_less.push(less_dir+'mixins/background-variant.less');
- bootstrap_less.push(less_dir+'mixins/border-radius.less');
- bootstrap_less.push(less_dir+'mixins/gradients.less');
- bootstrap_less.push(less_dir+'mixins/clearfix.less');
- bootstrap_less.push(less_dir+'mixins/center-block.less');
- if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/nav-vertical-align.less');
- bootstrap_less.push(less_dir+'mixins/grid-framework.less');
- bootstrap_less.push(less_dir+'mixins/grid.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/alerts.less');
+  bootstrap_less.push(less_dir+'mixins/buttons.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/panels.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/pagination.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/list-group.less');
+  bootstrap_less.push(less_dir+'mixins/nav-divider.less');
+  bootstrap_less.push(less_dir+'mixins/forms.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/progress-bar.less');
+  bootstrap_less.push(less_dir+'mixins/table-row.less');
+  bootstrap_less.push(less_dir+'mixins/background-variant.less');
+  bootstrap_less.push(less_dir+'mixins/border-radius.less');
+  bootstrap_less.push(less_dir+'mixins/gradients.less');
+  bootstrap_less.push(less_dir+'mixins/clearfix.less');
+  bootstrap_less.push(less_dir+'mixins/center-block.less');
+  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/nav-vertical-align.less');
+  bootstrap_less.push(less_dir+'mixins/grid-framework.less');
+  bootstrap_less.push(less_dir+'mixins/grid.less');
 
   bootstrap_less.push(less_dir+'normalize.less');
   if (argv.bootstrap) bootstrap_less.push(less_dir+'print.less');
@@ -535,8 +538,8 @@ gulp.task('swatch', function(){
             console.log('Compiling Bootstrap theme “M8tro”');
 
             bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro/palette.less');
-            bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro-variables.less');
-            bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro-theme.less');
+            bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro/variables.less');
+            bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro/theme.less');
 
             gulp.src(bootstrap_less)
             .pipe(concat('bootstrap.less'))
@@ -973,6 +976,8 @@ gulp.task('_css', function () {
 
 // Build Highlight.js (via https://github.com/kilianc/rtail/blob/develop/gulpfile.js#L69)
 gulp.task('build_hjs', function (done) {
+
+  var config = require('./src/config.json');
   var spawn = require('child_process').spawn;
   var opts = {
     cwd: __dirname + '/node_modules/highlight.js'
