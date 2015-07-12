@@ -125,12 +125,12 @@ function set_footer(){
     } else {
 
         // Stupid Table
-        if ( ($options['general']['enable_sort'] == true) && ($options['assets']['stupid_table']) ) {
+        if ( ($options['general']['enable_sort'] === true) && ($options['assets']['stupid_table']) ) {
            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['stupid_table'] . "\"></script>" . PHP_EOL;
         }
 
         // jQuery Searcher
-        if ( ($options['general']['enable_search'] == true) && ($options['assets']['jquery_searcher']) ) {
+        if ( ($options['general']['enable_search'] === true) && ($options['assets']['jquery_searcher']) ) {
             $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['jquery_searcher'] . "\"></script>" . PHP_EOL;
         }
 
@@ -139,7 +139,7 @@ function set_footer(){
             $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
 
             // Highlighter.js
-            if ( ($options['general']['enable_highlight'] == true) && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
+            if ( ($options['general']['enable_highlight'] === true) && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
                 $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['highlight_js'] . "\"></script>" . PHP_EOL;
             }
         }
@@ -155,7 +155,7 @@ function set_footer(){
     }
 
     // Bootlint
-    if ($options['debug']['bootlint'] == true) {
+    if ($options['debug']['bootlint'] === true) {
         $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootlint'] . "\"></script>" . PHP_EOL;
     }
 

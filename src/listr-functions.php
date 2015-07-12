@@ -21,7 +21,7 @@ function set_header($bootstrap_css) {
 
     global $options;
     
-    if ($options['general']['custom_title'] == null) {
+    if ($options['general']['custom_title'] === null) {
         $index   = sprintf(_('Index of %1$s%2$s'), $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
     } else {
         $index   = $options['general']['custom_title'];
@@ -87,7 +87,7 @@ function set_header($bootstrap_css) {
 
     // Append CSS
     foreach($options['assets']['append_css'] as $append_css) {
-        if ($append_css != null) {
+        if ($append_css !== null) {
             $header .= "  <link rel=\"stylesheet\" href=\"$server$append_css\" />" . PHP_EOL;
         }
     }
@@ -125,12 +125,12 @@ function set_footer(){
     } else {
 
         // Stupid Table
-        if ( ($options['general']['enable_sort'] == true) && ($options['assets']['stupid_table']) ) {
+        if ( ($options['general']['enable_sort'] === true) && ($options['assets']['stupid_table']) ) {
            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['stupid_table'] . "\"></script>" . PHP_EOL;
         }
 
         // jQuery Searcher
-        if ( ($options['general']['enable_search'] == true) && ($options['assets']['jquery_searcher']) ) {
+        if ( ($options['general']['enable_search'] === true) && ($options['assets']['jquery_searcher']) ) {
             $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['jquery_searcher'] . "\"></script>" . PHP_EOL;
         }
 
@@ -139,7 +139,7 @@ function set_footer(){
             $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
 
             // Highlighter.js
-            if ( ($options['general']['enable_highlight'] == true) && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
+            if ( ($options['general']['enable_highlight'] === true) && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
                 $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['highlight_js'] . "\"></script>" . PHP_EOL;
             }
         }
@@ -149,13 +149,13 @@ function set_footer(){
 
     // Append JS
     foreach($options['assets']['append_js'] as $append_js) {
-        if ($append_js != null) {
+        if ($append_js !== null) {
             $footer .= "  <script type=\"text/javascript\" src=\"$server$append_js\"></script>" . PHP_EOL;
         }
     }
 
     // Bootlint
-    if ($options['debug']['bootlint'] == true) {
+    if ($options['debug']['bootlint'] === true) {
         $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootlint'] . "\"></script>" . PHP_EOL;
     }
 
