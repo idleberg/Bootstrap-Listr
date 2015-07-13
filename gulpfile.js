@@ -85,7 +85,7 @@ gulp.task('update',     ['upgrade']);
 //                    /_/                                   
 
 // Default task
-gulp.task('default', ['build_hjs'], function (callback) {
+gulp.task('default', function (callback) {
   setTimeout(function() {
 
     console.clear();
@@ -974,34 +974,6 @@ gulp.task('_css', function () {
             'src/css/*.css'
          ],
          ['cssmin']);
-});
-
-
-// Build Highlight.js (via https://github.com/kilianc/rtail/blob/develop/gulpfile.js#L69)
-gulp.task('build_hjs', function (done) {
-
-  var config = require('./src/config.json');
-  var spawn = require('child_process').spawn;
-  var opts = {
-    cwd: __dirname + '/node_modules/highlight.js'
-  };
-
-  var npmInstall = spawn('npm', ['install'], opts);
-  npmInstall.stdout.pipe(process.stdout);
-  npmInstall.stderr.pipe(process.stderr);
-
-  npmInstall.on('close', function (code) {
-    if (0 !== code) throw new Error('npm install exited with ' + code);
-
-    var build = spawn('node', ['tools/build.js', '-n', config.highlight.build], opts);
-    build.stdout.pipe(process.stdout);
-    build.stderr.pipe(process.stderr);
-
-    build.on('close', function (code) {
-      if (0 !== code) throw new Error('node tools/build.js exited with ' + code);
-      done();
-    });
-  });
 });
 
 // Help dialog

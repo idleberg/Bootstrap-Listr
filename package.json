@@ -30,7 +30,6 @@
     "gulp-uglify":           "^1.2.0",
     "gulp-util":             "^3.0.6",
     "gulp-watch":            "^4.2.4",
-    "highlight.js":          "isagalaev/highlight.js#8.6",
     "jquery":                "^2.1.4",
     "jquery-searcher":       "^0.2.0",
     "phplint":               "^1.5.2",
