@@ -131,10 +131,10 @@ msgid "%1$s folder and %2$s files, %3$s %4$s in total"
 msgstr "%1$s map en %2$s bestanden, %3$s %4$s in totaal"
 
 msgid "%1$s folders and %2$s file, %3$s %4$s in total"
-msgstr "%1$s map en %2$s bestand, %3$s %4$s in totaal"
+msgstr "%1$s mappen en %2$s bestand, %3$s %4$s in totaal"
 
 msgid "%1$s folders and %2$s files, %3$s %4$s in total"
-msgstr "%1$s map en %2$s bestanden, %3$s %4$s in totaal"
+msgstr "%1$s mappen en %2$s bestanden, %3$s %4$s in totaal"
 
 # MODAL
 msgid "Apply syntax highlighting"
