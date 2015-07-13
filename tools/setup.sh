@@ -19,7 +19,7 @@ if [[
     -d 'node_modules/bootstrap' &&
     -d 'node_modules/bootswatch' &&
     -d 'node_modules/font-awesome' &&
-    -d 'node_modules/highlight.js' &&
+    -d 'node_modules/highlightjs' &&
     -d 'node_modules/jquery' &&
     -d 'node_modules/jquery-searcher' &&
     -d 'node_modules/jquery-stupid-table' &&
