@@ -232,6 +232,7 @@ gulp.task('select', function(callback){
           gulp
             .src([
               'node_modules/highlight.js/src/styles/github.css'
+              // 'node_modules/highlightjs/styles/github.css'
             ])
             .pipe(concat('highlight.min.css'))
             .pipe(cssmin())
@@ -598,6 +599,7 @@ function getBasename(file) {
 gulp.task('hjs', function(){
 
   css = fs.readdirSync('./node_modules/highlight.js/src/styles/');
+  // css = fs.readdirSync('./node_modules/highlightjs/styles/');
   css.forEach(getBasename);
 
   hjs.sort();
@@ -611,7 +613,8 @@ gulp.task('hjs', function(){
        choices: hjs,
      }, function(res){
 
-        var source_dir = 'node_modules/highlightjs/src/styles/';
+        var source_dir = 'node_modules/highlight.js/src/styles/';
+        // var source_dir = 'node_modules/highlightjs/styles/';
 
          // Set default theme
          console.log('Minifying highlight.js theme “'+res.theme+'”…');
@@ -990,7 +993,7 @@ gulp.task('build_hjs', function (done) {
   npmInstall.on('close', function (code) {
     if (0 !== code) throw new Error('npm install exited with ' + code);
 
-    var build = spawn('node', ['tools/build.js', '-n', config.highlight.build], opts);
+    var build = spawn('node', ['tools/build.js', 'coffeescript', 'css', 'haml', 'javascript', 'json', 'less', 'markdown', 'php', 'perl', 'python', 'ruby', 'scss', 'xml'], opts);
     build.stdout.pipe(process.stdout);
     build.stderr.pipe(process.stderr);
 
