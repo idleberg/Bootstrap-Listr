@@ -80,8 +80,7 @@
     "website":   "htm,html,mhtm,mhtml,xhtm,xhtml"
   },
   "highlight": {
-    "theme": "github",
-    "build": "coffeescript css haml js json less markdown php perl python ruby scss xml"
+    "theme": "github"
   },
   "keys": {
     "dropbox":          null,
@@ -122,6 +121,7 @@
     ".svn",
     "__MACOSX",
     "ehthumbs.db",
+    "robots.txt",
     "Thumbs.db",
     "thumbs.tps"
   ],
@@ -136,8 +136,7 @@
     ".htaccess",
     ".htpasswd",
     ".jshintrc",
-    ".npmignore",
-    "robots.txt"
+    ".npmignore"
    ],
   "debug": {
     "bootlint": false
