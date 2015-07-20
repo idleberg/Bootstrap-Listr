@@ -138,6 +138,7 @@
          "database":{  
             "extensions":[  
                "bde",
+               "bson",
                "crp",
                "db",
                "db2",

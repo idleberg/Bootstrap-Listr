@@ -121,6 +121,7 @@
     ".svn",
     "__MACOSX",
     "ehthumbs.db",
+    "robots.txt",
     "Thumbs.db",
     "thumbs.tps"
   ],
@@ -135,8 +136,7 @@
     ".htaccess",
     ".htpasswd",
     ".jshintrc",
-    ".npmignore",
-    "robots.txt"
+    ".npmignore"
    ],
   "debug": {
     "bootlint": false
