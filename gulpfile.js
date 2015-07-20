@@ -85,7 +85,7 @@ gulp.task('update',     ['upgrade']);
 //                    /_/                                   
 
 // Default task
-gulp.task('default', ['build_hjs'], function (callback) {
+gulp.task('default', function (callback) {
   setTimeout(function() {
 
     console.clear();
@@ -221,8 +221,8 @@ gulp.task('select', function(callback){
           console.log('Including syntax highlighter assets…');
  
           gulp
-            .src('node_modules/highlight.js/build/highlight.pack.js')
-            // .src('node_modules/highlightjs/highlight.pack.js')
+            // .src('node_modules/highlight.js/build/highlight.pack.js')
+            .src('node_modules/highlightjs/highlight.pack.js')
             .pipe(concat('highlight.min.js'))
             .pipe(uglify())
             .pipe(gulp.dest('dist/assets/js/'));
@@ -231,8 +231,8 @@ gulp.task('select', function(callback){
 
           gulp
             .src([
-              'node_modules/highlight.js/src/styles/github.css'
-              // 'node_modules/highlightjs/styles/github.css'
+              // 'node_modules/highlight.js/src/styles/github.css'
+              'node_modules/highlightjs/styles/github.css'
             ])
             .pipe(concat('highlight.min.css'))
             .pipe(cssmin())
@@ -598,8 +598,8 @@ function getBasename(file) {
 // Choose a highlight.js theme
 gulp.task('hjs', function(){
 
-  css = fs.readdirSync('./node_modules/highlight.js/src/styles/');
-  // css = fs.readdirSync('./node_modules/highlightjs/styles/');
+  // css = fs.readdirSync('./node_modules/highlight.js/src/styles/');
+  css = fs.readdirSync('./node_modules/highlightjs/styles/');
   css.forEach(getBasename);
 
   hjs.sort();
@@ -613,8 +613,8 @@ gulp.task('hjs', function(){
        choices: hjs,
      }, function(res){
 
-        var source_dir = 'node_modules/highlight.js/src/styles/';
-        // var source_dir = 'node_modules/highlightjs/styles/';
+        // var source_dir = 'node_modules/highlight.js/src/styles/';
+        var source_dir = 'node_modules/highlightjs/styles/';
 
          // Set default theme
          console.log('Minifying highlight.js theme “'+res.theme+'”…');
@@ -974,34 +974,6 @@ gulp.task('_css', function () {
             'src/css/*.css'
          ],
          ['cssmin']);
-});
-
-
-// Build Highlight.js (via https://github.com/kilianc/rtail/blob/develop/gulpfile.js#L69)
-gulp.task('build_hjs', function (done) {
-
-  var config = require('./src/config.json');
-  var spawn = require('child_process').spawn;
-  var opts = {
-    cwd: __dirname + '/node_modules/highlight.js'
-  };
-
-  var npmInstall = spawn('npm', ['install'], opts);
-  npmInstall.stdout.pipe(process.stdout);
-  npmInstall.stderr.pipe(process.stderr);
-
-  npmInstall.on('close', function (code) {
-    if (0 !== code) throw new Error('npm install exited with ' + code);
-
-    var build = spawn('node', ['tools/build.js', 'coffeescript', 'css', 'haml', 'javascript', 'json', 'less', 'markdown', 'php', 'perl', 'python', 'ruby', 'scss', 'xml'], opts);
-    build.stdout.pipe(process.stdout);
-    build.stderr.pipe(process.stderr);
-
-    build.on('close', function (code) {
-      if (0 !== code) throw new Error('node tools/build.js exited with ' + code);
-      done();
-    });
-  });
 });
 
 // Help dialog

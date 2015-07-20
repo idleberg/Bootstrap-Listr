@@ -80,7 +80,8 @@
     "website":   "htm,html,mhtm,mhtml,xhtm,xhtml"
   },
   "highlight": {
-    "theme": "github"
+    "theme": "github",
+    "build": "coffeescript css haml js json less markdown php perl python ruby scss xml"
   },
   "keys": {
     "dropbox":          null,
