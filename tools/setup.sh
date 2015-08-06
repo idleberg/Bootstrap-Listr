@@ -25,7 +25,7 @@ if [[
     -d 'node_modules/jquery-stupid-table' &&
     -d 'node_modules/m8tro-bootstrap'
    ]]
-then
+thenma
     echo "Node modules found"
 else
     echo 'Missing Node modules, downloading'
