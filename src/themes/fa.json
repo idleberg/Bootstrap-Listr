@@ -330,6 +330,12 @@
             ],
             "icon":"fa-linux"
          },
+         "map":{  
+            "extensions":[  
+               "kml"
+            ],
+            "icon":"fa-map"
+         },
          "palette":{  
             "extensions":[  
                "ase",
