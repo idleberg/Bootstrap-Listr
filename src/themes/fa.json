@@ -332,7 +332,8 @@
          },
          "map":{  
             "extensions":[  
-               "kml"
+               "kml",
+               "osm"
             ],
             "icon":"fa-map-o"
          },
