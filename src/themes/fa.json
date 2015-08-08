@@ -334,7 +334,7 @@
             "extensions":[  
                "kml"
             ],
-            "icon":"fa-map"
+            "icon":"fa-map-o"
          },
          "palette":{  
             "extensions":[  
@@ -495,6 +495,17 @@
                "vimeo"
             ],
             "icon":"fa-vimeo-square"
+         },
+         "virtual":{  
+            "extensions":[  
+               "ova",
+               "pvm",
+               "pvs",
+               "vdi",
+               "vhd",
+               "vmdk"
+            ],
+            "icon":"fa-cube"
          },
          "website":{  
             "extensions":[  
