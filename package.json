@@ -11,7 +11,7 @@
     "bootswatch":            "^3.3.5",
     "bower":                 "^1.4.1",
     "del":                   "^1.2.0",
-    "font-awesome":          "^4.3.0",
+    "font-awesome":          "^4.4.0",
     "gulp":                  "^3.9.0",
     "gulp-cached":           "^1.1.0",
     "gulp-concat":           "^2.6.0",

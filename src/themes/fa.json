@@ -330,6 +330,13 @@
             ],
             "icon":"fa-linux"
          },
+         "map":{  
+            "extensions":[  
+               "kml",
+               "osm"
+            ],
+            "icon":"fa-map-o"
+         },
          "palette":{  
             "extensions":[  
                "ase",
@@ -489,6 +496,17 @@
                "vimeo"
             ],
             "icon":"fa-vimeo-square"
+         },
+         "virtual":{  
+            "extensions":[  
+               "ova",
+               "pvm",
+               "pvs",
+               "vdi",
+               "vhd",
+               "vmdk"
+            ],
+            "icon":"fa-cube"
          },
          "website":{  
             "extensions":[  
