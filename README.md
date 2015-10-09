@@ -1,5 +1,7 @@
 # Bootstrap Listr
 
+[![Join the chat at https://gitter.im/idleberg/Bootstrap-Listr](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/idleberg/Bootstrap-Listr?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/release/idleberg/Bootstrap-Listr.svg?style=flat-square)](https://github.com/idleberg/Bootstrap-Listr/releases)
 [![Travis](https://img.shields.io/travis/idleberg/Bootstrap-Listr.svg?style=flat-square)](https://travis-ci.org/idleberg/Bootstrap-Listr)
