@@ -58,11 +58,26 @@ You can configure a number of settings in the file `config.json`:
 
 Please visit the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki/Understanding-config.json) for details.
 
-## Contribute
+## Support
+
+It's always a good start to consult the [FAQ](https://github.com/idleberg/Bootstrap-Listr/wiki/FAQ) or the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki) in general.
+
+### Issues
+
+Report issue or suggest new features only on [GitHub](https://github.com/idleberg/Bootstrap-Listr/issues)!
+
+### Contribute
+
+To contribute patches, follow this standard procedure:
 
 1. Fork the repository
 2. Make your changes
-3. Send a pull request with your changes
+3. Communicate your changes
+4. Send a pull request with your changes
+
+### Talk
+
+For user specific problems or just to have a chat with the developers, feel free to join our [Gitter](https://gitter.im/idleberg/Bootstrap-Listr) channel.
 
 ## Credits
 
