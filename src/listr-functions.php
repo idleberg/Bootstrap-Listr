@@ -79,7 +79,7 @@ function set_header($bootstrap_css) {
         $header .= "  <link rel=\"stylesheet\" href=\"$server$bootstrap_css\" />" . PHP_EOL;
 
         // Highlight.js CSS
-        if ( ($options['general']['enable_viewer']) && ($options['general']['enable_highlight'] == true) ) {
+        if ( ($options['general']['enable_viewer']) && ($options['general']['enable_highlight'] === true) ) {
             $highlight_css = str_replace("%theme%",$options['highlight']['theme'],$options['assets']['highlight_css']);
             $header .= "  <link rel=\"stylesheet\" href=\"$server$highlight_css\" />" . PHP_EOL;
         }
@@ -138,7 +138,7 @@ function set_footer(){
         }
 
         // Modal Viewer
-        if ($options['general']['enable_viewer']) {
+        if ($options['general']['enable_viewer'] === true) {
             $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
 
             // Highlighter.js

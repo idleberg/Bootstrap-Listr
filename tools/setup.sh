@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.4.5
+VERSION=0.4.6
 set -e
 
 # Functions
@@ -25,7 +25,7 @@ if [[
     -d 'node_modules/jquery-stupid-table' &&
     -d 'node_modules/m8tro-bootstrap'
    ]]
-thenma
+then
     echo "Node modules found"
 else
     echo 'Missing Node modules, downloading'
