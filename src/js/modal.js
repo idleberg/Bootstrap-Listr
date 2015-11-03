@@ -231,7 +231,7 @@ $(".source-modal").click(function(event) {
             // Fire auto-highlighter
             if (arr[1] === true) {
                 $("#source").each(function(i, block) {
-                    hljs.highlightBlock(block);
+                    if(typeof(hljs) !== 'undefined') hljs.highlightBlock(block);
                     // adjust pre background-color
                     var background = $("code").css("background-color");
                     $("pre").css("background-color", background);
