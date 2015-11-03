@@ -22,8 +22,10 @@ function set_header($bootstrap_css) {
     global $options;
     
     if ($options['general']['custom_title'] === null) {
-        $request =  htmlentities(urldecode($_SERVER['REQUEST_URI']), ENT_QUOTES, 'utf-8');
-        $index   = sprintf(_('Index of %1$s%2$s'), $_SERVER['HTTP_HOST'], $request);
+        $server  = $_SERVER['HTTP_HOST'];
+        $request = htmlentities(urldecode($_SERVER['REQUEST_URI']), ENT_QUOTES, 'utf-8');
+        $folder  = basename($server.$request);
+        $index = "Index of $folder";
     } else {
         $index   = $options['general']['custom_title'];
     }
