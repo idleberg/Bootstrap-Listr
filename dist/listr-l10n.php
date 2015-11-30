@@ -21,4 +21,6 @@ bind_textdomain_codeset($domain, 'UTF-8');
 
 textdomain($domain);
 
+session_write_close();
+
 ?>
