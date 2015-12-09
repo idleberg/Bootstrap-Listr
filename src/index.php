@@ -310,7 +310,7 @@ if ($handle = opendir($navigation_dir))
                         $checksum_content = file_get_contents($checksum_file, FILE_USE_INCLUDE_PATH);
                         $checksum_breakdown = explode(" ", $checksum_content);
                         // Quick validation
-                        if ( (count($checksum_breakdown) >= 2) && (strlen($checksum_breakdown[0]) > 8)) {
+                        if ( (count($checksum_breakdown) >= 2) && (strlen($checksum_breakdown[0]) > 8) && ctype_xdigit($checksum_breakdown[0]) ) {
                             // Keep checksum string
                             $item[$chksum_ext] = $checksum_breakdown[0];
                         }
