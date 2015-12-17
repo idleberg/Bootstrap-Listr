@@ -6,19 +6,20 @@ $(document).bind('keydown', function(event) {
     if( event.altKey ) {
         $(hidden).addClass( "reveal" ).removeClass( "hidden");
     }
+    countRows();
     
 }).bind('keyup',function(){
     
     // hide hidden files again
     $(hidden).removeClass( "reveal" ).addClass( "hidden");
-
+    countRows();
 });
 
 $(document).bind('keyup', function(event) {
     
     // focus search input
     if (event.which === 70) {
-        $("#search").focus();
+        $("#listr-search").focus();
     }
 
     // Control HTML5 player (only if modal is visible)

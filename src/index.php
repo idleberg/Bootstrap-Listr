@@ -123,26 +123,20 @@ if (!empty($icons['files'])) {
 }
 
 switch ($options['bootstrap']['icons']) {
-    case "glyphicon":
-    case "glyphicons":
-        $icons['prefix'] = "glyphicon";
-        $icons['home']   = "<span class=\"glyphicon ".$icons['home']."\"></span>";
-        $icons['search'] = "          <span class=\"glyphicon ".$icons['search']." form-control-feedback\"></span>" . PHP_EOL;
-        $icons['folder'] = 'glyphicon '.$icons['folder'];
-        break;
     case "fontawesome":
     case "fa":
     case "fa-files":
-        $icons['prefix'] = "fa";
-        $icons['home']   = "<i class=\"fa ".$icons['home']." fa-lg fa-fw\"></i> ";
-        $icons['search'] = "          <i class=\"fa ".$icons['search']." form-control-feedback\"></i>" . PHP_EOL;
-        $icons['folder'] = 'fa '. $icons['folder'].' ' . $options['bootstrap']['fontawesome_style'];
+        // TODO: move to theme
+        $icons['prefix'] = "fa fa-fw";
+        $icons['home']   = "<i class=\"".$icons['prefix']." ".$icons['home']." fa-lg\"></i> ";
+        $icons['search'] = "          <i class=\"".$icons['prefix']." ".$icons['search']." form-control-feedback\"></i>" . PHP_EOL;
+        $icons['folder'] = $icons['prefix'].' '. $icons['folder'].' ' . $options['bootstrap']['fontawesome_style'];
         if ($options['general']['share_icons'] == true) { 
-            $icons_dropbox  = "<i class=\"fa fa-dropbox fa-fw\"></i> ";
-            $icons_email    = "<i class=\"fa fa-envelope fa-fw\"></i> ";
-            $icons_facebook = "<i class=\"fa fa-facebook fa-fw\"></i> ";
-            $icons_gplus    = "<i class=\"fa fa-google-plus fa-fw\"></i> ";
-            $icons_twitter  = "<i class=\"fa fa-twitter fa-fw\"></i> ";
+            $icons_dropbox  = "<i class=\"".$icons['prefix']." fa-dropbox\"></i> ";
+            $icons_email    = "<i class=\"".$icons['prefix']." fa-envelope\"></i> ";
+            $icons_facebook = "<i class=\"".$icons['prefix']." fa-facebook\"></i> ";
+            $icons_gplus    = "<i class=\"".$icons['prefix']." fa-google-plus\"></i> ";
+            $icons_twitter  = "<i class=\"".$icons['prefix']." fa-twitter\"></i> ";
         }
         break;
     default:
@@ -267,7 +261,7 @@ if ($handle = opendir($navigation_dir))
     {
 
         // Make sure we don't list this folder,file or their links.
-        if ($file != "." && $file != ".." && $file != $this_script && !in_array($file, $ignore_list) )
+        if ($file != "." && $file != ".." && $file != $this_script && !in_array_regex($file, $ignore_list) )
         {
             if ( ($options['general']['hide_dotfiles'] == true) && (substr($file, 0, 1) == '.') ) {
                 continue;
@@ -288,6 +282,35 @@ if ($handle = opendir($navigation_dir))
             }
             $item['lext'] = strtolower($info['extension']);
 
+            // If process_checksum, ignore checksum files or read in checksum
+            if ( ($options['general']['process_checksum'] == true)) {
+                // Skip checksum files
+                if (in_array($item['lext'], $options["checksum_files"])) {
+                    continue;
+                }
+                
+                // Look for checksum files
+                foreach ($options["checksum_files"] as $chksum_ext) {
+                    // $item itself is copied over and over for each file so delete those additional attributes to prevent unwanted carry-over
+                    if (array_key_exists($chksum_ext, $item)) {
+                        unset($item[$chksum_ext]);
+                    }
+            
+                    $checksum_file = $navigation_dir . $file . '.' . $chksum_ext;
+                    // Found 
+                    if (file_exists($checksum_file)) {
+                        // Read in
+                        $checksum_content = file_get_contents($checksum_file, FILE_USE_INCLUDE_PATH);
+                        $checksum_breakdown = explode(" ", $checksum_content);
+                        // Quick validation
+                        if ( (count($checksum_breakdown) >= 2) && (strlen($checksum_breakdown[0]) > 8)) {
+                            // Keep checksum string
+                            $item[$chksum_ext] = $checksum_breakdown[0];
+                        }
+                    }
+                }
+            }
+
             // Assign file icons
             $item['class'] = $icons['prefix'].' '.$icons['default'].' '. $options['bootstrap']['fontawesome_style'];
             
@@ -296,7 +319,6 @@ if ($handle = opendir($navigation_dir))
                     $item['class'] = $icons['prefix'].' '.$v['icon'].' '. $options['bootstrap']['fontawesome_style'];
                 }
             }
-
 
             if ($table_options['size'] || $table_options['age'])
                 $stat               =   stat($navigation_dir.$file); // ... slow, but faster than using filemtime() & filesize() instead.
@@ -403,7 +425,7 @@ if ($options['general']['enable_search'] == true) {
     $search .= "      <div class=\"col-xs-6 col-sm-4 col-md-3$search_offset\">" . PHP_EOL;
     $search .= "          <div class=\"form-group has-feedback\">" . PHP_EOL;
     $search .= "            <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
-    $search .= "            <input type=\"text\" class=\"form-control$input_size\" id=\"search\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
+    $search .= "            <input type=\"text\" id=\"listr-search\" class=\"form-control$input_size\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
     $search .= $icons['search'];
     $search .= "         </div>" . PHP_EOL; // form-group
     $search .= "      </div>" . PHP_EOL; // col
@@ -414,15 +436,15 @@ if ($options['general']['enable_search'] == true) {
 $table_header = null;
 
 if ($table_options['count']) {
-    $table_header .= "            <th class=\"text-".$right."\" data-sort=\"int\">#</th>" . PHP_EOL;
+    $table_header .= "            <th id=\"file-count\" class=\"text-$right\" data-sort=\"int\">#</th>" . PHP_EOL;
 }
 
-$table_header .= "            <th class=\"".$column_name." text-".$left."\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
+$table_header .= "            <th class=\"".$column_name." text-$left\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
 if ($table_options['size']) {
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
-        $table_header .= " class=\"".$column_size." text-".$right."\" data-sort=\"int\">";
+        $table_header .= " class=\"".$column_size." text-$right\" data-sort=\"int\">";
     } else {
         $table_header .= ">";
     }
@@ -432,7 +454,7 @@ if ($table_options['size']) {
 if ($table_options['age']) {
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
-        $table_header .= " class=\"".$column_age." text-".$right."\" data-sort=\"int\">";
+        $table_header .= " class=\"".$column_age." text-$right\" data-sort=\"int\">";
     } else {
         $table_header .= ">";
     }
@@ -460,12 +482,12 @@ if(($folder_list) || ($file_list) ) {
             $table_body .= "          <tr$tr_folders>" . PHP_EOL;
 
             if ($table_options['count']) {
-                $table_body .= "            <td class=\"text-muted text-".$right."\" data-sort-value=\"$row_counter\">$row_counter</td>";
+                $table_body .= "            <td class=\"text-muted text-$right\" data-sort-value=\"$row_counter\">$row_counter</td>";
             }
 
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"text-$left\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
@@ -483,7 +505,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['size']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-".$right."\" data-sort-value=\"0\"";
+                    $table_body .= " class=\"text-$right\" data-sort-value=\"0\"";
                 }
                 $table_body .= ">&mdash;</td>" . PHP_EOL;
             }
@@ -491,7 +513,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['age']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-".$right."\" data-sort-value=\"" . $item['mtime'] . "\"";
+                    $table_body .= " class=\"text-$right\" data-sort-value=\"" . $item['mtime'] . "\"";
                     $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
                 $table_body .= ">" . time_ago($item['mtime']) . "</td>" . PHP_EOL;
@@ -521,12 +543,15 @@ if(($folder_list) || ($file_list) ) {
             }
 
             // Is file hidden?
-            if (in_array($item['bname'], $options['hidden_files'])) {
+            if (in_array_regex($item['bname'], $options['hidden_files'])) {
                 $row_classes[] = "hidden";
                 // muted class on row…
                 $row_classes[] = $options['bootstrap']['hidden_files_row'];
                 // …and again for the link
                 $file_classes[] = $options['bootstrap']['hidden_files_link'];
+                $visible_count = null;
+            } else {
+                $visible_count = $row_counter;
             }
 
             // Is virtual file?
@@ -584,12 +609,12 @@ if(($folder_list) || ($file_list) ) {
             $table_body .= "          <tr$row_attr>" . PHP_EOL;
             
             if ($table_options['count']) {
-                $table_body .= "            <td class=\"text-muted text-".$right."\" data-sort-value=\"$row_counter\">$row_counter</td>";
+                $table_body .= "            <td class=\"text-muted text-$right\" data-sort-value=\"$row_counter\">$visible_count</td>";
             }
             
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"text-$left\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
@@ -645,13 +670,38 @@ if(($folder_list) || ($file_list) ) {
                 $file_attr = null;
             }
 
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$modified_attr>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$modified_attr>" . utf8ify($display_name) . "</a>";
+
+            // Append checksum info if enabled
+            if ( ($options['general']['process_checksum'] == true) && !empty($options["checksum_files"]) ) {
+                foreach ($options["checksum_files"] as $chksum_ext) {
+                    if (array_key_exists($chksum_ext, $item)) {
+                        // Fake indentation
+                        if (  $options['bootstrap']['icons'] == 'fontawesome' || $options['bootstrap']['icons'] == 'fa' || $options['bootstrap']['icons'] == 'fa-files'  ) {
+                            $fake_indent = "<span class=\"fa fa-fw\"></span> ";
+                        } else {
+                            $fake_indent = null;
+                        }
+                        // Construct href to original checksum file though client can download
+                        if ($options['bootstrap']['checksum_label'] != null ) {
+                            $label = "<span class=\"label ".$options['bootstrap']['checksum_label']."\">" . strtoupper($chksum_ext) . "</span> ";
+                        } else {
+                            $label = null;
+                        }
+                        $table_body .= "<br>$fake_indent$label <a href=\"" . htmlentities(rawurlencode($item['bname'] . "." . $chksum_ext), ENT_QUOTES, 'utf-8') . "\" class=\"text-muted\">"
+                            // Print checksun string
+                            .$item[$chksum_ext] . "</a>" . PHP_EOL;
+                    }
+                }
+            }
+            
+            $table_body .= "</td>" . PHP_EOL;
 
             // Size
             if ($table_options['size']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-".$right."\" data-sort-value=\"" . $item['bytes'] . "\"";
+                    $table_body .= " class=\"text-$right\" data-sort-value=\"" . $item['bytes'] . "\"";
                     $table_body .= " title=\"" . $item['bytes'] . " " ._('bytes')."\"";
                 }
                     $table_body .= ">" . $item_pretty_size . "</td>" . PHP_EOL;
@@ -661,7 +711,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['age']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-".$right."\" data-sort-value=\"".$item['mtime']."\"";
+                    $table_body .= " class=\"text-$right\" data-sort-value=\"".$item['mtime']."\"";
                     $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
                 $table_body .= ">" . time_ago($item['mtime']) . "</td>" . PHP_EOL;
