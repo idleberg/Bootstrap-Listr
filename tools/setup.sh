@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.4.6
+VERSION=0.5.0
 set -e
 
 # Functions
@@ -28,11 +28,17 @@ if [[
 then
     echo "Node modules found"
 else
-    echo 'Missing Node modules, downloading'
-    npm install || npm_error
+    echo 'Installing missing Node modules'
+    npm install --silent || npm_error
 fi
 
-if [ -e 'dist/config.json' ]
+if [ ! -f 'node_modules/highlight.js/build/highlight.pack.js' ]
+then
+    echo $'Building highlight.js'
+    gulp build_hjs --silent
+fi
+
+if [ -f 'dist/config.json' ]
 then
     # upgrade codebase only
     echo $'Updating codebase'
