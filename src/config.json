@@ -19,7 +19,8 @@
     "virtual_maxsize":  256,
     "custom_title":     null,
     "read_chunks":      false,
-    "give_kudos":       true
+    "give_kudos":       true,
+    "process_checksum": true
   },
   "assets": {
     "jquery_js":       "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js",
@@ -137,6 +138,9 @@
     ".htpasswd",
     ".jshintrc",
     ".npmignore"
+   ],
+   "checksum_files": [
+    "sha1sum"
    ],
   "debug": {
     "bootlint": false

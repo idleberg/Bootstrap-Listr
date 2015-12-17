@@ -273,6 +273,7 @@ if ($handle = opendir($navigation_dir))
                 continue;
             }
 
+
             // Get file info.
             $info                  =    pathinfo($file);
             // Organize file info.
@@ -287,6 +288,37 @@ if ($handle = opendir($navigation_dir))
                 $item['ext'] = '.';
             }
             $item['lext'] = strtolower($info['extension']);
+
+            // If process_checksum, ignore checksum files or read in checksum
+            if ( ($options['general']['process_checksum'] == true)) {
+                // Skip checksum files
+                if (in_array($item['lext'], $options["checksum_files"])) {
+                    continue;
+                }
+                
+                // Look for checksum files
+                foreach ($options["checksum_files"] as $chksum_ext) {
+                    // $item itself is copied over and over for each file so delete those additional attributes to prevent unwanted carry-over
+                    if (array_key_exists($chksum_ext, $item)) {
+                        unset($item[$chksum_ext]);
+                    }
+
+                    $checksum_file = $navigation_dir . $file . '.' . $chksum_ext;
+                    // Found 
+                    if (file_exists($checksum_file)) {
+                        // Read in
+                        $checksum_content = file_get_contents($checksum_file, FILE_USE_INCLUDE_PATH);
+                        $checksum_breakdown = explode(" ", $checksum_content);
+                        // Quick validation
+                        if ( (count($checksum_breakdown) >= 2) && (strlen($checksum_breakdown[0]) > 8) && ctype_xdigit($checksum_breakdown[0]) ) {
+                            // Keep checksum string
+                            $item[$chksum_ext] = $checksum_breakdown[0];
+                        }
+                    }
+                }
+            }
+            
+            
 
             // Assign file icons
             $item['class'] = $icons['prefix'].' '.$icons['default'].' '. $options['bootstrap']['fontawesome_style'];
@@ -645,7 +677,21 @@ if(($folder_list) || ($file_list) ) {
                 $file_attr = null;
             }
 
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$modified_attr>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$modified_attr>" . utf8ify($display_name) . "</a>";
+
+            // Append checksum info if enabled
+            if ( ($options['general']['process_checksum'] == true)) {
+                foreach ($options["checksum_files"] as $chksum_ext) {
+                    if (array_key_exists($chksum_ext, $item)) {
+                        // Consutruct href to original checksum file though client can download
+                        $table_body .= "<br><span class=\"badge\">" . strtoupper($chksum_ext) . "</span> " . "<a href=\"" . htmlentities(rawurlencode($item['bname'] . "." . $chksum_ext), ENT_QUOTES, 'utf-8') . "\">"
+                            // Print checksun string
+                            ."<em>" . $item[$chksum_ext] . "</em></a>" . PHP_EOL;
+                    }
+                }
+            }
+
+            $table_body .= "</td>" . PHP_EOL;
 
             // Size
             if ($table_options['size']) {
