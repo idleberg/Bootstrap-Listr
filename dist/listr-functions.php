@@ -186,13 +186,11 @@ function get_server() {
     }
 }
 
-function load_iconset($input = "glyphicon") {
+function load_iconset($input = "fa") {
 
     // Allow icon aliases
-    if ( $input === 'fontawesome' || $input === 'fa' ) {
+    if ( $input === 'fontawesome' || $input === 'font-awesome' ) {
         $input = "fa";
-    } else if ($input === 'glyphicon') {
-        $input = "glyphicons";
     }
 
     // Does icon set exist?
@@ -305,6 +303,32 @@ function readfile_chunked($filename, $retbytes = TRUE) {
       return $count; // return num. bytes delivered like readfile() does.
     }
     return $status;
+}
+
+function in_array_regex($string, $filters) {
+
+    foreach ($filters as $filter) {
+
+        // does contain wildcard?
+        if (strpos($filter, "*") !== false) {
+            // echo "$filter DOES contains *";
+            $filter = str_replace( '\*', '.*?', preg_quote( $filter, '/' ) );
+            preg_match( '/^' . $filter . '$/i', $string, $result );
+            // var_dump($result);
+
+            // echo "<h1>$string in $filter</h1".PHP_EOL;
+            if ($result[0] !== null) {
+                return true;
+            }
+        } else {
+            // echo "$filter does NOT contains *";
+           if (in_array($string, $filters)) {
+            return true;
+           }
+        }
+        
+    }
+    return false;
 }
 
 // Get protocol

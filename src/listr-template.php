@@ -8,7 +8,7 @@
 <?php echo $breadcrumbs?>
 <?php echo $search ?>
 <?php echo $responsive_open?>
-      <table id="bs-table" class="table <?php echo $options['bootstrap']['table_style']?>">
+      <table id="listr-table" class="table <?php echo $options['bootstrap']['table_style']?>">
         <thead>
           <tr>
 <?php echo $table_header?>
