@@ -35,9 +35,11 @@ var console   = require('better-console'),
     jsonlint  = require('gulp-json-lint'),
     less      = require('gulp-less'),
     notify    = require("gulp-notify"),
+    order     = require("gulp-order"),
     path      = require('path'),
     phplint   = require('phplint').lint,
     prompt    = require('gulp-prompt'),
+    sass      = require('gulp-sass'),
     sequence  = require('run-sequence'),
     uglify    = require('gulp-uglify'),
     watch     = require('gulp-watch'),
@@ -138,7 +140,7 @@ gulp.task('select', function(callback){
   var enable_viewer      = false,
       enable_search      = false;
       enable_highlight   = false;
-      default_icons      = 'glyphicons';
+      default_icons      = 'fa';
       include_bootlint   = false;
 
   // check debug features
@@ -152,7 +154,7 @@ gulp.task('select', function(callback){
         { name: 'Viewer Modal', value: 'viewer' , checked: true },
         { name: 'Search Box', value: 'search' , checked: true },
         { name: 'Syntax Highlighter', value: 'highlighter' , checked: true },
-        { name: 'Font Awesome', value: 'font_awesome' , checked: true },
+        // { name: 'Font Awesome', value: 'font_awesome' , checked: true },
         { name: 'H5BP Apache Server Config', value: 'htaccess' , checked: true },
         { name: 'robots.txt', value: 'robots' , checked: true },
         { name: 'DEBUG: Bootlint', value: 'bootlint' ,checked: debug_check },
@@ -251,10 +253,6 @@ gulp.task('select', function(callback){
           gulp
             .src('node_modules/font-awesome/fonts/fontawesome-webfont.*')
             .pipe(gulp.dest('dist/assets/fonts/'));
-
-          del([
-              'dist/assets/fonts/glyphicons-halflings-regular.*'
-            ]);
 
           default_icons = 'fontawesome';
         }
@@ -407,93 +405,100 @@ gulp.task('depends', function() {
     }));
 });
 
+function getDirectories(srcpath) {
+  return fs.readdirSync(srcpath).filter(function(file) {
+    return fs.statSync(path.join(srcpath, file)).isDirectory();
+  });
+}
+
 // Select Bootstrap theme
 gulp.task('swatch', function(){
 
-  var themes     = ['(default)', 'M8tro'],
-      bootstrap_less = [],
-      less_dir       = 'node_modules/bootstrap/less/';
+  var themes     = ['(default)', 'm8tro'],
+      bootstrap_src = [],
+      src_dir       = 'node_modules/bootstrap/less/';
 
   // Get Bootswatch themes
-  var bootswatch = require('./node_modules/bootswatch/api/3.json');
-  bootswatch.themes.forEach(function(entry) {
-    themes.push(entry.name);
+  var bootswatch = getDirectories('./node_modules/bootswatch');
+  bootswatch.forEach(function(entry) {
+    if (entry === 'fonts') return;
+    themes.push(entry);
   });
-  
   themes.sort();
 
-  bootstrap_less.push(less_dir+'variables.less');
+  // bootstrap_src.push(src_dir+'bootstrap.scss');
+  bootstrap_src.push(src_dir+'variables.less');
 
   // Mixins
-  bootstrap_less.push(less_dir+'mixins/hide-text.less');
-  bootstrap_less.push(less_dir+'mixins/opacity.less');
-  bootstrap_less.push(less_dir+'mixins/image.less');
-  bootstrap_less.push(less_dir+'mixins/labels.less');
-  bootstrap_less.push(less_dir+'mixins/reset-filter.less');
-  bootstrap_less.push(less_dir+'mixins/resize.less');
-  bootstrap_less.push(less_dir+'mixins/responsive-visibility.less');
-  bootstrap_less.push(less_dir+'mixins/size.less');
-  bootstrap_less.push(less_dir+'mixins/tab-focus.less');
-  bootstrap_less.push(less_dir+'mixins/reset-text.less');
-  bootstrap_less.push(less_dir+'mixins/text-emphasis.less');
-  bootstrap_less.push(less_dir+'mixins/text-overflow.less');
-  bootstrap_less.push(less_dir+'mixins/vendor-prefixes.less');
+  bootstrap_src.push(src_dir+'mixins/hide-text.less');
+  bootstrap_src.push(src_dir+'mixins/opacity.less');
+  bootstrap_src.push(src_dir+'mixins/image.less');
+  bootstrap_src.push(src_dir+'mixins/labels.less');
+  bootstrap_src.push(src_dir+'mixins/reset-filter.less');
+  bootstrap_src.push(src_dir+'mixins/resize.less');
+  bootstrap_src.push(src_dir+'mixins/responsive-visibility.less');
+  bootstrap_src.push(src_dir+'mixins/size.less');
+  bootstrap_src.push(src_dir+'mixins/tab-focus.less');
+  bootstrap_src.push(src_dir+'mixins/reset-text.less');
+  bootstrap_src.push(src_dir+'mixins/text-emphasis.less');
+  bootstrap_src.push(src_dir+'mixins/text-overflow.less');
+  bootstrap_src.push(src_dir+'mixins/vendor-prefixes.less');
 
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/alerts.less');
-  bootstrap_less.push(less_dir+'mixins/buttons.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/panels.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/pagination.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/list-group.less');
-  bootstrap_less.push(less_dir+'mixins/nav-divider.less');
-  bootstrap_less.push(less_dir+'mixins/forms.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/progress-bar.less');
-  bootstrap_less.push(less_dir+'mixins/table-row.less');
-  bootstrap_less.push(less_dir+'mixins/background-variant.less');
-  bootstrap_less.push(less_dir+'mixins/border-radius.less');
-  bootstrap_less.push(less_dir+'mixins/gradients.less');
-  bootstrap_less.push(less_dir+'mixins/clearfix.less');
-  bootstrap_less.push(less_dir+'mixins/center-block.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'mixins/nav-vertical-align.less');
-  bootstrap_less.push(less_dir+'mixins/grid-framework.less');
-  bootstrap_less.push(less_dir+'mixins/grid.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'mixins/alerts.less');
+  bootstrap_src.push(src_dir+'mixins/buttons.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'mixins/panels.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'mixins/pagination.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'mixins/list-group.less');
+  bootstrap_src.push(src_dir+'mixins/nav-divider.less');
+  bootstrap_src.push(src_dir+'mixins/forms.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'mixins/progress-bar.less');
+  bootstrap_src.push(src_dir+'mixins/table-row.less');
+  bootstrap_src.push(src_dir+'mixins/background-variant.less');
+  bootstrap_src.push(src_dir+'mixins/border-radius.less');
+  bootstrap_src.push(src_dir+'mixins/gradients.less');
+  bootstrap_src.push(src_dir+'mixins/clearfix.less');
+  bootstrap_src.push(src_dir+'mixins/center-block.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'mixins/nav-vertical-align.less');
+  bootstrap_src.push(src_dir+'mixins/grid-framework.less');
+  bootstrap_src.push(src_dir+'mixins/grid.less');
 
-  bootstrap_less.push(less_dir+'normalize.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'print.less');
-  bootstrap_less.push(less_dir+'glyphicons.less');
-  bootstrap_less.push(less_dir+'scaffolding.less');
-  bootstrap_less.push(less_dir+'type.less');
-  bootstrap_less.push(less_dir+'code.less');
-  bootstrap_less.push(less_dir+'grid.less');
-  bootstrap_less.push(less_dir+'tables.less');
-  bootstrap_less.push(less_dir+'forms.less');
-  bootstrap_less.push(less_dir+'buttons.less');
-  bootstrap_less.push(less_dir+'component-animations.less');
-  bootstrap_less.push(less_dir+'dropdowns.less');
-  bootstrap_less.push(less_dir+'button-groups.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'input-groups.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'navs.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'navbar.less');
-  bootstrap_less.push(less_dir+'breadcrumbs.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'pagination.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'pager.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'labels.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'badges.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'jumbotron.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'thumbnails.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'alerts.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'progress-bars.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'media.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'list-group.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'panels.less');
-  bootstrap_less.push(less_dir+'responsive-embed.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'wells.less');
-  bootstrap_less.push(less_dir+'close.less');
-  bootstrap_less.push(less_dir+'modals.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'tooltip.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'popovers.less');
-  if (argv.bootstrap) bootstrap_less.push(less_dir+'carousel.less');
-  bootstrap_less.push(less_dir+'utilities.less');
-  bootstrap_less.push(less_dir+'responsive-utilities.less');
+  bootstrap_src.push(src_dir+'normalize.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'print.less');
+  // bootstrap_src.push(src_dir+'glyphicons.less');
+  bootstrap_src.push(src_dir+'scaffolding.less');
+  bootstrap_src.push(src_dir+'type.less');
+  bootstrap_src.push(src_dir+'code.less');
+  bootstrap_src.push(src_dir+'grid.less');
+  bootstrap_src.push(src_dir+'tables.less');
+  bootstrap_src.push(src_dir+'forms.less');
+  bootstrap_src.push(src_dir+'buttons.less');
+  bootstrap_src.push(src_dir+'component-animations.less');
+  bootstrap_src.push(src_dir+'dropdowns.less');
+  bootstrap_src.push(src_dir+'button-groups.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'input-groups.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'navs.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'navbar.less');
+  bootstrap_src.push(src_dir+'breadcrumbs.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'pagination.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'pager.less');
+  bootstrap_src.push(src_dir+'labels.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'badges.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'jumbotron.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'thumbnails.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'alerts.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'progress-bars.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'media.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'list-group.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'panels.less');
+  bootstrap_src.push(src_dir+'responsive-embed.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'wells.less');
+  bootstrap_src.push(src_dir+'close.less');
+  bootstrap_src.push(src_dir+'modals.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'tooltip.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'popovers.less');
+  if (argv.bootstrap) bootstrap_src.push(src_dir+'carousel.less');
+  bootstrap_src.push(src_dir+'utilities.less');
+  bootstrap_src.push(src_dir+'responsive-utilities.less');
       
   return gulp.src('./')
     .pipe(prompt.prompt({
@@ -503,21 +508,17 @@ gulp.task('swatch', function(){
         choices: themes,
       }, function(res){
 
-          // Copy glyphicons
-          gulp
-            .src('node_modules/bootstrap/fonts/*')
-            .pipe(gulp.dest('dist/assets/fonts/'));
-
           // Set default theme
           if (res.theme === '(default)') {
               
               console.log('Compiling default Bootstrap theme…');
 
-              gulp.src(bootstrap_less)
+              gulp.src(bootstrap_src)
               .pipe(concat('bootstrap.less'))
               .pipe(less({
                 paths: [ path.join(__dirname, 'less', 'includes') ]
               }))
+              // .pipe(sass().on('error', sass.logError))
               .pipe(concat('bootstrap.min.css'))
               .pipe(cssmin())
               .pipe(gulp.dest('dist/assets/css/'));
@@ -537,11 +538,11 @@ gulp.task('swatch', function(){
 
             console.log('Compiling Bootstrap theme “M8tro”');
 
-            bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro/palette.less');
-            bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro/variables.less');
-            bootstrap_less.push('node_modules/m8tro-bootstrap/src/themes/m8tro/theme.less');
+            bootstrap_src.push('node_modules/m8tro-bootstrap/src/themes/m8tro/palette.less');
+            bootstrap_src.push('node_modules/m8tro-bootstrap/src/themes/m8tro/variables.less');
+            bootstrap_src.push('node_modules/m8tro-bootstrap/src/themes/m8tro/theme.less');
 
-            gulp.src(bootstrap_less)
+            gulp.src(bootstrap_src)
             .pipe(concat('bootstrap.less'))
             .pipe(less({
               paths: [ path.join(__dirname, 'less', 'includes') ]
@@ -565,14 +566,15 @@ gulp.task('swatch', function(){
             
             console.log('Compiling Bootswatch theme “'+res.theme+'”…');
 
-            bootstrap_less.push('node_modules/bootswatch/' + slug + '/variables.less');
-            bootstrap_less.push('node_modules/bootswatch/' + slug + '/bootswatch.less');
+            bootstrap_src.push('node_modules/bootswatch/' + slug + '/variables.less');
+            bootstrap_src.push('node_modules/bootswatch/' + slug + '/bootswatch.less');
 
-            gulp.src(bootstrap_less)
+            gulp.src(bootstrap_src)
             .pipe(concat('bootstrap.less'))
             .pipe(less({
               paths: [ path.join(__dirname, 'less', 'includes') ]
             }))
+            // .pipe(sass().on('error', sass.logError))
             .pipe(concat('bootstrap.min.css'))
             .pipe(cssmin())
             .pipe(gulp.dest('dist/assets/css/'));
@@ -598,11 +600,10 @@ function getBasename(file) {
 gulp.task('hjs', function(){
 
   css = fs.readdirSync('./node_modules/highlight.js/src/styles/');
-  // css = fs.readdirSync('./node_modules/highlightjs/styles/');
   css.forEach(getBasename);
 
   hjs.sort();
-  hjs.concat(hjs.splice(0,hjs.indexOf('github')));
+  hjs = hjs.concat(hjs.splice(0,hjs.indexOf('github')));
 
   return gulp.src('./')
    .pipe(prompt.prompt({
@@ -613,7 +614,6 @@ gulp.task('hjs', function(){
      }, function(res){
 
         var source_dir = 'node_modules/highlight.js/src/styles/';
-        // var source_dir = 'node_modules/highlightjs/styles/';
 
          // Set default theme
          console.log('Minifying highlight.js theme “'+res.theme+'”…');
@@ -626,9 +626,6 @@ gulp.task('hjs', function(){
          .pipe(jeditor({
            'highlight': {
              'theme': res.theme
-           // },
-           // 'assets': {
-           //    'highlight_css': config.assets.highlight_css.replace('%theme%', res.theme),
            }
          }))
          .pipe(gulp.dest("dist/"));
@@ -811,6 +808,12 @@ gulp.task('init', function() {
   ])
   .pipe(gulp.dest('dist/assets/js/'));
 
+  gulp.src('node_modules/font-awesome/css/font-awesome.min.css')
+    .pipe(gulp.dest('dist/assets/css/'));
+
+  gulp.src('node_modules/font-awesome/fonts/fontawesome-webfont.*')
+    .pipe(gulp.dest('dist/assets/fonts/'));
+
   gulp.src("src/config.json")
   .pipe(gulp.dest("dist/"));
 
@@ -924,6 +927,14 @@ gulp.task('uglify', function() {
    gulp.src([
      'src/js/*.js'
    ])
+   .pipe(order([
+       'functions.js',
+       'dropbox.js',
+       'keyboard.js',
+       'modal.js',
+       'search.js',
+       'table.js'
+   ], { base: './src/js/' }))
    .pipe(uglify())
    .pipe(concat('listr.min.js'))
    .pipe(notify("Uglified: <%= file.relative %>"))
@@ -979,7 +990,12 @@ gulp.task('_css', function () {
 // Build Highlight.js (via https://github.com/kilianc/rtail/blob/develop/gulpfile.js#L69)
 gulp.task('build_hjs', function (done) {
 
-  var config = require('./src/config.json');
+  var languages = ['tools/build.js'];
+  var config = require('./src/config.json').highlight.languages;
+  config.forEach(function(item) {
+    languages.push(item);
+  });
+
   var spawn = require('child_process').spawn;
   var opts = {
     cwd: __dirname + '/node_modules/highlight.js'
@@ -992,7 +1008,7 @@ gulp.task('build_hjs', function (done) {
   npmInstall.on('close', function (code) {
     if (0 !== code) throw new Error('npm install exited with ' + code);
 
-    var build = spawn('node', ['tools/build.js', 'coffeescript', 'css', 'haml', 'javascript', 'json', 'less', 'markdown', 'php', 'perl', 'python', 'ruby', 'scss', 'xml'], opts);
+    var build = spawn('node', languages, opts);
     build.stdout.pipe(process.stdout);
     build.stderr.pipe(process.stderr);
 
