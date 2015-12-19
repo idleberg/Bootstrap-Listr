@@ -9,7 +9,7 @@ var stripedRows = function() {
         $('tbody tr').css( "background-color", "inherit");
         $('tbody tr:not(.hidden):even').css( "background-color", striped_bg );
     }
-}
+};
 
 // Adjust counter for rows
 var countRows = function() {
@@ -29,10 +29,9 @@ $('.table-hover>tbody>tr').bind({
         $(this).removeAttr('style');
         hover_bg = $(this).css('background-color');
     }
-    console.log(hover_bg);
     $(this).css( "background-color", hover_bg);
   },
   mouseleave: function(e) {
     stripedRows();
   }
-})
+});
