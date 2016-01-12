@@ -282,8 +282,8 @@ if ($handle = opendir($navigation_dir))
             }
             $item['lext'] = strtolower($info['extension']);
 
-            // If process_checksum, ignore checksum files or read in checksum
-            if ( ($options['general']['process_checksum'] == true)) {
+            // If enable_checksums, ignore checksum files or read in checksum
+            if ( ($options['general']['enable_checksums'] == true)) {
                 // Skip checksum files
                 if (in_array($item['lext'], $options["checksum_files"])) {
                     continue;
@@ -673,7 +673,7 @@ if(($folder_list) || ($file_list) ) {
             $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$modified_attr>" . utf8ify($display_name) . "</a>";
 
             // Append checksum info if enabled
-            if ( ($options['general']['process_checksum'] == true) && !empty($options["checksum_files"]) ) {
+            if ( ($options['general']['enable_checksums'] == true) && !empty($options["checksum_files"]) ) {
                 foreach ($options["checksum_files"] as $chksum_ext) {
                     if (array_key_exists($chksum_ext, $item)) {
                         // Fake indentation
@@ -688,9 +688,16 @@ if(($folder_list) || ($file_list) ) {
                         } else {
                             $label = null;
                         }
-                        $table_body .= "<br>$fake_indent$label <a href=\"" . htmlentities(rawurlencode($item['bname'] . "." . $chksum_ext), ENT_QUOTES, 'utf-8') . "\" class=\"text-muted\">"
+
+                        // Truncate length
+                        if( (is_integer($options["truncate_checksums"])) && ($options["truncate_checksums"] > 0) ){
+                            $truncate = $options["truncate_checksums"];
+                        } else {
+                            $truncate = 8;
+                        }
+                        $table_body .= "<br>$fake_indent$label <a href=\"" . htmlentities(rawurlencode($item['bname'] . "." . $chksum_ext), ENT_QUOTES, 'utf-8') . "\" class=\"text-muted\" title=\"".$item[$chksum_ext]."\">"
                             // Print checksun string
-                            .$item[$chksum_ext] . "</a>" . PHP_EOL;
+                            .substr($item[$chksum_ext], 0, $truncate) . "</a>" . PHP_EOL;
                     }
                 }
             }
