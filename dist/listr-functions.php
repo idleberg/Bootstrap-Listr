@@ -306,22 +306,15 @@ function readfile_chunked($filename, $retbytes = TRUE) {
 }
 
 function in_array_regex($string, $filters) {
-
     foreach ($filters as $filter) {
-
         // does contain wildcard?
         if (strpos($filter, "*") !== false) {
-            // echo "$filter DOES contains *";
             $filter = str_replace( '\*', '.*?', preg_quote( $filter, '/' ) );
             preg_match( '/^' . $filter . '$/i', $string, $result );
-            // var_dump($result);
-
-            // echo "<h1>$string in $filter</h1".PHP_EOL;
             if ($result[0] !== null) {
                 return true;
             }
         } else {
-            // echo "$filter does NOT contains *";
            if (in_array($string, $filters)) {
             return true;
            }
