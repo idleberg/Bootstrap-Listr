@@ -13,12 +13,17 @@ var stripedRows = function() {
 
 // Adjust counter for rows
 var countRows = function() {
-    $('tbody tr:not(.hidden) > td:nth-of-type('+column+1+')').each(function(index,elem){
+
+    var items = $('tbody tr:not(.hidden)').length;
+    console.log("items:"+items);
+
+    if (items > 1) {
+      $('tbody tr:not(.hidden) > td:nth-of-type('+column+1+')').each(function(index,elem){
         index+=1;
         $(this).text(index);
-    });
-
-    stripedRows();
+      });
+      stripedRows();
+    } 
 };
 countRows();
 
