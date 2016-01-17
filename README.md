@@ -8,6 +8,8 @@
 
 A replacement for default server indices, Bootstrap Listr beautifully displays folders and files in the browser. It is built upon the [Bootstrap](http://getbootstrap.com) framework and optionally makes use of [Bootswatch](http://bootswatch.com/) themes and [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons.
 
+Bootstrap Listr uses Apache's .htaccess files. To configure Bootstrap Listr under Nginx server, look at the [NGINX](#nginx) config section below.
+
 *Watch a [live demo](http://demo.idleberg.com/Bootstrap-Listr-2/)!*
 
 ## Installation
@@ -58,6 +60,35 @@ You can configure a number of settings in the file `config.json`:
 
 Please visit the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki/Understanding-config.json) for details.
 
+## NGINX
+
+If you are using Nginx and want to have Bootstrap-Listr working, here is a location configuration that should get you up and running. 
+
+```
+
+	location / {
+		
+		if (!-e $request_filename) {
+			rewrite ^(.+)$ /index.php?path=$1 break;
+		}
+
+		# Your normal / location settings here (php_params etc)
+
+	}
+
+```
+Test your nginx config before restarting the server by using the command;
+```
+nginx -t
+```
+
+If everything checks out, restart the server;
+```
+service nginx restart
+```
+
+Of course, you might need to use sudo to run the last commands, enjoy!
+
 ## Support
 
 It's always a good start to consult the [FAQ](https://github.com/idleberg/Bootstrap-Listr/wiki/FAQ) or the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki) in general.
@@ -90,6 +121,7 @@ Contributors:
 
 * [@melalj](https://github.com/melalj) - subfolder support
 * [@Zerquix18](https://github.com/Zerquix18) - security fixes
+* [@ZSX](https://github.com/mathieu-aubin) - nginx configuration
 
 ## License
 
