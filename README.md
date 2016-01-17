@@ -72,7 +72,7 @@ If you are using Nginx and want to have Bootstrap-Listr working, here is a locat
 			rewrite ^(.+)$ /index.php?path=$1 break;
 		}
 
-		# Your normal / location settings here (php_params
+		# Your normal / location settings here (php_params etc)
 
 	}
 
