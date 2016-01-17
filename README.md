@@ -8,7 +8,7 @@
 
 A replacement for default server indices, Bootstrap Listr beautifully displays folders and files in the browser. It is built upon the [Bootstrap](http://getbootstrap.com) framework and optionally makes use of [Bootswatch](http://bootswatch.com/) themes and [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons.
 
-Bootstrap Listr uses Apache's .htaccess files. To configure Bootstrap Listr under Nginx server, look at the [NGINX](#NGINX) config section below.
+Bootstrap Listr uses Apache's .htaccess files. To configure Bootstrap Listr under Nginx server, look at the [NGINX](#nginx) config section below.
 
 *Watch a [live demo](http://demo.idleberg.com/Bootstrap-Listr-2/)!*
 
