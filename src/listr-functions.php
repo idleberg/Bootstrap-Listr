@@ -109,7 +109,7 @@ function set_footer(){
     $footer = null;
     global $options;
 
-    $server =  get_server();
+    $server = get_server();
 
     // jQuery
     if ( ($options['general']['enable_sort']) || ($options['general']['enable_viewer']) ) {
@@ -181,9 +181,8 @@ function get_server() {
 
     if ($options['general']['local_assets'] === true) {
         return $protocol.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/";
-    } else {
-        return null;
     }
+    return null;
 }
 
 function load_iconset($input = "fa") {
