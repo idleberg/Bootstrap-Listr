@@ -435,10 +435,6 @@ if ($options['general']['enable_search'] == true) {
 // Set table header
 $table_header = null;
 
-if ($table_options['count']) {
-    $table_header .= "            <th id=\"file-count\" class=\"text-$right\" data-sort=\"int\">#</th>" . PHP_EOL;
-}
-
 $table_header .= "            <th class=\"".$column_name." text-$left\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
 if ($table_options['size']) {
@@ -481,13 +477,9 @@ if(($folder_list) || ($file_list) ) {
 
             $table_body .= "          <tr$tr_folders>" . PHP_EOL;
 
-            if ($table_options['count']) {
-                $table_body .= "            <td class=\"text-muted text-$right\" data-sort-value=\"$row_counter\">$row_counter</td>";
-            }
-
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body .= " class=\"text-$left\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"text-$left\" data-sort-value=\"dir-". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
@@ -505,7 +497,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['size']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-$right\" data-sort-value=\"0\"";
+                    $table_body .= " class=\"text-$right\" data-sort-value=\"-1\"";
                 }
                 $table_body .= ">&mdash;</td>" . PHP_EOL;
             }
@@ -611,12 +603,12 @@ if(($folder_list) || ($file_list) ) {
             $table_body .= "          <tr$row_attr>" . PHP_EOL;
             
             if ($table_options['count']) {
-                $table_body .= "            <td class=\"text-muted text-$right\" data-sort-value=\"$row_counter\">$visible_count</td>";
+                // $table_body .= "            <td class=\"text-muted text-$right\" data-sort-value=\"$row_counter\">$visible_count</td>";
             }
             
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body .= " class=\"text-$left\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"text-$left\" data-sort-value=\"file-". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
