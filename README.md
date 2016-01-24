@@ -14,10 +14,6 @@ A replacement for default server indices, Bootstrap Listr beautifully displays f
 
 Download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releases) or clone the repository.
 
-## Usage
-
-The simplest way is to use the default configuration. Copy the `dist`-folder to your webserver, then place all files that should be accessible in the browser go into the `_public` folder. Point your browser to the `dist`-folder rather than the files and folder inside `_public`.
-
 ## Building
 
 ### Gulp
