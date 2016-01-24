@@ -518,7 +518,7 @@ if(($folder_list) || ($file_list) ) {
 
             // Is file hidden?
             if (in_array_regex($item['bname'], $options['hidden_files'])){
-                if (!isset($_GET["showall"])) {
+                if (!isset($_GET["reveal"])) {
                     $row_classes[]  = " hidden-xs-up";
                 }
                 // muted class on row…
