@@ -543,8 +543,10 @@ if(($folder_list) || ($file_list) ) {
             }
 
             // Is file hidden?
-            if (in_array_regex($item['bname'], $options['hidden_files'])) {
-                $row_classes[] = "hidden";
+            if (in_array_regex($item['bname'], $options['hidden_files'])){
+                if (!isset($_GET["showall"])) {
+                    $row_classes[] = "hidden";
+                }
                 // muted class on row…
                 $row_classes[] = $options['bootstrap']['hidden_files_row'];
                 // …and again for the link
