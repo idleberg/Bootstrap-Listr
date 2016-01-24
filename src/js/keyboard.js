@@ -6,13 +6,12 @@ $(document).bind('keydown', function(event) {
     if( event.altKey ) {
         $(hidden).addClass( "reveal" ).removeClass( "hidden");
     }
-    countRows();
+    // countRows();
     
 }).bind('keyup',function(){
     
     // hide hidden files again
     $(hidden).removeClass( "reveal" ).addClass( "hidden");
-    countRows();
 });
 
 $(document).bind('keyup', function(event) {
