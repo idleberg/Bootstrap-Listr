@@ -1,17 +1,17 @@
-var hidden = $("tr.hidden");
+var hidden = $("tr:hidden");
 
 $(document).bind('keydown', function(event) {
 
     // show hidden files
     if( event.altKey ) {
-        $(hidden).addClass( "reveal" ).removeClass( "hidden");
+        $(hidden).addClass( "reveal" ).removeClass( "hidden-xs-up");
     }
     // countRows();
     
 }).bind('keyup',function(){
     
     // hide hidden files again
-    $(hidden).removeClass( "reveal" ).addClass( "hidden");
+    $(hidden).removeClass( "reveal" ).addClass( "hidden-xs-up");
 });
 
 $(document).bind('keyup', function(event) {
