@@ -129,7 +129,7 @@ switch ($options['bootstrap']['icons']) {
         // TODO: move to theme
         $icons['prefix'] = "fa fa-fw";
         $icons['home']   = "<i class=\"".$icons['prefix']." ".$icons['home']." fa-lg\"></i> ";
-        $icons['search'] = "          <i class=\"".$icons['prefix']." ".$icons['search']." form-control-feedback\"></i>" . PHP_EOL;
+        // $icons['search'] = "          <i class=\"".$icons['prefix']." ".$icons['search']." form-control-feedback\"></i>" . PHP_EOL;
         $icons['folder'] = $icons['prefix'].' '. $icons['folder'].' ' . $options['bootstrap']['fontawesome_style'];
         if ($options['general']['share_icons'] == true) { 
             $icons_dropbox  = "<i class=\"".$icons['prefix']." fa-dropbox\"></i> ";
@@ -141,7 +141,7 @@ switch ($options['bootstrap']['icons']) {
         break;
     default:
         $icons['home']   = $_SERVER['HTTP_HOST'];
-        $icons['search'] = null;
+        // $icons['search'] = null;
 }
 
 if ($options['general']['enable_viewer']) {
@@ -207,24 +207,6 @@ if (isset($options['bootstrap']['button_highlight'])) {
     $btn_highlight = $options['bootstrap']['button_highlight'];
 } else {
     $btn_highlight = 'btn-link';
-}
-
-if (isset($options['bootstrap']['column_name'])) {
-    $column_name = $options['bootstrap']['column_name'];
-} else {
-    $column_name = 'col-lg-8';
-}
-
-if (isset($options['bootstrap']['column_size'])) {
-    $column_size = $options['bootstrap']['column_size'];
-} else {
-    $column_size = 'col-lg-2';
-}
-
-if (isset($options['bootstrap']['column_age'])) {
-    $column_age = $options['bootstrap']['column_age'];
-} else {
-    $column_age = 'col-lg-2';
 }
 
 if ($options['bootstrap']['breadcrumb_style'] != "") {
@@ -423,10 +405,10 @@ if ($options['general']['enable_search'] == true) {
 
     $search  = "    <div class=\"row\">" . PHP_EOL;
     $search .= "      <div class=\"col-xs-6 col-sm-4 col-md-3$search_offset\">" . PHP_EOL;
-    $search .= "          <div class=\"form-group has-feedback\">" . PHP_EOL;
+    $search .= "          <div class=\"form-group\">" . PHP_EOL;
     $search .= "            <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
     $search .= "            <input type=\"text\" id=\"listr-search\" class=\"form-control$input_size\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
-    $search .= $icons['search'];
+    // $search .= $icons['search'];
     $search .= "         </div>" . PHP_EOL; // form-group
     $search .= "      </div>" . PHP_EOL; // col
     $search .= "    </div>" . PHP_EOL; // row
@@ -435,12 +417,12 @@ if ($options['general']['enable_search'] == true) {
 // Set table header
 $table_header = null;
 
-$table_header .= "            <th class=\"".$column_name." text-$left\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
+$table_header .= "            <th class=\"text-xs-$left\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
 if ($table_options['size']) {
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
-        $table_header .= " class=\"".$column_size." text-$right\" data-sort=\"int\">";
+        $table_header .= " class=\"text-xs-$right\" data-sort=\"int\">";
     } else {
         $table_header .= ">";
     }
@@ -450,7 +432,7 @@ if ($table_options['size']) {
 if ($table_options['age']) {
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
-        $table_header .= " class=\"".$column_age." text-$right\" data-sort=\"int\">";
+        $table_header .= " class=\"text-xs-$right\" data-sort=\"int\">";
     } else {
         $table_header .= ">";
     }
@@ -479,7 +461,7 @@ if(($folder_list) || ($file_list) ) {
 
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body .= " class=\"text-$left\" data-sort-value=\"dir-". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"text-xs-$left\" data-sort-value=\"dir-". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
@@ -497,7 +479,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['size']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-$right\" data-sort-value=\"-1\"";
+                    $table_body .= " class=\"text-xs-$right\" data-sort-value=\"-1\"";
                 }
                 $table_body .= ">&mdash;</td>" . PHP_EOL;
             }
@@ -505,7 +487,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['age']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-$right\" data-sort-value=\"" . $item['mtime'] . "\"";
+                    $table_body .= " class=\"text-xs-$right\" data-sort-value=\"" . $item['mtime'] . "\"";
                     $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
                 $table_body .= ">" . time_ago($item['mtime']) . "</td>" . PHP_EOL;
@@ -536,8 +518,8 @@ if(($folder_list) || ($file_list) ) {
 
             // Is file hidden?
             if (in_array_regex($item['bname'], $options['hidden_files'])){
-                if (!isset($_GET["showall"])) {
-                    $row_classes[] = "hidden";
+                if (!isset($_GET["reveal"])) {
+                    $row_classes[]  = " hidden-xs-up";
                 }
                 // muted class on row…
                 $row_classes[] = $options['bootstrap']['hidden_files_row'];
@@ -595,7 +577,7 @@ if(($folder_list) || ($file_list) ) {
 
             // Concatenate tr-classes
             if (!empty($row_classes)) {
-                $row_attr = ' class="'.implode(" ", $row_classes).'"';
+                $row_attr = ' class="'.implode(" ", $row_classes).'"'.$hidden;
             } else {
                 $row_attr = null;
             }
@@ -603,12 +585,12 @@ if(($folder_list) || ($file_list) ) {
             $table_body .= "          <tr$row_attr>" . PHP_EOL;
             
             if ($table_options['count']) {
-                // $table_body .= "            <td class=\"text-muted text-$right\" data-sort-value=\"$row_counter\">$visible_count</td>";
+                // $table_body .= "            <td class=\"text-muted text-xs-$right\" data-sort-value=\"$row_counter\">$visible_count</td>";
             }
             
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body .= " class=\"text-$left\" data-sort-value=\"file-". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"text-xs-$left\" data-sort-value=\"file-". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
@@ -702,7 +684,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['size']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-$right\" data-sort-value=\"" . $item['bytes'] . "\"";
+                    $table_body .= " class=\"text-xs-$right\" data-sort-value=\"" . $item['bytes'] . "\"";
                     $table_body .= " title=\"" . $item['bytes'] . " " ._('bytes')."\"";
                 }
                     $table_body .= ">" . $item_pretty_size . "</td>" . PHP_EOL;
@@ -712,7 +694,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['age']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-$right\" data-sort-value=\"".$item['mtime']."\"";
+                    $table_body .= " class=\"text-xs-$right\" data-sort-value=\"".$item['mtime']."\"";
                     $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
                 $table_body .= ">" . time_ago($item['mtime']) . "</td>" . PHP_EOL;

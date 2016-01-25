@@ -7,8 +7,13 @@ if(jQuery().searcher) {
 
   // Clears input when pressing Esc-key
   $('#listr-search').keyup(function(e){
+      var $this = $(this);
       if(e.keyCode == 27) {
-          $(this).val('');
+          if ($this.val() ===  '') {
+            $this.blur();
+          } else {
+            $this.val('');
+          }
       }
   });
   

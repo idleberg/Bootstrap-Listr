@@ -79,7 +79,7 @@ function source_defaults( ev, el) {
 
     // Show & enable highlight button
     if (data !== true) {
-        $(".highlight").removeClass("hidden").removeAttr("disabled");
+        $(".highlight").removeClass("hidden-xs-up").removeAttr("disabled");
     }
 
     // Get file extension
@@ -344,7 +344,7 @@ viewer.on("hide.bs.modal", function() {
 viewer.on("hidden.bs.modal", function() {
     
     // hide Highlighter button
-    $(".highlight").addClass("hidden");
+    $(".highlight").addClass("hidden-xs-up");
 
     // Empty modal body to stop playback in Firefox
     $(".modal-body").empty();
