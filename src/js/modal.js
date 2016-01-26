@@ -17,7 +17,7 @@ var decodeFile = function(contents) {
     } catch (err) {
        return contents;
     }
-}
+};
 
 function set_modal(content, file, uri, meta) {
     
@@ -227,7 +227,7 @@ $(".quicktime-modal").click(function(event) {
 
 $(".source-modal").click(function(event) {
     
-    arr = source_defaults( event, $(this) );
+    var arr = source_defaults( event, $(this) );
     
     // Load file contents
     $.ajax(arr[0], {
@@ -254,7 +254,7 @@ $(".source-modal").click(function(event) {
 
 $(".source-modal-alt").click(function(event) {
     
-    arr = source_defaults( event, $(this) );
+    var arr = source_defaults( event, $(this) );
     
     // Load file contents
     $.ajax(arr[0], {
