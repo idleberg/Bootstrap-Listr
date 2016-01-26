@@ -10,8 +10,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 # LABELS
-msgid "Index of %1$s%2$s"
-msgstr "Inhalt von %1$s%2$s"
+msgid "Index of %1$s"
+msgstr "Inhalt von %1$s"
 
 msgid "Name"
 msgstr "Name"

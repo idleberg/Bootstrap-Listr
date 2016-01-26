@@ -25,7 +25,7 @@ function set_header($bootstrap_css) {
         $server  = $_SERVER['HTTP_HOST'];
         $request = htmlentities(urldecode(strtok($_SERVER['REQUEST_URI']), '?'), ENT_QUOTES, 'utf-8');
         $folder  = basename($server.$request);
-        $index = "Index of $folder";
+        $index = sprintf(_('Index of %1$s'), $folder);
     } else {
         $index   = $options['general']['custom_title'];
     }
