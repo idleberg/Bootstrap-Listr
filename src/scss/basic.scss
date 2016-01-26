@@ -1,0 +1,8 @@
+body {
+  overflow-y: scroll;
+}
+
+.breadcrumb>li+li::before {
+    content: "\f105";
+    font-family: fontawesome;
+}
