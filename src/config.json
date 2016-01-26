@@ -49,7 +49,6 @@
     "table_style":       "table-hover",
     "navbar_style":      null,
     "responsive_table":  true,
-    "sticky_footer":     false,
     "modal_style":        "modal-lg",
     "button_primary":    "btn-primary",
     "button_default":    "btn-default",

@@ -15,7 +15,6 @@
 <?php echo $table_header?>
           </tr>
         </thead>
-<?php if($options['bootstrap']['sticky_footer'] !== true) { ?>
         <tfoot>
           <tr>
             <td colspan="<?php echo $table_count+1?>">
@@ -24,7 +23,6 @@
             </td>
           </tr>
         </tfoot>
-<?php } ?>
         <tbody>
 <?php echo $table_body?>
         </tbody>                          
@@ -78,13 +76,5 @@
 <?php } ?>
   </div>
 <?php echo $footer?>
-<?php if($options['bootstrap']['sticky_footer'] === true) { ?>
-  <footer class="footer">
-    <div class="container">
-      <small class="pull-<?php echo $left?> text-muted" dir="ltr"><?php echo $summary ?></small>
-      <?php echo $kudos?>
-    </div>
-  </footer>
-<?php } ?> 
 </body>
 </html>
