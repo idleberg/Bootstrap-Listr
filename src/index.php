@@ -84,15 +84,14 @@ if(substr($navigation_dir, -1) != "/"){
             readfile_chunked($navigation_dir);
         } else {
             readfile($navigation_dir);     
-        }  
+        }
     } else {
-        set_404_error();
+        set_404_error($root_dir, basename($navigation_dir));
     }
     exit;
 } else {
     if(!file_exists($navigation_dir)){
-        set_404_error();
-        exit;  
+        set_404_error($root_dir, basename($navigation_dir));
     }
 }
 

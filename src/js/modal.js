@@ -11,6 +11,14 @@ var twitter     = $(".twitter-link");
 var facebook    = $(".facebook-link");
 var google      = $(".google-link");
 
+var decodeFile = function(contents) {
+    try {
+        return decodeURIComponent(contents);
+    } catch (err) {
+       return contents;
+    }
+};
+
 function set_modal(content, file, uri, meta) {
     
     // Inject content 
@@ -30,7 +38,7 @@ function set_modal(content, file, uri, meta) {
     google.attr("href", "https://plus.google.com/share?url=" + uri);
     
     // Set title
-    modal_title.text(decodeURIComponent(file));
+    modal_title.text(decodeFile(file));
 
     meta = typeof meta !== 'undefined' ? meta : null;
     file_meta.text(meta);
@@ -219,14 +227,14 @@ $(".quicktime-modal").click(function(event) {
 
 $(".source-modal").click(function(event) {
     
-    arr = source_defaults( event, $(this) );
+    var arr = source_defaults( event, $(this) );
     
     // Load file contents
     $.ajax(arr[0], {
         dataType: "text",
         success: function(contents) {
             // Inject source code
-            $("#source").text(decodeURIComponent(contents));
+            $("#source").text(decodeFile(contents));
             
             // Fire auto-highlighter
             if (arr[1] === true) {
@@ -246,14 +254,15 @@ $(".source-modal").click(function(event) {
 
 $(".source-modal-alt").click(function(event) {
     
-    arr = source_defaults( event, $(this) );
+    var arr = source_defaults( event, $(this) );
     
     // Load file contents
     $.ajax(arr[0], {
         dataType: "text",
         success: function(contents) {
             // Inject source code
-            $("#source").text(decodeURIComponent(contents));
+            $("#source").text(decodeFile(contents));
+            
             
             // Fire auto-highlighter
             if (arr[1] === true) {
@@ -270,6 +279,7 @@ $(".source-modal-alt").click(function(event) {
     // show modal
     viewer.modal("show");
 });
+
     
 $(".highlight").click(function(event) {
    
@@ -301,7 +311,7 @@ $(".text-modal").click(function(event) {
     $.ajax(arr[0], {
         dataType: "text",
         success: function(contents) {
-            $("#text").text(decodeURIComponent(contents));
+            $("#text").text(decodeFile(contents));
         }
     }).done(function() {
         // show modal
@@ -322,7 +332,7 @@ $(".text-modal-alt").click(function(event) {
     $.ajax(arr[0], {
         dataType: "text",
         success: function(contents) {
-            $("#text").text(decodeURIComponent(contents));
+            $("#text").text(decodeFile(contents));
         }
     });
     // show modal

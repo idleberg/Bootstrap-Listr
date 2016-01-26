@@ -1,47 +1,27 @@
-@import '../../node_modules/bootstrap/scss/_variables.scss';
-
-// Sticky footer
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 2.5em;
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: inherit;
-  height: 2.5em;
-  padding: 8px;
-  // padding: $table-cell-padding;
-}
+@import '../../node_modules/bootstrap/scss/_variables';
 
 // Row counter
 thead tr::before {
+  border-top: 1px solid $table-border-color;
   content: '#';
   font-weight: bold;
-  border-top: 1px solid $table-border-color;
 }
 
 tbody {
   counter-reset: listr-rows;
 
-  & tr {
+  tr {
     counter-increment: listr-rows;
   }
 
-  & tr:first-child::before {
+  tr:first-child::before {
     border-top: 2px solid $table-border-color;
   }
 
-  & tr:before {
-    content: counter(listr-rows);
+  tr::before {
     border-top: 1px solid $table-border-color;
     color: $text-muted;
+    content: counter(listr-rows);
   }
 }
 
@@ -52,9 +32,8 @@ th {
 tr::before {
   display: table-cell;
   line-height: $line-height;
-  vertical-align: top;
-  text-align: right;
-  width: 1rem;
   padding: $table-cell-padding;
+  text-align: right;
+  vertical-align: top;
+  width: 1rem;
 }
-

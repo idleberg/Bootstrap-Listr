@@ -10,8 +10,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 # LABELS
-msgid "Index of %1$s%2$s"
-msgstr "Inhalt von %1$s%2$s"
+msgid "Index of %1$s"
+msgstr "Inhalt von %1$s"
 
 msgid "Name"
 msgstr "Name"
@@ -157,6 +157,13 @@ msgstr "Suche"
 
 msgid "Save to Dropbox"
 msgstr "In Dropbox speichern"
+
+# ALERT
+msgid "Error 404: Not found"
+msgstr "Fehler 404: Nicht gefunden"
+
+msgid "The file &quot;%1$s&quot; was not found on this server. You have been automatically forwarded to the start page."
+msgstr "Die Datei &quot;%1$s&quot; konnte nicht auf dem Server gefunden werden. Wird haben Sie deshalb automatisch auf die Startseite weitergeleitet."
 
 # KUDOS
 msgid "Fork me on GitHub"
