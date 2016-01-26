@@ -157,6 +157,13 @@ msgstr "Buscar"
 msgid "Guardar en Dropbox"
 msgstr "Enregistrer sur Dropbox"
 
+# ALERT
+msgid "Error 404: Not found"
+msgstr "Error 404: No encontrado"
+
+msgid "The file &quot;%1$s&quot; was not found on this server. You have been automatically forwarded to the start page."
+msgstr "El archivo &quot;%1$s&quot; no se ha encontrado en este servidor. Serás automáticamente redirigido a la página de inicio"
+
 # GITHUB
 msgid "Fork me on GitHub"
 msgstr "Encontrame en GitHub"
