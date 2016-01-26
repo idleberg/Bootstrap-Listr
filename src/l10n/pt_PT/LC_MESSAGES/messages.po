@@ -1,7 +1,7 @@
 # META
 msgid ""
 msgstr ""
-"Project-Id-Version: Bootstrap Listr 2.0.1\n"
+"Project-Id-Version: Bootstrap Listr 2.3.0\n"
 "Last Translator: Gengo.com/Translators #48973 & #48869\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -156,6 +156,13 @@ msgstr "Procurar"
 
 msgid "Guardar en Dropbox"
 msgstr "Gravar na Dropbox"
+
+# ALERT
+msgid "Error 404: Not found"
+msgstr "Erro 404: Não Encontrado"
+
+msgid "The file &quot;%1$s&quot; was not found on this server. You have been automatically forwarded to the start page."
+msgstr "O ficheiro &quot;%1$s&quot; não foi encontrado neste servidor. Foi direcionado automaticamente para a página inicial."
 
 # GITHUB
 msgid "Fork me on GitHub"
