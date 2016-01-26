@@ -63,6 +63,7 @@
     "hidden_files_row":  "text-muted",
     "hidden_files_link": "text-muted",
     "checksum_label":    "label-default",
+    "alert_404":         "alert-warning",
     "theme":             "default",
     "icons":             "fa",
     "fontawesome_style": ""

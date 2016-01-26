@@ -194,9 +194,29 @@ function load_iconset($input = "fa") {
     }
 }
 
-function set_404_error() {
-    header('HTTP/1.0 404 Not Found');
-    echo "404 &mdash; Page not found";
+function set_404_error($root_dir, $file, $http = "1.1") {
+    $file = htmlentities(rawurlencode($file));
+    header("Location: " . $root_dir."?404=".$file);
+    exit;
+}
+
+function is_error() {
+    if ($options['bootstrap']['alert_404'] !== null) {
+        $alert_404 = $options['bootstrap']['alert_404'];
+    } else {
+        $alert_404 = "alert-warning";
+    }
+
+    if (isset($_GET["404"])) {
+        $close = _("Close");
+        $error_title = _("Error 404: Not found");
+        $error_detail = sprintf(_('The file &quot;%1$s&quot; was not found on this server. You have been automatically forwarded to the start page.'), $_GET["404"]);
+
+        echo "    <div class=\"alert $alert_404 alert-dismissible fade in\" role=\"alert\">".PHP_EOL;
+        echo "      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"$close\"><span aria-hidden=\"true\">×</span></button>".PHP_EOL;
+        echo "      <span class=\"text-center\"><strong>$error_title</strong><br/>$error_detail</span>".PHP_EOL;
+        echo "    </div>".PHP_EOL;
+    }
 }
 
 function utf8ify($str) {

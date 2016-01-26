@@ -5,6 +5,7 @@
 </head>
 <body<?php echo $body_style.$direction?>>
   <div class="<?php echo $container.$container_style ?>">
+<?php is_error($options) ?>
 <?php echo $breadcrumbs?>
 <?php echo $search ?>
 <?php echo $responsive_open?>
