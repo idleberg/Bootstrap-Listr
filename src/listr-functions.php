@@ -36,17 +36,10 @@ function set_header($bootstrap_css) {
     $header .= "  <title>".$index."</title>" . PHP_EOL;
 
     // Set iOS touch icon sizes (https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html)
-    if ($options['icons']['ios_version'] >= 7) {
-        $size_iphone        = "60x60";
-        $size_ipad          = "76x76";
-        $size_iphone_retina = "120x120";
-        $size_ipad_retina   = "152x152";
-    } else {
-        $size_iphone        = "57x57";
-        $size_ipad          = "72x72";
-        $size_iphone_retina = "114x114";
-        $size_ipad_retina   = "144x144";
-    }
+    $size_iphone        = "57x57";
+    $size_ipad          = "72x72";
+    $size_iphone_retina = "114x114";
+    $size_ipad_retina   = "144x144";
 
     if ($options['icons']['fav_icon']) $header .= "  <link rel=\"shortcut icon\" href=\"".$options['icons']['fav_icon']."\" />" . PHP_EOL;
     if ($options['icons']['iphone']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_iphone."\" href=\"".$options['icons']['iphone']."\" />" . PHP_EOL;
