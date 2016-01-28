@@ -8,7 +8,7 @@
 
 A replacement for default server indices, Bootstrap Listr beautifully displays folders and files in the browser. It is built upon the [Bootstrap](http://getbootstrap.com) framework and optionally makes use of [Bootswatch](http://bootswatch.com/) themes and [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons.
 
-*Watch a [live demo](http://demo.idleberg.com/Bootstrap-Listr-2/)!*
+*Watch a [live demo](http://demo.idleberg.com/Bootstrap-Listr-2/) (or latest [alpha-version](http://demo.idleberg.com/Bootstrap-Listr-2.3-alpha)!)
 
 ## Installation
 
