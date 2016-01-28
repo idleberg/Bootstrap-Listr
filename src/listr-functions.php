@@ -117,6 +117,9 @@ function set_footer(){
     $protocol = get_protocol();
 
     if ($options['general']['concat_assets'] === true) {
+        if ($options['general']['enable_viewer'] === true) {
+            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
+        }
         $footer    .= "  <script type=\"text/javascript\" src=\"".$protocol.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.pack.js\"></script>" . PHP_EOL;
     } else {
 
@@ -207,7 +210,7 @@ function is_error() {
         $alert_404 = "alert-warning";
     }
 
-    if (isset($_GET["404"])) {
+    if ($_GET["404"]) {
         $close = _("Close");
         $error_title = _("Error 404: Not found");
         $error_detail = sprintf(_('The file &quot;%1$s&quot; was not found on this server. You have been automatically forwarded to the start page.'), $_GET["404"]);
@@ -335,14 +338,5 @@ function in_array_regex($string, $filters) {
     }
     return false;
 }
-
-// Get protocol
-// function get_protocol() {
-//     if ($_SERVER['HTTPS']) {
-//         return "https://";
-//     } else {
-//         return = "http://";
-//     }
-// }
 
 ?>
