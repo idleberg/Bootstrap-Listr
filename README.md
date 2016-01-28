@@ -18,19 +18,15 @@ Download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releas
 
 ### Gulp
 
-[Gulp](http://gulpjs.com/) tasks are used to configure and build your application. You can install Gulp globally using `npm install gulp -g`.
+[Gulp](http://gulpjs.com/) tasks are used to configure and build your application.
 
-You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase. To force a clean installation, you can use `gulp setup-clean`.
+You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase.
 
 Please visit the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki/Gulp-tasks) for details.
 
-### CDN
-
-Instead of running your dependencies locally, you can make use of various content delivery networks (CDN). Initialize your application using `gulp init` and set `dependencies` to `cdn` in your `config.json`. You can then specify your preferred CDNs (and all other preferences) in this file as well (see [below](#options) for details!)
-
 ## Deployment
 
-Deploy `dist/` to your server, if necessary rename `config.json-example` to `config.json`. All files that should be accessible in the browser go into the `_public` folder (you can change the folder in the config). Depending on your Apache settings, you might have to uncomment the `RewriteBase` setting in the `.htaccess` file (maybe add parent folder name after the slash.)
+Deploy `build/` to your server. All files that should be accessible in the browser go into the `_public` folder (you can define a different folder in the `config.json). Depending on your Apache settings, you might have to uncomment the `RewriteBase` setting in the `.htaccess` file (maybe add folder name after the slash.)
 
 ## Options
 
