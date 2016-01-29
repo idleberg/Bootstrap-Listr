@@ -14,6 +14,13 @@ tbody {
     counter-increment: listr-rows;
   }
 
+  tr::before {
+    content: counter(listr-rows);
+  }
+}
+
+.table {
+
   tr:first-child::before {
     border-top: 2px solid $table-border-color;
   }
@@ -21,7 +28,17 @@ tbody {
   tr::before {
     border-top: 1px solid $table-border-color;
     color: $text-muted;
-    content: counter(listr-rows);
+  }
+}
+
+.table-inverse {
+
+  tr:first-child::before {
+    border-top: 2px solid $gray;
+  }
+
+  tr::before {
+    border-top: 1px solid $gray;
   }
 }
 
