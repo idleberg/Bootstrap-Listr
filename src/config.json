@@ -20,7 +20,7 @@
     "custom_title":       null,
     "read_chunks":        false,
     "enable_checksums":   false,
-    "truncate_checksums": 8,
+    "truncate_checksums": false,
     "give_kudos":         true
   },
   "assets": {
