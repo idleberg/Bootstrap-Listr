@@ -66,7 +66,7 @@ gulp.task('depends', function() {
         } else {
 
               // Read src/config.json
-              var config = require('./src/config.json');
+              var config = require('../src/config.json');
 
               assets =  {
                 'general': {
