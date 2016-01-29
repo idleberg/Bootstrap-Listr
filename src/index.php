@@ -193,7 +193,7 @@ if (isset($options['bootstrap']['modal_size'])) {
 if (isset($options['bootstrap']['button_default'])) {
     $btn_default = $options['bootstrap']['button_default'];
 } else {
-    $btn_default = 'btn-default';
+    $btn_default = 'btn-secondary';
 }
 
 if (isset($options['bootstrap']['button_primary'])) {
