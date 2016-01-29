@@ -193,7 +193,7 @@ if (isset($options['bootstrap']['modal_size'])) {
 if (isset($options['bootstrap']['button_default'])) {
     $btn_default = $options['bootstrap']['button_default'];
 } else {
-    $btn_default = 'btn-default';
+    $btn_default = 'btn-secondary';
 }
 
 if (isset($options['bootstrap']['button_primary'])) {
@@ -407,7 +407,7 @@ if ($options['general']['enable_search'] == true) {
 
     $search .= "      <div class=\"col-xs-6 col-sm-4 col-md-3$search_offset\">" . PHP_EOL;
     $search .= "          <div class=\"form-group\">" . PHP_EOL;
-    $search .= "            <label class=\"control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
+    $search .= "            <label class=\"form-control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
     $search .= "            <input type=\"text\" id=\"listr-search\" class=\"form-control$input_size\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
     // $search .= $icons['search'];
     $search .= "         </div>" . PHP_EOL; // form-group

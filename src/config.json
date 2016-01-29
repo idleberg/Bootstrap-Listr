@@ -51,7 +51,7 @@
     "responsive_table":  true,
     "modal_style":        "modal-lg",
     "button_primary":    "btn-primary",
-    "button_default":    "btn-default",
+    "button_default":    "btn-secondary",
     "button_highlight":  "btn-link",
     "input_size":        null,
     "tablerow_folder":   null,
