@@ -40,6 +40,9 @@
     ],
     "append_js":       [
       null
+    ],
+    "prepend_js":       [
+      null
     ]
   },
   "bootstrap": {

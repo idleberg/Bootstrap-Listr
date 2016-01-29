@@ -47,23 +47,22 @@
             <div class="pull-<?php echo $right?>">
               <button type="button" class="btn <?php echo $btn_default ?>" data-dismiss="modal"><?php echo _('Close')?></button>
 <?php if ($options['general']['share_button']) { ?>
+
               <div class="btn-group">
-                <a class="btn <?php echo $btn_primary ?> fullview" data-button="<?php echo _('Open')?>" role="button">
-                </a>
-                <button type="button" class="btn <?php echo $btn_primary ?> dropdown-toggle" data-toggle="dropdown">
-                  <span class="caret"></span>
+                <button type="button" class="btn <?php echo $btn_primary ?> fullview"><?php echo _('Open')?></button>
+                <button type="button" class="btn <?php echo $btn_primary ?> dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
-                <ul class="dropdown-menu" role="menu">
+                <div class="dropdown-menu">
 <?php if ($options['keys']['dropbox'] !== null ) { ?>
-                  <li role="presentation"><a role="menuitem" class="save-dropbox"><?php echo $icons_dropbox._('Save to Dropbox')?></a></li>
-                  <li role="presentation" class="divider"></li>
+                  <a class="dropdown-item save-dropbox"><?php echo $icons_dropbox._('Save to Dropbox')?></a>
+                  <div class="dropdown-divider"></div>
 <?php } ?>
-                  <li role="presentation"><a role="menuitem" class="email-link"><?php echo $icons_email ?>Email</a></li>
-                  <li role="presentation"><a role="menuitem" class="facebook-link"><?php echo $icons_facebook ?>Facebook</a></li>
-                  <li role="presentation"><a role="menuitem" class="google-link"><?php echo $icons_gplus ?>Google+</a></li>
-                  <li role="presentation"><a role="menuitem" class="twitter-link"><?php echo $icons_twitter ?>Twitter</a></li>
-                </ul>
+                  <a class="dropdown-item email-link"><?php echo $icons_email ?>Email</a>
+                  <a class="dropdown-item facebook-link"><?php echo $icons_facebook ?>Facebook</a>
+                  <a class="dropdown-item google-link"><?php echo $icons_gplus ?>Google+</a>
+                  <a class="dropdown-item twitter-link"><?php echo $icons_twitter ?>Twitter</a>
+                </div>
               </div>
 <?php } else { ?>
             <a class="btn <?php echo $btn_primary ?> fullview" data-button="<?php echo _('Open')?>" role="button"></a>
