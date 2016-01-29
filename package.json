@@ -31,7 +31,7 @@
     "gulp-watch": "^4.3.4",
     "highlight.js": "isagalaev/highlight.js#9.1.0",
     "jquery": "^2.2.0",
-    "jquery-searcher": "^0.2.0",
+    "jquery-searcher": "^0.3.0",
     "phplint": "^1.7.0",
     "run-sequence": "^1.1.4",
     "streamqueue": "^1.1.1",
