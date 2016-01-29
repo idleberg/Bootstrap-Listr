@@ -17,7 +17,7 @@
         </thead>
         <tfoot>
           <tr>
-            <td colspan="<?php echo $table_count+1?>">
+            <td colspan="<?php echo $table_count?>">
               <small class="pull-<?php echo $left?> text-muted" dir="ltr"><?php echo $summary ?></small>
               <?php echo $kudos?>
             </td>
