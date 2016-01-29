@@ -49,7 +49,7 @@
 <?php if ($options['general']['share_button']) { ?>
 
               <div class="btn-group">
-                <button type="button" class="btn <?php echo $btn_primary ?> fullview"><?php echo _('Open')?></button>
+                <a class="btn <?php echo $btn_primary ?> fullview"><?php echo _('Open')?></button>
                 <button type="button" class="btn <?php echo $btn_primary ?> dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
