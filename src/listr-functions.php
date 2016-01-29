@@ -81,6 +81,15 @@ function set_header($bootstrap_css) {
         $header .= "  <link rel=\"stylesheet\" href=\"".$protocol.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/listr.min.css\" />" . PHP_EOL;
     }
 
+    // Prepend JS
+    foreach($options['assets']['prepend_js'] as $prepend_js) {
+        if (is_array($prepend_js)) {
+             $footer .= "  <script type=\"text/javascript\" src=\"$server".$prepend_js[0]."\" ".$prepend_js[1]."></script>" . PHP_EOL;
+        } else if ($prepend_js !== null) {
+            $footer .= "  <script type=\"text/javascript\" src=\"$server$prepend_js\"></script>" . PHP_EOL;
+        }
+    }
+
     // Append CSS
     foreach($options['assets']['append_css'] as $append_css) {
         if ($append_css !== null) {
