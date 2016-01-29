@@ -166,7 +166,7 @@ if ($options['general']['text_direction'] == 'rtl') {
     $direction     = " dir=\"ltr\"";
     $right         = "right";
     $left          = "left";
-    $search_offset = " col-xs-offset-6 col-sm-offset-8 col-md-offset-9";
+    $search_offset = " col-xs-offset-6 col-sm-offset-7 col-md-offset-8";
 }
 
 $bootstrap_cdn = set_bootstrap_theme();
@@ -405,7 +405,7 @@ if ($options['general']['enable_search'] == true) {
         $input_size = null;
     }
 
-    $search .= "      <div class=\"col-xs-6 col-sm-4 col-md-3$search_offset\">" . PHP_EOL;
+    $search .= "      <div class=\"col-xs-6 col-sm-5 col-md-4$search_offset\">" . PHP_EOL;
     $search .= "          <div class=\"form-group\">" . PHP_EOL;
     $search .= "            <label class=\"form-control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
     $search .= "            <input type=\"text\" id=\"listr-search\" class=\"form-control$input_size\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
@@ -667,14 +667,13 @@ if(($folder_list) || ($file_list) ) {
                         }
 
                         // Truncate length
-                        if( (is_integer($options["truncate_checksums"])) && ($options["truncate_checksums"] > 0) ){
-                            $truncate = $options["truncate_checksums"];
+                        if( (is_integer($options["general"]["truncate_checksums"])) && ($options["general"]["truncate_checksums"] > 0) ){
+                            $truncate = $options["general"]["truncate_checksums"];
+                            $checksum = substr($item[$chksum_ext], 0, $truncate);
                         } else {
-                            $truncate = 8;
+                            $checksum = $item[$chksum_ext];
                         }
-                        $table_body .= "<br>$fake_indent$label <a href=\"" . htmlentities(rawurlencode($item['bname'] . "." . $chksum_ext), ENT_QUOTES, 'utf-8') . "\" class=\"text-muted\" title=\"".$item[$chksum_ext]."\">"
-                            // Print checksun string
-                            .substr($item[$chksum_ext], 0, $truncate) . "</a>" . PHP_EOL;
+                        $table_body .= "<br>$fake_indent$label <a href=\"" . htmlentities(rawurlencode($item['bname'] . "." . $chksum_ext), ENT_QUOTES, 'utf-8') . "\" class=\"text-muted\" title=\"".$item[$chksum_ext]."\">$checksum</a>" . PHP_EOL;
                     }
                 }
             }
