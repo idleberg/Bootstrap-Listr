@@ -84,16 +84,16 @@ function set_header($bootstrap_css) {
     // Prepend JS
     foreach($options['assets']['prepend_js'] as $prepend_js) {
         if (is_array($prepend_js)) {
-             $footer .= "  <script type=\"text/javascript\" src=\"$server".$prepend_js[0]."\" ".$prepend_js[1]."></script>" . PHP_EOL;
+             $footer .= "  <script type=\"text/javascript\" src=\"".$prepend_js[0]."\" ".$prepend_js[1]."></script>" . PHP_EOL;
         } else if ($prepend_js !== null) {
-            $footer .= "  <script type=\"text/javascript\" src=\"$server$prepend_js\"></script>" . PHP_EOL;
+            $footer .= "  <script type=\"text/javascript\" src=\"$prepend_js\"></script>" . PHP_EOL;
         }
     }
 
     // Append CSS
     foreach($options['assets']['append_css'] as $append_css) {
         if ($append_css !== null) {
-            $header .= "  <link rel=\"stylesheet\" href=\"$server$append_css\" />" . PHP_EOL;
+            $header .= "  <link rel=\"stylesheet\" href=\"$append_css\" />" . PHP_EOL;
         }
     }
 
@@ -158,9 +158,9 @@ function set_footer(){
     // Append JS
     foreach($options['assets']['append_js'] as $append_js) {
         if (is_array($append_js)) {
-             $footer .= "  <script type=\"text/javascript\" src=\"$server".$append_js[0]."\" ".$append_js[1]."></script>" . PHP_EOL;
+             $footer .= "  <script type=\"text/javascript\" src=\"".$append_js[0]."\" ".$append_js[1]."></script>" . PHP_EOL;
         } else if ($append_js !== null) {
-            $footer .= "  <script type=\"text/javascript\" src=\"$server$append_js\"></script>" . PHP_EOL;
+            $footer .= "  <script type=\"text/javascript\" src=\"$append_js\"></script>" . PHP_EOL;
         }
     }
 

@@ -19,6 +19,10 @@ tbody {
   }
 }
 
+tfoot tr::before {
+  content: '';
+}
+
 .table {
 
   tr:first-child::before {
