@@ -148,7 +148,9 @@ function set_footer(){
 
     // Append JS
     foreach($options['assets']['append_js'] as $append_js) {
-        if ($append_js !== null) {
+        if (is_array($append_js)) {
+             $footer .= "  <script type=\"text/javascript\" src=\"$server".$append_js[0]."\" ".$append_js[1]."></script>" . PHP_EOL;
+        } else if ($append_js !== null) {
             $footer .= "  <script type=\"text/javascript\" src=\"$server$append_js\"></script>" . PHP_EOL;
         }
     }
