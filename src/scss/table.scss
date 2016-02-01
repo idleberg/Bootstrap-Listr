@@ -1,10 +1,61 @@
 @import '../../node_modules/bootstrap/scss/_variables';
 
+
+// Table pseudo-styles
+.table {
+
+  tr::before {
+    border-top: 1px solid $table-border-color;
+  }
+
+  tbody tr:first-child::before {
+    border-top: 2px solid $table-border-color;
+  }
+}
+
+.table-inverse {
+
+  tr::before {
+    border-top: 1px solid $gray;
+  }
+
+  tbody tr:first-child::before {
+    border-top: 2px solid $gray;
+  }
+}
+
+
+// Table styles
+th {
+  cursor: pointer;
+}
+
+tr::before {
+  display: table-cell;
+  line-height: $line-height;
+  padding: $table-cell-padding;
+  text-align: right;
+  vertical-align: top;
+  width: 1rem;
+}
+
+tfoot {
+
+  tr::before {
+    content: '';
+  }
+
+  tr::before {
+    border-top-width: 1px;
+  }
+}
+
 // Row counter
-thead tr::before {
-  border-top: 1px solid $table-border-color;
-  content: '#';
-  font-weight: bold;
+thead {
+  tr::before {
+    content: '#';
+    font-weight: bold;
+  }
 }
 
 tbody {
@@ -17,44 +68,5 @@ tbody {
   tr::before {
     content: counter(listr-rows);
   }
-}
 
-tfoot tr::before {
-  content: '';
-}
-
-.table {
-
-  tr:first-child::before {
-    border-top: 2px solid $table-border-color;
-  }
-
-  tr::before {
-    border-top: 1px solid $table-border-color;
-    color: $text-muted;
-  }
-}
-
-.table-inverse {
-
-  tr:first-child::before {
-    border-top: 2px solid $gray;
-  }
-
-  tr::before {
-    border-top: 1px solid $gray;
-  }
-}
-
-th {
-  cursor: pointer;
-}
-
-tr::before {
-  display: table-cell;
-  line-height: $line-height;
-  padding: $table-cell-padding;
-  text-align: right;
-  vertical-align: top;
-  width: 1rem;
 }
