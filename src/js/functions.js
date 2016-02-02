@@ -7,9 +7,10 @@ var hover_bg;
 var stripedRows = function() {
     if ($('#listr-table').has('.table-striped')) {
         $('tbody tr').css( "background-color", "inherit");
-        $('tbody tr:not(.hidden):even').css( "background-color", striped_bg );
+        $('tbody tr:not(.hidden-xs-up):even').css( "background-color", striped_bg );
     }
 };
+stripedRows()
 
 // CSS fix for .table-hover
 $('.table-hover>tbody>tr').bind({
