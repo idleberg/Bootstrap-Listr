@@ -1,10 +1,11 @@
-var hidden = $("tr:hidden");
+var hidden = $("tr.hidden-xs-up");
 
 $(document).bind('keydown', function(event) {
 
     // show hidden files
     if( event.altKey ) {
         $(hidden).addClass( "reveal" ).removeClass( "hidden-xs-up");
+        stripedRows();
     }
     // countRows();
     
@@ -12,6 +13,7 @@ $(document).bind('keydown', function(event) {
     
     // hide hidden files again
     $(hidden).removeClass( "reveal" ).addClass( "hidden-xs-up");
+    stripedRows();
 });
 
 $(document).bind('keyup', function(event) {

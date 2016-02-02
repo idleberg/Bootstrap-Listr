@@ -578,7 +578,7 @@ if(($folder_list) || ($file_list) ) {
 
             // Concatenate tr-classes
             if (!empty($row_classes)) {
-                $row_attr = ' class="'.implode(" ", $row_classes).'"'.$hidden;
+                $row_attr = ' class="'.implode(" ", $row_classes).'"';
             } else {
                 $row_attr = null;
             }
