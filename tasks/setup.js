@@ -16,7 +16,6 @@ gulp.task('setup', function(callback) {
   sequence(
       'depends',
       'select',
-      'make',
       callback
     );
 });
@@ -24,6 +23,7 @@ gulp.task('setup', function(callback) {
 
 // Specify default asset location
 gulp.task('depends', function() {
+
   return gulp.src('./')
     .pipe(prompt.prompt({
         type: 'list',
