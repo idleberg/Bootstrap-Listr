@@ -128,7 +128,6 @@ switch ($options['bootstrap']['icons']) {
         // TODO: move to theme
         $icons['prefix'] = "fa fa-fw";
         $icons['home']   = "<i class=\"".$icons['prefix']." ".$icons['home']." fa-lg\"></i> ";
-        // $icons['search'] = "          <i class=\"".$icons['prefix']." ".$icons['search']." form-control-feedback\"></i>" . PHP_EOL;
         $icons['folder'] = $icons['prefix'].' '. $icons['folder'].' ' . $options['bootstrap']['fontawesome_style'];
         if ($options['general']['share_icons'] == true) { 
             $icons_dropbox  = "<i class=\"".$icons['prefix']." fa-dropbox\"></i> ";
@@ -166,7 +165,7 @@ if ($options['general']['text_direction'] == 'rtl') {
     $direction     = " dir=\"ltr\"";
     $right         = "right";
     $left          = "left";
-    $search_offset = " col-xs-offset-6 col-sm-offset-7 col-md-offset-8";
+    $search_offset = " col-sm-offset-7 col-md-offset-8";
 }
 
 $bootstrap_cdn = set_bootstrap_theme();
@@ -405,7 +404,7 @@ if ($options['general']['enable_search'] == true) {
         $input_size = null;
     }
 
-    $search .= "      <div class=\"col-xs-6 col-sm-5 col-md-4$search_offset\">" . PHP_EOL;
+    $search .= "      <div class=\"col-xs-12 col-sm-5 col-md-4$search_offset\">" . PHP_EOL;
     $search .= "          <div class=\"form-group\">" . PHP_EOL;
     $search .= "            <label class=\"form-control-label sr-only\" for=\"search\">". _('Search')."</label>" . PHP_EOL;
     $search .= "            <input type=\"text\" id=\"listr-search\" class=\"form-control$input_size\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;

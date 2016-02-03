@@ -5,7 +5,6 @@ var
   del       = require('del'),
   gulp      = require('gulp'),
   jeditor   = require('gulp-json-editor'),
-  notify = require('gulp-notify'),
   prompt    = require('gulp-prompt'),
   sequence  = require('run-sequence'),
   streamqueue  = require('streamqueue'),
@@ -64,7 +63,6 @@ gulp.task('merge:js', function(){
     )
     .pipe(concat('listr.pack.js'))
     .pipe(uglify())
-    .pipe(notify("Merge: <%= file.relative %>"))
     .pipe(gulp.dest('build/assets/js/'));
 });
 
@@ -80,7 +78,6 @@ gulp.task('merge:css', function(){
     ])
     .pipe(concatCss('listr.pack.css'))
     .pipe(cssmin())
-    .pipe(notify("Merge: <%= file.relative %>"))
     .pipe(gulp.dest('build/assets/css/'));
 });
 

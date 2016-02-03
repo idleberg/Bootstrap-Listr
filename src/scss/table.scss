@@ -66,6 +66,7 @@ tbody {
   }
 
   tr::before {
+    color: $text-muted;
     content: counter(listr-rows);
   }
 
