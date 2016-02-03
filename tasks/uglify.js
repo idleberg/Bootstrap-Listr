@@ -4,7 +4,6 @@ var
   concat = require('gulp-concat'),
   debug  = require('gulp-debug'),
   gulp   = require('gulp'),
-  notify = require('gulp-notify'),
   order  = require('gulp-order'),
   uglify = require('gulp-uglify');
 
@@ -25,6 +24,5 @@ gulp.task('make:js', function() {
    ], { base: './src/js/' }))
    .pipe(concat('listr.min.js'))
    .pipe(uglify())
-   .pipe(notify("Uglify: <%= file.relative %>"))
    .pipe(gulp.dest('build/assets/js/'));
  });

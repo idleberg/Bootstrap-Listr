@@ -4,7 +4,6 @@ var
   concat  = require('gulp-concat'),
   cssmin  = require('gulp-cssmin'),
   gulp    = require('gulp'),
-  notify  = require('gulp-notify'),
   prompt  = require('gulp-prompt'),
   sass    = require('gulp-sass');
 
@@ -17,6 +16,7 @@ if (argv.full) {
 
 // Select Bootstrap theme
 gulp.task('make:scss', function(){
+  
   gulp.src(bootstrap_scss)
   .pipe(cached('make:scss'))
   .pipe(sass().on('error', sass.logError))
@@ -32,7 +32,6 @@ gulp.task('make:scss', function(){
   .pipe(sass().on('error', sass.logError))
   .pipe(concat('listr.min.css'))
   .pipe(cssmin())
-  .pipe(notify("Minify: <%= file.relative %>"))
   .pipe(gulp.dest('build/assets/css/'));
 
 });

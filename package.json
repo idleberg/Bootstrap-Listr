@@ -27,7 +27,6 @@
     "gulp-jshint": "^2.0.0",
     "gulp-json-editor": "^2.2.1",
     "gulp-json-lint": "^0.1.0",
-    "gulp-notify": "^2.2.0",
     "gulp-order": "^1.1.1",
     "gulp-prompt": "^0.1.2",
     "gulp-sass": "^2.1.1",
