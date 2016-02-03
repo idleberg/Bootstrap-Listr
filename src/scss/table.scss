@@ -42,11 +42,8 @@ tr::before {
 tfoot {
 
   tr::before {
-    content: '';
-  }
-
-  tr::before {
     border-top-width: 1px;
+    content: '';
   }
 }
 
