@@ -1,6 +1,6 @@
 var
-  concat = require('gulp-concat'),
-  gulp = require('gulp');
+  concat    = require('gulp-concat'),
+  gulp      = require('gulp');
 
 gulp.task('copy', ['copy:config', 'copy:css', 'copy:fonts', 'copy:htaccess', 'copy:js', 'copy:l10n', 'copy:php', 'copy:themes']);
 
@@ -66,7 +66,7 @@ gulp.task('copy:htaccess', function() {
 });
 
 // Copy JavaScript
-gulp.task('copy:js', function() {
+gulp.task('copy:js', ['make:js'], function() {
 
   gulp.src([
     'node_modules/bootstrap/dist/js/bootstrap.min.js',
@@ -86,7 +86,7 @@ gulp.task('copy:js', function() {
 });
 
 // Copy style-sheets
-gulp.task('copy:css', function() {
+gulp.task('copy:css', ['make:scss'], function() {
   gulp.src([
     'node_modules/font-awesome/css/font-awesome.min.css'
   ])
