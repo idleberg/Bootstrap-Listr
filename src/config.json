@@ -124,7 +124,6 @@
     "image":       null
   },
   "columns": {
-    "count": true,
     "size": true,
     "age":  true
   },

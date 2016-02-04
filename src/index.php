@@ -50,13 +50,6 @@ $root_dir       = dirname($_SERVER['PHP_SELF']);
 $absolute_path  = str_replace(str_replace("%2F", "/", rawurlencode($this_folder)), '', $_SERVER['REQUEST_URI']);
 $dir_name       = explode("/", $this_folder);
 
-// Get protocol
-// if ($_SERVER['HTTPS']) {
-//     $protocol = "https://";
-// } else {
-//     $protocol = "http://";
-// }
-
 if(substr($navigation_dir, -1) != "/"){
     if(file_exists($navigation_dir)){
 
@@ -226,7 +219,7 @@ if ($options['bootstrap']['responsive_table']) {
 }
 
 // Count optional columns
-$table_count = 0;
+$table_count = 1;
 foreach($table_options as $value)
 {
   if($value === true)
