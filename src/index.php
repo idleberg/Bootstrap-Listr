@@ -429,7 +429,7 @@ if ($options['general']['dir_readme'] == true && $readme_exists == true) {
 
     $dir_readme  = "    <div class=\"card\">" . PHP_EOL;
     $dir_readme .= "      <div class=\"card-header\">" . PHP_EOL;
-    $dir_readme .= "        <b>README.md</b>" . PHP_EOL;
+    $dir_readme .= "        <b>" . $options['general']['dir_readme_fname'] . "</b>" . PHP_EOL;
     $dir_readme .= "      </div>" . PHP_EOL;
     $dir_readme .= "      <div class=\"card-block\">" . PHP_EOL;
     $dir_readme .= "        <div class=\"card-text\"> " . PHP_EOL;
