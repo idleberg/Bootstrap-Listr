@@ -17,6 +17,17 @@ gulp.task('copy:php', function() {
 
 });
 
+// Copy Parsedown
+gulp.task('copy:php-parsedown', function() {
+
+  gulp.src([
+    './src/parsedown/Parsedown.php',
+    './src/parsedown/LICENSE.txt'
+    ])
+  .pipe(gulp.dest('build/parsedown'));
+
+});
+
 // Copy localization files
 gulp.task('copy:l10n', function() {
 
