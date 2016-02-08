@@ -427,12 +427,16 @@ $dir_readme = null;
 if ($options['general']['dir_readme'] == true && $readme_exists == true) {
     $Parsedown = new Parsedown();
 
-    $dir_readme  = "    <div class=\"panel panel-default\">" . PHP_EOL;
-    $dir_readme .= "      <div class=\"panel-heading\"><b>README.md</b></div>" . PHP_EOL;
-    $dir_readme .= "      <div class=\"panel-body\"> " . PHP_EOL;
-    $dir_readme .= "        <div class=\"markdown-body\">" . PHP_EOL;
+    $dir_readme  = "    <div class=\"card\">" . PHP_EOL;
+    $dir_readme .= "      <div class=\"card-header\">" . PHP_EOL;
+    $dir_readme .= "        <b>README.md</b>" . PHP_EOL;
+    $dir_readme .= "      </div>" . PHP_EOL;
+    $dir_readme .= "      <div class=\"card-block\">" . PHP_EOL;
+    $dir_readme .= "        <div class=\"card-text\"> " . PHP_EOL;
+    $dir_readme .= "          <div class=\"markdown-body\">" . PHP_EOL;
     $dir_readme .= $Parsedown->text($readme_content);
-    $dir_readme .= "        </div>" . PHP_EOL;
+    $dir_readme .= "          </div>" . PHP_EOL;
+    $dir_readme .= "        </div> " . PHP_EOL;
     $dir_readme .= "      </div> " . PHP_EOL;
     $dir_readme .= "    </div>" . PHP_EOL;
 }

@@ -18,7 +18,7 @@ gulp.task('copy:php', function() {
 });
 
 // Copy Parsedown
-gulp.task('copy:php', function() {
+gulp.task('copy:php-parsedown', function() {
 
   gulp.src([
     './src/parsedown/Parsedown.php',
