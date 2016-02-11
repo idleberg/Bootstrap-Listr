@@ -73,6 +73,7 @@
       </div>
     </div>
 <?php } ?>
+<?php echo $dir_readme ?>
   </div>
 <?php echo $footer?>
 </body>
