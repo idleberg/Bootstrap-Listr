@@ -4,24 +4,20 @@ var
   concat = require('gulp-concat'),
   debug  = require('gulp-debug'),
   gulp   = require('gulp'),
-  order  = require('gulp-order'),
+  queue  = require('streamqueue'),
   uglify = require('gulp-uglify');
 
 gulp.task('make:js', function() {
    console.log('Minifying JavaScript…');
 
-   gulp.src([
-     'src/js/*.js'
-   ])
-   .pipe(cached('uglify'))
-   .pipe(order([
-       'functions.js',
-       'dropbox.js',
-       'keyboard.js',
-       'modal.js',
-       'search.js',
-       'table.js'
-   ], { base: './src/js/' }))
+   return queue({ objectMode: true },
+       gulp.src('functions.js'),
+       gulp.src('dropbox.js'),
+       gulp.src('keyboard.js'),
+       gulp.src('modal.js'),
+       gulp.src('search.js'),
+       gulp.src('table.js')
+    )
    .pipe(concat('listr.min.js'))
    .pipe(uglify())
    .pipe(gulp.dest('build/assets/js/'));
