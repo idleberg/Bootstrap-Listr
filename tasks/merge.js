@@ -7,7 +7,7 @@ var
   jeditor   = require('gulp-json-editor'),
   prompt    = require('gulp-prompt'),
   sequence  = require('run-sequence'),
-  streamqueue  = require('streamqueue'),
+  queue     = require('streamqueue'),
   uglify    = require('gulp-uglify');
 
 var meta = require('../package.json');
@@ -54,7 +54,7 @@ gulp.task('merge', function(callback) {
 // Merge JS files
 gulp.task('merge:js', function(){
 
-    return streamqueue({ objectMode: true },
+    return queue({ objectMode: true },
        // gulp.src('build/assets/js/bootstrap.min.js'),
        gulp.src('build/assets/js/highlight.min.js'),
        gulp.src('build/assets/js/jquery.searcher.min.js'),
