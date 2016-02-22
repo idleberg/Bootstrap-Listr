@@ -10,7 +10,7 @@ var stripedRows = function() {
         $('tbody tr:not(.hidden-xs-up):even').css( "background-color", striped_bg );
     }
 };
-stripedRows()
+stripedRows();
 
 // CSS fix for .table-hover
 $('.table-hover>tbody>tr').bind({
