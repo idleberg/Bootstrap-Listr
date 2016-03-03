@@ -7,7 +7,7 @@
     "bootlint": "^0.14.1",
     "bootstrap": "^4.0.0-alpha.2",
     "font-awesome": "^4.5.0",
-    "highlight.js": "isagalaev/highlight.js#9.1.0",
+    "highlight.js": "isagalaev/highlight.js#9.2.0",
     "jquery": "^2.2.1",
     "jquery-searcher": "^0.3.0"
   },
