@@ -11,12 +11,12 @@ gulp.task('make:js', function() {
    console.log('Minifying JavaScript…');
 
    return queue({ objectMode: true },
-       gulp.src('functions.js'),
-       gulp.src('dropbox.js'),
-       gulp.src('keyboard.js'),
-       gulp.src('modal.js'),
-       gulp.src('search.js'),
-       gulp.src('table.js')
+       gulp.src('./src/js/functions.js'),
+       gulp.src('./src/js/dropbox.js'),
+       gulp.src('./src/js/keyboard.js'),
+       gulp.src('./src/js/modal.js'),
+       gulp.src('./src/js/search.js'),
+       gulp.src('./src/js/table.js')
     )
    .pipe(concat('listr.min.js'))
    .pipe(uglify())
