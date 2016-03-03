@@ -40,6 +40,6 @@
   },
   "scripts": {
     "test": "gulp travis",
-    "postinstall": "bower install"
+    "postinstall": "bower install && gulp build:highlighter"
   }
 }
