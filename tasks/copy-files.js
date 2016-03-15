@@ -22,7 +22,6 @@ gulp.task('copy:php-parsedown', function() {
 
   gulp.src([
     './src/parsedown/Parsedown.php',
-    './src/parsedown/LICENSE.txt'
     ])
   .pipe(gulp.dest('build/parsedown'));
 
