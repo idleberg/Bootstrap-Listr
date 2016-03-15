@@ -22,7 +22,7 @@ if($options['general']['locale'] != null ) {
     require_once('listr-l10n.php');
 }
 require_once('listr-functions.php');
-require_once('parsedown/Parsedown.php');
+// require_once('parsedown/Parsedown.php');
 
 // Configure optional table columns
 $table_options = $options['columns'];
@@ -51,8 +51,8 @@ $root_dir       = dirname($_SERVER['PHP_SELF']);
 $absolute_path  = str_replace(str_replace("%2F", "/", rawurlencode($this_folder)), '', $_SERVER['REQUEST_URI']);
 $dir_name       = explode("/", $this_folder);
 
-$readme_content = false;
-$readme_exists  = false;
+// $readme_content = false;
+// $readme_exists  = false;
 
 if(substr($navigation_dir, -1) != "/"){
     if(file_exists($navigation_dir)){
@@ -248,13 +248,13 @@ if ($handle = opendir($navigation_dir))
             $info                  =    pathinfo($file);
 
             // Check is readme enabled, and load file, if exists
-            if ($info['basename'] == $options['general']['dir_readme_fname'] && $options['general']['dir_readme'] == true) {
-                if (($readme = file_get_contents($navigation_dir.$info['basename'])) != false ) {
-                    $readme_content = $readme;
-                    $readme_exists = true;
-                }
-                continue;
-            }
+            // if ($info['basename'] == $options['general']['dir_readme_fname'] && $options['general']['dir_readme'] == true) {
+            //     if (($readme = file_get_contents($navigation_dir.$info['basename'])) != false ) {
+            //         $readme_content = $readme;
+            //         $readme_exists = true;
+            //     }
+            //     continue;
+            // }
 
             // Organize file info.
             $item['name']          =     $info['filename'];
@@ -422,24 +422,24 @@ if ($options['general']['enable_search'] == true) {
 }
 
 // Show readme
-$dir_readme = null;
+// $dir_readme = null;
 
-if ($options['general']['dir_readme'] == true && $readme_exists == true) {
-    $Parsedown = new Parsedown();
+// if ($options['general']['dir_readme'] == true && $readme_exists == true) {
+//     $Parsedown = new Parsedown();
 
-    $dir_readme  = "    <div class=\"card\">" . PHP_EOL;
-    $dir_readme .= "      <div class=\"card-header\">" . PHP_EOL;
-    $dir_readme .= "        <b>" . $options['general']['dir_readme_fname'] . "</b>" . PHP_EOL;
-    $dir_readme .= "      </div>" . PHP_EOL;
-    $dir_readme .= "      <div class=\"card-block\">" . PHP_EOL;
-    $dir_readme .= "        <div class=\"card-text\"> " . PHP_EOL;
-    $dir_readme .= "          <div class=\"markdown-body\">" . PHP_EOL;
-    $dir_readme .= $Parsedown->text($readme_content);
-    $dir_readme .= "          </div>" . PHP_EOL;
-    $dir_readme .= "        </div> " . PHP_EOL;
-    $dir_readme .= "      </div> " . PHP_EOL;
-    $dir_readme .= "    </div>" . PHP_EOL;
-}
+//     $dir_readme  = "    <div class=\"card\">" . PHP_EOL;
+//     $dir_readme .= "      <div class=\"card-header\">" . PHP_EOL;
+//     $dir_readme .= "        <b>" . $options['general']['dir_readme_fname'] . "</b>" . PHP_EOL;
+//     $dir_readme .= "      </div>" . PHP_EOL;
+//     $dir_readme .= "      <div class=\"card-block\">" . PHP_EOL;
+//     $dir_readme .= "        <div class=\"card-text\"> " . PHP_EOL;
+//     $dir_readme .= "          <div class=\"markdown-body\">" . PHP_EOL;
+//     $dir_readme .= $Parsedown->text($readme_content);
+//     $dir_readme .= "          </div>" . PHP_EOL;
+//     $dir_readme .= "        </div> " . PHP_EOL;
+//     $dir_readme .= "      </div> " . PHP_EOL;
+//     $dir_readme .= "    </div>" . PHP_EOL;
+// }
 
 // Set table header
 $table_header = null;

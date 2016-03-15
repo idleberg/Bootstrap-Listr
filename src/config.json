@@ -21,9 +21,7 @@
     "read_chunks":        false,
     "enable_checksums":   false,
     "truncate_checksums": false,
-    "give_kudos":         true,
-    "dir_readme":         true,
-    "dir_readme_fname":   "README.md"
+    "give_kudos":         true
   },
   "assets": {
     "jquery_js":       "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js",
