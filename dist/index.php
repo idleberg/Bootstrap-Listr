@@ -308,7 +308,7 @@ if ($handle = opendir($navigation_dir))
 
             if ($table_options['age']) {
                 $item['mtime']      =   $stat['mtime'];
-                $item['iso_mtime']  =   gmdate("Y-m-d H:i:s", $item['mtime']);
+                $item['iso_mtime']  =   date("Y-m-d H:i:s", $item['mtime']);
             }
             
             // Add files to the file list...
@@ -465,7 +465,7 @@ if(($folder_list) || ($file_list) ) {
 
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
@@ -589,7 +589,7 @@ if(($folder_list) || ($file_list) ) {
             
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities(utf8_encode($item['lbname']), ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
