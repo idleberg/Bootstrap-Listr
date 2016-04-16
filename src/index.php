@@ -308,7 +308,7 @@ if ($handle = opendir($navigation_dir))
 
             if ($table_options['age']) {
                 $item['mtime']      =   $stat['mtime'];
-                $item['iso_mtime']  =   gmdate("Y-m-d H:i:s", $item['mtime']);
+                $item['iso_mtime']  =   date("Y-m-d H:i:s", $item['mtime']);
             }
             
             // Add files to the file list...
