@@ -310,7 +310,6 @@ function readfile_chunked($filename, $retbytes = TRUE) {
     $chunksize = 1024*1024;
     $buffer = '';
     $count =0;
-    // $handle = fopen($filename, 'rb');
     $handle = fopen($filename, 'rb');
     if ($handle === false) {
       return false;
