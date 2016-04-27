@@ -115,7 +115,7 @@ function set_footer(){
 
     // jQuery
     if ( ($options['general']['enable_sort']) || ($options['general']['enable_viewer']) ) {
-        // $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['jquery_js'] . "\"></script>" . PHP_EOL;
+        $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['jquery_js'] . "\"></script>" . PHP_EOL;
     }
 
     // Dropbox Dropins
@@ -127,14 +127,15 @@ function set_footer(){
 
     if ($options['general']['concat_assets'] === true) {
         if ($options['general']['enable_viewer'] === true) {
-            // $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
+            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
         }
         $footer    .= "  <script type=\"text/javascript\" src=\"".$protocol.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.pack.js\" async></script>" . PHP_EOL;
     } else {
 
-        $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['jquery_js'] . "\"></script>" . PHP_EOL;
-        $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
-
+        // Bootstrap JS
+        if ($options['general']['enable_viewer'] === true) {
+            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
+        }
         // Stupid Table
         if ( ($options['general']['enable_sort'] === true) && ($options['assets']['stupid_table']) ) {
            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['stupid_table'] . "\"></script>" . PHP_EOL;
