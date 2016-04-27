@@ -55,7 +55,8 @@ gulp.task('merge', function(callback) {
 gulp.task('merge:js', function(){
 
     return queue({ objectMode: true },
-       // gulp.src('build/assets/js/bootstrap.min.js'),
+       gulp.src('build/assets/js/jquery.min.js'),
+       gulp.src('build/assets/js/bootstrap.min.js'),
        gulp.src('build/assets/js/highlight.min.js'),
        gulp.src('build/assets/js/jquery.searcher.min.js'),
        gulp.src('build/assets/js/stupidtable.min.js'),
@@ -90,8 +91,8 @@ gulp.task('post-merge', function() {
     '!build/assets/css/listr.pack.css',
     'build/assets/js/*.js',
     '!build/assets/js/bootlint.js',
-    '!build/assets/js/bootstrap.min.js',
-    '!build/assets/js/jquery.min.js',
+    'build/assets/js/bootstrap.min.js',
+    'build/assets/js/jquery.min.js',
     '!build/assets/js/listr.pack.js'
   ]);
 });
