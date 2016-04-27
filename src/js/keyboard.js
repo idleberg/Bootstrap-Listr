@@ -21,6 +21,7 @@ $(document).bind('keyup', function(event) {
     // focus search input
     if (event.which === 70) {
         $("#listr-search").focus();
+        $(document).scrollTop(0);
     }
 
     // Control HTML5 player (only if modal is visible)
