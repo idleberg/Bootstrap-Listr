@@ -32,7 +32,7 @@ function set_header($bootstrap_css) {
     $header  = "  <meta charset=\"utf-8\">" . PHP_EOL;
     $header .= "  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">" . PHP_EOL;
     $header .= "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=yes\">" . PHP_EOL;
-    $header .= "  <meta name=\"generator\" content=\"Bootstrap Listr\" />" . PHP_EOL;
+    $header .= "  <meta name=\"generator\" content=\"Bootstrap Listr\">" . PHP_EOL;
     $header .= "  <title>".$index."</title>" . PHP_EOL;
 
     // Set iOS touch icon sizes (https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html)
@@ -41,16 +41,16 @@ function set_header($bootstrap_css) {
     $size_iphone_retina = "114x114";
     $size_ipad_retina   = "144x144";
 
-    if ($options['icons']['fav_icon']) $header .= "  <link rel=\"shortcut icon\" href=\"".$options['icons']['fav_icon']."\" />" . PHP_EOL;
-    if ($options['icons']['iphone']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_iphone."\" href=\"".$options['icons']['iphone']."\" />" . PHP_EOL;
-    if ($options['icons']['ipad']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_ipad."\" href=\"".$options['icons']['ipad']."\" />" . PHP_EOL;
-    if ($options['icons']['iphone_retina']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_iphone_retina."\" href=\"".$options['icons']['iphone_retina']."\" />" . PHP_EOL;
-    if ($options['icons']['ipad_retina']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_ipad_retina."\" href=\"".$options['icons']['ipad_retina']."\" />" . PHP_EOL;
-    if ($options['icons']['metro_tile_color']) $header .= "  <meta name=\"msapplication-TileColor\" content=\"#".$options['icons']['metro_tile_color']."\" />" . PHP_EOL;
-    if ($options['icons']['metro_tile_image']) $header .= "  <meta name=\"msapplication-TileImage\" content=\"".$options['icons']['metro_tile_image']."\" />" . PHP_EOL;
-    if ($options['opengraph']['title']) $header .= "  <meta property=\"og:title\" content=\"".$options['opengraph']['title']."\" />" . PHP_EOL;
-    if ($options['opengraph']['description']) $header .= "  <meta property=\"og:description\" content=\"".$options['opengraph']['description']."\" />" . PHP_EOL;
-    if ($options['opengraph']['site_name']) $header .= "  <meta property=\"og:site_name\" content=\"".$options['opengraph']['site_name']."\" />" . PHP_EOL;
+    if ($options['icons']['fav_icon']) $header .= "  <link rel=\"shortcut icon\" href=\"".$options['icons']['fav_icon']."\">" . PHP_EOL;
+    if ($options['icons']['iphone']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_iphone."\" href=\"".$options['icons']['iphone']."\">" . PHP_EOL;
+    if ($options['icons']['ipad']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_ipad."\" href=\"".$options['icons']['ipad']."\">" . PHP_EOL;
+    if ($options['icons']['iphone_retina']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_iphone_retina."\" href=\"".$options['icons']['iphone_retina']."\">" . PHP_EOL;
+    if ($options['icons']['ipad_retina']) $header .= "  <link rel=\"apple-touch-icon\" sizes=\"".$size_ipad_retina."\" href=\"".$options['icons']['ipad_retina']."\">" . PHP_EOL;
+    if ($options['icons']['metro_tile_color']) $header .= "  <meta name=\"msapplication-TileColor\" content=\"#".$options['icons']['metro_tile_color']."\">" . PHP_EOL;
+    if ($options['icons']['metro_tile_image']) $header .= "  <meta name=\"msapplication-TileImage\" content=\"".$options['icons']['metro_tile_image']."\">" . PHP_EOL;
+    if ($options['opengraph']['title']) $header .= "  <meta property=\"og:title\" content=\"".$options['opengraph']['title']."\">" . PHP_EOL;
+    if ($options['opengraph']['description']) $header .= "  <meta property=\"og:description\" content=\"".$options['opengraph']['description']."\">" . PHP_EOL;
+    if ($options['opengraph']['site_name']) $header .= "  <meta property=\"og:site_name\" content=\"".$options['opengraph']['site_name']."\">" . PHP_EOL;
 
     if ($options['keys']['google_analytics'] !== null ) {
         $header .= "  <script type=\"text/javascript\">var _gaq=_gaq||[];_gaq.push([\"_setAccount\",\"".$options['keys']['google_analytics']."\"]);_gaq.push([\"_trackPageview\"]);(function(){var ga=document.createElement(\"script\");ga.type=\"text/javascript\";ga.async=true;ga.src=(\"https:\"==document.location.protocol?\"https://ssl\":\"http://www\")+\".google-analytics.com/ga.js\";var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(ga,s)})();</script>" . PHP_EOL;
@@ -60,25 +60,25 @@ function set_header($bootstrap_css) {
     $server = get_server();
 
     if ($options['general']['concat_assets'] === true) {
-        $header    .= "  <link rel=\"stylesheet\" href=\"".$protocol.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/listr.pack.css\" />" . PHP_EOL;
+        $header    .= "  <link rel=\"stylesheet\" href=\"".$protocol.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/listr.pack.css\">" . PHP_EOL;
     } else {
 
         // Font Awesome CSS
         if (  $options['bootstrap']['icons'] == 'fontawesome' || $options['bootstrap']['icons'] == 'fa' || $options['bootstrap']['icons'] == 'fa-files'  ) {
-            $header .= "  <link rel=\"stylesheet\" href=\"" .$server.$options['assets']['font_awesome'] . "\" />". PHP_EOL;
+            $header .= "  <link rel=\"stylesheet\" href=\"" .$server.$options['assets']['font_awesome'] . "\">". PHP_EOL;
         }
 
         // Bootstrap CSS
-        $header .= "  <link rel=\"stylesheet\" href=\"$server$bootstrap_css\" />" . PHP_EOL;
+        $header .= "  <link rel=\"stylesheet\" href=\"$server$bootstrap_css\">" . PHP_EOL;
 
         // Highlight.js CSS
         if ( ($options['general']['enable_viewer']) && ($options['general']['enable_highlight'] === true) ) {
             $highlight_css = str_replace("%theme%",$options['highlight']['theme'],$options['assets']['highlight_css']);
-            $header .= "  <link rel=\"stylesheet\" href=\"$server$highlight_css\" />" . PHP_EOL;
+            $header .= "  <link rel=\"stylesheet\" href=\"$server$highlight_css\">" . PHP_EOL;
         }
 
         // Listr CSS
-        $header .= "  <link rel=\"stylesheet\" href=\"".$protocol.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/listr.min.css\" />" . PHP_EOL;
+        $header .= "  <link rel=\"stylesheet\" href=\"".$protocol.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/css/listr.min.css\">" . PHP_EOL;
     }
 
     // Prepend JS
@@ -93,7 +93,7 @@ function set_header($bootstrap_css) {
     // Append CSS
     foreach($options['assets']['append_css'] as $append_css) {
         if ($append_css !== null) {
-            $header .= "  <link rel=\"stylesheet\" href=\"$append_css\" />" . PHP_EOL;
+            $header .= "  <link rel=\"stylesheet\" href=\"$append_css\">" . PHP_EOL;
         }
     }
 
@@ -115,7 +115,7 @@ function set_footer(){
 
     // jQuery
     if ( ($options['general']['enable_sort']) || ($options['general']['enable_viewer']) ) {
-        $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['jquery_js'] . "\"></script>" . PHP_EOL;
+        // $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['jquery_js'] . "\"></script>" . PHP_EOL;
     }
 
     // Dropbox Dropins
@@ -127,10 +127,13 @@ function set_footer(){
 
     if ($options['general']['concat_assets'] === true) {
         if ($options['general']['enable_viewer'] === true) {
-            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
+            // $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
         }
-        $footer    .= "  <script type=\"text/javascript\" src=\"".$protocol.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.pack.js\"></script>" . PHP_EOL;
+        $footer    .= "  <script type=\"text/javascript\" src=\"".$protocol.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.pack.js\" async></script>" . PHP_EOL;
     } else {
+
+        $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['jquery_js'] . "\"></script>" . PHP_EOL;
+        $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
 
         // Stupid Table
         if ( ($options['general']['enable_sort'] === true) && ($options['assets']['stupid_table']) ) {
@@ -310,7 +313,6 @@ function readfile_chunked($filename, $retbytes = TRUE) {
     $chunksize = 1024*1024;
     $buffer = '';
     $count =0;
-    // $handle = fopen($filename, 'rb');
     $handle = fopen($filename, 'rb');
     if ($handle === false) {
       return false;
