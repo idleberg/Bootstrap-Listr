@@ -22,7 +22,11 @@ Download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releas
 To create a clean copy of Bootstrap Listr, run the build script:
 
 ```bash
+# Concatenated assets
 npm run-script build
+
+# Individual assets
+npm run-script build:http2
 ```
 
 Alternatively, you can now run the individual Gulp tasks, see `gulp help` for a list of available tasks.
