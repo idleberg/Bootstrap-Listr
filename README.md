@@ -19,7 +19,11 @@ Download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releas
 
 [Gulp](http://gulpjs.com/) tasks are used to configure and build your application.
 
-To set up a fresh build of Bootstrap Listr, it's recommended to run `npm run-script make`.
+To build a clean copy of Bootstrap Listr, run the make script:
+
+```bash
+npm run-script make`
+```
 
 Alternatively, you can now run the individual Gulp tasks on their own. See `gulp help` for a list of available tasks.
 
