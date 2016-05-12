@@ -41,12 +41,10 @@ gulp.task('updaze',  ['upgrade']);
 gulp.task('default', ['build:highlighter'], function (callback) {
   setTimeout(function() {
 
-    console.clear();
-    console.log(meta.name + ' Setup') ;
-    console.log('The MIT License (MIT)');
+    
 
     if ( !fs.existsSync('./build/config.json') ){
-      console.log('\nRunning setup…');
+      console.log('\nLet\'s set this up!\n');
       tasks = [
         'copy',
         'setup'
