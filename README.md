@@ -18,7 +18,7 @@ Download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releas
 We use [Gulp](http://gulpjs.com/) tasks to configure and build your application. Make sure to have gulp installed globally as well as all local Node dependencies.
 
 ```bash
-# Optional: install Gulp
+# Install Gulp (optional)
 npm install -g gulp
 
 # Install dependencies
