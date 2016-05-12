@@ -22,7 +22,7 @@ Download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releas
 To build a clean copy of Bootstrap Listr, run the make script:
 
 ```bash
-npm run-script make`
+npm run-script make
 ```
 
 Alternatively, you can now run the individual Gulp tasks on their own. See `gulp help` for a list of available tasks.
