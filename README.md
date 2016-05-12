@@ -15,11 +15,17 @@ Download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releas
 
 ## Building
 
-### Gulp
+We use [Gulp](http://gulpjs.com/) tasks to configure and build your application. Make sure to have gulp installed globally as well as all local Node dependencies.
 
-[Gulp](http://gulpjs.com/) tasks are used to configure and build your application.
+```bash
+# Optional: install Gulp
+npm install -g gulp
 
-To create a clean copy of Bootstrap Listr, run the build script:
+# Install dependencies
+npm install
+```
+
+You can now run the build script to createa clean copy of Bootstrap Listr:
 
 ```bash
 # Concatenated assets
