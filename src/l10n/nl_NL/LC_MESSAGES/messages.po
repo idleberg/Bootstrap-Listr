@@ -146,6 +146,9 @@ msgstr "Bekijken"
 msgid "Listen"
 msgstr "Luisteren"
 
+msgid "Download"
+msgstr "Downloaden"
+
 msgid "Open"
 msgstr "Openen"
 
