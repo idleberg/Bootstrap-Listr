@@ -25,7 +25,7 @@
         </tfoot>
         <tbody>
 <?php echo $table_body?>
-        </tbody>                          
+        </tbody>
       </table>
 <?php echo $responsive_close?>
 <?php if ($options['general']['enable_viewer']) { ?>
