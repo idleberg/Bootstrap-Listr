@@ -40,6 +40,7 @@
   },
   "scripts": {
     "test": "gulp travis",
-    "postinstall": "bower install && gulp build:highlighter"
+    "postinstall": "bower install && gulp build:highlighter",
+    "make": "gulp clean --silent;gulp --silent;gulp merge --silent"
   }
 }

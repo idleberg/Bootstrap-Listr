@@ -42,7 +42,7 @@ gulp.task('default', ['build:highlighter'], function (callback) {
   setTimeout(function() {
 
     console.clear();
-    console.log('\n' + meta.name + ' v' + meta.version);
+    console.log(meta.name + ' Setup') ;
     console.log('The MIT License (MIT)');
 
     if ( !fs.existsSync('./build/config.json') ){

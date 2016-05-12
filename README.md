@@ -19,9 +19,9 @@ Download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releas
 
 [Gulp](http://gulpjs.com/) tasks are used to configure and build your application.
 
-You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase.
+To set up a fresh build of Bootstrap Listr, it's recommended to run `npm run-script make`.
 
-Please visit the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki/Gulp-tasks) for details.
+Alternatively, you can now run the individual Gulp tasks on their own. See `gulp help` for a list of available tasks.
 
 ## Deployment
 
