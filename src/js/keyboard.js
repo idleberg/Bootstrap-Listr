@@ -1,34 +1,79 @@
-var hidden = $("tr.hidden-xs-up");
+var k,
+Keyboard = {
 
-$(document).bind('keydown', function(event) {
+  config: {
+      hidden: $("tr.hidden-xs-up"),
+      keyboard: $("#viewer-modal"),
+      search: $("#listr-search")
+  },
+
+    init: function() {
+        m = this.config;
+        this.events();
+    },
+
+    // Keyboard events
+    events: function() {
+
+      $(document).bind('keydown', function(event) {
+        Keyboard.revealFiles();
+      }).bind('keyup',function(){
+          Keyboard.hideFiles();
+      });
+
+      $(document).bind('keyup', function(event) {
+          Keyboard.playerControls();
+      })
+
+      $(document).bind('keyup', function(event) {
+          Keyboard.focusSearch();
+      })
+    },
 
     // show hidden files
-    if( event.altKey ) {
-        $(hidden).addClass( "reveal" ).removeClass( "hidden-xs-up");
-        stripedRows();
-    }
-    // countRows();
-    
-}).bind('keyup',function(){
-    
+    revealFiles: function() {
+        if( event.altKey ) {
+            $(m.hidden).addClass( "reveal" ).removeClass( "hidden-xs-up");
+            stripedRows();
+        }
+    },
+
     // hide hidden files again
-    $(hidden).removeClass( "reveal" ).addClass( "hidden-xs-up");
-    stripedRows();
-});
+    hideFiles: function() {
+        $(m.hidden).removeClass( "reveal" ).addClass( "hidden-xs-up");
+        stripedRows();
+    },
 
-$(document).bind('keyup', function(event) {
-    
     // focus search input
-    if (event.which === 70) {
-        $("#listr-search").focus();
-        $(document).scrollTop(0);
-    }
+    focusSearch: function() {
+        if (!viewer.hasClass('in')) {
+         if (event.which === 70) {
+             $(m.search).focus();
+             $(document).scrollTop(0);
+         }
+        }
+    },
 
-    // Control HTML5 player (only if modal is visible)
-    if (viewer.hasClass('in')) {
+    // Control HTML5 player
+    playerControls: function() {
+        // Only when modal is visible
+        if (viewer.hasClass('in')) {
 
-        // Play/pause
-        if (event.which === 32) {
+          // Fullscreen
+          if (event.which === 70) {
+            if (player.requestFullscreen) {
+              player.requestFullscreen();
+            } else if (player.msRequestFullscreen) {
+              player.msRequestFullscreen();
+            } else if (player.mozRequestFullScreen) {
+              player.mozRequestFullScreen();
+            } else if (player.webkitRequestFullscreen) {
+              player.webkitRequestFullscreen();
+            }
+          }
+
+          // Play/pause
+          if (event.which === 32) {
 
             event.preventDefault();
 
@@ -37,42 +82,42 @@ $(document).bind('keyup', function(event) {
             } else {
               player.play();
             }
-        }
+          }
 
-        // Seek backward
-        if (event.which === 37) {
+          // Seek backward
+          if (event.which === 37) {
             player.currentTime -= 1;
-        }
+          }
 
-        // Seek forward
-        if (event.which === 39) {
+          // Seek forward
+          if (event.which === 39) {
             player.currentTime += 1;
-        }
+          }
 
-        // Rewind player
-        if (event.which === 37 && event.shiftKey) {
+          // Rewind player
+          if (event.which === 37 && event.shiftKey) {
             player.currentTime = 0;
-        }
+          }
 
-        // Increase volume
-        if (event.which === 38) {
+          // Increase volume
+          if (event.which === 38) {
             player.volume += 0.1;
-        }
+          }
 
-        // Max volume
-        if (event.which === 38 && event.shiftKey) {
+          // Max volume
+          if (event.which === 38 && event.shiftKey) {
             player.volume = 1;
-        }
+          }
 
-        // Decrease volume
-        if (event.which === 40) {
+          // Decrease volume
+          if (event.which === 40) {
             player.volume -= 0.1;
-        }
+          }
 
-        // Mute volume
-        if (event.which === 40 && event.shiftKey) {
+          // Mute volume
+          if (event.which === 40 && event.shiftKey) {
             player.volume = 0;
+          }
         }
-
     }
-});
+};
