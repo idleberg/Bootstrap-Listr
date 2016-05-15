@@ -1,5 +1,9 @@
 $(function() {
 
-    Keyboard.init();
+  Keyboard.init();
+
+  if(jQuery().searcher) {
+    Search.init();
+  }
 
 });

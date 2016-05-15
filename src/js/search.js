@@ -1,20 +1,36 @@
-if(jQuery().searcher) {
+var S,
+Search = {
 
-  // Set selector for jQuery.searcher
-  $("#listr-table").searcher({
-    inputSelector: "#listr-search"
-  });
+  config: {
+      input: $('#listr-search'),
+      table: $("#listr-table")
+  },
+
+  init: function() {
+      S = this.config;
+      this.events();
+
+      // Set selector for jQuery.searcher
+      $(S.table).searcher({
+        inputSelector: "#listr-search"
+      });
+  },
+
+  events: function() {
+    $(S.input).keyup(function(event){
+      Search.clearInput();
+    });
+  },
 
   // Clears input when pressing Esc-key
-  $('#listr-search').keyup(function(e){
-      var $this = $(this);
-      if(e.keyCode == 27) {
-          if ($this.val() ===  '') {
-            $this.blur();
-          } else {
-            $this.val('');
-          }
+  clearInput: function() {
+    
+    if(event.keyCode == 27) {
+      if (S.input.val() ===  '') {
+        S.input.blur();
+      } else {
+        S.input.val('');
       }
-  });
-  
-}
+    }
+  }
+};
