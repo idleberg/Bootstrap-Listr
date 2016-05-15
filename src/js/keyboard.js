@@ -22,11 +22,11 @@ Keyboard = {
 
     $(document).bind('keyup', function(event) {
         Keyboard.playerControls();
-    })
+    });
 
     $(document).bind('keyup', function(event) {
         Keyboard.focusSearch();
-    })
+    });
   },
 
   // show hidden files
@@ -83,14 +83,20 @@ Keyboard = {
         }
       }
 
+      playerEnd = player.seekable.end(0)
+
       // Seek backward
       if (event.which === 37) {
-        player.currentTime -= 1;
+        if (player.currentTime >= 1) {
+          player.currentTime -= 1;
+        }
       }
 
       // Seek forward
       if (event.which === 39) {
-        player.currentTime += 1;
+        if (player.currentTime <= playerEnd - 1) {
+          player.currentTime += 1;
+        }
       }
 
       // Rewind player
@@ -98,9 +104,16 @@ Keyboard = {
         player.currentTime = 0;
       }
 
+      // Seek to end
+      // if (event.which === 39 && event.shiftKey) {
+      //   player.currentTime = playerEnd;
+      // }
+
       // Increase volume
       if (event.which === 38) {
-        player.volume += 0.1;
+        if (player.volume < 1) {
+          player.volume += 0.1;
+        }
       }
 
       // Max volume
@@ -110,7 +123,9 @@ Keyboard = {
 
       // Decrease volume
       if (event.which === 40) {
-        player.volume -= 0.1;
+        if (player.volume > 0) {
+          player.volume -= 0.1;
+        }
       }
 
       // Mute volume
