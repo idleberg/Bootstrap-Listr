@@ -1,0 +1,5 @@
+$(function() {
+
+    Keyboard.init();
+
+});
