@@ -18,7 +18,7 @@ error_reporting(E_ERROR);
 /*** SETTINGS ***/
 
 // Set Bootstrap version
-define('BOOTSTRAP_VERSION', '3.3.5');
+define('BOOTSTRAP_VERSION', '3.3.6');
 
 /* Table Styles (can be combined, e.g. 'table-hover table-striped')
  *     'table-hover' - enable a hover state on table rows (default)
@@ -96,7 +96,7 @@ define('BOOTSTRAP_THEME', 'default');
 define('FONTAWESOME_STYLE','fa-fw');
 
 // External resources
-   define('FONT_AWESOME', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+   define('FONT_AWESOME', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
      define('CUSTOM_THEME', null);
     define('GOOGLE_FONT', null); // e.g. 'Open+Sans' or 'Open+Sans:400,300',700'
          define('JQUERY', 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');
@@ -533,7 +533,7 @@ function time_ago($timestamp, $recursive = 0)
 /*** HTML LOGIC ***/
 
 // Set HTML header
-$header  = "  <meta charset=\"utf-8\">" . PHP_EOL;
+$header  = "  <meta https://github.com/idleberg/Bootstrap-Listrcharset=\"utf-8\">" . PHP_EOL;
 $header .= "  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">" . PHP_EOL;
 $header .= "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=yes\">" . PHP_EOL;
 $header .= "  <meta name=\"generator\" content=\"Bootstrap Listr\" />" . PHP_EOL;
