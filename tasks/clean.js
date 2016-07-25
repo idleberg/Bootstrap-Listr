@@ -4,7 +4,7 @@ var
 
 // Clean dist folder
 gulp.task('clean', function () {
-
+  console.log('Cleaning up…\n')
   return del([
     './build/'
   ]);

@@ -16,37 +16,22 @@ var meta = require('../package.json');
 gulp.task('merge', function(callback) {
 
   gulp.src('build/assets')
-    .pipe(prompt.prompt({
-        type: 'list',
-        name: 'merge',
-        message: 'Do you want to merge all assets?',
-        choices: [
-          {
-            name: 'Yes, merge all assets',
-            value: 'merge'
-          },
-          'No, keep individual files'
-        ]
-    }, function(res){
-        if(res.merge === 'merge') {
-            console.log('Merging assets…');
+    console.log('Merging assets…');
 
-            sequence(
-                  ['merge:js', 'merge:css'],
-                  'post-merge',
-                  callback
-                );
+    sequence(
+          ['merge:js', 'merge:css'],
+          'post-merge',
+          callback
+        );
 
-              gulp
-              .src("build/config.json")
-              .pipe(jeditor({
-                'general': {
-                  'concat_assets': true
-                }
-              }))
-              .pipe(gulp.dest("build/"));
+      gulp
+      .src("build/config.json")
+      .pipe(jeditor({
+        'general': {
+          'concat_assets': true
         }
-    }));
+      }))
+      .pipe(gulp.dest("build/"));
 
 });
 

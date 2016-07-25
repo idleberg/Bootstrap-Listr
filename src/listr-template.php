@@ -25,7 +25,7 @@
         </tfoot>
         <tbody>
 <?php echo $table_body?>
-        </tbody>                          
+        </tbody>
       </table>
 <?php echo $responsive_close?>
 <?php if ($options['general']['enable_viewer']) { ?>
@@ -49,7 +49,7 @@
 <?php if ($options['general']['share_button']) { ?>
 
               <div class="btn-group">
-                <a class="btn <?php echo $btn_primary ?> fullview"><?php echo _('Open')?></a>
+                <a class="btn <?php echo $btn_primary ?> fullview"><?php echo _('Download')?></a>
                 <button type="button" class="btn <?php echo $btn_primary ?> dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>

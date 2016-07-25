@@ -15,17 +15,31 @@ Download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releas
 
 ## Building
 
-### Gulp
+We use [Gulp](http://gulpjs.com/) tasks to configure and build your application. Make sure to have gulp installed globally as well as all local Node dependencies.
 
-[Gulp](http://gulpjs.com/) tasks are used to configure and build your application.
+```bash
+# Install Gulp (optional)
+npm install -g gulp
 
-You can now run the default task `gulp` to set up the application. On first run, this will guide you through the installation process, after that it will only upgrade the codebase.
+# Install dependencies
+npm install
+```
 
-Please visit the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki/Gulp-tasks) for details.
+You can now run the build script to createa clean copy of Bootstrap Listr:
+
+```bash
+# Concatenated assets
+npm run-script build
+
+# Individual assets
+npm run-script build:http2
+```
+
+Alternatively, you can now run the individual Gulp tasks, see `gulp help` for a list of available tasks.
 
 ## Deployment
 
-Deploy `build/` to your server. All files that should be accessible in the browser go into the `_public` folder (you can define a different folder in the `config.json). Depending on your Apache settings, you might have to uncomment the `RewriteBase` setting in the `.htaccess` file (maybe add folder name after the slash.)
+Deploy `build/` to your server. All files that should be accessible in the browser go into the `_public` folder (you can define a different folder in the `config.json`). Depending on your Apache settings, you might have to uncomment the `RewriteBase` setting in the `.htaccess` file (maybe add folder name after the slash.)
 
 ## Options
 

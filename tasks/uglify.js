@@ -16,7 +16,8 @@ gulp.task('make:js', function() {
        gulp.src('./src/js/keyboard.js'),
        gulp.src('./src/js/modal.js'),
        gulp.src('./src/js/search.js'),
-       gulp.src('./src/js/table.js')
+       gulp.src('./src/js/table.js'),
+       gulp.src('./src/js/init.js')
     )
    .pipe(concat('listr.min.js'))
    .pipe(uglify())
