@@ -264,10 +264,11 @@ if ($handle = opendir($navigation_dir))
 
             if (isset($info['extension'])) {
                 $item['ext'] = $info['extension'];
+                $item['lext'] = strtolower($info['extension']);
             } else {
                 $item['ext'] = '.';
+                $item['lext'] = '.';
             }
-            $item['lext'] = strtolower($info['extension']);
 
             // If enable_checksums, ignore checksum files or read in checksum
             if ( ($options['general']['enable_checksums'] == true)) {
@@ -478,7 +479,7 @@ if(($folder_list) || ($file_list) ) {
     if($folder_list):    
         foreach($folder_list as $item) :
 
-            if ($options['bootstrap']['tablerow_folders'] != null) {
+            if (isset($options['bootstrap']['tablerow_folders'])) {
                 $tr_folders = ' class="'.$options['bootstrap']['tablerow_folders'].'"';
             } else {
                 $tr_folders = null;
@@ -491,11 +492,11 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= " class=\"text-xs-$left\" data-sort-value=\"dir-". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
-            if ($options['bootstrap']['icons'] !== null ) {
+            if (isset($options['bootstrap']['icons'])) {
                 $table_body .= "<".$icons['tag']." class=\"".$icons['folder']."\"></".$icons['tag'].">&nbsp;";
             }
 
-            if ($options['bootstrap']['tablerow_links'] != null) {
+            if (isset($options['bootstrap']['tablerow_links'])) {
                 $tr_links = ' class="'.$options['bootstrap']['tablerow_links'].'"';
             } else {
                 $tr_links = null;
