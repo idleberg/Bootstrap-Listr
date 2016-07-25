@@ -283,10 +283,11 @@ if ($handle = opendir($navigation_dir))
 
             if (isset($info['extension'])) {
                 $item['ext'] = $info['extension'];
+                $item['lext'] = strtolower($info['extension']);
             } else {
                 $item['ext'] = '.';
+                $item['lext'] = '.';
             }
-            $item['lext'] = strtolower($info['extension']);
 
             // Assign file icons
             $item['class'] = $icons['prefix'].' '.$icons['default'].' '. $options['bootstrap']['fontawesome_style'];
