@@ -1,6 +1,7 @@
 <?php
 
-error_reporting(E_ERROR);
+ini_set('display_errors', 'Off');
+error_reporting(E_ALL | E_STRICT);
 
 /**
  *      Bootstrap Listr
