@@ -386,14 +386,14 @@ $footer = set_footer();
 $breadcrumbs  = "    <div class=\"row\">" . PHP_EOL;
 $breadcrumbs .= "      <div class=\"col-xs-12\">" . PHP_EOL;
 $breadcrumbs .= "        <ol class=\"breadcrumb$breadcrumb_style\"".$direction.">" . PHP_EOL;
-$breadcrumbs .= "          <li><a href=\"".htmlentities($root_dir, ENT_QUOTES, 'utf-8')."\">".$icons['home']."</a></li>" . PHP_EOL;
+$breadcrumbs .= "          <li class=\"breadcrumb-item\"><a href=\"".htmlentities($root_dir, ENT_QUOTES, 'utf-8')."\">".$icons['home']."</a></li>" . PHP_EOL;
 foreach($dir_name as $dir => $name) :
     if(($name != ' ') && ($name != '') && ($name != '.') && ($name != '/')):
         $parent = '';
         for ($i = 0; $i <= $dir; $i++):
             $parent .= rawurlencode($dir_name[$i]) . '/';
         endfor;
-        $breadcrumbs .= "          <li><a href=\"".htmlentities($absolute_path.$parent, ENT_QUOTES, 'utf-8')."\">".$name."</a></li>" . PHP_EOL;
+        $breadcrumbs .= "          <li class=\"breadcrumb-item\"><a href=\"".htmlentities($absolute_path.$parent, ENT_QUOTES, 'utf-8')."\">".$name."</a></li>" . PHP_EOL;
     endif;
 endforeach;
 $breadcrumbs = $breadcrumbs."        </ol>" . PHP_EOL;
@@ -413,7 +413,7 @@ if ($options['general']['enable_search'] == true) {
         $input_size = null;
     }
 
-    $search .= "      <div class=\"col-xs-12 col-sm-5 col-md-4$search_offset\">" . PHP_EOL;
+    $search .= "      <div class=\"col-xs-12 col-sm-5 col-md-4$search_offset pull-sm-right\">" . PHP_EOL;
     $search .= "          <div class=\"form-group\">" . PHP_EOL;
     $search .= "            <label class=\"form-control-label sr-only\" for=\"listr-search\">". _('Search')."</label>" . PHP_EOL;
     $search .= "            <input type=\"text\" id=\"listr-search\" class=\"form-control$input_size\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
