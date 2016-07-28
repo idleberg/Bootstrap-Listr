@@ -32,7 +32,7 @@ th {
 
 tr::before {
   display: table-cell;
-  line-height: $line-height;
+  line-height: $line-height-base;
   padding: $table-cell-padding;
   text-align: right;
   vertical-align: top;
