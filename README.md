@@ -35,7 +35,7 @@ npm run-script build
 npm run-script build:http2
 ```
 
-Alternatively, you can now run the individual Gulp tasks, see `gulp help` for a list of available tasks.
+Alternatively, you can now run the individual Gulp tasks. See `gulp help` for a list of available tasks.
 
 ## Deployment
 
