@@ -2,7 +2,7 @@ body {
   overflow-y: scroll;
 }
 
-.breadcrumb>li+li::before {
+.breadcrumb-item+.breadcrumb-item::before {
   content: '\f105';
   font-family: fontawesome;
 }
