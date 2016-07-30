@@ -569,10 +569,10 @@ if(($folder_list) || ($file_list) ) {
                 }
 
                 // Don't show file-size in .virtual-file
-                $modified_attr = null;
+                $size_attr = null;
             } else {
                 $virtual_attr = null;
-                $modified_attr = " data-modified=\"".$item_pretty_size."\"";
+                $size_attr = " data-size=\"".$item_pretty_size."\"";
             }
 
             // Concatenate tr-classes
@@ -646,7 +646,7 @@ if(($folder_list) || ($file_list) ) {
                 $file_attr = null;
             }
 
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$modified_attr>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$size_attr>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
 
             // Size
             if ($table_options['size']) {
