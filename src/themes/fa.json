@@ -282,7 +282,8 @@
                "otf",
                "pfm",
                "ttf",
-               "woff"
+               "woff",
+               "woff2"
             ],
             "icon":"fa-font"
          },
