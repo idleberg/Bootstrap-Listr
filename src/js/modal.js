@@ -68,7 +68,7 @@ function modal_defaults(ev, el) {
 
     var file = el.attr("href"),
         uri  = el.get(0).href,
-        meta = el.data("modified");
+        meta = el.data("size");
 
     return [file, uri, meta];
 }
