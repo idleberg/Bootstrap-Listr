@@ -26,12 +26,6 @@ require_once('listr-functions.php');
 // Configure optional table columns
 $table_options = $options['columns'];
 
-// Set sorting properties.
-$sort = array(
-    array('key'=>'lname', 'sort'=>'asc'), // ... this sets the initial sort "column" and order ...
-    array('key'=>'size',  'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
-);
-
 // Files you want to hide from the listing
 $ignore_list = $options['ignored_files'];
 
