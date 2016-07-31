@@ -242,37 +242,12 @@ function utf8ify($str) {
 }
 
 /**
- *    http://us.php.net/manual/en/function.array-multisort.php#83117
+ *    @ http://stackoverflow.com/a/14994181/1329116
  */
-function php_multisort($data,$keys)
-{
-    foreach ($data as $key => $row)
-    {
-        foreach ($keys as $k)
-        {
-            $cols[$k['key']][$key] = $row[$k['key']];
-        }
-    }
-    $idkeys = array_keys($data);
-    $i=0;
-    $sort = null;
-    foreach ($keys as $k)
-    {
-        if($i>0){$sort.=',';}
-        $sort.='$cols['.$k['key'].']';
-        if(isset($k['sort'])){$sort.=',SORT_'.strtoupper($k['sort']);}
-        if(isset($k['type'])){$sort.=',SORT_'.strtoupper($k['type']);}
-        $i++;
-    }
-    $sort .= ',$idkeys';
-    $sort = 'array_multisort('.$sort.');';
-    eval($sort);
-    foreach($idkeys as $idkey)
-    {
-        $result[$idkey]=$data[$idkey];
-    }
-    return $result;
-} 
+function sort_by_name($a, $b) {
+    if ($a['name'] == $b['name']) return 0;
+    return ($a['name'] < $b['name']) ? -1 : 1;
+}
 
 /**
  *    @ http://us3.php.net/manual/en/function.filesize.php#84652

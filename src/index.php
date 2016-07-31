@@ -29,10 +29,10 @@ require_once('listr-functions.php');
 $table_options = $options['columns'];
 
 // Set sorting properties.
-$sort = array(
-    array('key'=>'lname', 'sort'=>'asc'), // ... this sets the initial sort "column" and order ...
-    array('key'=>'size',  'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
-);
+// $sort = array(
+//     array('key'=>'lname', 'sort'=>'asc'), // ... this sets the initial sort "column" and order ...
+//     array('key'=>'size',  'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
+// );
 
 // Files you want to hide from the listing
 $ignore_list = $options['ignored_files'];
@@ -344,10 +344,10 @@ if ($handle = opendir($navigation_dir))
 }
 // Sort folder list.
 if($folder_list)
-    $folder_list = php_multisort($folder_list, $sort);
+    usort($folder_list, 'sort_by_name');
 // Sort file list.
 if($file_list)
-    $file_list = php_multisort($file_list, $sort);
+    usort($file_list, 'sort_by_name');
 // Calculate the total folder size (fix: total size cannot display while there is no folder inside the directory)
 if($file_list && $folder_list || $file_list)
     $total_size = bytes_to_string($total_size, 2);
@@ -446,11 +446,13 @@ if ($options['general']['enable_search'] == true) {
 // Set table header
 $table_header = null;
 
+// $tablecol_name = " " + $options['bootstrap']['tablecol_name'] ? $options['bootstrap']['tablecol_name'] : null;
 $table_header .= "            <th class=\"text-xs-$left\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
 if ($table_options['size']) {
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
+        // $tablecol_size = $options['bootstrap']['tablecol_size'] ?: null;
         $table_header .= " class=\"text-xs-$right\" data-sort=\"int\">";
     } else {
         $table_header .= ">";
@@ -461,6 +463,7 @@ if ($table_options['size']) {
 if ($table_options['age']) {
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
+        // $tablecol_modified = " " + $options['bootstrap']['tablecol_modified'] ? $options['bootstrap']['tablecol_modified'] : null;
         $table_header .= " class=\"text-xs-$right\" data-sort=\"int\">";
     } else {
         $table_header .= ">";
@@ -598,10 +601,10 @@ if(($folder_list) || ($file_list) ) {
                 }
 
                 // Don't show file-size in .virtual-file
-                $modified_attr = null;
+                $size_attr = null;
             } else {
                 $virtual_attr = null;
-                $modified_attr = " data-modified=\"".$item_pretty_size."\"";
+                $size_attr = " data-size=\"".$item_pretty_size."\"";
             }
 
             // Concatenate tr-classes
@@ -675,7 +678,7 @@ if(($folder_list) || ($file_list) ) {
                 $file_attr = null;
             }
 
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$modified_attr>" . utf8ify($display_name) . "</a>";
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$size_attr>" . utf8ify($display_name) . "</a>";
 
             // Append checksum info if enabled
             if ( ($options['general']['enable_checksums'] == true) && !empty($options["checksum_files"]) ) {
