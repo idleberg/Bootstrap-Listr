@@ -221,8 +221,8 @@ function utf8ify($str) {
  *    @ http://stackoverflow.com/a/14994181/1329116
  */
 function sort_by_name($a, $b) {
-    if ($a['name'] == $b['name']) return 0;
-    return ($a['name'] < $b['name']) ? -1 : 1;
+    if ($a['lbname'] == $b['lbname']) return 0;
+    return ($a['lbname'] < $b['lbname']) ? -1 : 1;
 }
 
 /**
