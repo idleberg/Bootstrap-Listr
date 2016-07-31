@@ -334,10 +334,10 @@ if ($handle = opendir($navigation_dir))
 }
 // Sort folder list.
 if($folder_list)
-    $folder_list = php_multisort($folder_list, $sort);
+    usort($folder_list, 'sort_by_name');
 // Sort file list.
 if($file_list)
-    $file_list = php_multisort($file_list, $sort);
+    usort($file_list, 'sort_by_name');
 // Calculate the total folder size (fix: total size cannot display while there is no folder inside the directory)
 if($file_list && $folder_list || $file_list)
     $total_size = bytes_to_string($total_size, 2);
