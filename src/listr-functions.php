@@ -218,11 +218,32 @@ function utf8ify($str) {
 }
 
 /**
- *    @ http://stackoverflow.com/a/14994181/1329116
+ *    @ http://php.net/manual/en/function.usort.php#116264
  */
-function sort_by_name($a, $b) {
-    if ($a['lbname'] == $b['lbname']) return 0;
-    return ($a['lbname'] < $b['lbname']) ? -1 : 1;
+function natural_sort( &$data_array, $keys, $reverse=false, $ignorecase=false ) {
+    // make sure $keys is an array
+    if (!is_array($keys)) $keys = array($keys);
+    usort($data_array, sort_compare($keys, $reverse, $ignorecase) );
+}
+
+function sort_compare($keys, $reverse=false, $ignorecase=false) {
+    return function ($a, $b) use ($keys, $reverse, $ignorecase) {
+        $cnt=0;
+        // check each key in the order specified
+        foreach ( $keys as $key ) {
+            // check the value for ignorecase and do natural compare accordingly
+            $ignore = is_array($ignorecase) ? $ignorecase[$cnt] : $ignorecase;
+            $result = $ignore ? strnatcasecmp ($a[$key], $b[$key]) : strnatcmp($a[$key], $b[$key]);
+            // check the value for reverse and reverse the sort order accordingly
+            $revcmp = is_array($reverse) ? $reverse[$cnt] : $reverse;
+            $result = $revcmp ? ($result * -1) : $result;
+            // the first key that results in a non-zero comparison determines
+            // the order of the elements
+            if ( $result != 0 ) break;
+            $cnt++;
+        }
+        return $result;
+    };
 }
 
 /**
