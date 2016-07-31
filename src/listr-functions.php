@@ -244,7 +244,6 @@ function utf8ify($str) {
 /**
  *    @ http://php.net/manual/en/function.usort.php#116264
  */
-
 function natural_sort( &$data_array, $keys, $reverse=false, $ignorecase=false ) {
     // make sure $keys is an array
     if (!is_array($keys)) $keys = array($keys);
