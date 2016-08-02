@@ -65,7 +65,7 @@
                 </div>
               </div>
 <?php } else { ?>
-            <a class="btn <?php echo $btn_primary ?> fullview" data-button="<?php echo _('Open')?>"></a>
+            <a class="btn <?php echo $btn_primary ?> fullview"><?php echo _('Download')?></a>
 <?php } ?>
             </div>
           </div>
