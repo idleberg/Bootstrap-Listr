@@ -28,12 +28,6 @@ require_once('listr-functions.php');
 // Configure optional table columns
 $table_options = $options['columns'];
 
-// Set sorting properties.
-// $sort = array(
-//     array('key'=>'lname', 'sort'=>'asc'), // ... this sets the initial sort "column" and order ...
-//     array('key'=>'size',  'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
-// );
-
 // Files you want to hide from the listing
 $ignore_list = $options['ignored_files'];
 
@@ -637,36 +631,36 @@ if(($folder_list) || ($file_list) ) {
             // inject modal class if necessary
             if ($options['general']['enable_viewer']) {
                 if (in_array($item['lext'], $audio_files)) {
-                    $file_classes[] = 'audio-modal';
+                    $file_type = 'audio';
                 } else if ($item['lext'] == 'swf') {
-                    $file_classes[] = 'flash-modal';
+                    $file_type = 'flash';
                 } else if (in_array($item['lext'], $image_files)) {
-                    $file_classes[] = 'image-modal';
+                    $file_type = 'image';
                 } else if (in_array($item['lext'], $pdf_files)) {
-                    $file_classes[] = 'pdf-modal';
+                    $file_type = 'pdf';
                 } else if (in_array($item['lext'], $quicktime_files)) {
-                     $file_classes[] = 'quicktime-modal';
+                     $file_type = 'quicktime';
                 } else if (in_array($item['lext'], $source_files)) {
                     if ($options['general']['auto_highlight']) {
                         $file_meta[] = 'data-highlight="true"';
                     }
                     if ($options['viewer']['alt_load'] == true) {
-                        $file_classes[] = 'source-modal-alt';
+                        $file_type = 'source-alt';
                     } else {
-                        $file_classes[] = 'source-modal';
+                        $file_type = 'source';
                     }
                 } else if (in_array($item['lext'], $text_files)) {
                     if ($options['viewer']['alt_load'] == true) {
-                        $file_classes[] = 'text-modal-alt';
+                        $file_type = 'text-alt';
                     } else {
-                        $file_classes[] = 'text-modal';
+                        $file_type = 'text';
                     }
                 } else if (in_array($item['lext'], $video_files)) {
-                    $file_classes[] = 'video-modal';
+                    $file_type = 'video';
                 } else if (in_array($item['lext'], $website_files)) {
-                    $file_classes[] = 'website-modal';
+                    $file_type = 'website';
                 } else if (in_array($item['lext'], $virtual_files)) {
-                    $file_classes[] = 'virtual-modal';
+                    $file_type = 'virtual';
                 }
             }
 
@@ -678,7 +672,7 @@ if(($folder_list) || ($file_list) ) {
                 $file_attr = null;
             }
 
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$size_attr>" . utf8ify($display_name) . "</a>";
+            $table_body .= "<a data-toggle=\"modal\" data-target=\"#viewer-modal\" data-type=\"$file_type\" href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$size_attr>" . utf8ify($display_name) . "</a>";
 
             // Append checksum info if enabled
             if ( ($options['general']['enable_checksums'] == true) && !empty($options["checksum_files"]) ) {

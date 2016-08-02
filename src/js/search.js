@@ -1,13 +1,13 @@
 var S,
 Search = {
 
-  config: {
+  elements: {
       input: $('#listr-search'),
       table: $("#listr-table")
   },
 
   init: function() {
-      S = this.config;
+      S = this.elements;
       this.events();
 
       // Set selector for jQuery.searcher

@@ -9,3 +9,4 @@ src/parsedown
 tasks/swatch4.js
 todo.md
 vendor/
+*.old

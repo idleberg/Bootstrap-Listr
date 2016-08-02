@@ -1,14 +1,15 @@
 var K,
 Keyboard = {
 
-  config: {
+  elements: {
       hidden: $("tr.hidden-xs-up"),
       keyboard: $("#viewer-modal"),
-      search: $("#listr-search")
+      search: $("#listr-search"),
+      viewer: $("#viewer-modal")
   },
 
   init: function() {
-      K = this.config;
+      K = this.elements;
       this.events();
   },
 
@@ -45,7 +46,7 @@ Keyboard = {
 
   // focus search input
   focusSearch: function() {
-      if ( !viewer.hasClass('in')) {
+      if ( !K.viewer.hasClass('in')) {
         if (event.which === 70) {
             $(K.search).focus();
             $(document).scrollTop(0);
@@ -56,7 +57,7 @@ Keyboard = {
   // Control HTML5 player
   playerControls: function() {
     // Only when modal is visible
-    if ( (viewer.hasClass('in')) && (typeof player !== 'undefined') ) {
+    if ( (K.viewer.hasClass('in')) && (typeof player !== 'undefined') ) {
 
       // Fullscreen
       if (event.which === 70) {

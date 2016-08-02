@@ -25,3 +25,11 @@ $('.table-hover>tbody>tr').bind({
     stripedRows();
   }
 });
+
+var decodeFile = function(contents) {
+    try {
+        return decodeURIComponent(contents);
+    } catch (err) {
+       return contents;
+    }
+};

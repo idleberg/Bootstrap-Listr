@@ -1,243 +1,210 @@
-// Assign variables
-var viewer      = $("#viewer-modal");
-var modal_body  = $(".modal-body");
-var modal_title = $(".modal-title");
-var file_meta   = $("#file-meta");
-var full_view   = $(".fullview");
-var button      = full_view.data("button");
-var dropbox     = $(".save-dropbox");
-var email       = $(".email-link");
-var twitter     = $(".twitter-link");
-var facebook    = $(".facebook-link");
-var google      = $(".google-link");
+var M,
+Modal = {
 
-var decodeFile = function(contents) {
-    try {
-        return decodeURIComponent(contents);
-    } catch (err) {
-       return contents;
-    }
-};
+  elements: {
+    viewer: $("#viewer-modal"),
+    modal_body: $(".modal-body"),
+    modal_title: $(".modal-title"),
+    file_meta: $("#file-meta"),
+    full_view: $(".fullview"),
+    button: $(".fullview").data("button"),
+    dropbox: $(".save-dropbox"),
+    email: $(".email-link"),
+    twitter: $(".twitter-link"),
+    facebook: $(".facebook-link"),
+    google: $(".google-link")
+  },
 
-function set_modal(content, file, uri, meta) {
-    
-    // Inject content 
-    modal_body.html(content);
-    
-    // Set meta
-    full_view.attr("href", file);
-    full_view.text(button);
-    
-    // Populate Dropbox drop-in
-    dropbox.attr("href", file);
-    
-    // Populate share buttons
-    email.attr("href", "mailto:?body=" + uri);
-    twitter.attr("href", "http://twitter.com/share?url=" + uri);
-    facebook.attr("href", "http://www.facebook.com/sharer/sharer.php?u=" + uri);
-    google.attr("href", "https://plus.google.com/share?url=" + uri);
-    
-    // Set title
-    modal_title.text(decodeFile(file));
+  init: function() {
+      M = this.elements;
+      this.events();
+  },
 
-    meta = typeof meta !== 'undefined' ? meta : null;
-    file_meta.text(meta);
-}
+  events: function() {
+    $('#viewer-modal').on('show.bs.modal', function (e) {
+      var el = $(e.relatedTarget);     
 
-function set_vmodal(content, file, name, uri) {
-    
-    // Inject content 
-    modal_body.html(content);
-    
-    // Set meta
-    full_view.attr("href", uri);
-    full_view.text(button);
-    
-    // Populate Dropbox drop-in
-    dropbox.attr("href", file);
-    
-    // Populate share buttons
-    email.attr("href", "mailto:?body=" + encodeURIComponent(name) + "%20" + uri);
-    twitter.attr("href", "http://twitter.com/share?text=" + encodeURIComponent(name) + "&amp;url=" + uri);
-    facebook.attr("href", "http://www.facebook.com/sharer/sharer.php?u=" + uri);
-    google.attr("href", "https://plus.google.com/share?url=" + uri);
-    
-    // Set title
-    modal_title.text(name);
+      var type = el.data("type");
 
-    // file_meta.html('<a href="' + uri + '" class="text-muted" title="' + name + '">' + uri + '</a>');
-    file_meta.html(uri);
-}
+      if (type === 'text') {
+        Modal.setTextModal(el);
+      } else if (type === 'source') {
+        Modal.setSourceModal(el);
+      } else if (type === 'audio') {
+        Modal.setAudioModal(el);
+      } else if (type === 'video') {
+        Modal.setVideoModal(el);
+      } else if (type === 'image') {
+        Modal.setImageModal(el);
+      } else if (type === 'website') {
+        Modal.setWebModal(el);
+      } else if (type === 'pdf') {
+        Modal.setPdfModal(el);
+      } else if (type === 'flash') {
+        Modal.setFlashModal(el);
+      } else if (type === 'quicktime') {
+        Modal.setQuicktimeModal(el);
+      }
+    });
 
-// Default actions for each modal
-function modal_defaults(ev, el) {
-    // prevent from loading link
-    ev.preventDefault();
+    $(M.viewer).on("hide.bs.modal", function() {
+      Modal.stopPlayer();
+    });
 
-    var file = el.attr("href"),
-        uri  = el.get(0).href,
-        meta = el.data("modified");
+    $(M.viewer).on("hidden.bs.modal", function() {
+      Modal.reset();
+    });
+  },
 
-    return [file, uri, meta];
-}
+    setAudioModal: function(el) {
+        var modal = {
+            open:  null,
+            close: null,
+            file:  el.attr("href"),
+            uri:   el.get(0).href,
+            size:  el.data("size"),
+       };
+       M.modal_body.html('<audio src="' + modal.file + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>');
+       
+       Modal.setMeta(modal);
+       M.viewer.modal("show");
+    },
 
-function source_defaults( ev, el) {
-    var arr = modal_defaults( ev, el );
-    var data = el.data("highlight");
+    setVideoModal: function(el) {
+        var modal = {
+            open:  null,
+            close: null,
+            file: el.attr("href"),
+            uri:  el.get(0).href,
+            size: el.data("size"),
+       };
+       M.modal_body.html('<video src="' + modal.file + '" id="player" autoplay controls>Video format or MIME type is not supported</video>');
+       
+       Modal.setMeta(modal);
+       M.viewer.modal("show");
+    },
 
-    // Show & enable highlight button
-    if (data !== true) {
-        $(".highlight").removeClass("hidden-xs-up").removeAttr("disabled");
-    }
+    setImageModal: function(el) {
+        var modal = {
+            open:  null,
+            close: null,
+            file: el.attr("href"),
+            uri:  el.get(0).href,
+            size: el.data("size"),
+       };
+       M.modal_body.html('<img src="' + modal.file + '">');
+       
+       Modal.setMeta(modal);
+       M.viewer.modal("show");
+    },
 
-    // Get file extension
-    var ext = arr[0].split(".").pop();
+    setWebModal: function(el) {
+        var modal = {
+            open:  '<div class="embed-responsive embed-responsive-4by3">',
+            close: '</div>',
+            file:  el.attr("href"),
+            uri:   el.get(0).href,
+            size:  el.data("size"),
+       };
+       modal.html = '<iframe id="website" class="embed-responsive-item" src="' + modal.file + '" sandbox frameborder="0"></iframe>'
 
-    // arr[0] = file name
-    // arr[1] = file uri
-    // arr[2] = file meta
-    set_modal('<pre><code id="source" class="' + ext + '" dir="ltr"></code></pre>', arr[0], arr[1], arr[2]);
+       M.modal_body.html(modal.open + modal.html + modal.close);       
+       Modal.setMeta(modal);
+       M.viewer.modal("show");
+    },
 
-    return [arr[0], data];
-}
+    setPdfModal: function(el) {
+        var modal = {
+            open:  '<div class="embed-responsive embed-responsive-4by3">',
+            close: '</div>',
+            file:  el.attr("href"),
+            uri:   el.get(0).href,
+            size:  el.data("size"),
+       };
+       modal.html = '<iframe class="embed-responsive-item" src="' + modal.file + '" type="application/pdf" scale="aspect" frameborder="0"></iframe>';
 
-$(".audio-modal").click(function(event) {
-    
-     var arr = modal_defaults( event, $(this) );
-    
-    // arr[0] = file name
-    // arr[1] = file uri
-    // arr[2] = file meta
-    set_modal('<audio src="' + arr[0] + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>', arr[0], arr[1], arr[2]);
+       M.modal_body.html(modal.open + modal.html + modal.close);       
+       Modal.setMeta(modal);
+       M.viewer.modal("show");
+    },
 
-    // show modal
-    viewer.modal("show");
-});
+    setFlashModal: function(el) {
+        var modal = {
+            open:  '<div class="embed-responsive embed-responsive-4by3">',
+            close: '</div>',
+            file:  el.attr("href"),
+            uri:   el.get(0).href,
+            size:  el.data("size"),
+       };
+       modal.html = '<object class="embed-responsive-item" type="application/x-shockwave-flash" data="' + modal.file + '"><param name="movie" value="' + modal.file + '"><param name="quality" value="high"></object>';
+       M.modal_body.html(modal.open + modal.html + modal.close);
+       Modal.setMeta(modal);
+       M.viewer.modal("show");
+    },
 
-$(".flash-modal").click(function(event) {
-    
-     var arr = modal_defaults( event, $(this) );
-    
-    // arr[0] = file name
-    // arr[1] = file uri
-    // arr[2] = file meta
-    set_modal('<div class="embed-responsive embed-responsive-4by3"><object class="embed-responsive-item" type="application/x-shockwave-flash" data="' + arr[0] + '"><param name="movie" value="' + arr[0] + '"><param name="quality" value="high"></object></div>', arr[0], arr[1], arr[2]);
-    
-    // show modal
-    viewer.modal("show");
-});
+    setQuicktimeModal: function(el) {
+        var modal = {
+            open:  '<div class="embed-responsive embed-responsive-16by9">',
+            close: '</div>',
+            file:  el.attr("href"),
+            uri:   el.get(0).href,
+            size:  el.data("size"),
+       };
+       modal.html = '<embed class="embed-responsive-item" src="' + modal.file + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"';
 
-$(".image-modal").click(function(event) {
-    
-     var arr = modal_defaults( event, $(this) );
+       M.modal_body.html(modal.open + modal.html + modal.close);
+       Modal.setMeta(modal);
+       M.viewer.modal("show");
+    },
 
-    // arr[0] = file name
-    // arr[1] = file uri
-    // arr[2] = file meta
-    set_modal('<img src="' + arr[0] + '"/>', arr[0], arr[1], arr[2]);
+  setTextModal: function(el) {
+      var modal = {
+         open:  '<pre><code id="text">',
+         close: '</code></pre>',
+         file:  el.attr("href"),
+         uri:   el.get(0).href,
+         size:  el.data("size"),
+       };
 
-    // show modal
-    viewer.modal("show");
-});
+       // Load file contents
+       $.ajax(modal.file, {
+           dataType: "text",
+           success: function(contents) {
+                // Inject content 
+                M.modal_body.html(modal.open, modal.close);
+                $("#text").text(decodeFile(contents));
 
-$(".pdf-modal").click(function(event) {
-    
-     var arr = modal_defaults( event, $(this) );
+                Modal.setMeta(modal);
+           }
+       }).done(function() {
+           // show modal
+           $(M.viewer).modal("show");
+       });
+  },
 
-    // arr[0] = file name
-    // arr[1] = file uri
-    // arr[2] = file meta
-    set_modal('<div class="embed-responsive embed-responsive-4by3"><iframe class="embed-responsive-item" src="' + arr[0] + '" type="application/pdf" scale="aspect" frameborder="0"></iframe></div>', arr[0], arr[1], arr[2]);
-    
-    // show modal
-    viewer.modal("show");
-});
+    setSourceModal: function(el) {
+        var ext = el.attr("href")[0].split(".").pop();
 
-$(".video-modal").click(function(event) {
-    
-     var arr = modal_defaults( event, $(this) );
+        var modal = {
+          open:      '<pre><code id="source"class="' + ext + '" dir="ltr">',
+          close:      '</code></pre>',
+          file:      el.attr("href"),
+          uri:       el.get(0).href,
+          size:      el.data("size"),
+          highlight: el.data("highlight")
+        };
 
-    // arr[0] = file name
-    // arr[1] = file uri
-    // arr[2] = file meta
-    set_modal('<video src="' + arr[0] + '" id="player" autoplay controls>Video format or MIME type is not supported</video>', arr[0], arr[1], arr[2]);
-    
-    // show modal
-    viewer.modal("show");
-});
+        // Load file contents
+        $.ajax(modal.file, {
+            dataType: "text",
+            success: function(contents) {
+                // Inject source code
+                M.modal_body.html(modal.open, modal.close);
+                $("#source").text(decodeFile(contents));
 
-$(".virtual-modal").click(function(event) {
-    
-    // prevent from loading link
-    event.preventDefault();
+                Modal.setMeta(modal);
 
-    if (typeof $(this).data('vimeo') !== 'undefined') {
-        file = $(this).html();
-        id   = $(this).data("vimeo");
-        name = $(this).data("name");
-        uri  = $(this).data("url");
-        set_vmodal('<div class="embed-responsive embed-responsive-16by9"><iframe id="virtual" class="embed-responsive-item" src="https://player.vimeo.com/video/' + id + '?autoplay=1&title=0&byline=0&portrait=0" frameborder="0" allowfullscreen>Video format or MIME type is not supported</iframe></div>', file, name, uri);
-        viewer.modal("show");
-    } else if (typeof $(this).data('youtube') !== 'undefined') {
-        file = $(this).html();
-        id   = $(this).data("youtube");
-        name = $(this).data("name");
-        uri  = $(this).data("url");
-        set_vmodal('<div class="embed-responsive embed-responsive-16by9"><iframe id="virtual" class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&amp;rel=0&amp;showinfo=0" frameborder="0" allowfullscreen>Video format or MIME type is not supported</iframe></div>', file, name, uri);
-        viewer.modal("show");
-    } else if (typeof $(this).data('flickr') !== 'undefined') {
-        file = $(this).html();
-        id   = $(this).data("flickr");
-        name = $(this).data("name");
-        uri  = $(this).data("url");
-        set_vmodal('<div class="embed-responsive embed-responsive-1by1"><iframe id="virtual" class="embed-responsive-item" src="https://www.flickr.com/photos/' + id + '/player/" scrolling="no" frameborder="0" allowfullscreen></iframe></div>', file, name, uri);
-        viewer.modal("show");
-    } else if (typeof $(this).data('soundcloud') !== 'undefined') {
-        file = $(this).html();
-        id   = $(this).data("soundcloud");
-        name = $(this).data("name");
-        uri  = $(this).data("url");
-        set_vmodal('<div class="embed-responsive embed-responsive-4by3"><iframe id="virtual" class="embed-responsive-item" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/' + id + '&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>', file, name, uri);
-        viewer.modal("show");
-    }
-
-    // var file = el.attr("href"),
-    //     uri  = el.get(0).href,
-    //     meta = el.data("modified");
-
-    // arr[0] = file name
-    // arr[1] = file uri
-    // arr[2] = file meta
-    // <iframe src="https://player.vimeo.com/video/65630550?autoplay=1&title=0&byline=0&portrait=0" width="848" height="477" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    
-});
-
-$(".quicktime-modal").click(function(event) {
-    
-     var arr = modal_defaults( event, $(this) );
-
-    // arr[0] = file name
-    // arr[1] = file uri
-    // arr[2] = file meta
-    set_modal('<div class="embed-responsive embed-responsive-16by9"><embed class="embed-responsive-item" src="' + arr[0] + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"></div>', arr[0], arr[1], arr[2]);
-    
-    // show modal
-    viewer.modal("show");
-});
-
-$(".source-modal").click(function(event) {
-    
-    var arr = source_defaults( event, $(this) );
-    
-    // Load file contents
-    $.ajax(arr[0], {
-        dataType: "text",
-        success: function(contents) {
-            // Inject source code
-            $("#source").text(decodeFile(contents));
-            
-            // Fire auto-highlighter
-            if (arr[1] === true) {
+                // Fire auto-highlighter
                 $("#source").each(function(i, block) {
                     if(typeof(hljs) !== 'undefined') hljs.highlightBlock(block);
                     // adjust pre background-color
@@ -245,129 +212,51 @@ $(".source-modal").click(function(event) {
                     $("pre").css("background-color", background);
                 });
             }
-        }
-    }).done(function() {
-        // show modal
-        viewer.modal("show");
-    });
-});
+        }).done(function() {
+            // show modal
+            M.viewer.modal("show");
+        });
+  },
 
-$(".source-modal-alt").click(function(event) {
+  setMeta: function(modal) {
+    // Set meta
+    M.full_view.attr("href", modal.file);
     
-    var arr = source_defaults( event, $(this) );
-    
-    // Load file contents
-    $.ajax(arr[0], {
-        dataType: "text",
-        success: function(contents) {
-            // Inject source code
-            $("#source").text(decodeFile(contents));
-            
-            
-            // Fire auto-highlighter
-            if (arr[1] === true) {
-                $("#source").each(function(i, block) {
-                    hljs.highlightBlock(block);
-                    // adjust pre background-color
-                    var background = $("code").css("background-color");
-                    $("pre").css("background-color", background);
-                });
-            }
-        }
-    });
+    // Set title
+    M.modal_title.text(decodeFile(modal.file));
 
-    // show modal
-    viewer.modal("show");
-});
+    // Set size
+    meta = typeof modal.size !== 'undefined' ? modal.size : null;
+    M.file_meta.text(meta);
 
+    // Populate Dropbox drop-in
+    M.dropbox.attr("href", modal.file);
     
-$(".highlight").click(function(event) {
-   
-    event.preventDefault();
-    
-    // Disable highlight button
-    $(".highlight").attr("disabled", "disabled");
+    // Populate share buttons
+    M.email.attr("href", "mailto:?body=" + modal.uri);
+    M.twitter.attr("href", "http://twitter.com/share?url=" + modal.uri);
+    M.facebook.attr("href", "http://www.facebook.com/sharer/sharer.php?u=" + modal.uri);
+    M.google.attr("href", "https://plus.google.com/share?url=" + modal.uri);
+  },
 
-    // Fire highlighter
-    $("#source").each(function(i, block) {
-        hljs.highlightBlock(block);
-    });
-
-    // Adapt pre background-color from highlighter.js theme
-    var background = $("code").css("background-color");
-    $("pre").css("background-color", background);
-});
-
-$(".text-modal").click(function(event) {
-    
-     var arr = modal_defaults( event, $(this) );
-    
-    // arr[0] = file name
-    // arr[1] = file uri
-    // arr[2] = file meta
-    set_modal('<pre><code id="text"></code></pre>', arr[0], arr[1], arr[2]);
-    
-    // Load file contents
-    $.ajax(arr[0], {
-        dataType: "text",
-        success: function(contents) {
-            $("#text").text(decodeFile(contents));
-        }
-    }).done(function() {
-        // show modal
-        viewer.modal("show");
-    });
-});
-
-$(".text-modal-alt").click(function(event) {
-    
-     var arr = modal_defaults( event, $(this) );
-    
-    // arr[0] = file name
-    // arr[1] = file uri
-    // arr[2] = file meta
-    set_modal('<pre><code id="text"></code></pre>', arr[0], arr[1], arr[2]);
-    
-    // Load file contents
-    $.ajax(arr[0], {
-        dataType: "text",
-        success: function(contents) {
-            $("#text").text(decodeFile(contents));
-        }
-    });
-    // show modal
-    viewer.modal("show");
-});
-
-viewer.on("hide.bs.modal", function() {
-    
-    // Stop HTML5 player
+  // Stop HTML5 player
+  stopPlayer: function() {
     var player = document.getElementById("player");
     
     if (player) {
+        // soft pause
         player.pause();
+
+        // hard pause
         player.src = "";
     }
+  },
 
-});
-
-viewer.on("hidden.bs.modal", function() {
-    
+  reset: function() {
     // hide Highlighter button
     $(".highlight").addClass("hidden-xs-up");
 
     // Empty modal body to stop playback in Firefox
-    $(".modal-body").empty();
-});
-
-$(".website-modal").click(function(event) {
-    
-     var arr = modal_defaults( event, $(this) );
-    
-    // arr[0] = file name
-    // arr[1] = file uri
-    // arr[2] = file meta
-    set_modal('<div class="embed-responsive embed-responsive-4by3"><iframe id="website" class="embed-responsive-item" src="' + arr[0] + '" sandbox frameborder="0"></iframe></div>', arr[0], arr[1], arr[2]);
-
-    viewer.modal("show");
-});
+    M.modal_body.empty();
+  }
+};
