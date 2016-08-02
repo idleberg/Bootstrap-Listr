@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://github.com/idleberg/Bootstrap-Listr",
   "dependencies": {
-    "bootlint": "^0.14.1",
+    "bootlint": "^0.14.2",
     "bootstrap": "^4.0.0-alpha.3",
     "font-awesome": "^4.5.0",
     "highlight.js": "isagalaev/highlight.js#9.5.0",
