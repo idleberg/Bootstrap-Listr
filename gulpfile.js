@@ -41,8 +41,6 @@ gulp.task('updaze',  ['upgrade']);
 gulp.task('default', ['build:highlighter'], function (callback) {
   setTimeout(function() {
 
-    
-
     if ( !fs.existsSync('./build/config.json') ){
       console.log('\nLet\'s set this up!\n');
       tasks = [
