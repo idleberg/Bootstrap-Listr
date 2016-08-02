@@ -1,51 +1,6 @@
 var M,
 Modal = {
 
-
-  // audio
-  // <audio src="' + arr[0] + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>
-
-  // img
-  // <img src="' + arr[0] + '"/>
-
-  // video
-  // <video src="' + arr[0] + '" id="player" autoplay controls>Video format or MIME type is not supported</video>
-
-  // text
-  // <pre><code id="text"></code></pre>
-
-  // source
-  // <pre><code id="source" class="' + ext + '" dir="ltr"></code></pre>
-
-  // flash
-  // <div class="embed-responsive embed-responsive-4by3">
-  //  <object class="embed-responsive-item" type="application/x-shockwave-flash" data="' + arr[0] + '">
-  //    <param name="movie" value="' + arr[0] + '">
-  //    <param name="quality" value="high">
-  //  </object>
-  // </div>
-
-  // website
-  // <div class="embed-responsive embed-responsive-4by3">
-  //   <iframe id="website" class="embed-responsive-item" src="' + arr[0] + '" sandbox frameborder="0"></iframe>
-  // </div>
-
-  // pdf
-  // <div class="embed-responsive embed-responsive-4by3">
-  //   <iframe class="embed-responsive-item" src="' + arr[0] + '" type="application/pdf" scale="aspect" frameborder="0"></iframe>
-  // </div>
-
-  // quicktime
-  // <div class="embed-responsive embed-responsive-16by9">
-  //   <embed class="embed-responsive-item" src="' + arr[0] + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect">
-  // </div>
-
-  // virtual
-  // <div class="embed-responsive embed-responsive-16by9"><iframe id="virtual" class="embed-responsive-item" src="https://player.vimeo.com/video/' + id + '?autoplay=1&title=0&byline=0&portrait=0" frameborder="0" allowfullscreen>Video format or MIME type is not supported</iframe></div>
-  // <div class="embed-responsive embed-responsive-16by9"><iframe id="virtual" class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&amp;rel=0&amp;showinfo=0" frameborder="0" allowfullscreen>Video format or MIME type is not supported</iframe></div>
-  // <div class="embed-responsive embed-responsive-1by1"><iframe id="virtual" class="embed-responsive-item" src="https://www.flickr.com/photos/' + id + '/player/" scrolling="no" frameborder="0" allowfullscreen></iframe></div>
-  // <div class="embed-responsive embed-responsive-4by3"><iframe id="virtual" class="embed-responsive-item" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/' + id + '&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe></div>
-
   elements: {
     viewer: $("#viewer-modal"),
     modal_body: $(".modal-body"),
@@ -57,9 +12,7 @@ Modal = {
     email: $(".email-link"),
     twitter: $(".twitter-link"),
     facebook: $(".facebook-link"),
-    google: $(".google-link"),
-    textModal: $(".text-modal"),
-    sourceModal: $(".source-modal"),
+    google: $(".google-link")
   },
 
   init: function() {
@@ -85,6 +38,12 @@ Modal = {
         Modal.setImageModal(el);
       } else if (type === 'website') {
         Modal.setWebModal(el);
+      } else if (type === 'pdf') {
+        Modal.setPdfModal(el);
+      } else if (type === 'flash') {
+        Modal.setFlashModal(el);
+      } else if (type === 'quicktime') {
+        Modal.setQuicktimeModal(el);
       }
     });
 
@@ -99,11 +58,11 @@ Modal = {
 
     setAudioModal: function(el) {
         var modal = {
-            open:      '<pre><code id="text">',
-            close:      '</code></pre>',
-            file:      el.attr("href"),
-            uri:       el.get(0).href,
-            size:      el.data("size"),
+            open:  null,
+            close: null,
+            file:  el.attr("href"),
+            uri:   el.get(0).href,
+            size:  el.data("size"),
        };
        M.modal_body.html('<audio src="' + modal.file + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>');
        
@@ -113,9 +72,11 @@ Modal = {
 
     setVideoModal: function(el) {
         var modal = {
-            file:      el.attr("href"),
-            uri:       el.get(0).href,
-            size:      el.data("size"),
+            open:  null,
+            close: null,
+            file: el.attr("href"),
+            uri:  el.get(0).href,
+            size: el.data("size"),
        };
        M.modal_body.html('<video src="' + modal.file + '" id="player" autoplay controls>Video format or MIME type is not supported</video>');
        
@@ -125,9 +86,11 @@ Modal = {
 
     setImageModal: function(el) {
         var modal = {
-            file:      el.attr("href"),
-            uri:       el.get(0).href,
-            size:      el.data("size"),
+            open:  null,
+            close: null,
+            file: el.attr("href"),
+            uri:  el.get(0).href,
+            size: el.data("size"),
        };
        M.modal_body.html('<img src="' + modal.file + '">');
        
@@ -137,25 +100,70 @@ Modal = {
 
     setWebModal: function(el) {
         var modal = {
-            open:      '<div class="embed-responsive embed-responsive-4by3">',
-            close:      '</div>',
-            file:      el.attr("href"),
-            uri:       el.get(0).href,
-            size:      el.data("size"),
+            open:  '<div class="embed-responsive embed-responsive-4by3">',
+            close: '</div>',
+            file:  el.attr("href"),
+            uri:   el.get(0).href,
+            size:  el.data("size"),
        };
-       M.modal_body.html(modal.open + '<iframe id="website" class="embed-responsive-item" src="' + modal.file + '" sandbox frameborder="0"></iframe>' + modal.close);
-       
+       modal.html = '<iframe id="website" class="embed-responsive-item" src="' + modal.file + '" sandbox frameborder="0"></iframe>'
+
+       M.modal_body.html(modal.open + modal.html + modal.close);       
+       Modal.setMeta(modal);
+       M.viewer.modal("show");
+    },
+
+    setPdfModal: function(el) {
+        var modal = {
+            open:  '<div class="embed-responsive embed-responsive-4by3">',
+            close: '</div>',
+            file:  el.attr("href"),
+            uri:   el.get(0).href,
+            size:  el.data("size"),
+       };
+       modal.html = '<iframe class="embed-responsive-item" src="' + modal.file + '" type="application/pdf" scale="aspect" frameborder="0"></iframe>';
+
+       M.modal_body.html(modal.open + modal.html + modal.close);       
+       Modal.setMeta(modal);
+       M.viewer.modal("show");
+    },
+
+    setFlashModal: function(el) {
+        var modal = {
+            open:  '<div class="embed-responsive embed-responsive-4by3">',
+            close: '</div>',
+            file:  el.attr("href"),
+            uri:   el.get(0).href,
+            size:  el.data("size"),
+       };
+       modal.html = '<object class="embed-responsive-item" type="application/x-shockwave-flash" data="' + modal.file + '"><param name="movie" value="' + modal.file + '"><param name="quality" value="high"></object>';
+       M.modal_body.html(modal.open + modal.html + modal.close);
+       Modal.setMeta(modal);
+       M.viewer.modal("show");
+    },
+
+    setQuicktimeModal: function(el) {
+        var modal = {
+            open:  '<div class="embed-responsive embed-responsive-16by9">',
+            close: '</div>',
+            file:  el.attr("href"),
+            uri:   el.get(0).href,
+            size:  el.data("size"),
+       };
+       modal.html = '<embed class="embed-responsive-item" src="' + modal.file + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"';
+
+       M.modal_body.html(modal.open + modal.html + modal.close);
        Modal.setMeta(modal);
        M.viewer.modal("show");
     },
 
   setTextModal: function(el) {
       var modal = {
-         open:      '<pre><code id="text">',
-         close:      '</code></pre>',
-         file:      el.attr("href"),
-         uri:       el.get(0).href,
-         size:      el.data("size"),
+         open:  '<pre><code id="text">',
+         close: '</code></pre>',
+         file:  el.attr("href"),
+         uri:   el.get(0).href,
+         size:  el.data("size"),
        };
 
        // Load file contents
@@ -220,6 +228,15 @@ Modal = {
     // Set size
     meta = typeof modal.size !== 'undefined' ? modal.size : null;
     M.file_meta.text(meta);
+
+    // Populate Dropbox drop-in
+    M.dropbox.attr("href", modal.file);
+    
+    // Populate share buttons
+    M.email.attr("href", "mailto:?body=" + modal.uri);
+    M.twitter.attr("href", "http://twitter.com/share?url=" + modal.uri);
+    M.facebook.attr("href", "http://www.facebook.com/sharer/sharer.php?u=" + modal.uri);
+    M.google.attr("href", "https://plus.google.com/share?url=" + modal.uri);
   },
 
   // Stop HTML5 player
