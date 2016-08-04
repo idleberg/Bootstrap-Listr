@@ -9,7 +9,6 @@
     "enable_viewer":      true,
     "enable_search":      true,
     "enable_highlight":   true,
-    "auto_highlight":     true,
     "autofocus_search":   false,
     "share_button":       false,
     "share_icons":        false,

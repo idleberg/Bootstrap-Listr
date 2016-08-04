@@ -637,37 +637,31 @@ if(($folder_list) || ($file_list) ) {
             // inject modal class if necessary
             if ($options['general']['enable_viewer']) {
 
-                if (in_array($item['lext'], $audio_files)) {
-                    $file_type = 'audio';
-                } else if ($item['lext'] == 'swf') {
-                    $file_type = 'flash';
-                } else if (in_array($item['lext'], $image_files)) {
-                    $file_type = 'image';
-                } else if (in_array($item['lext'], $pdf_files)) {
-                    $file_type = 'pdf';
-                } else if (in_array($item['lext'], $quicktime_files)) {
-                     $file_type = 'quicktime';
-                } else if (in_array($item['lext'], $source_files)) {
-                    if ($options['general']['auto_highlight']) {
-                        $file_meta[] = 'data-highlight="true"';
-                    }
-                    $file_type = 'source';
-                } else if (in_array($item['lext'], $text_files)) {
-                    $file_type = 'text';
-                } else if (in_array($item['lext'], $video_files)) {
-                    $file_type = 'video';
-                } else if (in_array($item['lext'], $website_files)) {
-                    $file_type = 'website';
-                } else if ( ($options['general']['virtual_files']) && (in_array($item['lext'], $virtual_files)) ) {
-                    $file_type = 'virtual';
-                }
-            }
-
-            if (isset($file_type)) {
                 $modal_attr = array();
                 $modal_attr[] .= "data-toggle=\"modal\"";
                 $modal_attr[] .= "data-target=\"#viewer-modal\"";
-                $modal_attr[] .= "data-type=\"$file_type\"";
+
+                if (in_array($item['lext'], $audio_files)) {
+                    $modal_attr[] .= "data-type=\"audio\"";
+                } else if ($item['lext'] == 'swf') {
+                    $modal_attr[] .= "data-type=\"flash\"";
+                } else if (in_array($item['lext'], $image_files)) {
+                    $modal_attr[] .= "data-type=\"image\"";
+                } else if (in_array($item['lext'], $pdf_files)) {
+                    $modal_attr[] .= "data-type=\"pdf\"";
+                } else if (in_array($item['lext'], $quicktime_files)) {
+                    $modal_attr[] .= "data-type=\"quicktime\"";
+                } else if (in_array($item['lext'], $source_files)) {
+                    $modal_attr[] .= "data-type=\"source\"";
+                } else if (in_array($item['lext'], $text_files)) {
+                    $modal_attr[] .= "data-type=\"text\"";
+                } else if (in_array($item['lext'], $video_files)) {
+                    $modal_attr[] .= "data-type=\"video\"";
+                } else if (in_array($item['lext'], $website_files)) {
+                    $modal_attr[] .= "data-type=\"website\"";
+                } else if ( ($options['general']['virtual_files']) && (in_array($item['lext'], $virtual_files)) ) {
+                    $modal_attr[] .= "data-type=\"virtual\"";
+                }
             }
 
             $file_data = ' '.implode(" ", $file_meta);

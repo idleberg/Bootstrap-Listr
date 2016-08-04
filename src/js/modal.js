@@ -179,8 +179,8 @@ Modal = {
             open:  '<div class="embed-responsive embed-responsive-16by9">',
             close: '</div>',
             file:  el.attr("href"),
-            uri:   el.get(0).href,
-            size:  el.data("size"),
+            uri:   el.data("url"),
+            size:  el.data("url"),
             id:    el.data("id")
        };
 
@@ -238,8 +238,7 @@ Modal = {
           close:      '</code></pre>',
           file:      el.attr("href"),
           uri:       el.get(0).href,
-          size:      el.data("size"),
-          highlight: el.data("highlight")
+          size:      el.data("size")
         };
 
         if (!modal.file) return;
@@ -303,8 +302,6 @@ Modal = {
   },
 
   reset: function() {
-    // hide Highlighter button
-    $(".highlight").addClass("hidden-xs-up");
 
     // Empty modal body to stop playback in Firefox
     M.modal_body.empty();

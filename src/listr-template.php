@@ -39,11 +39,6 @@
           </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
-<?php if (($options['general']['enable_highlight'])) { ?>
-            <div class="pull-xs-<?php echo $left?>">
-              <button type="button" class="btn <?php echo $btn_highlight ?> highlight hidden-xs-up"><?php echo _('Apply syntax highlighting')?></button>
-            </div>
-<?php } ?>
             <div class="pull-xs-<?php echo $right?>">
               <button type="button" class="btn <?php echo $btn_default ?>" data-dismiss="modal"><?php echo _('Close')?></button>
 <?php if ($options['general']['share_button']) { ?>
