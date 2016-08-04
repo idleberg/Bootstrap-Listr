@@ -651,17 +651,9 @@ if(($folder_list) || ($file_list) ) {
                     if ($options['general']['auto_highlight']) {
                         $file_meta[] = 'data-highlight="true"';
                     }
-                    if ($options['viewer']['alt_load'] == true) {
-                        $file_type = 'source-alt';
-                    } else {
-                        $file_type = 'source';
-                    }
+                    $file_type = 'source';
                 } else if (in_array($item['lext'], $text_files)) {
-                    if ($options['viewer']['alt_load'] == true) {
-                        $file_type = 'text-alt';
-                    } else {
-                        $file_type = 'text';
-                    }
+                    $file_type = 'text';
                 } else if (in_array($item['lext'], $video_files)) {
                     $file_type = 'video';
                 } else if (in_array($item['lext'], $website_files)) {
@@ -672,9 +664,10 @@ if(($folder_list) || ($file_list) ) {
             }
 
             if (isset($file_type)) {
-                $modal_attr = " data-toggle=\"modal\" data-target=\"#viewer-modal\" data-type=\"$file_type\"";
-            } else {
-                $modal_attr = null;
+                $modal_attr = array();
+                $modal_attr[] .= "data-toggle=\"modal\"";
+                $modal_attr[] .= "data-target=\"#viewer-modal\"";
+                $modal_attr[] .= "data-type=\"$file_type\"";
             }
 
             $file_data = ' '.implode(" ", $file_meta);
@@ -685,7 +678,7 @@ if(($folder_list) || ($file_list) ) {
                 $file_attr = null;
             }
 
-            $table_body .= "<a$modal_attr href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$size_attr>" . utf8ify($display_name) . "</a>";
+            $table_body .= "<a ". implode(" ", $modal_attr)." href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$size_attr>" . utf8ify($display_name) . "</a>";
 
             // Append checksum info if enabled
             if ( ($options['general']['enable_checksums'] == true) && !empty($options["checksum_files"]) ) {

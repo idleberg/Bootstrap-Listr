@@ -209,7 +209,7 @@ Modal = {
          close: '</code></pre>',
          file:  el.attr("href"),
          uri:   el.get(0).href,
-         size:  el.data("size"),
+         size:  el.data("size")
        };
 
        if (!modal.file) return;
@@ -241,7 +241,6 @@ Modal = {
           size:      el.data("size"),
           highlight: el.data("highlight")
         };
-
         if (!modal.file) return;
 
         // Load file contents
@@ -264,7 +263,7 @@ Modal = {
             }
         }).done(function() {
             // show modal
-            M.viewer.modal("show");
+            $(M.viewer).modal("show");
         });
   },
 
