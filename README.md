@@ -26,7 +26,7 @@ npm install -g gulp
 npm install
 ```
 
-You can now run the build script to createa clean copy of Bootstrap Listr:
+You can now run the build script to create a clean copy of Bootstrap Listr:
 
 ```bash
 # Concatenated assets

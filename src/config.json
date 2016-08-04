@@ -64,7 +64,7 @@
     "table_column_modified": null,
     "hidden_files_row":      "text-muted",
     "hidden_files_link":     "text-muted",
-    "tag":                   "tag-default",
+    "checksum_tag":          "tag-default",
     "alert_404":             "alert-warning",
     "theme":                 "default",
     "icons":                 "fa",
