@@ -440,14 +440,21 @@ if ($options['general']['enable_search'] == true) {
 // Set table header
 $table_header = null;
 
-// $tablecol_name = " " + $options['bootstrap']['tablecol_name'] ? $options['bootstrap']['tablecol_name'] : null;
-$table_header .= "            <th class=\"text-xs-$left\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
+$name_classes   = ["text-xs-$left"];
+$name_classes[] = $options['bootstrap']['tablecol_name'] ? $options['bootstrap']['tablecol_name'] : null;
+
+$tablecol_size = $options['bootstrap']['tablecol_size'] ?: null;
+$tablecol_modified = " " + $options['bootstrap']['tablecol_modified'] ? $options['bootstrap']['tablecol_modified'] : null;
+
+$table_header .= "            <th class=\"" . implode(" ", $name_classes) . "\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
 if ($table_options['size']) {
+    $size_classes   = ["text-xs-$right"];
+    $size_classes[] = $options['bootstrap']['tablecol_size'] ? $options['bootstrap']['tablecol_size'] : null;
+
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
-        // $tablecol_size = $options['bootstrap']['tablecol_size'] ?: null;
-        $table_header .= " class=\"text-xs-$right\" data-sort=\"int\">";
+        $table_header .= " class=\"" . implode(" ", $size_classes) . "\" data-sort=\"int\">";
     } else {
         $table_header .= ">";
     }
@@ -455,10 +462,12 @@ if ($table_options['size']) {
 }
 
 if ($table_options['age']) {
+    $modified_classes   = ["text-xs-$right"];
+    $modified_classes[] = $options['bootstrap']['tablecol_modified'] ? $options['bootstrap']['tablecol_modified'] : null;
+
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
-        // $tablecol_modified = " " + $options['bootstrap']['tablecol_modified'] ? $options['bootstrap']['tablecol_modified'] : null;
-        $table_header .= " class=\"text-xs-$right\" data-sort=\"int\">";
+        $table_header .= " class=\"" . implode(" ", $modified_classes) . "\" data-sort=\"int\">";
     } else {
         $table_header .= ">";
     }
@@ -487,7 +496,7 @@ if(($folder_list) || ($file_list) ) {
 
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body .= " class=\"text-xs-$left\" data-sort-value=\"dir-". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"" . implode(" ", $name_classes) . "\" data-sort-value=\"dir-". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
             if (isset($options['bootstrap']['icons'])) {
@@ -505,7 +514,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['size']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-xs-$right\" data-sort-value=\"-1\"";
+                    $table_body .= " class=\"" . implode(" ", $size_classes) . "\" data-sort-value=\"-1\"";
                 }
                 $table_body .= ">&mdash;</td>" . PHP_EOL;
             }
@@ -513,7 +522,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['age']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-xs-$right\" data-sort-value=\"" . $item['mtime'] . "\"";
+                    $table_body .= " class=\"" . implode(" ", $modified_classes) . "\" data-sort-value=\"" . $item['mtime'] . "\"";
                     $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
                 $table_body .= ">" . time_ago($item['mtime']) . "</td>" . PHP_EOL;
@@ -569,7 +578,7 @@ if(($folder_list) || ($file_list) ) {
                     $virtual_file =  json_decode(file_get_contents($navigation_dir.$item['bname'], true), true);
 
                     if ($item['lext'] == 'flickr') {
-                        $virtual_attr =  ' data-flickr="'.htmlentities($virtual_file['user']).'/'.htmlentities($virtual_file['id']).'"';
+                        $virtual_attr =  ' data-id="'.htmlentities($virtual_file['user']).'/'.htmlentities($virtual_file['id']).'"';
                         if ( $virtual_file['album'] != null) {
                             $album = '/in/album-'.htmlentities($virtual_file['album']);
                         } else {
@@ -578,15 +587,15 @@ if(($folder_list) || ($file_list) ) {
                         $virtual_attr .= ' data-url="https://www.flickr.com/'.htmlentities($virtual_file['user']).'/'.htmlentities($virtual_file['id']).$album.'"';  
                         $virtual_attr .= ' data-name="'.htmlentities($virtual_file['name']).'"';  
                     } else if ($item['lext'] == 'soundcloud') {
-                        $virtual_attr =  ' data-soundcloud="'.htmlentities($virtual_file['type']).'/'.htmlentities($virtual_file['id']).'"';
+                        $virtual_attr =  ' data-id="'.htmlentities($virtual_file['type']).'/'.htmlentities($virtual_file['id']).'"';
                         $virtual_attr .= ' data-url="'.htmlentities($virtual_file['url']).'"';  
                         $virtual_attr .= ' data-name="'.htmlentities($virtual_file['name']).'"';  
                     } else if ($item['lext'] == 'vimeo') {
-                        $virtual_attr =  ' data-vimeo="'.htmlentities($virtual_file['id']).'"';
+                        $virtual_attr =  ' data-id="'.htmlentities($virtual_file['id']).'"';
                         $virtual_attr .= ' data-url="https://vimeo.com/'.htmlentities($virtual_file['id']).'"';  
                         $virtual_attr .= ' data-name="'.htmlentities($virtual_file['name']).'"';  
                     } else if ($item['lext'] == 'youtube') {
-                        $virtual_attr =  ' data-youtube="'.htmlentities($virtual_file['id']).'"';
+                        $virtual_attr =  ' data-id="'.htmlentities($virtual_file['id']).'"';
                         $virtual_attr .= ' data-url="https://youtube.com/watch?v='.htmlentities($virtual_file['id']).'"';  
                         $virtual_attr .= ' data-name="'.htmlentities($virtual_file['name']).'"';  
                     }
@@ -616,7 +625,7 @@ if(($folder_list) || ($file_list) ) {
             
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body .= " class=\"text-xs-$left\" data-sort-value=\"file-". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"" . implode(" ", $name_classes) . "\" data-sort-value=\"file-". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
@@ -630,6 +639,7 @@ if(($folder_list) || ($file_list) ) {
 
             // inject modal class if necessary
             if ($options['general']['enable_viewer']) {
+
                 if (in_array($item['lext'], $audio_files)) {
                     $file_type = 'audio';
                 } else if ($item['lext'] == 'swf') {
@@ -659,9 +669,15 @@ if(($folder_list) || ($file_list) ) {
                     $file_type = 'video';
                 } else if (in_array($item['lext'], $website_files)) {
                     $file_type = 'website';
-                } else if (in_array($item['lext'], $virtual_files)) {
+                } else if ( ($options['general']['virtual_files']) && (in_array($item['lext'], $virtual_files)) ) {
                     $file_type = 'virtual';
                 }
+            }
+
+            if (isset($file_type)) {
+                $modal_attr = " data-toggle=\"modal\" data-target=\"#viewer-modal\" data-type=\"$file_type\"";
+            } else {
+                $modal_attr = null;
             }
 
             $file_data = ' '.implode(" ", $file_meta);
@@ -672,7 +688,7 @@ if(($folder_list) || ($file_list) ) {
                 $file_attr = null;
             }
 
-            $table_body .= "<a data-toggle=\"modal\" data-target=\"#viewer-modal\" data-type=\"$file_type\" href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$size_attr>" . utf8ify($display_name) . "</a>";
+            $table_body .= "<a$modal_attr href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$size_attr>" . utf8ify($display_name) . "</a>";
 
             // Append checksum info if enabled
             if ( ($options['general']['enable_checksums'] == true) && !empty($options["checksum_files"]) ) {
@@ -709,7 +725,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['size']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-xs-$right\" data-sort-value=\"" . $item['bytes'] . "\"";
+                    $table_body .= " class=\"" . implode(" ", $size_classes) . "\" data-sort-value=\"" . $item['bytes'] . "\"";
                     $table_body .= " title=\"" . $item['bytes'] . " " ._('bytes')."\"";
                 }
                     $table_body .= ">" . $item_pretty_size . "</td>" . PHP_EOL;
@@ -719,7 +735,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['age']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-xs-$right\" data-sort-value=\"".$item['mtime']."\"";
+                    $table_body .= " class=\"" . implode(" ", $modified_classes) . "\" data-sort-value=\"".$item['mtime']."\"";
                     $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
                 $table_body .= ">" . time_ago($item['mtime']) . "</td>" . PHP_EOL;
