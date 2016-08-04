@@ -33,18 +33,18 @@
       <div class="modal-dialog <?php echo $modal_size ?>">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close pull-<?php echo $right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button type="button" class="close pull-xs-<?php echo $right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title text-<?php echo $left?>" id="file-name">&nbsp;</h4>
             <small class="text-muted" id="file-meta"></small>
           </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
 <?php if (($options['general']['enable_highlight'])) { ?>
-            <div class="pull-<?php echo $left?>">
+            <div class="pull-xs-<?php echo $left?>">
               <button type="button" class="btn <?php echo $btn_highlight ?> highlight hidden-xs-up"><?php echo _('Apply syntax highlighting')?></button>
             </div>
 <?php } ?>
-            <div class="pull-<?php echo $right?>">
+            <div class="pull-xs-<?php echo $right?>">
               <button type="button" class="btn <?php echo $btn_default ?>" data-dismiss="modal"><?php echo _('Close')?></button>
 <?php if ($options['general']['share_button']) { ?>
 
