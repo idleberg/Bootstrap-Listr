@@ -691,8 +691,8 @@ if(($folder_list) || ($file_list) ) {
                             $fake_indent = null;
                         }
                         // Construct href to original checksum file though client can download
-                        if ($options['bootstrap']['checksum_label'] != null ) {
-                            $label = "<span class=\"label ".$options['bootstrap']['checksum_label']."\">" . strtoupper($chksum_ext) . "</span> ";
+                        if ($options['bootstrap']['checksum_tag'] != null ) {
+                            $label = "<span class=\"tag ".$options['bootstrap']['checksum_tag']."\">" . strtoupper($chksum_ext) . "</span> ";
                         } else {
                             $label = null;
                         }
