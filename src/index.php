@@ -122,11 +122,11 @@ switch ($options['bootstrap']['icons']) {
         $icons['home']   = "<i class=\"".$icons['prefix']." ".$icons['home']." fa-lg\"></i> ";
         $icons['folder'] = $icons['prefix'].' '. $icons['folder'].' ' . $options['bootstrap']['fontawesome_style'];
         if ($options['general']['share_icons'] == true) { 
-            $icons_dropbox  = "<i class=\"".$icons['prefix']." fa-dropbox\"></i> ";
-            $icons_email    = "<i class=\"".$icons['prefix']." fa-envelope\"></i> ";
-            $icons_facebook = "<i class=\"".$icons['prefix']." fa-facebook\"></i> ";
-            $icons_gplus    = "<i class=\"".$icons['prefix']." fa-google-plus\"></i> ";
-            $icons_twitter  = "<i class=\"".$icons['prefix']." fa-twitter\"></i> ";
+            $icons_dropbox  = "<i class=\"".$icons['prefix']." fa-dropbox\" aria-hidden=\"true\"></i> ";
+            $icons_email    = "<i class=\"".$icons['prefix']." fa-envelope\" aria-hidden=\"true\"></i> ";
+            $icons_facebook = "<i class=\"".$icons['prefix']." fa-facebook\" aria-hidden=\"true\"></i> ";
+            $icons_gplus    = "<i class=\"".$icons['prefix']." fa-google-plus\" aria-hidden=\"true\"></i> ";
+            $icons_twitter  = "<i class=\"".$icons['prefix']." fa-twitter\" aria-hidden=\"true\"></i> ";
         }
         break;
     default:
@@ -500,7 +500,7 @@ if(($folder_list) || ($file_list) ) {
             }
             $table_body .= ">";
             if (isset($options['bootstrap']['icons'])) {
-                $table_body .= "<".$icons['tag']." class=\"".$icons['folder']."\"></".$icons['tag'].">&nbsp;";
+                $table_body .= "<".$icons['tag']." class=\"".$icons['folder']."\" aria-hidden=\"true\"></".$icons['tag'].">&nbsp;";
             }
 
             if (isset($options['bootstrap']['tablerow_links'])) {
@@ -629,7 +629,7 @@ if(($folder_list) || ($file_list) ) {
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
-                $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\"></".$icons['tag'].">&nbsp;";
+                $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\" aria-hidden=\"true\"></".$icons['tag'].">&nbsp;";
             }
             if ($options['general']['hide_extension']) {
                 $display_name = $item['name'];
@@ -753,7 +753,7 @@ if(($folder_list) || ($file_list) ) {
         $table_body .= "          <tr>" . PHP_EOL;
         $table_body .= "            <td colspan=\"$colspan\" style=\"font-style:italic\">";
         if ($options['bootstrap']['icons']  !== null ) {
-            $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\">&nbsp;</".$icons['tag'].">";
+            $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\" aria-hidden=\"true\">&nbsp;</".$icons['tag'].">";
         } 
         $table_body .= _("empty folder")."</td>" . PHP_EOL;
         $table_body .= "          </tr>" . PHP_EOL;
