@@ -49,7 +49,7 @@
 <?php if ($options['general']['share_button']) { ?>
 
               <div class="btn-group">
-                <a class="btn <?php echo $btn_primary ?> fullview" download><?php echo _('Download')?></a>
+                <a href="#" class="btn <?php echo $btn_primary ?> fullview" download><?php echo _('Download')?></a>
                 <button type="button" class="btn <?php echo $btn_primary ?> dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
@@ -65,7 +65,7 @@
                 </div>
               </div>
 <?php } else { ?>
-            <a class="btn <?php echo $btn_primary ?> fullview" download><?php echo _('Download')?></a>
+            <a href="#" class="btn <?php echo $btn_primary ?> fullview" download><?php echo _('Download')?></a>
 <?php } ?>
             </div>
           </div>
