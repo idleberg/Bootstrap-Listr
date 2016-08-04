@@ -407,7 +407,7 @@ if ($options['general']['enable_search'] == true) {
         $input_size = null;
     }
 
-    $search .= "      <div class=\"col-xs-12 col-sm-5 col-md-4$search_offset pull-sm-right\">" . PHP_EOL;
+    $search .= "      <div class=\"col-xs-12 col-sm-5 col-md-4$search_offset pull-sm-$right\">" . PHP_EOL;
     $search .= "          <div class=\"form-group\">" . PHP_EOL;
     $search .= "            <label class=\"form-control-label sr-only\" for=\"listr-search\">". _('Search')."</label>" . PHP_EOL;
     $search .= "            <input type=\"text\" id=\"listr-search\" class=\"form-control$input_size\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
@@ -637,37 +637,31 @@ if(($folder_list) || ($file_list) ) {
             // inject modal class if necessary
             if ($options['general']['enable_viewer']) {
 
-                if (in_array($item['lext'], $audio_files)) {
-                    $file_type = 'audio';
-                } else if ($item['lext'] == 'swf') {
-                    $file_type = 'flash';
-                } else if (in_array($item['lext'], $image_files)) {
-                    $file_type = 'image';
-                } else if (in_array($item['lext'], $pdf_files)) {
-                    $file_type = 'pdf';
-                } else if (in_array($item['lext'], $quicktime_files)) {
-                     $file_type = 'quicktime';
-                } else if (in_array($item['lext'], $source_files)) {
-                    if ($options['general']['auto_highlight']) {
-                        $file_meta[] = 'data-highlight="true"';
-                    }
-                    $file_type = 'source';
-                } else if (in_array($item['lext'], $text_files)) {
-                    $file_type = 'text';
-                } else if (in_array($item['lext'], $video_files)) {
-                    $file_type = 'video';
-                } else if (in_array($item['lext'], $website_files)) {
-                    $file_type = 'website';
-                } else if ( ($options['general']['virtual_files']) && (in_array($item['lext'], $virtual_files)) ) {
-                    $file_type = 'virtual';
-                }
-            }
-
-            if (isset($file_type)) {
                 $modal_attr = array();
                 $modal_attr[] .= "data-toggle=\"modal\"";
                 $modal_attr[] .= "data-target=\"#viewer-modal\"";
-                $modal_attr[] .= "data-type=\"$file_type\"";
+
+                if (in_array($item['lext'], $audio_files)) {
+                    $modal_attr[] .= "data-type=\"audio\"";
+                } else if ($item['lext'] == 'swf') {
+                    $modal_attr[] .= "data-type=\"flash\"";
+                } else if (in_array($item['lext'], $image_files)) {
+                    $modal_attr[] .= "data-type=\"image\"";
+                } else if (in_array($item['lext'], $pdf_files)) {
+                    $modal_attr[] .= "data-type=\"pdf\"";
+                } else if (in_array($item['lext'], $quicktime_files)) {
+                    $modal_attr[] .= "data-type=\"quicktime\"";
+                } else if (in_array($item['lext'], $source_files)) {
+                    $modal_attr[] .= "data-type=\"source\"";
+                } else if (in_array($item['lext'], $text_files)) {
+                    $modal_attr[] .= "data-type=\"text\"";
+                } else if (in_array($item['lext'], $video_files)) {
+                    $modal_attr[] .= "data-type=\"video\"";
+                } else if (in_array($item['lext'], $website_files)) {
+                    $modal_attr[] .= "data-type=\"website\"";
+                } else if ( ($options['general']['virtual_files']) && (in_array($item['lext'], $virtual_files)) ) {
+                    $modal_attr[] .= "data-type=\"virtual\"";
+                }
             }
 
             $file_data = ' '.implode(" ", $file_meta);
@@ -691,8 +685,8 @@ if(($folder_list) || ($file_list) ) {
                             $fake_indent = null;
                         }
                         // Construct href to original checksum file though client can download
-                        if ($options['bootstrap']['checksum_label'] != null ) {
-                            $label = "<span class=\"label ".$options['bootstrap']['checksum_label']."\">" . strtoupper($chksum_ext) . "</span> ";
+                        if ($options['bootstrap']['checksum_tag'] != null ) {
+                            $label = "<span class=\"tag ".$options['bootstrap']['checksum_tag']."\">" . strtoupper($chksum_ext) . "</span> ";
                         } else {
                             $label = null;
                         }
@@ -704,7 +698,7 @@ if(($folder_list) || ($file_list) ) {
                         } else {
                             $checksum = $item[$chksum_ext];
                         }
-                        $table_body .= "<br>$fake_indent$label <a href=\"" . htmlentities(rawurlencode($item['bname'] . "." . $chksum_ext), ENT_QUOTES, 'utf-8') . "\" class=\"text-muted small\" title=\"".$item[$chksum_ext]."\">$checksum</a>" . PHP_EOL;
+                        $table_body .= "<br>$fake_indent$label <a href=\"" . htmlentities(rawurlencode($item['bname'] . "." . $chksum_ext), ENT_QUOTES, 'utf-8') . "\" class=\"text-muted small\" title=\"".$item[$chksum_ext]."\" download>$checksum</a>" . PHP_EOL;
                     }
                 }
             }
