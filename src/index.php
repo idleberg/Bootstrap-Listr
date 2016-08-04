@@ -122,11 +122,11 @@ switch ($options['bootstrap']['icons']) {
         $icons['home']   = "<i class=\"".$icons['prefix']." ".$icons['home']." fa-lg\"></i> ";
         $icons['folder'] = $icons['prefix'].' '. $icons['folder'].' ' . $options['bootstrap']['fontawesome_style'];
         if ($options['general']['share_icons'] == true) { 
-            $icons_dropbox  = "<i class=\"".$icons['prefix']." fa-dropbox\"></i> ";
-            $icons_email    = "<i class=\"".$icons['prefix']." fa-envelope\"></i> ";
-            $icons_facebook = "<i class=\"".$icons['prefix']." fa-facebook\"></i> ";
-            $icons_gplus    = "<i class=\"".$icons['prefix']." fa-google-plus\"></i> ";
-            $icons_twitter  = "<i class=\"".$icons['prefix']." fa-twitter\"></i> ";
+            $icons_dropbox  = "<i class=\"".$icons['prefix']." fa-dropbox\" aria-hidden=\"true\"></i> ";
+            $icons_email    = "<i class=\"".$icons['prefix']." fa-envelope\" aria-hidden=\"true\"></i> ";
+            $icons_facebook = "<i class=\"".$icons['prefix']." fa-facebook\" aria-hidden=\"true\"></i> ";
+            $icons_gplus    = "<i class=\"".$icons['prefix']." fa-google-plus\" aria-hidden=\"true\"></i> ";
+            $icons_twitter  = "<i class=\"".$icons['prefix']." fa-twitter\" aria-hidden=\"true\"></i> ";
         }
         break;
     default:
@@ -440,14 +440,18 @@ if ($options['general']['enable_search'] == true) {
 // Set table header
 $table_header = null;
 
-// $tablecol_name = " " + $options['bootstrap']['tablecol_name'] ? $options['bootstrap']['tablecol_name'] : null;
-$table_header .= "            <th class=\"text-xs-$left\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
+$name_classes   = ["text-xs-$left"];
+$name_classes[] = $options['bootstrap']['table_column_name'] ? $options['bootstrap']['table_column_name'] : null;
+
+$table_header .= "            <th class=\"" . implode(" ", $name_classes) . "\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
 if ($table_options['size']) {
+    $size_classes   = ["text-xs-$right"];
+    $size_classes[] = $options['bootstrap']['table_column_size'] ? $options['bootstrap']['table_column_size'] : null;
+
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
-        // $tablecol_size = $options['bootstrap']['tablecol_size'] ?: null;
-        $table_header .= " class=\"text-xs-$right\" data-sort=\"int\">";
+        $table_header .= " class=\"" . implode(" ", $size_classes) . "\" data-sort=\"int\">";
     } else {
         $table_header .= ">";
     }
@@ -455,10 +459,12 @@ if ($table_options['size']) {
 }
 
 if ($table_options['age']) {
+    $modified_classes   = ["text-xs-$right"];
+    $modified_classes[] = $options['bootstrap']['table_column_modified'] ? $options['bootstrap']['table_column_modified'] : null;
+
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
-        // $tablecol_modified = " " + $options['bootstrap']['tablecol_modified'] ? $options['bootstrap']['tablecol_modified'] : null;
-        $table_header .= " class=\"text-xs-$right\" data-sort=\"int\">";
+        $table_header .= " class=\"" . implode(" ", $modified_classes) . "\" data-sort=\"int\">";
     } else {
         $table_header .= ">";
     }
@@ -477,8 +483,8 @@ if(($folder_list) || ($file_list) ) {
     if($folder_list):    
         foreach($folder_list as $item) :
 
-            if (isset($options['bootstrap']['tablerow_folders'])) {
-                $tr_folders = ' class="'.$options['bootstrap']['tablerow_folders'].'"';
+            if (isset($options['bootstrap']['table_row_folders'])) {
+                $tr_folders = ' class="'.$options['bootstrap']['table_row_folders'].'"';
             } else {
                 $tr_folders = null;
             }
@@ -487,15 +493,15 @@ if(($folder_list) || ($file_list) ) {
 
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body .= " class=\"text-xs-$left\" data-sort-value=\"dir-". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"" . implode(" ", $name_classes) . "\" data-sort-value=\"dir-". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
             if (isset($options['bootstrap']['icons'])) {
-                $table_body .= "<".$icons['tag']." class=\"".$icons['folder']."\"></".$icons['tag'].">&nbsp;";
+                $table_body .= "<".$icons['tag']." class=\"".$icons['folder']."\" aria-hidden=\"true\"></".$icons['tag'].">&nbsp;";
             }
 
-            if (isset($options['bootstrap']['tablerow_links'])) {
-                $tr_links = ' class="'.$options['bootstrap']['tablerow_links'].'"';
+            if (isset($options['bootstrap']['table_row_links'])) {
+                $tr_links = ' class="'.$options['bootstrap']['table_row_links'].'"';
             } else {
                 $tr_links = null;
             }
@@ -505,7 +511,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['size']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-xs-$right\" data-sort-value=\"-1\"";
+                    $table_body .= " class=\"" . implode(" ", $size_classes) . "\" data-sort-value=\"-1\"";
                 }
                 $table_body .= ">&mdash;</td>" . PHP_EOL;
             }
@@ -513,7 +519,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['age']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-xs-$right\" data-sort-value=\"" . $item['mtime'] . "\"";
+                    $table_body .= " class=\"" . implode(" ", $modified_classes) . "\" data-sort-value=\"" . $item['mtime'] . "\"";
                     $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
                 $table_body .= ">" . time_ago($item['mtime']) . "</td>" . PHP_EOL;
@@ -538,8 +544,8 @@ if(($folder_list) || ($file_list) ) {
             $item_pretty_size = $item['size']['num'] . " " . $item['size']['str'];
 
             // Style table rows
-            if ($options['bootstrap']['tablerow_files'] != "") {
-                $row_classes[] = $options['bootstrap']['tablerow_files'];
+            if ($options['bootstrap']['table_row_files'] != "") {
+                $row_classes[] = $options['bootstrap']['table_row_files'];
             }
 
             // Is file hidden?
@@ -569,7 +575,7 @@ if(($folder_list) || ($file_list) ) {
                     $virtual_file =  json_decode(file_get_contents($navigation_dir.$item['bname'], true), true);
 
                     if ($item['lext'] == 'flickr') {
-                        $virtual_attr =  ' data-flickr="'.htmlentities($virtual_file['user']).'/'.htmlentities($virtual_file['id']).'"';
+                        $virtual_attr =  ' data-id="'.htmlentities($virtual_file['user']).'/'.htmlentities($virtual_file['id']).'"';
                         if ( $virtual_file['album'] != null) {
                             $album = '/in/album-'.htmlentities($virtual_file['album']);
                         } else {
@@ -578,15 +584,15 @@ if(($folder_list) || ($file_list) ) {
                         $virtual_attr .= ' data-url="https://www.flickr.com/'.htmlentities($virtual_file['user']).'/'.htmlentities($virtual_file['id']).$album.'"';  
                         $virtual_attr .= ' data-name="'.htmlentities($virtual_file['name']).'"';  
                     } else if ($item['lext'] == 'soundcloud') {
-                        $virtual_attr =  ' data-soundcloud="'.htmlentities($virtual_file['type']).'/'.htmlentities($virtual_file['id']).'"';
+                        $virtual_attr =  ' data-id="'.htmlentities($virtual_file['type']).'/'.htmlentities($virtual_file['id']).'"';
                         $virtual_attr .= ' data-url="'.htmlentities($virtual_file['url']).'"';  
                         $virtual_attr .= ' data-name="'.htmlentities($virtual_file['name']).'"';  
                     } else if ($item['lext'] == 'vimeo') {
-                        $virtual_attr =  ' data-vimeo="'.htmlentities($virtual_file['id']).'"';
+                        $virtual_attr =  ' data-id="'.htmlentities($virtual_file['id']).'"';
                         $virtual_attr .= ' data-url="https://vimeo.com/'.htmlentities($virtual_file['id']).'"';  
                         $virtual_attr .= ' data-name="'.htmlentities($virtual_file['name']).'"';  
                     } else if ($item['lext'] == 'youtube') {
-                        $virtual_attr =  ' data-youtube="'.htmlentities($virtual_file['id']).'"';
+                        $virtual_attr =  ' data-id="'.htmlentities($virtual_file['id']).'"';
                         $virtual_attr .= ' data-url="https://youtube.com/watch?v='.htmlentities($virtual_file['id']).'"';  
                         $virtual_attr .= ' data-name="'.htmlentities($virtual_file['name']).'"';  
                     }
@@ -616,11 +622,11 @@ if(($folder_list) || ($file_list) ) {
             
             $table_body .= "            <td";
             if ($options['general']['enable_sort']) {
-                $table_body .= " class=\"text-xs-$left\" data-sort-value=\"file-". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
+                $table_body .= " class=\"" . implode(" ", $name_classes) . "\" data-sort-value=\"file-". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
-                $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\"></".$icons['tag'].">&nbsp;";
+                $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\" aria-hidden=\"true\"></".$icons['tag'].">&nbsp;";
             }
             if ($options['general']['hide_extension']) {
                 $display_name = $item['name'];
@@ -630,6 +636,7 @@ if(($folder_list) || ($file_list) ) {
 
             // inject modal class if necessary
             if ($options['general']['enable_viewer']) {
+
                 if (in_array($item['lext'], $audio_files)) {
                     $file_type = 'audio';
                 } else if ($item['lext'] == 'swf') {
@@ -644,24 +651,23 @@ if(($folder_list) || ($file_list) ) {
                     if ($options['general']['auto_highlight']) {
                         $file_meta[] = 'data-highlight="true"';
                     }
-                    if ($options['viewer']['alt_load'] == true) {
-                        $file_type = 'source-alt';
-                    } else {
-                        $file_type = 'source';
-                    }
+                    $file_type = 'source';
                 } else if (in_array($item['lext'], $text_files)) {
-                    if ($options['viewer']['alt_load'] == true) {
-                        $file_type = 'text-alt';
-                    } else {
-                        $file_type = 'text';
-                    }
+                    $file_type = 'text';
                 } else if (in_array($item['lext'], $video_files)) {
                     $file_type = 'video';
                 } else if (in_array($item['lext'], $website_files)) {
                     $file_type = 'website';
-                } else if (in_array($item['lext'], $virtual_files)) {
+                } else if ( ($options['general']['virtual_files']) && (in_array($item['lext'], $virtual_files)) ) {
                     $file_type = 'virtual';
                 }
+            }
+
+            if (isset($file_type)) {
+                $modal_attr = array();
+                $modal_attr[] .= "data-toggle=\"modal\"";
+                $modal_attr[] .= "data-target=\"#viewer-modal\"";
+                $modal_attr[] .= "data-type=\"$file_type\"";
             }
 
             $file_data = ' '.implode(" ", $file_meta);
@@ -672,7 +678,7 @@ if(($folder_list) || ($file_list) ) {
                 $file_attr = null;
             }
 
-            $table_body .= "<a data-toggle=\"modal\" data-target=\"#viewer-modal\" data-type=\"$file_type\" href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$size_attr>" . utf8ify($display_name) . "</a>";
+            $table_body .= "<a ". implode(" ", $modal_attr)." href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$size_attr>" . utf8ify($display_name) . "</a>";
 
             // Append checksum info if enabled
             if ( ($options['general']['enable_checksums'] == true) && !empty($options["checksum_files"]) ) {
@@ -709,7 +715,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['size']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-xs-$right\" data-sort-value=\"" . $item['bytes'] . "\"";
+                    $table_body .= " class=\"" . implode(" ", $size_classes) . "\" data-sort-value=\"" . $item['bytes'] . "\"";
                     $table_body .= " title=\"" . $item['bytes'] . " " ._('bytes')."\"";
                 }
                     $table_body .= ">" . $item_pretty_size . "</td>" . PHP_EOL;
@@ -719,7 +725,7 @@ if(($folder_list) || ($file_list) ) {
             if ($table_options['age']) {
                 $table_body .= "            <td";
                 if ($options['general']['enable_sort']) {
-                    $table_body .= " class=\"text-xs-$right\" data-sort-value=\"".$item['mtime']."\"";
+                    $table_body .= " class=\"" . implode(" ", $modified_classes) . "\" data-sort-value=\"".$item['mtime']."\"";
                     $table_body .= " title=\"" . $item['iso_mtime'] . "\"";
                 }
                 $table_body .= ">" . time_ago($item['mtime']) . "</td>" . PHP_EOL;
@@ -737,7 +743,7 @@ if(($folder_list) || ($file_list) ) {
         $table_body .= "          <tr>" . PHP_EOL;
         $table_body .= "            <td colspan=\"$colspan\" style=\"font-style:italic\">";
         if ($options['bootstrap']['icons']  !== null ) {
-            $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\">&nbsp;</".$icons['tag'].">";
+            $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\" aria-hidden=\"true\">&nbsp;</".$icons['tag'].">";
         } 
         $table_body .= _("empty folder")."</td>" . PHP_EOL;
         $table_body .= "          </tr>" . PHP_EOL;
