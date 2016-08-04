@@ -698,7 +698,7 @@ if(($folder_list) || ($file_list) ) {
                         } else {
                             $checksum = $item[$chksum_ext];
                         }
-                        $table_body .= "<br>$fake_indent$label <a href=\"" . htmlentities(rawurlencode($item['bname'] . "." . $chksum_ext), ENT_QUOTES, 'utf-8') . "\" class=\"text-muted small\" title=\"".$item[$chksum_ext]."\">$checksum</a>" . PHP_EOL;
+                        $table_body .= "<br>$fake_indent$label <a href=\"" . htmlentities(rawurlencode($item['bname'] . "." . $chksum_ext), ENT_QUOTES, 'utf-8') . "\" class=\"text-muted small\" title=\"".$item[$chksum_ext]."\" download>$checksum</a>" . PHP_EOL;
                     }
                 }
             }
