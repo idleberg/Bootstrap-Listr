@@ -441,16 +441,13 @@ if ($options['general']['enable_search'] == true) {
 $table_header = null;
 
 $name_classes   = ["text-xs-$left"];
-$name_classes[] = $options['bootstrap']['tablecol_name'] ? $options['bootstrap']['tablecol_name'] : null;
-
-$tablecol_size = $options['bootstrap']['tablecol_size'] ?: null;
-$tablecol_modified = " " + $options['bootstrap']['tablecol_modified'] ? $options['bootstrap']['tablecol_modified'] : null;
+$name_classes[] = $options['bootstrap']['table_column_name'] ? $options['bootstrap']['table_column_name'] : null;
 
 $table_header .= "            <th class=\"" . implode(" ", $name_classes) . "\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
 if ($table_options['size']) {
     $size_classes   = ["text-xs-$right"];
-    $size_classes[] = $options['bootstrap']['tablecol_size'] ? $options['bootstrap']['tablecol_size'] : null;
+    $size_classes[] = $options['bootstrap']['table_column_size'] ? $options['bootstrap']['table_column_size'] : null;
 
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
@@ -463,7 +460,7 @@ if ($table_options['size']) {
 
 if ($table_options['age']) {
     $modified_classes   = ["text-xs-$right"];
-    $modified_classes[] = $options['bootstrap']['tablecol_modified'] ? $options['bootstrap']['tablecol_modified'] : null;
+    $modified_classes[] = $options['bootstrap']['table_column_modified'] ? $options['bootstrap']['table_column_modified'] : null;
 
     $table_header .= "            <th";
     if ($options['general']['enable_sort']) {
@@ -486,8 +483,8 @@ if(($folder_list) || ($file_list) ) {
     if($folder_list):    
         foreach($folder_list as $item) :
 
-            if (isset($options['bootstrap']['tablerow_folders'])) {
-                $tr_folders = ' class="'.$options['bootstrap']['tablerow_folders'].'"';
+            if (isset($options['bootstrap']['table_row_folders'])) {
+                $tr_folders = ' class="'.$options['bootstrap']['table_row_folders'].'"';
             } else {
                 $tr_folders = null;
             }
@@ -503,8 +500,8 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= "<".$icons['tag']." class=\"".$icons['folder']."\" aria-hidden=\"true\"></".$icons['tag'].">&nbsp;";
             }
 
-            if (isset($options['bootstrap']['tablerow_links'])) {
-                $tr_links = ' class="'.$options['bootstrap']['tablerow_links'].'"';
+            if (isset($options['bootstrap']['table_row_links'])) {
+                $tr_links = ' class="'.$options['bootstrap']['table_row_links'].'"';
             } else {
                 $tr_links = null;
             }
@@ -547,8 +544,8 @@ if(($folder_list) || ($file_list) ) {
             $item_pretty_size = $item['size']['num'] . " " . $item['size']['str'];
 
             // Style table rows
-            if ($options['bootstrap']['tablerow_files'] != "") {
-                $row_classes[] = $options['bootstrap']['tablerow_files'];
+            if ($options['bootstrap']['table_row_files'] != "") {
+                $row_classes[] = $options['bootstrap']['table_row_files'];
             }
 
             // Is file hidden?
