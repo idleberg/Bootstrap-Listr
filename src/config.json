@@ -72,7 +72,6 @@
     "fontawesome_style": ""
   },
   "viewer": {
-    "alt_load":  false,
     "audio":     "m4a,mp3,oga,ogg,webma,wav",
     "image":     "gif,ico,jpe,jpeg,jpg,png,svg,webp",
     "pdf":       "pdf",
