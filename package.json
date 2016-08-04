@@ -40,7 +40,7 @@
   "scripts": {
     "test": "gulp travis",
     "postinstall": "bower install && gulp build:highlighter",
-    "build": "gulp clean --silent;gulp --silent;gulp merge --silent",
-    "build:http2": "gulp clean --silent;gulp --silent"
+    "build": "gulp clean --silent && gulp --silent && gulp merge --silent",
+    "build:http2": "gulp clean --silent && gulp --silent"
   }
 }
