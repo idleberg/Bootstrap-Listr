@@ -70,7 +70,7 @@ Modal = {
        };
        if (!modal.file) return;
        
-       M.modal_body.html('<audio src="' + modal.file + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>');
+       M.modal_body.html('<audio src="' + modal.file + '" id="player" autoplay preload controls>Your browser does not support the audio element.</audio>');
        
        Modal.setMeta(modal);
        M.viewer.modal("show");
@@ -86,7 +86,7 @@ Modal = {
        };
        if (!modal.file) return;
 
-       M.modal_body.html('<video src="' + modal.file + '" id="player" autoplay controls>Video format or MIME type is not supported</video>');
+       M.modal_body.html('<video src="' + modal.file + '" id="player" autoplay preload controls>Video format or MIME type is not supported</video>');
        
        Modal.setMeta(modal);
        M.viewer.modal("show");
