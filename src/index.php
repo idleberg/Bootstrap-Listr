@@ -441,7 +441,9 @@ if ($options['general']['enable_search'] == true) {
 $table_header = null;
 
 $name_classes   = ["text-xs-$left"];
-$name_classes[] = $options['bootstrap']['table_column_name'] ? $options['bootstrap']['table_column_name'] : null;
+if (isset($options['bootstrap']['table_column_name'])) {
+    $name_classes[] = $options['bootstrap']['table_column_name'];
+}
 
 $table_header .= "            <th class=\"" . implode(" ", $name_classes) . "\" data-sort=\"string\">"._('Name')."</th>" . PHP_EOL;
 
@@ -638,8 +640,6 @@ if(($folder_list) || ($file_list) ) {
             if ($options['general']['enable_viewer']) {
 
                 $modal_attr = array();
-                $modal_attr[] .= "data-toggle=\"modal\"";
-                $modal_attr[] .= "data-target=\"#viewer-modal\"";
 
                 if (in_array($item['lext'], $audio_files)) {
                     $modal_attr[] .= "data-type=\"audio\"";
@@ -661,6 +661,11 @@ if(($folder_list) || ($file_list) ) {
                     $modal_attr[] .= "data-type=\"website\"";
                 } else if ( ($options['general']['virtual_files']) && (in_array($item['lext'], $virtual_files)) ) {
                     $modal_attr[] .= "data-type=\"virtual\"";
+                }
+
+                if (!empty($modal_attr)) {
+                    $modal_attr[] .= "data-toggle=\"modal\"";
+                    $modal_attr[] .= "data-target=\"#viewer-modal\"";
                 }
             }
 
