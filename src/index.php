@@ -486,7 +486,7 @@ if(($folder_list) || ($file_list) ) {
         foreach($folder_list as $item) :
 
             // Is folder hidden?
-            if (in_array_regex($item['bname'], $options['hidden_folders'])){
+            if (in_array_regex($item['bname'], $options['hidden_files'])){
                 continue;
             }
 
