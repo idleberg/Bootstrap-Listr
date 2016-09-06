@@ -487,7 +487,11 @@ if(($folder_list) || ($file_list) ) {
 
             // Is folder hidden?
             if (in_array_regex($item['bname'], $options['hidden_files'])){
+<<<<<<< HEAD
                  continue;
+=======
+                continue;
+>>>>>>> 29a7913d49facabd3e8592afc90148f1c5070b40
             }
 
             if (isset($options['bootstrap']['table_row_folders'])) {
