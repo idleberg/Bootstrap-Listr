@@ -118,7 +118,7 @@ Modal = {
        };
        if (!modal.file) return;
 
-       modal.html = '<iframe id="website" class="embed-responsive-item" src="' + modal.file + '" sandbox frameborder="0"></iframe>'
+       modal.html = '<iframe id="website" class="embed-responsive-item" src="' + modal.file + '" sandbox frameborder="0"></iframe>';
 
        M.modal_body.html(modal.open + modal.html + modal.close);       
        Modal.setMeta(modal);
@@ -214,6 +214,8 @@ Modal = {
 
        if (!modal.file) return;
 
+       Modal.setMeta(modal);
+
        // Load file contents
        $.ajax(modal.file, {
            dataType: "text",
@@ -221,8 +223,6 @@ Modal = {
                 // Inject content 
                 M.modal_body.html(modal.open, modal.close);
                 $("#text").text(decodeFile(contents));
-
-                Modal.setMeta(modal);
            }
        }).done(function() {
            // show modal
@@ -243,6 +243,8 @@ Modal = {
 
         if (!modal.file) return;
 
+        Modal.setMeta(modal);
+
         // Load file contents
         $.ajax(modal.file, {
             dataType: "text",
@@ -250,8 +252,6 @@ Modal = {
                 // Inject source code
                 M.modal_body.html(modal.open, modal.close);
                 $("#source").text(decodeFile(contents));
-
-                Modal.setMeta(modal);
 
                 // Fire auto-highlighter
                 $("#source").each(function(i, block) {
@@ -304,6 +304,6 @@ Modal = {
   reset: function() {
 
     // Empty modal body to stop playback in Firefox
-    M.modal_body.empty();
+    M.modal_body.empty().html('<div class="text-xs-center"><i class="fa fa-2x fa-spin fa-circle-o-notch" aria-hidden="true"></i></div>');
   }
 };

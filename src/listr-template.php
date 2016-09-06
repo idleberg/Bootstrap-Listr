@@ -37,7 +37,11 @@
             <h4 class="modal-title text-<?php echo $left?>" id="file-name">&nbsp;</h4>
             <small class="text-muted" id="file-meta"></small>
           </div>
-          <div class="modal-body"></div>
+          <div class="modal-body">
+            <div class="text-xs-center">
+              <i class="fa fa-2x fa-spin fa-circle-o-notch" aria-hidden="true"></i>
+            </div>
+          </div>
           <div class="modal-footer">
             <div class="pull-xs-<?php echo $right?>">
               <button type="button" class="btn <?php echo $btn_default ?>" data-dismiss="modal"><?php echo _('Close')?></button>
