@@ -763,4 +763,8 @@ if ($options['general']['give_kudos']) {
 }
 
 require_once('listr-template.php');
+<<<<<<< HEAD
 ?>
+=======
+?>  
+>>>>>>> 0138002d1bcab0d53b97b9a18a4039a1e9b14f78
