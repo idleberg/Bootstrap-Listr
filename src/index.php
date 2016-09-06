@@ -486,9 +486,9 @@ if(($folder_list) || ($file_list) ) {
         foreach($folder_list as $item) :
 
             // Is folder hidden?
-+           if (in_array_regex($item['bname'], $options['hidden_files'])){
-+                continue;
-+           }
+            if (in_array_regex($item['bname'], $options['hidden_files'])){
+                 continue;
+            }
 
             if (isset($options['bootstrap']['table_row_folders'])) {
                 $tr_folders = ' class="'.$options['bootstrap']['table_row_folders'].'"';
