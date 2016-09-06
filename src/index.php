@@ -487,11 +487,7 @@ if(($folder_list) || ($file_list) ) {
 
             // Is folder hidden?
             if (in_array_regex($item['bname'], $options['hidden_files'])){
-<<<<<<< HEAD
                  continue;
-=======
-                continue;
->>>>>>> 29a7913d49facabd3e8592afc90148f1c5070b40
             }
 
             if (isset($options['bootstrap']['table_row_folders'])) {
@@ -763,8 +759,4 @@ if ($options['general']['give_kudos']) {
 }
 
 require_once('listr-template.php');
-<<<<<<< HEAD
 ?>
-=======
-?>  
->>>>>>> 0138002d1bcab0d53b97b9a18a4039a1e9b14f78
