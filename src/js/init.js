@@ -1,5 +1,8 @@
 $(function() {
 
+  // Remember loader
+  sessionStorage.setItem("Listr.loaderContent", $(".modal-body").html())
+
   Keyboard.init();
   Modal.init();
 
