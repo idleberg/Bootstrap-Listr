@@ -36,7 +36,7 @@
     "phplint": "^1.7.1",
     "run-sequence": "^1.2.2",
     "streamqueue": "^1.1.1",
-    "yargs": "^4.8.1"
+    "yargs": "^5.0.0"
   },
   "scripts": {
     "test": "gulp travis",
