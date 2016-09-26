@@ -39,7 +39,7 @@
           </div>
           <div class="modal-body">
             <div class="text-xs-center">
-              <i class="fa fa-2x fa-spin fa-circle-o-notch" aria-hidden="true"></i>
+              <i class="fa fa-2x fa-spin fa-refresh" aria-hidden="true"></i>
             </div>
           </div>
           <div class="modal-footer">
