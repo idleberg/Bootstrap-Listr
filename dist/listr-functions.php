@@ -218,37 +218,33 @@ function utf8ify($str) {
 }
 
 /**
- *    http://us.php.net/manual/en/function.array-multisort.php#83117
+ *    @ http://php.net/manual/en/function.usort.php#116264
  */
-function php_multisort($data,$keys)
-{
-    foreach ($data as $key => $row)
-    {
-        foreach ($keys as $k)
-        {
-            $cols[$k['key']][$key] = $row[$k['key']];
+function natural_sort( &$data_array, $keys, $reverse=false, $ignorecase=false ) {
+    // make sure $keys is an array
+    if (!is_array($keys)) $keys = array($keys);
+    usort($data_array, sort_compare($keys, $reverse, $ignorecase) );
+}
+
+function sort_compare($keys, $reverse=false, $ignorecase=false) {
+    return function ($a, $b) use ($keys, $reverse, $ignorecase) {
+        $cnt=0;
+        // check each key in the order specified
+        foreach ( $keys as $key ) {
+            // check the value for ignorecase and do natural compare accordingly
+            $ignore = is_array($ignorecase) ? $ignorecase[$cnt] : $ignorecase;
+            $result = $ignore ? strnatcasecmp ($a[$key], $b[$key]) : strnatcmp($a[$key], $b[$key]);
+            // check the value for reverse and reverse the sort order accordingly
+            $revcmp = is_array($reverse) ? $reverse[$cnt] : $reverse;
+            $result = $revcmp ? ($result * -1) : $result;
+            // the first key that results in a non-zero comparison determines
+            // the order of the elements
+            if ( $result != 0 ) break;
+            $cnt++;
         }
-    }
-    $idkeys = array_keys($data);
-    $i=0;
-    $sort = null;
-    foreach ($keys as $k)
-    {
-        if($i>0){$sort.=',';}
-        $sort.='$cols['.$k['key'].']';
-        if(isset($k['sort'])){$sort.=',SORT_'.strtoupper($k['sort']);}
-        if(isset($k['type'])){$sort.=',SORT_'.strtoupper($k['type']);}
-        $i++;
-    }
-    $sort .= ',$idkeys';
-    $sort = 'array_multisort('.$sort.');';
-    eval($sort);
-    foreach($idkeys as $idkey)
-    {
-        $result[$idkey]=$data[$idkey];
-    }
-    return $result;
-} 
+        return $result;
+    };
+}
 
 /**
  *    @ http://us3.php.net/manual/en/function.filesize.php#84652

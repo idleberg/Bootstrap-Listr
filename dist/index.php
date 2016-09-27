@@ -26,12 +26,6 @@ require_once('listr-functions.php');
 // Configure optional table columns
 $table_options = $options['columns'];
 
-// Set sorting properties.
-$sort = array(
-    array('key'=>'lname', 'sort'=>'asc'), // ... this sets the initial sort "column" and order ...
-    array('key'=>'size',  'sort'=>'asc') // ... for items with the same initial sort value, sort this way.
-);
-
 // Files you want to hide from the listing
 $ignore_list = $options['ignored_files'];
 
@@ -138,11 +132,11 @@ switch ($options['bootstrap']['icons']) {
         $icons['search'] = "          <i class=\"fa ".$icons['search']." form-control-feedback\"></i>" . PHP_EOL;
         $icons['folder'] = 'fa '. $icons['folder'].' ' . $options['bootstrap']['fontawesome_style'];
         if ($options['general']['share_icons'] == true) { 
-            $icons_dropbox  = "<i class=\"fa fa-dropbox fa-fw\"></i> ";
-            $icons_email    = "<i class=\"fa fa-envelope fa-fw\"></i> ";
-            $icons_facebook = "<i class=\"fa fa-facebook fa-fw\"></i> ";
-            $icons_gplus    = "<i class=\"fa fa-google-plus fa-fw\"></i> ";
-            $icons_twitter  = "<i class=\"fa fa-twitter fa-fw\"></i> ";
+            $icons_dropbox  = "<i class=\"fa fa-dropbox fa-fw\" aria-hidden=\"true\"></i> ";
+            $icons_email    = "<i class=\"fa fa-envelope fa-fw\" aria-hidden=\"true\"></i> ";
+            $icons_facebook = "<i class=\"fa fa-facebook fa-fw\" aria-hidden=\"true\"></i> ";
+            $icons_gplus    = "<i class=\"fa fa-google-plus fa-fw\" aria-hidden=\"true\"></i> ";
+            $icons_twitter  = "<i class=\"fa fa-twitter fa-fw\" aria-hidden=\"true\"></i> ";
         }
         break;
     default:
@@ -283,10 +277,11 @@ if ($handle = opendir($navigation_dir))
 
             if (isset($info['extension'])) {
                 $item['ext'] = $info['extension'];
+                $item['lext'] = strtolower($info['extension']);
             } else {
                 $item['ext'] = '.';
+                $item['lext'] = '.';
             }
-            $item['lext'] = strtolower($info['extension']);
 
             // Assign file icons
             $item['class'] = $icons['prefix'].' '.$icons['default'].' '. $options['bootstrap']['fontawesome_style'];
@@ -333,10 +328,10 @@ if ($handle = opendir($navigation_dir))
 }
 // Sort folder list.
 if($folder_list)
-    $folder_list = php_multisort($folder_list, $sort);
+    natural_sort($folder_list, 'bname', false, true);
 // Sort file list.
 if($file_list)
-    $file_list = php_multisort($file_list, $sort);
+    natural_sort($file_list, 'bname', false, true);
 // Calculate the total folder size (fix: total size cannot display while there is no folder inside the directory)
 if($file_list && $folder_list || $file_list)
     $total_size = bytes_to_string($total_size, 2);
@@ -451,7 +446,7 @@ if(($folder_list) || ($file_list) ) {
     if($folder_list):    
         foreach($folder_list as $item) :
 
-            if ($options['bootstrap']['tablerow_folders'] != null) {
+            if (isset($options['bootstrap']['tablerow_folders'])) {
                 $tr_folders = ' class="'.$options['bootstrap']['tablerow_folders'].'"';
             } else {
                 $tr_folders = null;
@@ -468,11 +463,11 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
-            if ($options['bootstrap']['icons'] !== null ) {
-                $table_body .= "<".$icons['tag']." class=\"".$icons['folder']."\"></".$icons['tag'].">&nbsp;";
+            if (isset($options['bootstrap']['icons'])) {
+                $table_body .= "<".$icons['tag']." class=\"".$icons['folder']."\" aria-hidden=\"true\"></".$icons['tag'].">&nbsp;";
             }
 
-            if ($options['bootstrap']['tablerow_links'] != null) {
+            if (isset($options['bootstrap']['tablerow_links'])) {
                 $tr_links = ' class="'.$options['bootstrap']['tablerow_links'].'"';
             } else {
                 $tr_links = null;
@@ -568,10 +563,10 @@ if(($folder_list) || ($file_list) ) {
                 }
 
                 // Don't show file-size in .virtual-file
-                $modified_attr = null;
+                $size_attr = null;
             } else {
                 $virtual_attr = null;
-                $modified_attr = " data-modified=\"".$item_pretty_size."\"";
+                $size_attr = " data-size=\"".$item_pretty_size."\"";
             }
 
             // Concatenate tr-classes
@@ -593,7 +588,7 @@ if(($folder_list) || ($file_list) ) {
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
-                $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\"></".$icons['tag'].">&nbsp;";
+                $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\" aria-hidden=\"true\"></".$icons['tag'].">&nbsp;";
             }
             if ($options['general']['hide_extension']) {
                 $display_name = $item['name'];
@@ -645,7 +640,7 @@ if(($folder_list) || ($file_list) ) {
                 $file_attr = null;
             }
 
-            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$modified_attr>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
+            $table_body .= "<a href=\"" . htmlentities(rawurlencode($item['bname']), ENT_QUOTES, 'utf-8') . "\"$file_attr$file_data$virtual_attr$size_attr>" . utf8ify($display_name) . "</a></td>" . PHP_EOL;
 
             // Size
             if ($table_options['size']) {
@@ -679,7 +674,7 @@ if(($folder_list) || ($file_list) ) {
         $table_body .= "          <tr>" . PHP_EOL;
         $table_body .= "            <td colspan=\"$colspan\" style=\"font-style:italic\">";
         if ($options['bootstrap']['icons']  !== null ) {
-            $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\">&nbsp;</".$icons['tag'].">";
+            $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\" aria-hidden=\"true\">&nbsp;</".$icons['tag'].">";
         } 
         $table_body .= _("empty folder")."</td>" . PHP_EOL;
         $table_body .= "          </tr>" . PHP_EOL;
