@@ -100,7 +100,7 @@ $(".audio-modal").click(function(event) {
     // arr[0] = file name
     // arr[1] = file uri
     // arr[2] = file meta
-    set_modal('<audio src="' + arr[0] + '" id="player" autoplay controls>Your browser does not support the audio element.</audio>', arr[0], arr[1], arr[2]);
+    set_modal('<audio src="' + arr[0] + '" id="player" autoplay preload controls>Your browser does not support the audio element.</audio>', arr[0], arr[1], arr[2]);
 
     // show modal
     viewer.modal("show");
@@ -152,7 +152,7 @@ $(".video-modal").click(function(event) {
     // arr[0] = file name
     // arr[1] = file uri
     // arr[2] = file meta
-    set_modal('<video src="' + arr[0] + '" id="player" autoplay controls>Video format or MIME type is not supported</video>', arr[0], arr[1], arr[2]);
+    set_modal('<video src="' + arr[0] + '" id="player" autoplay preload controls>Video format or MIME type is not supported</video>', arr[0], arr[1], arr[2]);
     
     // show modal
     viewer.modal("show");
