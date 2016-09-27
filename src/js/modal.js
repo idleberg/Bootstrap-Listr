@@ -302,7 +302,6 @@ Modal = {
   },
 
   reset: function() {
-
     var loader = sessionStorage.getItem("ListrLoader")
 
     // Empty modal body to stop playback in Firefox
