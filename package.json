@@ -28,7 +28,7 @@
     "gulp-prompt": "^0.2.0",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.5",
+    "gulp-watch": "^4.3.10",
     "highlight.js": "github:isagalaev/highlight.js#master",
     "jquery": "^2.2.4",
     "jquery-searcher": "^0.2.0",
