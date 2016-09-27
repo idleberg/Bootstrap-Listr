@@ -157,6 +157,9 @@ msgstr "Fechar"
 msgid "Search"
 msgstr "Procurar"
 
+msgid "Loading"
+msgstr "Carregar"
+
 msgid "Guardar en Dropbox"
 msgstr "Gravar na Dropbox"
 

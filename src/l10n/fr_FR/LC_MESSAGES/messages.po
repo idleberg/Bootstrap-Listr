@@ -157,6 +157,9 @@ msgstr "Fermer"
 msgid "Search"
 msgstr "Rechercher"
 
+msgid "Loading"
+msgstr "Chargement"
+
 msgid "Save to Dropbox"
 msgstr "Enregistrer sur Dropbox"
 
