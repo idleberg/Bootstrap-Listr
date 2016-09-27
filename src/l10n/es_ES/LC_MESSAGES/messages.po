@@ -145,6 +145,9 @@ msgstr "Ver"
 msgid "Listen"
 msgstr "Escuchar"
 
+msgid "Download"
+msgstr "Descarga"
+
 msgid "Open"
 msgstr "Abrir"
 
