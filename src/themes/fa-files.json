@@ -4,7 +4,7 @@
    "folder":"fa-folder",
    "home":"fa-home",
    "search":"fa-search",
-   "load":"fa-2x fa-spin fa-refresh",
+   "load":"fa-refresh",
    "share_icons":{  
       "dropbox":"fa-dropbox fa-fw",
       "email":"fa-envelope fa-fw",
