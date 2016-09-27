@@ -415,9 +415,27 @@ gulp.task('swatch', function(){
       less_dir       = 'node_modules/bootstrap/less/';
 
   // Get Bootswatch themes
-  var bootswatch = require('./node_modules/bootswatch/api/3.json');
-  bootswatch.themes.forEach(function(entry) {
-    themes.push(entry.name);
+  var bootswatch = [
+      "Cerulean",
+      "Cosmo",
+      "Cyborg",
+      "Darkly",
+      "Flatly",
+      "Journal",
+      "Lumen",
+      "Paper",
+      "Readable",
+      "Sandstone",
+      "Simplex",
+      "Slate",
+      "Spacelab",
+      "Superhero",
+      "United",
+      "Yeti"
+  ];
+
+  bootswatch.forEach(function(entry) {
+    themes.push(entry);
   });
   
   themes.sort();
