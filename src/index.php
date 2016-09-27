@@ -463,7 +463,7 @@ if(($folder_list) || ($file_list) ) {
                 $table_body .= " class=\"text-".$left."\" data-sort-value=\"". htmlentities($item['lbname'], ENT_QUOTES, 'utf-8') . "\"" ;
             }
             $table_body .= ">";
-            if (isset($options['bootstrap']['icons'] !== null)) {
+            if (isset($options['bootstrap']['icons'])) {
                 $table_body .= "<".$icons['tag']." class=\"".$icons['folder']."\" aria-hidden=\"true\"></".$icons['tag'].">&nbsp;";
             }
 
