@@ -3,6 +3,7 @@
    "default":"glyphicon-file",
    "folder":"glyphicon-folder-close",
    "home":"glyphicon-home",
+   "load":"glyphicon-refresh",
    "search":"glyphicon-search",
    "share_icons":{  
       "dropbox":"glyphicon-cloud-download",
