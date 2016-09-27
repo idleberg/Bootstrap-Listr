@@ -132,11 +132,11 @@ switch ($options['bootstrap']['icons']) {
         $icons['search'] = "          <i class=\"fa ".$icons['search']." form-control-feedback\"></i>" . PHP_EOL;
         $icons['folder'] = 'fa '. $icons['folder'].' ' . $options['bootstrap']['fontawesome_style'];
         if ($options['general']['share_icons'] == true) { 
-            $icons_dropbox  = "<i class=\"fa fa-dropbox fa-fw\"></i> ";
-            $icons_email    = "<i class=\"fa fa-envelope fa-fw\"></i> ";
-            $icons_facebook = "<i class=\"fa fa-facebook fa-fw\"></i> ";
-            $icons_gplus    = "<i class=\"fa fa-google-plus fa-fw\"></i> ";
-            $icons_twitter  = "<i class=\"fa fa-twitter fa-fw\"></i> ";
+            $icons_dropbox  = "<i class=\"fa fa-dropbox fa-fw\" aria-hidden=\"true\"></i> ";
+            $icons_email    = "<i class=\"fa fa-envelope fa-fw\" aria-hidden=\"true\"></i> ";
+            $icons_facebook = "<i class=\"fa fa-facebook fa-fw\" aria-hidden=\"true\"></i> ";
+            $icons_gplus    = "<i class=\"fa fa-google-plus fa-fw\" aria-hidden=\"true\"></i> ";
+            $icons_twitter  = "<i class=\"fa fa-twitter fa-fw\" aria-hidden=\"true\"></i> ";
         }
         break;
     default:
@@ -464,7 +464,7 @@ if(($folder_list) || ($file_list) ) {
             }
             $table_body .= ">";
             if (isset($options['bootstrap']['icons'] !== null)) {
-                $table_body .= "<".$icons['tag']." class=\"".$icons['folder']."\"></".$icons['tag'].">&nbsp;";
+                $table_body .= "<".$icons['tag']." class=\"".$icons['folder']."\" aria-hidden=\"true\"></".$icons['tag'].">&nbsp;";
             }
 
             if (isset($options['bootstrap']['tablerow_links'])) {
@@ -588,7 +588,7 @@ if(($folder_list) || ($file_list) ) {
             }
             $table_body .= ">";
             if ($options['bootstrap']['icons'] !== null ) {
-                $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\"></".$icons['tag'].">&nbsp;";
+                $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\" aria-hidden=\"true\"></".$icons['tag'].">&nbsp;";
             }
             if ($options['general']['hide_extension']) {
                 $display_name = $item['name'];
@@ -674,7 +674,7 @@ if(($folder_list) || ($file_list) ) {
         $table_body .= "          <tr>" . PHP_EOL;
         $table_body .= "            <td colspan=\"$colspan\" style=\"font-style:italic\">";
         if ($options['bootstrap']['icons']  !== null ) {
-            $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\">&nbsp;</".$icons['tag'].">";
+            $table_body .= "<".$icons['tag']." class=\"" . $item['class'] . "\" aria-hidden=\"true\">&nbsp;</".$icons['tag'].">";
         } 
         $table_body .= _("empty folder")."</td>" . PHP_EOL;
         $table_body .= "          </tr>" . PHP_EOL;
