@@ -1,6 +1,5 @@
-var
-  concat    = require('gulp-concat'),
-  gulp      = require('gulp');
+const concat = require('gulp-concat');
+const gulp   = require('gulp');
 
 gulp.task('copy', ['copy:config', 'copy:css', 'copy:fonts', 'copy:htaccess', 'copy:js', 'copy:l10n', 'copy:php', 'copy:themes']);
 

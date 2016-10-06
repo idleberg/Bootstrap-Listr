@@ -1,6 +1,5 @@
-var
-  gulp    = require('gulp'),
-  phplint = require('phplint').lint;
+const gulp    = require('gulp');
+const phplint = require('phplint').lint;
 
 gulp.task('lint:php', function(cb) {
   phplint(['src/*.php'], {limit: 10}, function (err, stdout, stderr) {

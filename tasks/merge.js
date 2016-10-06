@@ -1,16 +1,15 @@
-var
-  concat    = require('gulp-concat'),
-  concatCss = require('gulp-concat-css'),
-  cssmin    = require('gulp-cssmin'),
-  del       = require('del'),
-  gulp      = require('gulp'),
-  jeditor   = require('gulp-json-editor'),
-  prompt    = require('gulp-prompt'),
-  sequence  = require('run-sequence'),
-  queue     = require('streamqueue'),
-  uglify    = require('gulp-uglify');
+const concat    = require('gulp-concat');
+const concatCss = require('gulp-concat-css');
+const cssmin    = require('gulp-cssmin');
+const del       = require('del');
+const gulp      = require('gulp');
+const jeditor   = require('gulp-json-editor');
+const prompt    = require('gulp-prompt');
+const sequence  = require('run-sequence');
+const queue     = require('streamqueue');
+const uglify    = require('gulp-uglify');
 
-var meta = require('../package.json');
+const meta = require('../package.json');
 
 // Merge sequence
 gulp.task('merge', function(callback) {
@@ -55,7 +54,6 @@ gulp.task('merge:js', function(){
 
 // Merge CSS files
 gulp.task('merge:css', function(){
-
   return gulp.src([
       'build/assets/css/font-awesome.min.css',
       'build/assets/css/bootstrap.min.css',
@@ -70,7 +68,6 @@ gulp.task('merge:css', function(){
 
 // Clean up after merge
 gulp.task('post-merge', function() {
-
   return del([
     'build/assets/css/*.css',
     '!build/assets/css/listr.pack.css',

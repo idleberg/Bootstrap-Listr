@@ -1,9 +1,8 @@
-var
-  console  = require('better-console'),
-  fs       = require('fs'),
-  gulp     = require('gulp'),
-  sequence = require('run-sequence'),
-  meta     = require('./package.json');
+const console  = require('better-console');
+const fs       = require('fs');
+const gulp     = require('gulp');
+const sequence = require('run-sequence');
+const meta     = require('./package.json');
 
 // Import tasks
 require('./tasks/clean.js');

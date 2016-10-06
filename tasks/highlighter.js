@@ -1,11 +1,10 @@
-var
-  argv    = require('yargs').alias('s', 'self').argv,
-  concat  = require('gulp-concat'),
-  cssmin  = require('gulp-cssmin'),
-  fs      = require("fs"),
-  gulp    = require('gulp'),
-  jeditor = require('gulp-json-editor'),
-  prompt    = require('gulp-prompt');
+const argv    = require('yargs').alias('s', 'self').argv;
+const concat  = require('gulp-concat');
+const cssmin  = require('gulp-cssmin');
+const fs      = require("fs");
+const gulp    = require('gulp');
+const jeditor = require('gulp-json-editor');
+const prompt  = require('gulp-prompt');
 
 var hjs = [];
 
@@ -18,25 +17,25 @@ function getBasename(file) {
 // Build Highlight.js (via https://github.com/kilianc/rtail/blob/develop/gulpfile.js#L69)
 gulp.task('build:highlighter', function (done) {
 
-  var languages = ['tools/build.js'];
-  var config = require(__dirname + '/../src/config.json').highlight.languages;
+  let languages = ['tools/build.js'];
+  let config = require(__dirname + '/../src/config.json').highlight.languages;
   config.forEach(function(item) {
     languages.push(item);
   });
 
-  var spawn = require('child_process').spawn;
-  var opts = {
+  let spawn = require('child_process').spawn;
+  let opts = {
     cwd: 'node_modules/highlight.js'
   };
 
-  var npmInstall = spawn('npm', ['install'], opts);
+  let npmInstall = spawn('npm', ['install'], opts);
   npmInstall.stdout.pipe(process.stdout);
   npmInstall.stderr.pipe(process.stderr);
 
   npmInstall.on('close', function (code) {
     if (0 !== code) throw new Error('npm install exited with ' + code);
 
-    var build = spawn('node', languages, opts);
+    let build = spawn('node', languages, opts);
     build.stdout.pipe(process.stdout);
     build.stderr.pipe(process.stderr);
 
@@ -50,7 +49,7 @@ gulp.task('build:highlighter', function (done) {
 // Choose a highlight.js theme
 gulp.task('select:highlighter', function(){
 
-  var source_dir = 'node_modules/highlight.js/src/styles/';
+  let source_dir = 'node_modules/highlight.js/src/styles/';
 
   css = fs.readdirSync(source_dir);
   css.forEach(getBasename);
@@ -66,7 +65,7 @@ gulp.task('select:highlighter', function(){
    choices: hjs,
  }, function(res){
 
-    var source_dir = 'node_modules/highlight.js/src/styles/';
+    let source_dir = 'node_modules/highlight.js/src/styles/';
 
      // Set default theme
      console.log('Minifying highlight.js theme “'+res.theme+'”…');

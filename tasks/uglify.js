@@ -1,11 +1,10 @@
-var
-  argv   = require('yargs').alias('s', 'self'),
-  cached = require('gulp-cached'),
-  concat = require('gulp-concat'),
-  debug  = require('gulp-debug'),
-  gulp   = require('gulp'),
-  queue  = require('streamqueue'),
-  uglify = require('gulp-uglify');
+const argv   = require('yargs').alias('s', 'self');
+const cached = require('gulp-cached');
+const concat = require('gulp-concat');
+const debug  = require('gulp-debug');
+const gulp   = require('gulp');
+const queue  = require('streamqueue');
+const uglify = require('gulp-uglify');
 
 gulp.task('make:js', function() {
    console.log('Uglifying Listr JavaScript…');

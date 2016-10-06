@@ -1,9 +1,8 @@
-var
-  argv     = require('yargs') .alias('s', 'self') .argv,
-  cached   = require('gulp-cached'),
-  debug    = require('gulp-debug'),
-  gulp     = require('gulp'),
-  jsonlint = require('gulp-json-lint');
+const argv     = require('yargs') .alias('s', 'self') .argv;
+const cached   = require('gulp-cached');
+const debug    = require('gulp-debug');
+const gulp     = require('gulp');
+const jsonlint = require('gulp-json-lint');
 
 gulp.task('lint:json', function() {
   
