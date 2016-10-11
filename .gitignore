@@ -11,3 +11,4 @@ src/themes/github.json
 tasks/swatch4.js
 todo.md
 vendor/
+yarn.lock
