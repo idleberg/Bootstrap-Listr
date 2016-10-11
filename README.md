@@ -23,7 +23,7 @@ We use [Gulp](http://gulpjs.com/) tasks to configure and build your application.
 npm install -g gulp
 
 # Install dependencies
-npm install
+yarn || npm install
 ```
 
 You can now run the build script to create a clean copy of Bootstrap Listr:
