@@ -120,6 +120,7 @@ switch ($options['bootstrap']['icons']) {
         // TODO: move to theme
         $icons['prefix'] = "fa fa-fw";
         $icons['home']   = "<i class=\"".$icons['prefix']." ".$icons['home']." fa-lg\"></i> ";
+        $icons['load']   = "<i class=\"fa fa-2x fa-spin ".$icons['prefix']." ".$icons['load']."\" aria-hidden=\"true\"></i> ";
         $icons['folder'] = $icons['prefix'].' '. $icons['folder'].' ' . $options['bootstrap']['fontawesome_style'];
         if ($options['general']['share_icons'] == true) { 
             $icons_dropbox  = "<i class=\"".$icons['prefix']." fa-dropbox\" aria-hidden=\"true\"></i> ";
@@ -131,6 +132,7 @@ switch ($options['bootstrap']['icons']) {
         break;
     default:
         $icons['home']   = $_SERVER['HTTP_HOST'];
+        $icons['load']   = "<span class=\"text-muted\">"._('Loading')."</span>";
         // $icons['search'] = null;
 }
 

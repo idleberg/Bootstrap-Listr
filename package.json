@@ -13,6 +13,8 @@
     "jquery-searcher": "^0.3.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-latest": "^6.16.0",
     "better-console": "^0.2.4",
     "bower": "^1.7.9",
     "del": "^2.2.2",
@@ -36,7 +38,7 @@
     "phplint": "^1.7.1",
     "run-sequence": "^1.2.2",
     "streamqueue": "^1.1.1",
-    "yargs": "^5.0.0"
+    "yargs": "^6.0.0"
   },
   "scripts": {
     "test": "gulp travis",

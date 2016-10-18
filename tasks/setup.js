@@ -1,14 +1,13 @@
-var
-  argv     = require('yargs').alias('d', 'debug').argv,
-  concat   = require('gulp-concat'),
-  cssmin   = require('gulp-cssmin'),
-  debug    = require('gulp-debug'),
-  gulp     = require('gulp'),
-  jeditor  = require('gulp-json-editor'),
-  prompt   = require('gulp-prompt'),
-  sequence = require('run-sequence'),
-  uglify   = require('gulp-uglify'),
-  meta     = require('../package.json');
+const argv     = require('yargs').alias('d', 'debug').argv;
+const concat   = require('gulp-concat');
+const cssmin   = require('gulp-cssmin');
+const debug    = require('gulp-debug');
+const gulp     = require('gulp');
+const jeditor  = require('gulp-json-editor');
+const prompt   = require('gulp-prompt');
+const sequence = require('run-sequence');
+const uglify   = require('gulp-uglify');
+const meta     = require('../package.json');
 
 // Setup sequence
 gulp.task('setup', function(callback) {
@@ -23,7 +22,6 @@ gulp.task('setup', function(callback) {
 
 // Specify default asset location
 gulp.task('depends', function() {
-
   return gulp.src('./')
     .pipe(prompt.prompt({
         type: 'list',
@@ -40,9 +38,8 @@ gulp.task('depends', function() {
           }
       ]
     }, function(res){
-        
-        var assets;
-        
+        let assets;
+
         if (res.dependencies === 'local') {
 
           assets = {
@@ -66,7 +63,7 @@ gulp.task('depends', function() {
         } else {
 
               // Read src/config.json
-              var config = require('../src/config.json');
+              let config = require('../src/config.json');
 
               assets =  {
                 'general': {
@@ -100,11 +97,11 @@ gulp.task('depends', function() {
 gulp.task('select', function(callback){
 
   // Set defaults
-  var enable_viewer      = false,
-      enable_search      = false;
-      enable_highlight   = false;
-      default_icons      = 'fa';
-      include_bootlint   = false;
+  let enable_viewer      = false;
+  let enable_search      = false;
+  let enable_highlight   = false;
+  let default_icons      = 'fa';
+  let include_bootlint   = false;
 
   // check debug features
   if (argv.debug) {
@@ -113,7 +110,7 @@ gulp.task('select', function(callback){
     debug_check = false;
   }
 
-  var features = [
+  let features = [
         { name: 'Viewer Modal', value: 'viewer' , checked: true },
         { name: 'Search Box', value: 'search' , checked: true },
         { name: 'Syntax Highlighter', value: 'highlighter' , checked: true },
@@ -125,7 +122,7 @@ gulp.task('select', function(callback){
 
   // uncheck all features
   if (argv.minimum) {
-    for (var i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i++) {
        features[i].checked =  false;
     }
   }

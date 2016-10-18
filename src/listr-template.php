@@ -39,7 +39,7 @@
           </div>
           <div class="modal-body">
             <div class="text-xs-center">
-              <i class="fa fa-2x fa-spin fa-refresh" aria-hidden="true"></i>
+              <?php echo $icons['load'] ?>
             </div>
           </div>
           <div class="modal-footer">

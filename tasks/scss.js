@@ -1,13 +1,12 @@
-var
-  argv    = require('yargs').alias('f', 'full').argv,
-  cached  = require('gulp-cached'),
-  concat  = require('gulp-concat'),
-  cssmin  = require('gulp-cssmin'),
-  gulp    = require('gulp'),
-  prompt  = require('gulp-prompt'),
-  sass    = require('gulp-sass');
+const argv   = require('yargs').alias('f', 'full').argv;
+const cached = require('gulp-cached');
+const concat = require('gulp-concat');
+const cssmin = require('gulp-cssmin');
+const gulp   = require('gulp');
+const prompt = require('gulp-prompt');
+const sass   = require('gulp-sass');
 
-var bootstrap_scss;
+let bootstrap_scss;
 if (argv.full) {
   bootstrap_scss = 'node_modules/bootstrap/scss/bootstrap.scss';
 } else {
@@ -16,8 +15,7 @@ if (argv.full) {
 
 // Select Bootstrap theme
 gulp.task('make:scss', function(){
-  
-  gulp.src(bootstrap_scss)
+    gulp.src(bootstrap_scss)
   .pipe(cached('make:scss'))
   .pipe(sass().on('error', sass.logError))
   .pipe(concat('bootstrap.min.css'))

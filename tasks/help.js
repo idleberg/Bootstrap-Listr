@@ -1,6 +1,5 @@
-var
-  gulp = require('gulp'),
-  meta = require('../package.json');
+const gulp = require('gulp');
+const meta = require('../package.json');
 
 // A handy repeat function
 var repeat = function (s, n, d) {
@@ -9,8 +8,7 @@ var repeat = function (s, n, d) {
 
 // Help dialog
 gulp.task('help', function() {
-
-  var title_length =  meta.name + ' v' + meta.version;
+  let title_length =  meta.name + ' v' + meta.version;
 
   console.log('\n' + meta.name + ' v' + meta.version);
   console.log(repeat('=', title_length.length));
