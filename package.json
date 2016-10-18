@@ -13,6 +13,8 @@
     "jquery-searcher": "^0.3.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-latest": "^6.16.0",
     "better-console": "^0.2.4",
     "bower": "^1.7.9",
     "del": "^2.2.2",
