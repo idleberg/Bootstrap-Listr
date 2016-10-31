@@ -6,7 +6,7 @@
   "dependencies": {
     "apache-server-configs": "^2.14.0",
     "bootlint": "^0.14.2",
-    "bootstrap": "^4.0.0-alpha.4",
+    "bootstrap": "^4.0.0-alpha.5",
     "font-awesome": "^4.7.0",
     "highlight.js": "isagalaev/highlight.js#9.6.0",
     "jquery": "^3.1.0",
