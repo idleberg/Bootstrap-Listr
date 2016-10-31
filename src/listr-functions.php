@@ -66,7 +66,7 @@ function set_header($bootstrap_css) {
         // Font Awesome CSS
         if (  $options['bootstrap']['icons'] == 'fontawesome' || $options['bootstrap']['icons'] == 'fa' || $options['bootstrap']['icons'] == 'fa-files'  ) {
             $header .= "  <link rel=\"stylesheet\" href=\"" .$server.$options['assets']['font_awesome'] . "\">". PHP_EOL;
-        } else if ($options['bootstrap']['icons'] == 'octicons') {
+        } else if ($options['bootstrap']['icons'] == 'github') {
             $header .= "  <link rel=\"stylesheet\" href=\"" .$server.$options['assets']['octicons'] . "\">". PHP_EOL;
         }
 
