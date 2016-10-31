@@ -1,17 +1,115 @@
 {  
    "tag":"span",
    "default":"octicon-file",
-   "folder":"text-info octicon-file-directory",
-   "home":"octicon-home",
+   "folder":"octicon-file-directory text-primary",
+   "home":"octicon-globe",
    "load":"octicon-sync",
    "search":"octicon-search",
    "files":[
       {
+         "apple":{  
+            "extensions":[  
+               "app",
+               "ipa",
+               "ipsw",
+               "saver"
+            ],
+            "icon":"octicon-file-binary"
+         },
+         "archive":{  
+            "extensions":[  
+               "7z",
+               "ace",
+               "adf",
+               "air",
+               "apk",
+               "arj",
+               "asar",
+               "bz2",
+               "bzip",
+               "cab",
+               "d64",
+               "dmg",
+               "git",
+               "hdf",
+               "ipf",
+               "iso",
+               "fdi",
+               "gz",
+               "jar",
+               "lha",
+               "lzh",
+               "lz",
+               "lzma",
+               "pak",
+               "phar",
+               "pkg",
+               "pimp",
+               "rar",
+               "safariextz",
+               "sfx",
+               "sit",
+               "sitx",
+               "sqx",
+               "sublime-package",
+               "swm",
+               "tar",
+               "tgz",
+               "wim",
+               "wsz",
+               "xar",
+               "zip"
+            ],
+            "icon":"octicon-file-zip"
+         },
          "doc":{
             "extensions":[
                "pdf"
             ],
             "icon":"octicon-file-pdf"
+         },
+         "flickr":{  
+            "extensions":[  
+               "flickr"
+            ],
+            "icon":"octicon-file-symlink-file"
+         },
+         "image":{  
+            "extensions":[  
+               "ai",
+               "bmp",
+               "cdr",
+               "emf",
+               "eps",
+               "gif",
+               "icns",
+               "ico",
+               "jp2",
+               "jpe",
+               "jpeg",
+               "jpg",
+               "jpx",
+               "pcx",
+               "pict",
+               "png",
+               "psd",
+               "psp",
+               "svg",
+               "tga",
+               "tif",
+               "tiff",
+               "webp",
+               "wmf"
+            ],
+            "icon":"octicon-file-media"
+         },
+         "linux":{  
+            "extensions":[  
+               "bin",
+               "deb",
+               "rpm"
+            ],
+            "icon":"octicon-file-binary"
          },
          "script":{  
             "extensions":[  
@@ -72,6 +170,36 @@
                "yml"
             ],
             "icon":"octicon-file-code"
+         },
+         "soundcloud":{  
+            "extensions":[  
+               "soundcloud"
+            ],
+            "icon":"octicon-file-symlink-file"
+         },
+         "vimeo":{  
+            "extensions":[  
+               "vimeo"
+            ],
+            "icon":"octicon-file-symlink-file"
+         },
+         "windows":{  
+            "extensions":[  
+               "dll",
+               "exe",
+               "msi",
+               "pif",
+               "ps1",
+               "scr",
+               "sys"
+            ],
+            "icon":"octicon-file-binary"
+         },
+         "youtube":{  
+            "extensions":[  
+               "youtube"
+            ],
+            "icon":"octicon-file-symlink-file"
          }
       }
    ]
