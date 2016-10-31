@@ -24,7 +24,6 @@ Search = {
 
   // Clears input when pressing Esc-key
   clearInput: function() {
-    
     if(event.keyCode == 27) {
       if (S.input.val() ===  '') {
         S.input.blur();

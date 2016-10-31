@@ -130,6 +130,14 @@ switch ($options['bootstrap']['icons']) {
             $icons_twitter  = "<i class=\"".$icons['prefix']." fa-twitter\" aria-hidden=\"true\"></i> ";
         }
         break;
+    case "github":
+    case "octicons":
+        // TODO: move to theme
+        $icons['prefix'] = "octicon";
+        $icons['home']   = "<i class=\"".$icons['prefix']." ".$icons['home']."\"></i> ";
+        $icons['load']   = "<i class=\"".$icons['prefix']." ".$icons['load']."\" aria-hidden=\"true\"></i> ";
+        $icons['folder'] = $icons['prefix'].' '. $icons['folder'];
+        break;
     default:
         $icons['home']   = $_SERVER['HTTP_HOST'];
         $icons['load']   = "<span class=\"text-muted\">"._('Loading')."</span>";

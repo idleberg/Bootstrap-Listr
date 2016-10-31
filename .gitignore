@@ -7,7 +7,6 @@ node_modules/
 npm-debug.log
 src/l10n/ja_JA/
 src/parsedown
-src/themes/github.json
 tasks/swatch4.js
 todo.md
 vendor/

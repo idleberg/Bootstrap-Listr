@@ -28,6 +28,7 @@
     "bootstrap_css":   "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.3/css/bootstrap.min.css",
     "bootstrap_js":    "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.3/js/bootstrap.min.js",
     "font_awesome":    "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css",
+    "octicons":        "https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.min.css",
     "google_font":     null,
     "stupid_table":    "https://cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
     "jquery_searcher": "https://cdnjs.cloudflare.com/ajax/libs/jquery-searcher/0.3.0/jquery.searcher.min.js",

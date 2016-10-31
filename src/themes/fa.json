@@ -135,7 +135,7 @@
                "vcard",
                "vcf"
             ],
-            "icon":"fa-group"
+            "icon":"fa-address-card-o"
          },
          "database":{  
             "extensions":[  
