@@ -30,10 +30,10 @@ You can now run the build script to create a clean copy of Bootstrap Listr:
 
 ```bash
 # Concatenated assets
-npm run-script build
+npm run build
 
 # Individual assets
-npm run-script build:http2
+npm run build:http2
 ```
 
 Alternatively, you can now run the individual Gulp tasks. See `gulp help` for a list of available tasks.
