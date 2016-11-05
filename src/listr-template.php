@@ -18,7 +18,7 @@
         <tfoot>
           <tr>
             <td colspan="<?php echo $table_count?>">
-              <small class="pull-xs-<?php echo $left?> text-muted" dir="ltr"><?php echo $summary ?></small>
+              <small class="float-xs-<?php echo $left?> text-muted" dir="ltr"><?php echo $summary ?></small>
               <?php echo $kudos?>
             </td>
           </tr>
@@ -33,7 +33,7 @@
       <div class="modal-dialog <?php echo $modal_size ?>">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close pull-xs-<?php echo $right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button type="button" class="close float-xs-<?php echo $right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title text-<?php echo $left?>" id="file-name">&nbsp;</h4>
             <small class="text-muted" id="file-meta"></small>
           </div>
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <div class="pull-xs-<?php echo $right?>">
+            <div class="float-xs-<?php echo $right?>">
               <button type="button" class="btn <?php echo $btn_default ?>" data-dismiss="modal"><?php echo _('Close')?></button>
 <?php if ($options['general']['share_button']) { ?>
 

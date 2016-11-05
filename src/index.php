@@ -417,7 +417,7 @@ if ($options['general']['enable_search'] == true) {
         $input_size = null;
     }
 
-    $search .= "      <div class=\"col-xs-12 col-sm-5 col-md-4$search_offset pull-sm-$right\">" . PHP_EOL;
+    $search .= "      <div class=\"col-xs-12 col-sm-5 col-md-4$search_offset float-sm-$right\">" . PHP_EOL;
     $search .= "          <div class=\"form-group\">" . PHP_EOL;
     $search .= "            <label class=\"form-control-label sr-only\" for=\"listr-search\">". _('Search')."</label>" . PHP_EOL;
     $search .= "            <input type=\"text\" id=\"listr-search\" class=\"form-control$input_size\" placeholder=\"". _('Search')."\"$autofocus>" . PHP_EOL;
@@ -765,7 +765,7 @@ if(($folder_list) || ($file_list) ) {
 
 // Give kudos
 if ($options['general']['give_kudos']) {
-    $kudos = "<a class=\"pull-xs-".$right." small text-muted\" href=\"https://github.com/idleberg/Bootstrap-Listr\" title=\"Bootstrap Listr on GitHub\" target=\"_blank\">"._('Fork me on GitHub')."</a>" . PHP_EOL;
+    $kudos = "<a class=\"float-xs-".$right." small text-muted\" href=\"https://github.com/idleberg/Bootstrap-Listr\" title=\"Bootstrap Listr on GitHub\" target=\"_blank\">"._('Fork me on GitHub')."</a>" . PHP_EOL;
 }
 
 require_once('listr-template.php');
