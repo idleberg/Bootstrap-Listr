@@ -8,13 +8,13 @@
     "bootlint": "^0.14.2",
     "bootstrap": "^4.0.0-alpha.5",
     "font-awesome": "^4.7.0",
-    "highlight.js": "isagalaev/highlight.js#9.6.0",
+    "highlight.js": "isagalaev/highlight.js#9.7.0",
     "jquery": "^3.1.0",
     "jquery-searcher": "^0.3.0",
     "octicons": "^4.4.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.16.0",
+    "babel-cli": "^6.18.0",
     "babel-preset-latest": "^6.16.0",
     "better-console": "^0.2.4",
     "bower": "^1.7.9",
@@ -25,7 +25,7 @@
     "gulp-concat-css": "^2.3.0",
     "gulp-cssmin": "^0.1.7",
     "gulp-debug": "^2.1.2",
-    "gulp-jshint": "^2.0.1",
+    "gulp-jshint": "^2.0.2",
     "gulp-json-editor": "^2.2.1",
     "gulp-json-lint": "^0.1.0",
     "gulp-order": "^1.1.1",
@@ -35,11 +35,11 @@
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.9",
-    "jshint": "^2.9.3",
+    "jshint": "^2.9.4",
     "phplint": "^1.7.1",
     "run-sequence": "^1.2.2",
     "streamqueue": "^1.1.1",
-    "yargs": "^6.0.0"
+    "yargs": "^6.3.0"
   },
   "scripts": {
     "test": "gulp travis",
