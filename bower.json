@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-listr",
-  "version": "2.3.0-alpha.4",
+  "version": "2.3.0-alpha.5",
   "private": true,
   "homepage": "https://github.com/idleberg/Bootstrap-Listr",
   "dependencies": {
