@@ -19,7 +19,7 @@
 ## Console Errors (optional)
 
 ```
-[your log]
+# your log messages
 ```
 
 **Expected behavior:**
