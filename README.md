@@ -46,7 +46,7 @@ Deploy `build/` to your server. All files that should be accessible in the brows
 
 You can configure a number of settings in the file `config.json`:
 
-* Optional columns for size, modified date, permissions
+* Optional columns for size and modified date
 * Document icons
 * File viewer for images, videos, audio, source code, PDF and HTML
 * Search box to filter results
