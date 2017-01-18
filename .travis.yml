@@ -1,11 +1,17 @@
 sudo: false
 language: node_js
 node_js:
-  - "6"
+  - "7"
+git:
+  depth: 1
+branches:
+  only:
+  - master
 cache:
   timeout: 1800
+  yarn: true
   directories:
-  - node_modules
+    - node_modules
 env:
   - CXX=g++-4.8
 addons:
