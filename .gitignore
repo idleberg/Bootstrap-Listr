@@ -4,10 +4,9 @@ bower_components/
 build/
 generators/
 node_modules/
-npm-debug.log
+npm-debug.log*
 src/l10n/ja_JA/
 src/parsedown
 tasks/swatch4.js
 todo.md
 vendor/
-yarn.lock
