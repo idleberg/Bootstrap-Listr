@@ -194,6 +194,8 @@
                "pdf",
                "pot",
                "ppt",
+               "pptm",
+               "ppts",
                "pptx",
                "sdb",
                "sdc",
@@ -207,6 +209,8 @@
                "wp7",
                "wpd",
                "xls",
+               "xlsm",
+               "xlss",
                "xlsx",
                "xps"
             ],

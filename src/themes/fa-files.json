@@ -101,6 +101,8 @@
          "excel":{  
             "extensions":[  
                "xls",
+               "xlsm",
+               "xlss",
                "xlsx",
                "numbers"
             ],
@@ -146,6 +148,8 @@
             "extensions":[  
                "pot",
                "ppt",
+               "pptm",
+               "ppts",
                "pptx",
                "key"
             ],
