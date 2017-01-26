@@ -53,6 +53,7 @@
                "swm",
                "tar",
                "tgz",
+               "vsix",
                "wim",
                "wsz",
                "xar",
@@ -101,6 +102,8 @@
          "excel":{  
             "extensions":[  
                "xls",
+               "xlsm",
+               "xlss",
                "xlsx",
                "numbers"
             ],
@@ -146,6 +149,8 @@
             "extensions":[  
                "pot",
                "ppt",
+               "pptm",
+               "ppts",
                "pptx",
                "key"
             ],
