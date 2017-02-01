@@ -148,7 +148,6 @@ if ($options['general']['enable_viewer']) {
     $audio_files     = explode(',', $options['viewer']['audio']);
     $image_files     = explode(',', $options['viewer']['image']);
     $pdf_files       = explode(',', $options['viewer']['pdf']);
-    $quicktime_files = explode(',', $options['viewer']['quicktime']);
     $source_files    = explode(',', $options['viewer']['source']);
     $text_files      = explode(',', $options['viewer']['text']);
     $video_files     = explode(',', $options['viewer']['video']);
@@ -656,14 +655,10 @@ if(($folder_list) || ($file_list) ) {
 
                 if (in_array($item['lext'], $audio_files)) {
                     $modal_attr[] .= "data-type=\"audio\"";
-                } else if ($item['lext'] == 'swf') {
-                    $modal_attr[] .= "data-type=\"flash\"";
                 } else if (in_array($item['lext'], $image_files)) {
                     $modal_attr[] .= "data-type=\"image\"";
                 } else if (in_array($item['lext'], $pdf_files)) {
                     $modal_attr[] .= "data-type=\"pdf\"";
-                } else if (in_array($item['lext'], $quicktime_files)) {
-                    $modal_attr[] .= "data-type=\"quicktime\"";
                 } else if (in_array($item['lext'], $source_files)) {
                     $modal_attr[] .= "data-type=\"source\"";
                 } else if (in_array($item['lext'], $text_files)) {

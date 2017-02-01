@@ -45,12 +45,6 @@ Modal = {
         Modal.setPdfModal(el);
       } else if (type === 'virtual') {
         Modal.setVirtualModal(el);
-
-      // Soon to be removed?
-      } else if (type === 'flash') {
-        Modal.setFlashModal(el);
-      } else if (type === 'quicktime') {
-        Modal.setQuicktimeModal(el);
       }
     });
 
@@ -137,36 +131,6 @@ Modal = {
        modal.html = '<iframe class="embed-responsive-item" src="' + modal.file + '" type="application/pdf" scale="aspect" frameborder="0"></iframe>';
 
        M.modal_body.html(modal.open + modal.html + modal.close);       
-       Modal.setMeta(modal);
-    },
-
-    setFlashModal: function(el) {
-        var modal = {
-            open:  '<div class="embed-responsive embed-responsive-4by3">',
-            close: '</div>',
-            file:  el.attr("href"),
-            uri:   el.get(0).href,
-            size:  el.data("size"),
-       };
-       if (!modal.file) return;
-
-       modal.html = '<object class="embed-responsive-item" type="application/x-shockwave-flash" data="' + modal.file + '"><param name="movie" value="' + modal.file + '"><param name="quality" value="high"></object>';
-
-       M.modal_body.html(modal.open + modal.html + modal.close);
-       Modal.setMeta(modal);
-    },
-
-    setQuicktimeModal: function(el) {
-        var modal = {
-            open:  '<div class="embed-responsive embed-responsive-16by9">',
-            close: '</div>',
-            file:  el.attr("href"),
-            uri:   el.get(0).href,
-            size:  el.data("size"),
-       };
-       modal.html = '<embed class="embed-responsive-item" src="' + modal.file + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"';
-
-       M.modal_body.html(modal.open + modal.html + modal.close);
        Modal.setMeta(modal);
     },
 
