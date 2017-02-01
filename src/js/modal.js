@@ -21,10 +21,13 @@ Modal = {
   },
 
   events: function() {
-    $('#viewer-modal').on('show.bs.modal', function (e) {
-      var el = $(e.relatedTarget);     
+    $(M.viewer).on('shown.bs.modal', function (e) {
+      var el = $(e.relatedTarget);
 
       var type = el.data("type");
+
+      var loader = $(M.modal_body).html();
+      sessionStorage.setItem("ListrLoader" ,loader);
 
       if (type === 'text') {
         Modal.setTextModal(el);
@@ -42,12 +45,6 @@ Modal = {
         Modal.setPdfModal(el);
       } else if (type === 'virtual') {
         Modal.setVirtualModal(el);
-
-      // Soon to be removed?
-      } else if (type === 'flash') {
-        Modal.setFlashModal(el);
-      } else if (type === 'quicktime') {
-        Modal.setQuicktimeModal(el);
       }
     });
 
@@ -73,7 +70,6 @@ Modal = {
        M.modal_body.html('<audio src="' + modal.file + '" id="player" autoplay preload controls>Your browser does not support the audio element.</audio>');
        
        Modal.setMeta(modal);
-       M.viewer.modal("show");
     },
 
     setVideoModal: function(el) {
@@ -89,7 +85,6 @@ Modal = {
        M.modal_body.html('<video src="' + modal.file + '" id="player" autoplay preload controls>Video format or MIME type is not supported</video>');
        
        Modal.setMeta(modal);
-       M.viewer.modal("show");
     },
 
     setImageModal: function(el) {
@@ -105,7 +100,6 @@ Modal = {
        M.modal_body.html('<img src="' + modal.file + '">');
        
        Modal.setMeta(modal);
-       M.viewer.modal("show");
     },
 
     setWebModal: function(el) {
@@ -122,7 +116,6 @@ Modal = {
 
        M.modal_body.html(modal.open + modal.html + modal.close);       
        Modal.setMeta(modal);
-       M.viewer.modal("show");
     },
 
     setPdfModal: function(el) {
@@ -139,39 +132,6 @@ Modal = {
 
        M.modal_body.html(modal.open + modal.html + modal.close);       
        Modal.setMeta(modal);
-       M.viewer.modal("show");
-    },
-
-    setFlashModal: function(el) {
-        var modal = {
-            open:  '<div class="embed-responsive embed-responsive-4by3">',
-            close: '</div>',
-            file:  el.attr("href"),
-            uri:   el.get(0).href,
-            size:  el.data("size"),
-       };
-       if (!modal.file) return;
-
-       modal.html = '<object class="embed-responsive-item" type="application/x-shockwave-flash" data="' + modal.file + '"><param name="movie" value="' + modal.file + '"><param name="quality" value="high"></object>';
-
-       M.modal_body.html(modal.open + modal.html + modal.close);
-       Modal.setMeta(modal);
-       M.viewer.modal("show");
-    },
-
-    setQuicktimeModal: function(el) {
-        var modal = {
-            open:  '<div class="embed-responsive embed-responsive-16by9">',
-            close: '</div>',
-            file:  el.attr("href"),
-            uri:   el.get(0).href,
-            size:  el.data("size"),
-       };
-       modal.html = '<embed class="embed-responsive-item" src="' + modal.file + '" type="video/quicktime" controller="true" showlogo="false" scale="aspect"';
-
-       M.modal_body.html(modal.open + modal.html + modal.close);
-       Modal.setMeta(modal);
-       M.viewer.modal("show");
     },
 
     setVirtualModal: function(el) {
@@ -200,7 +160,6 @@ Modal = {
 
        M.modal_body.html(modal.open + modal.html + modal.close);
        Modal.setMeta(modal);
-       M.viewer.modal("show");
     },
 
   setTextModal: function(el) {
@@ -215,19 +174,8 @@ Modal = {
        if (!modal.file) return;
 
        Modal.setMeta(modal);
-
-       // Load file contents
-       $.ajax(modal.file, {
-           dataType: "text",
-           success: function(contents) {
-                // Inject content 
-                M.modal_body.html(modal.open, modal.close);
-                $("#text").text(decodeFile(contents));
-           }
-       }).done(function() {
-           // show modal
-           $(M.viewer).modal("show");
-       });
+       M.modal_body.html(modal.open, modal.close);
+       $("#text").load(modal.file);
   },
 
     setSourceModal: function(el) {
@@ -244,26 +192,16 @@ Modal = {
         if (!modal.file) return;
 
         Modal.setMeta(modal);
+        M.modal_body.html(modal.open, modal.close);
 
-        // Load file contents
-        $.ajax(modal.file, {
-            dataType: "text",
-            success: function(contents) {
-                // Inject source code
-                M.modal_body.html(modal.open, modal.close);
-                $("#source").text(decodeFile(contents));
-
-                // Fire auto-highlighter
-                $("#source").each(function(i, block) {
-                    if(typeof(hljs) !== 'undefined') hljs.highlightBlock(block);
-                    // adjust pre background-color
-                    var background = $("code").css("background-color");
-                    $("pre").css("background-color", background);
-                });
-            }
-        }).done(function() {
-            // show modal
-            M.viewer.modal("show");
+        $("#source").load(modal.file, function() {
+          // Fire auto-highlighter
+          $("#source").each(function(i, block) {
+              if(typeof(hljs) !== 'undefined') hljs.highlightBlock(block);
+              // adjust pre background-color
+              var background = $("code").css("background-color");
+              $("pre").css("background-color", background);
+          });
         });
   },
 
@@ -302,9 +240,9 @@ Modal = {
   },
 
   reset: function() {
-    var loader = sessionStorage.getItem("ListrLoader")
+    var loader = sessionStorage.getItem("ListrLoader");
 
     // Empty modal body to stop playback in Firefox
-    M.modal_body.empty().html(loader);
+    M.modal_body.html(loader);
   }
 };

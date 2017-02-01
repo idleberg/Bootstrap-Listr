@@ -15,34 +15,34 @@
 <?php echo $table_header?>
           </tr>
         </thead>
+        <tbody>
+<?php echo $table_body?>
+        </tbody>
         <tfoot>
           <tr>
             <td colspan="<?php echo $table_count?>">
-              <small class="float-xs-<?php echo $left?> text-muted" dir="ltr"><?php echo $summary ?></small>
+              <small class="float-<?php echo $left?> text-muted" dir="ltr"><?php echo $summary ?></small>
               <?php echo $kudos?>
             </td>
           </tr>
         </tfoot>
-        <tbody>
-<?php echo $table_body?>
-        </tbody>
       </table>
 <?php echo $responsive_close?>
 <?php if ($options['general']['enable_viewer']) { ?>
-    <div class="modal fade" id="viewer-modal" tabindex="-1" role="dialog" aria-labelledby="file-name" aria-hidden="true">
+    <div id="viewer-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="file-name" aria-hidden="true">
       <div class="modal-dialog <?php echo $modal_size ?>">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close float-xs-<?php echo $right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title text-<?php echo $left?>" id="file-name">&nbsp;</h4>
-            <small class="text-muted" id="file-meta"></small>
+            <button type="button" class="close float-xs-<?php echo $right?>" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
-            <div class="text-xs-center">
+            <div class="text-center">
               <?php echo $icons['load'] ?>
             </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-between">
+            <small id="file-meta" class="text-muted"></small>
             <div class="float-xs-<?php echo $right?>">
               <button type="button" class="btn <?php echo $btn_default ?>" data-dismiss="modal"><?php echo _('Close')?></button>
 <?php if ($options['general']['share_button']) { ?>
