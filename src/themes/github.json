@@ -63,7 +63,7 @@
             ],
             "icon":"octicon-file-zip"
          },
-         "doc":{
+         "document":{
             "extensions":[
                "pdf"
             ],
