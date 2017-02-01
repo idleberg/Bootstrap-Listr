@@ -1,5 +1,6 @@
 const concat = require('gulp-concat');
 const gulp   = require('gulp');
+const jsonmin = require('gulp-jsonmin');
 
 gulp.task('copy', ['copy:config', 'copy:css', 'copy:fonts', 'copy:htaccess', 'copy:js', 'copy:l10n', 'copy:php', 'copy:themes']);
 
@@ -42,6 +43,7 @@ gulp.task('copy:themes', function() {
   gulp.src([
     './src/themes/*.json'
     ])
+  .pipe(jsonmin())
   .pipe(gulp.dest('build/themes/'));
 
 });
