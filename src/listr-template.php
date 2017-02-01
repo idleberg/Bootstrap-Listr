@@ -20,7 +20,7 @@
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="<?php echo $table_count?>" class="justify-content-between">
+            <td colspan="<?php echo $table_count?>">
               <small class="float-<?php echo $left?> text-muted" dir="ltr"><?php echo $summary ?></small>
               <?php echo $kudos?>
             </td>
