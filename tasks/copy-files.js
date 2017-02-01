@@ -64,6 +64,7 @@ gulp.task('copy:htaccess', function() {
   gulp.src([
     'src/root.htaccess'
     ])
+  .pipe(concat('.htaccess'))
   .pipe(gulp.dest('build/'));
 
   gulp.src([
