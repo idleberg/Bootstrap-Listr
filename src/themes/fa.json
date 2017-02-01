@@ -171,7 +171,7 @@
             ],
             "icon":"fa-database"
          },
-         "doc":{  
+         "document":{  
             "extensions":[  
                "abw",
                "doc",
@@ -485,6 +485,12 @@
                "txt"
             ],
             "icon":"fa-file-text-o"
+         },
+         "ticket":{  
+            "extensions":[  
+               "pkpass"
+            ],
+            "icon":"fa-ticket"
          },
          "video":{  
             "extensions":[  
