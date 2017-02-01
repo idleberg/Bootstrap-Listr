@@ -15,6 +15,9 @@
 <?php echo $table_header?>
           </tr>
         </thead>
+        <tbody>
+<?php echo $table_body?>
+        </tbody>
         <tfoot>
           <tr>
             <td colspan="<?php echo $table_count?>">
@@ -23,9 +26,6 @@
             </td>
           </tr>
         </tfoot>
-        <tbody>
-<?php echo $table_body?>
-        </tbody>
       </table>
 <?php echo $responsive_close?>
 <?php if ($options['general']['enable_viewer']) { ?>
