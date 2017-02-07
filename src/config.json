@@ -75,7 +75,7 @@
     "audio":     "m4a,mp3,oga,ogg,webma,wav",
     "image":     "gif,ico,jpe,jpeg,jpg,png,svg,webp",
     "pdf":       "pdf",
-    "source":    "atom,bat,cmd,coffee,css,hml,js,json,less,markdown,md,php,pl,py,rb,rss,sass,scpt,scss,sh,ts,xml,yml",
+    "source":    "atom,bat,cmd,coffee,cjsx,css,hml,js,jsx,json,less,ls,markdown,md,php,pl,py,rb,rss,sass,scpt,scss,sh,ts,xml,yml",
     "text":      "diz,nfo,txt",
     "video":     "mp4,m4v,ogv,webm",
     "virtual":   "flickr,soundcloud,vimeo,youtube",
