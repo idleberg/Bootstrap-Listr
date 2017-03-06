@@ -39,6 +39,7 @@
           "lzh",
           "lz",
           "lzma",
+          "nupkg",
           "pak",
           "phar",
           "pkg",
@@ -434,6 +435,7 @@
           "php",
           "php3",
           "pl",
+          "ps1",
           "py",
           "rb",
           "rhtml",
@@ -561,7 +563,6 @@
           "exe",
           "msi",
           "pif",
-          "ps1",
           "scr",
           "sys"
         ],
