@@ -70,6 +70,19 @@
         ],
         "icon": "octicon-file-pdf"
       },
+      "downloads": {
+        "extensions": [
+          "!bt",
+          "!qb",
+          "!ut",
+          "crdownload",
+          "download",
+          "opdownload",
+          "part",
+          "partial"
+        ],
+        "icon": "octicon-cloud-download"
+      },
       "flickr": {
         "extensions": [
           "flickr"

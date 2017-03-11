@@ -226,7 +226,8 @@
           "crdownload",
           "download",
           "opdownload",
-          "part"
+          "part",
+          "partial"
         ],
         "icon": "fa-cloud-download"
       },
