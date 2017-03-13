@@ -32,8 +32,8 @@
     "google_font":     null,
     "stupid_table":    "https://cdnjs.cloudflare.com/ajax/libs/stupidtable/0.0.1/stupidtable.min.js",
     "jquery_searcher": "https://cdnjs.cloudflare.com/ajax/libs/jquery-searcher/0.3.0/jquery.searcher.min.js",
-    "highlight_js":    "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js",
-    "highlight_css":   "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/%theme%.min.css",
+    "highlight_js":    "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js",
+    "highlight_css":   "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/%theme%.min.css",
     "bootlint":        "https://maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js",
     "append_css":      [
       null
