@@ -216,6 +216,7 @@
           "sublime-syntax",
           "sublime-theme",
           "ts",
+          "tsx",
           "wsh",
           "xml",
           "yml"
