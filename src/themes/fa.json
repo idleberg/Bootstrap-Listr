@@ -67,7 +67,9 @@
           "app",
           "ipa",
           "ipsw",
-          "saver"
+          "saver",
+          "scpt",
+          "scptd"
         ],
         "icon": "fa-apple"
       },
@@ -445,8 +447,6 @@
           "sass",
           "scala",
           "scm",
-          "scpt",
-          "scptd",
           "scss",
           "sh",
           "shtml",

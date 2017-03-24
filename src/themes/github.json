@@ -12,7 +12,9 @@
           "app",
           "ipa",
           "ipsw",
-          "saver"
+          "saver",
+          "scpt",
+          "scptd"
         ],
         "icon": "octicon-file-binary"
       },
@@ -169,8 +171,6 @@
           "sass",
           "scala",
           "scm",
-          "scpt",
-          "scptd",
           "scss",
           "sh",
           "shtml",
