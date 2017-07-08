@@ -86,9 +86,9 @@ function set_header($bootstrap_css) {
     // Prepend JS
     foreach($options['assets']['prepend_js'] as $prepend_js) {
         if (is_array($prepend_js)) {
-             $footer .= "  <script type=\"text/javascript\" src=\"".$prepend_js[0]."\" ".$prepend_js[1]."></script>" . PHP_EOL;
+             $footer .= "  <script type=\"text/javascript\" src=\"".$prepend_js[0]."\" ".$prepend_js[1]." defer></script>" . PHP_EOL;
         } else if ($prepend_js !== null) {
-            $footer .= "  <script type=\"text/javascript\" src=\"$prepend_js\"></script>" . PHP_EOL;
+            $footer .= "  <script type=\"text/javascript\" src=\"$prepend_js\" defer></script>" . PHP_EOL;
         }
     }
 
@@ -117,40 +117,40 @@ function set_footer(){
 
     // jQuery
     if ( ($options['general']['enable_sort']) || ($options['general']['enable_viewer']) ) {
-        $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['jquery_js'] . "\"></script>" . PHP_EOL;
+        $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['jquery_js'] . "\" defer></script>" . PHP_EOL;
     }
 
     // Dropbox Dropins
     if( ($options['general']['enable_viewer']) && ($options['general']['share_button']) && ($options['keys']['dropbox'] !== null ) ){
-        $footer .= "  <script type=\"text/javascript\" src=\"https://www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"" . $options['keys']['dropbox'] . "\"></script>" . PHP_EOL;
+        $footer .= "  <script type=\"text/javascript\" src=\"https://www.dropbox.com/static/api/2/dropins.js\" id=\"dropboxjs\" data-app-key=\"" . $options['keys']['dropbox'] . "\" async></script>" . PHP_EOL;
     }
 
     $protocol = get_protocol();
 
     if ($options['general']['concat_assets'] === true) {
         if ($options['general']['enable_viewer'] === true) {
-            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
+            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\" defer></script>" . PHP_EOL;
         }
-        $footer    .= "  <script type=\"text/javascript\" src=\"".$protocol.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.pack.js\"></script>" . PHP_EOL;
+        $footer    .= "  <script type=\"text/javascript\" src=\"".$protocol.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/assets/js/listr.pack.js\" defer></script>" . PHP_EOL;
     } else {
 
         // Stupid Table
         if ( ($options['general']['enable_sort'] === true) && ($options['assets']['stupid_table']) ) {
-           $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['stupid_table'] . "\"></script>" . PHP_EOL;
+           $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['stupid_table'] . "\" defer></script>" . PHP_EOL;
         }
 
         // jQuery Searcher
         if ( ($options['general']['enable_search'] === true) && ($options['assets']['jquery_searcher']) ) {
-            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['jquery_searcher'] . "\"></script>" . PHP_EOL;
+            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['jquery_searcher'] . "\" defer></script>" . PHP_EOL;
         }
 
         // Modal Viewer
         if ($options['general']['enable_viewer'] === true) {
-            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\"></script>" . PHP_EOL;
+            $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootstrap_js'] . "\" defer></script>" . PHP_EOL;
 
             // Highlighter.js
             if ( ($options['general']['enable_highlight'] === true) && ($options['assets']['highlight_css']) && ($options['assets']['highlight_js']) ) {
-                $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['highlight_js'] . "\"></script>" . PHP_EOL;
+                $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['highlight_js'] . "\" defer></script>" . PHP_EOL;
             }
         }
         
@@ -160,15 +160,15 @@ function set_footer(){
     // Append JS
     foreach($options['assets']['append_js'] as $append_js) {
         if (is_array($append_js)) {
-             $footer .= "  <script type=\"text/javascript\" src=\"".$append_js[0]."\" ".$append_js[1]."></script>" . PHP_EOL;
+             $footer .= "  <script type=\"text/javascript\" src=\"".$append_js[0]."\" ".$append_js[1]." defer></script>" . PHP_EOL;
         } else if ($append_js !== null) {
-            $footer .= "  <script type=\"text/javascript\" src=\"$append_js\"></script>" . PHP_EOL;
+            $footer .= "  <script type=\"text/javascript\" src=\"$append_js\" defer></script>" . PHP_EOL;
         }
     }
 
     // Bootlint
     if ($options['debug']['bootlint'] === true) {
-        $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootlint'] . "\"></script>" . PHP_EOL;
+        $footer .= "  <script type=\"text/javascript\" src=\"" .$server.$options['assets']['bootlint'] . "\" defer></script>" . PHP_EOL;
     }
 
     return $footer;
