@@ -1,0 +1,14 @@
+{
+	// Biome formats everything, as `pnpm format` does
+	"editor.defaultFormatter": "biomejs.biome",
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.biome": "explicit",
+		"source.organizeImports.biome": "explicit"
+	},
+	// Only the daisyUI theme is written for Tailwind
+	"files.associations": {
+		"**/themes/daisyui/*.css": "tailwindcss",
+		"listr.config.json": "jsonc"
+	}
+}

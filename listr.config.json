@@ -1,0 +1,82 @@
+{
+	// Look of the page: a folder in src/lib/themes, like "bulma" or "bootswatch/darkly";
+	// default "bootstrap". An unknown name fails with the list of valid ones, as do the
+	// two options below
+	"theme": "bootstrap",
+
+	// Colors of highlighted source code in the file viewer, with any theme: a theme in
+	// src/lib/code-themes.ts; default "github"
+	"codeTheme": "github",
+
+	// File icons, with any theme: a folder in src/lib/icons; default "bootstrap"
+	"icons": "bootstrap",
+
+	// When files in the open folder change: "banner" (default) offers a reload, "refresh"
+	// reloads at once
+	"onChange": "banner",
+
+	// Entries per page; 0 (default) lists the whole folder on one page
+	"pageSize": 0,
+
+	// true (default) lists folders above files, like Windows Explorer; false mixes them,
+	// like macOS Finder
+	"foldersFirst": true,
+
+	// Alternate row shading; default false
+	"striped": false,
+
+	// Modified column as "relative" (default), like "3 days ago", or "absolute", like
+	// "2024-05-01 13:37:00". The tooltip shows the other one
+	"dates": "relative",
+
+	// Names left out of the listing and not served, even to someone who knows the path, as
+	// a glob pattern or a list of them. Setting it replaces the default list of system files
+	// (.DS_Store, Thumbs.db, .git, …), so add those back if you still want them gone
+
+	// More names to hide the same way, on top of the dot-files, as a glob pattern or a list
+	"ignoredFiles": [
+		".apdisk",
+		".AppleDB",
+		".AppleDesktop",
+		".AppleDouble",
+		".bzr",
+		".DAV",
+		".DocumentRevisions-V100",
+		".DS_Store",
+		".fseventsd",
+		".git",
+		".hg",
+		".htaccess",
+		".htpasswd",
+		".LSOverride",
+		".Spotlight-V100",
+		".svn",
+		".TemporaryItems",
+		".Trashes",
+		".VolumeIcon.icns",
+		"__MACOSX",
+		"ehthumbs.db",
+		"Network Trash Folder",
+		"Temporary Items",
+		"Thumbs.db",
+		"thumbs.tps"
+	],
+
+	// of them; default none
+	"hiddenFiles": [],
+
+	// Names starting with a dot are listed but hidden until revealed by holding Alt or
+	// adding ?reveal to the URL; default true
+	"hideDotFiles": true,
+
+	// Text direction: "ltr" (default) or "rtl" for right-to-left languages
+	"direction": "ltr",
+
+	// HTML files open in the viewer as rendered pages, with scripts blocked (true, default)
+	// or as highlighted source (false)
+	"renderHtml": true,
+
+	// One page title for every folder instead of "Index of <folder>"; null (default) keeps
+	// the folder name
+	"customTitle": null
+}

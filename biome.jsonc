@@ -1,0 +1,80 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+	// Written by pnpm and SvelteKit, not by hand.
+	"files": { "includes": ["**", "!pnpm-lock.yaml", "!.svelte-kit", "!__public"] },
+	"formatter": { "indentStyle": "tab", "lineWidth": 100 },
+	"javascript": {
+		"formatter": { "quoteStyle": "single", "trailingCommas": "all" }
+	},
+	"html": { "experimentalFullSupportEnabled": true },
+	// The daisyUI theme is written for Tailwind.
+	"css": { "parser": { "tailwindDirectives": true } },
+	"linter": {
+		"rules": {
+			"preset": "all",
+			"style": {
+				"noDefaultExport": "off",
+				"useNamingConvention": "off",
+				"noTernary": "off",
+				"useExportsLast": "off",
+				"useGlobalThis": "off",
+				"noJsxLiterals": "off",
+				"noHeadElement": "off"
+			},
+			"correctness": {
+				"noUnresolvedImports": "off",
+				"useImportExtensions": "off",
+				// `preset: all` enables Qwik rules, which misfire on Svelte scripts.
+				"useQwikValidLexicalScope": "off"
+			},
+			"complexity": {
+				"noExcessiveLinesPerFunction": "off"
+			},
+			"performance": {
+				// Svelte components run once; inline handlers aren't re-created.
+				"noJsxPropsBind": "off"
+			}
+		},
+		"domains": { "svelte": "all" }
+	},
+	"overrides": [
+		{
+			"includes": ["src/lib/server/**", "src/hooks.server.ts", "vite.config.ts"],
+			"linter": {
+				"rules": {
+					"correctness": { "noNodejsModules": "off" },
+					"suspicious": { "noConsole": "off" },
+					"style": { "noProcessEnv": "off" },
+					"performance": { "noAwaitInLoops": "off" }
+				}
+			}
+		},
+		{
+			// The config is read with strip-json-comments, so users can annotate it.
+			"includes": ["listr.config.json"],
+			"json": { "parser": { "allowComments": true } }
+		},
+		{
+			// SvelteKit declares its app types in `namespace App`.
+			"includes": ["src/app.d.ts"],
+			"linter": { "rules": { "style": { "noNamespace": "off" } } }
+		},
+		{
+			// Test fixtures are made of arbitrary values.
+			"includes": ["**/*.test.ts", "**/*.spec.ts"],
+			"linter": { "rules": { "style": { "noMagicNumbers": "off" } } }
+		},
+		{
+			// Biome knows CSS functions, not Sass ones like map-get-multiple().
+			"includes": ["**/*.scss"],
+			"linter": { "rules": { "correctness": { "noUnknownFunction": "off" } } }
+		},
+		{
+			// Components are PascalCase; SvelteKit routes start with `+`.
+			"includes": ["**/*.svelte"],
+			"linter": { "rules": { "style": { "useFilenamingConvention": "off" } } }
+		}
+	],
+	"assist": { "actions": { "source": { "organizeImports": "on" } } }
+}

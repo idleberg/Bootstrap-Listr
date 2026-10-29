@@ -1,0 +1,67 @@
+// Only the parts of Bootstrap the class map in index.ts uses; add a partial or
+// utility here when a new class there doesn't take effect
+
+// Dark mode follows the system, so it needs no script or toggle
+$color-mode-type: media-query;
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+
+// Every theme color gets its own button, alert, link and custom properties;
+// links, the active page and Download use primary, the change banner warning,
+// the viewer's Close button secondary
+$theme-colors: map-get-multiple($theme-colors, ("primary", "secondary", "warning"));
+// Colored tables (.table-primary etc.)
+$table-variants: ();
+
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// Utility groups by their key in bootstrap/scss/_utilities.scss
+$utilities: map-get-multiple(
+	$utilities,
+	(
+		"align-items",
+		"color",
+		"display",
+		"font-style",
+		"justify-content",
+		"margin-bottom",
+		"margin-end",
+		"margin-start",
+		"opacity",
+		"padding-y",
+		"text-align",
+		"text-decoration"
+	)
+);
+
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms/form-control";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/modal";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/helpers/colored-links";
+@import "bootstrap/scss/helpers/text-truncation";
+@import "bootstrap/scss/utilities/api";
+
+// Bootstrap lays out .modal as a block, where .modal-dialog fills up to
+// --bs-modal-width. Core's <dialog> is a flex column (for Bulma), and from sm
+// up Bootstrap centers the frame with auto margins, which stop a flex item from
+// stretching; it would shrink to its content. Below sm the margins are fixed,
+// so it stretches as in Bootstrap
+@include media-breakpoint-up(sm) {
+	.modal-dialog {
+		width: 100%;
+	}
+}

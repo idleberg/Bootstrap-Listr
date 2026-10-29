@@ -1,0 +1,107 @@
+// Only the parts of Bulma the class map in index.ts uses; add a module here
+// when a new class there doesn't take effect
+@use "bulma/sass/utilities/initial-variables" as iv;
+@use "bulma/sass/utilities/mixins" as mx;
+
+// Every color gets its own variables, button, notification and table row; keep
+// text for the body text, white for the viewer's close button, link for links
+// and Download, warning for the change banner. Every shade gets its own
+// variables and helpers; keep grey for muted text
+@use "bulma/sass/utilities" with (
+	$colors: (
+		"text": iv.$grey-dark,
+		"white": (
+			iv.$white,
+			iv.$black,
+		),
+		"link": iv.$blue,
+		"warning": iv.$yellow,
+	),
+	$shades: (
+		"grey": iv.$grey,
+	)
+);
+
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/themes/dark";
+@use "bulma/sass/themes/light";
+@use "bulma/sass/themes/setup";
+@use "bulma/sass/base/minireset";
+@use "bulma/sass/base/generic";
+@use "bulma/sass/layout/container";
+@use "bulma/sass/elements/button";
+@use "bulma/sass/elements/delete";
+@use "bulma/sass/elements/notification";
+@use "bulma/sass/elements/table";
+@use "bulma/sass/form/input-textarea";
+@use "bulma/sass/components/breadcrumb";
+@use "bulma/sass/components/modal";
+@use "bulma/sass/components/pagination";
+@use "bulma/sass/helpers/flexbox";
+@use "bulma/sass/helpers/overflow";
+@use "bulma/sass/helpers/spacing" with (
+	$spacing-values: (
+		"2": 0.5rem,
+		"3": 0.75rem,
+		"4": 1rem,
+		"auto": auto,
+	)
+);
+@use "bulma/sass/helpers/typography";
+@use "bulma/sass/helpers/visibility";
+
+// Dark mode follows the system, so it needs no script or toggle. bulma/sass/themes
+// also writes both sets for [data-theme] and .theme-* toggles, which listr lacks
+:root {
+	@include light.light-theme;
+	@include setup.setup-theme;
+}
+
+@include cv.system-theme($name: "dark") {
+	@include dark.dark-theme;
+}
+
+// helpers/color makes some 25 rules per color for each of 21 lightness steps,
+// about 180 kB; these are the two the class map uses, as Bulma writes them
+.has-text-grey {
+	// biome-ignore lint/complexity/noImportantStyles: helpers beat component colors
+	color: iv.$grey !important;
+}
+
+.has-text-current {
+	// biome-ignore lint/complexity/noImportantStyles: helpers beat component colors
+	color: currentColor !important;
+}
+
+// Bulma has no class for these
+// Right-aligned, a third of the width from tablets up, like Bootstrap-Listr
+.listr-search {
+	@include mx.tablet {
+		width: 33.3333%;
+		margin-inline-start: auto;
+	}
+}
+
+// Bootstrap's reboot centers every svg; Bulma leaves them on the baseline
+.listr-icon {
+	vertical-align: middle;
+}
+
+// Muted when revealed, like Bootstrap-Listr's hidden files
+.listr-dotfile {
+	opacity: 0.5;
+}
+
+// Long names end in an ellipsis instead of pushing out the close button
+.listr-truncate {
+	flex-shrink: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// The current folder is text, not a link, so it lacks the links' padding
+.breadcrumb li.is-active::before {
+	margin-inline-end: cv.getVar("breadcrumb-item-padding-horizontal");
+}

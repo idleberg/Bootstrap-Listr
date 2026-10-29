@@ -1,100 +1,75 @@
-# Bootstrap Listr
+# Listr
 
-[![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)
-[![GitHub release](https://img.shields.io/github/release/idleberg/Bootstrap-Listr.svg?style=flat-square)](https://github.com/idleberg/Bootstrap-Listr/releases)
-[![Travis](https://img.shields.io/travis/idleberg/Bootstrap-Listr.svg?style=flat-square)](https://travis-ci.org/idleberg/Bootstrap-Listr)
-[![David](https://img.shields.io/david/idleberg/Bootstrap-Listr.svg?style=flat-square)](https://david-dm.org/idleberg/Bootstrap-Listr#info=dependencies)
-[![David](https://img.shields.io/david/dev/idleberg/Bootstrap-Listr.svg?style=flat-square)](https://david-dm.org/idleberg/Bootstrap-Listr?type=dev)
+> A themeable directory listing for the web, built with SvelteKit.
 
-A replacement for default server indices, Bootstrap Listr beautifully displays folders and files in the browser. It is built upon the [Bootstrap](http://getbootstrap.com) framework and [Font Awesome](http://fortawesome.github.io/Font-Awesome/) icons, optionally [Bootswatch](http://bootswatch.com/) themes can be used.
+[![License](https://img.shields.io/github/license/idleberg/Bootstrap-Listr?color=blue&style=for-the-badge)](LICENSE)
+[![Build](https://img.shields.io/github/actions/workflow/status/idleberg/Bootstrap-Listr/ci.yml?style=for-the-badge)](https://github.com/idleberg/Bootstrap-Listr/actions)
+
+## Features
+
+- themes for Bootstrap, all Bootswatch themes, Bulma and daisyUI
+- Bootstrap, Octicons or Phosphor icons
+- file viewer with syntax highlighting and a choice of code themes
+- live notices when files change, as a banner or an automatic reload
+- streamed downloads with range requests, so videos can seek
+- right-to-left layout
 
 ## Installation
 
-Download the [latest release](https://github.com/idleberg/Bootstrap-Listr/releases/latest) or clone the repository.
+Requires Node 24 and pnpm.
 
-## Building
-
-We use [Gulp](http://gulpjs.com/) tasks to configure and build your application. Make sure to have gulp installed globally as well as all local Node dependencies.
-
-```bash
-# Install Gulp (optional)
-npm install -g gulp
-
-# Install dependencies
-yarn || npm install
+```sh
+pnpm install
+pnpm build
 ```
 
-You can now run the build script to create a clean copy of Bootstrap Listr:
+## Usage
 
-```bash
-# Concatenated assets
-npm run build
+Set `LISTR_ROOT` to the folder you want to serve, then start the server:
 
-# Individual assets
-npm run build:http2
+```sh
+LISTR_ROOT=/path/to/files node build
 ```
 
-Alternatively, you can now run the individual Gulp tasks. See `gulp help` for a list of available tasks.
+The server listens on port 3000. `LISTR_ROOT` can be relative to the working directory and defaults to `__public`.
 
-## Deployment
+To run it on Bun instead, use `bun build/index.js`, since `bun build` is Bun's bundler.
 
-Deploy `build/` to your server. All files that should be accessible in the browser go into the `_public` folder (you can define a different folder in the `config.json`). Depending on your Apache settings, you might have to uncomment the `RewriteBase` setting in the `.htaccess` file (maybe add folder name after the slash.)
+> [!IMPORTANT]
+> Listr only works with [`@sveltejs/adapter-node`](https://svelte.dev/docs/kit/adapter-node). It reads the served folder from disk, watches it for changes and holds connections open to push change notices, so it needs a long-running server. Static, serverless and edge adapters can't do that. Other runtimes are fine as long as they run the adapter-node build, as Bun does.
 
-## Options
+### Docker
 
-You can configure a number of settings in the file `config.json`:
+The image serves `/srv` on port 3000:
 
-* Optional columns for size and modified date
-* Document icons
-* File viewer for images, videos, audio, source code, PDF and HTML
-* Search box to filter results
-* Column sorting
-* Responsive tables
-* List of ignored files
-* List of hidden files
-* Default location for JavaScript libraries and style sheets (CDN or local)
-* Syntax highlighting in file viewer
-* Save to Dropbox
-* Share buttons
-* Google Analytics
-* Language
-* Virtual files
+```sh
+docker build -t listr .
+docker run -p 3000:3000 -v ./files:/srv:ro -v ./listr.config.json:/app/listr.config.json:ro listr
+```
 
-Please visit the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki/Understanding-config.json) for details.
+## Configuration
 
-## Support
+Listr reads `listr.config.json` from the working directory at startup, so restart after changing it. Comments are allowed, and every option is optional.
 
-It's always a good start to consult the [FAQ](https://github.com/idleberg/Bootstrap-Listr/wiki/FAQ) or the [project wiki](https://github.com/idleberg/Bootstrap-Listr/wiki) in general.
+| Option         | Default      | Description                                                                                    |
+| -------------- | ------------ | ---------------------------------------------------------------------------------------------- |
+| `theme`        | `bootstrap`  | `bootstrap`, `bootstrap-alpha`, `bulma`, `daisyui` or `bootswatch/<name>`                      |
+| `codeTheme`    | `github`     | `atom-one`, `ayu`, `catppuccin`, `github`, `material`, `night-owl`, `rose-pine` or `solarized` |
+| `icons`        | `bootstrap`  | `bootstrap`, `octicons` or `phosphor`                                                          |
+| `onChange`     | `banner`     | When the open folder changes, offer a reload (`banner`) or reload at once (`refresh`)          |
+| `pageSize`     | `0`          | Entries per page; `0` lists the whole folder on one page                                       |
+| `foldersFirst` | `true`       | List folders above files                                                                       |
+| `striped`      | `false`      | Alternate row shading                                                                          |
+| `dates`        | `relative`   | Show modification dates as `relative` ("3 days ago") or `absolute`                             |
+| `ignoredFiles` | system files | Glob patterns for names that are neither listed nor served. Setting it replaces the defaults   |
+| `hideDotFiles` | `true`       | Hide dot-files until <kbd>Alt</kbd> is held or `?reveal` is added to the URL                   |
+| `hiddenFiles`  | `[]`         | More glob patterns to hide like dot-files                                                      |
+| `direction`    | `ltr`        | Text direction, `ltr` or `rtl`                                                                 |
+| `renderHtml`   | `true`       | Render HTML files in the viewer, with scripts blocked, or show them as source                  |
+| `customTitle`  | `null`       | Page title for every folder instead of "Index of …"                                            |
 
-### Issues
-
-Report issue or suggest new features only on [GitHub](https://github.com/idleberg/Bootstrap-Listr/issues)!
-
-### Contribute
-
-To contribute patches, follow this standard procedure:
-
-1. Fork the repository
-2. Make your changes to the development branch
-3. Communicate your changes
-4. Send a pull request with your changes
-
-### Talk
-
-For user specific problems or just to have a chat with the developers, feel free to join our [Gitter](https://gitter.im/idleberg/Bootstrap-Listr) channel.
-
-## Credits
-
-This project is built upon—or includes—code from the following people:
-
-* Greg Johnson - [PHPDL lite](http://web.archive.org/web/20130920165711/http://greg-j.com/phpdl/) [Internet Archive]
-* Na Wong - [Listr](http://nadesign.net/listr/)
-
-Contributors:
-
-* [@melalj](https://github.com/melalj) - subfolder support
-* [@Zerquix18](https://github.com/Zerquix18) - security fixes
+See [`listr.config.json`](listr.config.json) for an example.
 
 ## License
 
-This work is licensed under the [The MIT License](LICENSE.md).
+This work is licensed under [The MIT License](LICENSE).

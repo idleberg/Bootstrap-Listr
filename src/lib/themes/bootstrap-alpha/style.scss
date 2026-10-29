@@ -1,0 +1,67 @@
+// Bootstrap 6, an alpha installed as bootstrap-alpha next to Bootstrap 5. Only
+// the parts the class map in index.ts uses; add a module here when a new class
+// there doesn't take effect. Dark mode follows the system by default
+@use "sass:map";
+@use "bootstrap-alpha/scss/config" as *;
+@use "bootstrap-alpha/scss/functions" as *;
+@use "bootstrap-alpha/scss/utilities" as *;
+
+@use "bootstrap-alpha/scss/root";
+@use "bootstrap-alpha/scss/content/reboot";
+@use "bootstrap-alpha/scss/content/tables";
+@use "bootstrap-alpha/scss/layout/containers";
+@use "bootstrap-alpha/scss/layout/grid";
+@use "bootstrap-alpha/scss/forms/form-control";
+@use "bootstrap-alpha/scss/buttons/button";
+@use "bootstrap-alpha/scss/buttons/close";
+@use "bootstrap-alpha/scss/alert";
+@use "bootstrap-alpha/scss/breadcrumb";
+@use "bootstrap-alpha/scss/pagination";
+@use "bootstrap-alpha/scss/dialog";
+@use "bootstrap-alpha/scss/helpers/theme-colors";
+@use "bootstrap-alpha/scss/helpers/text-truncation";
+
+// Utility groups by their key in bootstrap-alpha/scss/_utilities.scss, narrowed
+// the way bootstrap-grid.scss does it
+// stylelint-disable-next-line scss/dollar-variable-default
+$utilities: map-get-multiple(
+	$utilities,
+	(
+		"align-items",
+		"display",
+		"fg",
+		"font-style",
+		"height",
+		"justify-content",
+		"margin-bottom",
+		"margin-end",
+		"margin-start",
+		"opacity",
+		"padding-y",
+		"text-align",
+		"text-decoration",
+		"width"
+	)
+);
+
+@use "bootstrap-alpha/scss/utilities/api";
+
+// Bootstrap 6's .dialog is the <dialog> itself, hidden until it's [open]. Core's
+// <dialog> is a bare full-screen layer, so the box is the frame inside it, which
+// never gets [open]. Unlayered, so it wins over Bootstrap's layers
+.dialog {
+	visibility: visible;
+}
+
+// Bootstrap 6 draws breadcrumb dividers as elements of their own between the
+// items; core's markup has none, so they're drawn before every item but the first
+.breadcrumb-item + .breadcrumb-item::before {
+	align-self: center;
+	width: var(--breadcrumb-divider-width);
+	height: var(--breadcrumb-divider-height);
+	margin-inline: 0.5rem;
+	content: "";
+	background-color: var(--breadcrumb-divider-color);
+	// biome-ignore lint/suspicious/useBaseline: Bootstrap 6 draws its own icons with masks
+	mask: var(--breadcrumb-divider-icon) center / contain no-repeat;
+}

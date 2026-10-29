@@ -1,0 +1,42 @@
+[tools]
+node = "24"
+hk = "latest"
+pkl = "latest"
+
+[settings]
+node.corepack = true
+
+[env]
+HK_MISE = 1
+COREPACK_ENABLE_DOWNLOAD_PROMPT = 0
+_.path = ["{{config_root}}/node_modules/.bin"]
+
+[hooks]
+postinstall = """
+  hk install --mise
+  pnpm install --frozen-lockfile
+"""
+
+[tasks.check]
+description = "Typecheck the app"
+run = "pnpm check"
+
+[tasks.lint]
+description = "Lint all sources"
+run = "pnpm exec biome lint ."
+
+[tasks.format]
+description = "Format all sources in place"
+run = "pnpm exec biome check --write ."
+
+[tasks.'format:check']
+description = "Fail if any source is unformatted"
+run = "pnpm exec biome format ."
+
+[tasks.test]
+description = "Run the unit tests"
+run = "pnpm test"
+
+[tasks.build]
+description = "Build the app"
+run = "pnpm build"

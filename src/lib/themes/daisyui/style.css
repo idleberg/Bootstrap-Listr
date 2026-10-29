@@ -1,0 +1,27 @@
+/* Tailwind keeps only the classes it finds, and the class map in index.ts is
+   where this theme's classes live */
+@import "tailwindcss" source(none);
+@source "./index.ts";
+
+/* Light and dark follow the system, so it needs no script or toggle */
+@plugin "daisyui";
+
+nav:has(> .listr-breadcrumbs) {
+	@apply breadcrumbs;
+}
+
+/* daisyUI hides the backdrop for an overlay of its own, which core turns off */
+.modal::backdrop {
+	display: block;
+}
+
+/* Preflight leaves links looking like text */
+@layer base {
+	a:not(.btn) {
+		color: var(--color-primary);
+	}
+
+	a:not(.btn):hover {
+		text-decoration: underline;
+	}
+}
