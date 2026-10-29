@@ -1,9 +1,0 @@
-{
-  "name": "bootstrap-listr",
-  "version": "2.3.0-alpha.6",
-  "private": true,
-  "homepage": "https://github.com/idleberg/Bootstrap-Listr",
-  "dependencies": {
-    "jquery-stupid-table": "^1.0.1"
-  }
-}

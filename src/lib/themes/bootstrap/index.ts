@@ -1,0 +1,50 @@
+import type { Theme } from '../theme.ts';
+import stylesheet from './style.scss?url';
+
+export default {
+	name: 'Bootstrap 5',
+	stylesheet,
+	classes: {
+		container: 'container py-3',
+		alert: 'alert alert-warning d-flex align-items-center justify-content-between',
+		alertButton: 'btn btn-sm btn-warning',
+		// Right-aligned, a third of the width from md up, like Bootstrap-Listr
+		search: 'col-sm-5 col-md-4 ms-auto mb-3',
+		searchInput: 'form-control',
+		tableWrapper: 'table-responsive',
+		table: 'table table-hover',
+		tableStriped: 'table-striped',
+		count: 'text-end text-body-secondary',
+		// Muted when revealed, like Bootstrap-Listr's hidden files
+		dotfile: 'opacity-50',
+		sortLink: 'link-body-emphasis text-decoration-none',
+		size: 'text-end',
+		modified: 'text-end',
+		empty: 'fst-italic text-body-secondary',
+		summary: 'small text-body-secondary',
+		pagination: 'pagination justify-content-center',
+		pageItem: 'page-item',
+		pageItemActive: 'active',
+		pageItemDisabled: 'disabled',
+		pageLink: 'page-link',
+		pageLinkActive: '',
+		pageLinkDisabled: '',
+		pageEllipsis: 'page-link',
+		breadcrumb: 'breadcrumb',
+		breadcrumbItem: 'breadcrumb-item',
+		breadcrumbItemActive: 'active',
+		// Bootstrap's modal markup on a native <dialog>, without Bootstrap's JavaScript
+		dialog: 'modal',
+		dialogFrame: 'modal-dialog modal-lg',
+		dialogContent: 'modal-content',
+		dialogHeader: 'modal-header',
+		dialogTitle: 'modal-title h5 text-truncate',
+		dialogClose: 'btn-close',
+		dialogBody: 'modal-body',
+		dialogFooter: 'modal-footer',
+		dialogMeta: 'me-auto text-body-secondary',
+		dialogButton: 'btn btn-secondary',
+		dialogDownload: 'btn btn-primary',
+		entryIcon: 'me-2 text-body-secondary',
+	},
+} satisfies Theme;

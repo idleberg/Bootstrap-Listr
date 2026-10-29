@@ -1,0 +1,28 @@
+amends "package://github.com/jdx/hk/releases/download/v2.5.0/hk@2.5.0#/Config.pkl"
+import "package://github.com/jdx/hk/releases/download/v2.5.0/hk@2.5.0#/Builtins.pkl"
+
+local linters = new Mapping<String, Step> {
+    // pnpm exec runs the project's own Biome, whatever else is on PATH. It lints and
+    // formats JS, TS, JSON, CSS, and the markup in .svelte files.
+    ["biome"] = (Builtins.biome) {
+        // The builtin only matches JS, TS and JSON.
+        glob = List("**/*.{js,ts,json,jsonc,css,html,svelte}")
+        check = "pnpm exec biome check --no-errors-on-unmatched --files-ignore-unknown=true {{ files }}"
+        fix = "pnpm exec biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {{ files }}"
+    }
+}
+
+hooks {
+    ["pre-commit"] {
+        fix = true
+        stash = "git"
+        steps = linters
+    }
+    ["fix"] {
+        fix = true
+        steps = linters
+    }
+    ["check"] {
+        steps = linters
+    }
+}

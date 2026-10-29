@@ -1,0 +1,8 @@
+.DS_Store
+.env
+.env.*
+.svelte-kit
+build
+node_modules
+__public
+listr.config.json

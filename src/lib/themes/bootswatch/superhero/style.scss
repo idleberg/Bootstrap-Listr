@@ -1,0 +1,9 @@
+// A Bootswatch theme over the Bootstrap 5 theme, like Minty
+
+@import "bootswatch/dist/superhero/variables";
+
+// No Google Fonts, as in Minty
+$web-font-path: false;
+
+@import "../../bootstrap/style";
+@import "bootswatch/dist/superhero/bootswatch";

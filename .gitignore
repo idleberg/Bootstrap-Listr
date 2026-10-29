@@ -1,12 +1,29 @@
-*.old
-.sass-cache
-bower_components/
-build/
-generators/
-node_modules/
-npm-debug.log*
-src/l10n/ja_JA/
-src/parsedown
-tasks/swatch4.js
-todo.md
-vendor/
+# Package Manager
+node_modules
+package-lock.json
+
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Project-specific
+DESIGN.md
+__public/private

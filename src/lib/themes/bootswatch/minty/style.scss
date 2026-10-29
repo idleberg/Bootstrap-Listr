@@ -1,0 +1,11 @@
+// A Bootswatch theme over the Bootstrap 5 theme: Minty's variables first, so
+// they win over Bootstrap's !default ones, then the base, then Minty's rules
+
+@import "bootswatch/dist/minty/variables";
+
+// Minty loads Montserrat from Google Fonts; headings and buttons fall back to
+// the system font unless it's installed
+$web-font-path: false;
+
+@import "../../bootstrap/style";
+@import "bootswatch/dist/minty/bootswatch";
