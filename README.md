@@ -7,9 +7,9 @@
 
 ## Features
 
-- themes for Bootstrap, all Bootswatch themes, Bulma and daisyUI
-- Bootstrap, Octicons or Phosphor icons
-- file viewer with syntax highlighting and a choice of code themes
+- themes for [Bootstrap](https://getbootstrap.com/), all [Bootswatch](http://bootswatch.com/) themes, [Bulma](https://bulma.io/) and [daisyUI](https://daisyui.com/)
+- [Bootstrap](https://icons.getbootstrap.com/), [Octicons](https://primer.style/octicons/) or [Phosphor](https://phosphoricons.com/) icons
+- file viewer with [syntax highlighting](http://twinkleplop.pngwn.at/) and a choice of code themes
 - live notices when files change, as a banner or an automatic reload
 - streamed downloads with range requests, so videos can seek
 - right-to-left layout
@@ -19,7 +19,7 @@
 Requires Node 24 and pnpm.
 
 ```sh
-pnpm install
+pnpm install  
 pnpm build
 ```
 
