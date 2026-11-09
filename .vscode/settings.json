@@ -6,7 +6,7 @@
 		"source.fixAll.biome": "explicit",
 		"source.organizeImports.biome": "explicit"
 	},
-	// Only the daisyUI theme is written for Tailwind
+	// Only the daisyUI theme is written for fucking Tailwind
 	"files.associations": {
 		"**/themes/daisyui/*.css": "tailwindcss",
 		"listr.config.json": "jsonc"
